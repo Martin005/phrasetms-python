@@ -1,4 +1,4 @@
-# openapi-client
+# phrasetms-python
 Welcome to Phrase's TMS API documentation. 
 
  Please visit our [help center](https://support.phrase.com/hc/en-us/sections/5709662083612) for more information about the APIs. 
