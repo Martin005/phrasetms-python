@@ -1,0 +1,22 @@
+# openapi_client.model.json_settings_dto.JsonSettingsDto
+
+## Model Type Info
+Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+dict, frozendict.frozendict,  | frozendict.frozendict,  |  | 
+
+### Dictionary Keys
+Key | Input Type | Accessed Type | Description | Notes
+------------ | ------------- | ------------- | ------------- | -------------
+**tagRegexp** | str,  | str,  |  | [optional] 
+**htmlSubFilter** | bool,  | BoolClass,  | Default: true | [optional] 
+**icuSubFilter** | bool,  | BoolClass,  | Default: false | [optional] 
+**excludeKeyRegexp** | str,  | str,  |  | [optional] 
+**includeKeyRegexp** | str,  | str,  |  | [optional] 
+**contextNotePath** | str,  | str,  |  | [optional] 
+**maxLenPath** | str,  | str,  |  | [optional] 
+**contextKeyPath** | str,  | str,  |  | [optional] 
+**any_string_name** | dict, frozendict.frozendict, str, date, datetime, int, float, bool, decimal.Decimal, None, list, tuple, bytes, io.FileIO, io.BufferedReader | frozendict.frozendict, str, BoolClass, decimal.Decimal, NoneClass, tuple, bytes, FileIO | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+

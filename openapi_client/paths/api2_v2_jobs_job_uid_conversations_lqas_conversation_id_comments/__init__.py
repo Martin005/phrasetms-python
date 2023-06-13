@@ -1,0 +1,7 @@
+# do not import all endpoints into this module because that uses a lot of memory and stack frames
+# if you need the ability to import all endpoints from this module, import them with
+# from openapi_client.paths.api2_v2_jobs_job_uid_conversations_lqas_conversation_id_comments import Api
+
+from openapi_client.paths import PathValues
+
+path = PathValues.API2_V2_JOBS_JOB_UID_CONVERSATIONS_LQAS_CONVERSATION_ID_COMMENTS
