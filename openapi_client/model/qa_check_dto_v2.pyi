@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class QACheckDtoV2(
@@ -284,8 +284,8 @@ class QACheckDtoV2(
             **kwargs,
         )
 
-from openapi_client.model.moravia import MORAVIA
-from openapi_client.model.number import NUMBER
-from openapi_client.model.regex import REGEX
-from openapi_client.model.string import STRING
-from openapi_client.model.void import VOID
+from phrasetms_client.model.moravia import MORAVIA
+from phrasetms_client.model.number import NUMBER
+from phrasetms_client.model.regex import REGEX
+from phrasetms_client.model.string import STRING
+from phrasetms_client.model.void import VOID

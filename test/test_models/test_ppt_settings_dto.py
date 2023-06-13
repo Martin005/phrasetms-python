@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.ppt_settings_dto import PptSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.ppt_settings_dto import PptSettingsDto
+from phrasetms_client import configuration
 
 
 class TestPptSettingsDto(unittest.TestCase):

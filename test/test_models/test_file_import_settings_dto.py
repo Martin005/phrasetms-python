@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.file_import_settings_dto import FileImportSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.file_import_settings_dto import FileImportSettingsDto
+from phrasetms_client import configuration
 
 
 class TestFileImportSettingsDto(unittest.TestCase):

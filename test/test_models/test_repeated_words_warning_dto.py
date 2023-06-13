@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.repeated_words_warning_dto import RepeatedWordsWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.repeated_words_warning_dto import RepeatedWordsWarningDto
+from phrasetms_client import configuration
 
 
 class TestRepeatedWordsWarningDto(unittest.TestCase):

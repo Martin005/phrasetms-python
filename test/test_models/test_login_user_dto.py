@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.login_user_dto import LoginUserDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.login_user_dto import LoginUserDto
+from phrasetms_client import configuration
 
 
 class TestLoginUserDto(unittest.TestCase):

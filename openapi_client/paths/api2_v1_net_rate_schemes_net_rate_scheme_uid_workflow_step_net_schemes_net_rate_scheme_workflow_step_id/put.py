@@ -11,7 +11,7 @@ import typing_extensions
 import urllib3
 from urllib3._collections import HTTPHeaderDict
 
-from openapi_client import api_client, exceptions
+from phrasetms_client import api_client, exceptions
 from datetime import date, datetime  # noqa: F401
 import decimal  # noqa: F401
 import functools  # noqa: F401
@@ -23,10 +23,10 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
-from openapi_client.model.net_rate_scheme_workflow_step import NetRateSchemeWorkflowStep
-from openapi_client.model.net_rate_scheme_workflow_step_edit import NetRateSchemeWorkflowStepEdit
+from phrasetms_client.model.net_rate_scheme_workflow_step import NetRateSchemeWorkflowStep
+from phrasetms_client.model.net_rate_scheme_workflow_step_edit import NetRateSchemeWorkflowStepEdit
 
 from . import path
 

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.reference_file_access_dto import ReferenceFileAccessDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.reference_file_access_dto import ReferenceFileAccessDto
+from phrasetms_client import configuration
 
 
 class TestReferenceFileAccessDto(unittest.TestCase):

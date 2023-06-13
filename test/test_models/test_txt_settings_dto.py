@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.txt_settings_dto import TxtSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.txt_settings_dto import TxtSettingsDto
+from phrasetms_client import configuration
 
 
 class TestTxtSettingsDto(unittest.TestCase):

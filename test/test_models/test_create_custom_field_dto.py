@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.create_custom_field_dto import CreateCustomFieldDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.create_custom_field_dto import CreateCustomFieldDto
+from phrasetms_client import configuration
 
 
 class TestCreateCustomFieldDto(unittest.TestCase):

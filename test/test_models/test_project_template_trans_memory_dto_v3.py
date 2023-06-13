@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.project_template_trans_memory_dto_v3 import ProjectTemplateTransMemoryDtoV3
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.project_template_trans_memory_dto_v3 import ProjectTemplateTransMemoryDtoV3
+from phrasetms_client import configuration
 
 
 class TestProjectTemplateTransMemoryDtoV3(unittest.TestCase):

@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class LqaProfileReferenceDto(
@@ -148,5 +148,5 @@ class LqaProfileReferenceDto(
             **kwargs,
         )
 
-from openapi_client.model.uid_reference import UidReference
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.uid_reference import UidReference
+from phrasetms_client.model.user_reference import UserReference

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.lqa_severity_dto import LqaSeverityDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.lqa_severity_dto import LqaSeverityDto
+from phrasetms_client import configuration
 
 
 class TestLqaSeverityDto(unittest.TestCase):

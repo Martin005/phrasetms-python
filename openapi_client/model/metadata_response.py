@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class MetadataResponse(
@@ -128,4 +128,4 @@ class MetadataResponse(
             **kwargs,
         )
 
-from openapi_client.model.language_metadata1 import LanguageMetadata1
+from phrasetms_client.model.language_metadata1 import LanguageMetadata1

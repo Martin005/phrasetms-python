@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.translation_price_set_bulk_delete_dto import TranslationPriceSetBulkDeleteDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.translation_price_set_bulk_delete_dto import TranslationPriceSetBulkDeleteDto
+from phrasetms_client import configuration
 
 
 class TestTranslationPriceSetBulkDeleteDto(unittest.TestCase):

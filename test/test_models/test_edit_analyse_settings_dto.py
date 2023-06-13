@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.edit_analyse_settings_dto import EditAnalyseSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.edit_analyse_settings_dto import EditAnalyseSettingsDto
+from phrasetms_client import configuration
 
 
 class TestEditAnalyseSettingsDto(unittest.TestCase):

@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AsyncExportTMResponseDto(
@@ -93,5 +93,5 @@ class AsyncExportTMResponseDto(
             **kwargs,
         )
 
-from openapi_client.model.async_export_tm_dto import AsyncExportTMDto
-from openapi_client.model.async_request_v2_dto import AsyncRequestV2Dto
+from phrasetms_client.model.async_export_tm_dto import AsyncExportTMDto
+from phrasetms_client.model.async_request_v2_dto import AsyncRequestV2Dto

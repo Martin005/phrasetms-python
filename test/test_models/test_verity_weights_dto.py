@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.verity_weights_dto import VerityWeightsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.verity_weights_dto import VerityWeightsDto
+from phrasetms_client import configuration
 
 
 class TestVerityWeightsDto(unittest.TestCase):

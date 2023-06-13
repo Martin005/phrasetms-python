@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.yaml_settings_dto import YamlSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.yaml_settings_dto import YamlSettingsDto
+from phrasetms_client import configuration
 
 
 class TestYamlSettingsDto(unittest.TestCase):

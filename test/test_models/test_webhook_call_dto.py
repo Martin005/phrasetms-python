@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.webhook_call_dto import WebhookCallDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.webhook_call_dto import WebhookCallDto
+from phrasetms_client import configuration
 
 
 class TestWebhookCallDto(unittest.TestCase):

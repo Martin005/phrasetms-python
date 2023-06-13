@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.vendor_user_reference import VendorUserReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.vendor_user_reference import VendorUserReference
+from phrasetms_client import configuration
 
 
 class TestVendorUserReference(unittest.TestCase):

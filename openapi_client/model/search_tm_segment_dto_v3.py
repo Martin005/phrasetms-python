@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SearchTMSegmentDtoV3(
@@ -290,9 +290,9 @@ class SearchTMSegmentDtoV3(
             **kwargs,
         )
 
-from openapi_client.model.search_tm_client_dto_v3 import SearchTMClientDtoV3
-from openapi_client.model.search_tm_domain_dto_v3 import SearchTMDomainDtoV3
-from openapi_client.model.search_tm_project_dto_v3 import SearchTMProjectDtoV3
-from openapi_client.model.search_tm_sub_domain_dto_v3 import SearchTMSubDomainDtoV3
-from openapi_client.model.tag_metadata import TagMetadata
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.search_tm_client_dto_v3 import SearchTMClientDtoV3
+from phrasetms_client.model.search_tm_domain_dto_v3 import SearchTMDomainDtoV3
+from phrasetms_client.model.search_tm_project_dto_v3 import SearchTMProjectDtoV3
+from phrasetms_client.model.search_tm_sub_domain_dto_v3 import SearchTMSubDomainDtoV3
+from phrasetms_client.model.tag_metadata import TagMetadata
+from phrasetms_client.model.user_reference import UserReference

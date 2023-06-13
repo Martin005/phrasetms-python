@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.providers_per_language import ProvidersPerLanguage
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.providers_per_language import ProvidersPerLanguage
+from phrasetms_client import configuration
 
 
 class TestProvidersPerLanguage(unittest.TestCase):

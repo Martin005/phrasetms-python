@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class NetRateScheme(
@@ -181,7 +181,7 @@ class NetRateScheme(
             **kwargs,
         )
 
-from openapi_client.model.discount_settings_dto import DiscountSettingsDto
-from openapi_client.model.net_rate_scheme_workflow_step_reference import NetRateSchemeWorkflowStepReference
-from openapi_client.model.organization_reference import OrganizationReference
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.discount_settings_dto import DiscountSettingsDto
+from phrasetms_client.model.net_rate_scheme_workflow_step_reference import NetRateSchemeWorkflowStepReference
+from phrasetms_client.model.organization_reference import OrganizationReference
+from phrasetms_client.model.user_reference import UserReference

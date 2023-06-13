@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.enabled_check_dto_v2 import EnabledCheckDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.enabled_check_dto_v2 import EnabledCheckDtoV2
+from phrasetms_client import configuration
 
 
 class TestEnabledCheckDtoV2(unittest.TestCase):

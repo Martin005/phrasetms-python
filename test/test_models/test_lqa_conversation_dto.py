@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.lqa_conversation_dto import LQAConversationDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.lqa_conversation_dto import LQAConversationDto
+from phrasetms_client import configuration
 
 
 class TestLQAConversationDto(unittest.TestCase):

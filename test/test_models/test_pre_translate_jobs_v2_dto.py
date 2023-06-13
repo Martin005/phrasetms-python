@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.pre_translate_jobs_v2_dto import PreTranslateJobsV2Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.pre_translate_jobs_v2_dto import PreTranslateJobsV2Dto
+from phrasetms_client import configuration
 
 
 class TestPreTranslateJobsV2Dto(unittest.TestCase):

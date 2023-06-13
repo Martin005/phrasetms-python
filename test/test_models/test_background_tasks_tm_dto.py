@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.background_tasks_tm_dto import BackgroundTasksTmDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.background_tasks_tm_dto import BackgroundTasksTmDto
+from phrasetms_client import configuration
 
 
 class TestBackgroundTasksTmDto(unittest.TestCase):

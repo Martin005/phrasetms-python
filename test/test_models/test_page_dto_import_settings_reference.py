@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_import_settings_reference import PageDtoImportSettingsReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_import_settings_reference import PageDtoImportSettingsReference
+from phrasetms_client import configuration
 
 
 class TestPageDtoImportSettingsReference(unittest.TestCase):

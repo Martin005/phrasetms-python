@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.trans_memory_edit_dto import TransMemoryEditDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.trans_memory_edit_dto import TransMemoryEditDto
+from phrasetms_client import configuration
 
 
 class TestTransMemoryEditDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_create_remote_file_dto import JobCreateRemoteFileDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_create_remote_file_dto import JobCreateRemoteFileDto
+from phrasetms_client import configuration
 
 
 class TestJobCreateRemoteFileDto(unittest.TestCase):

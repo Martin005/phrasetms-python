@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.adminresponse import ADMINRESPONSE
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.adminresponse import ADMINRESPONSE
+from phrasetms_client import configuration
 
 
 class TestADMINRESPONSE(unittest.TestCase):

@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoAnalyseJobDto(
@@ -152,4 +152,4 @@ class PageDtoAnalyseJobDto(
             **kwargs,
         )
 
-from openapi_client.model.analyse_job_dto import AnalyseJobDto
+from phrasetms_client.model.analyse_job_dto import AnalyseJobDto

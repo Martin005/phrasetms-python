@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.browse_request_dto import BrowseRequestDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.browse_request_dto import BrowseRequestDto
+from phrasetms_client import configuration
 
 
 class TestBrowseRequestDto(unittest.TestCase):

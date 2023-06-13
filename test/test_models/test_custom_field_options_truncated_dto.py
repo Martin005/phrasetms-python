@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.custom_field_options_truncated_dto import CustomFieldOptionsTruncatedDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.custom_field_options_truncated_dto import CustomFieldOptionsTruncatedDto
+from phrasetms_client import configuration
 
 
 class TestCustomFieldOptionsTruncatedDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.trans_memory_dto_v2 import TransMemoryDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.trans_memory_dto_v2 import TransMemoryDtoV2
+from phrasetms_client import configuration
 
 
 class TestTransMemoryDtoV2(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.webhook_previews_dto import WebhookPreviewsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.webhook_previews_dto import WebhookPreviewsDto
+from phrasetms_client import configuration
 
 
 class TestWebhookPreviewsDto(unittest.TestCase):

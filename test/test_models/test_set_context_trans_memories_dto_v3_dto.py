@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.set_context_trans_memories_dto_v3_dto import SetContextTransMemoriesDtoV3Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.set_context_trans_memories_dto_v3_dto import SetContextTransMemoriesDtoV3Dto
+from phrasetms_client import configuration
 
 
 class TestSetContextTransMemoriesDtoV3Dto(unittest.TestCase):

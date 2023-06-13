@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.marketo import Marketo
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.marketo import Marketo
+from phrasetms_client import configuration
 
 
 class TestMarketo(unittest.TestCase):

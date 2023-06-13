@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.regexp_check_rule_dto_v2 import RegexpCheckRuleDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.regexp_check_rule_dto_v2 import RegexpCheckRuleDtoV2
+from phrasetms_client import configuration
 
 
 class TestRegexpCheckRuleDtoV2(unittest.TestCase):

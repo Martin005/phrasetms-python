@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.discount_settings_dto import DiscountSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.discount_settings_dto import DiscountSettingsDto
+from phrasetms_client import configuration
 
 
 class TestDiscountSettingsDto(unittest.TestCase):

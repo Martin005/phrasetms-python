@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.dictionary_item_dto import DictionaryItemDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.dictionary_item_dto import DictionaryItemDto
+from phrasetms_client import configuration
 
 
 class TestDictionaryItemDto(unittest.TestCase):

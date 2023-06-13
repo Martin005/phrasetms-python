@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class JobListDto(
@@ -147,5 +147,5 @@ class JobListDto(
             **kwargs,
         )
 
-from openapi_client.model.async_request_reference import AsyncRequestReference
-from openapi_client.model.job_part_reference import JobPartReference
+from phrasetms_client.model.async_request_reference import AsyncRequestReference
+from phrasetms_client.model.job_part_reference import JobPartReference

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.reference_file_page_dto import ReferenceFilePageDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.reference_file_page_dto import ReferenceFilePageDto
+from phrasetms_client import configuration
 
 
 class TestReferenceFilePageDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.microsoft_azure import MicrosoftAzure
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.microsoft_azure import MicrosoftAzure
+from phrasetms_client import configuration
 
 
 class TestMicrosoftAzure(unittest.TestCase):

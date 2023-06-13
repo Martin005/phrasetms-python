@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.forbidden_string_warning_dto import ForbiddenStringWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.forbidden_string_warning_dto import ForbiddenStringWarningDto
+from phrasetms_client import configuration
 
 
 class TestForbiddenStringWarningDto(unittest.TestCase):

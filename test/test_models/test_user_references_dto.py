@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.user_references_dto import UserReferencesDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.user_references_dto import UserReferencesDto
+from phrasetms_client import configuration
 
 
 class TestUserReferencesDto(unittest.TestCase):

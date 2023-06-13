@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.service_provider_config_dto import ServiceProviderConfigDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.service_provider_config_dto import ServiceProviderConfigDto
+from phrasetms_client import configuration
 
 
 class TestServiceProviderConfigDto(unittest.TestCase):

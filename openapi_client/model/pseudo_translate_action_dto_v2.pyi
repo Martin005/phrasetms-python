@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PseudoTranslateActionDtoV2(
@@ -157,4 +157,4 @@ class PseudoTranslateActionDtoV2(
             **kwargs,
         )
 
-from openapi_client.model.substitute_dto_v2 import SubstituteDtoV2
+from phrasetms_client.model.substitute_dto_v2 import SubstituteDtoV2

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.project_security_settings_dto_v2 import ProjectSecuritySettingsDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.project_security_settings_dto_v2 import ProjectSecuritySettingsDtoV2
+from phrasetms_client import configuration
 
 
 class TestProjectSecuritySettingsDtoV2(unittest.TestCase):

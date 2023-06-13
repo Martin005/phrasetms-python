@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.target_source_identical_warning_dto import TargetSourceIdenticalWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.target_source_identical_warning_dto import TargetSourceIdenticalWarningDto
+from phrasetms_client import configuration
 
 
 class TestTargetSourceIdenticalWarningDto(unittest.TestCase):

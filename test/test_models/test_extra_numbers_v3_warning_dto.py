@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.extra_numbers_v3_warning_dto import ExtraNumbersV3WarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.extra_numbers_v3_warning_dto import ExtraNumbersV3WarningDto
+from phrasetms_client import configuration
 
 
 class TestExtraNumbersV3WarningDto(unittest.TestCase):

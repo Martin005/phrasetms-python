@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.auth_schema import AuthSchema
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.auth_schema import AuthSchema
+from phrasetms_client import configuration
 
 
 class TestAuthSchema(unittest.TestCase):

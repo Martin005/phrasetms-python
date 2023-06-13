@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_additional_workflow_step_dto import PageDtoAdditionalWorkflowStepDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_additional_workflow_step_dto import PageDtoAdditionalWorkflowStepDto
+from phrasetms_client import configuration
 
 
 class TestPageDtoAdditionalWorkflowStepDto(unittest.TestCase):

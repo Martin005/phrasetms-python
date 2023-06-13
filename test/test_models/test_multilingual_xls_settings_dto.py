@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.multilingual_xls_settings_dto import MultilingualXlsSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.multilingual_xls_settings_dto import MultilingualXlsSettingsDto
+from phrasetms_client import configuration
 
 
 class TestMultilingualXlsSettingsDto(unittest.TestCase):

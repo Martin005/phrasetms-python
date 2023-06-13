@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.vendor_security_settings_dto import VendorSecuritySettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.vendor_security_settings_dto import VendorSecuritySettingsDto
+from phrasetms_client import configuration
 
 
 class TestVendorSecuritySettingsDto(unittest.TestCase):

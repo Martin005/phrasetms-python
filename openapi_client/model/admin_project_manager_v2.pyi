@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AdminProjectManagerV2(
@@ -337,10 +337,10 @@ class AdminProjectManagerV2(
             **kwargs,
         )
 
-from openapi_client.model.abstract_project_dto_v2 import AbstractProjectDtoV2
-from openapi_client.model.business_unit_reference import BusinessUnitReference
-from openapi_client.model.client_reference import ClientReference
-from openapi_client.model.cost_center_reference import CostCenterReference
-from openapi_client.model.progress_dto_v2 import ProgressDtoV2
-from openapi_client.model.project_workflow_step_dto_v2 import ProjectWorkflowStepDtoV2
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.abstract_project_dto_v2 import AbstractProjectDtoV2
+from phrasetms_client.model.business_unit_reference import BusinessUnitReference
+from phrasetms_client.model.client_reference import ClientReference
+from phrasetms_client.model.cost_center_reference import CostCenterReference
+from phrasetms_client.model.progress_dto_v2 import ProgressDtoV2
+from phrasetms_client.model.project_workflow_step_dto_v2 import ProjectWorkflowStepDtoV2
+from phrasetms_client.model.user_reference import UserReference

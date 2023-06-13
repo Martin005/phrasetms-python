@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_machine_translation_settings_dto import JobMachineTranslationSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_machine_translation_settings_dto import JobMachineTranslationSettingsDto
+from phrasetms_client import configuration
 
 
 class TestJobMachineTranslationSettingsDto(unittest.TestCase):

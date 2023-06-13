@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.match_counts101_dto import MatchCounts101Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.match_counts101_dto import MatchCounts101Dto
+from phrasetms_client import configuration
 
 
 class TestMatchCounts101Dto(unittest.TestCase):

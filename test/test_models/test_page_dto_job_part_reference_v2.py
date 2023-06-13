@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_job_part_reference_v2 import PageDtoJobPartReferenceV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_job_part_reference_v2 import PageDtoJobPartReferenceV2
+from phrasetms_client import configuration
 
 
 class TestPageDtoJobPartReferenceV2(unittest.TestCase):

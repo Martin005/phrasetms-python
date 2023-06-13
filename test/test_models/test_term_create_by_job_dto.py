@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.term_create_by_job_dto import TermCreateByJobDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.term_create_by_job_dto import TermCreateByJobDto
+from phrasetms_client import configuration
 
 
 class TestTermCreateByJobDto(unittest.TestCase):

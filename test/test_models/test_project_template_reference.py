@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.project_template_reference import ProjectTemplateReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.project_template_reference import ProjectTemplateReference
+from phrasetms_client import configuration
 
 
 class TestProjectTemplateReference(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.schema_extension import SchemaExtension
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.schema_extension import SchemaExtension
+from phrasetms_client import configuration
 
 
 class TestSchemaExtension(unittest.TestCase):

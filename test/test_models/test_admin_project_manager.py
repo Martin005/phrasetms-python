@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.admin_project_manager import AdminProjectManager
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.admin_project_manager import AdminProjectManager
+from phrasetms_client import configuration
 
 
 class TestAdminProjectManager(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.domain_edit_dto import DomainEditDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.domain_edit_dto import DomainEditDto
+from phrasetms_client import configuration
 
 
 class TestDomainEditDto(unittest.TestCase):

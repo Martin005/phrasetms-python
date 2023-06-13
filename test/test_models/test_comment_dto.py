@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.comment_dto import CommentDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.comment_dto import CommentDto
+from phrasetms_client import configuration
 
 
 class TestCommentDto(unittest.TestCase):

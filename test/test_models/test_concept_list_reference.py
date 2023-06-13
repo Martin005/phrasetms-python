@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.concept_list_reference import ConceptListReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.concept_list_reference import ConceptListReference
+from phrasetms_client import configuration
 
 
 class TestConceptListReference(unittest.TestCase):

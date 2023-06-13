@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.segments_counts_dto import SegmentsCountsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.segments_counts_dto import SegmentsCountsDto
+from phrasetms_client import configuration
 
 
 class TestSegmentsCountsDto(unittest.TestCase):

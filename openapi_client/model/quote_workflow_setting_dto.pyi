@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class QuoteWorkflowSettingDto(
@@ -120,5 +120,5 @@ class QuoteWorkflowSettingDto(
             **kwargs,
         )
 
-from openapi_client.model.id_reference import IdReference
-from openapi_client.model.quote_units_dto import QuoteUnitsDto
+from phrasetms_client.model.id_reference import IdReference
+from phrasetms_client.model.quote_units_dto import QuoteUnitsDto

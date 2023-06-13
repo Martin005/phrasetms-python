@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.glossary_activation_dto import GlossaryActivationDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.glossary_activation_dto import GlossaryActivationDto
+from phrasetms_client import configuration
 
 
 class TestGlossaryActivationDto(unittest.TestCase):

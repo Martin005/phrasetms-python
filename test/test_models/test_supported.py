@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.supported import Supported
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.supported import Supported
+from phrasetms_client import configuration
 
 
 class TestSupported(unittest.TestCase):

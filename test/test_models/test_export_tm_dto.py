@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.export_tm_dto import ExportTMDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.export_tm_dto import ExportTMDto
+from phrasetms_client import configuration
 
 
 class TestExportTMDto(unittest.TestCase):

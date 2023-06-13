@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class QualityAssuranceResponseDto(
@@ -112,4 +112,4 @@ class QualityAssuranceResponseDto(
             **kwargs,
         )
 
-from openapi_client.model.segment_warnings_dto import SegmentWarningsDto
+from phrasetms_client.model.segment_warnings_dto import SegmentWarningsDto

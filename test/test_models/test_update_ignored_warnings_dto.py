@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.update_ignored_warnings_dto import UpdateIgnoredWarningsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.update_ignored_warnings_dto import UpdateIgnoredWarningsDto
+from phrasetms_client import configuration
 
 
 class TestUpdateIgnoredWarningsDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.term_base_dto import TermBaseDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.term_base_dto import TermBaseDto
+from phrasetms_client import configuration
 
 
 class TestTermBaseDto(unittest.TestCase):

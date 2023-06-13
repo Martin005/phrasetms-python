@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class JobPartUpdateBatchDto(
@@ -214,5 +214,5 @@ class JobPartUpdateBatchDto(
             **kwargs,
         )
 
-from openapi_client.model.provider_reference import ProviderReference
-from openapi_client.model.uid_reference import UidReference
+from phrasetms_client.model.provider_reference import ProviderReference
+from phrasetms_client.model.uid_reference import UidReference

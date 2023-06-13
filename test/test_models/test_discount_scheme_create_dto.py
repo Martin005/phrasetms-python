@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.discount_scheme_create_dto import DiscountSchemeCreateDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.discount_scheme_create_dto import DiscountSchemeCreateDto
+from phrasetms_client import configuration
 
 
 class TestDiscountSchemeCreateDto(unittest.TestCase):

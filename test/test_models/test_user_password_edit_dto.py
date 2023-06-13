@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.user_password_edit_dto import UserPasswordEditDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.user_password_edit_dto import UserPasswordEditDto
+from phrasetms_client import configuration
 
 
 class TestUserPasswordEditDto(unittest.TestCase):

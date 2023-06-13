@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class QualityAssuranceBatchRunDtoV3(
@@ -142,5 +142,5 @@ class QualityAssuranceBatchRunDtoV3(
             **kwargs,
         )
 
-from openapi_client.model.quality_assurance_run_dto_v3 import QualityAssuranceRunDtoV3
-from openapi_client.model.uid_reference import UidReference
+from phrasetms_client.model.quality_assurance_run_dto_v3 import QualityAssuranceRunDtoV3
+from phrasetms_client.model.uid_reference import UidReference

@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ProjectReference(
@@ -361,12 +361,12 @@ class ProjectReference(
             **kwargs,
         )
 
-from openapi_client.model.business_unit_reference import BusinessUnitReference
-from openapi_client.model.client_reference import ClientReference
-from openapi_client.model.cost_center_reference import CostCenterReference
-from openapi_client.model.domain_reference import DomainReference
-from openapi_client.model.metadata_reference import MetadataReference
-from openapi_client.model.progress_reference import ProgressReference
-from openapi_client.model.sub_domain_reference import SubDomainReference
-from openapi_client.model.user_reference import UserReference
-from openapi_client.model.vendor_user_reference import VendorUserReference
+from phrasetms_client.model.business_unit_reference import BusinessUnitReference
+from phrasetms_client.model.client_reference import ClientReference
+from phrasetms_client.model.cost_center_reference import CostCenterReference
+from phrasetms_client.model.domain_reference import DomainReference
+from phrasetms_client.model.metadata_reference import MetadataReference
+from phrasetms_client.model.progress_reference import ProgressReference
+from phrasetms_client.model.sub_domain_reference import SubDomainReference
+from phrasetms_client.model.user_reference import UserReference
+from phrasetms_client.model.vendor_user_reference import VendorUserReference

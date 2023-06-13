@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.severity_dto import SeverityDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.severity_dto import SeverityDto
+from phrasetms_client import configuration
 
 
 class TestSeverityDto(unittest.TestCase):

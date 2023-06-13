@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.plain_references import PlainReferences
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.plain_references import PlainReferences
+from phrasetms_client import configuration
 
 
 class TestPlainReferences(unittest.TestCase):

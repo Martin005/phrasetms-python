@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.organization_reference import OrganizationReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.organization_reference import OrganizationReference
+from phrasetms_client import configuration
 
 
 class TestOrganizationReference(unittest.TestCase):

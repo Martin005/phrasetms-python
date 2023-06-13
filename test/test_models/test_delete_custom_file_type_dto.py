@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.delete_custom_file_type_dto import DeleteCustomFileTypeDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.delete_custom_file_type_dto import DeleteCustomFileTypeDto
+from phrasetms_client import configuration
 
 
 class TestDeleteCustomFileTypeDto(unittest.TestCase):

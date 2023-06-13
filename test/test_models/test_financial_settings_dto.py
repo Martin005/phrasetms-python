@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.financial_settings_dto import FinancialSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.financial_settings_dto import FinancialSettingsDto
+from phrasetms_client import configuration
 
 
 class TestFinancialSettingsDto(unittest.TestCase):

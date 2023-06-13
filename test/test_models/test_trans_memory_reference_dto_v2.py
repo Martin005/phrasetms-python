@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.trans_memory_reference_dto_v2 import TransMemoryReferenceDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.trans_memory_reference_dto_v2 import TransMemoryReferenceDtoV2
+from phrasetms_client import configuration
 
 
 class TestTransMemoryReferenceDtoV2(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.multilingual_xml_settings_dto import MultilingualXmlSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.multilingual_xml_settings_dto import MultilingualXmlSettingsDto
+from phrasetms_client import configuration
 
 
 class TestMultilingualXmlSettingsDto(unittest.TestCase):

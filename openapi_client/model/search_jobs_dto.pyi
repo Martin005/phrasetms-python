@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SearchJobsDto(
@@ -102,4 +102,4 @@ class SearchJobsDto(
             **kwargs,
         )
 
-from openapi_client.model.job_part_extended_dto import JobPartExtendedDto
+from phrasetms_client.model.job_part_extended_dto import JobPartExtendedDto

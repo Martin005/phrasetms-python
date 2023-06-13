@@ -11,9 +11,9 @@ from unittest.mock import patch
 
 import urllib3
 
-import openapi_client
-from openapi_client.paths.api2_v1_cost_centers_cost_center_uid import get  # noqa: E501
-from openapi_client import configuration, schemas, api_client
+import phrasetms_client
+from phrasetms_client.paths.api2_v1_cost_centers_cost_center_uid import get  # noqa: E501
+from phrasetms_client import configuration, schemas, api_client
 
 from .. import ApiTestMixin
 

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.login_with_google_dto import LoginWithGoogleDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.login_with_google_dto import LoginWithGoogleDto
+from phrasetms_client import configuration
 
 
 class TestLoginWithGoogleDto(unittest.TestCase):

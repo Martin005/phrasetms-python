@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.notify_provider_dto import NotifyProviderDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.notify_provider_dto import NotifyProviderDto
+from phrasetms_client import configuration
 
 
 class TestNotifyProviderDto(unittest.TestCase):

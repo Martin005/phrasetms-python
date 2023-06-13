@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.unmodified_fuzzy_translation_tm_warning_dto import UnmodifiedFuzzyTranslationTMWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.unmodified_fuzzy_translation_tm_warning_dto import UnmodifiedFuzzyTranslationTMWarningDto
+from phrasetms_client import configuration
 
 
 class TestUnmodifiedFuzzyTranslationTMWarningDto(unittest.TestCase):

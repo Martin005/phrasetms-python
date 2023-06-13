@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.assign_vendor_dto import AssignVendorDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.assign_vendor_dto import AssignVendorDto
+from phrasetms_client import configuration
 
 
 class TestAssignVendorDto(unittest.TestCase):

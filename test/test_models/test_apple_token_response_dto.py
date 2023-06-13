@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.apple_token_response_dto import AppleTokenResponseDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.apple_token_response_dto import AppleTokenResponseDto
+from phrasetms_client import configuration
 
 
 class TestAppleTokenResponseDto(unittest.TestCase):

@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AsyncAnalyseListResponseV2Dto(
@@ -102,4 +102,4 @@ class AsyncAnalyseListResponseV2Dto(
             **kwargs,
         )
 
-from openapi_client.model.async_analyse_response_v2_dto import AsyncAnalyseResponseV2Dto
+from phrasetms_client.model.async_analyse_response_v2_dto import AsyncAnalyseResponseV2Dto

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.search_tmby_job_request_dto_v3 import SearchTMByJobRequestDtoV3
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.search_tmby_job_request_dto_v3 import SearchTMByJobRequestDtoV3
+from phrasetms_client import configuration
 
 
 class TestSearchTMByJobRequestDtoV3(unittest.TestCase):

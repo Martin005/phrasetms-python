@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.create_reference_file_note_dto import CreateReferenceFileNoteDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.create_reference_file_note_dto import CreateReferenceFileNoteDto
+from phrasetms_client import configuration
 
 
 class TestCreateReferenceFileNoteDto(unittest.TestCase):

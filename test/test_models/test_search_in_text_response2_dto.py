@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.search_in_text_response2_dto import SearchInTextResponse2Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.search_in_text_response2_dto import SearchInTextResponse2Dto
+from phrasetms_client import configuration
 
 
 class TestSearchInTextResponse2Dto(unittest.TestCase):

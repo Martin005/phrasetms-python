@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ProjectTemplateEditDto(
@@ -384,8 +384,8 @@ class ProjectTemplateEditDto(
             **kwargs,
         )
 
-from openapi_client.model.id_reference import IdReference
-from openapi_client.model.project_template_notify_provider_dto import ProjectTemplateNotifyProviderDto
-from openapi_client.model.project_template_workflow_settings_assigned_to_dto import ProjectTemplateWorkflowSettingsAssignedToDto
-from openapi_client.model.uid_reference import UidReference
-from openapi_client.model.workflow_step_settings_edit_dto import WorkflowStepSettingsEditDto
+from phrasetms_client.model.id_reference import IdReference
+from phrasetms_client.model.project_template_notify_provider_dto import ProjectTemplateNotifyProviderDto
+from phrasetms_client.model.project_template_workflow_settings_assigned_to_dto import ProjectTemplateWorkflowSettingsAssignedToDto
+from phrasetms_client.model.uid_reference import UidReference
+from phrasetms_client.model.workflow_step_settings_edit_dto import WorkflowStepSettingsEditDto

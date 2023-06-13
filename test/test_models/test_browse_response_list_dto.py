@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.browse_response_list_dto import BrowseResponseListDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.browse_response_list_dto import BrowseResponseListDto
+from phrasetms_client import configuration
 
 
 class TestBrowseResponseListDto(unittest.TestCase):

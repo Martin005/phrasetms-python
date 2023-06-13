@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.typo3 import Typo3
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.typo3 import Typo3
+from phrasetms_client import configuration
 
 
 class TestTypo3(unittest.TestCase):

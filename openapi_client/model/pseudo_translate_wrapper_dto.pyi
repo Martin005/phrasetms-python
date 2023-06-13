@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PseudoTranslateWrapperDto(
@@ -100,5 +100,5 @@ class PseudoTranslateWrapperDto(
             **kwargs,
         )
 
-from openapi_client.model.job_part_ready_references import JobPartReadyReferences
-from openapi_client.model.pseudo_translate_action_dto_v2 import PseudoTranslateActionDtoV2
+from phrasetms_client.model.job_part_ready_references import JobPartReadyReferences
+from phrasetms_client.model.pseudo_translate_action_dto_v2 import PseudoTranslateActionDtoV2

@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AbstractUserCreateDto(
@@ -304,8 +304,8 @@ class AbstractUserCreateDto(
             **kwargs,
         )
 
-from openapi_client.model.admin import ADMIN
-from openapi_client.model.guest import GUEST
-from openapi_client.model.linguist import LINGUIST
-from openapi_client.model.projectmanager import PROJECTMANAGER
-from openapi_client.model.submitter import SUBMITTER
+from phrasetms_client.model.admin import ADMIN
+from phrasetms_client.model.guest import GUEST
+from phrasetms_client.model.linguist import LINGUIST
+from phrasetms_client.model.projectmanager import PROJECTMANAGER
+from phrasetms_client.model.submitter import SUBMITTER

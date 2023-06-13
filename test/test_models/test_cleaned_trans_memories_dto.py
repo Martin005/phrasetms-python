@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.cleaned_trans_memories_dto import CleanedTransMemoriesDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.cleaned_trans_memories_dto import CleanedTransMemoriesDto
+from phrasetms_client import configuration
 
 
 class TestCleanedTransMemoriesDto(unittest.TestCase):

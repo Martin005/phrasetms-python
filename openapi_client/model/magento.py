@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class Magento(
@@ -131,4 +131,4 @@ class Magento(
             **kwargs,
         )
 
-from openapi_client.model.abstract_connector_dto import AbstractConnectorDto
+from phrasetms_client.model.abstract_connector_dto import AbstractConnectorDto

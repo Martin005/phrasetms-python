@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.project_translation_memory_reference import ProjectTranslationMemoryReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.project_translation_memory_reference import ProjectTranslationMemoryReference
+from phrasetms_client import configuration
 
 
 class TestProjectTranslationMemoryReference(unittest.TestCase):

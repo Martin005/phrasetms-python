@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_vendor_dto import PageDtoVendorDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_vendor_dto import PageDtoVendorDto
+from phrasetms_client import configuration
 
 
 class TestPageDtoVendorDto(unittest.TestCase):

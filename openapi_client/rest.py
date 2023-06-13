@@ -18,7 +18,7 @@ import certifi
 import urllib3
 from urllib3._collections import HTTPHeaderDict
 
-from openapi_client.exceptions import ApiException, ApiValueError
+from phrasetms_client.exceptions import ApiException, ApiValueError
 
 
 logger = logging.getLogger(__name__)

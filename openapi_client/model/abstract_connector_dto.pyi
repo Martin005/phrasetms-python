@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AbstractConnectorDto(
@@ -123,20 +123,20 @@ class AbstractConnectorDto(
             **kwargs,
         )
 
-from openapi_client.model.adobe_experience_manager import AdobeExperienceManager
-from openapi_client.model.amazon_s3 import AmazonS3
-from openapi_client.model.bitbucket_server import BitbucketServer
-from openapi_client.model.contentstack import Contentstack
-from openapi_client.model.ftp import Ftp
-from openapi_client.model.git import Git
-from openapi_client.model.git_lab import GitLab
-from openapi_client.model.joomla import Joomla
-from openapi_client.model.kentico import Kentico
-from openapi_client.model.magento import Magento
-from openapi_client.model.marketo import Marketo
-from openapi_client.model.microsoft_azure import MicrosoftAzure
-from openapi_client.model.sftp import Sftp
-from openapi_client.model.sitecore import Sitecore
-from openapi_client.model.tridion import Tridion
-from openapi_client.model.typo3 import Typo3
-from openapi_client.model.wordpress import Wordpress
+from phrasetms_client.model.adobe_experience_manager import AdobeExperienceManager
+from phrasetms_client.model.amazon_s3 import AmazonS3
+from phrasetms_client.model.bitbucket_server import BitbucketServer
+from phrasetms_client.model.contentstack import Contentstack
+from phrasetms_client.model.ftp import Ftp
+from phrasetms_client.model.git import Git
+from phrasetms_client.model.git_lab import GitLab
+from phrasetms_client.model.joomla import Joomla
+from phrasetms_client.model.kentico import Kentico
+from phrasetms_client.model.magento import Magento
+from phrasetms_client.model.marketo import Marketo
+from phrasetms_client.model.microsoft_azure import MicrosoftAzure
+from phrasetms_client.model.sftp import Sftp
+from phrasetms_client.model.sitecore import Sitecore
+from phrasetms_client.model.tridion import Tridion
+from phrasetms_client.model.typo3 import Typo3
+from phrasetms_client.model.wordpress import Wordpress

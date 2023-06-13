@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.psd_settings_dto import PsdSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.psd_settings_dto import PsdSettingsDto
+from phrasetms_client import configuration
 
 
 class TestPsdSettingsDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.workflow_step_configuration import WorkflowStepConfiguration
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.workflow_step_configuration import WorkflowStepConfiguration
+from phrasetms_client import configuration
 
 
 class TestWorkflowStepConfiguration(unittest.TestCase):

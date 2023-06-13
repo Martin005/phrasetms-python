@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SearchTMRequestDto(
@@ -263,4 +263,4 @@ class SearchTMRequestDto(
             **kwargs,
         )
 
-from openapi_client.model.tag_metadata_dto import TagMetadataDto
+from phrasetms_client.model.tag_metadata_dto import TagMetadataDto

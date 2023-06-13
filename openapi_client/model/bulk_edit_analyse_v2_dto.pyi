@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class BulkEditAnalyseV2Dto(
@@ -148,6 +148,6 @@ class BulkEditAnalyseV2Dto(
             **kwargs,
         )
 
-from openapi_client.model.id_reference import IdReference
-from openapi_client.model.provider_reference import ProviderReference
-from openapi_client.model.uid_reference import UidReference
+from phrasetms_client.model.id_reference import IdReference
+from phrasetms_client.model.provider_reference import ProviderReference
+from phrasetms_client.model.uid_reference import UidReference

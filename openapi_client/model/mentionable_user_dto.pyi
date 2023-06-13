@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class MentionableUserDto(
@@ -215,4 +215,4 @@ class MentionableUserDto(
             **kwargs,
         )
 
-from openapi_client.model.job_role_dto import JobRoleDto
+from phrasetms_client.model.job_role_dto import JobRoleDto

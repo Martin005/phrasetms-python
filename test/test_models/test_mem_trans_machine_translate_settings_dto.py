@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.mem_trans_machine_translate_settings_dto import MemTransMachineTranslateSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.mem_trans_machine_translate_settings_dto import MemTransMachineTranslateSettingsDto
+from phrasetms_client import configuration
 
 
 class TestMemTransMachineTranslateSettingsDto(unittest.TestCase):

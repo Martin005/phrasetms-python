@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.join_tags_warning_dto import JoinTagsWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.join_tags_warning_dto import JoinTagsWarningDto
+from phrasetms_client import configuration
 
 
 class TestJoinTagsWarningDto(unittest.TestCase):

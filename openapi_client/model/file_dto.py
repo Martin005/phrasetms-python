@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class FileDto(
@@ -170,4 +170,4 @@ class FileDto(
             **kwargs,
         )
 
-from openapi_client.model.error_dto import ErrorDto
+from phrasetms_client.model.error_dto import ErrorDto

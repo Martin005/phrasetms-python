@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class UpdateLqaProfileDto(
@@ -128,6 +128,6 @@ class UpdateLqaProfileDto(
             **kwargs,
         )
 
-from openapi_client.model.error_categories_dto import ErrorCategoriesDto
-from openapi_client.model.pass_fail_threshold_dto import PassFailThresholdDto
-from openapi_client.model.penalty_points_dto import PenaltyPointsDto
+from phrasetms_client.model.error_categories_dto import ErrorCategoriesDto
+from phrasetms_client.model.pass_fail_threshold_dto import PassFailThresholdDto
+from phrasetms_client.model.penalty_points_dto import PenaltyPointsDto

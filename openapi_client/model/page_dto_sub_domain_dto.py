@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoSubDomainDto(
@@ -152,4 +152,4 @@ class PageDtoSubDomainDto(
             **kwargs,
         )
 
-from openapi_client.model.sub_domain_dto import SubDomainDto
+from phrasetms_client.model.sub_domain_dto import SubDomainDto

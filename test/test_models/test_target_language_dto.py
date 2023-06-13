@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.target_language_dto import TargetLanguageDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.target_language_dto import TargetLanguageDto
+from phrasetms_client import configuration
 
 
 class TestTargetLanguageDto(unittest.TestCase):

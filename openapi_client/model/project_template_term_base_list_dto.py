@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ProjectTemplateTermBaseListDto(
@@ -102,4 +102,4 @@ class ProjectTemplateTermBaseListDto(
             **kwargs,
         )
 
-from openapi_client.model.project_template_term_base_dto import ProjectTemplateTermBaseDto
+from phrasetms_client.model.project_template_term_base_dto import ProjectTemplateTermBaseDto

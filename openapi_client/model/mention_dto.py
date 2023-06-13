@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class MentionDto(
@@ -218,6 +218,6 @@ class MentionDto(
             **kwargs,
         )
 
-from openapi_client.model.mentionable_group_dto import MentionableGroupDto
-from openapi_client.model.mentionable_user_dto import MentionableUserDto
-from openapi_client.model.uid_reference import UidReference
+from phrasetms_client.model.mentionable_group_dto import MentionableGroupDto
+from phrasetms_client.model.mentionable_user_dto import MentionableUserDto
+from phrasetms_client.model.uid_reference import UidReference

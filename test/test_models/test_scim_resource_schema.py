@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.scim_resource_schema import ScimResourceSchema
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.scim_resource_schema import ScimResourceSchema
+from phrasetms_client import configuration
 
 
 class TestScimResourceSchema(unittest.TestCase):

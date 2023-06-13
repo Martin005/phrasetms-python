@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.project_template_term_base_dto import ProjectTemplateTermBaseDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.project_template_term_base_dto import ProjectTemplateTermBaseDto
+from phrasetms_client import configuration
 
 
 class TestProjectTemplateTermBaseDto(unittest.TestCase):

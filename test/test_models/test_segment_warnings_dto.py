@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.segment_warnings_dto import SegmentWarningsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.segment_warnings_dto import SegmentWarningsDto
+from phrasetms_client import configuration
 
 
 class TestSegmentWarningsDto(unittest.TestCase):

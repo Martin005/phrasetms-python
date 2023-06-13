@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.add_target_lang_dto import AddTargetLangDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.add_target_lang_dto import AddTargetLangDto
+from phrasetms_client import configuration
 
 
 class TestAddTargetLangDto(unittest.TestCase):

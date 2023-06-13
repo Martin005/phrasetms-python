@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.number import NUMBER
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.number import NUMBER
+from phrasetms_client import configuration
 
 
 class TestNUMBER(unittest.TestCase):

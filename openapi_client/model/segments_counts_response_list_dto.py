@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SegmentsCountsResponseListDto(
@@ -102,4 +102,4 @@ class SegmentsCountsResponseListDto(
             **kwargs,
         )
 
-from openapi_client.model.segments_counts_response_dto import SegmentsCountsResponseDto
+from phrasetms_client.model.segments_counts_response_dto import SegmentsCountsResponseDto

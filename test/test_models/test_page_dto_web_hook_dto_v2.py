@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_web_hook_dto_v2 import PageDtoWebHookDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_web_hook_dto_v2 import PageDtoWebHookDtoV2
+from phrasetms_client import configuration
 
 
 class TestPageDtoWebHookDtoV2(unittest.TestCase):

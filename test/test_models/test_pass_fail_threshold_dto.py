@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.pass_fail_threshold_dto import PassFailThresholdDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.pass_fail_threshold_dto import PassFailThresholdDto
+from phrasetms_client import configuration
 
 
 class TestPassFailThresholdDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.provider_reference import ProviderReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.provider_reference import ProviderReference
+from phrasetms_client import configuration
 
 
 class TestProviderReference(unittest.TestCase):

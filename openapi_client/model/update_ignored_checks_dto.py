@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class UpdateIgnoredChecksDto(
@@ -321,4 +321,4 @@ class UpdateIgnoredChecksDto(
             **kwargs,
         )
 
-from openapi_client.model.segment_reference import SegmentReference
+from phrasetms_client.model.segment_reference import SegmentReference

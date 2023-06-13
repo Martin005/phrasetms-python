@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ScimResourceTypeSchema(
@@ -184,4 +184,4 @@ class ScimResourceTypeSchema(
             **kwargs,
         )
 
-from openapi_client.model.schema_extension import SchemaExtension
+from phrasetms_client.model.schema_extension import SchemaExtension

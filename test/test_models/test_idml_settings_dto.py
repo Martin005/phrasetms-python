@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.idml_settings_dto import IdmlSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.idml_settings_dto import IdmlSettingsDto
+from phrasetms_client import configuration
 
 
 class TestIdmlSettingsDto(unittest.TestCase):

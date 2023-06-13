@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.get_file_request_params_dto import GetFileRequestParamsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.get_file_request_params_dto import GetFileRequestParamsDto
+from phrasetms_client import configuration
 
 
 class TestGetFileRequestParamsDto(unittest.TestCase):

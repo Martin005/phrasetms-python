@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class JobUpdateSourceResponseDto(
@@ -115,5 +115,5 @@ class JobUpdateSourceResponseDto(
             **kwargs,
         )
 
-from openapi_client.model.async_request_reference import AsyncRequestReference
-from openapi_client.model.job_part_update_source_dto import JobPartUpdateSourceDto
+from phrasetms_client.model.async_request_reference import AsyncRequestReference
+from phrasetms_client.model.job_part_update_source_dto import JobPartUpdateSourceDto

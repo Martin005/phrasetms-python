@@ -11,7 +11,7 @@ import typing_extensions
 import urllib3
 from urllib3._collections import HTTPHeaderDict
 
-from openapi_client import api_client, exceptions
+from phrasetms_client import api_client, exceptions
 from datetime import date, datetime  # noqa: F401
 import decimal  # noqa: F401
 import functools  # noqa: F401
@@ -23,10 +23,10 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
-from openapi_client.model.export_by_query_dto import ExportByQueryDto
-from openapi_client.model.async_export_tmby_query_response_dto import AsyncExportTMByQueryResponseDto
+from phrasetms_client.model.export_by_query_dto import ExportByQueryDto
+from phrasetms_client.model.async_export_tmby_query_response_dto import AsyncExportTMByQueryResponseDto
 
 from . import path
 

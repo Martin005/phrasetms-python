@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.project_workflow_step_reference import ProjectWorkflowStepReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.project_workflow_step_reference import ProjectWorkflowStepReference
+from phrasetms_client import configuration
 
 
 class TestProjectWorkflowStepReference(unittest.TestCase):

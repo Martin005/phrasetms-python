@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.features_dto import FeaturesDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.features_dto import FeaturesDto
+from phrasetms_client import configuration
 
 
 class TestFeaturesDto(unittest.TestCase):

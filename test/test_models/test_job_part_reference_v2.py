@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_part_reference_v2 import JobPartReferenceV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_part_reference_v2 import JobPartReferenceV2
+from phrasetms_client import configuration
 
 
 class TestJobPartReferenceV2(unittest.TestCase):

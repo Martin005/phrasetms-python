@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_part_ready_delete_translation_dto import JobPartReadyDeleteTranslationDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_part_ready_delete_translation_dto import JobPartReadyDeleteTranslationDto
+from phrasetms_client import configuration
 
 
 class TestJobPartReadyDeleteTranslationDto(unittest.TestCase):

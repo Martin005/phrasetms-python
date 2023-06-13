@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AsyncRequestStatusDto(
@@ -80,4 +80,4 @@ class AsyncRequestStatusDto(
             **kwargs,
         )
 
-from openapi_client.model.concurrent_requests_dto import ConcurrentRequestsDto
+from phrasetms_client.model.concurrent_requests_dto import ConcurrentRequestsDto

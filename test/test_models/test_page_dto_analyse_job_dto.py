@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_analyse_job_dto import PageDtoAnalyseJobDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_analyse_job_dto import PageDtoAnalyseJobDto
+from phrasetms_client import configuration
 
 
 class TestPageDtoAnalyseJobDto(unittest.TestCase):

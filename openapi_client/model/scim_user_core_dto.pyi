@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ScimUserCoreDto(
@@ -167,6 +167,6 @@ class ScimUserCoreDto(
             **kwargs,
         )
 
-from openapi_client.model.email import Email
-from openapi_client.model.name import Name
-from openapi_client.model.scim_meta import ScimMeta
+from phrasetms_client.model.email import Email
+from phrasetms_client.model.name import Name
+from phrasetms_client.model.scim_meta import ScimMeta

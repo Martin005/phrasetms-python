@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.pre_analyse_target_compare import PreAnalyseTargetCompare
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.pre_analyse_target_compare import PreAnalyseTargetCompare
+from phrasetms_client import configuration
 
 
 class TestPreAnalyseTargetCompare(unittest.TestCase):

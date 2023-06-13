@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.user_statistics_list_dto import UserStatisticsListDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.user_statistics_list_dto import UserStatisticsListDto
+from phrasetms_client import configuration
 
 
 class TestUserStatisticsListDto(unittest.TestCase):

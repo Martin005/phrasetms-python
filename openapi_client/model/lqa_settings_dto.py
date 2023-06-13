@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class LqaSettingsDto(
@@ -147,5 +147,5 @@ class LqaSettingsDto(
             **kwargs,
         )
 
-from openapi_client.model.lqa_error_category_dto import LqaErrorCategoryDto
-from openapi_client.model.lqa_severity_dto import LqaSeverityDto
+from phrasetms_client.model.lqa_error_category_dto import LqaErrorCategoryDto
+from phrasetms_client.model.lqa_severity_dto import LqaSeverityDto

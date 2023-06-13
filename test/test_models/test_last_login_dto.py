@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.last_login_dto import LastLoginDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.last_login_dto import LastLoginDto
+from phrasetms_client import configuration
 
 
 class TestLastLoginDto(unittest.TestCase):

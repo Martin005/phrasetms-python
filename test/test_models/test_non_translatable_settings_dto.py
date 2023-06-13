@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.non_translatable_settings_dto import NonTranslatableSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.non_translatable_settings_dto import NonTranslatableSettingsDto
+from phrasetms_client import configuration
 
 
 class TestNonTranslatableSettingsDto(unittest.TestCase):

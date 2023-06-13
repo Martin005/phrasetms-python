@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class EditProjectMTSettPerLangListDto(
@@ -102,4 +102,4 @@ class EditProjectMTSettPerLangListDto(
             **kwargs,
         )
 
-from openapi_client.model.edit_project_mt_sett_per_lang_dto import EditProjectMTSettPerLangDto
+from phrasetms_client.model.edit_project_mt_sett_per_lang_dto import EditProjectMTSettPerLangDto

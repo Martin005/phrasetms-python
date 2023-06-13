@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class EditProjectV2Dto(
@@ -325,6 +325,6 @@ class EditProjectV2Dto(
             **kwargs,
         )
 
-from openapi_client.model.custom_field_instance_api_dto import CustomFieldInstanceApiDto
-from openapi_client.model.id_reference import IdReference
-from openapi_client.model.lqa_profiles_for_ws_v2_dto import LqaProfilesForWsV2Dto
+from phrasetms_client.model.custom_field_instance_api_dto import CustomFieldInstanceApiDto
+from phrasetms_client.model.id_reference import IdReference
+from phrasetms_client.model.lqa_profiles_for_ws_v2_dto import LqaProfilesForWsV2Dto

@@ -11,9 +11,9 @@ from unittest.mock import patch
 
 import urllib3
 
-import openapi_client
-from openapi_client.paths.api2_v1_machine_translations_mt_settings_uid_translate import post  # noqa: E501
-from openapi_client import configuration, schemas, api_client
+import phrasetms_client
+from phrasetms_client.paths.api2_v1_machine_translations_mt_settings_uid_translate import post  # noqa: E501
+from phrasetms_client import configuration, schemas, api_client
 
 from .. import ApiTestMixin
 

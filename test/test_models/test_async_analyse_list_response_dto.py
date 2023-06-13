@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.async_analyse_list_response_dto import AsyncAnalyseListResponseDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.async_analyse_list_response_dto import AsyncAnalyseListResponseDto
+from phrasetms_client import configuration
 
 
 class TestAsyncAnalyseListResponseDto(unittest.TestCase):

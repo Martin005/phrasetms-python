@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PlainReferences(
@@ -167,4 +167,4 @@ class PlainReferences(
             **kwargs,
         )
 
-from openapi_client.model.reference_correlation import ReferenceCorrelation
+from phrasetms_client.model.reference_correlation import ReferenceCorrelation

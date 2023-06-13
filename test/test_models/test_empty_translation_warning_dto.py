@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.empty_translation_warning_dto import EmptyTranslationWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.empty_translation_warning_dto import EmptyTranslationWarningDto
+from phrasetms_client import configuration
 
 
 class TestEmptyTranslationWarningDto(unittest.TestCase):

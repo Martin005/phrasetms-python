@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class QuoteV2Dto(
@@ -394,9 +394,9 @@ class QuoteV2Dto(
             **kwargs,
         )
 
-from openapi_client.model.additional_workflow_step_v2_dto import AdditionalWorkflowStepV2Dto
-from openapi_client.model.net_rate_scheme_reference import NetRateSchemeReference
-from openapi_client.model.price_list_reference import PriceListReference
-from openapi_client.model.provider_reference import ProviderReference
-from openapi_client.model.user_reference import UserReference
-from openapi_client.model.workflow_step_reference import WorkflowStepReference
+from phrasetms_client.model.additional_workflow_step_v2_dto import AdditionalWorkflowStepV2Dto
+from phrasetms_client.model.net_rate_scheme_reference import NetRateSchemeReference
+from phrasetms_client.model.price_list_reference import PriceListReference
+from phrasetms_client.model.provider_reference import ProviderReference
+from phrasetms_client.model.user_reference import UserReference
+from phrasetms_client.model.workflow_step_reference import WorkflowStepReference

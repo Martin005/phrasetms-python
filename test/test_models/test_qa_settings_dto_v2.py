@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.qa_settings_dto_v2 import QASettingsDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.qa_settings_dto_v2 import QASettingsDtoV2
+from phrasetms_client import configuration
 
 
 class TestQASettingsDtoV2(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.match_counts_nt_dto_v1 import MatchCountsNTDtoV1
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.match_counts_nt_dto_v1 import MatchCountsNTDtoV1
+from phrasetms_client import configuration
 
 
 class TestMatchCountsNTDtoV1(unittest.TestCase):

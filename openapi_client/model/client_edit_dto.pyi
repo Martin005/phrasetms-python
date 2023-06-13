@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ClientEditDto(
@@ -153,4 +153,4 @@ class ClientEditDto(
             **kwargs,
         )
 
-from openapi_client.model.id_reference import IdReference
+from phrasetms_client.model.id_reference import IdReference

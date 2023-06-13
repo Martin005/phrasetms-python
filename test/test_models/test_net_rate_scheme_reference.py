@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.net_rate_scheme_reference import NetRateSchemeReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.net_rate_scheme_reference import NetRateSchemeReference
+from phrasetms_client import configuration
 
 
 class TestNetRateSchemeReference(unittest.TestCase):

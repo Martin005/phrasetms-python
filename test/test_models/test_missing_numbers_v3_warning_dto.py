@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.missing_numbers_v3_warning_dto import MissingNumbersV3WarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.missing_numbers_v3_warning_dto import MissingNumbersV3WarningDto
+from phrasetms_client import configuration
 
 
 class TestMissingNumbersV3WarningDto(unittest.TestCase):

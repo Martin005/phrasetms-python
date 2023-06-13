@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.search_tb_in_text_by_job_request_dto import SearchTbInTextByJobRequestDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.search_tb_in_text_by_job_request_dto import SearchTbInTextByJobRequestDto
+from phrasetms_client import configuration
 
 
 class TestSearchTbInTextByJobRequestDto(unittest.TestCase):

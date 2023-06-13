@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.data_dto_v1 import DataDtoV1
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.data_dto_v1 import DataDtoV1
+from phrasetms_client import configuration
 
 
 class TestDataDtoV1(unittest.TestCase):

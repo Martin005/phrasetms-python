@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.continuous_job_info_dto import ContinuousJobInfoDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.continuous_job_info_dto import ContinuousJobInfoDto
+from phrasetms_client import configuration
 
 
 class TestContinuousJobInfoDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_list_dto import JobListDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_list_dto import JobListDto
+from phrasetms_client import configuration
 
 
 class TestJobListDto(unittest.TestCase):

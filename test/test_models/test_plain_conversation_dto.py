@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.plain_conversation_dto import PlainConversationDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.plain_conversation_dto import PlainConversationDto
+from phrasetms_client import configuration
 
 
 class TestPlainConversationDto(unittest.TestCase):

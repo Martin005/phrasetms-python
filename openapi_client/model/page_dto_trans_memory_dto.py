@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoTransMemoryDto(
@@ -152,4 +152,4 @@ class PageDtoTransMemoryDto(
             **kwargs,
         )
 
-from openapi_client.model.trans_memory_dto import TransMemoryDto
+from phrasetms_client.model.trans_memory_dto import TransMemoryDto

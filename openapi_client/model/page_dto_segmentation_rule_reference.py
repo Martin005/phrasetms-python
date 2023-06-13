@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoSegmentationRuleReference(
@@ -152,4 +152,4 @@ class PageDtoSegmentationRuleReference(
             **kwargs,
         )
 
-from openapi_client.model.segmentation_rule_reference import SegmentationRuleReference
+from phrasetms_client.model.segmentation_rule_reference import SegmentationRuleReference

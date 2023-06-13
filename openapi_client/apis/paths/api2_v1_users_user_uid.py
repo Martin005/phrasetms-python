@@ -1,4 +1,4 @@
-from openapi_client.paths.api2_v1_users_user_uid.delete import ApiFordelete
+from phrasetms_client.paths.api2_v1_users_user_uid.delete import ApiFordelete
 
 
 class Api2V1UsersUserUid(

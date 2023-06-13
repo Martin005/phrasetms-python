@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class MatchCountsNTDtoV1(
@@ -93,4 +93,4 @@ class MatchCountsNTDtoV1(
             **kwargs,
         )
 
-from openapi_client.model.counts_dto import CountsDto
+from phrasetms_client.model.counts_dto import CountsDto

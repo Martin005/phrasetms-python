@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoWorkflowStepReference(
@@ -152,4 +152,4 @@ class PageDtoWorkflowStepReference(
             **kwargs,
         )
 
-from openapi_client.model.workflow_step_reference import WorkflowStepReference
+from phrasetms_client.model.workflow_step_reference import WorkflowStepReference

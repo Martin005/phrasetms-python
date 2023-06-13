@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PreTranslateSettingsV3Dto(
@@ -171,7 +171,7 @@ class PreTranslateSettingsV3Dto(
             **kwargs,
         )
 
-from openapi_client.model.machine_translation_settings_dto import MachineTranslationSettingsDto
-from openapi_client.model.non_translatable_settings_dto import NonTranslatableSettingsDto
-from openapi_client.model.repetitions_settings_dto import RepetitionsSettingsDto
-from openapi_client.model.translation_memory_settings_dto import TranslationMemorySettingsDto
+from phrasetms_client.model.machine_translation_settings_dto import MachineTranslationSettingsDto
+from phrasetms_client.model.non_translatable_settings_dto import NonTranslatableSettingsDto
+from phrasetms_client.model.repetitions_settings_dto import RepetitionsSettingsDto
+from phrasetms_client.model.translation_memory_settings_dto import TranslationMemorySettingsDto

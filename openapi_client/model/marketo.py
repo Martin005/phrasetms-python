@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class Marketo(
@@ -223,6 +223,6 @@ class Marketo(
             **kwargs,
         )
 
-from openapi_client.model.abstract_connector_dto import AbstractConnectorDto
-from openapi_client.model.marketo_segmentation_mapping_dto import MarketoSegmentationMappingDto
-from openapi_client.model.variable_dto import VariableDto
+from phrasetms_client.model.abstract_connector_dto import AbstractConnectorDto
+from phrasetms_client.model.marketo_segmentation_mapping_dto import MarketoSegmentationMappingDto
+from phrasetms_client.model.variable_dto import VariableDto

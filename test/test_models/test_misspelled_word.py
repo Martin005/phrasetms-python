@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.misspelled_word import MisspelledWord
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.misspelled_word import MisspelledWord
+from phrasetms_client import configuration
 
 
 class TestMisspelledWord(unittest.TestCase):

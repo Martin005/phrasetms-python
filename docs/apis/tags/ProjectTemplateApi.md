@@ -1,45 +1,48 @@
 <a id="__pageTop"></a>
-# openapi_client.apis.tags.project_template_api.ProjectTemplateApi
+
+# phrasetms_client.apis.tags.project_template_api.ProjectTemplateApi
 
 All URIs are relative to *https://cloud.memsource.com/web*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**assign_linguists_from_template**](#assign_linguists_from_template) | **post** /api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders | Assigns providers from template
-[**assign_linguists_from_template_to_job_parts**](#assign_linguists_from_template_to_job_parts) | **post** /api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders/forJobParts | Assigns providers from template (specific jobs)
-[**assignable_templates**](#assignable_templates) | **get** /api2/v1/projects/{projectUid}/assignableTemplates | List assignable templates
-[**create_custom_fields1**](#create_custom_fields1) | **post** /api2/v1/projectTemplates/{projectTemplateUid}/customFields | Create custom field instances
-[**create_project_from_template_v2**](#create_project_from_template_v2) | **post** /api2/v2/projects/applyTemplate/{templateUid} | Create project from template
-[**create_project_from_template_v2_async**](#create_project_from_template_v2_async) | **post** /api2/v2/projects/applyTemplate/async/{templateUid} | Create project from template (async)
-[**create_project_template**](#create_project_template) | **post** /api2/v1/projectTemplates | Create project template
-[**delete_custom_field2**](#delete_custom_field2) | **delete** /api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid} | Delete custom field of project template
-[**delete_project_template**](#delete_project_template) | **delete** /api2/v1/projectTemplates/{projectTemplateUid} | Delete project template
-[**edit_custom_field1**](#edit_custom_field1) | **put** /api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid} | Edit custom field of project template
-[**edit_custom_fields1**](#edit_custom_fields1) | **put** /api2/v1/projectTemplates/{projectTemplateUid}/customFields | Edit custom fields of the project template (batch)
-[**edit_project_template**](#edit_project_template) | **put** /api2/v1/projectTemplates/{projectTemplateUid} | Edit project template
-[**edit_project_template_access_settings**](#edit_project_template_access_settings) | **put** /api2/v1/projectTemplates/{projectTemplateUid}/accessSettings | Edit project template access and security settings
-[**edit_project_template_import_settings**](#edit_project_template_import_settings) | **put** /api2/v1/projectTemplates/{projectTemplateUid}/importSettings | Edit project template import settings
-[**get_analyse_settings_for_project_template**](#get_analyse_settings_for_project_template) | **get** /api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings | Get analyse settings
-[**get_custom_field2**](#get_custom_field2) | **get** /api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid} | Get custom field of project template
-[**get_custom_fields_page1**](#get_custom_fields_page1) | **get** /api2/v1/projectTemplates/{projectTemplateUid}/customFields | Get custom fields of project template (page)
-[**get_import_settings_for_project_template**](#get_import_settings_for_project_template) | **get** /api2/v1/projectTemplates/{projectTemplateUid}/importSettings | Get import settings
-[**get_machine_translate_settings_for_project_template**](#get_machine_translate_settings_for_project_template) | **get** /api2/v1/projectTemplates/{projectTemplateUid}/mtSettings | Get project template machine translate settings
-[**get_pre_translate_settings_for_project_template2**](#get_pre_translate_settings_for_project_template2) | **get** /api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings | Get Pre-translate settings
-[**get_project_template**](#get_project_template) | **get** /api2/v1/projectTemplates/{projectTemplateUid} | Get project template
-[**get_project_template_access_settings**](#get_project_template_access_settings) | **get** /api2/v1/projectTemplates/{projectTemplateUid}/accessSettings | Get project template access and security settings
-[**get_project_template_qa_settings**](#get_project_template_qa_settings) | **get** /api2/v1/projectTemplates/{projectTemplateUid}/qaSettings | Get quality assurance settings
-[**get_project_template_term_bases**](#get_project_template_term_bases) | **get** /api2/v1/projectTemplates/{projectTemplateUid}/termBases | Get term bases
-[**get_project_template_trans_memories2**](#get_project_template_trans_memories2) | **get** /api2/v3/projectTemplates/{projectTemplateUid}/transMemories | Get translation memories
-[**get_project_templates**](#get_project_templates) | **get** /api2/v1/projectTemplates | List project templates
-[**relevant_trans_memories**](#relevant_trans_memories) | **get** /api2/v1/projectTemplates/{projectTemplateUid}/transMemories/relevant | List project template relevant translation memories
-[**set_project_template_qa_settings**](#set_project_template_qa_settings) | **put** /api2/v1/projectTemplates/{projectTemplateUid}/qaSettings | Edit quality assurance settings
-[**set_project_template_term_bases**](#set_project_template_term_bases) | **put** /api2/v1/projectTemplates/{projectTemplateUid}/termBases | Edit term bases in project template
-[**set_project_template_trans_memories_v2**](#set_project_template_trans_memories_v2) | **put** /api2/v2/projectTemplates/{projectTemplateUid}/transMemories | Edit translation memories
-[**update_analyse_settings_for_project_template**](#update_analyse_settings_for_project_template) | **put** /api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings | Edit analyse settings
-[**update_pre_translate_settings_for_project_template2**](#update_pre_translate_settings_for_project_template2) | **put** /api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings | Update Pre-translate settings
+| Method                                                                                                          | HTTP request                                                                                    | Description                                         |
+| --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [**assign_linguists_from_template**](#assign_linguists_from_template)                                           | **post** /api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders             | Assigns providers from template                     |
+| [**assign_linguists_from_template_to_job_parts**](#assign_linguists_from_template_to_job_parts)                 | **post** /api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders/forJobParts | Assigns providers from template (specific jobs)     |
+| [**assignable_templates**](#assignable_templates)                                                               | **get** /api2/v1/projects/{projectUid}/assignableTemplates                                      | List assignable templates                           |
+| [**create_custom_fields1**](#create_custom_fields1)                                                             | **post** /api2/v1/projectTemplates/{projectTemplateUid}/customFields                            | Create custom field instances                       |
+| [**create_project_from_template_v2**](#create_project_from_template_v2)                                         | **post** /api2/v2/projects/applyTemplate/{templateUid}                                          | Create project from template                        |
+| [**create_project_from_template_v2_async**](#create_project_from_template_v2_async)                             | **post** /api2/v2/projects/applyTemplate/async/{templateUid}                                    | Create project from template (async)                |
+| [**create_project_template**](#create_project_template)                                                         | **post** /api2/v1/projectTemplates                                                              | Create project template                             |
+| [**delete_custom_field2**](#delete_custom_field2)                                                               | **delete** /api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}       | Delete custom field of project template             |
+| [**delete_project_template**](#delete_project_template)                                                         | **delete** /api2/v1/projectTemplates/{projectTemplateUid}                                       | Delete project template                             |
+| [**edit_custom_field1**](#edit_custom_field1)                                                                   | **put** /api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}          | Edit custom field of project template               |
+| [**edit_custom_fields1**](#edit_custom_fields1)                                                                 | **put** /api2/v1/projectTemplates/{projectTemplateUid}/customFields                             | Edit custom fields of the project template (batch)  |
+| [**edit_project_template**](#edit_project_template)                                                             | **put** /api2/v1/projectTemplates/{projectTemplateUid}                                          | Edit project template                               |
+| [**edit_project_template_access_settings**](#edit_project_template_access_settings)                             | **put** /api2/v1/projectTemplates/{projectTemplateUid}/accessSettings                           | Edit project template access and security settings  |
+| [**edit_project_template_import_settings**](#edit_project_template_import_settings)                             | **put** /api2/v1/projectTemplates/{projectTemplateUid}/importSettings                           | Edit project template import settings               |
+| [**get_analyse_settings_for_project_template**](#get_analyse_settings_for_project_template)                     | **get** /api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings                          | Get analyse settings                                |
+| [**get_custom_field2**](#get_custom_field2)                                                                     | **get** /api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}          | Get custom field of project template                |
+| [**get_custom_fields_page1**](#get_custom_fields_page1)                                                         | **get** /api2/v1/projectTemplates/{projectTemplateUid}/customFields                             | Get custom fields of project template (page)        |
+| [**get_import_settings_for_project_template**](#get_import_settings_for_project_template)                       | **get** /api2/v1/projectTemplates/{projectTemplateUid}/importSettings                           | Get import settings                                 |
+| [**get_machine_translate_settings_for_project_template**](#get_machine_translate_settings_for_project_template) | **get** /api2/v1/projectTemplates/{projectTemplateUid}/mtSettings                               | Get project template machine translate settings     |
+| [**get_pre_translate_settings_for_project_template2**](#get_pre_translate_settings_for_project_template2)       | **get** /api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings                     | Get Pre-translate settings                          |
+| [**get_project_template**](#get_project_template)                                                               | **get** /api2/v1/projectTemplates/{projectTemplateUid}                                          | Get project template                                |
+| [**get_project_template_access_settings**](#get_project_template_access_settings)                               | **get** /api2/v1/projectTemplates/{projectTemplateUid}/accessSettings                           | Get project template access and security settings   |
+| [**get_project_template_qa_settings**](#get_project_template_qa_settings)                                       | **get** /api2/v1/projectTemplates/{projectTemplateUid}/qaSettings                               | Get quality assurance settings                      |
+| [**get_project_template_term_bases**](#get_project_template_term_bases)                                         | **get** /api2/v1/projectTemplates/{projectTemplateUid}/termBases                                | Get term bases                                      |
+| [**get_project_template_trans_memories2**](#get_project_template_trans_memories2)                               | **get** /api2/v3/projectTemplates/{projectTemplateUid}/transMemories                            | Get translation memories                            |
+| [**get_project_templates**](#get_project_templates)                                                             | **get** /api2/v1/projectTemplates                                                               | List project templates                              |
+| [**relevant_trans_memories**](#relevant_trans_memories)                                                         | **get** /api2/v1/projectTemplates/{projectTemplateUid}/transMemories/relevant                   | List project template relevant translation memories |
+| [**set_project_template_qa_settings**](#set_project_template_qa_settings)                                       | **put** /api2/v1/projectTemplates/{projectTemplateUid}/qaSettings                               | Edit quality assurance settings                     |
+| [**set_project_template_term_bases**](#set_project_template_term_bases)                                         | **put** /api2/v1/projectTemplates/{projectTemplateUid}/termBases                                | Edit term bases in project template                 |
+| [**set_project_template_trans_memories_v2**](#set_project_template_trans_memories_v2)                           | **put** /api2/v2/projectTemplates/{projectTemplateUid}/transMemories                            | Edit translation memories                           |
+| [**update_analyse_settings_for_project_template**](#update_analyse_settings_for_project_template)               | **put** /api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings                          | Edit analyse settings                               |
+| [**update_pre_translate_settings_for_project_template2**](#update_pre_translate_settings_for_project_template2) | **put** /api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings                     | Update Pre-translate settings                       |
 
 # **assign_linguists_from_template**
+
 <a id="assign_linguists_from_template"></a>
+
 > JobPartsDto assign_linguists_from_template(template_uidproject_uid)
 
 Assigns providers from template
@@ -47,18 +50,18 @@ Assigns providers from template
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.job_parts_dto import JobPartsDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.job_parts_dto import JobPartsDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -73,157 +76,175 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->assign_linguists_from_template: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-templateUid | TemplateUidSchema | | 
-projectUid | ProjectUidSchema | | 
+| Name        | Type              | Description | Notes |
+| ----------- | ----------------- | ----------- | ----- |
+| templateUid | TemplateUidSchema |             |
+| projectUid  | ProjectUidSchema  |             |
 
 # TemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # ProjectUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#assign_linguists_from_template.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#assign_linguists_from_template.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#assign_linguists_from_template.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#assign_linguists_from_template.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#assign_linguists_from_template.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#assign_linguists_from_template.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#assign_linguists_from_template.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#assign_linguists_from_template.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#assign_linguists_from_template.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#assign_linguists_from_template.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#assign_linguists_from_template.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#assign_linguists_from_template.ApiResponseFor501) | Not implemented
+| Code | Class                                                                  | Description                                                 |
+| ---- | ---------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                           | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#assign_linguists_from_template.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#assign_linguists_from_template.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#assign_linguists_from_template.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#assign_linguists_from_template.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#assign_linguists_from_template.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#assign_linguists_from_template.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#assign_linguists_from_template.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#assign_linguists_from_template.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#assign_linguists_from_template.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#assign_linguists_from_template.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#assign_linguists_from_template.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#assign_linguists_from_template.ApiResponseFor501) | Not implemented                                             |
 
 #### assign_linguists_from_template.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**JobPartsDto**](../../models/JobPartsDto.md) |  | 
 
+| Type                                           | Description | Notes |
+| ---------------------------------------------- | ----------- | ----- |
+| [**JobPartsDto**](../../models/JobPartsDto.md) |             |
 
 #### assign_linguists_from_template.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **assign_linguists_from_template_to_job_parts**
+
 <a id="assign_linguists_from_template_to_job_parts"></a>
+
 > JobPartsDto assign_linguists_from_template_to_job_parts(template_uidproject_uid)
 
 Assigns providers from template (specific jobs)
@@ -231,19 +252,19 @@ Assigns providers from template (specific jobs)
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.job_part_references import JobPartReferences
-from openapi_client.model.job_parts_dto import JobPartsDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.job_part_references import JobPartReferences
+from phrasetms_client.model.job_parts_dto import JobPartsDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -258,7 +279,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->assign_linguists_from_template_to_job_parts: %s\n" % e)
 
     # example passing only optional values
@@ -280,167 +301,185 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->assign_linguists_from_template_to_job_parts: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                                     | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset              |
+| path_params          | RequestPathParams                                        |                                         |
+| content_type         | str                                                      | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                        | default is ('application/json', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                                     | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]         | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                                     | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**JobPartReferences**](../../models/JobPartReferences.md) |  | 
 
+| Type                                                       | Description | Notes |
+| ---------------------------------------------------------- | ----------- | ----- |
+| [**JobPartReferences**](../../models/JobPartReferences.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-templateUid | TemplateUidSchema | | 
-projectUid | ProjectUidSchema | | 
+| Name        | Type              | Description | Notes |
+| ----------- | ----------------- | ----------- | ----- |
+| templateUid | TemplateUidSchema |             |
+| projectUid  | ProjectUidSchema  |             |
 
 # TemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # ProjectUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#assign_linguists_from_template_to_job_parts.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#assign_linguists_from_template_to_job_parts.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#assign_linguists_from_template_to_job_parts.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#assign_linguists_from_template_to_job_parts.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#assign_linguists_from_template_to_job_parts.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#assign_linguists_from_template_to_job_parts.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#assign_linguists_from_template_to_job_parts.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#assign_linguists_from_template_to_job_parts.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#assign_linguists_from_template_to_job_parts.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#assign_linguists_from_template_to_job_parts.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#assign_linguists_from_template_to_job_parts.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#assign_linguists_from_template_to_job_parts.ApiResponseFor501) | Not implemented
+| Code | Class                                                                               | Description                                                 |
+| ---- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                        | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#assign_linguists_from_template_to_job_parts.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#assign_linguists_from_template_to_job_parts.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#assign_linguists_from_template_to_job_parts.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#assign_linguists_from_template_to_job_parts.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#assign_linguists_from_template_to_job_parts.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#assign_linguists_from_template_to_job_parts.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#assign_linguists_from_template_to_job_parts.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#assign_linguists_from_template_to_job_parts.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#assign_linguists_from_template_to_job_parts.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#assign_linguists_from_template_to_job_parts.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#assign_linguists_from_template_to_job_parts.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#assign_linguists_from_template_to_job_parts.ApiResponseFor501) | Not implemented                                             |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**JobPartsDto**](../../models/JobPartsDto.md) |  | 
 
+| Type                                           | Description | Notes |
+| ---------------------------------------------- | ----------- | ----- |
+| [**JobPartsDto**](../../models/JobPartsDto.md) |             |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assign_linguists_from_template_to_job_parts.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **assignable_templates**
+
 <a id="assignable_templates"></a>
+
 > AssignableTemplatesDto assignable_templates(project_uid)
 
 List assignable templates
@@ -448,18 +487,18 @@ List assignable templates
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.assignable_templates_dto import AssignableTemplatesDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.assignable_templates_dto import AssignableTemplatesDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -473,149 +512,166 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->assignable_templates: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectUid | ProjectUidSchema | | 
+| Name       | Type             | Description | Notes |
+| ---------- | ---------------- | ----------- | ----- |
+| projectUid | ProjectUidSchema |             |
 
 # ProjectUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#assignable_templates.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#assignable_templates.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#assignable_templates.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#assignable_templates.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#assignable_templates.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#assignable_templates.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#assignable_templates.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#assignable_templates.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#assignable_templates.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#assignable_templates.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#assignable_templates.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#assignable_templates.ApiResponseFor501) | Not implemented
+| Code | Class                                                        | Description                                                 |
+| ---- | ------------------------------------------------------------ | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                 | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#assignable_templates.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#assignable_templates.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#assignable_templates.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#assignable_templates.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#assignable_templates.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#assignable_templates.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#assignable_templates.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#assignable_templates.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#assignable_templates.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#assignable_templates.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#assignable_templates.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#assignable_templates.ApiResponseFor501) | Not implemented                                             |
 
 #### assignable_templates.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**AssignableTemplatesDto**](../../models/AssignableTemplatesDto.md) |  | 
 
+| Type                                                                 | Description | Notes |
+| -------------------------------------------------------------------- | ----------- | ----- |
+| [**AssignableTemplatesDto**](../../models/AssignableTemplatesDto.md) |             |
 
 #### assignable_templates.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assignable_templates.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assignable_templates.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assignable_templates.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assignable_templates.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assignable_templates.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assignable_templates.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assignable_templates.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assignable_templates.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assignable_templates.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### assignable_templates.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **create_custom_fields1**
+
 <a id="create_custom_fields1"></a>
+
 > CustomFieldInstancesDto create_custom_fields1(project_template_uid)
 
 Create custom field instances
@@ -623,19 +679,19 @@ Create custom field instances
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.create_custom_field_instances_dto import CreateCustomFieldInstancesDto
-from openapi_client.model.custom_field_instances_dto import CustomFieldInstancesDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.create_custom_field_instances_dto import CreateCustomFieldInstancesDto
+from phrasetms_client.model.custom_field_instances_dto import CustomFieldInstancesDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -649,7 +705,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->create_custom_fields1: %s\n" % e)
 
     # example passing only optional values
@@ -676,159 +732,176 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->create_custom_fields1: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBody, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is '*/*' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBody, Unset]        | optional, default is unset |
+| path_params          | RequestPathParams                                |                            |
+| content_type         | str                                              | optional, default is '_/_' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                | default is ('_/_', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False           | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None            | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False           | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBody
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**CreateCustomFieldInstancesDto**](../../models/CreateCustomFieldInstancesDto.md) |  | 
 
+| Type                                                                               | Description | Notes |
+| ---------------------------------------------------------------------------------- | ----------- | ----- |
+| [**CreateCustomFieldInstancesDto**](../../models/CreateCustomFieldInstancesDto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#create_custom_fields1.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#create_custom_fields1.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#create_custom_fields1.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#create_custom_fields1.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#create_custom_fields1.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#create_custom_fields1.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#create_custom_fields1.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#create_custom_fields1.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#create_custom_fields1.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#create_custom_fields1.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#create_custom_fields1.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#create_custom_fields1.ApiResponseFor501) | Not implemented
+| Code | Class                                                         | Description                                                 |
+| ---- | ------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                  | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#create_custom_fields1.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#create_custom_fields1.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#create_custom_fields1.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#create_custom_fields1.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#create_custom_fields1.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#create_custom_fields1.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#create_custom_fields1.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#create_custom_fields1.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#create_custom_fields1.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#create_custom_fields1.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#create_custom_fields1.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#create_custom_fields1.ApiResponseFor501) | Not implemented                                             |
 
 #### create_custom_fields1.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBody, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                     | Description              | Notes |
+| -------- | ---------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                     | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBody, ] |                          |
+| headers  | Unset                                    | headers were not defined |
 
 # SchemaFor200ResponseBody
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**CustomFieldInstancesDto**](../../models/CustomFieldInstancesDto.md) |  | 
 
+| Type                                                                   | Description | Notes |
+| ---------------------------------------------------------------------- | ----------- | ----- |
+| [**CustomFieldInstancesDto**](../../models/CustomFieldInstancesDto.md) |             |
 
 #### create_custom_fields1.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_custom_fields1.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_custom_fields1.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_custom_fields1.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_custom_fields1.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_custom_fields1.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_custom_fields1.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_custom_fields1.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_custom_fields1.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_custom_fields1.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_custom_fields1.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **create_project_from_template_v2**
+
 <a id="create_project_from_template_v2"></a>
+
 > AbstractProjectDtoV2 create_project_from_template_v2(template_uid)
 
 Create project from template
@@ -836,19 +909,19 @@ Create project from template
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.abstract_project_dto_v2 import AbstractProjectDtoV2
-from openapi_client.model.create_project_from_template_v2_dto import CreateProjectFromTemplateV2Dto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.abstract_project_dto_v2 import AbstractProjectDtoV2
+from phrasetms_client.model.create_project_from_template_v2_dto import CreateProjectFromTemplateV2Dto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -862,7 +935,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->create_project_from_template_v2: %s\n" % e)
 
     # example passing only optional values
@@ -895,159 +968,176 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->create_project_from_template_v2: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                                     | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset              |
+| path_params          | RequestPathParams                                        |                                         |
+| content_type         | str                                                      | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                        | default is ('application/json', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                                     | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]         | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                                     | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**CreateProjectFromTemplateV2Dto**](../../models/CreateProjectFromTemplateV2Dto.md) |  | 
 
+| Type                                                                                 | Description | Notes |
+| ------------------------------------------------------------------------------------ | ----------- | ----- |
+| [**CreateProjectFromTemplateV2Dto**](../../models/CreateProjectFromTemplateV2Dto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-templateUid | TemplateUidSchema | | 
+| Name        | Type              | Description | Notes |
+| ----------- | ----------------- | ----------- | ----- |
+| templateUid | TemplateUidSchema |             |
 
 # TemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-201 | [ApiResponseFor201](#create_project_from_template_v2.ApiResponseFor201) | Created
-400 | [ApiResponseFor400](#create_project_from_template_v2.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#create_project_from_template_v2.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#create_project_from_template_v2.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#create_project_from_template_v2.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#create_project_from_template_v2.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#create_project_from_template_v2.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#create_project_from_template_v2.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#create_project_from_template_v2.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#create_project_from_template_v2.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#create_project_from_template_v2.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#create_project_from_template_v2.ApiResponseFor501) | Not implemented
+| Code | Class                                                                   | Description                                                 |
+| ---- | ----------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                            | When skip_deserialization is True this response is returned |
+| 201  | [ApiResponseFor201](#create_project_from_template_v2.ApiResponseFor201) | Created                                                     |
+| 400  | [ApiResponseFor400](#create_project_from_template_v2.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#create_project_from_template_v2.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#create_project_from_template_v2.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#create_project_from_template_v2.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#create_project_from_template_v2.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#create_project_from_template_v2.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#create_project_from_template_v2.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#create_project_from_template_v2.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#create_project_from_template_v2.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#create_project_from_template_v2.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#create_project_from_template_v2.ApiResponseFor501) | Not implemented                                             |
 
 #### create_project_from_template_v2.ApiResponseFor201
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor201ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor201ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor201ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**AbstractProjectDtoV2**](../../models/AbstractProjectDtoV2.md) |  | 
 
+| Type                                                             | Description | Notes |
+| ---------------------------------------------------------------- | ----------- | ----- |
+| [**AbstractProjectDtoV2**](../../models/AbstractProjectDtoV2.md) |             |
 
 #### create_project_from_template_v2.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **create_project_from_template_v2_async**
+
 <a id="create_project_from_template_v2_async"></a>
+
 > AsyncRequestWrapperV2Dto create_project_from_template_v2_async(template_uid)
 
 Create project from template (async)
@@ -1055,19 +1145,19 @@ Create project from template (async)
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.create_project_from_template_async_v2_dto import CreateProjectFromTemplateAsyncV2Dto
-from openapi_client.model.async_request_wrapper_v2_dto import AsyncRequestWrapperV2Dto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.create_project_from_template_async_v2_dto import CreateProjectFromTemplateAsyncV2Dto
+from phrasetms_client.model.async_request_wrapper_v2_dto import AsyncRequestWrapperV2Dto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -1081,7 +1171,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->create_project_from_template_v2_async: %s\n" % e)
 
     # example passing only optional values
@@ -1115,159 +1205,176 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->create_project_from_template_v2_async: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                                     | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset              |
+| path_params          | RequestPathParams                                        |                                         |
+| content_type         | str                                                      | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                        | default is ('application/json', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                                     | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]         | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                                     | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**CreateProjectFromTemplateAsyncV2Dto**](../../models/CreateProjectFromTemplateAsyncV2Dto.md) |  | 
 
+| Type                                                                                           | Description | Notes |
+| ---------------------------------------------------------------------------------------------- | ----------- | ----- |
+| [**CreateProjectFromTemplateAsyncV2Dto**](../../models/CreateProjectFromTemplateAsyncV2Dto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-templateUid | TemplateUidSchema | | 
+| Name        | Type              | Description | Notes |
+| ----------- | ----------------- | ----------- | ----- |
+| templateUid | TemplateUidSchema |             |
 
 # TemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-202 | [ApiResponseFor202](#create_project_from_template_v2_async.ApiResponseFor202) | Accepted
-400 | [ApiResponseFor400](#create_project_from_template_v2_async.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#create_project_from_template_v2_async.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#create_project_from_template_v2_async.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#create_project_from_template_v2_async.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#create_project_from_template_v2_async.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#create_project_from_template_v2_async.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#create_project_from_template_v2_async.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#create_project_from_template_v2_async.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#create_project_from_template_v2_async.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#create_project_from_template_v2_async.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#create_project_from_template_v2_async.ApiResponseFor501) | Not implemented
+| Code | Class                                                                         | Description                                                 |
+| ---- | ----------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                  | When skip_deserialization is True this response is returned |
+| 202  | [ApiResponseFor202](#create_project_from_template_v2_async.ApiResponseFor202) | Accepted                                                    |
+| 400  | [ApiResponseFor400](#create_project_from_template_v2_async.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#create_project_from_template_v2_async.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#create_project_from_template_v2_async.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#create_project_from_template_v2_async.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#create_project_from_template_v2_async.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#create_project_from_template_v2_async.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#create_project_from_template_v2_async.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#create_project_from_template_v2_async.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#create_project_from_template_v2_async.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#create_project_from_template_v2_async.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#create_project_from_template_v2_async.ApiResponseFor501) | Not implemented                                             |
 
 #### create_project_from_template_v2_async.ApiResponseFor202
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor202ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor202ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor202ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**AsyncRequestWrapperV2Dto**](../../models/AsyncRequestWrapperV2Dto.md) |  | 
 
+| Type                                                                     | Description | Notes |
+| ------------------------------------------------------------------------ | ----------- | ----- |
+| [**AsyncRequestWrapperV2Dto**](../../models/AsyncRequestWrapperV2Dto.md) |             |
 
 #### create_project_from_template_v2_async.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2_async.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2_async.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2_async.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2_async.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2_async.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2_async.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2_async.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2_async.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2_async.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_from_template_v2_async.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **create_project_template**
+
 <a id="create_project_template"></a>
+
 > ProjectTemplateDto create_project_template(body)
 
 Create project template
@@ -1275,19 +1382,19 @@ Create project template
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.project_template_create_action_dto import ProjectTemplateCreateActionDto
-from openapi_client.model.project_template_dto import ProjectTemplateDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.project_template_create_action_dto import ProjectTemplateCreateActionDto
+from phrasetms_client.model.project_template_dto import ProjectTemplateDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -1307,144 +1414,159 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->create_project_template: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                              | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson] | required                                |
+| content_type         | str                                               | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                 | default is ('application/json', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                              | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]  | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                              | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectTemplateCreateActionDto**](../../models/ProjectTemplateCreateActionDto.md) |  | 
 
+| Type                                                                                 | Description | Notes |
+| ------------------------------------------------------------------------------------ | ----------- | ----- |
+| [**ProjectTemplateCreateActionDto**](../../models/ProjectTemplateCreateActionDto.md) |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-201 | [ApiResponseFor201](#create_project_template.ApiResponseFor201) | Created
-400 | [ApiResponseFor400](#create_project_template.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#create_project_template.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#create_project_template.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#create_project_template.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#create_project_template.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#create_project_template.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#create_project_template.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#create_project_template.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#create_project_template.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#create_project_template.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#create_project_template.ApiResponseFor501) | Not implemented
+| Code | Class                                                           | Description                                                 |
+| ---- | --------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                    | When skip_deserialization is True this response is returned |
+| 201  | [ApiResponseFor201](#create_project_template.ApiResponseFor201) | Created                                                     |
+| 400  | [ApiResponseFor400](#create_project_template.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#create_project_template.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#create_project_template.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#create_project_template.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#create_project_template.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#create_project_template.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#create_project_template.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#create_project_template.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#create_project_template.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#create_project_template.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#create_project_template.ApiResponseFor501) | Not implemented                                             |
 
 #### create_project_template.ApiResponseFor201
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor201ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor201ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor201ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectTemplateDto**](../../models/ProjectTemplateDto.md) |  | 
 
+| Type                                                         | Description | Notes |
+| ------------------------------------------------------------ | ----------- | ----- |
+| [**ProjectTemplateDto**](../../models/ProjectTemplateDto.md) |             |
 
 #### create_project_template.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_template.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_template.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_template.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_template.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_template.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_template.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_template.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_template.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_template.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### create_project_template.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **delete_custom_field2**
+
 <a id="delete_custom_field2"></a>
+
 > delete_custom_field2(project_template_uidfield_instance_uid)
 
 Delete custom field of project template
@@ -1452,17 +1574,17 @@ Delete custom field of project template
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -1476,142 +1598,159 @@ with openapi_client.ApiClient(configuration) as api_client:
         api_response = api_instance.delete_custom_field2(
             path_params=path_params,
         )
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->delete_custom_field2: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description      | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                  |
+| stream               | bool                                             | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None  | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
-fieldInstanceUid | FieldInstanceUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
+| fieldInstanceUid   | FieldInstanceUidSchema   |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # FieldInstanceUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-400 | [ApiResponseFor400](#delete_custom_field2.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#delete_custom_field2.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#delete_custom_field2.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#delete_custom_field2.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#delete_custom_field2.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#delete_custom_field2.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#delete_custom_field2.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#delete_custom_field2.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#delete_custom_field2.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#delete_custom_field2.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#delete_custom_field2.ApiResponseFor501) | Not implemented
+| Code | Class                                                        | Description                                                 |
+| ---- | ------------------------------------------------------------ | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                 | When skip_deserialization is True this response is returned |
+| 400  | [ApiResponseFor400](#delete_custom_field2.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#delete_custom_field2.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#delete_custom_field2.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#delete_custom_field2.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#delete_custom_field2.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#delete_custom_field2.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#delete_custom_field2.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#delete_custom_field2.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#delete_custom_field2.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#delete_custom_field2.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#delete_custom_field2.ApiResponseFor501) | Not implemented                                             |
 
 #### delete_custom_field2.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_custom_field2.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_custom_field2.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_custom_field2.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_custom_field2.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_custom_field2.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_custom_field2.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_custom_field2.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_custom_field2.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_custom_field2.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_custom_field2.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **delete_project_template**
+
 <a id="delete_project_template"></a>
+
 > delete_project_template(project_template_uid)
 
 Delete project template
@@ -1619,17 +1758,17 @@ Delete project template
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -1642,142 +1781,159 @@ with openapi_client.ApiClient(configuration) as api_client:
         api_response = api_instance.delete_project_template(
             path_params=path_params,
         )
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->delete_project_template: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description      | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                  |
+| stream               | bool                                             | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None  | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-204 | [ApiResponseFor204](#delete_project_template.ApiResponseFor204) | No Content
-400 | [ApiResponseFor400](#delete_project_template.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#delete_project_template.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#delete_project_template.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#delete_project_template.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#delete_project_template.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#delete_project_template.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#delete_project_template.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#delete_project_template.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#delete_project_template.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#delete_project_template.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#delete_project_template.ApiResponseFor501) | Not implemented
+| Code | Class                                                           | Description                                                 |
+| ---- | --------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                    | When skip_deserialization is True this response is returned |
+| 204  | [ApiResponseFor204](#delete_project_template.ApiResponseFor204) | No Content                                                  |
+| 400  | [ApiResponseFor400](#delete_project_template.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#delete_project_template.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#delete_project_template.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#delete_project_template.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#delete_project_template.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#delete_project_template.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#delete_project_template.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#delete_project_template.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#delete_project_template.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#delete_project_template.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#delete_project_template.ApiResponseFor501) | Not implemented                                             |
 
 #### delete_project_template.ApiResponseFor204
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### delete_project_template.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **edit_custom_field1**
+
 <a id="edit_custom_field1"></a>
+
 > CustomFieldInstanceDto edit_custom_field1(project_template_uidfield_instance_uid)
 
 Edit custom field of project template
@@ -1785,19 +1941,19 @@ Edit custom field of project template
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.update_custom_field_instance_dto import UpdateCustomFieldInstanceDto
-from openapi_client.model.custom_field_instance_dto import CustomFieldInstanceDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.update_custom_field_instance_dto import UpdateCustomFieldInstanceDto
+from phrasetms_client.model.custom_field_instance_dto import CustomFieldInstanceDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -1812,7 +1968,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->edit_custom_field1: %s\n" % e)
 
     # example passing only optional values
@@ -1835,167 +1991,185 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->edit_custom_field1: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBody, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is '*/*' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBody, Unset]        | optional, default is unset |
+| path_params          | RequestPathParams                                |                            |
+| content_type         | str                                              | optional, default is '_/_' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                | default is ('_/_', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False           | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None            | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False           | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBody
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**UpdateCustomFieldInstanceDto**](../../models/UpdateCustomFieldInstanceDto.md) |  | 
 
+| Type                                                                             | Description | Notes |
+| -------------------------------------------------------------------------------- | ----------- | ----- |
+| [**UpdateCustomFieldInstanceDto**](../../models/UpdateCustomFieldInstanceDto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
-fieldInstanceUid | FieldInstanceUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
+| fieldInstanceUid   | FieldInstanceUidSchema   |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # FieldInstanceUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#edit_custom_field1.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#edit_custom_field1.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#edit_custom_field1.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#edit_custom_field1.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#edit_custom_field1.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#edit_custom_field1.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#edit_custom_field1.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#edit_custom_field1.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#edit_custom_field1.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#edit_custom_field1.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#edit_custom_field1.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#edit_custom_field1.ApiResponseFor501) | Not implemented
+| Code | Class                                                      | Description                                                 |
+| ---- | ---------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization               | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#edit_custom_field1.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#edit_custom_field1.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#edit_custom_field1.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#edit_custom_field1.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#edit_custom_field1.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#edit_custom_field1.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#edit_custom_field1.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#edit_custom_field1.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#edit_custom_field1.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#edit_custom_field1.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#edit_custom_field1.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#edit_custom_field1.ApiResponseFor501) | Not implemented                                             |
 
 #### edit_custom_field1.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBody, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                     | Description              | Notes |
+| -------- | ---------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                     | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBody, ] |                          |
+| headers  | Unset                                    | headers were not defined |
 
 # SchemaFor200ResponseBody
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**CustomFieldInstanceDto**](../../models/CustomFieldInstanceDto.md) |  | 
 
+| Type                                                                 | Description | Notes |
+| -------------------------------------------------------------------- | ----------- | ----- |
+| [**CustomFieldInstanceDto**](../../models/CustomFieldInstanceDto.md) |             |
 
 #### edit_custom_field1.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_field1.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_field1.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_field1.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_field1.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_field1.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_field1.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_field1.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_field1.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_field1.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_field1.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **edit_custom_fields1**
+
 <a id="edit_custom_fields1"></a>
+
 > CustomFieldInstancesDto edit_custom_fields1(project_template_uid)
 
 Edit custom fields of the project template (batch)
@@ -2003,19 +2177,19 @@ Edit custom fields of the project template (batch)
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.update_custom_field_instances_dto import UpdateCustomFieldInstancesDto
-from openapi_client.model.custom_field_instances_dto import CustomFieldInstancesDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.update_custom_field_instances_dto import UpdateCustomFieldInstancesDto
+from phrasetms_client.model.custom_field_instances_dto import CustomFieldInstancesDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -2029,7 +2203,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->edit_custom_fields1: %s\n" % e)
 
     # example passing only optional values
@@ -2065,159 +2239,176 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->edit_custom_fields1: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBody, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is '*/*' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBody, Unset]        | optional, default is unset |
+| path_params          | RequestPathParams                                |                            |
+| content_type         | str                                              | optional, default is '_/_' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                | default is ('_/_', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False           | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None            | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False           | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBody
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**UpdateCustomFieldInstancesDto**](../../models/UpdateCustomFieldInstancesDto.md) |  | 
 
+| Type                                                                               | Description | Notes |
+| ---------------------------------------------------------------------------------- | ----------- | ----- |
+| [**UpdateCustomFieldInstancesDto**](../../models/UpdateCustomFieldInstancesDto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#edit_custom_fields1.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#edit_custom_fields1.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#edit_custom_fields1.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#edit_custom_fields1.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#edit_custom_fields1.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#edit_custom_fields1.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#edit_custom_fields1.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#edit_custom_fields1.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#edit_custom_fields1.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#edit_custom_fields1.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#edit_custom_fields1.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#edit_custom_fields1.ApiResponseFor501) | Not implemented
+| Code | Class                                                       | Description                                                 |
+| ---- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#edit_custom_fields1.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#edit_custom_fields1.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#edit_custom_fields1.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#edit_custom_fields1.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#edit_custom_fields1.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#edit_custom_fields1.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#edit_custom_fields1.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#edit_custom_fields1.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#edit_custom_fields1.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#edit_custom_fields1.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#edit_custom_fields1.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#edit_custom_fields1.ApiResponseFor501) | Not implemented                                             |
 
 #### edit_custom_fields1.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBody, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                     | Description              | Notes |
+| -------- | ---------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                     | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBody, ] |                          |
+| headers  | Unset                                    | headers were not defined |
 
 # SchemaFor200ResponseBody
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**CustomFieldInstancesDto**](../../models/CustomFieldInstancesDto.md) |  | 
 
+| Type                                                                   | Description | Notes |
+| ---------------------------------------------------------------------- | ----------- | ----- |
+| [**CustomFieldInstancesDto**](../../models/CustomFieldInstancesDto.md) |             |
 
 #### edit_custom_fields1.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_fields1.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_fields1.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_fields1.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_fields1.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_fields1.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_fields1.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_fields1.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_fields1.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_fields1.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_custom_fields1.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **edit_project_template**
+
 <a id="edit_project_template"></a>
+
 > ProjectTemplateDto edit_project_template(project_template_uidbody)
 
 Edit project template
@@ -2225,19 +2416,19 @@ Edit project template
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.project_template_edit_dto import ProjectTemplateEditDto
-from openapi_client.model.project_template_dto import ProjectTemplateDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.project_template_edit_dto import ProjectTemplateEditDto
+from phrasetms_client.model.project_template_dto import ProjectTemplateDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -2297,159 +2488,176 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->edit_project_template: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                              | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson] | required                                |
+| path_params          | RequestPathParams                                 |                                         |
+| content_type         | str                                               | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                 | default is ('application/json', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                              | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]  | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                              | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectTemplateEditDto**](../../models/ProjectTemplateEditDto.md) |  | 
 
+| Type                                                                 | Description | Notes |
+| -------------------------------------------------------------------- | ----------- | ----- |
+| [**ProjectTemplateEditDto**](../../models/ProjectTemplateEditDto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#edit_project_template.ApiResponseFor200) | Edited
-400 | [ApiResponseFor400](#edit_project_template.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#edit_project_template.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#edit_project_template.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#edit_project_template.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#edit_project_template.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#edit_project_template.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#edit_project_template.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#edit_project_template.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#edit_project_template.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#edit_project_template.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#edit_project_template.ApiResponseFor501) | Not implemented
+| Code | Class                                                         | Description                                                 |
+| ---- | ------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                  | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#edit_project_template.ApiResponseFor200) | Edited                                                      |
+| 400  | [ApiResponseFor400](#edit_project_template.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#edit_project_template.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#edit_project_template.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#edit_project_template.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#edit_project_template.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#edit_project_template.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#edit_project_template.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#edit_project_template.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#edit_project_template.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#edit_project_template.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#edit_project_template.ApiResponseFor501) | Not implemented                                             |
 
 #### edit_project_template.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectTemplateDto**](../../models/ProjectTemplateDto.md) |  | 
 
+| Type                                                         | Description | Notes |
+| ------------------------------------------------------------ | ----------- | ----- |
+| [**ProjectTemplateDto**](../../models/ProjectTemplateDto.md) |             |
 
 #### edit_project_template.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **edit_project_template_access_settings**
+
 <a id="edit_project_template_access_settings"></a>
+
 > ProjectSecuritySettingsDtoV2 edit_project_template_access_settings(project_template_uid)
 
 Edit project template access and security settings
@@ -2457,19 +2665,19 @@ Edit project template access and security settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.project_security_settings_dto_v2 import ProjectSecuritySettingsDtoV2
-from openapi_client.model.edit_project_security_settings_dto_v2 import EditProjectSecuritySettingsDtoV2
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.project_security_settings_dto_v2 import ProjectSecuritySettingsDtoV2
+from phrasetms_client.model.edit_project_security_settings_dto_v2 import EditProjectSecuritySettingsDtoV2
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -2483,7 +2691,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->edit_project_template_access_settings: %s\n" % e)
 
     # example passing only optional values
@@ -2528,159 +2736,176 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->edit_project_template_access_settings: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                                     | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset              |
+| path_params          | RequestPathParams                                        |                                         |
+| content_type         | str                                                      | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                        | default is ('application/json', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                                     | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]         | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                                     | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**EditProjectSecuritySettingsDtoV2**](../../models/EditProjectSecuritySettingsDtoV2.md) |  | 
 
+| Type                                                                                     | Description | Notes |
+| ---------------------------------------------------------------------------------------- | ----------- | ----- |
+| [**EditProjectSecuritySettingsDtoV2**](../../models/EditProjectSecuritySettingsDtoV2.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#edit_project_template_access_settings.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#edit_project_template_access_settings.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#edit_project_template_access_settings.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#edit_project_template_access_settings.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#edit_project_template_access_settings.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#edit_project_template_access_settings.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#edit_project_template_access_settings.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#edit_project_template_access_settings.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#edit_project_template_access_settings.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#edit_project_template_access_settings.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#edit_project_template_access_settings.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#edit_project_template_access_settings.ApiResponseFor501) | Not implemented
+| Code | Class                                                                         | Description                                                 |
+| ---- | ----------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                  | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#edit_project_template_access_settings.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#edit_project_template_access_settings.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#edit_project_template_access_settings.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#edit_project_template_access_settings.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#edit_project_template_access_settings.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#edit_project_template_access_settings.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#edit_project_template_access_settings.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#edit_project_template_access_settings.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#edit_project_template_access_settings.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#edit_project_template_access_settings.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#edit_project_template_access_settings.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#edit_project_template_access_settings.ApiResponseFor501) | Not implemented                                             |
 
 #### edit_project_template_access_settings.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectSecuritySettingsDtoV2**](../../models/ProjectSecuritySettingsDtoV2.md) |  | 
 
+| Type                                                                             | Description | Notes |
+| -------------------------------------------------------------------------------- | ----------- | ----- |
+| [**ProjectSecuritySettingsDtoV2**](../../models/ProjectSecuritySettingsDtoV2.md) |             |
 
 #### edit_project_template_access_settings.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_access_settings.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_access_settings.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_access_settings.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_access_settings.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_access_settings.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_access_settings.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_access_settings.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_access_settings.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_access_settings.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_access_settings.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **edit_project_template_import_settings**
+
 <a id="edit_project_template_import_settings"></a>
+
 > FileImportSettingsDto edit_project_template_import_settings(project_template_uid)
 
 Edit project template import settings
@@ -2688,19 +2913,19 @@ Edit project template import settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.file_import_settings_create_dto import FileImportSettingsCreateDto
-from openapi_client.model.file_import_settings_dto import FileImportSettingsDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.file_import_settings_create_dto import FileImportSettingsCreateDto
+from phrasetms_client.model.file_import_settings_dto import FileImportSettingsDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -2714,7 +2939,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->edit_project_template_import_settings: %s\n" % e)
 
     # example passing only optional values
@@ -3093,159 +3318,176 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->edit_project_template_import_settings: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                                     | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset              |
+| path_params          | RequestPathParams                                        |                                         |
+| content_type         | str                                                      | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                        | default is ('application/json', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                                     | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]         | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                                     | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**FileImportSettingsCreateDto**](../../models/FileImportSettingsCreateDto.md) |  | 
 
+| Type                                                                           | Description | Notes |
+| ------------------------------------------------------------------------------ | ----------- | ----- |
+| [**FileImportSettingsCreateDto**](../../models/FileImportSettingsCreateDto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#edit_project_template_import_settings.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#edit_project_template_import_settings.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#edit_project_template_import_settings.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#edit_project_template_import_settings.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#edit_project_template_import_settings.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#edit_project_template_import_settings.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#edit_project_template_import_settings.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#edit_project_template_import_settings.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#edit_project_template_import_settings.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#edit_project_template_import_settings.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#edit_project_template_import_settings.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#edit_project_template_import_settings.ApiResponseFor501) | Not implemented
+| Code | Class                                                                         | Description                                                 |
+| ---- | ----------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                  | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#edit_project_template_import_settings.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#edit_project_template_import_settings.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#edit_project_template_import_settings.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#edit_project_template_import_settings.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#edit_project_template_import_settings.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#edit_project_template_import_settings.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#edit_project_template_import_settings.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#edit_project_template_import_settings.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#edit_project_template_import_settings.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#edit_project_template_import_settings.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#edit_project_template_import_settings.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#edit_project_template_import_settings.ApiResponseFor501) | Not implemented                                             |
 
 #### edit_project_template_import_settings.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**FileImportSettingsDto**](../../models/FileImportSettingsDto.md) |  | 
 
+| Type                                                               | Description | Notes |
+| ------------------------------------------------------------------ | ----------- | ----- |
+| [**FileImportSettingsDto**](../../models/FileImportSettingsDto.md) |             |
 
 #### edit_project_template_import_settings.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_import_settings.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_import_settings.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_import_settings.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_import_settings.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_import_settings.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_import_settings.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_import_settings.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_import_settings.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_import_settings.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### edit_project_template_import_settings.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_analyse_settings_for_project_template**
+
 <a id="get_analyse_settings_for_project_template"></a>
+
 > AbstractAnalyseSettingsDto get_analyse_settings_for_project_template(project_template_uid)
 
 Get analyse settings
@@ -3253,18 +3495,18 @@ Get analyse settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -3278,149 +3520,166 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_analyse_settings_for_project_template: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_analyse_settings_for_project_template.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#get_analyse_settings_for_project_template.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_analyse_settings_for_project_template.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_analyse_settings_for_project_template.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_analyse_settings_for_project_template.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_analyse_settings_for_project_template.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_analyse_settings_for_project_template.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_analyse_settings_for_project_template.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_analyse_settings_for_project_template.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_analyse_settings_for_project_template.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_analyse_settings_for_project_template.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_analyse_settings_for_project_template.ApiResponseFor501) | Not implemented
+| Code | Class                                                                             | Description                                                 |
+| ---- | --------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                      | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_analyse_settings_for_project_template.ApiResponseFor200) | OK                                                          |
+| 400  | [ApiResponseFor400](#get_analyse_settings_for_project_template.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_analyse_settings_for_project_template.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_analyse_settings_for_project_template.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_analyse_settings_for_project_template.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_analyse_settings_for_project_template.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_analyse_settings_for_project_template.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_analyse_settings_for_project_template.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_analyse_settings_for_project_template.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_analyse_settings_for_project_template.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_analyse_settings_for_project_template.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_analyse_settings_for_project_template.ApiResponseFor501) | Not implemented                                             |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**AbstractAnalyseSettingsDto**](../../models/AbstractAnalyseSettingsDto.md) |  | 
 
+| Type                                                                         | Description | Notes |
+| ---------------------------------------------------------------------------- | ----------- | ----- |
+| [**AbstractAnalyseSettingsDto**](../../models/AbstractAnalyseSettingsDto.md) |             |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_analyse_settings_for_project_template.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_custom_field2**
+
 <a id="get_custom_field2"></a>
+
 > CustomFieldInstanceDto get_custom_field2(project_template_uidfield_instance_uid)
 
 Get custom field of project template
@@ -3428,18 +3687,18 @@ Get custom field of project template
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.custom_field_instance_dto import CustomFieldInstanceDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.custom_field_instance_dto import CustomFieldInstanceDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -3454,157 +3713,175 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_custom_field2: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description          | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                      |
+| accept_content_types | typing.Tuple[str]                                | default is ('_/_', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False     | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None      | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False     | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
-fieldInstanceUid | FieldInstanceUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
+| fieldInstanceUid   | FieldInstanceUidSchema   |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # FieldInstanceUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_custom_field2.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_custom_field2.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_custom_field2.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_custom_field2.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_custom_field2.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_custom_field2.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_custom_field2.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_custom_field2.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_custom_field2.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_custom_field2.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_custom_field2.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_custom_field2.ApiResponseFor501) | Not implemented
+| Code | Class                                                     | Description                                                 |
+| ---- | --------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization              | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_custom_field2.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_custom_field2.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_custom_field2.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_custom_field2.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_custom_field2.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_custom_field2.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_custom_field2.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_custom_field2.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_custom_field2.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_custom_field2.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_custom_field2.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_custom_field2.ApiResponseFor501) | Not implemented                                             |
 
 #### get_custom_field2.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBody, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                     | Description              | Notes |
+| -------- | ---------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                     | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBody, ] |                          |
+| headers  | Unset                                    | headers were not defined |
 
 # SchemaFor200ResponseBody
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**CustomFieldInstanceDto**](../../models/CustomFieldInstanceDto.md) |  | 
 
+| Type                                                                 | Description | Notes |
+| -------------------------------------------------------------------- | ----------- | ----- |
+| [**CustomFieldInstanceDto**](../../models/CustomFieldInstanceDto.md) |             |
 
 #### get_custom_field2.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_field2.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_field2.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_field2.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_field2.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_field2.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_field2.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_field2.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_field2.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_field2.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_field2.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_custom_fields_page1**
+
 <a id="get_custom_fields_page1"></a>
+
 > PageDtoCustomFieldInstanceDto get_custom_fields_page1(project_template_uid)
 
 Get custom fields of project template (page)
@@ -3612,18 +3889,18 @@ Get custom fields of project template (page)
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.page_dto_custom_field_instance_dto import PageDtoCustomFieldInstanceDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.page_dto_custom_field_instance_dto import PageDtoCustomFieldInstanceDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -3640,7 +3917,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             query_params=query_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_custom_fields_page1: %s\n" % e)
 
     # example passing only optional values
@@ -3666,215 +3943,240 @@ with openapi_client.ApiClient(configuration) as api_client:
             query_params=query_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_custom_fields_page1: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description          | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| query_params         | RequestQueryParams                               |                      |
+| path_params          | RequestPathParams                                |                      |
+| accept_content_types | typing.Tuple[str]                                | default is ('_/_', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False     | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None      | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False     | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### query_params
+
 #### RequestQueryParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-pageNumber | PageNumberSchema | | optional
-pageSize | PageSizeSchema | | optional
-createdBy | CreatedBySchema | | optional
-modifiedBy | ModifiedBySchema | | optional
-sortField | SortFieldSchema | | optional
-sortTrend | SortTrendSchema | | optional
-
+| Name       | Type             | Description | Notes    |
+| ---------- | ---------------- | ----------- | -------- |
+| pageNumber | PageNumberSchema |             | optional |
+| pageSize   | PageSizeSchema   |             | optional |
+| createdBy  | CreatedBySchema  |             | optional |
+| modifiedBy | ModifiedBySchema |             | optional |
+| sortField  | SortFieldSchema  |             | optional |
+| sortTrend  | SortTrendSchema  |             | optional |
 
 # PageNumberSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 0value must be a 32 bit integer
+
+| Input Type            | Accessed Type    | Description | Notes                                                                               |
+| --------------------- | ---------------- | ----------- | ----------------------------------------------------------------------------------- |
+| decimal.Decimal, int, | decimal.Decimal, |             | if omitted the server will use the default value of 0value must be a 32 bit integer |
 
 # PageSizeSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 20value must be a 32 bit integer
+
+| Input Type            | Accessed Type    | Description | Notes                                                                                |
+| --------------------- | ---------------- | ----------- | ------------------------------------------------------------------------------------ |
+| decimal.Decimal, int, | decimal.Decimal, |             | if omitted the server will use the default value of 20value must be a 32 bit integer |
 
 # CreatedBySchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-list, tuple,  | tuple,  |  | 
+
+| Input Type   | Accessed Type | Description | Notes |
+| ------------ | ------------- | ----------- | ----- |
+| list, tuple, | tuple,        |             |
 
 ### Tuple Items
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-items | str,  | str,  |  | 
+
+| Class Name | Input Type | Accessed Type | Description | Notes |
+| ---------- | ---------- | ------------- | ----------- | ----- |
+| items      | str,       | str,          |             |
 
 # ModifiedBySchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-list, tuple,  | tuple,  |  | 
+
+| Input Type   | Accessed Type | Description | Notes |
+| ------------ | ------------- | ----------- | ----- |
+| list, tuple, | tuple,        |             |
 
 ### Tuple Items
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-items | str,  | str,  |  | 
+
+| Class Name | Input Type | Accessed Type | Description | Notes |
+| ---------- | ---------- | ------------- | ----------- | ----- |
+| items      | str,       | str,          |             |
 
 # SortFieldSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | must be one of ["CREATED", "LAST_MODIFIED", ] 
+
+| Input Type | Accessed Type | Description | Notes                                         |
+| ---------- | ------------- | ----------- | --------------------------------------------- |
+| str,       | str,          |             | must be one of ["CREATED", "LAST_MODIFIED", ] |
 
 # SortTrendSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | must be one of ["ASC", "DESC", ] if omitted the server will use the default value of "ASC"
+
+| Input Type | Accessed Type | Description | Notes                                                                                      |
+| ---------- | ------------- | ----------- | ------------------------------------------------------------------------------------------ |
+| str,       | str,          |             | must be one of ["ASC", "DESC", ] if omitted the server will use the default value of "ASC" |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_custom_fields_page1.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_custom_fields_page1.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_custom_fields_page1.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_custom_fields_page1.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_custom_fields_page1.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_custom_fields_page1.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_custom_fields_page1.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_custom_fields_page1.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_custom_fields_page1.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_custom_fields_page1.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_custom_fields_page1.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_custom_fields_page1.ApiResponseFor501) | Not implemented
+| Code | Class                                                           | Description                                                 |
+| ---- | --------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                    | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_custom_fields_page1.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_custom_fields_page1.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_custom_fields_page1.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_custom_fields_page1.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_custom_fields_page1.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_custom_fields_page1.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_custom_fields_page1.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_custom_fields_page1.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_custom_fields_page1.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_custom_fields_page1.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_custom_fields_page1.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_custom_fields_page1.ApiResponseFor501) | Not implemented                                             |
 
 #### get_custom_fields_page1.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBody, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                     | Description              | Notes |
+| -------- | ---------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                     | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBody, ] |                          |
+| headers  | Unset                                    | headers were not defined |
 
 # SchemaFor200ResponseBody
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**PageDtoCustomFieldInstanceDto**](../../models/PageDtoCustomFieldInstanceDto.md) |  | 
 
+| Type                                                                               | Description | Notes |
+| ---------------------------------------------------------------------------------- | ----------- | ----- |
+| [**PageDtoCustomFieldInstanceDto**](../../models/PageDtoCustomFieldInstanceDto.md) |             |
 
 #### get_custom_fields_page1.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_fields_page1.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_fields_page1.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_fields_page1.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_fields_page1.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_fields_page1.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_fields_page1.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_fields_page1.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_fields_page1.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_fields_page1.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_custom_fields_page1.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_import_settings_for_project_template**
+
 <a id="get_import_settings_for_project_template"></a>
+
 > FileImportSettingsDto get_import_settings_for_project_template(project_template_uid)
 
 Get import settings
@@ -3882,18 +4184,18 @@ Get import settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.file_import_settings_dto import FileImportSettingsDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.file_import_settings_dto import FileImportSettingsDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -3907,149 +4209,166 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_import_settings_for_project_template: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_import_settings_for_project_template.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_import_settings_for_project_template.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_import_settings_for_project_template.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_import_settings_for_project_template.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_import_settings_for_project_template.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_import_settings_for_project_template.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_import_settings_for_project_template.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_import_settings_for_project_template.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_import_settings_for_project_template.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_import_settings_for_project_template.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_import_settings_for_project_template.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_import_settings_for_project_template.ApiResponseFor501) | Not implemented
+| Code | Class                                                                            | Description                                                 |
+| ---- | -------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                     | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_import_settings_for_project_template.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_import_settings_for_project_template.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_import_settings_for_project_template.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_import_settings_for_project_template.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_import_settings_for_project_template.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_import_settings_for_project_template.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_import_settings_for_project_template.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_import_settings_for_project_template.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_import_settings_for_project_template.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_import_settings_for_project_template.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_import_settings_for_project_template.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_import_settings_for_project_template.ApiResponseFor501) | Not implemented                                             |
 
 #### get_import_settings_for_project_template.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**FileImportSettingsDto**](../../models/FileImportSettingsDto.md) |  | 
 
+| Type                                                               | Description | Notes |
+| ------------------------------------------------------------------ | ----------- | ----- |
+| [**FileImportSettingsDto**](../../models/FileImportSettingsDto.md) |             |
 
 #### get_import_settings_for_project_template.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_import_settings_for_project_template.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_import_settings_for_project_template.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_import_settings_for_project_template.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_import_settings_for_project_template.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_import_settings_for_project_template.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_import_settings_for_project_template.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_import_settings_for_project_template.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_import_settings_for_project_template.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_import_settings_for_project_template.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_import_settings_for_project_template.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_machine_translate_settings_for_project_template**
+
 <a id="get_machine_translate_settings_for_project_template"></a>
+
 > MTSettingsPerLanguageListDto get_machine_translate_settings_for_project_template(project_template_uid)
 
 Get project template machine translate settings
@@ -4057,18 +4376,18 @@ Get project template machine translate settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.mt_settings_per_language_list_dto import MTSettingsPerLanguageListDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.mt_settings_per_language_list_dto import MTSettingsPerLanguageListDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -4082,149 +4401,166 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_machine_translate_settings_for_project_template: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_machine_translate_settings_for_project_template.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_machine_translate_settings_for_project_template.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_machine_translate_settings_for_project_template.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_machine_translate_settings_for_project_template.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_machine_translate_settings_for_project_template.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_machine_translate_settings_for_project_template.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_machine_translate_settings_for_project_template.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_machine_translate_settings_for_project_template.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_machine_translate_settings_for_project_template.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_machine_translate_settings_for_project_template.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_machine_translate_settings_for_project_template.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_machine_translate_settings_for_project_template.ApiResponseFor501) | Not implemented
+| Code | Class                                                                                       | Description                                                 |
+| ---- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                                | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_machine_translate_settings_for_project_template.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_machine_translate_settings_for_project_template.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_machine_translate_settings_for_project_template.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_machine_translate_settings_for_project_template.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_machine_translate_settings_for_project_template.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_machine_translate_settings_for_project_template.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_machine_translate_settings_for_project_template.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_machine_translate_settings_for_project_template.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_machine_translate_settings_for_project_template.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_machine_translate_settings_for_project_template.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_machine_translate_settings_for_project_template.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_machine_translate_settings_for_project_template.ApiResponseFor501) | Not implemented                                             |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**MTSettingsPerLanguageListDto**](../../models/MTSettingsPerLanguageListDto.md) |  | 
 
+| Type                                                                             | Description | Notes |
+| -------------------------------------------------------------------------------- | ----------- | ----- |
+| [**MTSettingsPerLanguageListDto**](../../models/MTSettingsPerLanguageListDto.md) |             |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_machine_translate_settings_for_project_template.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_pre_translate_settings_for_project_template2**
+
 <a id="get_pre_translate_settings_for_project_template2"></a>
+
 > PreTranslateSettingsV3Dto get_pre_translate_settings_for_project_template2(project_template_uid)
 
 Get Pre-translate settings
@@ -4232,18 +4568,18 @@ Get Pre-translate settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.pre_translate_settings_v3_dto import PreTranslateSettingsV3Dto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.pre_translate_settings_v3_dto import PreTranslateSettingsV3Dto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -4257,149 +4593,166 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_pre_translate_settings_for_project_template2: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_pre_translate_settings_for_project_template2.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_pre_translate_settings_for_project_template2.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_pre_translate_settings_for_project_template2.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_pre_translate_settings_for_project_template2.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_pre_translate_settings_for_project_template2.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_pre_translate_settings_for_project_template2.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_pre_translate_settings_for_project_template2.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_pre_translate_settings_for_project_template2.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_pre_translate_settings_for_project_template2.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_pre_translate_settings_for_project_template2.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_pre_translate_settings_for_project_template2.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_pre_translate_settings_for_project_template2.ApiResponseFor501) | Not implemented
+| Code | Class                                                                                    | Description                                                 |
+| ---- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                             | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_pre_translate_settings_for_project_template2.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_pre_translate_settings_for_project_template2.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_pre_translate_settings_for_project_template2.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_pre_translate_settings_for_project_template2.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_pre_translate_settings_for_project_template2.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_pre_translate_settings_for_project_template2.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_pre_translate_settings_for_project_template2.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_pre_translate_settings_for_project_template2.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_pre_translate_settings_for_project_template2.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_pre_translate_settings_for_project_template2.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_pre_translate_settings_for_project_template2.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_pre_translate_settings_for_project_template2.ApiResponseFor501) | Not implemented                                             |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**PreTranslateSettingsV3Dto**](../../models/PreTranslateSettingsV3Dto.md) |  | 
 
+| Type                                                                       | Description | Notes |
+| -------------------------------------------------------------------------- | ----------- | ----- |
+| [**PreTranslateSettingsV3Dto**](../../models/PreTranslateSettingsV3Dto.md) |             |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_pre_translate_settings_for_project_template2.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_project_template**
+
 <a id="get_project_template"></a>
+
 > ProjectTemplateDto get_project_template(project_template_uid)
 
 Get project template
@@ -4409,18 +4762,18 @@ Note: importSettings in response is deprecated and will be always null
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.project_template_dto import ProjectTemplateDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.project_template_dto import ProjectTemplateDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -4434,149 +4787,166 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_project_template: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_project_template.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_project_template.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_project_template.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_project_template.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_project_template.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_project_template.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_project_template.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_project_template.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_project_template.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_project_template.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_project_template.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_project_template.ApiResponseFor501) | Not implemented
+| Code | Class                                                        | Description                                                 |
+| ---- | ------------------------------------------------------------ | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                 | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_project_template.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_project_template.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_project_template.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_project_template.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_project_template.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_project_template.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_project_template.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_project_template.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_project_template.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_project_template.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_project_template.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_project_template.ApiResponseFor501) | Not implemented                                             |
 
 #### get_project_template.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectTemplateDto**](../../models/ProjectTemplateDto.md) |  | 
 
+| Type                                                         | Description | Notes |
+| ------------------------------------------------------------ | ----------- | ----- |
+| [**ProjectTemplateDto**](../../models/ProjectTemplateDto.md) |             |
 
 #### get_project_template.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_project_template_access_settings**
+
 <a id="get_project_template_access_settings"></a>
+
 > ProjectSecuritySettingsDtoV2 get_project_template_access_settings(project_template_uid)
 
 Get project template access and security settings
@@ -4584,18 +4954,18 @@ Get project template access and security settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.project_security_settings_dto_v2 import ProjectSecuritySettingsDtoV2
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.project_security_settings_dto_v2 import ProjectSecuritySettingsDtoV2
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -4609,149 +4979,166 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_project_template_access_settings: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_project_template_access_settings.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_project_template_access_settings.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_project_template_access_settings.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_project_template_access_settings.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_project_template_access_settings.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_project_template_access_settings.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_project_template_access_settings.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_project_template_access_settings.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_project_template_access_settings.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_project_template_access_settings.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_project_template_access_settings.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_project_template_access_settings.ApiResponseFor501) | Not implemented
+| Code | Class                                                                        | Description                                                 |
+| ---- | ---------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                 | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_project_template_access_settings.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_project_template_access_settings.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_project_template_access_settings.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_project_template_access_settings.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_project_template_access_settings.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_project_template_access_settings.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_project_template_access_settings.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_project_template_access_settings.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_project_template_access_settings.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_project_template_access_settings.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_project_template_access_settings.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_project_template_access_settings.ApiResponseFor501) | Not implemented                                             |
 
 #### get_project_template_access_settings.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectSecuritySettingsDtoV2**](../../models/ProjectSecuritySettingsDtoV2.md) |  | 
 
+| Type                                                                             | Description | Notes |
+| -------------------------------------------------------------------------------- | ----------- | ----- |
+| [**ProjectSecuritySettingsDtoV2**](../../models/ProjectSecuritySettingsDtoV2.md) |             |
 
 #### get_project_template_access_settings.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_access_settings.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_access_settings.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_access_settings.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_access_settings.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_access_settings.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_access_settings.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_access_settings.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_access_settings.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_access_settings.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_access_settings.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_project_template_qa_settings**
+
 <a id="get_project_template_qa_settings"></a>
+
 > QASettingsDtoV2 get_project_template_qa_settings(project_template_uid)
 
 Get quality assurance settings
@@ -4759,18 +5146,18 @@ Get quality assurance settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.qa_settings_dto_v2 import QASettingsDtoV2
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.qa_settings_dto_v2 import QASettingsDtoV2
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -4784,149 +5171,166 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_project_template_qa_settings: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_project_template_qa_settings.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_project_template_qa_settings.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_project_template_qa_settings.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_project_template_qa_settings.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_project_template_qa_settings.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_project_template_qa_settings.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_project_template_qa_settings.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_project_template_qa_settings.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_project_template_qa_settings.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_project_template_qa_settings.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_project_template_qa_settings.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_project_template_qa_settings.ApiResponseFor501) | Not implemented
+| Code | Class                                                                    | Description                                                 |
+| ---- | ------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                             | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_project_template_qa_settings.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_project_template_qa_settings.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_project_template_qa_settings.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_project_template_qa_settings.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_project_template_qa_settings.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_project_template_qa_settings.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_project_template_qa_settings.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_project_template_qa_settings.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_project_template_qa_settings.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_project_template_qa_settings.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_project_template_qa_settings.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_project_template_qa_settings.ApiResponseFor501) | Not implemented                                             |
 
 #### get_project_template_qa_settings.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**QASettingsDtoV2**](../../models/QASettingsDtoV2.md) |  | 
 
+| Type                                                   | Description | Notes |
+| ------------------------------------------------------ | ----------- | ----- |
+| [**QASettingsDtoV2**](../../models/QASettingsDtoV2.md) |             |
 
 #### get_project_template_qa_settings.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_qa_settings.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_qa_settings.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_qa_settings.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_qa_settings.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_qa_settings.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_qa_settings.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_qa_settings.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_qa_settings.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_qa_settings.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_qa_settings.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_project_template_term_bases**
+
 <a id="get_project_template_term_bases"></a>
+
 > ProjectTemplateTermBaseListDto get_project_template_term_bases(project_template_uid)
 
 Get term bases
@@ -4934,18 +5338,18 @@ Get term bases
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.project_template_term_base_list_dto import ProjectTemplateTermBaseListDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.project_template_term_base_list_dto import ProjectTemplateTermBaseListDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -4959,149 +5363,166 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_project_template_term_bases: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_project_template_term_bases.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_project_template_term_bases.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_project_template_term_bases.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_project_template_term_bases.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_project_template_term_bases.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_project_template_term_bases.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_project_template_term_bases.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_project_template_term_bases.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_project_template_term_bases.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_project_template_term_bases.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_project_template_term_bases.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_project_template_term_bases.ApiResponseFor501) | Not implemented
+| Code | Class                                                                   | Description                                                 |
+| ---- | ----------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                            | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_project_template_term_bases.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_project_template_term_bases.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_project_template_term_bases.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_project_template_term_bases.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_project_template_term_bases.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_project_template_term_bases.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_project_template_term_bases.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_project_template_term_bases.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_project_template_term_bases.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_project_template_term_bases.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_project_template_term_bases.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_project_template_term_bases.ApiResponseFor501) | Not implemented                                             |
 
 #### get_project_template_term_bases.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectTemplateTermBaseListDto**](../../models/ProjectTemplateTermBaseListDto.md) |  | 
 
+| Type                                                                                 | Description | Notes |
+| ------------------------------------------------------------------------------------ | ----------- | ----- |
+| [**ProjectTemplateTermBaseListDto**](../../models/ProjectTemplateTermBaseListDto.md) |             |
 
 #### get_project_template_term_bases.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_term_bases.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_term_bases.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_term_bases.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_term_bases.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_term_bases.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_term_bases.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_term_bases.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_term_bases.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_term_bases.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_term_bases.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_project_template_trans_memories2**
+
 <a id="get_project_template_trans_memories2"></a>
+
 > ProjectTemplateTransMemoryListDtoV3 get_project_template_trans_memories2(project_template_uid)
 
 Get translation memories
@@ -5109,18 +5530,18 @@ Get translation memories
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.project_template_trans_memory_list_dto_v3 import ProjectTemplateTransMemoryListDtoV3
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.project_template_trans_memory_list_dto_v3 import ProjectTemplateTransMemoryListDtoV3
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -5137,7 +5558,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             query_params=query_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_project_template_trans_memories2: %s\n" % e)
 
     # example passing only optional values
@@ -5155,173 +5576,192 @@ with openapi_client.ApiClient(configuration) as api_client:
             query_params=query_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_project_template_trans_memories2: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| query_params         | RequestQueryParams                               |                                   |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### query_params
+
 #### RequestQueryParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-targetLang | TargetLangSchema | | optional
-wfStepUid | WfStepUidSchema | | optional
-
+| Name       | Type             | Description | Notes    |
+| ---------- | ---------------- | ----------- | -------- |
+| targetLang | TargetLangSchema |             | optional |
+| wfStepUid  | WfStepUidSchema  |             | optional |
 
 # TargetLangSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # WfStepUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_project_template_trans_memories2.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_project_template_trans_memories2.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_project_template_trans_memories2.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_project_template_trans_memories2.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_project_template_trans_memories2.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_project_template_trans_memories2.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_project_template_trans_memories2.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_project_template_trans_memories2.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_project_template_trans_memories2.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_project_template_trans_memories2.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_project_template_trans_memories2.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_project_template_trans_memories2.ApiResponseFor501) | Not implemented
+| Code | Class                                                                        | Description                                                 |
+| ---- | ---------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                 | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_project_template_trans_memories2.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_project_template_trans_memories2.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_project_template_trans_memories2.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_project_template_trans_memories2.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_project_template_trans_memories2.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_project_template_trans_memories2.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_project_template_trans_memories2.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_project_template_trans_memories2.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_project_template_trans_memories2.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_project_template_trans_memories2.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_project_template_trans_memories2.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_project_template_trans_memories2.ApiResponseFor501) | Not implemented                                             |
 
 #### get_project_template_trans_memories2.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectTemplateTransMemoryListDtoV3**](../../models/ProjectTemplateTransMemoryListDtoV3.md) |  | 
 
+| Type                                                                                           | Description | Notes |
+| ---------------------------------------------------------------------------------------------- | ----------- | ----- |
+| [**ProjectTemplateTransMemoryListDtoV3**](../../models/ProjectTemplateTransMemoryListDtoV3.md) |             |
 
 #### get_project_template_trans_memories2.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_trans_memories2.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_trans_memories2.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_trans_memories2.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_trans_memories2.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_trans_memories2.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_trans_memories2.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_trans_memories2.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_trans_memories2.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_trans_memories2.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_template_trans_memories2.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **get_project_templates**
+
 <a id="get_project_templates"></a>
+
 > PageDtoProjectTemplateReference get_project_templates()
 
 List project templates
@@ -5329,18 +5769,18 @@ List project templates
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.page_dto_project_template_reference import PageDtoProjectTemplateReference
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.page_dto_project_template_reference import PageDtoProjectTemplateReference
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -5366,246 +5806,274 @@ with openapi_client.ApiClient(configuration) as api_client:
             query_params=query_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->get_project_templates: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| query_params         | RequestQueryParams                               |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### query_params
+
 #### RequestQueryParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-name | NameSchema | | optional
-clientId | ClientIdSchema | | optional
-clientName | ClientNameSchema | | optional
-ownerUid | OwnerUidSchema | | optional
-domainName | DomainNameSchema | | optional
-subDomainName | SubDomainNameSchema | | optional
-costCenterId | CostCenterIdSchema | | optional
-costCenterName | CostCenterNameSchema | | optional
-businessUnitName | BusinessUnitNameSchema | | optional
-sort | SortSchema | | optional
-direction | DirectionSchema | | optional
-pageNumber | PageNumberSchema | | optional
-pageSize | PageSizeSchema | | optional
-
+| Name             | Type                   | Description | Notes    |
+| ---------------- | ---------------------- | ----------- | -------- |
+| name             | NameSchema             |             | optional |
+| clientId         | ClientIdSchema         |             | optional |
+| clientName       | ClientNameSchema       |             | optional |
+| ownerUid         | OwnerUidSchema         |             | optional |
+| domainName       | DomainNameSchema       |             | optional |
+| subDomainName    | SubDomainNameSchema    |             | optional |
+| costCenterId     | CostCenterIdSchema     |             | optional |
+| costCenterName   | CostCenterNameSchema   |             | optional |
+| businessUnitName | BusinessUnitNameSchema |             | optional |
+| sort             | SortSchema             |             | optional |
+| direction        | DirectionSchema        |             | optional |
+| pageNumber       | PageNumberSchema       |             | optional |
+| pageSize         | PageSizeSchema         |             | optional |
 
 # NameSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # ClientIdSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | value must be a 64 bit integer
+
+| Input Type            | Accessed Type    | Description | Notes                          |
+| --------------------- | ---------------- | ----------- | ------------------------------ |
+| decimal.Decimal, int, | decimal.Decimal, |             | value must be a 64 bit integer |
 
 # ClientNameSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # OwnerUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # DomainNameSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # SubDomainNameSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # CostCenterIdSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | value must be a 64 bit integer
+
+| Input Type            | Accessed Type    | Description | Notes                          |
+| --------------------- | ---------------- | ----------- | ------------------------------ |
+| decimal.Decimal, int, | decimal.Decimal, |             | value must be a 64 bit integer |
 
 # CostCenterNameSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # BusinessUnitNameSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # SortSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | if omitted the server will use the default value of "dateCreated"
+
+| Input Type | Accessed Type | Description | Notes                                                             |
+| ---------- | ------------- | ----------- | ----------------------------------------------------------------- |
+| str,       | str,          |             | if omitted the server will use the default value of "dateCreated" |
 
 # DirectionSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | if omitted the server will use the default value of "desc"
+
+| Input Type | Accessed Type | Description | Notes                                                      |
+| ---------- | ------------- | ----------- | ---------------------------------------------------------- |
+| str,       | str,          |             | if omitted the server will use the default value of "desc" |
 
 # PageNumberSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 0value must be a 32 bit integer
+
+| Input Type            | Accessed Type    | Description | Notes                                                                               |
+| --------------------- | ---------------- | ----------- | ----------------------------------------------------------------------------------- |
+| decimal.Decimal, int, | decimal.Decimal, |             | if omitted the server will use the default value of 0value must be a 32 bit integer |
 
 # PageSizeSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 50value must be a 32 bit integer
+
+| Input Type            | Accessed Type    | Description | Notes                                                                                |
+| --------------------- | ---------------- | ----------- | ------------------------------------------------------------------------------------ |
+| decimal.Decimal, int, | decimal.Decimal, |             | if omitted the server will use the default value of 50value must be a 32 bit integer |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#get_project_templates.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#get_project_templates.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#get_project_templates.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#get_project_templates.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#get_project_templates.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#get_project_templates.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#get_project_templates.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#get_project_templates.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#get_project_templates.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#get_project_templates.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#get_project_templates.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#get_project_templates.ApiResponseFor501) | Not implemented
+| Code | Class                                                         | Description                                                 |
+| ---- | ------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                  | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#get_project_templates.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#get_project_templates.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#get_project_templates.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#get_project_templates.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#get_project_templates.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#get_project_templates.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#get_project_templates.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#get_project_templates.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#get_project_templates.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#get_project_templates.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#get_project_templates.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#get_project_templates.ApiResponseFor501) | Not implemented                                             |
 
 #### get_project_templates.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**PageDtoProjectTemplateReference**](../../models/PageDtoProjectTemplateReference.md) |  | 
 
+| Type                                                                                   | Description | Notes |
+| -------------------------------------------------------------------------------------- | ----------- | ----- |
+| [**PageDtoProjectTemplateReference**](../../models/PageDtoProjectTemplateReference.md) |             |
 
 #### get_project_templates.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_templates.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_templates.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_templates.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_templates.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_templates.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_templates.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_templates.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_templates.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_templates.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### get_project_templates.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **relevant_trans_memories**
+
 <a id="relevant_trans_memories"></a>
+
 > PageDtoTransMemoryDto relevant_trans_memories(project_template_uid)
 
 List project template relevant translation memories
@@ -5613,18 +6081,18 @@ List project template relevant translation memories
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.page_dto_trans_memory_dto import PageDtoTransMemoryDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.page_dto_trans_memory_dto import PageDtoTransMemoryDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -5641,7 +6109,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             query_params=query_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->relevant_trans_memories: %s\n" % e)
 
     # example passing only optional values
@@ -5667,226 +6135,252 @@ with openapi_client.ApiClient(configuration) as api_client:
             query_params=query_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->relevant_trans_memories: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-query_params | RequestQueryParams | |
-path_params | RequestPathParams | |
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                             | Description                       | Notes                                                                                                                                                                                              |
+| -------------------- | ------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| query_params         | RequestQueryParams                               |                                   |
+| path_params          | RequestPathParams                                |                                   |
+| accept_content_types | typing.Tuple[str]                                | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                             | default is False                  | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]] | default is None                   | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                             | default is False                  | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### query_params
+
 #### RequestQueryParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-name | NameSchema | | optional
-domainName | DomainNameSchema | | optional
-clientName | ClientNameSchema | | optional
-subDomainName | SubDomainNameSchema | | optional
-targetLangs | TargetLangsSchema | | optional
-strictLangMatching | StrictLangMatchingSchema | | optional
-pageNumber | PageNumberSchema | | optional
-pageSize | PageSizeSchema | | optional
-
+| Name               | Type                     | Description | Notes    |
+| ------------------ | ------------------------ | ----------- | -------- |
+| name               | NameSchema               |             | optional |
+| domainName         | DomainNameSchema         |             | optional |
+| clientName         | ClientNameSchema         |             | optional |
+| subDomainName      | SubDomainNameSchema      |             | optional |
+| targetLangs        | TargetLangsSchema        |             | optional |
+| strictLangMatching | StrictLangMatchingSchema |             | optional |
+| pageNumber         | PageNumberSchema         |             | optional |
+| pageSize           | PageSizeSchema           |             | optional |
 
 # NameSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # DomainNameSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # ClientNameSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # SubDomainNameSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 # TargetLangsSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-list, tuple,  | tuple,  |  | 
+
+| Input Type   | Accessed Type | Description | Notes |
+| ------------ | ------------- | ----------- | ----- |
+| list, tuple, | tuple,        |             |
 
 ### Tuple Items
-Class Name | Input Type | Accessed Type | Description | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-items | str,  | str,  |  | 
+
+| Class Name | Input Type | Accessed Type | Description | Notes |
+| ---------- | ---------- | ------------- | ----------- | ----- |
+| items      | str,       | str,          |             |
 
 # StrictLangMatchingSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-bool,  | BoolClass,  |  | if omitted the server will use the default value of False
+
+| Input Type | Accessed Type | Description | Notes                                                     |
+| ---------- | ------------- | ----------- | --------------------------------------------------------- |
+| bool,      | BoolClass,    |             | if omitted the server will use the default value of False |
 
 # PageNumberSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 0value must be a 32 bit integer
+
+| Input Type            | Accessed Type    | Description | Notes                                                                               |
+| --------------------- | ---------------- | ----------- | ----------------------------------------------------------------------------------- |
+| decimal.Decimal, int, | decimal.Decimal, |             | if omitted the server will use the default value of 0value must be a 32 bit integer |
 
 # PageSizeSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-decimal.Decimal, int,  | decimal.Decimal,  |  | if omitted the server will use the default value of 50value must be a 32 bit integer
+
+| Input Type            | Accessed Type    | Description | Notes                                                                                |
+| --------------------- | ---------------- | ----------- | ------------------------------------------------------------------------------------ |
+| decimal.Decimal, int, | decimal.Decimal, |             | if omitted the server will use the default value of 50value must be a 32 bit integer |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#relevant_trans_memories.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#relevant_trans_memories.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#relevant_trans_memories.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#relevant_trans_memories.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#relevant_trans_memories.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#relevant_trans_memories.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#relevant_trans_memories.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#relevant_trans_memories.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#relevant_trans_memories.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#relevant_trans_memories.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#relevant_trans_memories.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#relevant_trans_memories.ApiResponseFor501) | Not implemented
+| Code | Class                                                           | Description                                                 |
+| ---- | --------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                    | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#relevant_trans_memories.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#relevant_trans_memories.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#relevant_trans_memories.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#relevant_trans_memories.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#relevant_trans_memories.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#relevant_trans_memories.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#relevant_trans_memories.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#relevant_trans_memories.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#relevant_trans_memories.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#relevant_trans_memories.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#relevant_trans_memories.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#relevant_trans_memories.ApiResponseFor501) | Not implemented                                             |
 
 #### relevant_trans_memories.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**PageDtoTransMemoryDto**](../../models/PageDtoTransMemoryDto.md) |  | 
 
+| Type                                                               | Description | Notes |
+| ------------------------------------------------------------------ | ----------- | ----- |
+| [**PageDtoTransMemoryDto**](../../models/PageDtoTransMemoryDto.md) |             |
 
 #### relevant_trans_memories.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### relevant_trans_memories.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### relevant_trans_memories.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### relevant_trans_memories.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### relevant_trans_memories.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### relevant_trans_memories.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### relevant_trans_memories.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### relevant_trans_memories.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### relevant_trans_memories.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### relevant_trans_memories.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### relevant_trans_memories.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **set_project_template_qa_settings**
+
 <a id="set_project_template_qa_settings"></a>
+
 > QASettingsDtoV2 set_project_template_qa_settings(project_template_uid)
 
 Edit quality assurance settings
@@ -5894,19 +6388,19 @@ Edit quality assurance settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.edit_qa_settings_dto_v2 import EditQASettingsDtoV2
-from openapi_client.model.qa_settings_dto_v2 import QASettingsDtoV2
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.edit_qa_settings_dto_v2 import EditQASettingsDtoV2
+from phrasetms_client.model.qa_settings_dto_v2 import QASettingsDtoV2
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -5920,7 +6414,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->set_project_template_qa_settings: %s\n" % e)
 
     # example passing only optional values
@@ -5941,159 +6435,176 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->set_project_template_qa_settings: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                                     | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset              |
+| path_params          | RequestPathParams                                        |                                         |
+| content_type         | str                                                      | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                        | default is ('_/_', )                    | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                                     | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]         | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                                     | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**EditQASettingsDtoV2**](../../models/EditQASettingsDtoV2.md) |  | 
 
+| Type                                                           | Description | Notes |
+| -------------------------------------------------------------- | ----------- | ----- |
+| [**EditQASettingsDtoV2**](../../models/EditQASettingsDtoV2.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#set_project_template_qa_settings.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#set_project_template_qa_settings.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#set_project_template_qa_settings.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#set_project_template_qa_settings.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#set_project_template_qa_settings.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#set_project_template_qa_settings.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#set_project_template_qa_settings.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#set_project_template_qa_settings.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#set_project_template_qa_settings.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#set_project_template_qa_settings.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#set_project_template_qa_settings.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#set_project_template_qa_settings.ApiResponseFor501) | Not implemented
+| Code | Class                                                                    | Description                                                 |
+| ---- | ------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                             | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#set_project_template_qa_settings.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#set_project_template_qa_settings.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#set_project_template_qa_settings.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#set_project_template_qa_settings.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#set_project_template_qa_settings.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#set_project_template_qa_settings.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#set_project_template_qa_settings.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#set_project_template_qa_settings.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#set_project_template_qa_settings.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#set_project_template_qa_settings.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#set_project_template_qa_settings.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#set_project_template_qa_settings.ApiResponseFor501) | Not implemented                                             |
 
 #### set_project_template_qa_settings.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBody, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                     | Description              | Notes |
+| -------- | ---------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                     | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBody, ] |                          |
+| headers  | Unset                                    | headers were not defined |
 
 # SchemaFor200ResponseBody
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**QASettingsDtoV2**](../../models/QASettingsDtoV2.md) |  | 
 
+| Type                                                   | Description | Notes |
+| ------------------------------------------------------ | ----------- | ----- |
+| [**QASettingsDtoV2**](../../models/QASettingsDtoV2.md) |             |
 
 #### set_project_template_qa_settings.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_qa_settings.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_qa_settings.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_qa_settings.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_qa_settings.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_qa_settings.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_qa_settings.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_qa_settings.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_qa_settings.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_qa_settings.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_qa_settings.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **set_project_template_term_bases**
+
 <a id="set_project_template_term_bases"></a>
+
 > ProjectTemplateTermBaseListDto set_project_template_term_bases(project_template_uid)
 
 Edit term bases in project template
@@ -6101,19 +6612,19 @@ Edit term bases in project template
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.project_template_term_base_list_dto import ProjectTemplateTermBaseListDto
-from openapi_client.model.set_project_template_term_base_dto import SetProjectTemplateTermBaseDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.project_template_term_base_list_dto import ProjectTemplateTermBaseListDto
+from phrasetms_client.model.set_project_template_term_base_dto import SetProjectTemplateTermBaseDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -6127,7 +6638,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->set_project_template_term_bases: %s\n" % e)
 
     # example passing only optional values
@@ -6152,181 +6663,198 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->set_project_template_term_bases: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('*/*', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                                     | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset              |
+| path_params          | RequestPathParams                                        |                                         |
+| content_type         | str                                                      | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                        | default is ('_/_', )                    | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                                     | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]         | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                                     | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**SetProjectTemplateTermBaseDto**](../../models/SetProjectTemplateTermBaseDto.md) |  | 
 
+| Type                                                                               | Description | Notes |
+| ---------------------------------------------------------------------------------- | ----------- | ----- |
+| [**SetProjectTemplateTermBaseDto**](../../models/SetProjectTemplateTermBaseDto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#set_project_template_term_bases.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#set_project_template_term_bases.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#set_project_template_term_bases.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#set_project_template_term_bases.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#set_project_template_term_bases.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#set_project_template_term_bases.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#set_project_template_term_bases.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#set_project_template_term_bases.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#set_project_template_term_bases.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#set_project_template_term_bases.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#set_project_template_term_bases.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#set_project_template_term_bases.ApiResponseFor501) | Not implemented
+| Code | Class                                                                   | Description                                                 |
+| ---- | ----------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                            | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#set_project_template_term_bases.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#set_project_template_term_bases.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#set_project_template_term_bases.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#set_project_template_term_bases.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#set_project_template_term_bases.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#set_project_template_term_bases.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#set_project_template_term_bases.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#set_project_template_term_bases.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#set_project_template_term_bases.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#set_project_template_term_bases.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#set_project_template_term_bases.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#set_project_template_term_bases.ApiResponseFor501) | Not implemented                                             |
 
 #### set_project_template_term_bases.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBody, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                     | Description              | Notes |
+| -------- | ---------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                     | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBody, ] |                          |
+| headers  | Unset                                    | headers were not defined |
 
 # SchemaFor200ResponseBody
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectTemplateTermBaseListDto**](../../models/ProjectTemplateTermBaseListDto.md) |  | 
 
+| Type                                                                                 | Description | Notes |
+| ------------------------------------------------------------------------------------ | ----------- | ----- |
+| [**ProjectTemplateTermBaseListDto**](../../models/ProjectTemplateTermBaseListDto.md) |             |
 
 #### set_project_template_term_bases.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_term_bases.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_term_bases.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_term_bases.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_term_bases.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_term_bases.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_term_bases.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_term_bases.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_term_bases.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_term_bases.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_term_bases.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **set_project_template_trans_memories_v2**
+
 <a id="set_project_template_trans_memories_v2"></a>
+
 > ProjectTemplateTransMemoryListV2Dto set_project_template_trans_memories_v2(project_template_uid)
 
 Edit translation memories
 
-If user wants to edit “All target languages” or \"All workflow steps”,                         but there are already varied TM settings for individual languages or steps,                         then the user risks to overwrite these individual choices.
+If user wants to edit “All target languages” or \"All workflow steps”, but there are already varied TM settings for individual languages or steps, then the user risks to overwrite these individual choices.
 
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.project_template_trans_memory_list_v2_dto import ProjectTemplateTransMemoryListV2Dto
-from openapi_client.model.set_project_template_trans_memories_v2_dto import SetProjectTemplateTransMemoriesV2Dto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.project_template_trans_memory_list_v2_dto import ProjectTemplateTransMemoryListV2Dto
+from phrasetms_client.model.set_project_template_trans_memories_v2_dto import SetProjectTemplateTransMemoriesV2Dto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -6340,7 +6868,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->set_project_template_trans_memories_v2: %s\n" % e)
 
     # example passing only optional values
@@ -6375,159 +6903,176 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->set_project_template_trans_memories_v2: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                                     | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset              |
+| path_params          | RequestPathParams                                        |                                         |
+| content_type         | str                                                      | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                        | default is ('application/json', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                                     | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]         | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                                     | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**SetProjectTemplateTransMemoriesV2Dto**](../../models/SetProjectTemplateTransMemoriesV2Dto.md) |  | 
 
+| Type                                                                                             | Description | Notes |
+| ------------------------------------------------------------------------------------------------ | ----------- | ----- |
+| [**SetProjectTemplateTransMemoriesV2Dto**](../../models/SetProjectTemplateTransMemoriesV2Dto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#set_project_template_trans_memories_v2.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#set_project_template_trans_memories_v2.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#set_project_template_trans_memories_v2.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#set_project_template_trans_memories_v2.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#set_project_template_trans_memories_v2.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#set_project_template_trans_memories_v2.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#set_project_template_trans_memories_v2.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#set_project_template_trans_memories_v2.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#set_project_template_trans_memories_v2.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#set_project_template_trans_memories_v2.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#set_project_template_trans_memories_v2.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#set_project_template_trans_memories_v2.ApiResponseFor501) | Not implemented
+| Code | Class                                                                          | Description                                                 |
+| ---- | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                   | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#set_project_template_trans_memories_v2.ApiResponseFor200) | OK                                                          |
+| 400  | [ApiResponseFor400](#set_project_template_trans_memories_v2.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#set_project_template_trans_memories_v2.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#set_project_template_trans_memories_v2.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#set_project_template_trans_memories_v2.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#set_project_template_trans_memories_v2.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#set_project_template_trans_memories_v2.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#set_project_template_trans_memories_v2.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#set_project_template_trans_memories_v2.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#set_project_template_trans_memories_v2.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#set_project_template_trans_memories_v2.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#set_project_template_trans_memories_v2.ApiResponseFor501) | Not implemented                                             |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**ProjectTemplateTransMemoryListV2Dto**](../../models/ProjectTemplateTransMemoryListV2Dto.md) |  | 
 
+| Type                                                                                           | Description | Notes |
+| ---------------------------------------------------------------------------------------------- | ----------- | ----- |
+| [**ProjectTemplateTransMemoryListV2Dto**](../../models/ProjectTemplateTransMemoryListV2Dto.md) |             |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### set_project_template_trans_memories_v2.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **update_analyse_settings_for_project_template**
+
 <a id="update_analyse_settings_for_project_template"></a>
+
 > AbstractAnalyseSettingsDto update_analyse_settings_for_project_template(project_template_uid)
 
 Edit analyse settings
@@ -6535,19 +7080,19 @@ Edit analyse settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
-from openapi_client.model.edit_analyse_settings_dto import EditAnalyseSettingsDto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
+from phrasetms_client.model.edit_analyse_settings_dto import EditAnalyseSettingsDto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -6561,7 +7106,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->update_analyse_settings_for_project_template: %s\n" % e)
 
     # example passing only optional values
@@ -6594,159 +7139,176 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->update_analyse_settings_for_project_template: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                                     | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset              |
+| path_params          | RequestPathParams                                        |                                         |
+| content_type         | str                                                      | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                        | default is ('application/json', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                                     | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]         | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                                     | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**EditAnalyseSettingsDto**](../../models/EditAnalyseSettingsDto.md) |  | 
 
+| Type                                                                 | Description | Notes |
+| -------------------------------------------------------------------- | ----------- | ----- |
+| [**EditAnalyseSettingsDto**](../../models/EditAnalyseSettingsDto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#update_analyse_settings_for_project_template.ApiResponseFor200) | OK
-400 | [ApiResponseFor400](#update_analyse_settings_for_project_template.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#update_analyse_settings_for_project_template.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#update_analyse_settings_for_project_template.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#update_analyse_settings_for_project_template.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#update_analyse_settings_for_project_template.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#update_analyse_settings_for_project_template.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#update_analyse_settings_for_project_template.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#update_analyse_settings_for_project_template.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#update_analyse_settings_for_project_template.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#update_analyse_settings_for_project_template.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#update_analyse_settings_for_project_template.ApiResponseFor501) | Not implemented
+| Code | Class                                                                                | Description                                                 |
+| ---- | ------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                         | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#update_analyse_settings_for_project_template.ApiResponseFor200) | OK                                                          |
+| 400  | [ApiResponseFor400](#update_analyse_settings_for_project_template.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#update_analyse_settings_for_project_template.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#update_analyse_settings_for_project_template.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#update_analyse_settings_for_project_template.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#update_analyse_settings_for_project_template.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#update_analyse_settings_for_project_template.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#update_analyse_settings_for_project_template.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#update_analyse_settings_for_project_template.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#update_analyse_settings_for_project_template.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#update_analyse_settings_for_project_template.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#update_analyse_settings_for_project_template.ApiResponseFor501) | Not implemented                                             |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**AbstractAnalyseSettingsDto**](../../models/AbstractAnalyseSettingsDto.md) |  | 
 
+| Type                                                                         | Description | Notes |
+| ---------------------------------------------------------------------------- | ----------- | ----- |
+| [**AbstractAnalyseSettingsDto**](../../models/AbstractAnalyseSettingsDto.md) |             |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_analyse_settings_for_project_template.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
 
 # **update_pre_translate_settings_for_project_template2**
+
 <a id="update_pre_translate_settings_for_project_template2"></a>
+
 > PreTranslateSettingsV3Dto update_pre_translate_settings_for_project_template2(project_template_uid)
 
 Update Pre-translate settings
@@ -6754,18 +7316,18 @@ Update Pre-translate settings
 ### Example
 
 ```python
-import openapi_client
-from openapi_client.apis.tags import project_template_api
-from openapi_client.model.pre_translate_settings_v3_dto import PreTranslateSettingsV3Dto
+import phrasetms_client
+from phrasetms_client.apis.tags import project_template_api
+from phrasetms_client.model.pre_translate_settings_v3_dto import PreTranslateSettingsV3Dto
 from pprint import pprint
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_template_api.ProjectTemplateApi(api_client)
 
@@ -6779,7 +7341,7 @@ with openapi_client.ApiClient(configuration) as api_client:
             path_params=path_params,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->update_pre_translate_settings_for_project_template2: %s\n" % e)
 
     # example passing only optional values
@@ -6828,154 +7390,168 @@ with openapi_client.ApiClient(configuration) as api_client:
             body=body,
         )
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling ProjectTemplateApi->update_pre_translate_settings_for_project_template2: %s\n" % e)
 ```
+
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-body | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset |
-path_params | RequestPathParams | |
-content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
-accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
-stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
-timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
-skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
+| Name                 | Type                                                     | Description                             | Notes                                                                                                                                                                                              |
+| -------------------- | -------------------------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| body                 | typing.Union[SchemaForRequestBodyApplicationJson, Unset] | optional, default is unset              |
+| path_params          | RequestPathParams                                        |                                         |
+| content_type         | str                                                      | optional, default is 'application/json' | Selects the schema and serialization of the request body                                                                                                                                           |
+| accept_content_types | typing.Tuple[str]                                        | default is ('application/json', )       | Tells the server the content type(s) that are accepted by the client                                                                                                                               |
+| stream               | bool                                                     | default is False                        | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file |
+| timeout              | typing.Optional[typing.Union[int, typing.Tuple]]         | default is None                         | the timeout used by the rest client                                                                                                                                                                |
+| skip_deserialization | bool                                                     | default is False                        | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned                                                                         |
 
 ### body
 
 # SchemaForRequestBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**PreTranslateSettingsV3Dto**](../../models/PreTranslateSettingsV3Dto.md) |  | 
 
+| Type                                                                       | Description | Notes |
+| -------------------------------------------------------------------------- | ----------- | ----- |
+| [**PreTranslateSettingsV3Dto**](../../models/PreTranslateSettingsV3Dto.md) |             |
 
 ### path_params
+
 #### RequestPathParams
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-projectTemplateUid | ProjectTemplateUidSchema | | 
+| Name               | Type                     | Description | Notes |
+| ------------------ | ------------------------ | ----------- | ----- |
+| projectTemplateUid | ProjectTemplateUidSchema |             |
 
 # ProjectTemplateUidSchema
 
 ## Model Type Info
-Input Type | Accessed Type | Description | Notes
------------- | ------------- | ------------- | -------------
-str,  | str,  |  | 
+
+| Input Type | Accessed Type | Description | Notes |
+| ---------- | ------------- | ----------- | ----- |
+| str,       | str,          |             |
 
 ### Return Types, Responses
 
-Code | Class | Description
-------------- | ------------- | -------------
-n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
-200 | [ApiResponseFor200](#update_pre_translate_settings_for_project_template2.ApiResponseFor200) | successful operation
-400 | [ApiResponseFor400](#update_pre_translate_settings_for_project_template2.ApiResponseFor400) | Bad request
-401 | [ApiResponseFor401](#update_pre_translate_settings_for_project_template2.ApiResponseFor401) | Not authorized
-403 | [ApiResponseFor403](#update_pre_translate_settings_for_project_template2.ApiResponseFor403) | Forbidden
-404 | [ApiResponseFor404](#update_pre_translate_settings_for_project_template2.ApiResponseFor404) | Resource not found
-405 | [ApiResponseFor405](#update_pre_translate_settings_for_project_template2.ApiResponseFor405) | Method not allowed
-408 | [ApiResponseFor408](#update_pre_translate_settings_for_project_template2.ApiResponseFor408) | Timeout
-410 | [ApiResponseFor410](#update_pre_translate_settings_for_project_template2.ApiResponseFor410) | Gone
-415 | [ApiResponseFor415](#update_pre_translate_settings_for_project_template2.ApiResponseFor415) | Unsupported media type
-429 | [ApiResponseFor429](#update_pre_translate_settings_for_project_template2.ApiResponseFor429) | Too many requests
-500 | [ApiResponseFor500](#update_pre_translate_settings_for_project_template2.ApiResponseFor500) | Internal server error
-501 | [ApiResponseFor501](#update_pre_translate_settings_for_project_template2.ApiResponseFor501) | Not implemented
+| Code | Class                                                                                       | Description                                                 |
+| ---- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| n/a  | api_client.ApiResponseWithoutDeserialization                                                | When skip_deserialization is True this response is returned |
+| 200  | [ApiResponseFor200](#update_pre_translate_settings_for_project_template2.ApiResponseFor200) | successful operation                                        |
+| 400  | [ApiResponseFor400](#update_pre_translate_settings_for_project_template2.ApiResponseFor400) | Bad request                                                 |
+| 401  | [ApiResponseFor401](#update_pre_translate_settings_for_project_template2.ApiResponseFor401) | Not authorized                                              |
+| 403  | [ApiResponseFor403](#update_pre_translate_settings_for_project_template2.ApiResponseFor403) | Forbidden                                                   |
+| 404  | [ApiResponseFor404](#update_pre_translate_settings_for_project_template2.ApiResponseFor404) | Resource not found                                          |
+| 405  | [ApiResponseFor405](#update_pre_translate_settings_for_project_template2.ApiResponseFor405) | Method not allowed                                          |
+| 408  | [ApiResponseFor408](#update_pre_translate_settings_for_project_template2.ApiResponseFor408) | Timeout                                                     |
+| 410  | [ApiResponseFor410](#update_pre_translate_settings_for_project_template2.ApiResponseFor410) | Gone                                                        |
+| 415  | [ApiResponseFor415](#update_pre_translate_settings_for_project_template2.ApiResponseFor415) | Unsupported media type                                      |
+| 429  | [ApiResponseFor429](#update_pre_translate_settings_for_project_template2.ApiResponseFor429) | Too many requests                                           |
+| 500  | [ApiResponseFor500](#update_pre_translate_settings_for_project_template2.ApiResponseFor500) | Internal server error                                       |
+| 501  | [ApiResponseFor501](#update_pre_translate_settings_for_project_template2.ApiResponseFor501) | Not implemented                                             |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor200
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                                                    | Description              | Notes |
+| -------- | ------------------------------------------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse                                    | Raw response             |
+| body     | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |                          |
+| headers  | Unset                                                   | headers were not defined |
 
 # SchemaFor200ResponseBodyApplicationJson
-Type | Description  | Notes
-------------- | ------------- | -------------
-[**PreTranslateSettingsV3Dto**](../../models/PreTranslateSettingsV3Dto.md) |  | 
 
+| Type                                                                       | Description | Notes |
+| -------------------------------------------------------------------------- | ----------- | ----- |
+| [**PreTranslateSettingsV3Dto**](../../models/PreTranslateSettingsV3Dto.md) |             |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor400
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor401
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor403
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor404
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor405
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor408
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor410
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor415
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor429
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor500
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 #### update_pre_translate_settings_for_project_template2.ApiResponseFor501
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-response | urllib3.HTTPResponse | Raw response |
-body | typing.Union[] |  |
-headers | Unset | headers were not defined |
+
+| Name     | Type                 | Description              | Notes |
+| -------- | -------------------- | ------------------------ | ----- |
+| response | urllib3.HTTPResponse | Raw response             |
+| body     | typing.Union[]       |                          |
+| headers  | Unset                | headers were not defined |
 
 ### Authorization
 
 No authorization required
 
-[[Back to top]](#__pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)
-
+[[Back to top]](#\_\_pageTop) [[Back to API list]](../../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../../README.md#documentation-for-models) [[Back to README]](../../../README.md)

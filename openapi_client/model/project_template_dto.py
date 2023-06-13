@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ProjectTemplateDto(
@@ -444,14 +444,14 @@ class ProjectTemplateDto(
             **kwargs,
         )
 
-from openapi_client.model.assignment_per_target_lang_dto import AssignmentPerTargetLangDto
-from openapi_client.model.business_unit_reference import BusinessUnitReference
-from openapi_client.model.client_reference import ClientReference
-from openapi_client.model.domain_reference import DomainReference
-from openapi_client.model.project_template_notify_provider_dto import ProjectTemplateNotifyProviderDto
-from openapi_client.model.sub_domain_reference import SubDomainReference
-from openapi_client.model.uid_reference import UidReference
-from openapi_client.model.user_reference import UserReference
-from openapi_client.model.vendor_reference import VendorReference
-from openapi_client.model.workflow_step_dto import WorkflowStepDto
-from openapi_client.model.workflow_step_settings_dto import WorkflowStepSettingsDto
+from phrasetms_client.model.assignment_per_target_lang_dto import AssignmentPerTargetLangDto
+from phrasetms_client.model.business_unit_reference import BusinessUnitReference
+from phrasetms_client.model.client_reference import ClientReference
+from phrasetms_client.model.domain_reference import DomainReference
+from phrasetms_client.model.project_template_notify_provider_dto import ProjectTemplateNotifyProviderDto
+from phrasetms_client.model.sub_domain_reference import SubDomainReference
+from phrasetms_client.model.uid_reference import UidReference
+from phrasetms_client.model.user_reference import UserReference
+from phrasetms_client.model.vendor_reference import VendorReference
+from phrasetms_client.model.workflow_step_dto import WorkflowStepDto
+from phrasetms_client.model.workflow_step_settings_dto import WorkflowStepSettingsDto

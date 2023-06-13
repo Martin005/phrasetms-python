@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.moravia_warning_dto import MoraviaWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.moravia_warning_dto import MoraviaWarningDto
+from phrasetms_client import configuration
 
 
 class TestMoraviaWarningDto(unittest.TestCase):

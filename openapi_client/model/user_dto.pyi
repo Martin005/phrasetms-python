@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class UserDto(
@@ -333,6 +333,6 @@ class UserDto(
             **kwargs,
         )
 
-from openapi_client.model.discount_scheme_reference import DiscountSchemeReference
-from openapi_client.model.price_list_reference import PriceListReference
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.discount_scheme_reference import DiscountSchemeReference
+from phrasetms_client.model.price_list_reference import PriceListReference
+from phrasetms_client.model.user_reference import UserReference

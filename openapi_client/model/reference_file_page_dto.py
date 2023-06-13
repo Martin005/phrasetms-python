@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ReferenceFilePageDto(
@@ -165,5 +165,5 @@ class ReferenceFilePageDto(
             **kwargs,
         )
 
-from openapi_client.model.reference_file_access_dto import ReferenceFileAccessDto
-from openapi_client.model.reference_file_reference import ReferenceFileReference
+from phrasetms_client.model.reference_file_access_dto import ReferenceFileAccessDto
+from phrasetms_client.model.reference_file_reference import ReferenceFileReference

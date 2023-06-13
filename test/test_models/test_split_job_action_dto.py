@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.split_job_action_dto import SplitJobActionDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.split_job_action_dto import SplitJobActionDto
+from phrasetms_client import configuration
 
 
 class TestSplitJobActionDto(unittest.TestCase):

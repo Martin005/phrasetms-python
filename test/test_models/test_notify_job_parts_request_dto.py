@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.notify_job_parts_request_dto import NotifyJobPartsRequestDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.notify_job_parts_request_dto import NotifyJobPartsRequestDto
+from phrasetms_client import configuration
 
 
 class TestNotifyJobPartsRequestDto(unittest.TestCase):

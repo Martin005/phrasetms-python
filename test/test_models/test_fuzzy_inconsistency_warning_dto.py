@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.fuzzy_inconsistency_warning_dto import FuzzyInconsistencyWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.fuzzy_inconsistency_warning_dto import FuzzyInconsistencyWarningDto
+from phrasetms_client import configuration
 
 
 class TestFuzzyInconsistencyWarningDto(unittest.TestCase):

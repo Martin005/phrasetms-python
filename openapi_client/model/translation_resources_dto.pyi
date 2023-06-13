@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class TranslationResourcesDto(
@@ -150,6 +150,6 @@ class TranslationResourcesDto(
             **kwargs,
         )
 
-from openapi_client.model.machine_translate_settings_reference import MachineTranslateSettingsReference
-from openapi_client.model.project_term_base_reference import ProjectTermBaseReference
-from openapi_client.model.project_translation_memory_reference import ProjectTranslationMemoryReference
+from phrasetms_client.model.machine_translate_settings_reference import MachineTranslateSettingsReference
+from phrasetms_client.model.project_term_base_reference import ProjectTermBaseReference
+from phrasetms_client.model.project_translation_memory_reference import ProjectTranslationMemoryReference

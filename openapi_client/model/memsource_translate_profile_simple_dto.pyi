@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class MemsourceTranslateProfileSimpleDto(
@@ -133,5 +133,5 @@ class MemsourceTranslateProfileSimpleDto(
             **kwargs,
         )
 
-from openapi_client.model.mem_trans_machine_translate_settings_dto import MemTransMachineTranslateSettingsDto
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.mem_trans_machine_translate_settings_dto import MemTransMachineTranslateSettingsDto
+from phrasetms_client.model.user_reference import UserReference

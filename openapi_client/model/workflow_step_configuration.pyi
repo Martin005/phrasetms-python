@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class WorkflowStepConfiguration(
@@ -140,5 +140,5 @@ class WorkflowStepConfiguration(
             **kwargs,
         )
 
-from openapi_client.model.notify_provider_dto import NotifyProviderDto
-from openapi_client.model.providers_per_language import ProvidersPerLanguage
+from phrasetms_client.model.notify_provider_dto import NotifyProviderDto
+from phrasetms_client.model.providers_per_language import ProvidersPerLanguage

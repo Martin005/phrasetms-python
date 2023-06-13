@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.source_target_regexp_warning_dto import SourceTargetRegexpWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.source_target_regexp_warning_dto import SourceTargetRegexpWarningDto
+from phrasetms_client import configuration
 
 
 class TestSourceTargetRegexpWarningDto(unittest.TestCase):

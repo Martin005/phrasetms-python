@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.git import Git
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.git import Git
+from phrasetms_client import configuration
 
 
 class TestGit(unittest.TestCase):

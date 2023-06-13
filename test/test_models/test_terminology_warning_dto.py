@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.terminology_warning_dto import TerminologyWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.terminology_warning_dto import TerminologyWarningDto
+from phrasetms_client import configuration
 
 
 class TestTerminologyWarningDto(unittest.TestCase):

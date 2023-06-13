@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.tag_metadata_dto import TagMetadataDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.tag_metadata_dto import TagMetadataDto
+from phrasetms_client import configuration
 
 
 class TestTagMetadataDto(unittest.TestCase):

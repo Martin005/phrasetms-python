@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class CommentDto(
@@ -155,5 +155,5 @@ class CommentDto(
             **kwargs,
         )
 
-from openapi_client.model.mention_dto import MentionDto
-from openapi_client.model.mentionable_user_dto import MentionableUserDto
+from phrasetms_client.model.mention_dto import MentionDto
+from phrasetms_client.model.mentionable_user_dto import MentionableUserDto

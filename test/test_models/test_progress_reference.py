@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.progress_reference import ProgressReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.progress_reference import ProgressReference
+from phrasetms_client import configuration
 
 
 class TestProgressReference(unittest.TestCase):

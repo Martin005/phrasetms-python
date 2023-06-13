@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.translation_price_set_list_dto import TranslationPriceSetListDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.translation_price_set_list_dto import TranslationPriceSetListDto
+from phrasetms_client import configuration
 
 
 class TestTranslationPriceSetListDto(unittest.TestCase):

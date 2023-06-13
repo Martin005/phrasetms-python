@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.tag_metadata import TagMetadata
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.tag_metadata import TagMetadata
+from phrasetms_client import configuration
 
 
 class TestTagMetadata(unittest.TestCase):

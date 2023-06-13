@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.wild_card_search_request_dto import WildCardSearchRequestDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.wild_card_search_request_dto import WildCardSearchRequestDto
+from phrasetms_client import configuration
 
 
 class TestWildCardSearchRequestDto(unittest.TestCase):

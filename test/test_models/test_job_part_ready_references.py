@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_part_ready_references import JobPartReadyReferences
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_part_ready_references import JobPartReadyReferences
+from phrasetms_client import configuration
 
 
 class TestJobPartReadyReferences(unittest.TestCase):

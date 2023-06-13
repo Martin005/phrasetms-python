@@ -11,7 +11,7 @@ import typing_extensions
 import urllib3
 from urllib3._collections import HTTPHeaderDict
 
-from openapi_client import api_client, exceptions
+from phrasetms_client import api_client, exceptions
 from datetime import date, datetime  # noqa: F401
 import decimal  # noqa: F401
 import functools  # noqa: F401
@@ -23,10 +23,10 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
-from openapi_client.model.mt_settings_per_language_list_dto import MTSettingsPerLanguageListDto
-from openapi_client.model.edit_project_mt_settings_dto import EditProjectMTSettingsDto
+from phrasetms_client.model.mt_settings_per_language_list_dto import MTSettingsPerLanguageListDto
+from phrasetms_client.model.edit_project_mt_settings_dto import EditProjectMTSettingsDto
 
 # Path params
 ProjectUidSchema = schemas.StrSchema

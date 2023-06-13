@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.search_tm_domain_dto_v3 import SearchTMDomainDtoV3
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.search_tm_domain_dto_v3 import SearchTMDomainDtoV3
+from phrasetms_client import configuration
 
 
 class TestSearchTMDomainDtoV3(unittest.TestCase):

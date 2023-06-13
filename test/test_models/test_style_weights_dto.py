@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.style_weights_dto import StyleWeightsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.style_weights_dto import StyleWeightsDto
+from phrasetms_client import configuration
 
 
 class TestStyleWeightsDto(unittest.TestCase):

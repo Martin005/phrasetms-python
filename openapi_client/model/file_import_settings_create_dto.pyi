@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class FileImportSettingsCreateDto(
@@ -802,35 +802,35 @@ class FileImportSettingsCreateDto(
             **kwargs,
         )
 
-from openapi_client.model.android_settings_dto import AndroidSettingsDto
-from openapi_client.model.asciidoc_settings_dto import AsciidocSettingsDto
-from openapi_client.model.csv_settings_dto import CsvSettingsDto
-from openapi_client.model.dita_settings_dto import DitaSettingsDto
-from openapi_client.model.doc_book_settings_dto import DocBookSettingsDto
-from openapi_client.model.doc_settings_dto import DocSettingsDto
-from openapi_client.model.html_settings_dto import HtmlSettingsDto
-from openapi_client.model.idml_settings_dto import IdmlSettingsDto
-from openapi_client.model.json_settings_dto import JsonSettingsDto
-from openapi_client.model.mac_settings_dto import MacSettingsDto
-from openapi_client.model.md_settings_dto import MdSettingsDto
-from openapi_client.model.mif_settings_dto import MifSettingsDto
-from openapi_client.model.multilingual_csv_settings_dto import MultilingualCsvSettingsDto
-from openapi_client.model.multilingual_xls_settings_dto import MultilingualXlsSettingsDto
-from openapi_client.model.multilingual_xml_settings_dto import MultilingualXmlSettingsDto
-from openapi_client.model.pdf_settings_dto import PdfSettingsDto
-from openapi_client.model.php_settings_dto import PhpSettingsDto
-from openapi_client.model.po_settings_dto import PoSettingsDto
-from openapi_client.model.ppt_settings_dto import PptSettingsDto
-from openapi_client.model.properties_settings_dto import PropertiesSettingsDto
-from openapi_client.model.psd_settings_dto import PsdSettingsDto
-from openapi_client.model.quark_tag_settings_dto import QuarkTagSettingsDto
-from openapi_client.model.resx_settings_dto import ResxSettingsDto
-from openapi_client.model.sdl_xlf_settings_dto import SdlXlfSettingsDto
-from openapi_client.model.tm_match_settings_dto import TMMatchSettingsDto
-from openapi_client.model.ttx_settings_dto import TtxSettingsDto
-from openapi_client.model.txt_settings_dto import TxtSettingsDto
-from openapi_client.model.xlf2_settings_dto import Xlf2SettingsDto
-from openapi_client.model.xlf_settings_dto import XlfSettingsDto
-from openapi_client.model.xls_settings_dto import XlsSettingsDto
-from openapi_client.model.xml_settings_dto import XmlSettingsDto
-from openapi_client.model.yaml_settings_dto import YamlSettingsDto
+from phrasetms_client.model.android_settings_dto import AndroidSettingsDto
+from phrasetms_client.model.asciidoc_settings_dto import AsciidocSettingsDto
+from phrasetms_client.model.csv_settings_dto import CsvSettingsDto
+from phrasetms_client.model.dita_settings_dto import DitaSettingsDto
+from phrasetms_client.model.doc_book_settings_dto import DocBookSettingsDto
+from phrasetms_client.model.doc_settings_dto import DocSettingsDto
+from phrasetms_client.model.html_settings_dto import HtmlSettingsDto
+from phrasetms_client.model.idml_settings_dto import IdmlSettingsDto
+from phrasetms_client.model.json_settings_dto import JsonSettingsDto
+from phrasetms_client.model.mac_settings_dto import MacSettingsDto
+from phrasetms_client.model.md_settings_dto import MdSettingsDto
+from phrasetms_client.model.mif_settings_dto import MifSettingsDto
+from phrasetms_client.model.multilingual_csv_settings_dto import MultilingualCsvSettingsDto
+from phrasetms_client.model.multilingual_xls_settings_dto import MultilingualXlsSettingsDto
+from phrasetms_client.model.multilingual_xml_settings_dto import MultilingualXmlSettingsDto
+from phrasetms_client.model.pdf_settings_dto import PdfSettingsDto
+from phrasetms_client.model.php_settings_dto import PhpSettingsDto
+from phrasetms_client.model.po_settings_dto import PoSettingsDto
+from phrasetms_client.model.ppt_settings_dto import PptSettingsDto
+from phrasetms_client.model.properties_settings_dto import PropertiesSettingsDto
+from phrasetms_client.model.psd_settings_dto import PsdSettingsDto
+from phrasetms_client.model.quark_tag_settings_dto import QuarkTagSettingsDto
+from phrasetms_client.model.resx_settings_dto import ResxSettingsDto
+from phrasetms_client.model.sdl_xlf_settings_dto import SdlXlfSettingsDto
+from phrasetms_client.model.tm_match_settings_dto import TMMatchSettingsDto
+from phrasetms_client.model.ttx_settings_dto import TtxSettingsDto
+from phrasetms_client.model.txt_settings_dto import TxtSettingsDto
+from phrasetms_client.model.xlf2_settings_dto import Xlf2SettingsDto
+from phrasetms_client.model.xlf_settings_dto import XlfSettingsDto
+from phrasetms_client.model.xls_settings_dto import XlsSettingsDto
+from phrasetms_client.model.xml_settings_dto import XmlSettingsDto
+from phrasetms_client.model.yaml_settings_dto import YamlSettingsDto

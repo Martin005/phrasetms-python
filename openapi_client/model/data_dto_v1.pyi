@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class DataDtoV1(
@@ -155,7 +155,7 @@ class DataDtoV1(
             **kwargs,
         )
 
-from openapi_client.model.counts_dto import CountsDto
-from openapi_client.model.match_counts101_dto import MatchCounts101Dto
-from openapi_client.model.match_counts_dto import MatchCountsDto
-from openapi_client.model.match_counts_nt_dto_v1 import MatchCountsNTDtoV1
+from phrasetms_client.model.counts_dto import CountsDto
+from phrasetms_client.model.match_counts101_dto import MatchCounts101Dto
+from phrasetms_client.model.match_counts_dto import MatchCountsDto
+from phrasetms_client.model.match_counts_nt_dto_v1 import MatchCountsNTDtoV1

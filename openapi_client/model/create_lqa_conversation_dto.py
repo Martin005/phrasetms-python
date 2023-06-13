@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class CreateLqaConversationDto(
@@ -95,4 +95,4 @@ class CreateLqaConversationDto(
             **kwargs,
         )
 
-from openapi_client.model.lqa_references import LQAReferences
+from phrasetms_client.model.lqa_references import LQAReferences

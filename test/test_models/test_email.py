@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.email import Email
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.email import Email
+from phrasetms_client import configuration
 
 
 class TestEmail(unittest.TestCase):

@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AsyncResponseV2Dto(
@@ -167,4 +167,4 @@ class AsyncResponseV2Dto(
             **kwargs,
         )
 
-from openapi_client.model.error_detail_dto_v2 import ErrorDetailDtoV2
+from phrasetms_client.model.error_detail_dto_v2 import ErrorDetailDtoV2

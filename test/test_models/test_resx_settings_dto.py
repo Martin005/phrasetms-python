@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.resx_settings_dto import ResxSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.resx_settings_dto import ResxSettingsDto
+from phrasetms_client import configuration
 
 
 class TestResxSettingsDto(unittest.TestCase):

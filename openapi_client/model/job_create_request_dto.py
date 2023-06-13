@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class JobCreateRequestDto(
@@ -272,8 +272,8 @@ class JobCreateRequestDto(
             **kwargs,
         )
 
-from openapi_client.model.job_create_remote_file_dto import JobCreateRemoteFileDto
-from openapi_client.model.notify_provider_dto import NotifyProviderDto
-from openapi_client.model.providers_per_language import ProvidersPerLanguage
-from openapi_client.model.uid_reference import UidReference
-from openapi_client.model.workflow_step_configuration import WorkflowStepConfiguration
+from phrasetms_client.model.job_create_remote_file_dto import JobCreateRemoteFileDto
+from phrasetms_client.model.notify_provider_dto import NotifyProviderDto
+from phrasetms_client.model.providers_per_language import ProvidersPerLanguage
+from phrasetms_client.model.uid_reference import UidReference
+from phrasetms_client.model.workflow_step_configuration import WorkflowStepConfiguration

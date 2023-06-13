@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.assignable_templates_dto import AssignableTemplatesDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.assignable_templates_dto import AssignableTemplatesDto
+from phrasetms_client import configuration
 
 
 class TestAssignableTemplatesDto(unittest.TestCase):

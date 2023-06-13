@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.user_reference import UserReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.user_reference import UserReference
+from phrasetms_client import configuration
 
 
 class TestUserReference(unittest.TestCase):

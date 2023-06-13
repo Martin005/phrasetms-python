@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.quote_create_v2_dto import QuoteCreateV2Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.quote_create_v2_dto import QuoteCreateV2Dto
+from phrasetms_client import configuration
 
 
 class TestQuoteCreateV2Dto(unittest.TestCase):

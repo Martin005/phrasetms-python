@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.update_ignored_checks_dto import UpdateIgnoredChecksDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.update_ignored_checks_dto import UpdateIgnoredChecksDto
+from phrasetms_client import configuration
 
 
 class TestUpdateIgnoredChecksDto(unittest.TestCase):

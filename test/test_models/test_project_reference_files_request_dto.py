@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.project_reference_files_request_dto import ProjectReferenceFilesRequestDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.project_reference_files_request_dto import ProjectReferenceFilesRequestDto
+from phrasetms_client import configuration
 
 
 class TestProjectReferenceFilesRequestDto(unittest.TestCase):

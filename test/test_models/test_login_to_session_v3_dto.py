@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.login_to_session_v3_dto import LoginToSessionV3Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.login_to_session_v3_dto import LoginToSessionV3Dto
+from phrasetms_client import configuration
 
 
 class TestLoginToSessionV3Dto(unittest.TestCase):

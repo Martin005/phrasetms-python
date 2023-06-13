@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.async_export_tmby_query_dto import AsyncExportTMByQueryDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.async_export_tmby_query_dto import AsyncExportTMByQueryDto
+from phrasetms_client import configuration
 
 
 class TestAsyncExportTMByQueryDto(unittest.TestCase):

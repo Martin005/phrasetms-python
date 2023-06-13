@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.language_list_dto import LanguageListDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.language_list_dto import LanguageListDto
+from phrasetms_client import configuration
 
 
 class TestLanguageListDto(unittest.TestCase):

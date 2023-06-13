@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.bulk_delete_analyse_dto import BulkDeleteAnalyseDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.bulk_delete_analyse_dto import BulkDeleteAnalyseDto
+from phrasetms_client import configuration
 
 
 class TestBulkDeleteAnalyseDto(unittest.TestCase):

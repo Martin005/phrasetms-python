@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class JobPartPatchResultDto(
@@ -112,4 +112,4 @@ class JobPartPatchResultDto(
             **kwargs,
         )
 
-from openapi_client.model.error_detail_dto_v3 import ErrorDetailDtoV3
+from phrasetms_client.model.error_detail_dto_v3 import ErrorDetailDtoV3

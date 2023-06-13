@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.leading_and_trailing_spaces_warning_dto import LeadingAndTrailingSpacesWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.leading_and_trailing_spaces_warning_dto import LeadingAndTrailingSpacesWarningDto
+from phrasetms_client import configuration
 
 
 class TestLeadingAndTrailingSpacesWarningDto(unittest.TestCase):

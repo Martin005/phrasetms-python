@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PreTranslateJobSettingsDto(
@@ -168,6 +168,6 @@ class PreTranslateJobSettingsDto(
             **kwargs,
         )
 
-from openapi_client.model.job_machine_translation_settings_dto import JobMachineTranslationSettingsDto
-from openapi_client.model.job_non_translatable_settings_dto import JobNonTranslatableSettingsDto
-from openapi_client.model.job_translation_memory_settings_dto import JobTranslationMemorySettingsDto
+from phrasetms_client.model.job_machine_translation_settings_dto import JobMachineTranslationSettingsDto
+from phrasetms_client.model.job_non_translatable_settings_dto import JobNonTranslatableSettingsDto
+from phrasetms_client.model.job_translation_memory_settings_dto import JobTranslationMemorySettingsDto

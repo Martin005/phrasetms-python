@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.xlf2_settings_dto import Xlf2SettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.xlf2_settings_dto import Xlf2SettingsDto
+from phrasetms_client import configuration
 
 
 class TestXlf2SettingsDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_net_rate_scheme_reference import PageDtoNetRateSchemeReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_net_rate_scheme_reference import PageDtoNetRateSchemeReference
+from phrasetms_client import configuration
 
 
 class TestPageDtoNetRateSchemeReference(unittest.TestCase):

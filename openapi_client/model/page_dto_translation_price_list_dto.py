@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoTranslationPriceListDto(
@@ -152,4 +152,4 @@ class PageDtoTranslationPriceListDto(
             **kwargs,
         )
 
-from openapi_client.model.translation_price_list_dto import TranslationPriceListDto
+from phrasetms_client.model.translation_price_list_dto import TranslationPriceListDto

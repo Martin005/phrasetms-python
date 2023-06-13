@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.project_mt_settings_per_lang_dto import ProjectMTSettingsPerLangDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.project_mt_settings_per_lang_dto import ProjectMTSettingsPerLangDto
+from phrasetms_client import configuration
 
 
 class TestProjectMTSettingsPerLangDto(unittest.TestCase):

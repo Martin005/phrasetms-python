@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class MetadataPrioritySettingsDto(
@@ -107,4 +107,4 @@ class MetadataPrioritySettingsDto(
             **kwargs,
         )
 
-from openapi_client.model.metadata_field import MetadataField
+from phrasetms_client.model.metadata_field import MetadataField

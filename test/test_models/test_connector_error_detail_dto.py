@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.connector_error_detail_dto import ConnectorErrorDetailDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.connector_error_detail_dto import ConnectorErrorDetailDto
+from phrasetms_client import configuration
 
 
 class TestConnectorErrorDetailDto(unittest.TestCase):

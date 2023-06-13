@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.segment_reference import SegmentReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.segment_reference import SegmentReference
+from phrasetms_client import configuration
 
 
 class TestSegmentReference(unittest.TestCase):

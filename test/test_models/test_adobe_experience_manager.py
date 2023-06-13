@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.adobe_experience_manager import AdobeExperienceManager
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.adobe_experience_manager import AdobeExperienceManager
+from phrasetms_client import configuration
 
 
 class TestAdobeExperienceManager(unittest.TestCase):

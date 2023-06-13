@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.newer_at_lower_level_warning_dto import NewerAtLowerLevelWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.newer_at_lower_level_warning_dto import NewerAtLowerLevelWarningDto
+from phrasetms_client import configuration
 
 
 class TestNewerAtLowerLevelWarningDto(unittest.TestCase):

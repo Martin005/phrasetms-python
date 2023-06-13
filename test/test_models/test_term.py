@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.term import Term
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.term import Term
+from phrasetms_client import configuration
 
 
 class TestTerm(unittest.TestCase):

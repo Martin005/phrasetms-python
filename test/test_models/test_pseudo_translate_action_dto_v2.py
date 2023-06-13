@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.pseudo_translate_action_dto_v2 import PseudoTranslateActionDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.pseudo_translate_action_dto_v2 import PseudoTranslateActionDtoV2
+from phrasetms_client import configuration
 
 
 class TestPseudoTranslateActionDtoV2(unittest.TestCase):

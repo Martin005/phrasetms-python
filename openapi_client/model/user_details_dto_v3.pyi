@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class UserDetailsDtoV3(
@@ -309,9 +309,9 @@ class UserDetailsDtoV3(
             **kwargs,
         )
 
-from openapi_client.model.adminresponse import ADMINRESPONSE
-from openapi_client.model.guestresponse import GUESTRESPONSE
-from openapi_client.model.linguistresponse import LINGUISTRESPONSE
-from openapi_client.model.projectmanagerresponse import PROJECTMANAGERRESPONSE
-from openapi_client.model.submitterresponse import SUBMITTERRESPONSE
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.adminresponse import ADMINRESPONSE
+from phrasetms_client.model.guestresponse import GUESTRESPONSE
+from phrasetms_client.model.linguistresponse import LINGUISTRESPONSE
+from phrasetms_client.model.projectmanagerresponse import PROJECTMANAGERRESPONSE
+from phrasetms_client.model.submitterresponse import SUBMITTERRESPONSE
+from phrasetms_client.model.user_reference import UserReference

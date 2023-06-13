@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_domain_dto import PageDtoDomainDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_domain_dto import PageDtoDomainDto
+from phrasetms_client import configuration
 
 
 class TestPageDtoDomainDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.analyse_recalculate_request_dto import AnalyseRecalculateRequestDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.analyse_recalculate_request_dto import AnalyseRecalculateRequestDto
+from phrasetms_client import configuration
 
 
 class TestAnalyseRecalculateRequestDto(unittest.TestCase):

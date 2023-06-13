@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class JobPartExtendedDto(
@@ -404,9 +404,9 @@ class JobPartExtendedDto(
             **kwargs,
         )
 
-from openapi_client.model.continuous_job_info_dto import ContinuousJobInfoDto
-from openapi_client.model.import_status_dto import ImportStatusDto
-from openapi_client.model.job_reference import JobReference
-from openapi_client.model.project_reference import ProjectReference
-from openapi_client.model.project_workflow_step_reference import ProjectWorkflowStepReference
-from openapi_client.model.provider_reference import ProviderReference
+from phrasetms_client.model.continuous_job_info_dto import ContinuousJobInfoDto
+from phrasetms_client.model.import_status_dto import ImportStatusDto
+from phrasetms_client.model.job_reference import JobReference
+from phrasetms_client.model.project_reference import ProjectReference
+from phrasetms_client.model.project_workflow_step_reference import ProjectWorkflowStepReference
+from phrasetms_client.model.provider_reference import ProviderReference

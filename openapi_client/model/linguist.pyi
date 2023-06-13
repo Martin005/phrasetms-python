@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class Linguist(
@@ -65,4 +65,4 @@ class Linguist(
             **kwargs,
         )
 
-from openapi_client.model.abstract_project_dto import AbstractProjectDto
+from phrasetms_client.model.abstract_project_dto import AbstractProjectDto

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.malformed_warning_dto import MalformedWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.malformed_warning_dto import MalformedWarningDto
+from phrasetms_client import configuration
 
 
 class TestMalformedWarningDto(unittest.TestCase):

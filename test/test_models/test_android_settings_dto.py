@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.android_settings_dto import AndroidSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.android_settings_dto import AndroidSettingsDto
+from phrasetms_client import configuration
 
 
 class TestAndroidSettingsDto(unittest.TestCase):

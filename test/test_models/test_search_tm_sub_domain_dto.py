@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.search_tm_sub_domain_dto import SearchTMSubDomainDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.search_tm_sub_domain_dto import SearchTMSubDomainDto
+from phrasetms_client import configuration
 
 
 class TestSearchTMSubDomainDto(unittest.TestCase):

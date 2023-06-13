@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_part_segments_dto_v3 import JobPartSegmentsDtoV3
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_part_segments_dto_v3 import JobPartSegmentsDtoV3
+from phrasetms_client import configuration
 
 
 class TestJobPartSegmentsDtoV3(unittest.TestCase):

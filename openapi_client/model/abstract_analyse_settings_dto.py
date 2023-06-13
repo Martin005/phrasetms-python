@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AbstractAnalyseSettingsDto(
@@ -209,6 +209,6 @@ class AbstractAnalyseSettingsDto(
             **kwargs,
         )
 
-from openapi_client.model.post_analyse import PostAnalyse
-from openapi_client.model.pre_analyse import PreAnalyse
-from openapi_client.model.pre_analyse_target_compare import PreAnalyseTargetCompare
+from phrasetms_client.model.post_analyse import PostAnalyse
+from phrasetms_client.model.pre_analyse import PreAnalyse
+from phrasetms_client.model.pre_analyse_target_compare import PreAnalyseTargetCompare

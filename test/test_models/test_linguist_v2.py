@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.linguist_v2 import LinguistV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.linguist_v2 import LinguistV2
+from phrasetms_client import configuration
 
 
 class TestLinguistV2(unittest.TestCase):

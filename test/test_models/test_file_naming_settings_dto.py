@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.file_naming_settings_dto import FileNamingSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.file_naming_settings_dto import FileNamingSettingsDto
+from phrasetms_client import configuration
 
 
 class TestFileNamingSettingsDto(unittest.TestCase):

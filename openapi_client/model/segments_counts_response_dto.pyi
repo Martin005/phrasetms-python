@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SegmentsCountsResponseDto(
@@ -103,5 +103,5 @@ class SegmentsCountsResponseDto(
             **kwargs,
         )
 
-from openapi_client.model.previous_workflow_dto import PreviousWorkflowDto
-from openapi_client.model.segments_counts_dto import SegmentsCountsDto
+from phrasetms_client.model.previous_workflow_dto import PreviousWorkflowDto
+from phrasetms_client.model.segments_counts_dto import SegmentsCountsDto

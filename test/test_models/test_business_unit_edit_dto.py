@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.business_unit_edit_dto import BusinessUnitEditDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.business_unit_edit_dto import BusinessUnitEditDto
+from phrasetms_client import configuration
 
 
 class TestBusinessUnitEditDto(unittest.TestCase):

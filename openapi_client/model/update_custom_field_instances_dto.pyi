@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class UpdateCustomFieldInstancesDto(
@@ -172,6 +172,6 @@ class UpdateCustomFieldInstancesDto(
             **kwargs,
         )
 
-from openapi_client.model.create_custom_field_instance_dto import CreateCustomFieldInstanceDto
-from openapi_client.model.uid_reference import UidReference
-from openapi_client.model.update_custom_field_instance_with_uid_dto import UpdateCustomFieldInstanceWithUidDto
+from phrasetms_client.model.create_custom_field_instance_dto import CreateCustomFieldInstanceDto
+from phrasetms_client.model.uid_reference import UidReference
+from phrasetms_client.model.update_custom_field_instance_with_uid_dto import UpdateCustomFieldInstanceWithUidDto

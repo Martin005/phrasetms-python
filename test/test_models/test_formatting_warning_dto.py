@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.formatting_warning_dto import FormattingWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.formatting_warning_dto import FormattingWarningDto
+from phrasetms_client import configuration
 
 
 class TestFormattingWarningDto(unittest.TestCase):

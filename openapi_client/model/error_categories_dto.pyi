@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ErrorCategoriesDto(
@@ -173,11 +173,11 @@ class ErrorCategoriesDto(
             **kwargs,
         )
 
-from openapi_client.model.accuracy_weights_dto import AccuracyWeightsDto
-from openapi_client.model.design_weights_dto import DesignWeightsDto
-from openapi_client.model.fluency_weights_dto import FluencyWeightsDto
-from openapi_client.model.locale_convention_weights_dto import LocaleConventionWeightsDto
-from openapi_client.model.other_weights_dto import OtherWeightsDto
-from openapi_client.model.style_weights_dto import StyleWeightsDto
-from openapi_client.model.terminology_weights_dto import TerminologyWeightsDto
-from openapi_client.model.verity_weights_dto import VerityWeightsDto
+from phrasetms_client.model.accuracy_weights_dto import AccuracyWeightsDto
+from phrasetms_client.model.design_weights_dto import DesignWeightsDto
+from phrasetms_client.model.fluency_weights_dto import FluencyWeightsDto
+from phrasetms_client.model.locale_convention_weights_dto import LocaleConventionWeightsDto
+from phrasetms_client.model.other_weights_dto import OtherWeightsDto
+from phrasetms_client.model.style_weights_dto import StyleWeightsDto
+from phrasetms_client.model.terminology_weights_dto import TerminologyWeightsDto
+from phrasetms_client.model.verity_weights_dto import VerityWeightsDto

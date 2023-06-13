@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AssignableTemplatesDto(
@@ -102,4 +102,4 @@ class AssignableTemplatesDto(
             **kwargs,
         )
 
-from openapi_client.model.project_template_dto import ProjectTemplateDto
+from phrasetms_client.model.project_template_dto import ProjectTemplateDto

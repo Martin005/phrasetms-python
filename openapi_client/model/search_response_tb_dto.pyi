@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SearchResponseTbDto(
@@ -138,5 +138,5 @@ class SearchResponseTbDto(
             **kwargs,
         )
 
-from openapi_client.model.term_base_dto import TermBaseDto
-from openapi_client.model.term_dto import TermDto
+from phrasetms_client.model.term_base_dto import TermBaseDto
+from phrasetms_client.model.term_dto import TermDto

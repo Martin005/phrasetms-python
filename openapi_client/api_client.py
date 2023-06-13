@@ -28,10 +28,10 @@ from urllib3.fields import RequestField as RequestFieldBase
 
 import frozendict
 
-from openapi_client import rest
-from openapi_client.configuration import Configuration
-from openapi_client.exceptions import ApiTypeError, ApiValueError
-from openapi_client.schemas import (
+from phrasetms_client import rest
+from phrasetms_client.configuration import Configuration
+from phrasetms_client.exceptions import ApiTypeError, ApiValueError
+from phrasetms_client.schemas import (
     NoneClass,
     BoolClass,
     Schema,

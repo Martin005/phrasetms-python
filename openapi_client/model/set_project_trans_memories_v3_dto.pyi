@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SetProjectTransMemoriesV3Dto(
@@ -107,4 +107,4 @@ class SetProjectTransMemoriesV3Dto(
             **kwargs,
         )
 
-from openapi_client.model.set_context_trans_memories_dto_v3_dto import SetContextTransMemoriesDtoV3Dto
+from phrasetms_client.model.set_context_trans_memories_dto_v3_dto import SetContextTransMemoriesDtoV3Dto

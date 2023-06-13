@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.git_lab import GitLab
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.git_lab import GitLab
+from phrasetms_client import configuration
 
 
 class TestGitLab(unittest.TestCase):

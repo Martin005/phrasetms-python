@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.nested_tags_warning_dto import NestedTagsWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.nested_tags_warning_dto import NestedTagsWarningDto
+from phrasetms_client import configuration
 
 
 class TestNestedTagsWarningDto(unittest.TestCase):

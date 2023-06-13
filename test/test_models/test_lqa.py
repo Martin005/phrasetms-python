@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.lqa import LQA
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.lqa import LQA
+from phrasetms_client import configuration
 
 
 class TestLQA(unittest.TestCase):

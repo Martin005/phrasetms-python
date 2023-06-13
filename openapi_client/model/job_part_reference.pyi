@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class JobPartReference(
@@ -282,5 +282,5 @@ class JobPartReference(
             **kwargs,
         )
 
-from openapi_client.model.provider_reference import ProviderReference
-from openapi_client.model.workflow_step_reference import WorkflowStepReference
+from phrasetms_client.model.provider_reference import ProviderReference
+from phrasetms_client.model.workflow_step_reference import WorkflowStepReference

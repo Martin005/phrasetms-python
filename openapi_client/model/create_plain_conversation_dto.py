@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class CreatePlainConversationDto(
@@ -98,5 +98,5 @@ class CreatePlainConversationDto(
             **kwargs,
         )
 
-from openapi_client.model.add_comment_dto import AddCommentDto
-from openapi_client.model.plain_references import PlainReferences
+from phrasetms_client.model.add_comment_dto import AddCommentDto
+from phrasetms_client.model.plain_references import PlainReferences

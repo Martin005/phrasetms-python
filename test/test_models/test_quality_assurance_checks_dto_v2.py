@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.quality_assurance_checks_dto_v2 import QualityAssuranceChecksDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.quality_assurance_checks_dto_v2 import QualityAssuranceChecksDtoV2
+from phrasetms_client import configuration
 
 
 class TestQualityAssuranceChecksDtoV2(unittest.TestCase):

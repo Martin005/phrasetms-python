@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.locale_convention_weights_dto import LocaleConventionWeightsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.locale_convention_weights_dto import LocaleConventionWeightsDto
+from phrasetms_client import configuration
 
 
 class TestLocaleConventionWeightsDto(unittest.TestCase):

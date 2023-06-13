@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.mention_dto import MentionDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.mention_dto import MentionDto
+from phrasetms_client import configuration
 
 
 class TestMentionDto(unittest.TestCase):

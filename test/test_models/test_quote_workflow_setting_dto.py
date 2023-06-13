@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.quote_workflow_setting_dto import QuoteWorkflowSettingDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.quote_workflow_setting_dto import QuoteWorkflowSettingDto
+from phrasetms_client import configuration
 
 
 class TestQuoteWorkflowSettingDto(unittest.TestCase):

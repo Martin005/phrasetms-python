@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.email_quotes_response_dto import EmailQuotesResponseDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.email_quotes_response_dto import EmailQuotesResponseDto
+from phrasetms_client import configuration
 
 
 class TestEmailQuotesResponseDto(unittest.TestCase):

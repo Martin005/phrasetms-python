@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.clone_project_dto import CloneProjectDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.clone_project_dto import CloneProjectDto
+from phrasetms_client import configuration
 
 
 class TestCloneProjectDto(unittest.TestCase):

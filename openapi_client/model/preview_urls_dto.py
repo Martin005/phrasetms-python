@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PreviewUrlsDto(
@@ -102,4 +102,4 @@ class PreviewUrlsDto(
             **kwargs,
         )
 
-from openapi_client.model.preview_url_dto import PreviewUrlDto
+from phrasetms_client.model.preview_url_dto import PreviewUrlDto

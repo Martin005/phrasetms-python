@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoJobPartReferenceV2(
@@ -152,4 +152,4 @@ class PageDtoJobPartReferenceV2(
             **kwargs,
         )
 
-from openapi_client.model.job_part_reference_v2 import JobPartReferenceV2
+from phrasetms_client.model.job_part_reference_v2 import JobPartReferenceV2

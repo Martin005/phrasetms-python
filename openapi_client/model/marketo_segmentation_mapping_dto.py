@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class MarketoSegmentationMappingDto(
@@ -112,4 +112,4 @@ class MarketoSegmentationMappingDto(
             **kwargs,
         )
 
-from openapi_client.model.marketo_segment_mapping_dto import MarketoSegmentMappingDto
+from phrasetms_client.model.marketo_segment_mapping_dto import MarketoSegmentMappingDto

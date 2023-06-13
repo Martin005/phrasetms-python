@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SpellCheckResponseDto(
@@ -102,4 +102,4 @@ class SpellCheckResponseDto(
             **kwargs,
         )
 
-from openapi_client.model.check_response import CheckResponse
+from phrasetms_client.model.check_response import CheckResponse

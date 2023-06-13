@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class WebHookDtoV2(
@@ -337,4 +337,4 @@ class WebHookDtoV2(
             **kwargs,
         )
 
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.user_reference import UserReference

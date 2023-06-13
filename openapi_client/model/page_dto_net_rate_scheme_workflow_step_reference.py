@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoNetRateSchemeWorkflowStepReference(
@@ -152,4 +152,4 @@ class PageDtoNetRateSchemeWorkflowStepReference(
             **kwargs,
         )
 
-from openapi_client.model.net_rate_scheme_workflow_step_reference import NetRateSchemeWorkflowStepReference
+from phrasetms_client.model.net_rate_scheme_workflow_step_reference import NetRateSchemeWorkflowStepReference

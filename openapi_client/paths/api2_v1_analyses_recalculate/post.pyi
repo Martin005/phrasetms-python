@@ -11,7 +11,7 @@ import typing_extensions
 import urllib3
 from urllib3._collections import HTTPHeaderDict
 
-from openapi_client import api_client, exceptions
+from phrasetms_client import api_client, exceptions
 from datetime import date, datetime  # noqa: F401
 import decimal  # noqa: F401
 import functools  # noqa: F401
@@ -23,10 +23,10 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
-from openapi_client.model.analyse_recalculate_response_dto import AnalyseRecalculateResponseDto
-from openapi_client.model.analyse_recalculate_request_dto import AnalyseRecalculateRequestDto
+from phrasetms_client.model.analyse_recalculate_response_dto import AnalyseRecalculateResponseDto
+from phrasetms_client.model.analyse_recalculate_request_dto import AnalyseRecalculateRequestDto
 
 # body param
 SchemaForRequestBodyApplicationJson = AnalyseRecalculateRequestDto

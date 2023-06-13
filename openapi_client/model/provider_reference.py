@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ProviderReference(
@@ -111,5 +111,5 @@ class ProviderReference(
             **kwargs,
         )
 
-from openapi_client.model.user import USER
-from openapi_client.model.vendor import VENDOR
+from phrasetms_client.model.user import USER
+from phrasetms_client.model.vendor import VENDOR

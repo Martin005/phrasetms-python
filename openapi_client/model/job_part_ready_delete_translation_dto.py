@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class JobPartReadyDeleteTranslationDto(
@@ -160,6 +160,6 @@ class JobPartReadyDeleteTranslationDto(
             **kwargs,
         )
 
-from openapi_client.model.job_part_ready_delete_translation_filter_dto import JobPartReadyDeleteTranslationFilterDto
-from openapi_client.model.translation_segments_reference_v2 import TranslationSegmentsReferenceV2
-from openapi_client.model.uid_reference import UidReference
+from phrasetms_client.model.job_part_ready_delete_translation_filter_dto import JobPartReadyDeleteTranslationFilterDto
+from phrasetms_client.model.translation_segments_reference_v2 import TranslationSegmentsReferenceV2
+from phrasetms_client.model.uid_reference import UidReference

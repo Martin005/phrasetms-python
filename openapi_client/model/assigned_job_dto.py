@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AssignedJobDto(
@@ -246,6 +246,6 @@ class AssignedJobDto(
             **kwargs,
         )
 
-from openapi_client.model.import_status_dto import ImportStatusDto
-from openapi_client.model.project_reference import ProjectReference
-from openapi_client.model.project_workflow_step_reference import ProjectWorkflowStepReference
+from phrasetms_client.model.import_status_dto import ImportStatusDto
+from phrasetms_client.model.project_reference import ProjectReference
+from phrasetms_client.model.project_workflow_step_reference import ProjectWorkflowStepReference

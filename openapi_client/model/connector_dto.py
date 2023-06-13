@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ConnectorDto(
@@ -373,5 +373,5 @@ class ConnectorDto(
             **kwargs,
         )
 
-from openapi_client.model.automated_project_settings_dto import AutomatedProjectSettingsDto
-from openapi_client.model.name_dto import NameDto
+from phrasetms_client.model.automated_project_settings_dto import AutomatedProjectSettingsDto
+from phrasetms_client.model.name_dto import NameDto

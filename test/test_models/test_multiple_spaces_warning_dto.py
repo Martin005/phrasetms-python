@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.multiple_spaces_warning_dto import MultipleSpacesWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.multiple_spaces_warning_dto import MultipleSpacesWarningDto
+from phrasetms_client import configuration
 
 
 class TestMultipleSpacesWarningDto(unittest.TestCase):

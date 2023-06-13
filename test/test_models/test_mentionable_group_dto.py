@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.mentionable_group_dto import MentionableGroupDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.mentionable_group_dto import MentionableGroupDto
+from phrasetms_client import configuration
 
 
 class TestMentionableGroupDto(unittest.TestCase):

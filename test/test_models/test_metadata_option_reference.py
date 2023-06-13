@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.metadata_option_reference import MetadataOptionReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.metadata_option_reference import MetadataOptionReference
+from phrasetms_client import configuration
 
 
 class TestMetadataOptionReference(unittest.TestCase):

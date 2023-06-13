@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.analyse_language_part_v3_dto import AnalyseLanguagePartV3Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.analyse_language_part_v3_dto import AnalyseLanguagePartV3Dto
+from phrasetms_client import configuration
 
 
 class TestAnalyseLanguagePartV3Dto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.async_export_tm_response_dto import AsyncExportTMResponseDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.async_export_tm_response_dto import AsyncExportTMResponseDto
+from phrasetms_client import configuration
 
 
 class TestAsyncExportTMResponseDto(unittest.TestCase):

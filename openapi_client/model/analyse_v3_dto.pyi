@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AnalyseV3Dto(
@@ -317,10 +317,10 @@ class AnalyseV3Dto(
             **kwargs,
         )
 
-from openapi_client.model.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
-from openapi_client.model.analyse_language_part_v3_dto import AnalyseLanguagePartV3Dto
-from openapi_client.model.import_status_dto import ImportStatusDto
-from openapi_client.model.net_rate_scheme_reference import NetRateSchemeReference
-from openapi_client.model.project_reference import ProjectReference
-from openapi_client.model.provider_reference import ProviderReference
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
+from phrasetms_client.model.analyse_language_part_v3_dto import AnalyseLanguagePartV3Dto
+from phrasetms_client.model.import_status_dto import ImportStatusDto
+from phrasetms_client.model.net_rate_scheme_reference import NetRateSchemeReference
+from phrasetms_client.model.project_reference import ProjectReference
+from phrasetms_client.model.provider_reference import ProviderReference
+from phrasetms_client.model.user_reference import UserReference

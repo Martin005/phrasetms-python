@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.scim_user_core_dto import ScimUserCoreDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.scim_user_core_dto import ScimUserCoreDto
+from phrasetms_client import configuration
 
 
 class TestScimUserCoreDto(unittest.TestCase):

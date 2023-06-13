@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.project_template_trans_memory_list_v2_dto import ProjectTemplateTransMemoryListV2Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.project_template_trans_memory_list_v2_dto import ProjectTemplateTransMemoryListV2Dto
+from phrasetms_client import configuration
 
 
 class TestProjectTemplateTransMemoryListV2Dto(unittest.TestCase):

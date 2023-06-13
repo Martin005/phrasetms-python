@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoMachineTranslateSettingsPbmDto(
@@ -152,4 +152,4 @@ class PageDtoMachineTranslateSettingsPbmDto(
             **kwargs,
         )
 
-from openapi_client.model.machine_translate_settings_pbm_dto import MachineTranslateSettingsPbmDto
+from phrasetms_client.model.machine_translate_settings_pbm_dto import MachineTranslateSettingsPbmDto

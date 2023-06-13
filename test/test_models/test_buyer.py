@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.buyer import Buyer
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.buyer import Buyer
+from phrasetms_client import configuration
 
 
 class TestBuyer(unittest.TestCase):

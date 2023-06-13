@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SearchTMResponseDtoV3(
@@ -168,5 +168,5 @@ class SearchTMResponseDtoV3(
             **kwargs,
         )
 
-from openapi_client.model.search_tm_segment_dto_v3 import SearchTMSegmentDtoV3
-from openapi_client.model.search_tm_trans_memory_dto_v3 import SearchTMTransMemoryDtoV3
+from phrasetms_client.model.search_tm_segment_dto_v3 import SearchTMSegmentDtoV3
+from phrasetms_client.model.search_tm_trans_memory_dto_v3 import SearchTMTransMemoryDtoV3

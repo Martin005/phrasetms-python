@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AnalyseLanguagePartV3Dto(
@@ -193,6 +193,6 @@ class AnalyseLanguagePartV3Dto(
             **kwargs,
         )
 
-from openapi_client.model.analyse_job_reference import AnalyseJobReference
-from openapi_client.model.data_dto import DataDto
-from openapi_client.model.trans_memory_reference_dto_v2 import TransMemoryReferenceDtoV2
+from phrasetms_client.model.analyse_job_reference import AnalyseJobReference
+from phrasetms_client.model.data_dto import DataDto
+from phrasetms_client.model.trans_memory_reference_dto_v2 import TransMemoryReferenceDtoV2

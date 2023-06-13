@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.ftp import Ftp
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.ftp import Ftp
+from phrasetms_client import configuration
 
 
 class TestFtp(unittest.TestCase):

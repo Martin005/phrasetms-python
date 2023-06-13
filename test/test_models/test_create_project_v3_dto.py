@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.create_project_v3_dto import CreateProjectV3Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.create_project_v3_dto import CreateProjectV3Dto
+from phrasetms_client import configuration
 
 
 class TestCreateProjectV3Dto(unittest.TestCase):

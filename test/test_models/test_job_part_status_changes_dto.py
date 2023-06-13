@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_part_status_changes_dto import JobPartStatusChangesDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_part_status_changes_dto import JobPartStatusChangesDto
+from phrasetms_client import configuration
 
 
 class TestJobPartStatusChangesDto(unittest.TestCase):

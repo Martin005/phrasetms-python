@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.patch_project_dto import PatchProjectDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.patch_project_dto import PatchProjectDto
+from phrasetms_client import configuration
 
 
 class TestPatchProjectDto(unittest.TestCase):

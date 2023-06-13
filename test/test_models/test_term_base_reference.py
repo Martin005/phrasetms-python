@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.term_base_reference import TermBaseReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.term_base_reference import TermBaseReference
+from phrasetms_client import configuration
 
 
 class TestTermBaseReference(unittest.TestCase):

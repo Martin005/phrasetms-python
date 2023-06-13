@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.not_confirmed_warning_dto import NotConfirmedWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.not_confirmed_warning_dto import NotConfirmedWarningDto
+from phrasetms_client import configuration
 
 
 class TestNotConfirmedWarningDto(unittest.TestCase):

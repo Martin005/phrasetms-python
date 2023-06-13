@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.edit_plain_conversation_dto import EditPlainConversationDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.edit_plain_conversation_dto import EditPlainConversationDto
+from phrasetms_client import configuration
 
 
 class TestEditPlainConversationDto(unittest.TestCase):

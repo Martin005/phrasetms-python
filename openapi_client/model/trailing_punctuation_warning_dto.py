@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class TrailingPunctuationWarningDto(
@@ -150,5 +150,5 @@ class TrailingPunctuationWarningDto(
             **kwargs,
         )
 
-from openapi_client.model.position import Position
-from openapi_client.model.segment_warning import SegmentWarning
+from phrasetms_client.model.position import Position
+from phrasetms_client.model.segment_warning import SegmentWarning

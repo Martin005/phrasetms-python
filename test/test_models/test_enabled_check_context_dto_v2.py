@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.enabled_check_context_dto_v2 import EnabledCheckContextDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.enabled_check_context_dto_v2 import EnabledCheckContextDtoV2
+from phrasetms_client import configuration
 
 
 class TestEnabledCheckContextDtoV2(unittest.TestCase):

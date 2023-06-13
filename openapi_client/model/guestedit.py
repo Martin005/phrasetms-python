@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class GUESTEDIT(
@@ -252,5 +252,5 @@ class GUESTEDIT(
             **kwargs,
         )
 
-from openapi_client.model.abstract_user_edit_dto import AbstractUserEditDto
-from openapi_client.model.uid_reference import UidReference
+from phrasetms_client.model.abstract_user_edit_dto import AbstractUserEditDto
+from phrasetms_client.model.uid_reference import UidReference

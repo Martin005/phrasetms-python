@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.import_status_dto_v2 import ImportStatusDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.import_status_dto_v2 import ImportStatusDtoV2
+from phrasetms_client import configuration
 
 
 class TestImportStatusDtoV2(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.lqa_profiles_for_ws_v2_dto import LqaProfilesForWsV2Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.lqa_profiles_for_ws_v2_dto import LqaProfilesForWsV2Dto
+from phrasetms_client import configuration
 
 
 class TestLqaProfilesForWsV2Dto(unittest.TestCase):

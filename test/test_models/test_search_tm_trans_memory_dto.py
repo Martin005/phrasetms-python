@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.search_tm_trans_memory_dto import SearchTMTransMemoryDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.search_tm_trans_memory_dto import SearchTMTransMemoryDto
+from phrasetms_client import configuration
 
 
 class TestSearchTMTransMemoryDto(unittest.TestCase):

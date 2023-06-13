@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.preview_urls_dto import PreviewUrlsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.preview_urls_dto import PreviewUrlsDto
+from phrasetms_client import configuration
 
 
 class TestPreviewUrlsDto(unittest.TestCase):

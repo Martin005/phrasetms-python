@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ServiceProviderConfigDto(
@@ -225,5 +225,5 @@ class ServiceProviderConfigDto(
             **kwargs,
         )
 
-from openapi_client.model.auth_schema import AuthSchema
-from openapi_client.model.supported import Supported
+from phrasetms_client.model.auth_schema import AuthSchema
+from phrasetms_client.model.supported import Supported

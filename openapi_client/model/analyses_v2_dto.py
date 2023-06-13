@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AnalysesV2Dto(
@@ -102,4 +102,4 @@ class AnalysesV2Dto(
             **kwargs,
         )
 
-from openapi_client.model.analyse_v2_dto import AnalyseV2Dto
+from phrasetms_client.model.analyse_v2_dto import AnalyseV2Dto

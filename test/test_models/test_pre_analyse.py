@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.pre_analyse import PreAnalyse
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.pre_analyse import PreAnalyse
+from phrasetms_client import configuration
 
 
 class TestPreAnalyse(unittest.TestCase):

@@ -121,7 +121,7 @@ pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
 
 Then import the package:
 ```python
-import openapi_client
+import phrasetms_client
 ```
 
 ### Setuptools
@@ -135,7 +135,7 @@ python setup.py install --user
 
 Then import the package:
 ```python
-import openapi_client
+import phrasetms_client
 ```
 
 ## Getting Started
@@ -145,21 +145,21 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```python
 
 import time
-import openapi_client
+import phrasetms_client
 from pprint import pprint
-from openapi_client.apis.tags import additional_workflow_step_api
-from openapi_client.model.additional_workflow_step_dto import AdditionalWorkflowStepDto
-from openapi_client.model.additional_workflow_step_request_dto import AdditionalWorkflowStepRequestDto
-from openapi_client.model.page_dto_additional_workflow_step_dto import PageDtoAdditionalWorkflowStepDto
+from phrasetms_client.apis.tags import additional_workflow_step_api
+from phrasetms_client.model.additional_workflow_step_dto import AdditionalWorkflowStepDto
+from phrasetms_client.model.additional_workflow_step_request_dto import AdditionalWorkflowStepRequestDto
+from phrasetms_client.model.page_dto_additional_workflow_step_dto import PageDtoAdditionalWorkflowStepDto
 # Defining the host is optional and defaults to https://cloud.memsource.com/web
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = phrasetms_client.Configuration(
     host = "https://cloud.memsource.com/web"
 )
 
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = additional_workflow_step_api.AdditionalWorkflowStepApi(api_client)
     body = AdditionalWorkflowStepRequestDto(
@@ -170,7 +170,7 @@ with openapi_client.ApiClient(configuration) as api_client:
         # Create additional workflow step
         api_response = api_instance.create_awf_step(body=body)
         pprint(api_response)
-    except openapi_client.ApiException as e:
+    except phrasetms_client.ApiException as e:
         print("Exception when calling AdditionalWorkflowStepApi->create_awf_step: %s\n" % e)
 ```
 
@@ -1357,20 +1357,20 @@ Authentication schemes defined for the API:
 
 
 ## Notes for Large OpenAPI documents
-If the OpenAPI document is large, imports in openapi_client.apis and openapi_client.models may fail with a
+If the OpenAPI document is large, imports in phrasetms_client.apis and phrasetms_client.models may fail with a
 RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:
 
 Solution 1:
 Use specific imports for apis and models like:
-- `from openapi_client.apis.default_api import DefaultApi`
-- `from openapi_client.model.pet import Pet`
+- `from phrasetms_client.apis.default_api import DefaultApi`
+- `from phrasetms_client.model.pet import Pet`
 
 Solution 1:
 Before importing the package, adjust the maximum recursion limit as shown below:
 ```
 import sys
 sys.setrecursionlimit(1500)
-import openapi_client
-from openapi_client.apis import *
-from openapi_client.models import *
+import phrasetms_client
+from phrasetms_client.apis import *
+from phrasetms_client.models import *
 ```

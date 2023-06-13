@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.sftp import Sftp
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.sftp import Sftp
+from phrasetms_client import configuration
 
 
 class TestSftp(unittest.TestCase):

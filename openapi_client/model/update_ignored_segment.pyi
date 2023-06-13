@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class UpdateIgnoredSegment(
@@ -119,4 +119,4 @@ class UpdateIgnoredSegment(
             **kwargs,
         )
 
-from openapi_client.model.update_ignored_warning import UpdateIgnoredWarning
+from phrasetms_client.model.update_ignored_warning import UpdateIgnoredWarning

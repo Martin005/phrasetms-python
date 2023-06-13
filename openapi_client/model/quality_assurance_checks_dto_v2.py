@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class QualityAssuranceChecksDtoV2(
@@ -199,5 +199,5 @@ class QualityAssuranceChecksDtoV2(
             **kwargs,
         )
 
-from openapi_client.model.enabled_check_dto_v2 import EnabledCheckDtoV2
-from openapi_client.model.regexp_check_rule_dto_v2 import RegexpCheckRuleDtoV2
+from phrasetms_client.model.enabled_check_dto_v2 import EnabledCheckDtoV2
+from phrasetms_client.model.regexp_check_rule_dto_v2 import RegexpCheckRuleDtoV2

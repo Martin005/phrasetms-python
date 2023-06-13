@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.set_project_status_dto import SetProjectStatusDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.set_project_status_dto import SetProjectStatusDto
+from phrasetms_client import configuration
 
 
 class TestSetProjectStatusDto(unittest.TestCase):

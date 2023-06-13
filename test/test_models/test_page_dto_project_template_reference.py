@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_project_template_reference import PageDtoProjectTemplateReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_project_template_reference import PageDtoProjectTemplateReference
+from phrasetms_client import configuration
 
 
 class TestPageDtoProjectTemplateReference(unittest.TestCase):

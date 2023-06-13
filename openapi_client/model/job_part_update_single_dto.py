@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class JobPartUpdateSingleDto(
@@ -177,4 +177,4 @@ class JobPartUpdateSingleDto(
             **kwargs,
         )
 
-from openapi_client.model.provider_reference import ProviderReference
+from phrasetms_client.model.provider_reference import ProviderReference

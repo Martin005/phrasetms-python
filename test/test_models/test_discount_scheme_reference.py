@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.discount_scheme_reference import DiscountSchemeReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.discount_scheme_reference import DiscountSchemeReference
+from phrasetms_client import configuration
 
 
 class TestDiscountSchemeReference(unittest.TestCase):

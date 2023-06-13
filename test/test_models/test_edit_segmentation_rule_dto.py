@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.edit_segmentation_rule_dto import EditSegmentationRuleDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.edit_segmentation_rule_dto import EditSegmentationRuleDto
+from phrasetms_client import configuration
 
 
 class TestEditSegmentationRuleDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.domain_reference import DomainReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.domain_reference import DomainReference
+from phrasetms_client import configuration
 
 
 class TestDomainReference(unittest.TestCase):

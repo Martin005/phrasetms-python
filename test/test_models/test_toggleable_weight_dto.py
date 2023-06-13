@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.toggleable_weight_dto import ToggleableWeightDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.toggleable_weight_dto import ToggleableWeightDto
+from phrasetms_client import configuration
 
 
 class TestToggleableWeightDto(unittest.TestCase):

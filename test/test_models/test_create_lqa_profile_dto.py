@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.create_lqa_profile_dto import CreateLqaProfileDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.create_lqa_profile_dto import CreateLqaProfileDto
+from phrasetms_client import configuration
 
 
 class TestCreateLqaProfileDto(unittest.TestCase):

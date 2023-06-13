@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.properties_settings_dto import PropertiesSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.properties_settings_dto import PropertiesSettingsDto
+from phrasetms_client import configuration
 
 
 class TestPropertiesSettingsDto(unittest.TestCase):

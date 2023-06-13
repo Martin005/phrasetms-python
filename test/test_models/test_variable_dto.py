@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.variable_dto import VariableDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.variable_dto import VariableDto
+from phrasetms_client import configuration
 
 
 class TestVariableDto(unittest.TestCase):

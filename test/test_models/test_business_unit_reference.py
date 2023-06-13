@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.business_unit_reference import BusinessUnitReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.business_unit_reference import BusinessUnitReference
+from phrasetms_client import configuration
 
 
 class TestBusinessUnitReference(unittest.TestCase):

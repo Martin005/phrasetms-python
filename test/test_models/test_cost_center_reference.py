@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.cost_center_reference import CostCenterReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.cost_center_reference import CostCenterReference
+from phrasetms_client import configuration
 
 
 class TestCostCenterReference(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.unresolved_conversation_warning_dto import UnresolvedConversationWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.unresolved_conversation_warning_dto import UnresolvedConversationWarningDto
+from phrasetms_client import configuration
 
 
 class TestUnresolvedConversationWarningDto(unittest.TestCase):

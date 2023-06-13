@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.task_mapping_dto import TaskMappingDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.task_mapping_dto import TaskMappingDto
+from phrasetms_client import configuration
 
 
 class TestTaskMappingDto(unittest.TestCase):

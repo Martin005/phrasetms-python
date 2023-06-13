@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_lqa_profile_reference_dto import PageDtoLqaProfileReferenceDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_lqa_profile_reference_dto import PageDtoLqaProfileReferenceDto
+from phrasetms_client import configuration
 
 
 class TestPageDtoLqaProfileReferenceDto(unittest.TestCase):

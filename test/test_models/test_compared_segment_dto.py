@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.compared_segment_dto import ComparedSegmentDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.compared_segment_dto import ComparedSegmentDto
+from phrasetms_client import configuration
 
 
 class TestComparedSegmentDto(unittest.TestCase):

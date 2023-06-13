@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.ttx_settings_dto import TtxSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.ttx_settings_dto import TtxSettingsDto
+from phrasetms_client import configuration
 
 
 class TestTtxSettingsDto(unittest.TestCase):

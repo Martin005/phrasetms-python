@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SegmentsCountsDto(
@@ -300,4 +300,4 @@ class SegmentsCountsDto(
             **kwargs,
         )
 
-from openapi_client.model.quality_assurance_dto import QualityAssuranceDto
+from phrasetms_client.model.quality_assurance_dto import QualityAssuranceDto

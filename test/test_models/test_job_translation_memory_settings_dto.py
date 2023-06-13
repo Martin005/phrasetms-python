@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_translation_memory_settings_dto import JobTranslationMemorySettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_translation_memory_settings_dto import JobTranslationMemorySettingsDto
+from phrasetms_client import configuration
 
 
 class TestJobTranslationMemorySettingsDto(unittest.TestCase):

@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class CheckResponse(
@@ -112,4 +112,4 @@ class CheckResponse(
             **kwargs,
         )
 
-from openapi_client.model.misspelled_word import MisspelledWord
+from phrasetms_client.model.misspelled_word import MisspelledWord

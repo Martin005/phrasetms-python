@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.async_request_wrapper_dto import AsyncRequestWrapperDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.async_request_wrapper_dto import AsyncRequestWrapperDto
+from phrasetms_client import configuration
 
 
 class TestAsyncRequestWrapperDto(unittest.TestCase):

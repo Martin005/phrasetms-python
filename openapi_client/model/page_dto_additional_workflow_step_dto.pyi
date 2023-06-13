@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoAdditionalWorkflowStepDto(
@@ -152,4 +152,4 @@ class PageDtoAdditionalWorkflowStepDto(
             **kwargs,
         )
 
-from openapi_client.model.additional_workflow_step_dto import AdditionalWorkflowStepDto
+from phrasetms_client.model.additional_workflow_step_dto import AdditionalWorkflowStepDto

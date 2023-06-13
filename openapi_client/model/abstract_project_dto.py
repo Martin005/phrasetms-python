@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AbstractProjectDto(
@@ -292,12 +292,12 @@ class AbstractProjectDto(
             **kwargs,
         )
 
-from openapi_client.model.admin_project_manager import AdminProjectManager
-from openapi_client.model.buyer import Buyer
-from openapi_client.model.domain_reference import DomainReference
-from openapi_client.model.linguist import Linguist
-from openapi_client.model.mt_settings_per_language_reference import MTSettingsPerLanguageReference
-from openapi_client.model.reference_file_reference import ReferenceFileReference
-from openapi_client.model.sub_domain_reference import SubDomainReference
-from openapi_client.model.user_reference import UserReference
-from openapi_client.model.vendor import Vendor
+from phrasetms_client.model.admin_project_manager import AdminProjectManager
+from phrasetms_client.model.buyer import Buyer
+from phrasetms_client.model.domain_reference import DomainReference
+from phrasetms_client.model.linguist import Linguist
+from phrasetms_client.model.mt_settings_per_language_reference import MTSettingsPerLanguageReference
+from phrasetms_client.model.reference_file_reference import ReferenceFileReference
+from phrasetms_client.model.sub_domain_reference import SubDomainReference
+from phrasetms_client.model.user_reference import UserReference
+from phrasetms_client.model.vendor import Vendor

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.xls_settings_dto import XlsSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.xls_settings_dto import XlsSettingsDto
+from phrasetms_client import configuration
 
 
 class TestXlsSettingsDto(unittest.TestCase):

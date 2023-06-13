@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.automated_project_settings_dto import AutomatedProjectSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.automated_project_settings_dto import AutomatedProjectSettingsDto
+from phrasetms_client import configuration
 
 
 class TestAutomatedProjectSettingsDto(unittest.TestCase):

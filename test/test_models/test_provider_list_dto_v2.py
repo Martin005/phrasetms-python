@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.provider_list_dto_v2 import ProviderListDtoV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.provider_list_dto_v2 import ProviderListDtoV2
+from phrasetms_client import configuration
 
 
 class TestProviderListDtoV2(unittest.TestCase):

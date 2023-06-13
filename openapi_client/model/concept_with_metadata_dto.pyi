@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ConceptWithMetadataDto(
@@ -155,5 +155,5 @@ class ConceptWithMetadataDto(
             **kwargs,
         )
 
-from openapi_client.model.domain_reference import DomainReference
-from openapi_client.model.sub_domain_reference import SubDomainReference
+from phrasetms_client.model.domain_reference import DomainReference
+from phrasetms_client.model.sub_domain_reference import SubDomainReference

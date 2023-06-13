@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.search_jobs_request_dto import SearchJobsRequestDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.search_jobs_request_dto import SearchJobsRequestDto
+from phrasetms_client import configuration
 
 
 class TestSearchJobsRequestDto(unittest.TestCase):

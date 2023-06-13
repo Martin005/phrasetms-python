@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_part_update_single_dto import JobPartUpdateSingleDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_part_update_single_dto import JobPartUpdateSingleDto
+from phrasetms_client import configuration
 
 
 class TestJobPartUpdateSingleDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.get_bilingual_file_dto import GetBilingualFileDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.get_bilingual_file_dto import GetBilingualFileDto
+from phrasetms_client import configuration
 
 
 class TestGetBilingualFileDto(unittest.TestCase):

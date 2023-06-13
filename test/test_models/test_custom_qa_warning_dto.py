@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.custom_qa_warning_dto import CustomQAWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.custom_qa_warning_dto import CustomQAWarningDto
+from phrasetms_client import configuration
 
 
 class TestCustomQAWarningDto(unittest.TestCase):

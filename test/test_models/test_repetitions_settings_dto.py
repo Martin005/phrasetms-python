@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.repetitions_settings_dto import RepetitionsSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.repetitions_settings_dto import RepetitionsSettingsDto
+from phrasetms_client import configuration
 
 
 class TestRepetitionsSettingsDto(unittest.TestCase):

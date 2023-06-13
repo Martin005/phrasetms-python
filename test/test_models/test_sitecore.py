@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.sitecore import Sitecore
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.sitecore import Sitecore
+from phrasetms_client import configuration
 
 
 class TestSitecore(unittest.TestCase):

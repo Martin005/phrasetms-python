@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.dita_settings_dto import DitaSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.dita_settings_dto import DitaSettingsDto
+from phrasetms_client import configuration
 
 
 class TestDitaSettingsDto(unittest.TestCase):

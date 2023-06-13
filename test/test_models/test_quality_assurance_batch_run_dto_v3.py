@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.quality_assurance_batch_run_dto_v3 import QualityAssuranceBatchRunDtoV3
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.quality_assurance_batch_run_dto_v3 import QualityAssuranceBatchRunDtoV3
+from phrasetms_client import configuration
 
 
 class TestQualityAssuranceBatchRunDtoV3(unittest.TestCase):

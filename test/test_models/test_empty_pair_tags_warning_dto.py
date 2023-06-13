@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.empty_pair_tags_warning_dto import EmptyPairTagsWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.empty_pair_tags_warning_dto import EmptyPairTagsWarningDto
+from phrasetms_client import configuration
 
 
 class TestEmptyPairTagsWarningDto(unittest.TestCase):

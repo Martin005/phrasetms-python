@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.suggest_response import SuggestResponse
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.suggest_response import SuggestResponse
+from phrasetms_client import configuration
 
 
 class TestSuggestResponse(unittest.TestCase):

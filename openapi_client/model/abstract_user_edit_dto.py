@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class AbstractUserEditDto(
@@ -283,8 +283,8 @@ class AbstractUserEditDto(
             **kwargs,
         )
 
-from openapi_client.model.adminedit import ADMINEDIT
-from openapi_client.model.guestedit import GUESTEDIT
-from openapi_client.model.linguistedit import LINGUISTEDIT
-from openapi_client.model.projectmanageredit import PROJECTMANAGEREDIT
-from openapi_client.model.submitteredit import SUBMITTEREDIT
+from phrasetms_client.model.adminedit import ADMINEDIT
+from phrasetms_client.model.guestedit import GUESTEDIT
+from phrasetms_client.model.linguistedit import LINGUISTEDIT
+from phrasetms_client.model.projectmanageredit import PROJECTMANAGEREDIT
+from phrasetms_client.model.submitteredit import SUBMITTEREDIT

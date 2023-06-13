@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_machine_translate_settings_pbm_dto import PageDtoMachineTranslateSettingsPbmDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_machine_translate_settings_pbm_dto import PageDtoMachineTranslateSettingsPbmDto
+from phrasetms_client import configuration
 
 
 class TestPageDtoMachineTranslateSettingsPbmDto(unittest.TestCase):

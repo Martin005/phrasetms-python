@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.create_workflow_step_dto import CreateWorkflowStepDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.create_workflow_step_dto import CreateWorkflowStepDto
+from phrasetms_client import configuration
 
 
 class TestCreateWorkflowStepDto(unittest.TestCase):

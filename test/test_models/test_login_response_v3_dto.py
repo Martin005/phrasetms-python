@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.login_response_v3_dto import LoginResponseV3Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.login_response_v3_dto import LoginResponseV3Dto
+from phrasetms_client import configuration
 
 
 class TestLoginResponseV3Dto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.metadata_tb_dto import MetadataTbDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.metadata_tb_dto import MetadataTbDto
+from phrasetms_client import configuration
 
 
 class TestMetadataTbDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.query import Query
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.query import Query
+from phrasetms_client import configuration
 
 
 class TestQuery(unittest.TestCase):

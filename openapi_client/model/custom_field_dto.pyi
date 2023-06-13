@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class CustomFieldDto(
@@ -256,5 +256,5 @@ class CustomFieldDto(
             **kwargs,
         )
 
-from openapi_client.model.custom_field_options_truncated_dto import CustomFieldOptionsTruncatedDto
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.custom_field_options_truncated_dto import CustomFieldOptionsTruncatedDto
+from phrasetms_client.model.user_reference import UserReference

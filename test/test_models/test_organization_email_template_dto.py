@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.organization_email_template_dto import OrganizationEmailTemplateDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.organization_email_template_dto import OrganizationEmailTemplateDto
+from phrasetms_client import configuration
 
 
 class TestOrganizationEmailTemplateDto(unittest.TestCase):

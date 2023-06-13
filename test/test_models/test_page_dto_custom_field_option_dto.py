@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_custom_field_option_dto import PageDtoCustomFieldOptionDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_custom_field_option_dto import PageDtoCustomFieldOptionDto
+from phrasetms_client import configuration
 
 
 class TestPageDtoCustomFieldOptionDto(unittest.TestCase):

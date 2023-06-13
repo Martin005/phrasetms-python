@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.find_conversations_dto import FindConversationsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.find_conversations_dto import FindConversationsDto
+from phrasetms_client import configuration
 
 
 class TestFindConversationsDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.suggest_request_dto import SuggestRequestDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.suggest_request_dto import SuggestRequestDto
+from phrasetms_client import configuration
 
 
 class TestSuggestRequestDto(unittest.TestCase):

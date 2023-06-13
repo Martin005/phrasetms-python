@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class SearchInTextResponseList2Dto(
@@ -102,4 +102,4 @@ class SearchInTextResponseList2Dto(
             **kwargs,
         )
 
-from openapi_client.model.search_in_text_response2_dto import SearchInTextResponse2Dto
+from phrasetms_client.model.search_in_text_response2_dto import SearchInTextResponse2Dto

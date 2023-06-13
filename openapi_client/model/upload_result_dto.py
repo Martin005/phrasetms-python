@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class UploadResultDto(
@@ -150,4 +150,4 @@ class UploadResultDto(
             **kwargs,
         )
 
-from openapi_client.model.connector_errors_dto import ConnectorErrorsDto
+from phrasetms_client.model.connector_errors_dto import ConnectorErrorsDto

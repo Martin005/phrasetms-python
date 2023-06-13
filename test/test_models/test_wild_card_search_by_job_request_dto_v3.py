@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.wild_card_search_by_job_request_dto_v3 import WildCardSearchByJobRequestDtoV3
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.wild_card_search_by_job_request_dto_v3 import WildCardSearchByJobRequestDtoV3
+from phrasetms_client import configuration
 
 
 class TestWildCardSearchByJobRequestDtoV3(unittest.TestCase):

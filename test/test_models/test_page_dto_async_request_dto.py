@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.page_dto_async_request_dto import PageDtoAsyncRequestDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.page_dto_async_request_dto import PageDtoAsyncRequestDto
+from phrasetms_client import configuration
 
 
 class TestPageDtoAsyncRequestDto(unittest.TestCase):

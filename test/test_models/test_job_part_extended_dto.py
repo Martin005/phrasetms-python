@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.job_part_extended_dto import JobPartExtendedDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.job_part_extended_dto import JobPartExtendedDto
+from phrasetms_client import configuration
 
 
 class TestJobPartExtendedDto(unittest.TestCase):

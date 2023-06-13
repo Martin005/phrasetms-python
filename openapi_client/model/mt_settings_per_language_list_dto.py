@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class MTSettingsPerLanguageListDto(
@@ -103,4 +103,4 @@ class MTSettingsPerLanguageListDto(
             **kwargs,
         )
 
-from openapi_client.model.mt_settings_per_language_dto import MTSettingsPerLanguageDto
+from phrasetms_client.model.mt_settings_per_language_dto import MTSettingsPerLanguageDto

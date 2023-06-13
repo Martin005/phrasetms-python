@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.pre_translate_settings_v3_dto import PreTranslateSettingsV3Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.pre_translate_settings_v3_dto import PreTranslateSettingsV3Dto
+from phrasetms_client import configuration
 
 
 class TestPreTranslateSettingsV3Dto(unittest.TestCase):

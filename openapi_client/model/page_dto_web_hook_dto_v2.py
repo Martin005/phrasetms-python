@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class PageDtoWebHookDtoV2(
@@ -152,4 +152,4 @@ class PageDtoWebHookDtoV2(
             **kwargs,
         )
 
-from openapi_client.model.web_hook_dto_v2 import WebHookDtoV2
+from phrasetms_client.model.web_hook_dto_v2 import WebHookDtoV2

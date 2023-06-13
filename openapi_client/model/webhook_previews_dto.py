@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class WebhookPreviewsDto(
@@ -102,4 +102,4 @@ class WebhookPreviewsDto(
             **kwargs,
         )
 
-from openapi_client.model.webhook_preview_dto import WebhookPreviewDto
+from phrasetms_client.model.webhook_preview_dto import WebhookPreviewDto

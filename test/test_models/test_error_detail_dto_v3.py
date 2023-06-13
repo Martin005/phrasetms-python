@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.error_detail_dto_v3 import ErrorDetailDtoV3
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.error_detail_dto_v3 import ErrorDetailDtoV3
+from phrasetms_client import configuration
 
 
 class TestErrorDetailDtoV3(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.trans_memory_create_dto import TransMemoryCreateDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.trans_memory_create_dto import TransMemoryCreateDto
+from phrasetms_client import configuration
 
 
 class TestTransMemoryCreateDto(unittest.TestCase):

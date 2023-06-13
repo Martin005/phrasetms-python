@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.language_metadata1 import LanguageMetadata1
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.language_metadata1 import LanguageMetadata1
+from phrasetms_client import configuration
 
 
 class TestLanguageMetadata1(unittest.TestCase):

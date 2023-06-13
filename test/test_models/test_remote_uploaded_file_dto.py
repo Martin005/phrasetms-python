@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.remote_uploaded_file_dto import RemoteUploadedFileDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.remote_uploaded_file_dto import RemoteUploadedFileDto
+from phrasetms_client import configuration
 
 
 class TestRemoteUploadedFileDto(unittest.TestCase):

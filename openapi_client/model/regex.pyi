@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class REGEX(
@@ -139,5 +139,5 @@ class REGEX(
             **kwargs,
         )
 
-from openapi_client.model.qa_check_dto_v2 import QACheckDtoV2
-from openapi_client.model.regexp_check_rule_dto_v2 import RegexpCheckRuleDtoV2
+from phrasetms_client.model.qa_check_dto_v2 import QACheckDtoV2
+from phrasetms_client.model.regexp_check_rule_dto_v2 import RegexpCheckRuleDtoV2

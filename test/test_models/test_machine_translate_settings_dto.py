@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.machine_translate_settings_dto import MachineTranslateSettingsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.machine_translate_settings_dto import MachineTranslateSettingsDto
+from phrasetms_client import configuration
 
 
 class TestMachineTranslateSettingsDto(unittest.TestCase):

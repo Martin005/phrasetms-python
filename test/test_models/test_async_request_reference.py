@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.async_request_reference import AsyncRequestReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.async_request_reference import AsyncRequestReference
+from phrasetms_client import configuration
 
 
 class TestAsyncRequestReference(unittest.TestCase):

@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class CommonConversationDto(
@@ -197,8 +197,8 @@ class CommonConversationDto(
             **kwargs,
         )
 
-from openapi_client.model.comment_dto import CommentDto
-from openapi_client.model.lqa import LQA
-from openapi_client.model.mentionable_user_dto import MentionableUserDto
-from openapi_client.model.segmenttarget import SEGMENTTARGET
-from openapi_client.model.status_dto import StatusDto
+from phrasetms_client.model.comment_dto import CommentDto
+from phrasetms_client.model.lqa import LQA
+from phrasetms_client.model.mentionable_user_dto import MentionableUserDto
+from phrasetms_client.model.segmenttarget import SEGMENTTARGET
+from phrasetms_client.model.status_dto import StatusDto

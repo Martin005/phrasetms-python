@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ConceptListResponseDto(
@@ -112,4 +112,4 @@ class ConceptListResponseDto(
             **kwargs,
         )
 
-from openapi_client.model.concept_with_metadata_dto import ConceptWithMetadataDto
+from phrasetms_client.model.concept_with_metadata_dto import ConceptWithMetadataDto

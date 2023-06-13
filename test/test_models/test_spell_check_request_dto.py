@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.spell_check_request_dto import SpellCheckRequestDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.spell_check_request_dto import SpellCheckRequestDto
+from phrasetms_client import configuration
 
 
 class TestSpellCheckRequestDto(unittest.TestCase):

@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.penalty_points_dto import PenaltyPointsDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.penalty_points_dto import PenaltyPointsDto
+from phrasetms_client import configuration
 
 
 class TestPenaltyPointsDto(unittest.TestCase):

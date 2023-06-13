@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class Vendor(
@@ -385,12 +385,12 @@ class Vendor(
             **kwargs,
         )
 
-from openapi_client.model.abstract_project_dto import AbstractProjectDto
-from openapi_client.model.business_unit_reference import BusinessUnitReference
-from openapi_client.model.buyer_reference import BuyerReference
-from openapi_client.model.client_reference import ClientReference
-from openapi_client.model.cost_center_reference import CostCenterReference
-from openapi_client.model.progress_dto import ProgressDto
-from openapi_client.model.project_workflow_step_dto import ProjectWorkflowStepDto
-from openapi_client.model.user import USER
-from openapi_client.model.user_reference import UserReference
+from phrasetms_client.model.abstract_project_dto import AbstractProjectDto
+from phrasetms_client.model.business_unit_reference import BusinessUnitReference
+from phrasetms_client.model.buyer_reference import BuyerReference
+from phrasetms_client.model.client_reference import ClientReference
+from phrasetms_client.model.cost_center_reference import CostCenterReference
+from phrasetms_client.model.progress_dto import ProgressDto
+from phrasetms_client.model.project_workflow_step_dto import ProjectWorkflowStepDto
+from phrasetms_client.model.user import USER
+from phrasetms_client.model.user_reference import UserReference

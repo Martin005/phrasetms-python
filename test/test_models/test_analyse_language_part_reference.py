@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.analyse_language_part_reference import AnalyseLanguagePartReference
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.analyse_language_part_reference import AnalyseLanguagePartReference
+from phrasetms_client import configuration
 
 
 class TestAnalyseLanguagePartReference(unittest.TestCase):

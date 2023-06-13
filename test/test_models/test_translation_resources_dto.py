@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.translation_resources_dto import TranslationResourcesDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.translation_resources_dto import TranslationResourcesDto
+from phrasetms_client import configuration
 
 
 class TestTranslationResourcesDto(unittest.TestCase):

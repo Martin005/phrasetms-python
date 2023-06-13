@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ProjectTemplateTransMemoryDtoV3(
@@ -143,5 +143,5 @@ class ProjectTemplateTransMemoryDtoV3(
             **kwargs,
         )
 
-from openapi_client.model.trans_memory_dto_v3 import TransMemoryDtoV3
-from openapi_client.model.workflow_step_reference_v3 import WorkflowStepReferenceV3
+from phrasetms_client.model.trans_memory_dto_v3 import TransMemoryDtoV3
+from phrasetms_client.model.workflow_step_reference_v3 import WorkflowStepReferenceV3

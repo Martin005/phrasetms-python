@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.translation_segments_reference_v2 import TranslationSegmentsReferenceV2
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.translation_segments_reference_v2 import TranslationSegmentsReferenceV2
+from phrasetms_client import configuration
 
 
 class TestTranslationSegmentsReferenceV2(unittest.TestCase):

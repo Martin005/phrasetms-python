@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.non_conforming_term_warning_dto import NonConformingTermWarningDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.non_conforming_term_warning_dto import NonConformingTermWarningDto
+from phrasetms_client import configuration
 
 
 class TestNonConformingTermWarningDto(unittest.TestCase):

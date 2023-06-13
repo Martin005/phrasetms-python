@@ -20,7 +20,7 @@ import uuid  # noqa: F401
 
 import frozendict  # noqa: F401
 
-from openapi_client import schemas  # noqa: F401
+from phrasetms_client import schemas  # noqa: F401
 
 
 class ProjectWorkflowStepDtoV2(
@@ -120,4 +120,4 @@ class ProjectWorkflowStepDtoV2(
             **kwargs,
         )
 
-from openapi_client.model.workflow_step_reference_v2 import WorkflowStepReferenceV2
+from phrasetms_client.model.workflow_step_reference_v2 import WorkflowStepReferenceV2

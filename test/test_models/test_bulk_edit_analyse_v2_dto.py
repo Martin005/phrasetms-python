@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.bulk_edit_analyse_v2_dto import BulkEditAnalyseV2Dto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.bulk_edit_analyse_v2_dto import BulkEditAnalyseV2Dto
+from phrasetms_client import configuration
 
 
 class TestBulkEditAnalyseV2Dto(unittest.TestCase):

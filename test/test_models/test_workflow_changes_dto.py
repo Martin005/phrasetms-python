@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.workflow_changes_dto import WorkflowChangesDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.workflow_changes_dto import WorkflowChangesDto
+from phrasetms_client import configuration
 
 
 class TestWorkflowChangesDto(unittest.TestCase):

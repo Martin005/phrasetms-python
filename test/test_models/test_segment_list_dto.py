@@ -11,9 +11,9 @@
 
 import unittest
 
-import openapi_client
-from openapi_client.model.segment_list_dto import SegmentListDto
-from openapi_client import configuration
+import phrasetms_client
+from phrasetms_client.model.segment_list_dto import SegmentListDto
+from phrasetms_client import configuration
 
 
 class TestSegmentListDto(unittest.TestCase):
