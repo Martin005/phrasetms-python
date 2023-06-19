@@ -1,9 +1,0 @@
-from phrasetms_client.paths.api2_v1_net_rate_schemes_net_rate_scheme_uid_workflow_step_net_schemes_net_rate_scheme_workflow_step_id.get import ApiForget
-from phrasetms_client.paths.api2_v1_net_rate_schemes_net_rate_scheme_uid_workflow_step_net_schemes_net_rate_scheme_workflow_step_id.put import ApiForput
-
-
-class Api2V1NetRateSchemesNetRateSchemeUidWorkflowStepNetSchemesNetRateSchemeWorkflowStepId(
-    ApiForget,
-    ApiForput,
-):
-    pass
