@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import phrasetms_client
-from phrasetms_client.models.vendor import VENDOR  # noqa: E501
+from phrasetms_client.models.vendor import Vendor  # noqa: E501
 from phrasetms_client.rest import ApiException
 
 
-class TestVENDOR(unittest.TestCase):
-    """VENDOR unit test stubs"""
+class TestVendor(unittest.TestCase):
+    """Vendor unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestVENDOR(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testVENDOR(self):
-        """Test VENDOR"""
+    def testVendor(self):
+        """Test Vendor"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = phrasetms_client.models.vendor.VENDOR()  # noqa: E501
+        # model = phrasetms_client.models.vendor.Vendor()  # noqa: E501
         pass
 
 

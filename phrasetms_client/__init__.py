@@ -330,7 +330,6 @@ from phrasetms_client.models.language_list_dto import LanguageListDto
 from phrasetms_client.models.language_metadata1 import LanguageMetadata1
 from phrasetms_client.models.last_login_dto import LastLoginDto
 from phrasetms_client.models.leading_and_trailing_spaces_warning_dto import LeadingAndTrailingSpacesWarningDto
-from phrasetms_client.models.linguist import Linguist
 from phrasetms_client.models.linguist_v2 import LinguistV2
 from phrasetms_client.models.locale_convention_weights_dto import LocaleConventionWeightsDto
 from phrasetms_client.models.login_dto import LoginDto
@@ -415,7 +414,6 @@ from phrasetms_client.models.non_translatable_settings_dto import NonTranslatabl
 from phrasetms_client.models.not_confirmed_warning_dto import NotConfirmedWarningDto
 from phrasetms_client.models.notify_job_parts_request_dto import NotifyJobPartsRequestDto
 from phrasetms_client.models.notify_provider_dto import NotifyProviderDto
-from phrasetms_client.models.number import Number
 from phrasetms_client.models.object_reference import ObjectReference
 from phrasetms_client.models.organization_email_template_dto import OrganizationEmailTemplateDto
 from phrasetms_client.models.organization_reference import OrganizationReference
@@ -685,7 +683,6 @@ from phrasetms_client.models.ttx_settings_dto import TtxSettingsDto
 from phrasetms_client.models.txt_settings_dto import TxtSettingsDto
 from phrasetms_client.models.types_dto import TypesDto
 from phrasetms_client.models.typo3 import Typo3
-from phrasetms_client.models.user import USER
 from phrasetms_client.models.uid_reference import UidReference
 from phrasetms_client.models.unmodified_fuzzy_translation_mtnt_warning_dto import UnmodifiedFuzzyTranslationMTNTWarningDto
 from phrasetms_client.models.unmodified_fuzzy_translation_tm_warning_dto import UnmodifiedFuzzyTranslationTMWarningDto
@@ -712,7 +709,6 @@ from phrasetms_client.models.user_reference import UserReference
 from phrasetms_client.models.user_references_dto import UserReferencesDto
 from phrasetms_client.models.user_statistics_dto import UserStatisticsDto
 from phrasetms_client.models.user_statistics_list_dto import UserStatisticsListDto
-from phrasetms_client.models.vendor import VENDOR
 from phrasetms_client.models.void import VOID
 from phrasetms_client.models.variable_dto import VariableDto
 from phrasetms_client.models.vendor import Vendor

@@ -15,12 +15,12 @@ from __future__ import absolute_import
 import unittest
 
 import phrasetms_client
-from phrasetms_client.models.user import USER  # noqa: E501
+from phrasetms_client.models.user import User  # noqa: E501
 from phrasetms_client.rest import ApiException
 
 
-class TestUSER(unittest.TestCase):
-    """USER unit test stubs"""
+class TestUser(unittest.TestCase):
+    """User unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +28,10 @@ class TestUSER(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testUSER(self):
-        """Test USER"""
+    def testUser(self):
+        """Test User"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = phrasetms_client.models.user.USER()  # noqa: E501
+        # model = phrasetms_client.models.user.User()  # noqa: E501
         pass
 
 
