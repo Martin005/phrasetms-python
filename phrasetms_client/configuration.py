@@ -230,22 +230,24 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
 
         :return: The Auth Settings information dict.
         """
-        return {
-            'ApiToken':
-                {
-                    'type': 'api_key',
-                    'in': 'header',
-                    'key': 'Authorization',
-                    'value': self.get_api_key_with_prefix('Authorization')
-                },
-            'OAuth2':
-                {
-                    'type': 'oauth2',
-                    'in': 'header',
-                    'key': 'Authorization',
-                    'value': 'Bearer ' + self.access_token
-                },
-        }
+        if self.access_token:
+            return {
+                "OAuth2": {
+                    "type": "oauth2",
+                    "in": "header",
+                    "key": "Authorization",
+                    "value": "Bearer " + self.access_token,
+                }
+            }
+        else:
+            return {
+                "ApiToken": {
+                    "type": "api_key",
+                    "in": "header",
+                    "key": "Authorization",
+                    "value": self.get_api_key_with_prefix("Authorization"),
+                }
+            }
 
     def to_debug_report(self):
         """Gets the essential information for debugging.
@@ -256,5 +258,5 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: Latest\n"\
-               "SDK Package Version: 0.1.0".\
+               "SDK Package Version: 0.1.1".\
                format(env=sys.platform, pyversion=sys.version)

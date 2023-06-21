@@ -489,7 +489,7 @@ class ApiClient(object):
         :param auth_settings: Authentication setting identifiers list.
         """
         if not auth_settings:
-            return
+            auth_settings = self.configuration.auth_settings()
 
         for auth in auth_settings:
             auth_setting = self.configuration.auth_settings().get(auth)
