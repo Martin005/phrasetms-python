@@ -32,7 +32,7 @@ class NetRateSchemeApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def create_discount_scheme(self, **kwargs):  # noqa: E501
+    def create_discount_scheme(self, **kwargs) -> NetRateScheme:  # noqa: E501
         """Create net rate scheme  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -46,14 +46,16 @@ class NetRateSchemeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_discount_scheme_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_discount_scheme_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_discount_scheme_with_http_info(self, **kwargs):  # noqa: E501
+    def create_discount_scheme_with_http_info(
+        self, **kwargs
+    ) -> NetRateScheme:  # noqa: E501
         """Create net rate scheme  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -68,21 +70,21 @@ class NetRateSchemeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_discount_scheme" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -96,36 +98,44 @@ class NetRateSchemeApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/netRateSchemes', 'POST',
+            "/api2/v1/netRateSchemes",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='NetRateScheme',  # noqa: E501
+            response_type="NetRateScheme",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_discount_scheme_workflow_step(self, net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs):  # noqa: E501
+    def edit_discount_scheme_workflow_step(
+        self, net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs
+    ) -> NetRateSchemeWorkflowStep:  # noqa: E501
         """Edit scheme for workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -141,14 +151,20 @@ class NetRateSchemeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_discount_scheme_workflow_step_with_http_info(net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_discount_scheme_workflow_step_with_http_info(
+                net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_discount_scheme_workflow_step_with_http_info(net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs)  # noqa: E501
+            (data) = self.edit_discount_scheme_workflow_step_with_http_info(
+                net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_discount_scheme_workflow_step_with_http_info(self, net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs):  # noqa: E501
+    def edit_discount_scheme_workflow_step_with_http_info(
+        self, net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs
+    ) -> NetRateSchemeWorkflowStep:  # noqa: E501
         """Edit scheme for workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -165,37 +181,50 @@ class NetRateSchemeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['net_rate_scheme_uid', 'net_rate_scheme_workflow_step_id', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "net_rate_scheme_uid",
+            "net_rate_scheme_workflow_step_id",
+            "body",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_discount_scheme_workflow_step" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'net_rate_scheme_uid' is set
-        if ('net_rate_scheme_uid' not in params or
-                params['net_rate_scheme_uid'] is None):
-            raise ValueError("Missing the required parameter `net_rate_scheme_uid` when calling `edit_discount_scheme_workflow_step`")  # noqa: E501
+        if "net_rate_scheme_uid" not in params or params["net_rate_scheme_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `net_rate_scheme_uid` when calling `edit_discount_scheme_workflow_step`"
+            )  # noqa: E501
         # verify the required parameter 'net_rate_scheme_workflow_step_id' is set
-        if ('net_rate_scheme_workflow_step_id' not in params or
-                params['net_rate_scheme_workflow_step_id'] is None):
-            raise ValueError("Missing the required parameter `net_rate_scheme_workflow_step_id` when calling `edit_discount_scheme_workflow_step`")  # noqa: E501
+        if (
+            "net_rate_scheme_workflow_step_id" not in params
+            or params["net_rate_scheme_workflow_step_id"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `net_rate_scheme_workflow_step_id` when calling `edit_discount_scheme_workflow_step`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'net_rate_scheme_uid' in params:
-            path_params['netRateSchemeUid'] = params['net_rate_scheme_uid']  # noqa: E501
-        if 'net_rate_scheme_workflow_step_id' in params:
-            path_params['netRateSchemeWorkflowStepId'] = params['net_rate_scheme_workflow_step_id']  # noqa: E501
+        if "net_rate_scheme_uid" in params:
+            path_params["netRateSchemeUid"] = params[
+                "net_rate_scheme_uid"
+            ]  # noqa: E501
+        if "net_rate_scheme_workflow_step_id" in params:
+            path_params["netRateSchemeWorkflowStepId"] = params[
+                "net_rate_scheme_workflow_step_id"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -205,36 +234,44 @@ class NetRateSchemeApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/netRateSchemes/{netRateSchemeUid}/workflowStepNetSchemes/{netRateSchemeWorkflowStepId}', 'PUT',
+            "/api2/v1/netRateSchemes/{netRateSchemeUid}/workflowStepNetSchemes/{netRateSchemeWorkflowStepId}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='NetRateSchemeWorkflowStep',  # noqa: E501
+            response_type="NetRateSchemeWorkflowStep",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_discount_scheme(self, net_rate_scheme_uid, **kwargs):  # noqa: E501
+    def get_discount_scheme(
+        self, net_rate_scheme_uid, **kwargs
+    ) -> NetRateScheme:  # noqa: E501
         """Get net rate scheme  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -248,14 +285,20 @@ class NetRateSchemeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_discount_scheme_with_http_info(net_rate_scheme_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_discount_scheme_with_http_info(
+                net_rate_scheme_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_discount_scheme_with_http_info(net_rate_scheme_uid, **kwargs)  # noqa: E501
+            (data) = self.get_discount_scheme_with_http_info(
+                net_rate_scheme_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_discount_scheme_with_http_info(self, net_rate_scheme_uid, **kwargs):  # noqa: E501
+    def get_discount_scheme_with_http_info(
+        self, net_rate_scheme_uid, **kwargs
+    ) -> NetRateScheme:  # noqa: E501
         """Get net rate scheme  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -270,31 +313,34 @@ class NetRateSchemeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['net_rate_scheme_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["net_rate_scheme_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_discount_scheme" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'net_rate_scheme_uid' is set
-        if ('net_rate_scheme_uid' not in params or
-                params['net_rate_scheme_uid'] is None):
-            raise ValueError("Missing the required parameter `net_rate_scheme_uid` when calling `get_discount_scheme`")  # noqa: E501
+        if "net_rate_scheme_uid" not in params or params["net_rate_scheme_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `net_rate_scheme_uid` when calling `get_discount_scheme`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'net_rate_scheme_uid' in params:
-            path_params['netRateSchemeUid'] = params['net_rate_scheme_uid']  # noqa: E501
+        if "net_rate_scheme_uid" in params:
+            path_params["netRateSchemeUid"] = params[
+                "net_rate_scheme_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -305,29 +351,34 @@ class NetRateSchemeApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/netRateSchemes/{netRateSchemeUid}', 'GET',
+            "/api2/v1/netRateSchemes/{netRateSchemeUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='NetRateScheme',  # noqa: E501
+            response_type="NetRateScheme",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_discount_scheme_workflow_step(self, net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs):  # noqa: E501
+    def get_discount_scheme_workflow_step(
+        self, net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs
+    ) -> NetRateSchemeWorkflowStep:  # noqa: E501
         """Get scheme for workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -342,14 +393,20 @@ class NetRateSchemeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_discount_scheme_workflow_step_with_http_info(net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_discount_scheme_workflow_step_with_http_info(
+                net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_discount_scheme_workflow_step_with_http_info(net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs)  # noqa: E501
+            (data) = self.get_discount_scheme_workflow_step_with_http_info(
+                net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_discount_scheme_workflow_step_with_http_info(self, net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs):  # noqa: E501
+    def get_discount_scheme_workflow_step_with_http_info(
+        self, net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs
+    ) -> NetRateSchemeWorkflowStep:  # noqa: E501
         """Get scheme for workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -365,37 +422,49 @@ class NetRateSchemeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['net_rate_scheme_uid', 'net_rate_scheme_workflow_step_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "net_rate_scheme_uid",
+            "net_rate_scheme_workflow_step_id",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_discount_scheme_workflow_step" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'net_rate_scheme_uid' is set
-        if ('net_rate_scheme_uid' not in params or
-                params['net_rate_scheme_uid'] is None):
-            raise ValueError("Missing the required parameter `net_rate_scheme_uid` when calling `get_discount_scheme_workflow_step`")  # noqa: E501
+        if "net_rate_scheme_uid" not in params or params["net_rate_scheme_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `net_rate_scheme_uid` when calling `get_discount_scheme_workflow_step`"
+            )  # noqa: E501
         # verify the required parameter 'net_rate_scheme_workflow_step_id' is set
-        if ('net_rate_scheme_workflow_step_id' not in params or
-                params['net_rate_scheme_workflow_step_id'] is None):
-            raise ValueError("Missing the required parameter `net_rate_scheme_workflow_step_id` when calling `get_discount_scheme_workflow_step`")  # noqa: E501
+        if (
+            "net_rate_scheme_workflow_step_id" not in params
+            or params["net_rate_scheme_workflow_step_id"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `net_rate_scheme_workflow_step_id` when calling `get_discount_scheme_workflow_step`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'net_rate_scheme_uid' in params:
-            path_params['netRateSchemeUid'] = params['net_rate_scheme_uid']  # noqa: E501
-        if 'net_rate_scheme_workflow_step_id' in params:
-            path_params['netRateSchemeWorkflowStepId'] = params['net_rate_scheme_workflow_step_id']  # noqa: E501
+        if "net_rate_scheme_uid" in params:
+            path_params["netRateSchemeUid"] = params[
+                "net_rate_scheme_uid"
+            ]  # noqa: E501
+        if "net_rate_scheme_workflow_step_id" in params:
+            path_params["netRateSchemeWorkflowStepId"] = params[
+                "net_rate_scheme_workflow_step_id"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -406,29 +475,34 @@ class NetRateSchemeApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/netRateSchemes/{netRateSchemeUid}/workflowStepNetSchemes/{netRateSchemeWorkflowStepId}', 'GET',
+            "/api2/v1/netRateSchemes/{netRateSchemeUid}/workflowStepNetSchemes/{netRateSchemeWorkflowStepId}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='NetRateSchemeWorkflowStep',  # noqa: E501
+            response_type="NetRateSchemeWorkflowStep",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_discount_scheme_workflow_steps(self, net_rate_scheme_uid, **kwargs):  # noqa: E501
+    def get_discount_scheme_workflow_steps(
+        self, net_rate_scheme_uid, **kwargs
+    ) -> PageDtoNetRateSchemeWorkflowStepReference:  # noqa: E501
         """List schemes for workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -444,14 +518,20 @@ class NetRateSchemeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_discount_scheme_workflow_steps_with_http_info(net_rate_scheme_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_discount_scheme_workflow_steps_with_http_info(
+                net_rate_scheme_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_discount_scheme_workflow_steps_with_http_info(net_rate_scheme_uid, **kwargs)  # noqa: E501
+            (data) = self.get_discount_scheme_workflow_steps_with_http_info(
+                net_rate_scheme_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_discount_scheme_workflow_steps_with_http_info(self, net_rate_scheme_uid, **kwargs):  # noqa: E501
+    def get_discount_scheme_workflow_steps_with_http_info(
+        self, net_rate_scheme_uid, **kwargs
+    ) -> PageDtoNetRateSchemeWorkflowStepReference:  # noqa: E501
         """List schemes for workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -468,37 +548,40 @@ class NetRateSchemeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['net_rate_scheme_uid', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["net_rate_scheme_uid", "page_number", "page_size"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_discount_scheme_workflow_steps" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'net_rate_scheme_uid' is set
-        if ('net_rate_scheme_uid' not in params or
-                params['net_rate_scheme_uid'] is None):
-            raise ValueError("Missing the required parameter `net_rate_scheme_uid` when calling `get_discount_scheme_workflow_steps`")  # noqa: E501
+        if "net_rate_scheme_uid" not in params or params["net_rate_scheme_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `net_rate_scheme_uid` when calling `get_discount_scheme_workflow_steps`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'net_rate_scheme_uid' in params:
-            path_params['netRateSchemeUid'] = params['net_rate_scheme_uid']  # noqa: E501
+        if "net_rate_scheme_uid" in params:
+            path_params["netRateSchemeUid"] = params[
+                "net_rate_scheme_uid"
+            ]  # noqa: E501
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -507,29 +590,34 @@ class NetRateSchemeApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/netRateSchemes/{netRateSchemeUid}/workflowStepNetSchemes', 'GET',
+            "/api2/v1/netRateSchemes/{netRateSchemeUid}/workflowStepNetSchemes",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoNetRateSchemeWorkflowStepReference',  # noqa: E501
+            response_type="PageDtoNetRateSchemeWorkflowStepReference",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_discount_schemes(self, **kwargs):  # noqa: E501
+    def get_discount_schemes(
+        self, **kwargs
+    ) -> PageDtoNetRateSchemeReference:  # noqa: E501
         """List net rate schemes  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -544,14 +632,16 @@ class NetRateSchemeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_discount_schemes_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_discount_schemes_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_discount_schemes_with_http_info(self, **kwargs):  # noqa: E501
+    def get_discount_schemes_with_http_info(
+        self, **kwargs
+    ) -> PageDtoNetRateSchemeReference:  # noqa: E501
         """List net rate schemes  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -567,31 +657,31 @@ class NetRateSchemeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["page_number", "page_size"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_discount_schemes" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -600,29 +690,34 @@ class NetRateSchemeApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/netRateSchemes', 'GET',
+            "/api2/v1/netRateSchemes",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoNetRateSchemeReference',  # noqa: E501
+            response_type="PageDtoNetRateSchemeReference",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_discount_scheme(self, net_rate_scheme_uid, **kwargs):  # noqa: E501
+    def update_discount_scheme(
+        self, net_rate_scheme_uid, **kwargs
+    ) -> NetRateScheme:  # noqa: E501
         """Edit net rate scheme  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -637,14 +732,20 @@ class NetRateSchemeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_discount_scheme_with_http_info(net_rate_scheme_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_discount_scheme_with_http_info(
+                net_rate_scheme_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_discount_scheme_with_http_info(net_rate_scheme_uid, **kwargs)  # noqa: E501
+            (data) = self.update_discount_scheme_with_http_info(
+                net_rate_scheme_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_discount_scheme_with_http_info(self, net_rate_scheme_uid, **kwargs):  # noqa: E501
+    def update_discount_scheme_with_http_info(
+        self, net_rate_scheme_uid, **kwargs
+    ) -> NetRateScheme:  # noqa: E501
         """Edit net rate scheme  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -660,31 +761,34 @@ class NetRateSchemeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['net_rate_scheme_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["net_rate_scheme_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_discount_scheme" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'net_rate_scheme_uid' is set
-        if ('net_rate_scheme_uid' not in params or
-                params['net_rate_scheme_uid'] is None):
-            raise ValueError("Missing the required parameter `net_rate_scheme_uid` when calling `update_discount_scheme`")  # noqa: E501
+        if "net_rate_scheme_uid" not in params or params["net_rate_scheme_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `net_rate_scheme_uid` when calling `update_discount_scheme`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'net_rate_scheme_uid' in params:
-            path_params['netRateSchemeUid'] = params['net_rate_scheme_uid']  # noqa: E501
+        if "net_rate_scheme_uid" in params:
+            path_params["netRateSchemeUid"] = params[
+                "net_rate_scheme_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -694,31 +798,37 @@ class NetRateSchemeApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/netRateSchemes/{netRateSchemeUid}', 'PUT',
+            "/api2/v1/netRateSchemes/{netRateSchemeUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='NetRateScheme',  # noqa: E501
+            response_type="NetRateScheme",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

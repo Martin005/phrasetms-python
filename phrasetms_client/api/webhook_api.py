@@ -32,7 +32,7 @@ class WebhookApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def create_web_hook1(self, **kwargs):  # noqa: E501
+    def create_web_hook1(self, **kwargs) -> WebHookDtoV2:  # noqa: E501
         """Create webhook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -46,14 +46,14 @@ class WebhookApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_web_hook1_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_web_hook1_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_web_hook1_with_http_info(self, **kwargs):  # noqa: E501
+    def create_web_hook1_with_http_info(self, **kwargs) -> WebHookDtoV2:  # noqa: E501
         """Create webhook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -68,21 +68,21 @@ class WebhookApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_web_hook1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -96,36 +96,42 @@ class WebhookApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/webhooks', 'POST',
+            "/api2/v2/webhooks",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='WebHookDtoV2',  # noqa: E501
+            response_type="WebHookDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_web_hook1(self, web_hook_uid, **kwargs):  # noqa: E501
+    def delete_web_hook1(self, web_hook_uid, **kwargs) -> None:  # noqa: E501
         """Delete webhook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -139,14 +145,20 @@ class WebhookApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_web_hook1_with_http_info(web_hook_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_web_hook1_with_http_info(
+                web_hook_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_web_hook1_with_http_info(web_hook_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_web_hook1_with_http_info(
+                web_hook_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_web_hook1_with_http_info(self, web_hook_uid, **kwargs):  # noqa: E501
+    def delete_web_hook1_with_http_info(
+        self, web_hook_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete webhook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -161,31 +173,32 @@ class WebhookApi(object):
                  returns the request thread.
         """
 
-        all_params = ['web_hook_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["web_hook_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_web_hook1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'web_hook_uid' is set
-        if ('web_hook_uid' not in params or
-                params['web_hook_uid'] is None):
-            raise ValueError("Missing the required parameter `web_hook_uid` when calling `delete_web_hook1`")  # noqa: E501
+        if "web_hook_uid" not in params or params["web_hook_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `web_hook_uid` when calling `delete_web_hook1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'web_hook_uid' in params:
-            path_params['webHookUid'] = params['web_hook_uid']  # noqa: E501
+        if "web_hook_uid" in params:
+            path_params["webHookUid"] = params["web_hook_uid"]  # noqa: E501
 
         query_params = []
 
@@ -199,7 +212,8 @@ class WebhookApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/webhooks/{webHookUid}', 'DELETE',
+            "/api2/v2/webhooks/{webHookUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -208,13 +222,14 @@ class WebhookApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_web_hook1(self, web_hook_uid, **kwargs):  # noqa: E501
+    def get_web_hook1(self, web_hook_uid, **kwargs) -> WebHookDtoV2:  # noqa: E501
         """Get webhook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -228,14 +243,20 @@ class WebhookApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_web_hook1_with_http_info(web_hook_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_web_hook1_with_http_info(
+                web_hook_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_web_hook1_with_http_info(web_hook_uid, **kwargs)  # noqa: E501
+            (data) = self.get_web_hook1_with_http_info(
+                web_hook_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_web_hook1_with_http_info(self, web_hook_uid, **kwargs):  # noqa: E501
+    def get_web_hook1_with_http_info(
+        self, web_hook_uid, **kwargs
+    ) -> WebHookDtoV2:  # noqa: E501
         """Get webhook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -250,31 +271,32 @@ class WebhookApi(object):
                  returns the request thread.
         """
 
-        all_params = ['web_hook_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["web_hook_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_web_hook1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'web_hook_uid' is set
-        if ('web_hook_uid' not in params or
-                params['web_hook_uid'] is None):
-            raise ValueError("Missing the required parameter `web_hook_uid` when calling `get_web_hook1`")  # noqa: E501
+        if "web_hook_uid" not in params or params["web_hook_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `web_hook_uid` when calling `get_web_hook1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'web_hook_uid' in params:
-            path_params['webHookUid'] = params['web_hook_uid']  # noqa: E501
+        if "web_hook_uid" in params:
+            path_params["webHookUid"] = params["web_hook_uid"]  # noqa: E501
 
         query_params = []
 
@@ -285,29 +307,32 @@ class WebhookApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/webhooks/{webHookUid}', 'GET',
+            "/api2/v2/webhooks/{webHookUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='WebHookDtoV2',  # noqa: E501
+            response_type="WebHookDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_web_hook_list1(self, **kwargs):  # noqa: E501
+    def get_web_hook_list1(self, **kwargs) -> PageDtoWebHookDtoV2:  # noqa: E501
         """Lists webhooks  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -330,14 +355,16 @@ class WebhookApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_web_hook_list1_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_web_hook_list1_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_web_hook_list1_with_http_info(self, **kwargs):  # noqa: E501
+    def get_web_hook_list1_with_http_info(
+        self, **kwargs
+    ) -> PageDtoWebHookDtoV2:  # noqa: E501
         """Lists webhooks  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -361,50 +388,61 @@ class WebhookApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page_number', 'page_size', 'name', 'status', 'url', 'events', 'created_by', 'modified_by', 'sort_field', 'sort_trend']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "page_number",
+            "page_size",
+            "name",
+            "status",
+            "url",
+            "events",
+            "created_by",
+            "modified_by",
+            "sort_field",
+            "sort_trend",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_web_hook_list1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'status' in params:
-            query_params.append(('status', params['status']))  # noqa: E501
-        if 'url' in params:
-            query_params.append(('url', params['url']))  # noqa: E501
-        if 'events' in params:
-            query_params.append(('events', params['events']))  # noqa: E501
-            collection_formats['events'] = 'multi'  # noqa: E501
-        if 'created_by' in params:
-            query_params.append(('createdBy', params['created_by']))  # noqa: E501
-            collection_formats['createdBy'] = 'multi'  # noqa: E501
-        if 'modified_by' in params:
-            query_params.append(('modifiedBy', params['modified_by']))  # noqa: E501
-            collection_formats['modifiedBy'] = 'multi'  # noqa: E501
-        if 'sort_field' in params:
-            query_params.append(('sortField', params['sort_field']))  # noqa: E501
-        if 'sort_trend' in params:
-            query_params.append(('sortTrend', params['sort_trend']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "status" in params:
+            query_params.append(("status", params["status"]))  # noqa: E501
+        if "url" in params:
+            query_params.append(("url", params["url"]))  # noqa: E501
+        if "events" in params:
+            query_params.append(("events", params["events"]))  # noqa: E501
+            collection_formats["events"] = "multi"  # noqa: E501
+        if "created_by" in params:
+            query_params.append(("createdBy", params["created_by"]))  # noqa: E501
+            collection_formats["createdBy"] = "multi"  # noqa: E501
+        if "modified_by" in params:
+            query_params.append(("modifiedBy", params["modified_by"]))  # noqa: E501
+            collection_formats["modifiedBy"] = "multi"  # noqa: E501
+        if "sort_field" in params:
+            query_params.append(("sortField", params["sort_field"]))  # noqa: E501
+        if "sort_trend" in params:
+            query_params.append(("sortTrend", params["sort_trend"]))  # noqa: E501
 
         header_params = {}
 
@@ -413,29 +451,32 @@ class WebhookApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/webhooks', 'GET',
+            "/api2/v2/webhooks",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoWebHookDtoV2',  # noqa: E501
+            response_type="PageDtoWebHookDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_webhook_calls_list(self, **kwargs):  # noqa: E501
+    def get_webhook_calls_list(self, **kwargs) -> PageDtoWebhookCallDto:  # noqa: E501
         """Lists webhook calls  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -454,14 +495,16 @@ class WebhookApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_webhook_calls_list_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_webhook_calls_list_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_webhook_calls_list_with_http_info(self, **kwargs):  # noqa: E501
+    def get_webhook_calls_list_with_http_info(
+        self, **kwargs
+    ) -> PageDtoWebhookCallDto:  # noqa: E501
         """Lists webhook calls  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -481,40 +524,47 @@ class WebhookApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page_number', 'page_size', 'events', 'status', 'webhook_uid', 'parent_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "page_number",
+            "page_size",
+            "events",
+            "status",
+            "webhook_uid",
+            "parent_uid",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_webhook_calls_list" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
-        if 'events' in params:
-            query_params.append(('events', params['events']))  # noqa: E501
-            collection_formats['events'] = 'multi'  # noqa: E501
-        if 'status' in params:
-            query_params.append(('status', params['status']))  # noqa: E501
-        if 'webhook_uid' in params:
-            query_params.append(('webhookUid', params['webhook_uid']))  # noqa: E501
-        if 'parent_uid' in params:
-            query_params.append(('parentUid', params['parent_uid']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
+        if "events" in params:
+            query_params.append(("events", params["events"]))  # noqa: E501
+            collection_formats["events"] = "multi"  # noqa: E501
+        if "status" in params:
+            query_params.append(("status", params["status"]))  # noqa: E501
+        if "webhook_uid" in params:
+            query_params.append(("webhookUid", params["webhook_uid"]))  # noqa: E501
+        if "parent_uid" in params:
+            query_params.append(("parentUid", params["parent_uid"]))  # noqa: E501
 
         header_params = {}
 
@@ -523,29 +573,32 @@ class WebhookApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/webhooksCalls', 'GET',
+            "/api2/v1/webhooksCalls",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoWebhookCallDto',  # noqa: E501
+            response_type="PageDtoWebhookCallDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_webhook_previews(self, **kwargs):  # noqa: E501
+    def get_webhook_previews(self, **kwargs) -> WebhookPreviewsDto:  # noqa: E501
         """Get webhook body previews  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -559,14 +612,16 @@ class WebhookApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_webhook_previews_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_webhook_previews_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_webhook_previews_with_http_info(self, **kwargs):  # noqa: E501
+    def get_webhook_previews_with_http_info(
+        self, **kwargs
+    ) -> WebhookPreviewsDto:  # noqa: E501
         """Get webhook body previews  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -581,30 +636,30 @@ class WebhookApi(object):
                  returns the request thread.
         """
 
-        all_params = ['events']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["events"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_webhook_previews" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'events' in params:
-            query_params.append(('events', params['events']))  # noqa: E501
-            collection_formats['events'] = 'multi'  # noqa: E501
+        if "events" in params:
+            query_params.append(("events", params["events"]))  # noqa: E501
+            collection_formats["events"] = "multi"  # noqa: E501
 
         header_params = {}
 
@@ -613,29 +668,32 @@ class WebhookApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/webhooks/previews', 'GET',
+            "/api2/v2/webhooks/previews",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='WebhookPreviewsDto',  # noqa: E501
+            response_type="WebhookPreviewsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def replay_last(self, **kwargs):  # noqa: E501
+    def replay_last(self, **kwargs) -> None:  # noqa: E501
         """Replay last webhook calls  # noqa: E501
 
          Replays specified number of last Webhook calls from oldest to the newest one   # noqa: E501
@@ -652,14 +710,14 @@ class WebhookApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.replay_last_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.replay_last_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def replay_last_with_http_info(self, **kwargs):  # noqa: E501
+    def replay_last_with_http_info(self, **kwargs) -> None:  # noqa: E501
         """Replay last webhook calls  # noqa: E501
 
          Replays specified number of last Webhook calls from oldest to the newest one   # noqa: E501
@@ -677,34 +735,36 @@ class WebhookApi(object):
                  returns the request thread.
         """
 
-        all_params = ['number_of_calls', 'events', 'status']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["number_of_calls", "events", "status"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method replay_last" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'number_of_calls' in params:
-            query_params.append(('numberOfCalls', params['number_of_calls']))  # noqa: E501
-        if 'events' in params:
-            query_params.append(('events', params['events']))  # noqa: E501
-            collection_formats['events'] = 'multi'  # noqa: E501
-        if 'status' in params:
-            query_params.append(('status', params['status']))  # noqa: E501
+        if "number_of_calls" in params:
+            query_params.append(
+                ("numberOfCalls", params["number_of_calls"])
+            )  # noqa: E501
+        if "events" in params:
+            query_params.append(("events", params["events"]))  # noqa: E501
+            collection_formats["events"] = "multi"  # noqa: E501
+        if "status" in params:
+            query_params.append(("status", params["status"]))  # noqa: E501
 
         header_params = {}
 
@@ -716,7 +776,8 @@ class WebhookApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/webhooksCalls/replay/latest', 'POST',
+            "/api2/v1/webhooksCalls/replay/latest",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -725,13 +786,14 @@ class WebhookApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def replay_webhook_calls(self, **kwargs):  # noqa: E501
+    def replay_webhook_calls(self, **kwargs) -> None:  # noqa: E501
         """Replay webhook calls  # noqa: E501
 
          Replays given list of Webhook Calls in specified order in the request   # noqa: E501
@@ -746,14 +808,14 @@ class WebhookApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.replay_webhook_calls_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.replay_webhook_calls_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def replay_webhook_calls_with_http_info(self, **kwargs):  # noqa: E501
+    def replay_webhook_calls_with_http_info(self, **kwargs) -> None:  # noqa: E501
         """Replay webhook calls  # noqa: E501
 
          Replays given list of Webhook Calls in specified order in the request   # noqa: E501
@@ -769,21 +831,21 @@ class WebhookApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method replay_webhook_calls" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -797,17 +859,21 @@ class WebhookApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/webhooksCalls/replay', 'POST',
+            "/api2/v1/webhooksCalls/replay",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -816,13 +882,14 @@ class WebhookApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def send_test_webhook(self, webhook_uid, event, **kwargs):  # noqa: E501
+    def send_test_webhook(self, webhook_uid, event, **kwargs) -> None:  # noqa: E501
         """Send test webhook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -837,14 +904,20 @@ class WebhookApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.send_test_webhook_with_http_info(webhook_uid, event, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.send_test_webhook_with_http_info(
+                webhook_uid, event, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.send_test_webhook_with_http_info(webhook_uid, event, **kwargs)  # noqa: E501
+            (data) = self.send_test_webhook_with_http_info(
+                webhook_uid, event, **kwargs
+            )  # noqa: E501
             return data
 
-    def send_test_webhook_with_http_info(self, webhook_uid, event, **kwargs):  # noqa: E501
+    def send_test_webhook_with_http_info(
+        self, webhook_uid, event, **kwargs
+    ) -> None:  # noqa: E501
         """Send test webhook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -860,39 +933,41 @@ class WebhookApi(object):
                  returns the request thread.
         """
 
-        all_params = ['webhook_uid', 'event']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["webhook_uid", "event"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method send_test_webhook" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'webhook_uid' is set
-        if ('webhook_uid' not in params or
-                params['webhook_uid'] is None):
-            raise ValueError("Missing the required parameter `webhook_uid` when calling `send_test_webhook`")  # noqa: E501
+        if "webhook_uid" not in params or params["webhook_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `webhook_uid` when calling `send_test_webhook`"
+            )  # noqa: E501
         # verify the required parameter 'event' is set
-        if ('event' not in params or
-                params['event'] is None):
-            raise ValueError("Missing the required parameter `event` when calling `send_test_webhook`")  # noqa: E501
+        if "event" not in params or params["event"] is None:
+            raise ValueError(
+                "Missing the required parameter `event` when calling `send_test_webhook`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'webhook_uid' in params:
-            path_params['webhookUid'] = params['webhook_uid']  # noqa: E501
+        if "webhook_uid" in params:
+            path_params["webhookUid"] = params["webhook_uid"]  # noqa: E501
 
         query_params = []
-        if 'event' in params:
-            query_params.append(('event', params['event']))  # noqa: E501
+        if "event" in params:
+            query_params.append(("event", params["event"]))  # noqa: E501
 
         header_params = {}
 
@@ -904,7 +979,8 @@ class WebhookApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/webhooks/{webhookUid}/test', 'POST',
+            "/api2/v2/webhooks/{webhookUid}/test",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -913,13 +989,14 @@ class WebhookApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_web_hook1(self, web_hook_uid, **kwargs):  # noqa: E501
+    def update_web_hook1(self, web_hook_uid, **kwargs) -> WebHookDtoV2:  # noqa: E501
         """Edit webhook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -934,14 +1011,20 @@ class WebhookApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_web_hook1_with_http_info(web_hook_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_web_hook1_with_http_info(
+                web_hook_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_web_hook1_with_http_info(web_hook_uid, **kwargs)  # noqa: E501
+            (data) = self.update_web_hook1_with_http_info(
+                web_hook_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_web_hook1_with_http_info(self, web_hook_uid, **kwargs):  # noqa: E501
+    def update_web_hook1_with_http_info(
+        self, web_hook_uid, **kwargs
+    ) -> WebHookDtoV2:  # noqa: E501
         """Edit webhook  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -957,31 +1040,32 @@ class WebhookApi(object):
                  returns the request thread.
         """
 
-        all_params = ['web_hook_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["web_hook_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_web_hook1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'web_hook_uid' is set
-        if ('web_hook_uid' not in params or
-                params['web_hook_uid'] is None):
-            raise ValueError("Missing the required parameter `web_hook_uid` when calling `update_web_hook1`")  # noqa: E501
+        if "web_hook_uid" not in params or params["web_hook_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `web_hook_uid` when calling `update_web_hook1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'web_hook_uid' in params:
-            path_params['webHookUid'] = params['web_hook_uid']  # noqa: E501
+        if "web_hook_uid" in params:
+            path_params["webHookUid"] = params["web_hook_uid"]  # noqa: E501
 
         query_params = []
 
@@ -991,31 +1075,37 @@ class WebhookApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/webhooks/{webHookUid}', 'PUT',
+            "/api2/v2/webhooks/{webHookUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='WebHookDtoV2',  # noqa: E501
+            response_type="WebHookDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

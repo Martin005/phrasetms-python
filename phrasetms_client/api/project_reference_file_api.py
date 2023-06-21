@@ -32,7 +32,7 @@ class ProjectReferenceFileApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def batch_delete_reference_files(self, project_uid, **kwargs):  # noqa: E501
+    def batch_delete_reference_files(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Delete project reference files (batch)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -47,14 +47,20 @@ class ProjectReferenceFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.batch_delete_reference_files_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.batch_delete_reference_files_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.batch_delete_reference_files_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.batch_delete_reference_files_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def batch_delete_reference_files_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def batch_delete_reference_files_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete project reference files (batch)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -70,31 +76,32 @@ class ProjectReferenceFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method batch_delete_reference_files" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `batch_delete_reference_files`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `batch_delete_reference_files`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -104,17 +111,21 @@ class ProjectReferenceFileApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/references', 'DELETE',
+            "/api2/v1/projects/{projectUid}/references",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -123,13 +134,16 @@ class ProjectReferenceFileApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def batch_download_reference_files(self, project_uid, **kwargs):  # noqa: E501
+    def batch_download_reference_files(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Download project reference files (batch)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -144,14 +158,20 @@ class ProjectReferenceFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.batch_download_reference_files_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.batch_download_reference_files_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.batch_download_reference_files_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.batch_download_reference_files_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def batch_download_reference_files_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def batch_download_reference_files_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Download project reference files (batch)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -167,31 +187,32 @@ class ProjectReferenceFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method batch_download_reference_files" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `batch_download_reference_files`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `batch_download_reference_files`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -201,17 +222,21 @@ class ProjectReferenceFileApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/references/download', 'POST',
+            "/api2/v1/projects/{projectUid}/references/download",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -220,13 +245,16 @@ class ProjectReferenceFileApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_note_ref(self, project_uid, **kwargs):  # noqa: E501
+    def create_note_ref(
+        self, project_uid, **kwargs
+    ) -> ReferenceFileReference:  # noqa: E501
         """Create project reference file  # noqa: E501
 
         Accepts `application/octet-stream` or `application/json`.<br>                        - `application/json` - `note` field will be converted to .txt.<br>                        - `application/octet-stream` - `Content-Disposition` header is required  # noqa: E501
@@ -244,14 +272,20 @@ class ProjectReferenceFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_note_ref_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_note_ref_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_note_ref_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.create_note_ref_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_note_ref_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def create_note_ref_with_http_info(
+        self, project_uid, **kwargs
+    ) -> ReferenceFileReference:  # noqa: E501
         """Create project reference file  # noqa: E501
 
         Accepts `application/octet-stream` or `application/json`.<br>                        - `application/json` - `note` field will be converted to .txt.<br>                        - `application/octet-stream` - `Content-Disposition` header is required  # noqa: E501
@@ -270,74 +304,90 @@ class ProjectReferenceFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body', 'content_disposition', 'x_memsource_note']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "body",
+            "content_disposition",
+            "x_memsource_note",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_note_ref" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `create_note_ref`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `create_note_ref`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
         header_params = {}
-        if 'content_disposition' in params:
-            header_params['Content-Disposition'] = params['content_disposition']  # noqa: E501
-        if 'x_memsource_note' in params:
-            header_params['X-Memsource-Note'] = params['x_memsource_note']  # noqa: E501
+        if "content_disposition" in params:
+            header_params["Content-Disposition"] = params[
+                "content_disposition"
+            ]  # noqa: E501
+        if "x_memsource_note" in params:
+            header_params["X-Memsource-Note"] = params["x_memsource_note"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json", "application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/references', 'POST',
+            "/api2/v1/projects/{projectUid}/references",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ReferenceFileReference',  # noqa: E501
+            response_type="ReferenceFileReference",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def download_reference(self, project_uid, reference_file_id, **kwargs):  # noqa: E501
+    def download_reference(
+        self, project_uid, reference_file_id, **kwargs
+    ) -> None:  # noqa: E501
         """Download project reference file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -352,14 +402,20 @@ class ProjectReferenceFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.download_reference_with_http_info(project_uid, reference_file_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.download_reference_with_http_info(
+                project_uid, reference_file_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.download_reference_with_http_info(project_uid, reference_file_id, **kwargs)  # noqa: E501
+            (data) = self.download_reference_with_http_info(
+                project_uid, reference_file_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def download_reference_with_http_info(self, project_uid, reference_file_id, **kwargs):  # noqa: E501
+    def download_reference_with_http_info(
+        self, project_uid, reference_file_id, **kwargs
+    ) -> None:  # noqa: E501
         """Download project reference file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -375,37 +431,39 @@ class ProjectReferenceFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'reference_file_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "reference_file_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method download_reference" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `download_reference`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `download_reference`"
+            )  # noqa: E501
         # verify the required parameter 'reference_file_id' is set
-        if ('reference_file_id' not in params or
-                params['reference_file_id'] is None):
-            raise ValueError("Missing the required parameter `reference_file_id` when calling `download_reference`")  # noqa: E501
+        if "reference_file_id" not in params or params["reference_file_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `reference_file_id` when calling `download_reference`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'reference_file_id' in params:
-            path_params['referenceFileId'] = params['reference_file_id']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "reference_file_id" in params:
+            path_params["referenceFileId"] = params["reference_file_id"]  # noqa: E501
 
         query_params = []
 
@@ -419,7 +477,8 @@ class ProjectReferenceFileApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/references/{referenceFileId}', 'GET',
+            "/api2/v1/projects/{projectUid}/references/{referenceFileId}",
+            "GET",
             path_params,
             query_params,
             header_params,
@@ -428,13 +487,16 @@ class ProjectReferenceFileApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_reference_file_creators(self, project_uid, **kwargs):  # noqa: E501
+    def list_reference_file_creators(
+        self, project_uid, **kwargs
+    ) -> UserReferencesDto:  # noqa: E501
         """List project reference file creators  # noqa: E501
 
         The result is not paged and returns up to 50 users.                 If the requested user is not included, the search can be narrowed down with the `userName` parameter.               # noqa: E501
@@ -450,14 +512,20 @@ class ProjectReferenceFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_reference_file_creators_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_reference_file_creators_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_reference_file_creators_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.list_reference_file_creators_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_reference_file_creators_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def list_reference_file_creators_with_http_info(
+        self, project_uid, **kwargs
+    ) -> UserReferencesDto:  # noqa: E501
         """List project reference file creators  # noqa: E501
 
         The result is not paged and returns up to 50 users.                 If the requested user is not included, the search can be narrowed down with the `userName` parameter.               # noqa: E501
@@ -474,35 +542,36 @@ class ProjectReferenceFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'user_name']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "user_name"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_reference_file_creators" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `list_reference_file_creators`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `list_reference_file_creators`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'user_name' in params:
-            query_params.append(('userName', params['user_name']))  # noqa: E501
+        if "user_name" in params:
+            query_params.append(("userName", params["user_name"]))  # noqa: E501
 
         header_params = {}
 
@@ -511,29 +580,34 @@ class ProjectReferenceFileApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/references/creators', 'GET',
+            "/api2/v1/projects/{projectUid}/references/creators",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UserReferencesDto',  # noqa: E501
+            response_type="UserReferencesDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_reference_files(self, project_uid, **kwargs):  # noqa: E501
+    def list_reference_files(
+        self, project_uid, **kwargs
+    ) -> ReferenceFilePageDto:  # noqa: E501
         """List project reference files  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -554,14 +628,20 @@ class ProjectReferenceFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_reference_files_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_reference_files_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_reference_files_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.list_reference_files_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_reference_files_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def list_reference_files_with_http_info(
+        self, project_uid, **kwargs
+    ) -> ReferenceFilePageDto:  # noqa: E501
         """List project reference files  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -583,47 +663,59 @@ class ProjectReferenceFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'filename', 'date_created_since', 'created_by', 'page_number', 'page_size', 'sort', 'order']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "filename",
+            "date_created_since",
+            "created_by",
+            "page_number",
+            "page_size",
+            "sort",
+            "order",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_reference_files" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `list_reference_files`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `list_reference_files`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'filename' in params:
-            query_params.append(('filename', params['filename']))  # noqa: E501
-        if 'date_created_since' in params:
-            query_params.append(('dateCreatedSince', params['date_created_since']))  # noqa: E501
-        if 'created_by' in params:
-            query_params.append(('createdBy', params['created_by']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
-        if 'sort' in params:
-            query_params.append(('sort', params['sort']))  # noqa: E501
-        if 'order' in params:
-            query_params.append(('order', params['order']))  # noqa: E501
+        if "filename" in params:
+            query_params.append(("filename", params["filename"]))  # noqa: E501
+        if "date_created_since" in params:
+            query_params.append(
+                ("dateCreatedSince", params["date_created_since"])
+            )  # noqa: E501
+        if "created_by" in params:
+            query_params.append(("createdBy", params["created_by"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
+        if "sort" in params:
+            query_params.append(("sort", params["sort"]))  # noqa: E501
+        if "order" in params:
+            query_params.append(("order", params["order"]))  # noqa: E501
 
         header_params = {}
 
@@ -632,24 +724,27 @@ class ProjectReferenceFileApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/references', 'GET',
+            "/api2/v1/projects/{projectUid}/references",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ReferenceFilePageDto',  # noqa: E501
+            response_type="ReferenceFilePageDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

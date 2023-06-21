@@ -32,7 +32,7 @@ class QuoteApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def create_quote_v2(self, **kwargs):  # noqa: E501
+    def create_quote_v2(self, **kwargs) -> QuoteV2Dto:  # noqa: E501
         """Create quote  # noqa: E501
 
         Either WorkflowSettings or Units must be sent for billingUnit \"Hour\".  # noqa: E501
@@ -47,14 +47,14 @@ class QuoteApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_quote_v2_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_quote_v2_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_quote_v2_with_http_info(self, **kwargs):  # noqa: E501
+    def create_quote_v2_with_http_info(self, **kwargs) -> QuoteV2Dto:  # noqa: E501
         """Create quote  # noqa: E501
 
         Either WorkflowSettings or Units must be sent for billingUnit \"Hour\".  # noqa: E501
@@ -70,21 +70,21 @@ class QuoteApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_quote_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -98,36 +98,42 @@ class QuoteApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/quotes', 'POST',
+            "/api2/v2/quotes",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='QuoteV2Dto',  # noqa: E501
+            response_type="QuoteV2Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_quote(self, quote_uid, **kwargs):  # noqa: E501
+    def delete_quote(self, quote_uid, **kwargs) -> None:  # noqa: E501
         """Delete quote  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -141,14 +147,14 @@ class QuoteApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.delete_quote_with_http_info(quote_uid, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_quote_with_http_info(quote_uid, **kwargs)  # noqa: E501
             return data
 
-    def delete_quote_with_http_info(self, quote_uid, **kwargs):  # noqa: E501
+    def delete_quote_with_http_info(self, quote_uid, **kwargs) -> None:  # noqa: E501
         """Delete quote  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -163,31 +169,32 @@ class QuoteApi(object):
                  returns the request thread.
         """
 
-        all_params = ['quote_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["quote_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_quote" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'quote_uid' is set
-        if ('quote_uid' not in params or
-                params['quote_uid'] is None):
-            raise ValueError("Missing the required parameter `quote_uid` when calling `delete_quote`")  # noqa: E501
+        if "quote_uid" not in params or params["quote_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `quote_uid` when calling `delete_quote`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'quote_uid' in params:
-            path_params['quoteUid'] = params['quote_uid']  # noqa: E501
+        if "quote_uid" in params:
+            path_params["quoteUid"] = params["quote_uid"]  # noqa: E501
 
         query_params = []
 
@@ -201,7 +208,8 @@ class QuoteApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/quotes/{quoteUid}', 'DELETE',
+            "/api2/v1/quotes/{quoteUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -210,13 +218,14 @@ class QuoteApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def email_quotes(self, **kwargs):  # noqa: E501
+    def email_quotes(self, **kwargs) -> EmailQuotesResponseDto:  # noqa: E501
         """Email quotes  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -230,14 +239,16 @@ class QuoteApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.email_quotes_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.email_quotes_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def email_quotes_with_http_info(self, **kwargs):  # noqa: E501
+    def email_quotes_with_http_info(
+        self, **kwargs
+    ) -> EmailQuotesResponseDto:  # noqa: E501
         """Email quotes  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -252,21 +263,21 @@ class QuoteApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method email_quotes" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -280,36 +291,42 @@ class QuoteApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/quotes/email', 'POST',
+            "/api2/v1/quotes/email",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='EmailQuotesResponseDto',  # noqa: E501
+            response_type="EmailQuotesResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get2(self, quote_uid, **kwargs):  # noqa: E501
+    def get2(self, quote_uid, **kwargs) -> QuoteDto:  # noqa: E501
         """Get quote  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -323,14 +340,14 @@ class QuoteApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get2_with_http_info(quote_uid, **kwargs)  # noqa: E501
         else:
             (data) = self.get2_with_http_info(quote_uid, **kwargs)  # noqa: E501
             return data
 
-    def get2_with_http_info(self, quote_uid, **kwargs):  # noqa: E501
+    def get2_with_http_info(self, quote_uid, **kwargs) -> QuoteDto:  # noqa: E501
         """Get quote  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -345,31 +362,31 @@ class QuoteApi(object):
                  returns the request thread.
         """
 
-        all_params = ['quote_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["quote_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method get2" % key
+                    "Got an unexpected keyword argument '%s'" " to method get2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'quote_uid' is set
-        if ('quote_uid' not in params or
-                params['quote_uid'] is None):
-            raise ValueError("Missing the required parameter `quote_uid` when calling `get2`")  # noqa: E501
+        if "quote_uid" not in params or params["quote_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `quote_uid` when calling `get2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'quote_uid' in params:
-            path_params['quoteUid'] = params['quote_uid']  # noqa: E501
+        if "quote_uid" in params:
+            path_params["quoteUid"] = params["quote_uid"]  # noqa: E501
 
         query_params = []
 
@@ -380,24 +397,27 @@ class QuoteApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/quotes/{quoteUid}', 'GET',
+            "/api2/v1/quotes/{quoteUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='QuoteDto',  # noqa: E501
+            response_type="QuoteDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

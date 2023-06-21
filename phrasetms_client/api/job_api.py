@@ -32,7 +32,7 @@ class JobApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def compare_part(self, project_uid, **kwargs):  # noqa: E501
+    def compare_part(self, project_uid, **kwargs) -> ComparedSegmentsDto:  # noqa: E501
         """Compare jobs on workflow levels  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -49,14 +49,18 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.compare_part_with_http_info(project_uid, **kwargs)  # noqa: E501
         else:
-            (data) = self.compare_part_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.compare_part_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def compare_part_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def compare_part_with_http_info(
+        self, project_uid, **kwargs
+    ) -> ComparedSegmentsDto:  # noqa: E501
         """Compare jobs on workflow levels  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -74,37 +78,47 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body', 'at_workflow_level', 'with_workflow_level']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "body",
+            "at_workflow_level",
+            "with_workflow_level",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method compare_part" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `compare_part`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `compare_part`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'at_workflow_level' in params:
-            query_params.append(('atWorkflowLevel', params['at_workflow_level']))  # noqa: E501
-        if 'with_workflow_level' in params:
-            query_params.append(('withWorkflowLevel', params['with_workflow_level']))  # noqa: E501
+        if "at_workflow_level" in params:
+            query_params.append(
+                ("atWorkflowLevel", params["at_workflow_level"])
+            )  # noqa: E501
+        if "with_workflow_level" in params:
+            query_params.append(
+                ("withWorkflowLevel", params["with_workflow_level"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -112,36 +126,42 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/compare', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/compare",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ComparedSegmentsDto',  # noqa: E501
+            response_type="ComparedSegmentsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def completed_file1(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def completed_file1(self, project_uid, job_uid, **kwargs) -> None:  # noqa: E501
         """Download target file (async)  # noqa: E501
 
              This call will create async request for downloading target file with translation that can be downloaded when     finished. This means even for other jobs that were created via 'split jobs' etc.       # noqa: E501
@@ -157,14 +177,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.completed_file1_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.completed_file1_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.completed_file1_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.completed_file1_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def completed_file1_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def completed_file1_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Download target file (async)  # noqa: E501
 
              This call will create async request for downloading target file with translation that can be downloaded when     finished. This means even for other jobs that were created via 'split jobs' etc.       # noqa: E501
@@ -181,37 +207,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method completed_file1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `completed_file1`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `completed_file1`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `completed_file1`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `completed_file1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -225,7 +253,8 @@ class JobApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/{jobUid}/targetFile', 'PUT',
+            "/api2/v2/projects/{projectUid}/jobs/{jobUid}/targetFile",
+            "PUT",
             path_params,
             query_params,
             header_params,
@@ -234,13 +263,14 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def copy_source_to_target(self, project_uid, **kwargs):  # noqa: E501
+    def copy_source_to_target(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Copy Source to Target  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -255,14 +285,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.copy_source_to_target_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.copy_source_to_target_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.copy_source_to_target_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.copy_source_to_target_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def copy_source_to_target_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def copy_source_to_target_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Copy Source to Target  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -278,31 +314,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method copy_source_to_target" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `copy_source_to_target`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `copy_source_to_target`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -312,17 +349,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/copySourceToTarget', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/copySourceToTarget",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -331,13 +372,16 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def copy_source_to_target_job_part(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def copy_source_to_target_job_part(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Copy Source to Target job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -352,14 +396,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.copy_source_to_target_job_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.copy_source_to_target_job_part_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.copy_source_to_target_job_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.copy_source_to_target_job_part_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def copy_source_to_target_job_part_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def copy_source_to_target_job_part_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Copy Source to Target job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -375,37 +425,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method copy_source_to_target_job_part" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `copy_source_to_target_job_part`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `copy_source_to_target_job_part`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `copy_source_to_target_job_part`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `copy_source_to_target_job_part`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -419,7 +471,8 @@ class JobApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/copySourceToTarget', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/copySourceToTarget",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -428,13 +481,14 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_job(self, project_uid, **kwargs):  # noqa: E501
+    def create_job(self, project_uid, **kwargs) -> JobListDto:  # noqa: E501
         """Create job  # noqa: E501
 
          Job file can be provided directly in the message body or downloaded from connector.   Please supply job metadata in `Memsource` header.   For file in the request body provide also the filename in `Content-Disposition` header.  Accepted metadata:     - `targetLangs` - **required**   - `due` - ISO 8601   - `workflowSettings` - project with workflow - see examples bellow   - `assignments` - project without workflows - see examples bellow   - `importSettings` - re-usable import settings - see [Create import settings](#operation/createImportSettings)   - `useProjectFileImportSettings` - mutually exclusive with importSettings   - `callbackUrl` - consumer callback   - `path` - original destination directory   - `preTranslate` - set pre translate job after import      for remote file jobs also `remoteFile` - see examples bellow:   - `connectorToken` - remote connector token   - `remoteFolder`    - `remoteFileName`   - `continuous` - true for continuous job  Create and assign job in project without workflow step: ```  {   \"targetLangs\": [     \"cs_cz\"   ],   \"callbackUrl\": \"https://my-shiny-service.com/consumeCallback\",   \"importSettings\": {     \"uid\": \"abcd123\"   },   \"due\": \"2007-12-03T10:15:30.00Z\",   \"path\": \"destination directory\",   \"assignments\": [     {       \"targetLang\": \"cs_cz\",       \"providers\": [         {           \"id\": \"4321\",           \"type\": \"USER\"         }       ]     }   ],   \"notifyProvider\": {     \"organizationEmailTemplate\": {       \"id\": \"39\"     },     \"notificationIntervalInMinutes\": \"10\"   } } ```  Create job from remote file without workflow steps: ```  {   \"remoteFile\": {     \"connectorToken\": \"948123ef-e1ef-4cd3-a90e-af1617848af3\",     \"remoteFolder\": \"/\",     \"remoteFileName\": \"Few words.docx\",     \"continuous\": false   },   \"assignments\": [],   \"workflowSettings\": [],   \"targetLangs\": [     \"cs\"   ] } ```  Create and assign job in project with workflow step: ```  {   \"targetLangs\": [     \"de\"   ],   \"useProjectFileImportSettings\": \"true\",   \"workflowSettings\": [     {       \"id\": \"64\",       \"due\": \"2007-12-03T10:15:30.00Z\",       \"assignments\": [         {           \"targetLang\": \"de\",           \"providers\": [             {               \"id\": \"3\",               \"type\": \"VENDOR\"             }           ]         }       ],       \"notifyProvider\": {         \"organizationEmailTemplate\": {           \"id\": \"39\"         },         \"notificationIntervalInMinutes\": \"10\"       }     }   ] } ```       # noqa: E501
@@ -452,14 +506,16 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_job_with_http_info(project_uid, **kwargs)  # noqa: E501
         else:
             (data) = self.create_job_with_http_info(project_uid, **kwargs)  # noqa: E501
             return data
 
-    def create_job_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def create_job_with_http_info(
+        self, project_uid, **kwargs
+    ) -> JobListDto:  # noqa: E501
         """Create job  # noqa: E501
 
          Job file can be provided directly in the message body or downloaded from connector.   Please supply job metadata in `Memsource` header.   For file in the request body provide also the filename in `Content-Disposition` header.  Accepted metadata:     - `targetLangs` - **required**   - `due` - ISO 8601   - `workflowSettings` - project with workflow - see examples bellow   - `assignments` - project without workflows - see examples bellow   - `importSettings` - re-usable import settings - see [Create import settings](#operation/createImportSettings)   - `useProjectFileImportSettings` - mutually exclusive with importSettings   - `callbackUrl` - consumer callback   - `path` - original destination directory   - `preTranslate` - set pre translate job after import      for remote file jobs also `remoteFile` - see examples bellow:   - `connectorToken` - remote connector token   - `remoteFolder`    - `remoteFileName`   - `continuous` - true for continuous job  Create and assign job in project without workflow step: ```  {   \"targetLangs\": [     \"cs_cz\"   ],   \"callbackUrl\": \"https://my-shiny-service.com/consumeCallback\",   \"importSettings\": {     \"uid\": \"abcd123\"   },   \"due\": \"2007-12-03T10:15:30.00Z\",   \"path\": \"destination directory\",   \"assignments\": [     {       \"targetLang\": \"cs_cz\",       \"providers\": [         {           \"id\": \"4321\",           \"type\": \"USER\"         }       ]     }   ],   \"notifyProvider\": {     \"organizationEmailTemplate\": {       \"id\": \"39\"     },     \"notificationIntervalInMinutes\": \"10\"   } } ```  Create job from remote file without workflow steps: ```  {   \"remoteFile\": {     \"connectorToken\": \"948123ef-e1ef-4cd3-a90e-af1617848af3\",     \"remoteFolder\": \"/\",     \"remoteFileName\": \"Few words.docx\",     \"continuous\": false   },   \"assignments\": [],   \"workflowSettings\": [],   \"targetLangs\": [     \"cs\"   ] } ```  Create and assign job in project with workflow step: ```  {   \"targetLangs\": [     \"de\"   ],   \"useProjectFileImportSettings\": \"true\",   \"workflowSettings\": [     {       \"id\": \"64\",       \"due\": \"2007-12-03T10:15:30.00Z\",       \"assignments\": [         {           \"targetLang\": \"de\",           \"providers\": [             {               \"id\": \"3\",               \"type\": \"VENDOR\"             }           ]         }       ],       \"notifyProvider\": {         \"organizationEmailTemplate\": {           \"id\": \"39\"         },         \"notificationIntervalInMinutes\": \"10\"       }     }   ] } ```       # noqa: E501
@@ -478,74 +534,90 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body', 'memsource', 'content_disposition']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "body",
+            "memsource",
+            "content_disposition",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_job" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `create_job`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `create_job`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
         header_params = {}
-        if 'memsource' in params:
-            header_params['Memsource'] = params['memsource']  # noqa: E501
-        if 'content_disposition' in params:
-            header_params['Content-Disposition'] = params['content_disposition']  # noqa: E501
+        if "memsource" in params:
+            header_params["Memsource"] = params["memsource"]  # noqa: E501
+        if "content_disposition" in params:
+            header_params["Content-Disposition"] = params[
+                "content_disposition"
+            ]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobListDto',  # noqa: E501
+            response_type="JobListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_job_from_async_download_task(self, project_uid, **kwargs):  # noqa: E501
+    def create_job_from_async_download_task(
+        self, project_uid, **kwargs
+    ) -> JobListDto:  # noqa: E501
         """Create job from connector asynchronous download task  # noqa: E501
 
          Creates the job in project specified by path param projectUid. Source file is defined by downloadTaskId parameter. That is value of finished download async task  [Connector - Download file (async)](#operation/getFile_1).  Please supply job metadata in body.  Accepted metadata:     - `targetLangs` - **required**   - `due` - ISO 8601   - `workflowSettings` - project with workflow - see examples bellow   - `assignments` - project without workflows - see examples bellow   - `importSettings` - re-usable import settings - see [Create import settings](#operation/createImportSettings)   - `useProjectFileImportSettings` - mutually exclusive with importSettings   - `callbackUrl` - consumer callback   - `path` - original destination directory   - `preTranslate` - set pre translate job after import    Create job simple (without workflow steps, without assignments): ``` {   \"targetLangs\": [     \"cs_cz\",     \"es_es\"   ] } ```  Create and assign job in project without workflow step: ``` {   \"targetLangs\": [     \"cs_cz\"   ],   \"callbackUrl\": \"https://my-shiny-service.com/consumeCallback\",   \"importSettings\": {     \"uid\": \"abcd123\"   },   \"due\": \"2007-12-03T10:15:30.00Z\",   \"path\": \"destination directory\",   \"assignments\": [     {       \"targetLang\": \"cs_cz\",       \"providers\": [         {           \"id\": \"4321\",           \"type\": \"USER\"         }       ]     }   ],   \"notifyProvider\": {     \"organizationEmailTemplate\": {       \"id\": \"39\"     },     \"notificationIntervalInMinutes\": \"10\"   } } ```  Create and assign job in project with workflow step: ``` {   \"targetLangs\": [     \"de\"   ],   \"useProjectFileImportSettings\": \"true\",   \"workflowSettings\": [     {       \"id\": \"64\",       \"due\": \"2007-12-03T10:15:30.00Z\",       \"assignments\": [         {           \"targetLang\": \"de\",           \"providers\": [             {               \"id\": \"3\",               \"type\": \"VENDOR\"             }           ]         }       ],       \"notifyProvider\": {         \"organizationEmailTemplate\": {           \"id\": \"39\"         },         \"notificationIntervalInMinutes\": \"10\"       }     }   ] } ```       # noqa: E501
@@ -563,14 +635,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_job_from_async_download_task_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_job_from_async_download_task_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_job_from_async_download_task_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.create_job_from_async_download_task_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_job_from_async_download_task_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def create_job_from_async_download_task_with_http_info(
+        self, project_uid, **kwargs
+    ) -> JobListDto:  # noqa: E501
         """Create job from connector asynchronous download task  # noqa: E501
 
          Creates the job in project specified by path param projectUid. Source file is defined by downloadTaskId parameter. That is value of finished download async task  [Connector - Download file (async)](#operation/getFile_1).  Please supply job metadata in body.  Accepted metadata:     - `targetLangs` - **required**   - `due` - ISO 8601   - `workflowSettings` - project with workflow - see examples bellow   - `assignments` - project without workflows - see examples bellow   - `importSettings` - re-usable import settings - see [Create import settings](#operation/createImportSettings)   - `useProjectFileImportSettings` - mutually exclusive with importSettings   - `callbackUrl` - consumer callback   - `path` - original destination directory   - `preTranslate` - set pre translate job after import    Create job simple (without workflow steps, without assignments): ``` {   \"targetLangs\": [     \"cs_cz\",     \"es_es\"   ] } ```  Create and assign job in project without workflow step: ``` {   \"targetLangs\": [     \"cs_cz\"   ],   \"callbackUrl\": \"https://my-shiny-service.com/consumeCallback\",   \"importSettings\": {     \"uid\": \"abcd123\"   },   \"due\": \"2007-12-03T10:15:30.00Z\",   \"path\": \"destination directory\",   \"assignments\": [     {       \"targetLang\": \"cs_cz\",       \"providers\": [         {           \"id\": \"4321\",           \"type\": \"USER\"         }       ]     }   ],   \"notifyProvider\": {     \"organizationEmailTemplate\": {       \"id\": \"39\"     },     \"notificationIntervalInMinutes\": \"10\"   } } ```  Create and assign job in project with workflow step: ``` {   \"targetLangs\": [     \"de\"   ],   \"useProjectFileImportSettings\": \"true\",   \"workflowSettings\": [     {       \"id\": \"64\",       \"due\": \"2007-12-03T10:15:30.00Z\",       \"assignments\": [         {           \"targetLang\": \"de\",           \"providers\": [             {               \"id\": \"3\",               \"type\": \"VENDOR\"             }           ]         }       ],       \"notifyProvider\": {         \"organizationEmailTemplate\": {           \"id\": \"39\"         },         \"notificationIntervalInMinutes\": \"10\"       }     }   ] } ```       # noqa: E501
@@ -589,37 +667,45 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body', 'download_task_id', 'continuous']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "body",
+            "download_task_id",
+            "continuous",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_job_from_async_download_task" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `create_job_from_async_download_task`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `create_job_from_async_download_task`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'download_task_id' in params:
-            query_params.append(('downloadTaskId', params['download_task_id']))  # noqa: E501
-        if 'continuous' in params:
-            query_params.append(('continuous', params['continuous']))  # noqa: E501
+        if "download_task_id" in params:
+            query_params.append(
+                ("downloadTaskId", params["download_task_id"])
+            )  # noqa: E501
+        if "continuous" in params:
+            query_params.append(("continuous", params["continuous"]))  # noqa: E501
 
         header_params = {}
 
@@ -627,36 +713,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/connectorTask', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/connectorTask",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobListDto',  # noqa: E501
+            response_type="JobListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_term_by_job(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def create_term_by_job(
+        self, job_uid, project_uid, **kwargs
+    ) -> TermPairDto:  # noqa: E501
         """Create term in job's term bases  # noqa: E501
 
         Create new term in the write term base assigned to the job  # noqa: E501
@@ -673,14 +767,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_term_by_job_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_term_by_job_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_term_by_job_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+            (data) = self.create_term_by_job_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_term_by_job_with_http_info(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def create_term_by_job_with_http_info(
+        self, job_uid, project_uid, **kwargs
+    ) -> TermPairDto:  # noqa: E501
         """Create term in job's term bases  # noqa: E501
 
         Create new term in the write term base assigned to the job  # noqa: E501
@@ -698,37 +798,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_term_by_job" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `create_term_by_job`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `create_term_by_job`"
+            )  # noqa: E501
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `create_term_by_job`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `create_term_by_job`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -738,36 +840,42 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/termBases/createByJob', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/termBases/createByJob",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TermPairDto',  # noqa: E501
+            response_type="TermPairDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_all_translations(self, project_uid, **kwargs):  # noqa: E501
+    def delete_all_translations(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Delete all translations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -782,14 +890,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_all_translations_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_all_translations_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_all_translations_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_all_translations_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_all_translations_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def delete_all_translations_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete all translations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -805,31 +919,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_all_translations" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `delete_all_translations`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `delete_all_translations`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -839,17 +954,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/translations', 'DELETE',
+            "/api2/v1/projects/{projectUid}/jobs/translations",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -858,13 +977,14 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_all_translations1(self, project_uid, **kwargs):  # noqa: E501
+    def delete_all_translations1(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Delete specific translations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -879,14 +999,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_all_translations1_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_all_translations1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_all_translations1_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_all_translations1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_all_translations1_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def delete_all_translations1_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete specific translations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -902,31 +1028,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_all_translations1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `delete_all_translations1`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `delete_all_translations1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -936,17 +1063,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/translations', 'DELETE',
+            "/api2/v2/projects/{projectUid}/jobs/translations",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -955,13 +1086,14 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_handover_file(self, project_uid, **kwargs):  # noqa: E501
+    def delete_handover_file(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Delete handover file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -976,14 +1108,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_handover_file_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_handover_file_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_handover_file_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_handover_file_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_handover_file_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def delete_handover_file_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete handover file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -999,31 +1137,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_handover_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `delete_handover_file`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `delete_handover_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1033,17 +1172,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/fileHandovers', 'DELETE',
+            "/api2/v1/projects/{projectUid}/fileHandovers",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -1052,13 +1195,14 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_parts(self, project_uid, **kwargs):  # noqa: E501
+    def delete_parts(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Delete job (batch)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1074,14 +1218,16 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.delete_parts_with_http_info(project_uid, **kwargs)  # noqa: E501
         else:
-            (data) = self.delete_parts_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_parts_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_parts_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def delete_parts_with_http_info(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Delete job (batch)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1098,35 +1244,36 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body', 'purge']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body", "purge"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_parts" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `delete_parts`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `delete_parts`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'purge' in params:
-            query_params.append(('purge', params['purge']))  # noqa: E501
+        if "purge" in params:
+            query_params.append(("purge", params["purge"]))  # noqa: E501
 
         header_params = {}
 
@@ -1134,17 +1281,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/batch', 'DELETE',
+            "/api2/v1/projects/{projectUid}/jobs/batch",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -1153,13 +1304,16 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def download_completed_file(self, project_uid, job_uid, async_request_id, **kwargs):  # noqa: E501
+    def download_completed_file(
+        self, project_uid, job_uid, async_request_id, **kwargs
+    ) -> None:  # noqa: E501
         """Download target file based on async request  # noqa: E501
 
              This call will return target file with translation. This means even for other jobs that were created via     'split jobs' etc.       # noqa: E501
@@ -1177,14 +1331,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.download_completed_file_with_http_info(project_uid, job_uid, async_request_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.download_completed_file_with_http_info(
+                project_uid, job_uid, async_request_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.download_completed_file_with_http_info(project_uid, job_uid, async_request_id, **kwargs)  # noqa: E501
+            (data) = self.download_completed_file_with_http_info(
+                project_uid, job_uid, async_request_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def download_completed_file_with_http_info(self, project_uid, job_uid, async_request_id, **kwargs):  # noqa: E501
+    def download_completed_file_with_http_info(
+        self, project_uid, job_uid, async_request_id, **kwargs
+    ) -> None:  # noqa: E501
         """Download target file based on async request  # noqa: E501
 
              This call will return target file with translation. This means even for other jobs that were created via     'split jobs' etc.       # noqa: E501
@@ -1203,47 +1363,55 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'async_request_id', 'format']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "job_uid",
+            "async_request_id",
+            "format",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method download_completed_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `download_completed_file`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `download_completed_file`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `download_completed_file`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `download_completed_file`"
+            )  # noqa: E501
         # verify the required parameter 'async_request_id' is set
-        if ('async_request_id' not in params or
-                params['async_request_id'] is None):
-            raise ValueError("Missing the required parameter `async_request_id` when calling `download_completed_file`")  # noqa: E501
+        if "async_request_id" not in params or params["async_request_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `async_request_id` when calling `download_completed_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'async_request_id' in params:
-            path_params['asyncRequestId'] = params['async_request_id']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "async_request_id" in params:
+            path_params["asyncRequestId"] = params["async_request_id"]  # noqa: E501
 
         query_params = []
-        if 'format' in params:
-            query_params.append(('format', params['format']))  # noqa: E501
+        if "format" in params:
+            query_params.append(("format", params["format"]))  # noqa: E501
 
         header_params = {}
 
@@ -1255,7 +1423,8 @@ class JobApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/{jobUid}/downloadTargetFile/{asyncRequestId}', 'GET',
+            "/api2/v2/projects/{projectUid}/jobs/{jobUid}/downloadTargetFile/{asyncRequestId}",
+            "GET",
             path_params,
             query_params,
             header_params,
@@ -1264,13 +1433,16 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_job_import_settings(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def edit_job_import_settings(
+        self, project_uid, job_uid, **kwargs
+    ) -> FileImportSettingsDto:  # noqa: E501
         """Edit job import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1286,14 +1458,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_job_import_settings_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_job_import_settings_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_job_import_settings_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.edit_job_import_settings_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_job_import_settings_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def edit_job_import_settings_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> FileImportSettingsDto:  # noqa: E501
         """Edit job import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1310,37 +1488,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_job_import_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `edit_job_import_settings`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `edit_job_import_settings`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `edit_job_import_settings`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `edit_job_import_settings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1350,36 +1530,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/importSettings', 'PUT',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/importSettings",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FileImportSettingsDto',  # noqa: E501
+            response_type="FileImportSettingsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_part(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def edit_part(
+        self, project_uid, job_uid, **kwargs
+    ) -> JobPartExtendedDto:  # noqa: E501
         """Edit job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1395,14 +1583,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_part_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.edit_part_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_part_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def edit_part_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> JobPartExtendedDto:  # noqa: E501
         """Edit job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1419,37 +1613,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_part" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `edit_part`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `edit_part`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `edit_part`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `edit_part`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1459,36 +1655,42 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}', 'PUT',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartExtendedDto',  # noqa: E501
+            response_type="JobPartExtendedDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_parts(self, project_uid, **kwargs):  # noqa: E501
+    def edit_parts(self, project_uid, **kwargs) -> JobPartsDto:  # noqa: E501
         """Edit jobs (batch)  # noqa: E501
 
          Returns only jobs which were updated by the batch operation.   # noqa: E501
@@ -1504,14 +1706,16 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.edit_parts_with_http_info(project_uid, **kwargs)  # noqa: E501
         else:
             (data) = self.edit_parts_with_http_info(project_uid, **kwargs)  # noqa: E501
             return data
 
-    def edit_parts_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def edit_parts_with_http_info(
+        self, project_uid, **kwargs
+    ) -> JobPartsDto:  # noqa: E501
         """Edit jobs (batch)  # noqa: E501
 
          Returns only jobs which were updated by the batch operation.   # noqa: E501
@@ -1528,31 +1732,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_parts" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `edit_parts`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `edit_parts`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1562,36 +1767,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/batch', 'PUT',
+            "/api2/v1/projects/{projectUid}/jobs/batch",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartsDto',  # noqa: E501
+            response_type="JobPartsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def export_to_online_repository(self, project_uid, **kwargs):  # noqa: E501
+    def export_to_online_repository(
+        self, project_uid, **kwargs
+    ) -> JobExportResponseDto:  # noqa: E501
         """Export jobs to online repository  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1606,14 +1819,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.export_to_online_repository_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.export_to_online_repository_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.export_to_online_repository_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.export_to_online_repository_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def export_to_online_repository_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def export_to_online_repository_with_http_info(
+        self, project_uid, **kwargs
+    ) -> JobExportResponseDto:  # noqa: E501
         """Export jobs to online repository  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1629,31 +1848,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method export_to_online_repository" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `export_to_online_repository`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `export_to_online_repository`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1663,36 +1883,42 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/jobs/export', 'POST',
+            "/api2/v3/projects/{projectUid}/jobs/export",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobExportResponseDto',  # noqa: E501
+            response_type="JobExportResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def file_preview(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def file_preview(self, project_uid, job_uid, **kwargs) -> None:  # noqa: E501
         """Download preview file  # noqa: E501
 
         Takes bilingual file (.mxliff only) as argument. If not passed, data will be taken from database  # noqa: E501
@@ -1709,14 +1935,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.file_preview_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.file_preview_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.file_preview_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.file_preview_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def file_preview_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def file_preview_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Download preview file  # noqa: E501
 
         Takes bilingual file (.mxliff only) as argument. If not passed, data will be taken from database  # noqa: E501
@@ -1734,37 +1966,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method file_preview" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `file_preview`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `file_preview`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `file_preview`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `file_preview`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1774,17 +2008,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/preview', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/preview",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -1793,13 +2031,14 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def file_preview_job(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def file_preview_job(self, project_uid, job_uid, **kwargs) -> None:  # noqa: E501
         """Download preview file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1814,14 +2053,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.file_preview_job_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.file_preview_job_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.file_preview_job_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.file_preview_job_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def file_preview_job_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def file_preview_job_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Download preview file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1837,37 +2082,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method file_preview_job" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `file_preview_job`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `file_preview_job`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `file_preview_job`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `file_preview_job`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1881,7 +2128,8 @@ class JobApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/preview', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/preview",
+            "GET",
             path_params,
             query_params,
             header_params,
@@ -1890,13 +2138,14 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_bilingual_file(self, project_uid, **kwargs):  # noqa: E501
+    def get_bilingual_file(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Download bilingual file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1913,14 +2162,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_bilingual_file_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_bilingual_file_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_bilingual_file_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.get_bilingual_file_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_bilingual_file_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def get_bilingual_file_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Download bilingual file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1938,37 +2193,38 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body', 'format', 'preview']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body", "format", "preview"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_bilingual_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_bilingual_file`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_bilingual_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'format' in params:
-            query_params.append(('format', params['format']))  # noqa: E501
-        if 'preview' in params:
-            query_params.append(('preview', params['preview']))  # noqa: E501
+        if "format" in params:
+            query_params.append(("format", params["format"]))  # noqa: E501
+        if "preview" in params:
+            query_params.append(("preview", params["preview"]))  # noqa: E501
 
         header_params = {}
 
@@ -1976,17 +2232,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/bilingualFile', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/bilingualFile",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -1995,13 +2255,16 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_completed_file_warnings(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_completed_file_warnings(
+        self, project_uid, job_uid, **kwargs
+    ) -> TargetFileWarningsDto:  # noqa: E501
         """Get target file's warnings  # noqa: E501
 
          This call will return target file's warnings. This means even for other jobs that were created via 'split jobs' etc.   # noqa: E501
@@ -2017,14 +2280,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_completed_file_warnings_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_completed_file_warnings_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_completed_file_warnings_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.get_completed_file_warnings_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_completed_file_warnings_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_completed_file_warnings_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> TargetFileWarningsDto:  # noqa: E501
         """Get target file's warnings  # noqa: E501
 
          This call will return target file's warnings. This means even for other jobs that were created via 'split jobs' etc.   # noqa: E501
@@ -2041,37 +2310,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_completed_file_warnings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_completed_file_warnings`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_completed_file_warnings`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_completed_file_warnings`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_completed_file_warnings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2082,29 +2353,32 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/targetFileWarnings', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/targetFileWarnings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TargetFileWarningsDto',  # noqa: E501
+            response_type="TargetFileWarningsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_handover_files(self, project_uid, **kwargs):  # noqa: E501
+    def get_handover_files(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Download handover file(s)  # noqa: E501
 
          For downloading multiple files as ZIP file provide multiple IDs in query parameters. * For example `?jobUid={id1}&jobUid={id2}` * When no files matched given IDs error 404 is returned, otherwise ZIP file will include those that were found   # noqa: E501
@@ -2120,14 +2394,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_handover_files_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_handover_files_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_handover_files_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.get_handover_files_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_handover_files_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def get_handover_files_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Download handover file(s)  # noqa: E501
 
          For downloading multiple files as ZIP file provide multiple IDs in query parameters. * For example `?jobUid={id1}&jobUid={id2}` * When no files matched given IDs error 404 is returned, otherwise ZIP file will include those that were found   # noqa: E501
@@ -2144,36 +2424,37 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_handover_files" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_handover_files`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_handover_files`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'job_uid' in params:
-            query_params.append(('jobUid', params['job_uid']))  # noqa: E501
-            collection_formats['jobUid'] = 'multi'  # noqa: E501
+        if "job_uid" in params:
+            query_params.append(("jobUid", params["job_uid"]))  # noqa: E501
+            collection_formats["jobUid"] = "multi"  # noqa: E501
 
         header_params = {}
 
@@ -2185,7 +2466,8 @@ class JobApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/fileHandovers', 'GET',
+            "/api2/v1/projects/{projectUid}/fileHandovers",
+            "GET",
             path_params,
             query_params,
             header_params,
@@ -2194,13 +2476,16 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_import_settings3(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_import_settings3(
+        self, project_uid, job_uid, **kwargs
+    ) -> FileImportSettingsDto:  # noqa: E501
         """Get import settings for job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2215,14 +2500,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_import_settings3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_import_settings3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_import_settings3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.get_import_settings3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_import_settings3_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_import_settings3_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> FileImportSettingsDto:  # noqa: E501
         """Get import settings for job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2238,37 +2529,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_import_settings3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_import_settings3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_import_settings3`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_import_settings3`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_import_settings3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2279,29 +2572,32 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/importSettings', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/importSettings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FileImportSettingsDto',  # noqa: E501
+            response_type="FileImportSettingsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_original_file(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_original_file(self, project_uid, job_uid, **kwargs) -> None:  # noqa: E501
         """Download original file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2316,14 +2612,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_original_file_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_original_file_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_original_file_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.get_original_file_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_original_file_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_original_file_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Download original file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2339,37 +2641,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_original_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_original_file`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_original_file`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_original_file`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_original_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2383,7 +2687,8 @@ class JobApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/original', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/original",
+            "GET",
             path_params,
             query_params,
             header_params,
@@ -2392,13 +2697,16 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_part(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_part(
+        self, project_uid, job_uid, **kwargs
+    ) -> JobPartExtendedDto:  # noqa: E501
         """Get job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2413,14 +2721,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_part_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.get_part_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_part_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_part_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> JobPartExtendedDto:  # noqa: E501
         """Get job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2436,37 +2750,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_part" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_part`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_part`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_part`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_part`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2477,29 +2793,34 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartExtendedDto',  # noqa: E501
+            response_type="JobPartExtendedDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_parts_workflow_step(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_parts_workflow_step(
+        self, project_uid, job_uid, **kwargs
+    ) -> ProjectWorkflowStepDto:  # noqa: E501
         """Get job's workflowStep  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2514,14 +2835,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_parts_workflow_step_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_parts_workflow_step_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_parts_workflow_step_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.get_parts_workflow_step_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_parts_workflow_step_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_parts_workflow_step_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> ProjectWorkflowStepDto:  # noqa: E501
         """Get job's workflowStep  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2537,37 +2864,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_parts_workflow_step" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_parts_workflow_step`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_parts_workflow_step`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_parts_workflow_step`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_parts_workflow_step`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2578,29 +2907,34 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/workflowStep', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/workflowStep",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectWorkflowStepDto',  # noqa: E501
+            response_type="ProjectWorkflowStepDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_segments_count(self, project_uid, **kwargs):  # noqa: E501
+    def get_segments_count(
+        self, project_uid, **kwargs
+    ) -> SegmentsCountsResponseListDto:  # noqa: E501
         """Get segments count  # noqa: E501
 
         Provides segments count (progress data)  # noqa: E501
@@ -2616,14 +2950,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_segments_count_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_segments_count_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_segments_count_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.get_segments_count_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_segments_count_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def get_segments_count_with_http_info(
+        self, project_uid, **kwargs
+    ) -> SegmentsCountsResponseListDto:  # noqa: E501
         """Get segments count  # noqa: E501
 
         Provides segments count (progress data)  # noqa: E501
@@ -2640,31 +2980,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_segments_count" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_segments_count`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_segments_count`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2674,36 +3015,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/segmentsCount', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/segmentsCount",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SegmentsCountsResponseListDto',  # noqa: E501
+            response_type="SegmentsCountsResponseListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_translation_resources(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_translation_resources(
+        self, project_uid, job_uid, **kwargs
+    ) -> TranslationResourcesDto:  # noqa: E501
         """Get translation resources  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2718,14 +3067,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_translation_resources_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_translation_resources_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_translation_resources_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.get_translation_resources_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_translation_resources_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_translation_resources_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> TranslationResourcesDto:  # noqa: E501
         """Get translation resources  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2741,37 +3096,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_translation_resources" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_translation_resources`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_translation_resources`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_translation_resources`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_translation_resources`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2782,29 +3139,34 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/translationResources', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/translationResources",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TranslationResourcesDto',  # noqa: E501
+            response_type="TranslationResourcesDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_part_analyse_v3(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def list_part_analyse_v3(
+        self, project_uid, job_uid, **kwargs
+    ) -> PageDtoAnalyseReference:  # noqa: E501
         """List analyses  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2821,14 +3183,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_part_analyse_v3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_part_analyse_v3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_part_analyse_v3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.list_part_analyse_v3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_part_analyse_v3_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def list_part_analyse_v3_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> PageDtoAnalyseReference:  # noqa: E501
         """List analyses  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2846,43 +3214,50 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "job_uid",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_part_analyse_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `list_part_analyse_v3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `list_part_analyse_v3`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `list_part_analyse_v3`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `list_part_analyse_v3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -2891,29 +3266,34 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/jobs/{jobUid}/analyses', 'GET',
+            "/api2/v3/projects/{projectUid}/jobs/{jobUid}/analyses",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoAnalyseReference',  # noqa: E501
+            response_type="PageDtoAnalyseReference",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_parts_v2(self, project_uid, **kwargs):  # noqa: E501
+    def list_parts_v2(
+        self, project_uid, **kwargs
+    ) -> PageDtoJobPartReferenceV2:  # noqa: E501
         """List jobs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2937,14 +3317,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_parts_v2_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_parts_v2_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_parts_v2_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.list_parts_v2_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_parts_v2_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def list_parts_v2_with_http_info(
+        self, project_uid, **kwargs
+    ) -> PageDtoJobPartReferenceV2:  # noqa: E501
         """List jobs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2969,54 +3355,71 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'page_number', 'page_size', 'count', 'workflow_level', 'status', 'assigned_user', 'due_in_hours', 'filename', 'target_lang', 'assigned_vendor']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "page_number",
+            "page_size",
+            "count",
+            "workflow_level",
+            "status",
+            "assigned_user",
+            "due_in_hours",
+            "filename",
+            "target_lang",
+            "assigned_vendor",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_parts_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `list_parts_v2`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `list_parts_v2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
-        if 'count' in params:
-            query_params.append(('count', params['count']))  # noqa: E501
-        if 'workflow_level' in params:
-            query_params.append(('workflowLevel', params['workflow_level']))  # noqa: E501
-        if 'status' in params:
-            query_params.append(('status', params['status']))  # noqa: E501
-            collection_formats['status'] = 'multi'  # noqa: E501
-        if 'assigned_user' in params:
-            query_params.append(('assignedUser', params['assigned_user']))  # noqa: E501
-        if 'due_in_hours' in params:
-            query_params.append(('dueInHours', params['due_in_hours']))  # noqa: E501
-        if 'filename' in params:
-            query_params.append(('filename', params['filename']))  # noqa: E501
-        if 'target_lang' in params:
-            query_params.append(('targetLang', params['target_lang']))  # noqa: E501
-        if 'assigned_vendor' in params:
-            query_params.append(('assignedVendor', params['assigned_vendor']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
+        if "count" in params:
+            query_params.append(("count", params["count"]))  # noqa: E501
+        if "workflow_level" in params:
+            query_params.append(
+                ("workflowLevel", params["workflow_level"])
+            )  # noqa: E501
+        if "status" in params:
+            query_params.append(("status", params["status"]))  # noqa: E501
+            collection_formats["status"] = "multi"  # noqa: E501
+        if "assigned_user" in params:
+            query_params.append(("assignedUser", params["assigned_user"]))  # noqa: E501
+        if "due_in_hours" in params:
+            query_params.append(("dueInHours", params["due_in_hours"]))  # noqa: E501
+        if "filename" in params:
+            query_params.append(("filename", params["filename"]))  # noqa: E501
+        if "target_lang" in params:
+            query_params.append(("targetLang", params["target_lang"]))  # noqa: E501
+        if "assigned_vendor" in params:
+            query_params.append(
+                ("assignedVendor", params["assigned_vendor"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -3025,29 +3428,34 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs', 'GET',
+            "/api2/v2/projects/{projectUid}/jobs",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoJobPartReferenceV2',  # noqa: E501
+            response_type="PageDtoJobPartReferenceV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_providers4(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def list_providers4(
+        self, project_uid, job_uid, **kwargs
+    ) -> ProviderListDtoV2:  # noqa: E501
         """Get suggested providers  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3062,14 +3470,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_providers4_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_providers4_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_providers4_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.list_providers4_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_providers4_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def list_providers4_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> ProviderListDtoV2:  # noqa: E501
         """Get suggested providers  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3085,37 +3499,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_providers4" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `list_providers4`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `list_providers4`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `list_providers4`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `list_providers4`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -3126,29 +3542,34 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/{jobUid}/providers/suggest', 'POST',
+            "/api2/v2/projects/{projectUid}/jobs/{jobUid}/providers/suggest",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProviderListDtoV2',  # noqa: E501
+            response_type="ProviderListDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_segments(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def list_segments(
+        self, project_uid, job_uid, **kwargs
+    ) -> SegmentListDto:  # noqa: E501
         """Get segments  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3165,14 +3586,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_segments_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_segments_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_segments_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.list_segments_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_segments_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def list_segments_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> SegmentListDto:  # noqa: E501
         """Get segments  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3190,43 +3617,50 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'begin_index', 'end_index']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "job_uid",
+            "begin_index",
+            "end_index",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_segments" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `list_segments`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `list_segments`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `list_segments`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `list_segments`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
-        if 'begin_index' in params:
-            query_params.append(('beginIndex', params['begin_index']))  # noqa: E501
-        if 'end_index' in params:
-            query_params.append(('endIndex', params['end_index']))  # noqa: E501
+        if "begin_index" in params:
+            query_params.append(("beginIndex", params["begin_index"]))  # noqa: E501
+        if "end_index" in params:
+            query_params.append(("endIndex", params["end_index"]))  # noqa: E501
 
         header_params = {}
 
@@ -3235,29 +3669,32 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/segments', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/segments",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SegmentListDto',  # noqa: E501
+            response_type="SegmentListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def notify_assigned(self, project_uid, **kwargs):  # noqa: E501
+    def notify_assigned(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Notify assigned users  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3272,14 +3709,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.notify_assigned_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.notify_assigned_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.notify_assigned_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.notify_assigned_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def notify_assigned_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def notify_assigned_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Notify assigned users  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3295,31 +3738,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method notify_assigned" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `notify_assigned`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `notify_assigned`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -3329,17 +3773,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/notifyAssigned', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/notifyAssigned",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -3348,13 +3796,16 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def patch_part(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def patch_part(
+        self, project_uid, job_uid, **kwargs
+    ) -> JobPartExtendedDto:  # noqa: E501
         """Patch job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3370,14 +3821,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.patch_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.patch_part_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.patch_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.patch_part_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def patch_part_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def patch_part_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> JobPartExtendedDto:  # noqa: E501
         """Patch job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3394,37 +3851,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method patch_part" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `patch_part`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `patch_part`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `patch_part`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `patch_part`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -3434,36 +3893,42 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}', 'PATCH',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}",
+            "PATCH",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartExtendedDto',  # noqa: E501
+            response_type="JobPartExtendedDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def patch_update_job_parts(self, **kwargs):  # noqa: E501
+    def patch_update_job_parts(self, **kwargs) -> JobPartPatchResultDto:  # noqa: E501
         """Edit jobs (with possible partial updates)  # noqa: E501
 
         Allows partial update, not breaking whole batch if single job fails and returns list of errors  # noqa: E501
@@ -3478,14 +3943,16 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.patch_update_job_parts_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.patch_update_job_parts_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def patch_update_job_parts_with_http_info(self, **kwargs):  # noqa: E501
+    def patch_update_job_parts_with_http_info(
+        self, **kwargs
+    ) -> JobPartPatchResultDto:  # noqa: E501
         """Edit jobs (with possible partial updates)  # noqa: E501
 
         Allows partial update, not breaking whole batch if single job fails and returns list of errors  # noqa: E501
@@ -3501,21 +3968,21 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method patch_update_job_parts" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -3529,36 +3996,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/jobs', 'PATCH',
+            "/api2/v3/jobs",
+            "PATCH",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartPatchResultDto',  # noqa: E501
+            response_type="JobPartPatchResultDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def preview_urls(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def preview_urls(
+        self, project_uid, job_uid, **kwargs
+    ) -> PreviewUrlsDto:  # noqa: E501
         """Get PDF preview  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3574,14 +4049,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.preview_urls_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.preview_urls_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.preview_urls_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.preview_urls_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def preview_urls_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def preview_urls_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> PreviewUrlsDto:  # noqa: E501
         """Get PDF preview  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3598,41 +4079,45 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'workflow_level']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "workflow_level"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method preview_urls" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `preview_urls`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `preview_urls`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `preview_urls`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `preview_urls`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
-        if 'workflow_level' in params:
-            query_params.append(('workflowLevel', params['workflow_level']))  # noqa: E501
+        if "workflow_level" in params:
+            query_params.append(
+                ("workflowLevel", params["workflow_level"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -3641,29 +4126,32 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/previewUrl', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/previewUrl",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PreviewUrlsDto',  # noqa: E501
+            response_type="PreviewUrlsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def pseudo_translate1(self, project_uid, **kwargs):  # noqa: E501
+    def pseudo_translate1(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Pseudo-translate job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3678,14 +4166,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.pseudo_translate1_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.pseudo_translate1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.pseudo_translate1_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.pseudo_translate1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def pseudo_translate1_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def pseudo_translate1_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Pseudo-translate job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3701,31 +4195,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method pseudo_translate1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `pseudo_translate1`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `pseudo_translate1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -3735,17 +4230,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/pseudoTranslate', 'POST',
+            "/api2/v2/projects/{projectUid}/jobs/pseudoTranslate",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -3754,13 +4253,16 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def pseudo_translate_job_part(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def pseudo_translate_job_part(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Pseudo-translates job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3776,14 +4278,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.pseudo_translate_job_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.pseudo_translate_job_part_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.pseudo_translate_job_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.pseudo_translate_job_part_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def pseudo_translate_job_part_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def pseudo_translate_job_part_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Pseudo-translates job  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3800,37 +4308,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method pseudo_translate_job_part" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `pseudo_translate_job_part`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `pseudo_translate_job_part`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `pseudo_translate_job_part`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `pseudo_translate_job_part`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -3840,17 +4350,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/pseudoTranslate', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/pseudoTranslate",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -3859,13 +4373,16 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_by_job3(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def search_by_job3(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Search job's translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3881,14 +4398,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_by_job3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_by_job3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_by_job3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.search_by_job3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_by_job3_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def search_by_job3_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Search job's translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3905,37 +4428,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_by_job3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `search_by_job3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `search_by_job3`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `search_by_job3`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `search_by_job3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -3945,36 +4470,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/search', 'POST',
+            "/api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/search",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchResponseListTmDtoV3',  # noqa: E501
+            response_type="SearchResponseListTmDtoV3",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_parts_in_project(self, project_uid, **kwargs):  # noqa: E501
+    def search_parts_in_project(
+        self, project_uid, **kwargs
+    ) -> SearchJobsDto:  # noqa: E501
         """Search jobs in project  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3989,14 +4522,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_parts_in_project_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_parts_in_project_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_parts_in_project_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.search_parts_in_project_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_parts_in_project_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def search_parts_in_project_with_http_info(
+        self, project_uid, **kwargs
+    ) -> SearchJobsDto:  # noqa: E501
         """Search jobs in project  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4012,31 +4551,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_parts_in_project" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `search_parts_in_project`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `search_parts_in_project`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -4046,36 +4586,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/search', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/search",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchJobsDto',  # noqa: E501
+            response_type="SearchJobsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_segment_by_job(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def search_segment_by_job(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory for segment by job  # noqa: E501
 
         Returns at most <i>maxSegments</i>             records with <i>score >= scoreThreshold</i> and at most <i>maxSubsegments</i> records which are subsegment,             i.e. the source text is substring of the query text.  # noqa: E501
@@ -4092,14 +4640,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_segment_by_job_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_segment_by_job_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_segment_by_job_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.search_segment_by_job_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_segment_by_job_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def search_segment_by_job_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory for segment by job  # noqa: E501
 
         Returns at most <i>maxSegments</i>             records with <i>score >= scoreThreshold</i> and at most <i>maxSubsegments</i> records which are subsegment,             i.e. the source text is substring of the query text.  # noqa: E501
@@ -4117,37 +4671,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_segment_by_job" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `search_segment_by_job`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `search_segment_by_job`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `search_segment_by_job`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `search_segment_by_job`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -4157,36 +4713,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/transMemories/searchSegment', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/transMemories/searchSegment",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchResponseListTmDto',  # noqa: E501
+            response_type="SearchResponseListTmDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_terms_by_job1(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def search_terms_by_job1(
+        self, job_uid, project_uid, **kwargs
+    ) -> SearchTbResponseListDto:  # noqa: E501
         """Search job's term bases  # noqa: E501
 
         Search all read term bases assigned to the job  # noqa: E501
@@ -4203,14 +4767,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_terms_by_job1_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_terms_by_job1_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_terms_by_job1_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+            (data) = self.search_terms_by_job1_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_terms_by_job1_with_http_info(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def search_terms_by_job1_with_http_info(
+        self, job_uid, project_uid, **kwargs
+    ) -> SearchTbResponseListDto:  # noqa: E501
         """Search job's term bases  # noqa: E501
 
         Search all read term bases assigned to the job  # noqa: E501
@@ -4228,37 +4798,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_terms_by_job1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `search_terms_by_job1`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `search_terms_by_job1`"
+            )  # noqa: E501
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `search_terms_by_job1`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `search_terms_by_job1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -4268,36 +4840,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchByJob', 'POST',
+            "/api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchByJob",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchTbResponseListDto',  # noqa: E501
+            response_type="SearchTbResponseListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_terms_in_text_by_job_v2(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def search_terms_in_text_by_job_v2(
+        self, job_uid, project_uid, **kwargs
+    ) -> SearchInTextResponseList2Dto:  # noqa: E501
         """Search terms in text  # noqa: E501
 
         Search in text in all read term bases assigned to the job  # noqa: E501
@@ -4314,14 +4894,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_terms_in_text_by_job_v2_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_terms_in_text_by_job_v2_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_terms_in_text_by_job_v2_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+            (data) = self.search_terms_in_text_by_job_v2_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_terms_in_text_by_job_v2_with_http_info(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def search_terms_in_text_by_job_v2_with_http_info(
+        self, job_uid, project_uid, **kwargs
+    ) -> SearchInTextResponseList2Dto:  # noqa: E501
         """Search terms in text  # noqa: E501
 
         Search in text in all read term bases assigned to the job  # noqa: E501
@@ -4339,37 +4925,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_terms_in_text_by_job_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `search_terms_in_text_by_job_v2`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `search_terms_in_text_by_job_v2`"
+            )  # noqa: E501
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `search_terms_in_text_by_job_v2`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `search_terms_in_text_by_job_v2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -4379,36 +4967,42 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchInTextByJob', 'POST',
+            "/api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchInTextByJob",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchInTextResponseList2Dto',  # noqa: E501
+            response_type="SearchInTextResponseList2Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def set_status(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def set_status(self, project_uid, job_uid, **kwargs) -> None:  # noqa: E501
         """Edit job status  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4424,14 +5018,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.set_status_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.set_status_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.set_status_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.set_status_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def set_status_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def set_status_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Edit job status  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4448,37 +5048,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_status" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `set_status`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `set_status`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `set_status`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `set_status`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -4488,17 +5090,21 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/setStatus', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/setStatus",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -4507,13 +5113,14 @@ class JobApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def split(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def split(self, project_uid, job_uid, **kwargs) -> JobPartsDto:  # noqa: E501
         """Split job  # noqa: E501
 
          Splits job by one of the following methods: * **After specific segments** - fill in `segmentOrdinals` * **Into X parts** - fill in `partCount`  * **Into parts with specific size** - fill in `partSize`. partSize represents segment count in each part. * **Into parts with specific word count** - fill in `wordCount`   * **By document parts** - fill in `byDocumentParts`, works only with **PowerPoint** files   Only one option at a time is allowed.  # noqa: E501
@@ -4530,14 +5137,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.split_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.split_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.split_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.split_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def split_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def split_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> JobPartsDto:  # noqa: E501
         """Split job  # noqa: E501
 
          Splits job by one of the following methods: * **After specific segments** - fill in `segmentOrdinals` * **Into X parts** - fill in `partCount`  * **Into parts with specific size** - fill in `partSize`. partSize represents segment count in each part. * **Into parts with specific word count** - fill in `wordCount`   * **By document parts** - fill in `byDocumentParts`, works only with **PowerPoint** files   Only one option at a time is allowed.  # noqa: E501
@@ -4555,37 +5168,38 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method split" % key
+                    "Got an unexpected keyword argument '%s'" " to method split" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `split`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `split`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `split`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `split`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -4595,36 +5209,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/split', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/split",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartsDto',  # noqa: E501
+            response_type="JobPartsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def status_changes(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def status_changes(
+        self, project_uid, job_uid, **kwargs
+    ) -> JobPartStatusChangesDto:  # noqa: E501
         """Get status changes  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4639,14 +5261,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.status_changes_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.status_changes_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.status_changes_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.status_changes_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def status_changes_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def status_changes_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> JobPartStatusChangesDto:  # noqa: E501
         """Get status changes  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4662,37 +5290,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method status_changes" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `status_changes`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `status_changes`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `status_changes`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `status_changes`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -4703,29 +5333,34 @@ class JobApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/statusChanges', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/statusChanges",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartStatusChangesDto',  # noqa: E501
+            response_type="JobPartStatusChangesDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_source(self, project_uid, **kwargs):  # noqa: E501
+    def update_source(
+        self, project_uid, **kwargs
+    ) -> JobUpdateSourceResponseDto:  # noqa: E501
         """Update source  # noqa: E501
 
          API updated source file for specified job  Job file can be provided directly in the message body.   Please supply jobs in `Memsource` header.   For file in the request body provide also the filename in `Content-Disposition` header.  If a job from a multilingual file is updated, all jobs from the same file are update too even if their UIDs aren't  listed in the jobs field.  Accepted metadata:     - `jobs` - **required** - list of jobs UID reference (maximum size `100`)   - `preTranslate` - pre translate flag (default `false`)   - `allowAutomaticPostAnalysis` - if automatic post editing analysis should be created. If not specified then value                                     is taken from the analyse settings of the project   - `callbackUrl` - consumer callback  Job restrictions:   - job must belong to project specified in path (`projectUid`)   - job `UID` must be from the first workflow step   - job cannot be split   - job cannot be continuous   - job cannot originate in a connector   - status in any of the job's workflow steps cannot be a final     status (`COMPLETED_BY_LINGUIST`, `COMPLETED`, `CANCELLED`)   - job UIDs must be from the same multilingual file if a multilingual file is updated   - multiple multilingual files or a mixture of multilingual and other jobs cannot be updated in one call  File restrictions:   - file cannot be a `.zip` file  Example:  ``` {   \"jobs\": [     {         \"uid\": \"jobIn1stWfStepAndNonFinalStatusUid\"     }   ],   \"preTranslate\": false,   \"allowAutomaticPostAnalysis\": false   \"callbackUrl\": \"https://my-shiny-service.com/consumeCallback\" } ```    # noqa: E501
@@ -4743,14 +5378,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_source_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_source_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_source_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.update_source_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_source_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def update_source_with_http_info(
+        self, project_uid, **kwargs
+    ) -> JobUpdateSourceResponseDto:  # noqa: E501
         """Update source  # noqa: E501
 
          API updated source file for specified job  Job file can be provided directly in the message body.   Please supply jobs in `Memsource` header.   For file in the request body provide also the filename in `Content-Disposition` header.  If a job from a multilingual file is updated, all jobs from the same file are update too even if their UIDs aren't  listed in the jobs field.  Accepted metadata:     - `jobs` - **required** - list of jobs UID reference (maximum size `100`)   - `preTranslate` - pre translate flag (default `false`)   - `allowAutomaticPostAnalysis` - if automatic post editing analysis should be created. If not specified then value                                     is taken from the analyse settings of the project   - `callbackUrl` - consumer callback  Job restrictions:   - job must belong to project specified in path (`projectUid`)   - job `UID` must be from the first workflow step   - job cannot be split   - job cannot be continuous   - job cannot originate in a connector   - status in any of the job's workflow steps cannot be a final     status (`COMPLETED_BY_LINGUIST`, `COMPLETED`, `CANCELLED`)   - job UIDs must be from the same multilingual file if a multilingual file is updated   - multiple multilingual files or a mixture of multilingual and other jobs cannot be updated in one call  File restrictions:   - file cannot be a `.zip` file  Example:  ``` {   \"jobs\": [     {         \"uid\": \"jobIn1stWfStepAndNonFinalStatusUid\"     }   ],   \"preTranslate\": false,   \"allowAutomaticPostAnalysis\": false   \"callbackUrl\": \"https://my-shiny-service.com/consumeCallback\" } ```    # noqa: E501
@@ -4769,74 +5410,90 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body', 'memsource', 'content_disposition']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "body",
+            "memsource",
+            "content_disposition",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_source" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `update_source`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `update_source`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
         header_params = {}
-        if 'memsource' in params:
-            header_params['Memsource'] = params['memsource']  # noqa: E501
-        if 'content_disposition' in params:
-            header_params['Content-Disposition'] = params['content_disposition']  # noqa: E501
+        if "memsource" in params:
+            header_params["Memsource"] = params["memsource"]  # noqa: E501
+        if "content_disposition" in params:
+            header_params["Content-Disposition"] = params[
+                "content_disposition"
+            ]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/source', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/source",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobUpdateSourceResponseDto',  # noqa: E501
+            response_type="JobUpdateSourceResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_target(self, project_uid, **kwargs):  # noqa: E501
+    def update_target(
+        self, project_uid, **kwargs
+    ) -> JobUpdateSourceResponseDto:  # noqa: E501
         """Update target  # noqa: E501
 
          API update target file for specified job  Job file can be provided directly in the message body.  Please supply jobs in `Memsource` header.  For file in the request body provide also the filename in `Content-Disposition` header.  Accepted metadata:    - `jobs` - **required** - list of jobs UID reference (maximum size `1`)   - `propagateConfirmedToTm` - sets if confirmed segments should be stored in TM (default value: true)   - `callbackUrl` - consumer callback   - `targetSegmentationRule` - ID reference to segmentation rule of organization to use for update target   - `unconfirmChangedSegments` - sets if segments should stay unconfirmed  Job restrictions:   - job must belong to project specified in path (`projectUid`)   - job cannot be split   - job cannot be continuous   - job cannot be multilingual   - job cannot originate in a connector   - job cannot have different file extension than original file  File restrictions:   - file cannot be a `.zip` file   - update target is not allowed for jobs with file extensions: xliff, po, tbx, tmx, ttx, ts  Example:  ``` {   \"jobs\": [     {         \"uid\": \"jobUid\"     }   ],   \"propagateConfirmedToTm\": true,   \"targetSegmentationRule\": {         \"id\": \"1\"    },   \"callbackUrl\": \"https://my-shiny-service.com/consumeCallback\" } ```    # noqa: E501
@@ -4854,14 +5511,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_target_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_target_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_target_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.update_target_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_target_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def update_target_with_http_info(
+        self, project_uid, **kwargs
+    ) -> JobUpdateSourceResponseDto:  # noqa: E501
         """Update target  # noqa: E501
 
          API update target file for specified job  Job file can be provided directly in the message body.  Please supply jobs in `Memsource` header.  For file in the request body provide also the filename in `Content-Disposition` header.  Accepted metadata:    - `jobs` - **required** - list of jobs UID reference (maximum size `1`)   - `propagateConfirmedToTm` - sets if confirmed segments should be stored in TM (default value: true)   - `callbackUrl` - consumer callback   - `targetSegmentationRule` - ID reference to segmentation rule of organization to use for update target   - `unconfirmChangedSegments` - sets if segments should stay unconfirmed  Job restrictions:   - job must belong to project specified in path (`projectUid`)   - job cannot be split   - job cannot be continuous   - job cannot be multilingual   - job cannot originate in a connector   - job cannot have different file extension than original file  File restrictions:   - file cannot be a `.zip` file   - update target is not allowed for jobs with file extensions: xliff, po, tbx, tmx, ttx, ts  Example:  ``` {   \"jobs\": [     {         \"uid\": \"jobUid\"     }   ],   \"propagateConfirmedToTm\": true,   \"targetSegmentationRule\": {         \"id\": \"1\"    },   \"callbackUrl\": \"https://my-shiny-service.com/consumeCallback\" } ```    # noqa: E501
@@ -4880,74 +5543,88 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body', 'memsource', 'content_disposition']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "body",
+            "memsource",
+            "content_disposition",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_target" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `update_target`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `update_target`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
         header_params = {}
-        if 'memsource' in params:
-            header_params['Memsource'] = params['memsource']  # noqa: E501
-        if 'content_disposition' in params:
-            header_params['Content-Disposition'] = params['content_disposition']  # noqa: E501
+        if "memsource" in params:
+            header_params["Memsource"] = params["memsource"]  # noqa: E501
+        if "content_disposition" in params:
+            header_params["Content-Disposition"] = params[
+                "content_disposition"
+            ]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/target', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/target",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobUpdateSourceResponseDto',  # noqa: E501
+            response_type="JobUpdateSourceResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def upload_bilingual_file(self, **kwargs):  # noqa: E501
+    def upload_bilingual_file(self, **kwargs) -> JobPartsDto:  # noqa: E501
         """Upload bilingual file  # noqa: E501
 
         Returns updated job parts  # noqa: E501
@@ -4965,14 +5642,16 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.upload_bilingual_file_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.upload_bilingual_file_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def upload_bilingual_file_with_http_info(self, **kwargs):  # noqa: E501
+    def upload_bilingual_file_with_http_info(
+        self, **kwargs
+    ) -> JobPartsDto:  # noqa: E501
         """Upload bilingual file  # noqa: E501
 
         Returns updated job parts  # noqa: E501
@@ -4991,33 +5670,40 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body', 'format', 'save_to_trans_memory', 'set_completed']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "body",
+            "format",
+            "save_to_trans_memory",
+            "set_completed",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method upload_bilingual_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'format' in params:
-            query_params.append(('format', params['format']))  # noqa: E501
-        if 'save_to_trans_memory' in params:
-            query_params.append(('saveToTransMemory', params['save_to_trans_memory']))  # noqa: E501
-        if 'set_completed' in params:
-            query_params.append(('setCompleted', params['set_completed']))  # noqa: E501
+        if "format" in params:
+            query_params.append(("format", params["format"]))  # noqa: E501
+        if "save_to_trans_memory" in params:
+            query_params.append(
+                ("saveToTransMemory", params["save_to_trans_memory"])
+            )  # noqa: E501
+        if "set_completed" in params:
+            query_params.append(("setCompleted", params["set_completed"]))  # noqa: E501
 
         header_params = {}
 
@@ -5025,36 +5711,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/bilingualFiles', 'PUT',
+            "/api2/v1/bilingualFiles",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartsDto',  # noqa: E501
+            response_type="JobPartsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def upload_handover_file(self, memsource, content_disposition, project_uid, **kwargs):  # noqa: E501
+    def upload_handover_file(
+        self, memsource, content_disposition, project_uid, **kwargs
+    ) -> FileHandoverDto:  # noqa: E501
         """Upload handover file  # noqa: E501
 
          For following jobs the handover file is not supported: * Continuous jobs * Jobs from connectors * Split jobs * Multilingual jobs   # noqa: E501
@@ -5073,14 +5767,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.upload_handover_file_with_http_info(memsource, content_disposition, project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.upload_handover_file_with_http_info(
+                memsource, content_disposition, project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.upload_handover_file_with_http_info(memsource, content_disposition, project_uid, **kwargs)  # noqa: E501
+            (data) = self.upload_handover_file_with_http_info(
+                memsource, content_disposition, project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def upload_handover_file_with_http_info(self, memsource, content_disposition, project_uid, **kwargs):  # noqa: E501
+    def upload_handover_file_with_http_info(
+        self, memsource, content_disposition, project_uid, **kwargs
+    ) -> FileHandoverDto:  # noqa: E501
         """Upload handover file  # noqa: E501
 
          For following jobs the handover file is not supported: * Continuous jobs * Jobs from connectors * Split jobs * Multilingual jobs   # noqa: E501
@@ -5100,84 +5800,103 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['memsource', 'content_disposition', 'project_uid', 'body', 'content_length']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "memsource",
+            "content_disposition",
+            "project_uid",
+            "body",
+            "content_length",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method upload_handover_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'memsource' is set
-        if ('memsource' not in params or
-                params['memsource'] is None):
-            raise ValueError("Missing the required parameter `memsource` when calling `upload_handover_file`")  # noqa: E501
+        if "memsource" not in params or params["memsource"] is None:
+            raise ValueError(
+                "Missing the required parameter `memsource` when calling `upload_handover_file`"
+            )  # noqa: E501
         # verify the required parameter 'content_disposition' is set
-        if ('content_disposition' not in params or
-                params['content_disposition'] is None):
-            raise ValueError("Missing the required parameter `content_disposition` when calling `upload_handover_file`")  # noqa: E501
+        if "content_disposition" not in params or params["content_disposition"] is None:
+            raise ValueError(
+                "Missing the required parameter `content_disposition` when calling `upload_handover_file`"
+            )  # noqa: E501
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `upload_handover_file`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `upload_handover_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
         header_params = {}
-        if 'memsource' in params:
-            header_params['Memsource'] = params['memsource']  # noqa: E501
-        if 'content_disposition' in params:
-            header_params['Content-Disposition'] = params['content_disposition']  # noqa: E501
-        if 'content_length' in params:
-            header_params['Content-Length'] = params['content_length']  # noqa: E501
+        if "memsource" in params:
+            header_params["Memsource"] = params["memsource"]  # noqa: E501
+        if "content_disposition" in params:
+            header_params["Content-Disposition"] = params[
+                "content_disposition"
+            ]  # noqa: E501
+        if "content_length" in params:
+            header_params["Content-Length"] = params["content_length"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/fileHandovers', 'PUT',
+            "/api2/v1/projects/{projectUid}/fileHandovers",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FileHandoverDto',  # noqa: E501
+            response_type="FileHandoverDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def web_editor_link_v2(self, project_uid, **kwargs):  # noqa: E501
+    def web_editor_link_v2(
+        self, project_uid, **kwargs
+    ) -> WebEditorLinkDtoV2:  # noqa: E501
         """Get Web Editor URL  # noqa: E501
 
          Possible warning codes are:   - `NOT_ACCEPTED_BY_LINGUIST` - Job is not accepted by linguist   - `NOT_ASSIGNED_TO_LINGUIST` - Job is not assigned to linguist   - `PDF` - One of requested jobs is PDF   - `PREVIOUS_WORKFLOW_NOT_COMPLETED` - Previous workflow step is not completed   - `PREVIOUS_WORKFLOW_NOT_COMPLETED_STRICT` - Previous workflow step is not completed and project has strictWorkflowFinish set to true   - `IN_DELIVERED_STATE` - Jobs in DELIVERED state   - `IN_COMPLETED_STATE` - Jobs in COMPLETED state   - `IN_REJECTED_STATE` - Jobs in REJECTED state  Possible error codes are:   - `ASSIGNED_TO_OTHER_USER` - Job is accepted by other user   - `NOT_UNIQUE_TARGET_LANG` - Requested jobs contains different target locales   - `TOO_MANY_SEGMENTS` - Count of requested job's segments is higher than **40000**   - `TOO_MANY_JOBS` - Count of requested jobs is higher than **290**   - `COMPLETED_JOINED_WITH_OTHER` - Jobs in COMPLETED state cannot be joined with jobs in other states   - `DELIVERED_JOINED_WITH_OTHER` - Jobs in DELIVERED state cannot be joined with jobs in other states   - `REJECTED_JOINED_WITH_OTHER` - Jobs in REJECTED state cannot be joined with jobs in other states  Warning response example: ``` {     \"warnings\": [         {             \"message\": \"Not accepted by linguist\",             \"args\": {                 \"jobs\": [                     \"abcd1234\"                 ]             },             \"code\": \"NOT_ACCEPTED_BY_LINGUIST\"         },         {             \"message\": \"Previous workflow step not completed\",             \"args\": {                 \"jobs\": [                     \"abcd1234\"                 ]             },             \"code\": \"PREVIOUS_WORKFLOW_NOT_COMPLETED\"         }     ],     \"url\": \"/web/job/abcd1234-efgh5678/translate\" } ```  Error response example: Status: `400 Bad Request` ``` {     \"errorCode\": \"NOT_UNIQUE_TARGET_LANG\",     \"errorDescription\": \"Only files with identical target languages can be joined\",     \"errorDetails\": [         {             \"code\": \"NOT_UNIQUE_TARGET_LANG\",             \"args\": {                 \"targetLocales\": [                     \"de\",                     \"en\"                 ]             },             \"message\": \"Only files with identical target languages can be joined\"         },         {             \"code\": \"TOO_MANY_SEGMENTS\",             \"args\": {                 \"maxSegments\": 40000,                 \"segments\": 400009             },             \"message\": \"Up to 40000 segments can be opened in the Memsource Web Editor, job has 400009 segments\"         }     ] } ```   # noqa: E501
@@ -5193,14 +5912,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.web_editor_link_v2_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.web_editor_link_v2_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.web_editor_link_v2_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.web_editor_link_v2_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def web_editor_link_v2_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def web_editor_link_v2_with_http_info(
+        self, project_uid, **kwargs
+    ) -> WebEditorLinkDtoV2:  # noqa: E501
         """Get Web Editor URL  # noqa: E501
 
          Possible warning codes are:   - `NOT_ACCEPTED_BY_LINGUIST` - Job is not accepted by linguist   - `NOT_ASSIGNED_TO_LINGUIST` - Job is not assigned to linguist   - `PDF` - One of requested jobs is PDF   - `PREVIOUS_WORKFLOW_NOT_COMPLETED` - Previous workflow step is not completed   - `PREVIOUS_WORKFLOW_NOT_COMPLETED_STRICT` - Previous workflow step is not completed and project has strictWorkflowFinish set to true   - `IN_DELIVERED_STATE` - Jobs in DELIVERED state   - `IN_COMPLETED_STATE` - Jobs in COMPLETED state   - `IN_REJECTED_STATE` - Jobs in REJECTED state  Possible error codes are:   - `ASSIGNED_TO_OTHER_USER` - Job is accepted by other user   - `NOT_UNIQUE_TARGET_LANG` - Requested jobs contains different target locales   - `TOO_MANY_SEGMENTS` - Count of requested job's segments is higher than **40000**   - `TOO_MANY_JOBS` - Count of requested jobs is higher than **290**   - `COMPLETED_JOINED_WITH_OTHER` - Jobs in COMPLETED state cannot be joined with jobs in other states   - `DELIVERED_JOINED_WITH_OTHER` - Jobs in DELIVERED state cannot be joined with jobs in other states   - `REJECTED_JOINED_WITH_OTHER` - Jobs in REJECTED state cannot be joined with jobs in other states  Warning response example: ``` {     \"warnings\": [         {             \"message\": \"Not accepted by linguist\",             \"args\": {                 \"jobs\": [                     \"abcd1234\"                 ]             },             \"code\": \"NOT_ACCEPTED_BY_LINGUIST\"         },         {             \"message\": \"Previous workflow step not completed\",             \"args\": {                 \"jobs\": [                     \"abcd1234\"                 ]             },             \"code\": \"PREVIOUS_WORKFLOW_NOT_COMPLETED\"         }     ],     \"url\": \"/web/job/abcd1234-efgh5678/translate\" } ```  Error response example: Status: `400 Bad Request` ``` {     \"errorCode\": \"NOT_UNIQUE_TARGET_LANG\",     \"errorDescription\": \"Only files with identical target languages can be joined\",     \"errorDetails\": [         {             \"code\": \"NOT_UNIQUE_TARGET_LANG\",             \"args\": {                 \"targetLocales\": [                     \"de\",                     \"en\"                 ]             },             \"message\": \"Only files with identical target languages can be joined\"         },         {             \"code\": \"TOO_MANY_SEGMENTS\",             \"args\": {                 \"maxSegments\": 40000,                 \"segments\": 400009             },             \"message\": \"Up to 40000 segments can be opened in the Memsource Web Editor, job has 400009 segments\"         }     ] } ```   # noqa: E501
@@ -5217,31 +5942,32 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method web_editor_link_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `web_editor_link_v2`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `web_editor_link_v2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -5251,36 +5977,44 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/webEditor', 'POST',
+            "/api2/v2/projects/{projectUid}/jobs/webEditor",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='WebEditorLinkDtoV2',  # noqa: E501
+            response_type="WebEditorLinkDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def wild_card_search_by_job3(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def wild_card_search_by_job3(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Wildcard search job's translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -5296,14 +6030,20 @@ class JobApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.wild_card_search_by_job3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.wild_card_search_by_job3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.wild_card_search_by_job3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.wild_card_search_by_job3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def wild_card_search_by_job3_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def wild_card_search_by_job3_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Wildcard search job's translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -5320,37 +6060,39 @@ class JobApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method wild_card_search_by_job3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `wild_card_search_by_job3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `wild_card_search_by_job3`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `wild_card_search_by_job3`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `wild_card_search_by_job3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -5360,31 +6102,37 @@ class JobApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/wildCardSearch', 'POST',
+            "/api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/wildCardSearch",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchResponseListTmDtoV3',  # noqa: E501
+            response_type="SearchResponseListTmDtoV3",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

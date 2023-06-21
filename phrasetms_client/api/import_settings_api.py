@@ -32,7 +32,7 @@ class ImportSettingsApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def create_import_settings(self, **kwargs):  # noqa: E501
+    def create_import_settings(self, **kwargs) -> ImportSettingsDto:  # noqa: E501
         """Create import settings  # noqa: E501
 
         Pre-defined import settings is handy for [Create Job](#operation/createJob).                   See [supported file types](https://wiki.memsource.com/wiki/API_File_Type_List)  # noqa: E501
@@ -47,14 +47,16 @@ class ImportSettingsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_import_settings_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_import_settings_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_import_settings_with_http_info(self, **kwargs):  # noqa: E501
+    def create_import_settings_with_http_info(
+        self, **kwargs
+    ) -> ImportSettingsDto:  # noqa: E501
         """Create import settings  # noqa: E501
 
         Pre-defined import settings is handy for [Create Job](#operation/createJob).                   See [supported file types](https://wiki.memsource.com/wiki/API_File_Type_List)  # noqa: E501
@@ -70,21 +72,21 @@ class ImportSettingsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_import_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -98,36 +100,42 @@ class ImportSettingsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/importSettings', 'POST',
+            "/api2/v1/importSettings",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ImportSettingsDto',  # noqa: E501
+            response_type="ImportSettingsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_import_settings(self, uid, **kwargs):  # noqa: E501
+    def delete_import_settings(self, uid, **kwargs) -> None:  # noqa: E501
         """Delete import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -141,14 +149,20 @@ class ImportSettingsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_import_settings_with_http_info(uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_import_settings_with_http_info(
+                uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_import_settings_with_http_info(uid, **kwargs)  # noqa: E501
+            (data) = self.delete_import_settings_with_http_info(
+                uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_import_settings_with_http_info(self, uid, **kwargs):  # noqa: E501
+    def delete_import_settings_with_http_info(
+        self, uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -163,31 +177,32 @@ class ImportSettingsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_import_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'uid' is set
-        if ('uid' not in params or
-                params['uid'] is None):
-            raise ValueError("Missing the required parameter `uid` when calling `delete_import_settings`")  # noqa: E501
+        if "uid" not in params or params["uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `uid` when calling `delete_import_settings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'uid' in params:
-            path_params['uid'] = params['uid']  # noqa: E501
+        if "uid" in params:
+            path_params["uid"] = params["uid"]  # noqa: E501
 
         query_params = []
 
@@ -201,7 +216,8 @@ class ImportSettingsApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/importSettings/{uid}', 'DELETE',
+            "/api2/v1/importSettings/{uid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -210,13 +226,14 @@ class ImportSettingsApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_import_settings(self, **kwargs):  # noqa: E501
+    def edit_import_settings(self, **kwargs) -> ImportSettingsDto:  # noqa: E501
         """Edit import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -230,14 +247,16 @@ class ImportSettingsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.edit_import_settings_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.edit_import_settings_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def edit_import_settings_with_http_info(self, **kwargs):  # noqa: E501
+    def edit_import_settings_with_http_info(
+        self, **kwargs
+    ) -> ImportSettingsDto:  # noqa: E501
         """Edit import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -252,21 +271,21 @@ class ImportSettingsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_import_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -280,36 +299,42 @@ class ImportSettingsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/importSettings', 'PUT',
+            "/api2/v1/importSettings",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ImportSettingsDto',  # noqa: E501
+            response_type="ImportSettingsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_import_settings(self, uid, **kwargs):  # noqa: E501
+    def get_import_settings(self, uid, **kwargs) -> ImportSettingsDto:  # noqa: E501
         """Get import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -323,14 +348,18 @@ class ImportSettingsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_import_settings_with_http_info(uid, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_import_settings_with_http_info(uid, **kwargs)  # noqa: E501
+            (data) = self.get_import_settings_with_http_info(
+                uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_import_settings_with_http_info(self, uid, **kwargs):  # noqa: E501
+    def get_import_settings_with_http_info(
+        self, uid, **kwargs
+    ) -> ImportSettingsDto:  # noqa: E501
         """Get import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -345,31 +374,32 @@ class ImportSettingsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_import_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'uid' is set
-        if ('uid' not in params or
-                params['uid'] is None):
-            raise ValueError("Missing the required parameter `uid` when calling `get_import_settings`")  # noqa: E501
+        if "uid" not in params or params["uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `uid` when calling `get_import_settings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'uid' in params:
-            path_params['uid'] = params['uid']  # noqa: E501
+        if "uid" in params:
+            path_params["uid"] = params["uid"]  # noqa: E501
 
         query_params = []
 
@@ -380,29 +410,32 @@ class ImportSettingsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/importSettings/{uid}', 'GET',
+            "/api2/v1/importSettings/{uid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ImportSettingsDto',  # noqa: E501
+            response_type="ImportSettingsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_import_settings1(self, **kwargs):  # noqa: E501
+    def get_import_settings1(self, **kwargs) -> ImportSettingsDto:  # noqa: E501
         """Get organization's default import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -415,14 +448,16 @@ class ImportSettingsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_import_settings1_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_import_settings1_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_import_settings1_with_http_info(self, **kwargs):  # noqa: E501
+    def get_import_settings1_with_http_info(
+        self, **kwargs
+    ) -> ImportSettingsDto:  # noqa: E501
         """Get organization's default import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -437,20 +472,20 @@ class ImportSettingsApi(object):
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_import_settings1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -465,29 +500,34 @@ class ImportSettingsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/importSettings/default', 'GET',
+            "/api2/v1/importSettings/default",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ImportSettingsDto',  # noqa: E501
+            response_type="ImportSettingsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_import_settings(self, **kwargs):  # noqa: E501
+    def list_import_settings(
+        self, **kwargs
+    ) -> PageDtoImportSettingsReference:  # noqa: E501
         """List import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -503,14 +543,16 @@ class ImportSettingsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.list_import_settings_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_import_settings_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def list_import_settings_with_http_info(self, **kwargs):  # noqa: E501
+    def list_import_settings_with_http_info(
+        self, **kwargs
+    ) -> PageDtoImportSettingsReference:  # noqa: E501
         """List import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -527,33 +569,33 @@ class ImportSettingsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['name', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["name", "page_number", "page_size"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_import_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -562,24 +604,27 @@ class ImportSettingsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/importSettings', 'GET',
+            "/api2/v1/importSettings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoImportSettingsReference',  # noqa: E501
+            response_type="PageDtoImportSettingsReference",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

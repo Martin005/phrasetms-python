@@ -32,7 +32,7 @@ class AdditionalWorkflowStepApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def create_awf_step(self, **kwargs):  # noqa: E501
+    def create_awf_step(self, **kwargs) -> AdditionalWorkflowStepDto:  # noqa: E501
         """Create additional workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -53,7 +53,7 @@ class AdditionalWorkflowStepApi(object):
             (data) = self.create_awf_step_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_awf_step_with_http_info(self, **kwargs):  # noqa: E501
+    def create_awf_step_with_http_info(self, **kwargs) -> AdditionalWorkflowStepDto:  # noqa: E501
         """Create additional workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -125,7 +125,7 @@ class AdditionalWorkflowStepApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_awf_step(self, id, **kwargs):  # noqa: E501
+    def delete_awf_step(self, id, **kwargs) -> None:  # noqa: E501
         """Delete additional workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -146,7 +146,7 @@ class AdditionalWorkflowStepApi(object):
             (data) = self.delete_awf_step_with_http_info(id, **kwargs)  # noqa: E501
             return data
 
-    def delete_awf_step_with_http_info(self, id, **kwargs):  # noqa: E501
+    def delete_awf_step_with_http_info(self, id, **kwargs) -> None:  # noqa: E501
         """Delete additional workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -214,7 +214,7 @@ class AdditionalWorkflowStepApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def list_awf_steps(self, **kwargs):  # noqa: E501
+    def list_awf_steps(self, **kwargs) -> PageDtoAdditionalWorkflowStepDto:  # noqa: E501
         """List additional workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -237,7 +237,7 @@ class AdditionalWorkflowStepApi(object):
             (data) = self.list_awf_steps_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def list_awf_steps_with_http_info(self, **kwargs):  # noqa: E501
+    def list_awf_steps_with_http_info(self, **kwargs) -> PageDtoAdditionalWorkflowStepDto:  # noqa: E501
         """List additional workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

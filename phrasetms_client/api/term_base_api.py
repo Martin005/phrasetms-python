@@ -32,7 +32,9 @@ class TermBaseApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def browse_terms(self, term_base_uid, **kwargs):  # noqa: E501
+    def browse_terms(
+        self, term_base_uid, **kwargs
+    ) -> BrowseResponseListDto:  # noqa: E501
         """Browse term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -47,14 +49,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.browse_terms_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.browse_terms_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.browse_terms_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.browse_terms_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def browse_terms_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def browse_terms_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> BrowseResponseListDto:  # noqa: E501
         """Browse term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -70,31 +78,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method browse_terms" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `browse_terms`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `browse_terms`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
 
@@ -104,36 +113,42 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/browse', 'POST',
+            "/api2/v1/termBases/{termBaseUid}/browse",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='BrowseResponseListDto',  # noqa: E501
+            response_type="BrowseResponseListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def clear_term_base(self, term_base_uid, **kwargs):  # noqa: E501
+    def clear_term_base(self, term_base_uid, **kwargs) -> None:  # noqa: E501
         """Clear term base  # noqa: E501
 
         Deletes all terms  # noqa: E501
@@ -148,14 +163,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.clear_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.clear_term_base_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.clear_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.clear_term_base_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def clear_term_base_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def clear_term_base_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Clear term base  # noqa: E501
 
         Deletes all terms  # noqa: E501
@@ -171,31 +192,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method clear_term_base" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `clear_term_base`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `clear_term_base`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
 
@@ -209,7 +231,8 @@ class TermBaseApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/terms', 'DELETE',
+            "/api2/v1/termBases/{termBaseUid}/terms",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -218,13 +241,16 @@ class TermBaseApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_concept(self, term_base_uid, **kwargs):  # noqa: E501
+    def create_concept(
+        self, term_base_uid, **kwargs
+    ) -> ConceptWithMetadataDto:  # noqa: E501
         """Create concept  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -239,14 +265,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_concept_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_concept_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_concept_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.create_concept_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_concept_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def create_concept_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> ConceptWithMetadataDto:  # noqa: E501
         """Create concept  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -262,31 +294,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_concept" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `create_concept`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `create_concept`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
 
@@ -296,36 +329,42 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/concepts', 'POST',
+            "/api2/v1/termBases/{termBaseUid}/concepts",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConceptWithMetadataDto',  # noqa: E501
+            response_type="ConceptWithMetadataDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_term(self, term_base_uid, **kwargs):  # noqa: E501
+    def create_term(self, term_base_uid, **kwargs) -> TermDto:  # noqa: E501
         """Create term  # noqa: E501
 
         Set conceptId to assign the term to an existing concept, otherwise a new concept will be created.  # noqa: E501
@@ -341,14 +380,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_term_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_term_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_term_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.create_term_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_term_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def create_term_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> TermDto:  # noqa: E501
         """Create term  # noqa: E501
 
         Set conceptId to assign the term to an existing concept, otherwise a new concept will be created.  # noqa: E501
@@ -365,31 +410,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_term" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `create_term`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `create_term`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
 
@@ -399,36 +445,42 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/terms', 'POST',
+            "/api2/v1/termBases/{termBaseUid}/terms",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TermDto',  # noqa: E501
+            response_type="TermDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_term_base(self, **kwargs):  # noqa: E501
+    def create_term_base(self, **kwargs) -> TermBaseDto:  # noqa: E501
         """Create term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -442,14 +494,14 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_term_base_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_term_base_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_term_base_with_http_info(self, **kwargs):  # noqa: E501
+    def create_term_base_with_http_info(self, **kwargs) -> TermBaseDto:  # noqa: E501
         """Create term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -464,21 +516,21 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_term_base" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -492,36 +544,44 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases', 'POST',
+            "/api2/v1/termBases",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TermBaseDto',  # noqa: E501
+            response_type="TermBaseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_term_by_job(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def create_term_by_job(
+        self, job_uid, project_uid, **kwargs
+    ) -> TermPairDto:  # noqa: E501
         """Create term in job's term bases  # noqa: E501
 
         Create new term in the write term base assigned to the job  # noqa: E501
@@ -538,14 +598,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_term_by_job_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_term_by_job_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_term_by_job_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+            (data) = self.create_term_by_job_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_term_by_job_with_http_info(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def create_term_by_job_with_http_info(
+        self, job_uid, project_uid, **kwargs
+    ) -> TermPairDto:  # noqa: E501
         """Create term in job's term bases  # noqa: E501
 
         Create new term in the write term base assigned to the job  # noqa: E501
@@ -563,37 +629,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_term_by_job" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `create_term_by_job`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `create_term_by_job`"
+            )  # noqa: E501
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `create_term_by_job`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `create_term_by_job`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -603,36 +671,42 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/termBases/createByJob', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/termBases/createByJob",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TermPairDto',  # noqa: E501
+            response_type="TermPairDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_concept(self, term_base_uid, concept_id, **kwargs):  # noqa: E501
+    def delete_concept(self, term_base_uid, concept_id, **kwargs) -> None:  # noqa: E501
         """Delete concept  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -647,14 +721,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_concept_with_http_info(term_base_uid, concept_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_concept_with_http_info(
+                term_base_uid, concept_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_concept_with_http_info(term_base_uid, concept_id, **kwargs)  # noqa: E501
+            (data) = self.delete_concept_with_http_info(
+                term_base_uid, concept_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_concept_with_http_info(self, term_base_uid, concept_id, **kwargs):  # noqa: E501
+    def delete_concept_with_http_info(
+        self, term_base_uid, concept_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete concept  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -670,37 +750,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'concept_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "concept_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_concept" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `delete_concept`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `delete_concept`"
+            )  # noqa: E501
         # verify the required parameter 'concept_id' is set
-        if ('concept_id' not in params or
-                params['concept_id'] is None):
-            raise ValueError("Missing the required parameter `concept_id` when calling `delete_concept`")  # noqa: E501
+        if "concept_id" not in params or params["concept_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `concept_id` when calling `delete_concept`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
-        if 'concept_id' in params:
-            path_params['conceptId'] = params['concept_id']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
+        if "concept_id" in params:
+            path_params["conceptId"] = params["concept_id"]  # noqa: E501
 
         query_params = []
 
@@ -714,7 +796,8 @@ class TermBaseApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/concepts/{conceptId}', 'DELETE',
+            "/api2/v1/termBases/{termBaseUid}/concepts/{conceptId}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -723,13 +806,14 @@ class TermBaseApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_concepts(self, term_base_uid, **kwargs):  # noqa: E501
+    def delete_concepts(self, term_base_uid, **kwargs) -> None:  # noqa: E501
         """Delete concepts  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -744,14 +828,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_concepts_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_concepts_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_concepts_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_concepts_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_concepts_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def delete_concepts_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete concepts  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -767,31 +857,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_concepts" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `delete_concepts`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `delete_concepts`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
 
@@ -801,17 +892,21 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/concepts', 'DELETE',
+            "/api2/v1/termBases/{termBaseUid}/concepts",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -820,13 +915,14 @@ class TermBaseApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_term(self, term_base_uid, term_id, **kwargs):  # noqa: E501
+    def delete_term(self, term_base_uid, term_id, **kwargs) -> None:  # noqa: E501
         """Delete term  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -841,14 +937,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_term_with_http_info(term_base_uid, term_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_term_with_http_info(
+                term_base_uid, term_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_term_with_http_info(term_base_uid, term_id, **kwargs)  # noqa: E501
+            (data) = self.delete_term_with_http_info(
+                term_base_uid, term_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_term_with_http_info(self, term_base_uid, term_id, **kwargs):  # noqa: E501
+    def delete_term_with_http_info(
+        self, term_base_uid, term_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete term  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -864,37 +966,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'term_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "term_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_term" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `delete_term`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `delete_term`"
+            )  # noqa: E501
         # verify the required parameter 'term_id' is set
-        if ('term_id' not in params or
-                params['term_id'] is None):
-            raise ValueError("Missing the required parameter `term_id` when calling `delete_term`")  # noqa: E501
+        if "term_id" not in params or params["term_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_id` when calling `delete_term`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
-        if 'term_id' in params:
-            path_params['termId'] = params['term_id']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
+        if "term_id" in params:
+            path_params["termId"] = params["term_id"]  # noqa: E501
 
         query_params = []
 
@@ -908,7 +1012,8 @@ class TermBaseApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/terms/{termId}', 'DELETE',
+            "/api2/v1/termBases/{termBaseUid}/terms/{termId}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -917,13 +1022,14 @@ class TermBaseApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_term_base(self, term_base_uid, **kwargs):  # noqa: E501
+    def delete_term_base(self, term_base_uid, **kwargs) -> None:  # noqa: E501
         """Delete term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -938,14 +1044,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_term_base_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_term_base_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_term_base_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def delete_term_base_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -961,35 +1073,36 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'purge']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "purge"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_term_base" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `delete_term_base`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `delete_term_base`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
-        if 'purge' in params:
-            query_params.append(('purge', params['purge']))  # noqa: E501
+        if "purge" in params:
+            query_params.append(("purge", params["purge"]))  # noqa: E501
 
         header_params = {}
 
@@ -1001,7 +1114,8 @@ class TermBaseApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}', 'DELETE',
+            "/api2/v1/termBases/{termBaseUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -1010,13 +1124,14 @@ class TermBaseApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def export_term_base(self, term_base_uid, **kwargs):  # noqa: E501
+    def export_term_base(self, term_base_uid, **kwargs) -> None:  # noqa: E501
         """Export term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1033,14 +1148,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.export_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.export_term_base_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.export_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.export_term_base_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def export_term_base_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def export_term_base_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Export term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1058,39 +1179,40 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'format', 'charset', 'term_status']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "format", "charset", "term_status"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method export_term_base" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `export_term_base`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `export_term_base`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
-        if 'format' in params:
-            query_params.append(('format', params['format']))  # noqa: E501
-        if 'charset' in params:
-            query_params.append(('charset', params['charset']))  # noqa: E501
-        if 'term_status' in params:
-            query_params.append(('termStatus', params['term_status']))  # noqa: E501
+        if "format" in params:
+            query_params.append(("format", params["format"]))  # noqa: E501
+        if "charset" in params:
+            query_params.append(("charset", params["charset"]))  # noqa: E501
+        if "term_status" in params:
+            query_params.append(("termStatus", params["term_status"]))  # noqa: E501
 
         header_params = {}
 
@@ -1102,7 +1224,8 @@ class TermBaseApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/export', 'GET',
+            "/api2/v1/termBases/{termBaseUid}/export",
+            "GET",
             path_params,
             query_params,
             header_params,
@@ -1111,13 +1234,16 @@ class TermBaseApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_concept(self, term_base_uid, concept_uid, **kwargs):  # noqa: E501
+    def get_concept(
+        self, term_base_uid, concept_uid, **kwargs
+    ) -> ConceptWithMetadataDto:  # noqa: E501
         """Get concept  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1132,14 +1258,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_concept_with_http_info(term_base_uid, concept_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_concept_with_http_info(
+                term_base_uid, concept_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_concept_with_http_info(term_base_uid, concept_uid, **kwargs)  # noqa: E501
+            (data) = self.get_concept_with_http_info(
+                term_base_uid, concept_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_concept_with_http_info(self, term_base_uid, concept_uid, **kwargs):  # noqa: E501
+    def get_concept_with_http_info(
+        self, term_base_uid, concept_uid, **kwargs
+    ) -> ConceptWithMetadataDto:  # noqa: E501
         """Get concept  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1155,37 +1287,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'concept_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "concept_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_concept" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `get_concept`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `get_concept`"
+            )  # noqa: E501
         # verify the required parameter 'concept_uid' is set
-        if ('concept_uid' not in params or
-                params['concept_uid'] is None):
-            raise ValueError("Missing the required parameter `concept_uid` when calling `get_concept`")  # noqa: E501
+        if "concept_uid" not in params or params["concept_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `concept_uid` when calling `get_concept`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
-        if 'concept_uid' in params:
-            path_params['conceptUid'] = params['concept_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
+        if "concept_uid" in params:
+            path_params["conceptUid"] = params["concept_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1196,29 +1330,34 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/concepts/{conceptUid}', 'GET',
+            "/api2/v1/termBases/{termBaseUid}/concepts/{conceptUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConceptWithMetadataDto',  # noqa: E501
+            response_type="ConceptWithMetadataDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_last_background_task(self, term_base_uid, **kwargs):  # noqa: E501
+    def get_last_background_task(
+        self, term_base_uid, **kwargs
+    ) -> BackgroundTasksTbDto:  # noqa: E501
         """Last import status  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1232,14 +1371,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_last_background_task_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_last_background_task_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_last_background_task_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.get_last_background_task_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_last_background_task_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def get_last_background_task_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> BackgroundTasksTbDto:  # noqa: E501
         """Last import status  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1254,31 +1399,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_last_background_task" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `get_last_background_task`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `get_last_background_task`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1289,29 +1435,34 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/lastBackgroundTask', 'GET',
+            "/api2/v1/termBases/{termBaseUid}/lastBackgroundTask",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='BackgroundTasksTbDto',  # noqa: E501
+            response_type="BackgroundTasksTbDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_project_template_term_bases(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_term_bases(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Get term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1325,14 +1476,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_project_template_term_bases_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_project_template_term_bases_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_project_template_term_bases_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.get_project_template_term_bases_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_project_template_term_bases_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_term_bases_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Get term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1347,31 +1504,37 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_project_template_term_bases" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_project_template_term_bases`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_project_template_term_bases`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -1382,29 +1545,34 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/termBases', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/termBases",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTemplateTermBaseListDto',  # noqa: E501
+            response_type="ProjectTemplateTermBaseListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_project_term_bases(self, project_uid, **kwargs):  # noqa: E501
+    def get_project_term_bases(
+        self, project_uid, **kwargs
+    ) -> ProjectTermBaseListDto:  # noqa: E501
         """Get term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1418,14 +1586,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_project_term_bases_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_project_term_bases_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_project_term_bases_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.get_project_term_bases_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_project_term_bases_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def get_project_term_bases_with_http_info(
+        self, project_uid, **kwargs
+    ) -> ProjectTermBaseListDto:  # noqa: E501
         """Get term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1440,31 +1614,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_project_term_bases" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_project_term_bases`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_project_term_bases`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1475,29 +1650,32 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/termBases', 'GET',
+            "/api2/v1/projects/{projectUid}/termBases",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTermBaseListDto',  # noqa: E501
+            response_type="ProjectTermBaseListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_term(self, term_base_uid, term_id, **kwargs):  # noqa: E501
+    def get_term(self, term_base_uid, term_id, **kwargs) -> TermDto:  # noqa: E501
         """Get term  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1512,14 +1690,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_term_with_http_info(term_base_uid, term_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_term_with_http_info(
+                term_base_uid, term_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_term_with_http_info(term_base_uid, term_id, **kwargs)  # noqa: E501
+            (data) = self.get_term_with_http_info(
+                term_base_uid, term_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_term_with_http_info(self, term_base_uid, term_id, **kwargs):  # noqa: E501
+    def get_term_with_http_info(
+        self, term_base_uid, term_id, **kwargs
+    ) -> TermDto:  # noqa: E501
         """Get term  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1535,37 +1719,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'term_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "term_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_term" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `get_term`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `get_term`"
+            )  # noqa: E501
         # verify the required parameter 'term_id' is set
-        if ('term_id' not in params or
-                params['term_id'] is None):
-            raise ValueError("Missing the required parameter `term_id` when calling `get_term`")  # noqa: E501
+        if "term_id" not in params or params["term_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_id` when calling `get_term`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
-        if 'term_id' in params:
-            path_params['termId'] = params['term_id']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
+        if "term_id" in params:
+            path_params["termId"] = params["term_id"]  # noqa: E501
 
         query_params = []
 
@@ -1576,29 +1762,32 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/terms/{termId}', 'GET',
+            "/api2/v1/termBases/{termBaseUid}/terms/{termId}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TermDto',  # noqa: E501
+            response_type="TermDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_term_base(self, term_base_uid, **kwargs):  # noqa: E501
+    def get_term_base(self, term_base_uid, **kwargs) -> TermBaseDto:  # noqa: E501
         """Get term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1612,14 +1801,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_term_base_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.get_term_base_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_term_base_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def get_term_base_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> TermBaseDto:  # noqa: E501
         """Get term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1634,31 +1829,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_term_base" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `get_term_base`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `get_term_base`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1669,29 +1865,34 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}', 'GET',
+            "/api2/v1/termBases/{termBaseUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TermBaseDto',  # noqa: E501
+            response_type="TermBaseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_term_base_metadata(self, term_base_uid, **kwargs):  # noqa: E501
+    def get_term_base_metadata(
+        self, term_base_uid, **kwargs
+    ) -> MetadataTbDto:  # noqa: E501
         """Get term base metadata  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1705,14 +1906,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_term_base_metadata_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_term_base_metadata_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_term_base_metadata_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.get_term_base_metadata_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_term_base_metadata_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def get_term_base_metadata_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> MetadataTbDto:  # noqa: E501
         """Get term base metadata  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1727,31 +1934,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_term_base_metadata" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `get_term_base_metadata`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `get_term_base_metadata`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1762,29 +1970,34 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/metadata', 'GET',
+            "/api2/v1/termBases/{termBaseUid}/metadata",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='MetadataTbDto',  # noqa: E501
+            response_type="MetadataTbDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_translation_resources(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_translation_resources(
+        self, project_uid, job_uid, **kwargs
+    ) -> TranslationResourcesDto:  # noqa: E501
         """Get translation resources  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1799,14 +2012,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_translation_resources_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_translation_resources_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_translation_resources_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.get_translation_resources_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_translation_resources_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_translation_resources_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> TranslationResourcesDto:  # noqa: E501
         """Get translation resources  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1822,37 +2041,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_translation_resources" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_translation_resources`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_translation_resources`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_translation_resources`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_translation_resources`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1863,29 +2084,34 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/translationResources', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/translationResources",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TranslationResourcesDto',  # noqa: E501
+            response_type="TranslationResourcesDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def import_term_base(self, content_disposition, term_base_uid, **kwargs):  # noqa: E501
+    def import_term_base(
+        self, content_disposition, term_base_uid, **kwargs
+    ) -> ImportTermBaseResponseDto:  # noqa: E501
         """Upload term base  # noqa: E501
 
          Terms can be imported from XLS/XLSX and TBX file formats into a term base. See <a target=\"_blank\" href=\"https://support.phrase.com/hc/en-us/articles/5709733372188\">Phrase Help Center</a>   # noqa: E501
@@ -1905,14 +2131,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.import_term_base_with_http_info(content_disposition, term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.import_term_base_with_http_info(
+                content_disposition, term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.import_term_base_with_http_info(content_disposition, term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.import_term_base_with_http_info(
+                content_disposition, term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def import_term_base_with_http_info(self, content_disposition, term_base_uid, **kwargs):  # noqa: E501
+    def import_term_base_with_http_info(
+        self, content_disposition, term_base_uid, **kwargs
+    ) -> ImportTermBaseResponseDto:  # noqa: E501
         """Upload term base  # noqa: E501
 
          Terms can be imported from XLS/XLSX and TBX file formats into a term base. See <a target=\"_blank\" href=\"https://support.phrase.com/hc/en-us/articles/5709733372188\">Phrase Help Center</a>   # noqa: E501
@@ -1933,82 +2165,103 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['content_disposition', 'term_base_uid', 'body', 'charset', 'strict_lang_matching', 'update_terms']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "content_disposition",
+            "term_base_uid",
+            "body",
+            "charset",
+            "strict_lang_matching",
+            "update_terms",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method import_term_base" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'content_disposition' is set
-        if ('content_disposition' not in params or
-                params['content_disposition'] is None):
-            raise ValueError("Missing the required parameter `content_disposition` when calling `import_term_base`")  # noqa: E501
+        if "content_disposition" not in params or params["content_disposition"] is None:
+            raise ValueError(
+                "Missing the required parameter `content_disposition` when calling `import_term_base`"
+            )  # noqa: E501
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `import_term_base`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `import_term_base`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
-        if 'charset' in params:
-            query_params.append(('charset', params['charset']))  # noqa: E501
-        if 'strict_lang_matching' in params:
-            query_params.append(('strictLangMatching', params['strict_lang_matching']))  # noqa: E501
-        if 'update_terms' in params:
-            query_params.append(('updateTerms', params['update_terms']))  # noqa: E501
+        if "charset" in params:
+            query_params.append(("charset", params["charset"]))  # noqa: E501
+        if "strict_lang_matching" in params:
+            query_params.append(
+                ("strictLangMatching", params["strict_lang_matching"])
+            )  # noqa: E501
+        if "update_terms" in params:
+            query_params.append(("updateTerms", params["update_terms"]))  # noqa: E501
 
         header_params = {}
-        if 'content_disposition' in params:
-            header_params['Content-Disposition'] = params['content_disposition']  # noqa: E501
+        if "content_disposition" in params:
+            header_params["Content-Disposition"] = params[
+                "content_disposition"
+            ]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/upload', 'POST',
+            "/api2/v1/termBases/{termBaseUid}/upload",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ImportTermBaseResponseDto',  # noqa: E501
+            response_type="ImportTermBaseResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_concepts(self, term_base_uid, **kwargs):  # noqa: E501
+    def list_concepts(
+        self, term_base_uid, **kwargs
+    ) -> ConceptListResponseDto:  # noqa: E501
         """List concepts  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2024,14 +2277,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_concepts_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_concepts_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_concepts_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.list_concepts_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_concepts_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def list_concepts_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> ConceptListResponseDto:  # noqa: E501
         """List concepts  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2048,37 +2307,38 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "page_number", "page_size"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_concepts" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `list_concepts`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `list_concepts`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -2087,29 +2347,32 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/concepts', 'GET',
+            "/api2/v1/termBases/{termBaseUid}/concepts",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConceptListResponseDto',  # noqa: E501
+            response_type="ConceptListResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_term_bases(self, **kwargs):  # noqa: E501
+    def list_term_bases(self, **kwargs) -> PageDtoTermBaseDto:  # noqa: E501
         """List term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2129,14 +2392,16 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.list_term_bases_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_term_bases_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def list_term_bases_with_http_info(self, **kwargs):  # noqa: E501
+    def list_term_bases_with_http_info(
+        self, **kwargs
+    ) -> PageDtoTermBaseDto:  # noqa: E501
         """List term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2157,42 +2422,50 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['name', 'lang', 'client_id', 'domain_id', 'sub_domain_id', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "name",
+            "lang",
+            "client_id",
+            "domain_id",
+            "sub_domain_id",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_term_bases" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'lang' in params:
-            query_params.append(('lang', params['lang']))  # noqa: E501
-            collection_formats['lang'] = 'multi'  # noqa: E501
-        if 'client_id' in params:
-            query_params.append(('clientId', params['client_id']))  # noqa: E501
-        if 'domain_id' in params:
-            query_params.append(('domainId', params['domain_id']))  # noqa: E501
-        if 'sub_domain_id' in params:
-            query_params.append(('subDomainId', params['sub_domain_id']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "lang" in params:
+            query_params.append(("lang", params["lang"]))  # noqa: E501
+            collection_formats["lang"] = "multi"  # noqa: E501
+        if "client_id" in params:
+            query_params.append(("clientId", params["client_id"]))  # noqa: E501
+        if "domain_id" in params:
+            query_params.append(("domainId", params["domain_id"]))  # noqa: E501
+        if "sub_domain_id" in params:
+            query_params.append(("subDomainId", params["sub_domain_id"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -2201,29 +2474,34 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases', 'GET',
+            "/api2/v1/termBases",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoTermBaseDto',  # noqa: E501
+            response_type="PageDtoTermBaseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_terms_of_concept(self, term_base_uid, concept_id, **kwargs):  # noqa: E501
+    def list_terms_of_concept(
+        self, term_base_uid, concept_id, **kwargs
+    ) -> ConceptDto:  # noqa: E501
         """Get terms of concept  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2238,14 +2516,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_terms_of_concept_with_http_info(term_base_uid, concept_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_terms_of_concept_with_http_info(
+                term_base_uid, concept_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_terms_of_concept_with_http_info(term_base_uid, concept_id, **kwargs)  # noqa: E501
+            (data) = self.list_terms_of_concept_with_http_info(
+                term_base_uid, concept_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_terms_of_concept_with_http_info(self, term_base_uid, concept_id, **kwargs):  # noqa: E501
+    def list_terms_of_concept_with_http_info(
+        self, term_base_uid, concept_id, **kwargs
+    ) -> ConceptDto:  # noqa: E501
         """Get terms of concept  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2261,37 +2545,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'concept_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "concept_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_terms_of_concept" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `list_terms_of_concept`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `list_terms_of_concept`"
+            )  # noqa: E501
         # verify the required parameter 'concept_id' is set
-        if ('concept_id' not in params or
-                params['concept_id'] is None):
-            raise ValueError("Missing the required parameter `concept_id` when calling `list_terms_of_concept`")  # noqa: E501
+        if "concept_id" not in params or params["concept_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `concept_id` when calling `list_terms_of_concept`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
-        if 'concept_id' in params:
-            path_params['conceptId'] = params['concept_id']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
+        if "concept_id" in params:
+            path_params["conceptId"] = params["concept_id"]  # noqa: E501
 
         query_params = []
 
@@ -2302,29 +2588,34 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/concepts/{conceptId}/terms', 'GET',
+            "/api2/v1/termBases/{termBaseUid}/concepts/{conceptId}/terms",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConceptDto',  # noqa: E501
+            response_type="ConceptDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def relevant_term_bases(self, project_uid, **kwargs):  # noqa: E501
+    def relevant_term_bases(
+        self, project_uid, **kwargs
+    ) -> PageDtoTermBaseDto:  # noqa: E501
         """List project relevant term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2346,14 +2637,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.relevant_term_bases_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.relevant_term_bases_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.relevant_term_bases_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.relevant_term_bases_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def relevant_term_bases_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def relevant_term_bases_with_http_info(
+        self, project_uid, **kwargs
+    ) -> PageDtoTermBaseDto:  # noqa: E501
         """List project relevant term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2376,50 +2673,65 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'name', 'domain_name', 'client_name', 'sub_domain_name', 'target_langs', 'strict_lang_matching', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "name",
+            "domain_name",
+            "client_name",
+            "sub_domain_name",
+            "target_langs",
+            "strict_lang_matching",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method relevant_term_bases" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `relevant_term_bases`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `relevant_term_bases`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'domain_name' in params:
-            query_params.append(('domainName', params['domain_name']))  # noqa: E501
-        if 'client_name' in params:
-            query_params.append(('clientName', params['client_name']))  # noqa: E501
-        if 'sub_domain_name' in params:
-            query_params.append(('subDomainName', params['sub_domain_name']))  # noqa: E501
-        if 'target_langs' in params:
-            query_params.append(('targetLangs', params['target_langs']))  # noqa: E501
-            collection_formats['targetLangs'] = 'multi'  # noqa: E501
-        if 'strict_lang_matching' in params:
-            query_params.append(('strictLangMatching', params['strict_lang_matching']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "domain_name" in params:
+            query_params.append(("domainName", params["domain_name"]))  # noqa: E501
+        if "client_name" in params:
+            query_params.append(("clientName", params["client_name"]))  # noqa: E501
+        if "sub_domain_name" in params:
+            query_params.append(
+                ("subDomainName", params["sub_domain_name"])
+            )  # noqa: E501
+        if "target_langs" in params:
+            query_params.append(("targetLangs", params["target_langs"]))  # noqa: E501
+            collection_formats["targetLangs"] = "multi"  # noqa: E501
+        if "strict_lang_matching" in params:
+            query_params.append(
+                ("strictLangMatching", params["strict_lang_matching"])
+            )  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -2428,29 +2740,34 @@ class TermBaseApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/termBases/relevant', 'GET',
+            "/api2/v1/projects/{projectUid}/termBases/relevant",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoTermBaseDto',  # noqa: E501
+            response_type="PageDtoTermBaseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_terms(self, term_base_uid, **kwargs):  # noqa: E501
+    def search_terms(
+        self, term_base_uid, **kwargs
+    ) -> SearchResponseListTbDto:  # noqa: E501
         """Search term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2465,14 +2782,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_terms_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_terms_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_terms_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.search_terms_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_terms_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def search_terms_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> SearchResponseListTbDto:  # noqa: E501
         """Search term base  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2488,31 +2811,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_terms" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `search_terms`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `search_terms`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2522,36 +2846,44 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/search', 'POST',
+            "/api2/v1/termBases/{termBaseUid}/search",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchResponseListTbDto',  # noqa: E501
+            response_type="SearchResponseListTbDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_terms_by_job1(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def search_terms_by_job1(
+        self, job_uid, project_uid, **kwargs
+    ) -> SearchTbResponseListDto:  # noqa: E501
         """Search job's term bases  # noqa: E501
 
         Search all read term bases assigned to the job  # noqa: E501
@@ -2568,14 +2900,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_terms_by_job1_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_terms_by_job1_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_terms_by_job1_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+            (data) = self.search_terms_by_job1_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_terms_by_job1_with_http_info(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def search_terms_by_job1_with_http_info(
+        self, job_uid, project_uid, **kwargs
+    ) -> SearchTbResponseListDto:  # noqa: E501
         """Search job's term bases  # noqa: E501
 
         Search all read term bases assigned to the job  # noqa: E501
@@ -2593,37 +2931,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_terms_by_job1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `search_terms_by_job1`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `search_terms_by_job1`"
+            )  # noqa: E501
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `search_terms_by_job1`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `search_terms_by_job1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2633,36 +2973,44 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchByJob', 'POST',
+            "/api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchByJob",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchTbResponseListDto',  # noqa: E501
+            response_type="SearchTbResponseListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_terms_in_text_by_job_v2(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def search_terms_in_text_by_job_v2(
+        self, job_uid, project_uid, **kwargs
+    ) -> SearchInTextResponseList2Dto:  # noqa: E501
         """Search terms in text  # noqa: E501
 
         Search in text in all read term bases assigned to the job  # noqa: E501
@@ -2679,14 +3027,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_terms_in_text_by_job_v2_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_terms_in_text_by_job_v2_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_terms_in_text_by_job_v2_with_http_info(job_uid, project_uid, **kwargs)  # noqa: E501
+            (data) = self.search_terms_in_text_by_job_v2_with_http_info(
+                job_uid, project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_terms_in_text_by_job_v2_with_http_info(self, job_uid, project_uid, **kwargs):  # noqa: E501
+    def search_terms_in_text_by_job_v2_with_http_info(
+        self, job_uid, project_uid, **kwargs
+    ) -> SearchInTextResponseList2Dto:  # noqa: E501
         """Search terms in text  # noqa: E501
 
         Search in text in all read term bases assigned to the job  # noqa: E501
@@ -2704,37 +3058,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_terms_in_text_by_job_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `search_terms_in_text_by_job_v2`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `search_terms_in_text_by_job_v2`"
+            )  # noqa: E501
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `search_terms_in_text_by_job_v2`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `search_terms_in_text_by_job_v2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2744,36 +3100,44 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchInTextByJob', 'POST',
+            "/api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchInTextByJob",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchInTextResponseList2Dto',  # noqa: E501
+            response_type="SearchInTextResponseList2Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def set_project_template_term_bases(self, project_template_uid, **kwargs):  # noqa: E501
+    def set_project_template_term_bases(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Edit term bases in project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2788,14 +3152,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.set_project_template_term_bases_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.set_project_template_term_bases_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.set_project_template_term_bases_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.set_project_template_term_bases_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def set_project_template_term_bases_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def set_project_template_term_bases_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Edit term bases in project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2811,31 +3181,37 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_project_template_term_bases" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `set_project_template_term_bases`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `set_project_template_term_bases`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -2845,36 +3221,44 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/termBases', 'PUT',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/termBases",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTemplateTermBaseListDto',  # noqa: E501
+            response_type="ProjectTemplateTermBaseListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def set_project_term_bases(self, project_uid, **kwargs):  # noqa: E501
+    def set_project_term_bases(
+        self, project_uid, **kwargs
+    ) -> ProjectTermBaseListDto:  # noqa: E501
         """Edit term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2889,14 +3273,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.set_project_term_bases_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.set_project_term_bases_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.set_project_term_bases_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.set_project_term_bases_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def set_project_term_bases_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def set_project_term_bases_with_http_info(
+        self, project_uid, **kwargs
+    ) -> ProjectTermBaseListDto:  # noqa: E501
         """Edit term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2912,31 +3302,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_project_term_bases" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `set_project_term_bases`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `set_project_term_bases`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2946,36 +3337,44 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/termBases', 'PUT',
+            "/api2/v1/projects/{projectUid}/termBases",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTermBaseListDto',  # noqa: E501
+            response_type="ProjectTermBaseListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_concept(self, term_base_uid, concept_uid, **kwargs):  # noqa: E501
+    def update_concept(
+        self, term_base_uid, concept_uid, **kwargs
+    ) -> ConceptWithMetadataDto:  # noqa: E501
         """Update concept  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2991,14 +3390,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_concept_with_http_info(term_base_uid, concept_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_concept_with_http_info(
+                term_base_uid, concept_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_concept_with_http_info(term_base_uid, concept_uid, **kwargs)  # noqa: E501
+            (data) = self.update_concept_with_http_info(
+                term_base_uid, concept_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_concept_with_http_info(self, term_base_uid, concept_uid, **kwargs):  # noqa: E501
+    def update_concept_with_http_info(
+        self, term_base_uid, concept_uid, **kwargs
+    ) -> ConceptWithMetadataDto:  # noqa: E501
         """Update concept  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3015,37 +3420,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'concept_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "concept_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_concept" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `update_concept`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `update_concept`"
+            )  # noqa: E501
         # verify the required parameter 'concept_uid' is set
-        if ('concept_uid' not in params or
-                params['concept_uid'] is None):
-            raise ValueError("Missing the required parameter `concept_uid` when calling `update_concept`")  # noqa: E501
+        if "concept_uid" not in params or params["concept_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `concept_uid` when calling `update_concept`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
-        if 'concept_uid' in params:
-            path_params['conceptUid'] = params['concept_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
+        if "concept_uid" in params:
+            path_params["conceptUid"] = params["concept_uid"]  # noqa: E501
 
         query_params = []
 
@@ -3055,36 +3462,42 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/concepts/{conceptUid}', 'PUT',
+            "/api2/v1/termBases/{termBaseUid}/concepts/{conceptUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConceptWithMetadataDto',  # noqa: E501
+            response_type="ConceptWithMetadataDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_term(self, term_base_uid, term_id, **kwargs):  # noqa: E501
+    def update_term(self, term_base_uid, term_id, **kwargs) -> TermDto:  # noqa: E501
         """Edit term  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3100,14 +3513,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_term_with_http_info(term_base_uid, term_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_term_with_http_info(
+                term_base_uid, term_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_term_with_http_info(term_base_uid, term_id, **kwargs)  # noqa: E501
+            (data) = self.update_term_with_http_info(
+                term_base_uid, term_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_term_with_http_info(self, term_base_uid, term_id, **kwargs):  # noqa: E501
+    def update_term_with_http_info(
+        self, term_base_uid, term_id, **kwargs
+    ) -> TermDto:  # noqa: E501
         """Edit term  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3124,37 +3543,39 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'term_id', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "term_id", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_term" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `update_term`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `update_term`"
+            )  # noqa: E501
         # verify the required parameter 'term_id' is set
-        if ('term_id' not in params or
-                params['term_id'] is None):
-            raise ValueError("Missing the required parameter `term_id` when calling `update_term`")  # noqa: E501
+        if "term_id" not in params or params["term_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_id` when calling `update_term`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
-        if 'term_id' in params:
-            path_params['termId'] = params['term_id']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
+        if "term_id" in params:
+            path_params["termId"] = params["term_id"]  # noqa: E501
 
         query_params = []
 
@@ -3164,36 +3585,42 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}/terms/{termId}', 'PUT',
+            "/api2/v1/termBases/{termBaseUid}/terms/{termId}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TermDto',  # noqa: E501
+            response_type="TermDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_term_base(self, term_base_uid, **kwargs):  # noqa: E501
+    def update_term_base(self, term_base_uid, **kwargs) -> TermBaseDto:  # noqa: E501
         """Edit term base  # noqa: E501
 
         It is possible to add new languages only  # noqa: E501
@@ -3209,14 +3636,20 @@ class TermBaseApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_term_base_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
+            (data) = self.update_term_base_with_http_info(
+                term_base_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_term_base_with_http_info(self, term_base_uid, **kwargs):  # noqa: E501
+    def update_term_base_with_http_info(
+        self, term_base_uid, **kwargs
+    ) -> TermBaseDto:  # noqa: E501
         """Edit term base  # noqa: E501
 
         It is possible to add new languages only  # noqa: E501
@@ -3233,31 +3666,32 @@ class TermBaseApi(object):
                  returns the request thread.
         """
 
-        all_params = ['term_base_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["term_base_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_term_base" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'term_base_uid' is set
-        if ('term_base_uid' not in params or
-                params['term_base_uid'] is None):
-            raise ValueError("Missing the required parameter `term_base_uid` when calling `update_term_base`")  # noqa: E501
+        if "term_base_uid" not in params or params["term_base_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `term_base_uid` when calling `update_term_base`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'term_base_uid' in params:
-            path_params['termBaseUid'] = params['term_base_uid']  # noqa: E501
+        if "term_base_uid" in params:
+            path_params["termBaseUid"] = params["term_base_uid"]  # noqa: E501
 
         query_params = []
 
@@ -3267,31 +3701,37 @@ class TermBaseApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/termBases/{termBaseUid}', 'PUT',
+            "/api2/v1/termBases/{termBaseUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TermBaseDto',  # noqa: E501
+            response_type="TermBaseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

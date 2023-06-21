@@ -32,7 +32,7 @@ class AuthenticationApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def login(self, **kwargs):  # noqa: E501
+    def login(self, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -46,14 +46,14 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.login_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.login_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def login_with_http_info(self, **kwargs):  # noqa: E501
+    def login_with_http_info(self, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -68,21 +68,20 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method login" % key
+                    "Got an unexpected keyword argument '%s'" " to method login" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -96,36 +95,42 @@ class AuthenticationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/auth/login', 'POST',
+            "/api2/v1/auth/login",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LoginResponseDto',  # noqa: E501
+            response_type="LoginResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def login1(self, **kwargs):  # noqa: E501
+    def login1(self, **kwargs) -> LoginResponseV3Dto:  # noqa: E501
         """Login  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -139,14 +144,14 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.login1_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.login1_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def login1_with_http_info(self, **kwargs):  # noqa: E501
+    def login1_with_http_info(self, **kwargs) -> LoginResponseV3Dto:  # noqa: E501
         """Login  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -161,21 +166,20 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method login1" % key
+                    "Got an unexpected keyword argument '%s'" " to method login1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -189,36 +193,42 @@ class AuthenticationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/auth/login', 'POST',
+            "/api2/v3/auth/login",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LoginResponseV3Dto',  # noqa: E501
+            response_type="LoginResponseV3Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def login_by_apple_with_code(self, **kwargs):  # noqa: E501
+    def login_by_apple_with_code(self, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login with Apple with code  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -233,14 +243,18 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.login_by_apple_with_code_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.login_by_apple_with_code_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.login_by_apple_with_code_with_http_info(
+                **kwargs
+            )  # noqa: E501
             return data
 
-    def login_by_apple_with_code_with_http_info(self, **kwargs):  # noqa: E501
+    def login_by_apple_with_code_with_http_info(
+        self, **kwargs
+    ) -> LoginResponseDto:  # noqa: E501
         """Login with Apple with code  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -256,29 +270,29 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body', 'native']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body", "native"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method login_by_apple_with_code" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'native' in params:
-            query_params.append(('native', params['native']))  # noqa: E501
+        if "native" in params:
+            query_params.append(("native", params["native"]))  # noqa: E501
 
         header_params = {}
 
@@ -286,36 +300,44 @@ class AuthenticationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/auth/loginWithApple/code', 'POST',
+            "/api2/v1/auth/loginWithApple/code",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LoginResponseDto',  # noqa: E501
+            response_type="LoginResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def login_by_apple_with_refresh_token(self, **kwargs):  # noqa: E501
+    def login_by_apple_with_refresh_token(
+        self, **kwargs
+    ) -> LoginResponseDto:  # noqa: E501
         """Login with Apple refresh token  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -329,14 +351,20 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.login_by_apple_with_refresh_token_with_http_info(**kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.login_by_apple_with_refresh_token_with_http_info(
+                **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.login_by_apple_with_refresh_token_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.login_by_apple_with_refresh_token_with_http_info(
+                **kwargs
+            )  # noqa: E501
             return data
 
-    def login_by_apple_with_refresh_token_with_http_info(self, **kwargs):  # noqa: E501
+    def login_by_apple_with_refresh_token_with_http_info(
+        self, **kwargs
+    ) -> LoginResponseDto:  # noqa: E501
         """Login with Apple refresh token  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -351,21 +379,21 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method login_by_apple_with_refresh_token" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -379,36 +407,42 @@ class AuthenticationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/auth/loginWithApple/refreshToken', 'POST',
+            "/api2/v1/auth/loginWithApple/refreshToken",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LoginResponseDto',  # noqa: E501
+            response_type="LoginResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def login_by_google(self, **kwargs):  # noqa: E501
+    def login_by_google(self, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login with Google  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -422,14 +456,16 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.login_by_google_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.login_by_google_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def login_by_google_with_http_info(self, **kwargs):  # noqa: E501
+    def login_by_google_with_http_info(
+        self, **kwargs
+    ) -> LoginResponseDto:  # noqa: E501
         """Login with Google  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -444,21 +480,21 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method login_by_google" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -472,36 +508,42 @@ class AuthenticationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/auth/loginWithGoogle', 'POST',
+            "/api2/v1/auth/loginWithGoogle",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LoginResponseDto',  # noqa: E501
+            response_type="LoginResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def login_other(self, **kwargs):  # noqa: E501
+    def login_other(self, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login as another user  # noqa: E501
 
         Available only for admin  # noqa: E501
@@ -516,14 +558,14 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.login_other_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.login_other_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def login_other_with_http_info(self, **kwargs):  # noqa: E501
+    def login_other_with_http_info(self, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login as another user  # noqa: E501
 
         Available only for admin  # noqa: E501
@@ -539,21 +581,21 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method login_other" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -567,36 +609,42 @@ class AuthenticationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/auth/loginOther', 'POST',
+            "/api2/v1/auth/loginOther",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LoginResponseDto',  # noqa: E501
+            response_type="LoginResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def login_other1(self, **kwargs):  # noqa: E501
+    def login_other1(self, **kwargs) -> LoginResponseV3Dto:  # noqa: E501
         """Login as another user  # noqa: E501
 
         Available only for admin  # noqa: E501
@@ -611,14 +659,14 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.login_other1_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.login_other1_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def login_other1_with_http_info(self, **kwargs):  # noqa: E501
+    def login_other1_with_http_info(self, **kwargs) -> LoginResponseV3Dto:  # noqa: E501
         """Login as another user  # noqa: E501
 
         Available only for admin  # noqa: E501
@@ -634,21 +682,21 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method login_other1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -662,36 +710,42 @@ class AuthenticationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/auth/loginOther', 'POST',
+            "/api2/v3/auth/loginOther",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LoginResponseV3Dto',  # noqa: E501
+            response_type="LoginResponseV3Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def login_to_session(self, **kwargs):  # noqa: E501
+    def login_to_session(self, **kwargs) -> LoginToSessionResponseDto:  # noqa: E501
         """Login to session  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -705,14 +759,16 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.login_to_session_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.login_to_session_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def login_to_session_with_http_info(self, **kwargs):  # noqa: E501
+    def login_to_session_with_http_info(
+        self, **kwargs
+    ) -> LoginToSessionResponseDto:  # noqa: E501
         """Login to session  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -727,21 +783,21 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method login_to_session" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -755,36 +811,42 @@ class AuthenticationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/auth/loginToSession', 'POST',
+            "/api2/v1/auth/loginToSession",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LoginToSessionResponseDto',  # noqa: E501
+            response_type="LoginToSessionResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def login_to_session2(self, **kwargs):  # noqa: E501
+    def login_to_session2(self, **kwargs) -> LoginToSessionResponseV3Dto:  # noqa: E501
         """Login to session  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -798,14 +860,16 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.login_to_session2_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.login_to_session2_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def login_to_session2_with_http_info(self, **kwargs):  # noqa: E501
+    def login_to_session2_with_http_info(
+        self, **kwargs
+    ) -> LoginToSessionResponseV3Dto:  # noqa: E501
         """Login to session  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -820,21 +884,21 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method login_to_session2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -848,36 +912,42 @@ class AuthenticationApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/auth/loginToSession', 'POST',
+            "/api2/v3/auth/loginToSession",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LoginToSessionResponseV3Dto',  # noqa: E501
+            response_type="LoginToSessionResponseV3Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def logout(self, **kwargs):  # noqa: E501
+    def logout(self, **kwargs) -> None:  # noqa: E501
         """Logout  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -892,14 +962,14 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.logout_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.logout_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def logout_with_http_info(self, **kwargs):  # noqa: E501
+    def logout_with_http_info(self, **kwargs) -> None:  # noqa: E501
         """Logout  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -915,33 +985,32 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['token', 'authorization']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["token", "authorization"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method logout" % key
+                    "Got an unexpected keyword argument '%s'" " to method logout" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'token' in params:
-            query_params.append(('token', params['token']))  # noqa: E501
+        if "token" in params:
+            query_params.append(("token", params["token"]))  # noqa: E501
 
         header_params = {}
-        if 'authorization' in params:
-            header_params['Authorization'] = params['authorization']  # noqa: E501
+        if "authorization" in params:
+            header_params["Authorization"] = params["authorization"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -951,7 +1020,8 @@ class AuthenticationApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/auth/logout', 'POST',
+            "/api2/v1/auth/logout",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -960,13 +1030,14 @@ class AuthenticationApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def refresh_apple_token(self, **kwargs):  # noqa: E501
+    def refresh_apple_token(self, **kwargs) -> AppleTokenResponseDto:  # noqa: E501
         """refresh apple token  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -980,14 +1051,16 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.refresh_apple_token_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.refresh_apple_token_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def refresh_apple_token_with_http_info(self, **kwargs):  # noqa: E501
+    def refresh_apple_token_with_http_info(
+        self, **kwargs
+    ) -> AppleTokenResponseDto:  # noqa: E501
         """refresh apple token  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1002,29 +1075,29 @@ class AuthenticationApi(object):
                  returns the request thread.
         """
 
-        all_params = ['token']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["token"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method refresh_apple_token" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'token' in params:
-            query_params.append(('token', params['token']))  # noqa: E501
+        if "token" in params:
+            query_params.append(("token", params["token"]))  # noqa: E501
 
         header_params = {}
 
@@ -1033,29 +1106,32 @@ class AuthenticationApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/auth/refreshAppleToken', 'GET',
+            "/api2/v1/auth/refreshAppleToken",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AppleTokenResponseDto',  # noqa: E501
+            response_type="AppleTokenResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def who_am_i(self, **kwargs):  # noqa: E501
+    def who_am_i(self, **kwargs) -> LoginUserDto:  # noqa: E501
         """Who am I  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1068,14 +1144,14 @@ class AuthenticationApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.who_am_i_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.who_am_i_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def who_am_i_with_http_info(self, **kwargs):  # noqa: E501
+    def who_am_i_with_http_info(self, **kwargs) -> LoginUserDto:  # noqa: E501
         """Who am I  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1090,20 +1166,20 @@ class AuthenticationApi(object):
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method who_am_i" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -1118,24 +1194,27 @@ class AuthenticationApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/auth/whoAmI', 'GET',
+            "/api2/v1/auth/whoAmI",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LoginUserDto',  # noqa: E501
+            response_type="LoginUserDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

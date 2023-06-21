@@ -32,7 +32,7 @@ class BusinessUnitApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def create_business_unit(self, **kwargs):  # noqa: E501
+    def create_business_unit(self, **kwargs) -> BusinessUnitDto:  # noqa: E501
         """Create business unit  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -46,14 +46,16 @@ class BusinessUnitApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_business_unit_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_business_unit_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_business_unit_with_http_info(self, **kwargs):  # noqa: E501
+    def create_business_unit_with_http_info(
+        self, **kwargs
+    ) -> BusinessUnitDto:  # noqa: E501
         """Create business unit  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -68,21 +70,21 @@ class BusinessUnitApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_business_unit" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -96,36 +98,42 @@ class BusinessUnitApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/businessUnits', 'POST',
+            "/api2/v1/businessUnits",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='BusinessUnitDto',  # noqa: E501
+            response_type="BusinessUnitDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_business_unit(self, business_unit_uid, **kwargs):  # noqa: E501
+    def delete_business_unit(self, business_unit_uid, **kwargs) -> None:  # noqa: E501
         """Delete business unit  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -139,14 +147,20 @@ class BusinessUnitApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_business_unit_with_http_info(business_unit_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_business_unit_with_http_info(
+                business_unit_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_business_unit_with_http_info(business_unit_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_business_unit_with_http_info(
+                business_unit_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_business_unit_with_http_info(self, business_unit_uid, **kwargs):  # noqa: E501
+    def delete_business_unit_with_http_info(
+        self, business_unit_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete business unit  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -161,31 +175,32 @@ class BusinessUnitApi(object):
                  returns the request thread.
         """
 
-        all_params = ['business_unit_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["business_unit_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_business_unit" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'business_unit_uid' is set
-        if ('business_unit_uid' not in params or
-                params['business_unit_uid'] is None):
-            raise ValueError("Missing the required parameter `business_unit_uid` when calling `delete_business_unit`")  # noqa: E501
+        if "business_unit_uid" not in params or params["business_unit_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `business_unit_uid` when calling `delete_business_unit`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'business_unit_uid' in params:
-            path_params['businessUnitUid'] = params['business_unit_uid']  # noqa: E501
+        if "business_unit_uid" in params:
+            path_params["businessUnitUid"] = params["business_unit_uid"]  # noqa: E501
 
         query_params = []
 
@@ -199,7 +214,8 @@ class BusinessUnitApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/businessUnits/{businessUnitUid}', 'DELETE',
+            "/api2/v1/businessUnits/{businessUnitUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -208,13 +224,16 @@ class BusinessUnitApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_business_unit(self, business_unit_uid, **kwargs):  # noqa: E501
+    def get_business_unit(
+        self, business_unit_uid, **kwargs
+    ) -> BusinessUnitDto:  # noqa: E501
         """Get business unit  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -228,14 +247,20 @@ class BusinessUnitApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_business_unit_with_http_info(business_unit_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_business_unit_with_http_info(
+                business_unit_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_business_unit_with_http_info(business_unit_uid, **kwargs)  # noqa: E501
+            (data) = self.get_business_unit_with_http_info(
+                business_unit_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_business_unit_with_http_info(self, business_unit_uid, **kwargs):  # noqa: E501
+    def get_business_unit_with_http_info(
+        self, business_unit_uid, **kwargs
+    ) -> BusinessUnitDto:  # noqa: E501
         """Get business unit  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -250,31 +275,32 @@ class BusinessUnitApi(object):
                  returns the request thread.
         """
 
-        all_params = ['business_unit_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["business_unit_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_business_unit" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'business_unit_uid' is set
-        if ('business_unit_uid' not in params or
-                params['business_unit_uid'] is None):
-            raise ValueError("Missing the required parameter `business_unit_uid` when calling `get_business_unit`")  # noqa: E501
+        if "business_unit_uid" not in params or params["business_unit_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `business_unit_uid` when calling `get_business_unit`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'business_unit_uid' in params:
-            path_params['businessUnitUid'] = params['business_unit_uid']  # noqa: E501
+        if "business_unit_uid" in params:
+            path_params["businessUnitUid"] = params["business_unit_uid"]  # noqa: E501
 
         query_params = []
 
@@ -285,29 +311,32 @@ class BusinessUnitApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/businessUnits/{businessUnitUid}', 'GET',
+            "/api2/v1/businessUnits/{businessUnitUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='BusinessUnitDto',  # noqa: E501
+            response_type="BusinessUnitDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_business_units(self, **kwargs):  # noqa: E501
+    def list_business_units(self, **kwargs) -> PageDtoBusinessUnitDto:  # noqa: E501
         """List business units  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -326,14 +355,16 @@ class BusinessUnitApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.list_business_units_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_business_units_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def list_business_units_with_http_info(self, **kwargs):  # noqa: E501
+    def list_business_units_with_http_info(
+        self, **kwargs
+    ) -> PageDtoBusinessUnitDto:  # noqa: E501
         """List business units  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -353,39 +384,46 @@ class BusinessUnitApi(object):
                  returns the request thread.
         """
 
-        all_params = ['name', 'created_by', 'sort', 'order', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "name",
+            "created_by",
+            "sort",
+            "order",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_business_units" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'created_by' in params:
-            query_params.append(('createdBy', params['created_by']))  # noqa: E501
-        if 'sort' in params:
-            query_params.append(('sort', params['sort']))  # noqa: E501
-        if 'order' in params:
-            query_params.append(('order', params['order']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "created_by" in params:
+            query_params.append(("createdBy", params["created_by"]))  # noqa: E501
+        if "sort" in params:
+            query_params.append(("sort", params["sort"]))  # noqa: E501
+        if "order" in params:
+            query_params.append(("order", params["order"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -394,29 +432,34 @@ class BusinessUnitApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/businessUnits', 'GET',
+            "/api2/v1/businessUnits",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoBusinessUnitDto',  # noqa: E501
+            response_type="PageDtoBusinessUnitDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_business_unit(self, business_unit_uid, **kwargs):  # noqa: E501
+    def update_business_unit(
+        self, business_unit_uid, **kwargs
+    ) -> BusinessUnitDto:  # noqa: E501
         """Edit business unit  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -431,14 +474,20 @@ class BusinessUnitApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_business_unit_with_http_info(business_unit_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_business_unit_with_http_info(
+                business_unit_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_business_unit_with_http_info(business_unit_uid, **kwargs)  # noqa: E501
+            (data) = self.update_business_unit_with_http_info(
+                business_unit_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_business_unit_with_http_info(self, business_unit_uid, **kwargs):  # noqa: E501
+    def update_business_unit_with_http_info(
+        self, business_unit_uid, **kwargs
+    ) -> BusinessUnitDto:  # noqa: E501
         """Edit business unit  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -454,31 +503,32 @@ class BusinessUnitApi(object):
                  returns the request thread.
         """
 
-        all_params = ['business_unit_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["business_unit_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_business_unit" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'business_unit_uid' is set
-        if ('business_unit_uid' not in params or
-                params['business_unit_uid'] is None):
-            raise ValueError("Missing the required parameter `business_unit_uid` when calling `update_business_unit`")  # noqa: E501
+        if "business_unit_uid" not in params or params["business_unit_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `business_unit_uid` when calling `update_business_unit`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'business_unit_uid' in params:
-            path_params['businessUnitUid'] = params['business_unit_uid']  # noqa: E501
+        if "business_unit_uid" in params:
+            path_params["businessUnitUid"] = params["business_unit_uid"]  # noqa: E501
 
         query_params = []
 
@@ -488,31 +538,37 @@ class BusinessUnitApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/businessUnits/{businessUnitUid}', 'PUT',
+            "/api2/v1/businessUnits/{businessUnitUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='BusinessUnitDto',  # noqa: E501
+            response_type="BusinessUnitDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
