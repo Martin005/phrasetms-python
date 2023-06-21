@@ -17,6 +17,27 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    PreTranslateSettingsV3Dto,
+    AbstractAnalyseSettingsDto,
+    ProjectTemplateTransMemoryListV2Dto,
+    ProjectTemplateTermBaseListDto,
+    QASettingsDtoV2,
+    PageDtoTransMemoryDto,
+    PageDtoProjectTemplateReference,
+    ProjectTemplateTransMemoryListDtoV3,
+    ProjectSecuritySettingsDtoV2,
+    ProjectTemplateDto,
+    MTSettingsPerLanguageListDto,
+    FileImportSettingsDto,
+    PageDtoCustomFieldInstanceDto,
+    CustomFieldInstanceDto,
+    CustomFieldInstancesDto,
+    AsyncRequestWrapperV2Dto,
+    AbstractProjectDtoV2,
+    AssignableTemplatesDto,
+    JobPartsDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +53,9 @@ class ProjectTemplateApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def assign_linguists_from_template(self, template_uid, project_uid, **kwargs):  # noqa: E501
+    def assign_linguists_from_template(
+        self, template_uid, project_uid, **kwargs
+    ) -> JobPartsDto:  # noqa: E501
         """Assigns providers from template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -47,14 +70,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.assign_linguists_from_template_with_http_info(template_uid, project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.assign_linguists_from_template_with_http_info(
+                template_uid, project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.assign_linguists_from_template_with_http_info(template_uid, project_uid, **kwargs)  # noqa: E501
+            (data) = self.assign_linguists_from_template_with_http_info(
+                template_uid, project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def assign_linguists_from_template_with_http_info(self, template_uid, project_uid, **kwargs):  # noqa: E501
+    def assign_linguists_from_template_with_http_info(
+        self, template_uid, project_uid, **kwargs
+    ) -> JobPartsDto:  # noqa: E501
         """Assigns providers from template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -70,37 +99,39 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['template_uid', 'project_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["template_uid", "project_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method assign_linguists_from_template" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'template_uid' is set
-        if ('template_uid' not in params or
-                params['template_uid'] is None):
-            raise ValueError("Missing the required parameter `template_uid` when calling `assign_linguists_from_template`")  # noqa: E501
+        if "template_uid" not in params or params["template_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `template_uid` when calling `assign_linguists_from_template`"
+            )  # noqa: E501
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `assign_linguists_from_template`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `assign_linguists_from_template`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'template_uid' in params:
-            path_params['templateUid'] = params['template_uid']  # noqa: E501
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "template_uid" in params:
+            path_params["templateUid"] = params["template_uid"]  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -111,29 +142,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders', 'POST',
+            "/api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartsDto',  # noqa: E501
+            response_type="JobPartsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def assign_linguists_from_template_to_job_parts(self, template_uid, project_uid, **kwargs):  # noqa: E501
+    def assign_linguists_from_template_to_job_parts(
+        self, template_uid, project_uid, **kwargs
+    ) -> JobPartsDto:  # noqa: E501
         """Assigns providers from template (specific jobs)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -149,14 +185,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.assign_linguists_from_template_to_job_parts_with_http_info(template_uid, project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.assign_linguists_from_template_to_job_parts_with_http_info(
+                template_uid, project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.assign_linguists_from_template_to_job_parts_with_http_info(template_uid, project_uid, **kwargs)  # noqa: E501
+            (data) = self.assign_linguists_from_template_to_job_parts_with_http_info(
+                template_uid, project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def assign_linguists_from_template_to_job_parts_with_http_info(self, template_uid, project_uid, **kwargs):  # noqa: E501
+    def assign_linguists_from_template_to_job_parts_with_http_info(
+        self, template_uid, project_uid, **kwargs
+    ) -> JobPartsDto:  # noqa: E501
         """Assigns providers from template (specific jobs)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -173,37 +215,39 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['template_uid', 'project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["template_uid", "project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method assign_linguists_from_template_to_job_parts" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'template_uid' is set
-        if ('template_uid' not in params or
-                params['template_uid'] is None):
-            raise ValueError("Missing the required parameter `template_uid` when calling `assign_linguists_from_template_to_job_parts`")  # noqa: E501
+        if "template_uid" not in params or params["template_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `template_uid` when calling `assign_linguists_from_template_to_job_parts`"
+            )  # noqa: E501
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `assign_linguists_from_template_to_job_parts`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `assign_linguists_from_template_to_job_parts`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'template_uid' in params:
-            path_params['templateUid'] = params['template_uid']  # noqa: E501
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "template_uid" in params:
+            path_params["templateUid"] = params["template_uid"]  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -213,36 +257,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders/forJobParts', 'POST',
+            "/api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders/forJobParts",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartsDto',  # noqa: E501
+            response_type="JobPartsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def assignable_templates(self, project_uid, **kwargs):  # noqa: E501
+    def assignable_templates(
+        self, project_uid, **kwargs
+    ) -> AssignableTemplatesDto:  # noqa: E501
         """List assignable templates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -256,14 +308,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.assignable_templates_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.assignable_templates_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.assignable_templates_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.assignable_templates_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def assignable_templates_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def assignable_templates_with_http_info(
+        self, project_uid, **kwargs
+    ) -> AssignableTemplatesDto:  # noqa: E501
         """List assignable templates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -278,31 +336,32 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method assignable_templates" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `assignable_templates`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `assignable_templates`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -313,29 +372,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/assignableTemplates', 'GET',
+            "/api2/v1/projects/{projectUid}/assignableTemplates",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AssignableTemplatesDto',  # noqa: E501
+            response_type="AssignableTemplatesDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_custom_fields1(self, project_template_uid, **kwargs):  # noqa: E501
+    def create_custom_fields1(
+        self, project_template_uid, **kwargs
+    ) -> CustomFieldInstancesDto:  # noqa: E501
         """Create custom field instances  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -350,14 +414,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_custom_fields1_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_custom_fields1_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_custom_fields1_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.create_custom_fields1_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_custom_fields1_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def create_custom_fields1_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> CustomFieldInstancesDto:  # noqa: E501
         """Create custom field instances  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -373,31 +443,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_custom_fields1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `create_custom_fields1`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `create_custom_fields1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -407,36 +483,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/customFields', 'POST',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/customFields",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CustomFieldInstancesDto',  # noqa: E501
+            response_type="CustomFieldInstancesDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_project_from_template_v2(self, template_uid, **kwargs):  # noqa: E501
+    def create_project_from_template_v2(
+        self, template_uid, **kwargs
+    ) -> AbstractProjectDtoV2:  # noqa: E501
         """Create project from template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -451,14 +535,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_project_from_template_v2_with_http_info(template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_project_from_template_v2_with_http_info(
+                template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_project_from_template_v2_with_http_info(template_uid, **kwargs)  # noqa: E501
+            (data) = self.create_project_from_template_v2_with_http_info(
+                template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_project_from_template_v2_with_http_info(self, template_uid, **kwargs):  # noqa: E501
+    def create_project_from_template_v2_with_http_info(
+        self, template_uid, **kwargs
+    ) -> AbstractProjectDtoV2:  # noqa: E501
         """Create project from template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -474,31 +564,32 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_project_from_template_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'template_uid' is set
-        if ('template_uid' not in params or
-                params['template_uid'] is None):
-            raise ValueError("Missing the required parameter `template_uid` when calling `create_project_from_template_v2`")  # noqa: E501
+        if "template_uid" not in params or params["template_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `template_uid` when calling `create_project_from_template_v2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'template_uid' in params:
-            path_params['templateUid'] = params['template_uid']  # noqa: E501
+        if "template_uid" in params:
+            path_params["templateUid"] = params["template_uid"]  # noqa: E501
 
         query_params = []
 
@@ -508,36 +599,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/applyTemplate/{templateUid}', 'POST',
+            "/api2/v2/projects/applyTemplate/{templateUid}",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AbstractProjectDtoV2',  # noqa: E501
+            response_type="AbstractProjectDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_project_from_template_v2_async(self, template_uid, **kwargs):  # noqa: E501
+    def create_project_from_template_v2_async(
+        self, template_uid, **kwargs
+    ) -> AsyncRequestWrapperV2Dto:  # noqa: E501
         """Create project from template (async)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -552,14 +651,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_project_from_template_v2_async_with_http_info(template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_project_from_template_v2_async_with_http_info(
+                template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_project_from_template_v2_async_with_http_info(template_uid, **kwargs)  # noqa: E501
+            (data) = self.create_project_from_template_v2_async_with_http_info(
+                template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_project_from_template_v2_async_with_http_info(self, template_uid, **kwargs):  # noqa: E501
+    def create_project_from_template_v2_async_with_http_info(
+        self, template_uid, **kwargs
+    ) -> AsyncRequestWrapperV2Dto:  # noqa: E501
         """Create project from template (async)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -575,31 +680,32 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_project_from_template_v2_async" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'template_uid' is set
-        if ('template_uid' not in params or
-                params['template_uid'] is None):
-            raise ValueError("Missing the required parameter `template_uid` when calling `create_project_from_template_v2_async`")  # noqa: E501
+        if "template_uid" not in params or params["template_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `template_uid` when calling `create_project_from_template_v2_async`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'template_uid' in params:
-            path_params['templateUid'] = params['template_uid']  # noqa: E501
+        if "template_uid" in params:
+            path_params["templateUid"] = params["template_uid"]  # noqa: E501
 
         query_params = []
 
@@ -609,36 +715,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/applyTemplate/async/{templateUid}', 'POST',
+            "/api2/v2/projects/applyTemplate/async/{templateUid}",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AsyncRequestWrapperV2Dto',  # noqa: E501
+            response_type="AsyncRequestWrapperV2Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_project_template(self, body, **kwargs):  # noqa: E501
+    def create_project_template(
+        self, body, **kwargs
+    ) -> ProjectTemplateDto:  # noqa: E501
         """Create project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -652,14 +766,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_project_template_with_http_info(body, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_project_template_with_http_info(
+                body, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_project_template_with_http_info(body, **kwargs)  # noqa: E501
+            (data) = self.create_project_template_with_http_info(
+                body, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_project_template_with_http_info(self, body, **kwargs):  # noqa: E501
+    def create_project_template_with_http_info(
+        self, body, **kwargs
+    ) -> ProjectTemplateDto:  # noqa: E501
         """Create project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -674,25 +794,26 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_project_template" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'body' is set
-        if ('body' not in params or
-                params['body'] is None):
-            raise ValueError("Missing the required parameter `body` when calling `create_project_template`")  # noqa: E501
+        if "body" not in params or params["body"] is None:
+            raise ValueError(
+                "Missing the required parameter `body` when calling `create_project_template`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -706,36 +827,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates', 'POST',
+            "/api2/v1/projectTemplates",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTemplateDto',  # noqa: E501
+            response_type="ProjectTemplateDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_custom_field2(self, project_template_uid, field_instance_uid, **kwargs):  # noqa: E501
+    def delete_custom_field2(
+        self, project_template_uid, field_instance_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete custom field of project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -750,14 +879,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_custom_field2_with_http_info(project_template_uid, field_instance_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_custom_field2_with_http_info(
+                project_template_uid, field_instance_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_custom_field2_with_http_info(project_template_uid, field_instance_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_custom_field2_with_http_info(
+                project_template_uid, field_instance_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_custom_field2_with_http_info(self, project_template_uid, field_instance_uid, **kwargs):  # noqa: E501
+    def delete_custom_field2_with_http_info(
+        self, project_template_uid, field_instance_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete custom field of project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -773,37 +908,44 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'field_instance_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "field_instance_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_custom_field2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `delete_custom_field2`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `delete_custom_field2`"
+            )  # noqa: E501
         # verify the required parameter 'field_instance_uid' is set
-        if ('field_instance_uid' not in params or
-                params['field_instance_uid'] is None):
-            raise ValueError("Missing the required parameter `field_instance_uid` when calling `delete_custom_field2`")  # noqa: E501
+        if "field_instance_uid" not in params or params["field_instance_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `field_instance_uid` when calling `delete_custom_field2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
-        if 'field_instance_uid' in params:
-            path_params['fieldInstanceUid'] = params['field_instance_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
+        if "field_instance_uid" in params:
+            path_params["fieldInstanceUid"] = params["field_instance_uid"]  # noqa: E501
 
         query_params = []
 
@@ -817,7 +959,8 @@ class ProjectTemplateApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}', 'DELETE',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -826,13 +969,16 @@ class ProjectTemplateApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_project_template(self, project_template_uid, **kwargs):  # noqa: E501
+    def delete_project_template(
+        self, project_template_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -846,14 +992,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_project_template_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def delete_project_template_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -868,31 +1020,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_project_template" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `delete_project_template`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `delete_project_template`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -906,7 +1064,8 @@ class ProjectTemplateApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}', 'DELETE',
+            "/api2/v1/projectTemplates/{projectTemplateUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -915,13 +1074,16 @@ class ProjectTemplateApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_custom_field1(self, project_template_uid, field_instance_uid, **kwargs):  # noqa: E501
+    def edit_custom_field1(
+        self, project_template_uid, field_instance_uid, **kwargs
+    ) -> CustomFieldInstanceDto:  # noqa: E501
         """Edit custom field of project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -937,14 +1099,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_custom_field1_with_http_info(project_template_uid, field_instance_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_custom_field1_with_http_info(
+                project_template_uid, field_instance_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_custom_field1_with_http_info(project_template_uid, field_instance_uid, **kwargs)  # noqa: E501
+            (data) = self.edit_custom_field1_with_http_info(
+                project_template_uid, field_instance_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_custom_field1_with_http_info(self, project_template_uid, field_instance_uid, **kwargs):  # noqa: E501
+    def edit_custom_field1_with_http_info(
+        self, project_template_uid, field_instance_uid, **kwargs
+    ) -> CustomFieldInstanceDto:  # noqa: E501
         """Edit custom field of project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -961,37 +1129,48 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'field_instance_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_template_uid",
+            "field_instance_uid",
+            "body",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_custom_field1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `edit_custom_field1`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `edit_custom_field1`"
+            )  # noqa: E501
         # verify the required parameter 'field_instance_uid' is set
-        if ('field_instance_uid' not in params or
-                params['field_instance_uid'] is None):
-            raise ValueError("Missing the required parameter `field_instance_uid` when calling `edit_custom_field1`")  # noqa: E501
+        if "field_instance_uid" not in params or params["field_instance_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `field_instance_uid` when calling `edit_custom_field1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
-        if 'field_instance_uid' in params:
-            path_params['fieldInstanceUid'] = params['field_instance_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
+        if "field_instance_uid" in params:
+            path_params["fieldInstanceUid"] = params["field_instance_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1001,36 +1180,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}', 'PUT',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CustomFieldInstanceDto',  # noqa: E501
+            response_type="CustomFieldInstanceDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_custom_fields1(self, project_template_uid, **kwargs):  # noqa: E501
+    def edit_custom_fields1(
+        self, project_template_uid, **kwargs
+    ) -> CustomFieldInstancesDto:  # noqa: E501
         """Edit custom fields of the project template (batch)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1045,14 +1232,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_custom_fields1_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_custom_fields1_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_custom_fields1_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.edit_custom_fields1_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_custom_fields1_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def edit_custom_fields1_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> CustomFieldInstancesDto:  # noqa: E501
         """Edit custom fields of the project template (batch)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1068,31 +1261,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_custom_fields1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `edit_custom_fields1`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `edit_custom_fields1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -1102,36 +1301,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/customFields', 'PUT',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/customFields",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CustomFieldInstancesDto',  # noqa: E501
+            response_type="CustomFieldInstancesDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_project_template(self, body, project_template_uid, **kwargs):  # noqa: E501
+    def edit_project_template(
+        self, body, project_template_uid, **kwargs
+    ) -> ProjectTemplateDto:  # noqa: E501
         """Edit project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1146,14 +1353,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_project_template_with_http_info(body, project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_project_template_with_http_info(
+                body, project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_project_template_with_http_info(body, project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.edit_project_template_with_http_info(
+                body, project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_project_template_with_http_info(self, body, project_template_uid, **kwargs):  # noqa: E501
+    def edit_project_template_with_http_info(
+        self, body, project_template_uid, **kwargs
+    ) -> ProjectTemplateDto:  # noqa: E501
         """Edit project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1169,35 +1382,42 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body', 'project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body", "project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_project_template" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'body' is set
-        if ('body' not in params or
-                params['body'] is None):
-            raise ValueError("Missing the required parameter `body` when calling `edit_project_template`")  # noqa: E501
+        if "body" not in params or params["body"] is None:
+            raise ValueError(
+                "Missing the required parameter `body` when calling `edit_project_template`"
+            )  # noqa: E501
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `edit_project_template`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `edit_project_template`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -1207,36 +1427,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}', 'PUT',
+            "/api2/v1/projectTemplates/{projectTemplateUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTemplateDto',  # noqa: E501
+            response_type="ProjectTemplateDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_project_template_access_settings(self, project_template_uid, **kwargs):  # noqa: E501
+    def edit_project_template_access_settings(
+        self, project_template_uid, **kwargs
+    ) -> ProjectSecuritySettingsDtoV2:  # noqa: E501
         """Edit project template access and security settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1251,14 +1479,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_project_template_access_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_project_template_access_settings_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_project_template_access_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.edit_project_template_access_settings_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_project_template_access_settings_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def edit_project_template_access_settings_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> ProjectSecuritySettingsDtoV2:  # noqa: E501
         """Edit project template access and security settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1274,31 +1508,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_project_template_access_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `edit_project_template_access_settings`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `edit_project_template_access_settings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -1308,36 +1548,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/accessSettings', 'PUT',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/accessSettings",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectSecuritySettingsDtoV2',  # noqa: E501
+            response_type="ProjectSecuritySettingsDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_project_template_import_settings(self, project_template_uid, **kwargs):  # noqa: E501
+    def edit_project_template_import_settings(
+        self, project_template_uid, **kwargs
+    ) -> FileImportSettingsDto:  # noqa: E501
         """Edit project template import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1352,14 +1600,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_project_template_import_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_project_template_import_settings_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_project_template_import_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.edit_project_template_import_settings_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_project_template_import_settings_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def edit_project_template_import_settings_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> FileImportSettingsDto:  # noqa: E501
         """Edit project template import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1375,31 +1629,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_project_template_import_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `edit_project_template_import_settings`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `edit_project_template_import_settings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -1409,36 +1669,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/importSettings', 'PUT',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/importSettings",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FileImportSettingsDto',  # noqa: E501
+            response_type="FileImportSettingsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_analyse_settings_for_project_template(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_analyse_settings_for_project_template(
+        self, project_template_uid, **kwargs
+    ) -> AbstractAnalyseSettingsDto:  # noqa: E501
         """Get analyse settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1452,14 +1720,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_analyse_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_analyse_settings_for_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_analyse_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.get_analyse_settings_for_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_analyse_settings_for_project_template_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_analyse_settings_for_project_template_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> AbstractAnalyseSettingsDto:  # noqa: E501
         """Get analyse settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1474,31 +1748,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_analyse_settings_for_project_template" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_analyse_settings_for_project_template`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_analyse_settings_for_project_template`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -1509,29 +1789,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AbstractAnalyseSettingsDto',  # noqa: E501
+            response_type="AbstractAnalyseSettingsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_custom_field2(self, project_template_uid, field_instance_uid, **kwargs):  # noqa: E501
+    def get_custom_field2(
+        self, project_template_uid, field_instance_uid, **kwargs
+    ) -> CustomFieldInstanceDto:  # noqa: E501
         """Get custom field of project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1546,14 +1831,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_custom_field2_with_http_info(project_template_uid, field_instance_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_custom_field2_with_http_info(
+                project_template_uid, field_instance_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_custom_field2_with_http_info(project_template_uid, field_instance_uid, **kwargs)  # noqa: E501
+            (data) = self.get_custom_field2_with_http_info(
+                project_template_uid, field_instance_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_custom_field2_with_http_info(self, project_template_uid, field_instance_uid, **kwargs):  # noqa: E501
+    def get_custom_field2_with_http_info(
+        self, project_template_uid, field_instance_uid, **kwargs
+    ) -> CustomFieldInstanceDto:  # noqa: E501
         """Get custom field of project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1569,37 +1860,44 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'field_instance_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "field_instance_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_custom_field2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_custom_field2`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_custom_field2`"
+            )  # noqa: E501
         # verify the required parameter 'field_instance_uid' is set
-        if ('field_instance_uid' not in params or
-                params['field_instance_uid'] is None):
-            raise ValueError("Missing the required parameter `field_instance_uid` when calling `get_custom_field2`")  # noqa: E501
+        if "field_instance_uid" not in params or params["field_instance_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `field_instance_uid` when calling `get_custom_field2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
-        if 'field_instance_uid' in params:
-            path_params['fieldInstanceUid'] = params['field_instance_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
+        if "field_instance_uid" in params:
+            path_params["fieldInstanceUid"] = params["field_instance_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1610,29 +1908,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CustomFieldInstanceDto',  # noqa: E501
+            response_type="CustomFieldInstanceDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_custom_fields_page1(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_custom_fields_page1(
+        self, project_template_uid, **kwargs
+    ) -> PageDtoCustomFieldInstanceDto:  # noqa: E501
         """Get custom fields of project template (page)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1652,14 +1955,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_custom_fields_page1_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_custom_fields_page1_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_custom_fields_page1_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.get_custom_fields_page1_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_custom_fields_page1_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_custom_fields_page1_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> PageDtoCustomFieldInstanceDto:  # noqa: E501
         """Get custom fields of project template (page)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1680,47 +1989,61 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'page_number', 'page_size', 'created_by', 'modified_by', 'sort_field', 'sort_trend']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_template_uid",
+            "page_number",
+            "page_size",
+            "created_by",
+            "modified_by",
+            "sort_field",
+            "sort_trend",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_custom_fields_page1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_custom_fields_page1`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_custom_fields_page1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
-        if 'created_by' in params:
-            query_params.append(('createdBy', params['created_by']))  # noqa: E501
-            collection_formats['createdBy'] = 'multi'  # noqa: E501
-        if 'modified_by' in params:
-            query_params.append(('modifiedBy', params['modified_by']))  # noqa: E501
-            collection_formats['modifiedBy'] = 'multi'  # noqa: E501
-        if 'sort_field' in params:
-            query_params.append(('sortField', params['sort_field']))  # noqa: E501
-        if 'sort_trend' in params:
-            query_params.append(('sortTrend', params['sort_trend']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
+        if "created_by" in params:
+            query_params.append(("createdBy", params["created_by"]))  # noqa: E501
+            collection_formats["createdBy"] = "multi"  # noqa: E501
+        if "modified_by" in params:
+            query_params.append(("modifiedBy", params["modified_by"]))  # noqa: E501
+            collection_formats["modifiedBy"] = "multi"  # noqa: E501
+        if "sort_field" in params:
+            query_params.append(("sortField", params["sort_field"]))  # noqa: E501
+        if "sort_trend" in params:
+            query_params.append(("sortTrend", params["sort_trend"]))  # noqa: E501
 
         header_params = {}
 
@@ -1729,29 +2052,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/customFields', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/customFields",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoCustomFieldInstanceDto',  # noqa: E501
+            response_type="PageDtoCustomFieldInstanceDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_import_settings_for_project_template(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_import_settings_for_project_template(
+        self, project_template_uid, **kwargs
+    ) -> FileImportSettingsDto:  # noqa: E501
         """Get import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1765,14 +2093,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_import_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_import_settings_for_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_import_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.get_import_settings_for_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_import_settings_for_project_template_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_import_settings_for_project_template_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> FileImportSettingsDto:  # noqa: E501
         """Get import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1787,31 +2121,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_import_settings_for_project_template" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_import_settings_for_project_template`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_import_settings_for_project_template`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -1822,29 +2162,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/importSettings', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/importSettings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FileImportSettingsDto',  # noqa: E501
+            response_type="FileImportSettingsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_machine_translate_settings_for_project_template(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_machine_translate_settings_for_project_template(
+        self, project_template_uid, **kwargs
+    ) -> MTSettingsPerLanguageListDto:  # noqa: E501
         """Get project template machine translate settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1858,14 +2203,24 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_machine_translate_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return (
+                self.get_machine_translate_settings_for_project_template_with_http_info(
+                    project_template_uid, **kwargs
+                )
+            )  # noqa: E501
         else:
-            (data) = self.get_machine_translate_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (
+                data
+            ) = self.get_machine_translate_settings_for_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_machine_translate_settings_for_project_template_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_machine_translate_settings_for_project_template_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> MTSettingsPerLanguageListDto:  # noqa: E501
         """Get project template machine translate settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1880,31 +2235,38 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_machine_translate_settings_for_project_template" % key
+                    " to method get_machine_translate_settings_for_project_template"
+                    % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_machine_translate_settings_for_project_template`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_machine_translate_settings_for_project_template`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -1915,29 +2277,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/mtSettings', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/mtSettings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='MTSettingsPerLanguageListDto',  # noqa: E501
+            response_type="MTSettingsPerLanguageListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_pre_translate_settings_for_project_template2(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_pre_translate_settings_for_project_template2(
+        self, project_template_uid, **kwargs
+    ) -> PreTranslateSettingsV3Dto:  # noqa: E501
         """Get Pre-translate settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1951,14 +2318,22 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_pre_translate_settings_for_project_template2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_pre_translate_settings_for_project_template2_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_pre_translate_settings_for_project_template2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (
+                data
+            ) = self.get_pre_translate_settings_for_project_template2_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_pre_translate_settings_for_project_template2_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_pre_translate_settings_for_project_template2_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> PreTranslateSettingsV3Dto:  # noqa: E501
         """Get Pre-translate settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1973,31 +2348,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_pre_translate_settings_for_project_template2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_pre_translate_settings_for_project_template2`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_pre_translate_settings_for_project_template2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -2008,29 +2389,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings', 'GET',
+            "/api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PreTranslateSettingsV3Dto',  # noqa: E501
+            response_type="PreTranslateSettingsV3Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_project_template(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateDto:  # noqa: E501
         """Get project template  # noqa: E501
 
         Note: importSettings in response is deprecated and will be always null  # noqa: E501
@@ -2045,14 +2431,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.get_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_project_template_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateDto:  # noqa: E501
         """Get project template  # noqa: E501
 
         Note: importSettings in response is deprecated and will be always null  # noqa: E501
@@ -2068,31 +2460,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_project_template" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_project_template`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_project_template`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -2103,29 +2501,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTemplateDto',  # noqa: E501
+            response_type="ProjectTemplateDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_project_template_access_settings(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_access_settings(
+        self, project_template_uid, **kwargs
+    ) -> ProjectSecuritySettingsDtoV2:  # noqa: E501
         """Get project template access and security settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2139,14 +2542,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_project_template_access_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_project_template_access_settings_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_project_template_access_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.get_project_template_access_settings_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_project_template_access_settings_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_access_settings_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> ProjectSecuritySettingsDtoV2:  # noqa: E501
         """Get project template access and security settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2161,31 +2570,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_project_template_access_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_project_template_access_settings`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_project_template_access_settings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -2196,29 +2611,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/accessSettings', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/accessSettings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectSecuritySettingsDtoV2',  # noqa: E501
+            response_type="ProjectSecuritySettingsDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_project_template_qa_settings(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_qa_settings(
+        self, project_template_uid, **kwargs
+    ) -> QASettingsDtoV2:  # noqa: E501
         """Get quality assurance settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2232,14 +2652,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_project_template_qa_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_project_template_qa_settings_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_project_template_qa_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.get_project_template_qa_settings_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_project_template_qa_settings_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_qa_settings_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> QASettingsDtoV2:  # noqa: E501
         """Get quality assurance settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2254,31 +2680,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_project_template_qa_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_project_template_qa_settings`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_project_template_qa_settings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -2289,29 +2721,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/qaSettings', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/qaSettings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='QASettingsDtoV2',  # noqa: E501
+            response_type="QASettingsDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_project_template_term_bases(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_term_bases(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Get term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2325,14 +2762,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_project_template_term_bases_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_project_template_term_bases_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_project_template_term_bases_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.get_project_template_term_bases_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_project_template_term_bases_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_term_bases_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Get term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2347,31 +2790,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_project_template_term_bases" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_project_template_term_bases`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_project_template_term_bases`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -2382,29 +2831,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/termBases', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/termBases",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTemplateTermBaseListDto',  # noqa: E501
+            response_type="ProjectTemplateTermBaseListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_project_template_trans_memories2(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_trans_memories2(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTransMemoryListDtoV3:  # noqa: E501
         """Get translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2420,14 +2874,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_project_template_trans_memories2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_project_template_trans_memories2_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_project_template_trans_memories2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.get_project_template_trans_memories2_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_project_template_trans_memories2_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_trans_memories2_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTransMemoryListDtoV3:  # noqa: E501
         """Get translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2444,37 +2904,47 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'target_lang', 'wf_step_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_template_uid",
+            "target_lang",
+            "wf_step_uid",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_project_template_trans_memories2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_project_template_trans_memories2`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_project_template_trans_memories2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
-        if 'target_lang' in params:
-            query_params.append(('targetLang', params['target_lang']))  # noqa: E501
-        if 'wf_step_uid' in params:
-            query_params.append(('wfStepUid', params['wf_step_uid']))  # noqa: E501
+        if "target_lang" in params:
+            query_params.append(("targetLang", params["target_lang"]))  # noqa: E501
+        if "wf_step_uid" in params:
+            query_params.append(("wfStepUid", params["wf_step_uid"]))  # noqa: E501
 
         header_params = {}
 
@@ -2483,29 +2953,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projectTemplates/{projectTemplateUid}/transMemories', 'GET',
+            "/api2/v3/projectTemplates/{projectTemplateUid}/transMemories",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTemplateTransMemoryListDtoV3',  # noqa: E501
+            response_type="ProjectTemplateTransMemoryListDtoV3",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_project_templates(self, **kwargs):  # noqa: E501
+    def get_project_templates(
+        self, **kwargs
+    ) -> PageDtoProjectTemplateReference:  # noqa: E501
         """List project templates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2531,14 +3006,16 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_project_templates_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_project_templates_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_project_templates_with_http_info(self, **kwargs):  # noqa: E501
+    def get_project_templates_with_http_info(
+        self, **kwargs
+    ) -> PageDtoProjectTemplateReference:  # noqa: E501
         """List project templates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2565,53 +3042,75 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['name', 'client_id', 'client_name', 'owner_uid', 'domain_name', 'sub_domain_name', 'cost_center_id', 'cost_center_name', 'business_unit_name', 'sort', 'direction', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "name",
+            "client_id",
+            "client_name",
+            "owner_uid",
+            "domain_name",
+            "sub_domain_name",
+            "cost_center_id",
+            "cost_center_name",
+            "business_unit_name",
+            "sort",
+            "direction",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_project_templates" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'client_id' in params:
-            query_params.append(('clientId', params['client_id']))  # noqa: E501
-        if 'client_name' in params:
-            query_params.append(('clientName', params['client_name']))  # noqa: E501
-        if 'owner_uid' in params:
-            query_params.append(('ownerUid', params['owner_uid']))  # noqa: E501
-        if 'domain_name' in params:
-            query_params.append(('domainName', params['domain_name']))  # noqa: E501
-        if 'sub_domain_name' in params:
-            query_params.append(('subDomainName', params['sub_domain_name']))  # noqa: E501
-        if 'cost_center_id' in params:
-            query_params.append(('costCenterId', params['cost_center_id']))  # noqa: E501
-        if 'cost_center_name' in params:
-            query_params.append(('costCenterName', params['cost_center_name']))  # noqa: E501
-        if 'business_unit_name' in params:
-            query_params.append(('businessUnitName', params['business_unit_name']))  # noqa: E501
-        if 'sort' in params:
-            query_params.append(('sort', params['sort']))  # noqa: E501
-        if 'direction' in params:
-            query_params.append(('direction', params['direction']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "client_id" in params:
+            query_params.append(("clientId", params["client_id"]))  # noqa: E501
+        if "client_name" in params:
+            query_params.append(("clientName", params["client_name"]))  # noqa: E501
+        if "owner_uid" in params:
+            query_params.append(("ownerUid", params["owner_uid"]))  # noqa: E501
+        if "domain_name" in params:
+            query_params.append(("domainName", params["domain_name"]))  # noqa: E501
+        if "sub_domain_name" in params:
+            query_params.append(
+                ("subDomainName", params["sub_domain_name"])
+            )  # noqa: E501
+        if "cost_center_id" in params:
+            query_params.append(
+                ("costCenterId", params["cost_center_id"])
+            )  # noqa: E501
+        if "cost_center_name" in params:
+            query_params.append(
+                ("costCenterName", params["cost_center_name"])
+            )  # noqa: E501
+        if "business_unit_name" in params:
+            query_params.append(
+                ("businessUnitName", params["business_unit_name"])
+            )  # noqa: E501
+        if "sort" in params:
+            query_params.append(("sort", params["sort"]))  # noqa: E501
+        if "direction" in params:
+            query_params.append(("direction", params["direction"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -2620,29 +3119,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates', 'GET',
+            "/api2/v1/projectTemplates",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoProjectTemplateReference',  # noqa: E501
+            response_type="PageDtoProjectTemplateReference",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def relevant_trans_memories(self, project_template_uid, **kwargs):  # noqa: E501
+    def relevant_trans_memories(
+        self, project_template_uid, **kwargs
+    ) -> PageDtoTransMemoryDto:  # noqa: E501
         """List project template relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2664,14 +3168,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.relevant_trans_memories_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.relevant_trans_memories_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.relevant_trans_memories_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.relevant_trans_memories_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def relevant_trans_memories_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def relevant_trans_memories_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> PageDtoTransMemoryDto:  # noqa: E501
         """List project template relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2694,50 +3204,70 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'name', 'domain_name', 'client_name', 'sub_domain_name', 'target_langs', 'strict_lang_matching', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_template_uid",
+            "name",
+            "domain_name",
+            "client_name",
+            "sub_domain_name",
+            "target_langs",
+            "strict_lang_matching",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method relevant_trans_memories" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `relevant_trans_memories`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `relevant_trans_memories`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'domain_name' in params:
-            query_params.append(('domainName', params['domain_name']))  # noqa: E501
-        if 'client_name' in params:
-            query_params.append(('clientName', params['client_name']))  # noqa: E501
-        if 'sub_domain_name' in params:
-            query_params.append(('subDomainName', params['sub_domain_name']))  # noqa: E501
-        if 'target_langs' in params:
-            query_params.append(('targetLangs', params['target_langs']))  # noqa: E501
-            collection_formats['targetLangs'] = 'multi'  # noqa: E501
-        if 'strict_lang_matching' in params:
-            query_params.append(('strictLangMatching', params['strict_lang_matching']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "domain_name" in params:
+            query_params.append(("domainName", params["domain_name"]))  # noqa: E501
+        if "client_name" in params:
+            query_params.append(("clientName", params["client_name"]))  # noqa: E501
+        if "sub_domain_name" in params:
+            query_params.append(
+                ("subDomainName", params["sub_domain_name"])
+            )  # noqa: E501
+        if "target_langs" in params:
+            query_params.append(("targetLangs", params["target_langs"]))  # noqa: E501
+            collection_formats["targetLangs"] = "multi"  # noqa: E501
+        if "strict_lang_matching" in params:
+            query_params.append(
+                ("strictLangMatching", params["strict_lang_matching"])
+            )  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -2746,29 +3276,34 @@ class ProjectTemplateApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/transMemories/relevant', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/transMemories/relevant",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoTransMemoryDto',  # noqa: E501
+            response_type="PageDtoTransMemoryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def set_project_template_qa_settings(self, project_template_uid, **kwargs):  # noqa: E501
+    def set_project_template_qa_settings(
+        self, project_template_uid, **kwargs
+    ) -> QASettingsDtoV2:  # noqa: E501
         """Edit quality assurance settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2783,14 +3318,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.set_project_template_qa_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.set_project_template_qa_settings_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.set_project_template_qa_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.set_project_template_qa_settings_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def set_project_template_qa_settings_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def set_project_template_qa_settings_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> QASettingsDtoV2:  # noqa: E501
         """Edit quality assurance settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2806,31 +3347,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_project_template_qa_settings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `set_project_template_qa_settings`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `set_project_template_qa_settings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -2840,36 +3387,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/qaSettings', 'PUT',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/qaSettings",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='QASettingsDtoV2',  # noqa: E501
+            response_type="QASettingsDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def set_project_template_term_bases(self, project_template_uid, **kwargs):  # noqa: E501
+    def set_project_template_term_bases(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Edit term bases in project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2884,14 +3439,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.set_project_template_term_bases_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.set_project_template_term_bases_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.set_project_template_term_bases_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.set_project_template_term_bases_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def set_project_template_term_bases_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def set_project_template_term_bases_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Edit term bases in project template  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2907,31 +3468,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_project_template_term_bases" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `set_project_template_term_bases`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `set_project_template_term_bases`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -2941,36 +3508,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/termBases', 'PUT',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/termBases",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTemplateTermBaseListDto',  # noqa: E501
+            response_type="ProjectTemplateTermBaseListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def set_project_template_trans_memories_v2(self, project_template_uid, **kwargs):  # noqa: E501
+    def set_project_template_trans_memories_v2(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTransMemoryListV2Dto:  # noqa: E501
         """Edit translation memories  # noqa: E501
 
         If user wants to edit “All target languages” or \"All workflow steps”,                         but there are already varied TM settings for individual languages or steps,                         then the user risks to overwrite these individual choices.  # noqa: E501
@@ -2986,14 +3561,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.set_project_template_trans_memories_v2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.set_project_template_trans_memories_v2_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.set_project_template_trans_memories_v2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.set_project_template_trans_memories_v2_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def set_project_template_trans_memories_v2_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def set_project_template_trans_memories_v2_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTransMemoryListV2Dto:  # noqa: E501
         """Edit translation memories  # noqa: E501
 
         If user wants to edit “All target languages” or \"All workflow steps”,                         but there are already varied TM settings for individual languages or steps,                         then the user risks to overwrite these individual choices.  # noqa: E501
@@ -3010,31 +3591,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method set_project_template_trans_memories_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `set_project_template_trans_memories_v2`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `set_project_template_trans_memories_v2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -3044,36 +3631,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projectTemplates/{projectTemplateUid}/transMemories', 'PUT',
+            "/api2/v2/projectTemplates/{projectTemplateUid}/transMemories",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTemplateTransMemoryListV2Dto',  # noqa: E501
+            response_type="ProjectTemplateTransMemoryListV2Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_analyse_settings_for_project_template(self, project_template_uid, **kwargs):  # noqa: E501
+    def update_analyse_settings_for_project_template(
+        self, project_template_uid, **kwargs
+    ) -> AbstractAnalyseSettingsDto:  # noqa: E501
         """Edit analyse settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3088,14 +3683,20 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_analyse_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_analyse_settings_for_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_analyse_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.update_analyse_settings_for_project_template_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_analyse_settings_for_project_template_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def update_analyse_settings_for_project_template_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> AbstractAnalyseSettingsDto:  # noqa: E501
         """Edit analyse settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3111,31 +3712,37 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_analyse_settings_for_project_template" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `update_analyse_settings_for_project_template`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `update_analyse_settings_for_project_template`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -3145,36 +3752,44 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings', 'PUT',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AbstractAnalyseSettingsDto',  # noqa: E501
+            response_type="AbstractAnalyseSettingsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_pre_translate_settings_for_project_template2(self, project_template_uid, **kwargs):  # noqa: E501
+    def update_pre_translate_settings_for_project_template2(
+        self, project_template_uid, **kwargs
+    ) -> PreTranslateSettingsV3Dto:  # noqa: E501
         """Update Pre-translate settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3189,14 +3804,24 @@ class ProjectTemplateApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_pre_translate_settings_for_project_template2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return (
+                self.update_pre_translate_settings_for_project_template2_with_http_info(
+                    project_template_uid, **kwargs
+                )
+            )  # noqa: E501
         else:
-            (data) = self.update_pre_translate_settings_for_project_template2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (
+                data
+            ) = self.update_pre_translate_settings_for_project_template2_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_pre_translate_settings_for_project_template2_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def update_pre_translate_settings_for_project_template2_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> PreTranslateSettingsV3Dto:  # noqa: E501
         """Update Pre-translate settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3212,31 +3837,38 @@ class ProjectTemplateApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_template_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method update_pre_translate_settings_for_project_template2" % key
+                    " to method update_pre_translate_settings_for_project_template2"
+                    % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `update_pre_translate_settings_for_project_template2`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `update_pre_translate_settings_for_project_template2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -3246,31 +3878,37 @@ class ProjectTemplateApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings', 'PUT',
+            "/api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PreTranslateSettingsV3Dto',  # noqa: E501
+            response_type="PreTranslateSettingsV3Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

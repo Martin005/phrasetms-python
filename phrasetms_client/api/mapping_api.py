@@ -17,6 +17,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import TaskMappingDto
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +33,7 @@ class MappingApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def get_mapping_for_task(self, id, **kwargs):  # noqa: E501
+    def get_mapping_for_task(self, id, **kwargs) -> TaskMappingDto:  # noqa: E501
         """Returns mapping for taskId (mxliff)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -47,14 +48,18 @@ class MappingApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_mapping_for_task_with_http_info(id, **kwargs)  # noqa: E501
         else:
-            (data) = self.get_mapping_for_task_with_http_info(id, **kwargs)  # noqa: E501
+            (data) = self.get_mapping_for_task_with_http_info(
+                id, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_mapping_for_task_with_http_info(self, id, **kwargs):  # noqa: E501
+    def get_mapping_for_task_with_http_info(
+        self, id, **kwargs
+    ) -> TaskMappingDto:  # noqa: E501
         """Returns mapping for taskId (mxliff)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -70,35 +75,38 @@ class MappingApi(object):
                  returns the request thread.
         """
 
-        all_params = ['id', 'workflow_level']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["id", "workflow_level"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_mapping_for_task" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `get_mapping_for_task`")  # noqa: E501
+        if "id" not in params or params["id"] is None:
+            raise ValueError(
+                "Missing the required parameter `id` when calling `get_mapping_for_task`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if "id" in params:
+            path_params["id"] = params["id"]  # noqa: E501
 
         query_params = []
-        if 'workflow_level' in params:
-            query_params.append(('workflowLevel', params['workflow_level']))  # noqa: E501
+        if "workflow_level" in params:
+            query_params.append(
+                ("workflowLevel", params["workflow_level"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -107,24 +115,27 @@ class MappingApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/mappings/tasks/{id}', 'GET',
+            "/api2/v1/mappings/tasks/{id}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TaskMappingDto',  # noqa: E501
+            response_type="TaskMappingDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

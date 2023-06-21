@@ -17,6 +17,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import GlossaryDto, PageDtoGlossaryDto
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +33,7 @@ class GlossaryApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def activate_glossary(self, glossary_uid, **kwargs):  # noqa: E501
+    def activate_glossary(self, glossary_uid, **kwargs) -> GlossaryDto:  # noqa: E501
         """Activate/Deactivate glossary  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -47,14 +48,20 @@ class GlossaryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.activate_glossary_with_http_info(glossary_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.activate_glossary_with_http_info(
+                glossary_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.activate_glossary_with_http_info(glossary_uid, **kwargs)  # noqa: E501
+            (data) = self.activate_glossary_with_http_info(
+                glossary_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def activate_glossary_with_http_info(self, glossary_uid, **kwargs):  # noqa: E501
+    def activate_glossary_with_http_info(
+        self, glossary_uid, **kwargs
+    ) -> GlossaryDto:  # noqa: E501
         """Activate/Deactivate glossary  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -70,31 +77,32 @@ class GlossaryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['glossary_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["glossary_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method activate_glossary" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'glossary_uid' is set
-        if ('glossary_uid' not in params or
-                params['glossary_uid'] is None):
-            raise ValueError("Missing the required parameter `glossary_uid` when calling `activate_glossary`")  # noqa: E501
+        if "glossary_uid" not in params or params["glossary_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `glossary_uid` when calling `activate_glossary`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'glossary_uid' in params:
-            path_params['glossaryUid'] = params['glossary_uid']  # noqa: E501
+        if "glossary_uid" in params:
+            path_params["glossaryUid"] = params["glossary_uid"]  # noqa: E501
 
         query_params = []
 
@@ -104,36 +112,42 @@ class GlossaryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/glossaries/{glossaryUid}/activate', 'PUT',
+            "/api2/v1/glossaries/{glossaryUid}/activate",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GlossaryDto',  # noqa: E501
+            response_type="GlossaryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_glossary(self, **kwargs):  # noqa: E501
+    def create_glossary(self, **kwargs) -> GlossaryDto:  # noqa: E501
         """Create glossary  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -147,14 +161,14 @@ class GlossaryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_glossary_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_glossary_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_glossary_with_http_info(self, **kwargs):  # noqa: E501
+    def create_glossary_with_http_info(self, **kwargs) -> GlossaryDto:  # noqa: E501
         """Create glossary  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -169,21 +183,21 @@ class GlossaryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_glossary" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -197,36 +211,42 @@ class GlossaryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/glossaries', 'POST',
+            "/api2/v1/glossaries",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GlossaryDto',  # noqa: E501
+            response_type="GlossaryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_glossary(self, glossary_uid, **kwargs):  # noqa: E501
+    def delete_glossary(self, glossary_uid, **kwargs) -> None:  # noqa: E501
         """Delete glossary  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -241,14 +261,20 @@ class GlossaryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_glossary_with_http_info(glossary_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_glossary_with_http_info(
+                glossary_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_glossary_with_http_info(glossary_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_glossary_with_http_info(
+                glossary_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_glossary_with_http_info(self, glossary_uid, **kwargs):  # noqa: E501
+    def delete_glossary_with_http_info(
+        self, glossary_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete glossary  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -264,35 +290,36 @@ class GlossaryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['glossary_uid', 'purge']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["glossary_uid", "purge"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_glossary" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'glossary_uid' is set
-        if ('glossary_uid' not in params or
-                params['glossary_uid'] is None):
-            raise ValueError("Missing the required parameter `glossary_uid` when calling `delete_glossary`")  # noqa: E501
+        if "glossary_uid" not in params or params["glossary_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `glossary_uid` when calling `delete_glossary`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'glossary_uid' in params:
-            path_params['glossaryUid'] = params['glossary_uid']  # noqa: E501
+        if "glossary_uid" in params:
+            path_params["glossaryUid"] = params["glossary_uid"]  # noqa: E501
 
         query_params = []
-        if 'purge' in params:
-            query_params.append(('purge', params['purge']))  # noqa: E501
+        if "purge" in params:
+            query_params.append(("purge", params["purge"]))  # noqa: E501
 
         header_params = {}
 
@@ -304,7 +331,8 @@ class GlossaryApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/glossaries/{glossaryUid}', 'DELETE',
+            "/api2/v1/glossaries/{glossaryUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -313,13 +341,14 @@ class GlossaryApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_glossary(self, glossary_uid, **kwargs):  # noqa: E501
+    def get_glossary(self, glossary_uid, **kwargs) -> GlossaryDto:  # noqa: E501
         """Get glossary  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -333,14 +362,20 @@ class GlossaryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_glossary_with_http_info(glossary_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_glossary_with_http_info(
+                glossary_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_glossary_with_http_info(glossary_uid, **kwargs)  # noqa: E501
+            (data) = self.get_glossary_with_http_info(
+                glossary_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_glossary_with_http_info(self, glossary_uid, **kwargs):  # noqa: E501
+    def get_glossary_with_http_info(
+        self, glossary_uid, **kwargs
+    ) -> GlossaryDto:  # noqa: E501
         """Get glossary  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -355,31 +390,32 @@ class GlossaryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['glossary_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["glossary_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_glossary" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'glossary_uid' is set
-        if ('glossary_uid' not in params or
-                params['glossary_uid'] is None):
-            raise ValueError("Missing the required parameter `glossary_uid` when calling `get_glossary`")  # noqa: E501
+        if "glossary_uid" not in params or params["glossary_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `glossary_uid` when calling `get_glossary`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'glossary_uid' in params:
-            path_params['glossaryUid'] = params['glossary_uid']  # noqa: E501
+        if "glossary_uid" in params:
+            path_params["glossaryUid"] = params["glossary_uid"]  # noqa: E501
 
         query_params = []
 
@@ -390,29 +426,32 @@ class GlossaryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/glossaries/{glossaryUid}', 'GET',
+            "/api2/v1/glossaries/{glossaryUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GlossaryDto',  # noqa: E501
+            response_type="GlossaryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_glossaries(self, **kwargs):  # noqa: E501
+    def list_glossaries(self, **kwargs) -> PageDtoGlossaryDto:  # noqa: E501
         """List glossaries  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -429,14 +468,16 @@ class GlossaryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.list_glossaries_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_glossaries_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def list_glossaries_with_http_info(self, **kwargs):  # noqa: E501
+    def list_glossaries_with_http_info(
+        self, **kwargs
+    ) -> PageDtoGlossaryDto:  # noqa: E501
         """List glossaries  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -454,36 +495,36 @@ class GlossaryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['name', 'lang', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["name", "lang", "page_number", "page_size"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_glossaries" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'lang' in params:
-            query_params.append(('lang', params['lang']))  # noqa: E501
-            collection_formats['lang'] = 'multi'  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "lang" in params:
+            query_params.append(("lang", params["lang"]))  # noqa: E501
+            collection_formats["lang"] = "multi"  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -492,29 +533,32 @@ class GlossaryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/glossaries', 'GET',
+            "/api2/v1/glossaries",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoGlossaryDto',  # noqa: E501
+            response_type="PageDtoGlossaryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_glossary(self, glossary_uid, **kwargs):  # noqa: E501
+    def update_glossary(self, glossary_uid, **kwargs) -> GlossaryDto:  # noqa: E501
         """Edit glossary  # noqa: E501
 
         Languages can only be added, their removal is not supported  # noqa: E501
@@ -530,14 +574,20 @@ class GlossaryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_glossary_with_http_info(glossary_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_glossary_with_http_info(
+                glossary_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_glossary_with_http_info(glossary_uid, **kwargs)  # noqa: E501
+            (data) = self.update_glossary_with_http_info(
+                glossary_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_glossary_with_http_info(self, glossary_uid, **kwargs):  # noqa: E501
+    def update_glossary_with_http_info(
+        self, glossary_uid, **kwargs
+    ) -> GlossaryDto:  # noqa: E501
         """Edit glossary  # noqa: E501
 
         Languages can only be added, their removal is not supported  # noqa: E501
@@ -554,31 +604,32 @@ class GlossaryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['glossary_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["glossary_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_glossary" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'glossary_uid' is set
-        if ('glossary_uid' not in params or
-                params['glossary_uid'] is None):
-            raise ValueError("Missing the required parameter `glossary_uid` when calling `update_glossary`")  # noqa: E501
+        if "glossary_uid" not in params or params["glossary_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `glossary_uid` when calling `update_glossary`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'glossary_uid' in params:
-            path_params['glossaryUid'] = params['glossary_uid']  # noqa: E501
+        if "glossary_uid" in params:
+            path_params["glossaryUid"] = params["glossary_uid"]  # noqa: E501
 
         query_params = []
 
@@ -588,31 +639,37 @@ class GlossaryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/glossaries/{glossaryUid}', 'PUT',
+            "/api2/v1/glossaries/{glossaryUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='GlossaryDto',  # noqa: E501
+            response_type="GlossaryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

@@ -32,7 +32,7 @@ class LanguageQualityAssessmentApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def download_lqa_reports(self, job_parts, **kwargs):  # noqa: E501
+    def download_lqa_reports(self, job_parts, **kwargs) -> None:  # noqa: E501
         """Download LQA Assessment XLSX reports  # noqa: E501
 
         Returns a single xlsx report or ZIP archive with multiple reports. If any given jobPart is not from LQA workflow step, reports from successive workflow steps may be returned If none were found returns 404 error, otherwise returns those that were found.  # noqa: E501
@@ -47,14 +47,20 @@ class LanguageQualityAssessmentApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.download_lqa_reports_with_http_info(job_parts, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.download_lqa_reports_with_http_info(
+                job_parts, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.download_lqa_reports_with_http_info(job_parts, **kwargs)  # noqa: E501
+            (data) = self.download_lqa_reports_with_http_info(
+                job_parts, **kwargs
+            )  # noqa: E501
             return data
 
-    def download_lqa_reports_with_http_info(self, job_parts, **kwargs):  # noqa: E501
+    def download_lqa_reports_with_http_info(
+        self, job_parts, **kwargs
+    ) -> None:  # noqa: E501
         """Download LQA Assessment XLSX reports  # noqa: E501
 
         Returns a single xlsx report or ZIP archive with multiple reports. If any given jobPart is not from LQA workflow step, reports from successive workflow steps may be returned If none were found returns 404 error, otherwise returns those that were found.  # noqa: E501
@@ -70,33 +76,34 @@ class LanguageQualityAssessmentApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_parts']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_parts"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method download_lqa_reports" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_parts' is set
-        if ('job_parts' not in params or
-                params['job_parts'] is None):
-            raise ValueError("Missing the required parameter `job_parts` when calling `download_lqa_reports`")  # noqa: E501
+        if "job_parts" not in params or params["job_parts"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_parts` when calling `download_lqa_reports`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'job_parts' in params:
-            query_params.append(('jobParts', params['job_parts']))  # noqa: E501
+        if "job_parts" in params:
+            query_params.append(("jobParts", params["job_parts"]))  # noqa: E501
 
         header_params = {}
 
@@ -108,7 +115,8 @@ class LanguageQualityAssessmentApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/lqa/assessments/reports', 'GET',
+            "/api2/v1/lqa/assessments/reports",
+            "GET",
             path_params,
             query_params,
             header_params,
@@ -117,8 +125,9 @@ class LanguageQualityAssessmentApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

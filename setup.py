@@ -13,7 +13,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "phrasetms-python"
-VERSION = "0.1.1"
+VERSION = "0.2.0"
 # To install the library, run the following
 #
 # python setup.py install
@@ -35,5 +35,5 @@ setup(
     include_package_data=True,
     long_description="""\
     Welcome to Phrase&#x27;s TMS API documentation.    Please visit our [help center](https://support.phrase.com/hc/en-us/sections/5709662083612) for more information about the APIs.    If you have any questions, please contact [Support](https://support.phrase.com/hc/requests/new).    Please, include the &#x60;User-Agent&#x60; header with the name of your application or project. It might be a good idea to include some sort of contact information as well, so that we can get in touch if necessary. Examples of excellent &#x60;User-Agent&#x60; headers:  &gt; User-Agent: Example mobile app (example@phrase.com) &lt;br/&gt; User-Agent: ACME Inc Java 1.8 Client (http://acmeinc.com/contact)  # noqa: E501
-    """
+    """,
 )

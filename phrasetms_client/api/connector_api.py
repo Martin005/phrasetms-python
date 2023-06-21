@@ -17,6 +17,15 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    AsyncFileOpResponseDto,
+    UploadResultDto,
+    FileListDto,
+    InputStreamLength,
+    ConnectorListDto,
+    ConnectorDto,
+    ConnectorCreateResponseDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +41,9 @@ class ConnectorApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def edit_connector(self, connector_id, **kwargs):  # noqa: E501
+    def edit_connector(
+        self, connector_id, **kwargs
+    ) -> ConnectorCreateResponseDto:  # noqa: E501
         """Edit connector  # noqa: E501
 
         Edit selected connector  # noqa: E501
@@ -49,14 +60,20 @@ class ConnectorApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_connector_with_http_info(connector_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_connector_with_http_info(
+                connector_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_connector_with_http_info(connector_id, **kwargs)  # noqa: E501
+            (data) = self.edit_connector_with_http_info(
+                connector_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_connector_with_http_info(self, connector_id, **kwargs):  # noqa: E501
+    def edit_connector_with_http_info(
+        self, connector_id, **kwargs
+    ) -> ConnectorCreateResponseDto:  # noqa: E501
         """Edit connector  # noqa: E501
 
         Edit selected connector  # noqa: E501
@@ -74,35 +91,38 @@ class ConnectorApi(object):
                  returns the request thread.
         """
 
-        all_params = ['connector_id', 'body', 'connection_test']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["connector_id", "body", "connection_test"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_connector" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'connector_id' is set
-        if ('connector_id' not in params or
-                params['connector_id'] is None):
-            raise ValueError("Missing the required parameter `connector_id` when calling `edit_connector`")  # noqa: E501
+        if "connector_id" not in params or params["connector_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `connector_id` when calling `edit_connector`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'connector_id' in params:
-            path_params['connectorId'] = params['connector_id']  # noqa: E501
+        if "connector_id" in params:
+            path_params["connectorId"] = params["connector_id"]  # noqa: E501
 
         query_params = []
-        if 'connection_test' in params:
-            query_params.append(('connectionTest', params['connection_test']))  # noqa: E501
+        if "connection_test" in params:
+            query_params.append(
+                ("connectionTest", params["connection_test"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -110,36 +130,42 @@ class ConnectorApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/connectors/{connectorId}', 'PUT',
+            "/api2/v1/connectors/{connectorId}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConnectorCreateResponseDto',  # noqa: E501
+            response_type="ConnectorCreateResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_connector(self, connector_id, **kwargs):  # noqa: E501
+    def get_connector(self, connector_id, **kwargs) -> ConnectorDto:  # noqa: E501
         """Get a connector  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -153,14 +179,20 @@ class ConnectorApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_connector_with_http_info(connector_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_connector_with_http_info(
+                connector_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_connector_with_http_info(connector_id, **kwargs)  # noqa: E501
+            (data) = self.get_connector_with_http_info(
+                connector_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_connector_with_http_info(self, connector_id, **kwargs):  # noqa: E501
+    def get_connector_with_http_info(
+        self, connector_id, **kwargs
+    ) -> ConnectorDto:  # noqa: E501
         """Get a connector  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -175,31 +207,32 @@ class ConnectorApi(object):
                  returns the request thread.
         """
 
-        all_params = ['connector_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["connector_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_connector" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'connector_id' is set
-        if ('connector_id' not in params or
-                params['connector_id'] is None):
-            raise ValueError("Missing the required parameter `connector_id` when calling `get_connector`")  # noqa: E501
+        if "connector_id" not in params or params["connector_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `connector_id` when calling `get_connector`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'connector_id' in params:
-            path_params['connectorId'] = params['connector_id']  # noqa: E501
+        if "connector_id" in params:
+            path_params["connectorId"] = params["connector_id"]  # noqa: E501
 
         query_params = []
 
@@ -210,29 +243,32 @@ class ConnectorApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/connectors/{connectorId}', 'GET',
+            "/api2/v1/connectors/{connectorId}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConnectorDto',  # noqa: E501
+            response_type="ConnectorDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_connector_list(self, **kwargs):  # noqa: E501
+    def get_connector_list(self, **kwargs) -> ConnectorListDto:  # noqa: E501
         """List connectors  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -246,14 +282,16 @@ class ConnectorApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_connector_list_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_connector_list_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_connector_list_with_http_info(self, **kwargs):  # noqa: E501
+    def get_connector_list_with_http_info(
+        self, **kwargs
+    ) -> ConnectorListDto:  # noqa: E501
         """List connectors  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -268,29 +306,29 @@ class ConnectorApi(object):
                  returns the request thread.
         """
 
-        all_params = ['type']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["type"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_connector_list" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'type' in params:
-            query_params.append(('type', params['type']))  # noqa: E501
+        if "type" in params:
+            query_params.append(("type", params["type"]))  # noqa: E501
 
         header_params = {}
 
@@ -299,29 +337,34 @@ class ConnectorApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/connectors', 'GET',
+            "/api2/v1/connectors",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConnectorListDto',  # noqa: E501
+            response_type="ConnectorListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_file(self, connector_id, folder, file, **kwargs):  # noqa: E501
+    def get_file(
+        self, connector_id, folder, file, **kwargs
+    ) -> InputStreamLength:  # noqa: E501
         """Download file  # noqa: E501
 
         Download a file from a subfolder of the selected connector  # noqa: E501
@@ -338,14 +381,20 @@ class ConnectorApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_file_with_http_info(connector_id, folder, file, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_file_with_http_info(
+                connector_id, folder, file, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_file_with_http_info(connector_id, folder, file, **kwargs)  # noqa: E501
+            (data) = self.get_file_with_http_info(
+                connector_id, folder, file, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_file_with_http_info(self, connector_id, folder, file, **kwargs):  # noqa: E501
+    def get_file_with_http_info(
+        self, connector_id, folder, file, **kwargs
+    ) -> InputStreamLength:  # noqa: E501
         """Download file  # noqa: E501
 
         Download a file from a subfolder of the selected connector  # noqa: E501
@@ -363,43 +412,46 @@ class ConnectorApi(object):
                  returns the request thread.
         """
 
-        all_params = ['connector_id', 'folder', 'file']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["connector_id", "folder", "file"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'connector_id' is set
-        if ('connector_id' not in params or
-                params['connector_id'] is None):
-            raise ValueError("Missing the required parameter `connector_id` when calling `get_file`")  # noqa: E501
+        if "connector_id" not in params or params["connector_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `connector_id` when calling `get_file`"
+            )  # noqa: E501
         # verify the required parameter 'folder' is set
-        if ('folder' not in params or
-                params['folder'] is None):
-            raise ValueError("Missing the required parameter `folder` when calling `get_file`")  # noqa: E501
+        if "folder" not in params or params["folder"] is None:
+            raise ValueError(
+                "Missing the required parameter `folder` when calling `get_file`"
+            )  # noqa: E501
         # verify the required parameter 'file' is set
-        if ('file' not in params or
-                params['file'] is None):
-            raise ValueError("Missing the required parameter `file` when calling `get_file`")  # noqa: E501
+        if "file" not in params or params["file"] is None:
+            raise ValueError(
+                "Missing the required parameter `file` when calling `get_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'connector_id' in params:
-            path_params['connectorId'] = params['connector_id']  # noqa: E501
-        if 'folder' in params:
-            path_params['folder'] = params['folder']  # noqa: E501
-        if 'file' in params:
-            path_params['file'] = params['file']  # noqa: E501
+        if "connector_id" in params:
+            path_params["connectorId"] = params["connector_id"]  # noqa: E501
+        if "folder" in params:
+            path_params["folder"] = params["folder"]  # noqa: E501
+        if "file" in params:
+            path_params["file"] = params["file"]  # noqa: E501
 
         query_params = []
 
@@ -410,29 +462,34 @@ class ConnectorApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/octet-stream'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/connectors/{connectorId}/folders/{folder}/files/{file}', 'GET',
+            "/api2/v1/connectors/{connectorId}/folders/{folder}/files/{file}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InputStreamLength',  # noqa: E501
+            response_type="InputStreamLength",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_file1(self, connector_id, folder, file, **kwargs):  # noqa: E501
+    def get_file1(
+        self, connector_id, folder, file, **kwargs
+    ) -> AsyncFileOpResponseDto:  # noqa: E501
         """Download file (async)  # noqa: E501
 
          Create an asynchronous request to download a file from a (sub)folder of the selected connector.  After a callback with successful response is received, prepared file can be downloaded by [Download prepared file](#operation/getPreparedFile)  or [Create job from connector asynchronous download task](#operation/createJobFromAsyncDownloadTask).   # noqa: E501
@@ -450,14 +507,20 @@ class ConnectorApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_file1_with_http_info(connector_id, folder, file, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_file1_with_http_info(
+                connector_id, folder, file, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_file1_with_http_info(connector_id, folder, file, **kwargs)  # noqa: E501
+            (data) = self.get_file1_with_http_info(
+                connector_id, folder, file, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_file1_with_http_info(self, connector_id, folder, file, **kwargs):  # noqa: E501
+    def get_file1_with_http_info(
+        self, connector_id, folder, file, **kwargs
+    ) -> AsyncFileOpResponseDto:  # noqa: E501
         """Download file (async)  # noqa: E501
 
          Create an asynchronous request to download a file from a (sub)folder of the selected connector.  After a callback with successful response is received, prepared file can be downloaded by [Download prepared file](#operation/getPreparedFile)  or [Create job from connector asynchronous download task](#operation/createJobFromAsyncDownloadTask).   # noqa: E501
@@ -476,43 +539,46 @@ class ConnectorApi(object):
                  returns the request thread.
         """
 
-        all_params = ['connector_id', 'folder', 'file', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["connector_id", "folder", "file", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_file1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'connector_id' is set
-        if ('connector_id' not in params or
-                params['connector_id'] is None):
-            raise ValueError("Missing the required parameter `connector_id` when calling `get_file1`")  # noqa: E501
+        if "connector_id" not in params or params["connector_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `connector_id` when calling `get_file1`"
+            )  # noqa: E501
         # verify the required parameter 'folder' is set
-        if ('folder' not in params or
-                params['folder'] is None):
-            raise ValueError("Missing the required parameter `folder` when calling `get_file1`")  # noqa: E501
+        if "folder" not in params or params["folder"] is None:
+            raise ValueError(
+                "Missing the required parameter `folder` when calling `get_file1`"
+            )  # noqa: E501
         # verify the required parameter 'file' is set
-        if ('file' not in params or
-                params['file'] is None):
-            raise ValueError("Missing the required parameter `file` when calling `get_file1`")  # noqa: E501
+        if "file" not in params or params["file"] is None:
+            raise ValueError(
+                "Missing the required parameter `file` when calling `get_file1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'connector_id' in params:
-            path_params['connectorId'] = params['connector_id']  # noqa: E501
-        if 'folder' in params:
-            path_params['folder'] = params['folder']  # noqa: E501
-        if 'file' in params:
-            path_params['file'] = params['file']  # noqa: E501
+        if "connector_id" in params:
+            path_params["connectorId"] = params["connector_id"]  # noqa: E501
+        if "folder" in params:
+            path_params["folder"] = params["folder"]  # noqa: E501
+        if "file" in params:
+            path_params["file"] = params["file"]  # noqa: E501
 
         query_params = []
 
@@ -522,36 +588,42 @@ class ConnectorApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/connectors/{connectorId}/folders/{folder}/files/{file}', 'POST',
+            "/api2/v2/connectors/{connectorId}/folders/{folder}/files/{file}",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AsyncFileOpResponseDto',  # noqa: E501
+            response_type="AsyncFileOpResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_folder(self, connector_id, folder, **kwargs):  # noqa: E501
+    def get_folder(self, connector_id, folder, **kwargs) -> FileListDto:  # noqa: E501
         """List files in a subfolder  # noqa: E501
 
         List files in a subfolder of the selected connector  # noqa: E501
@@ -571,14 +643,20 @@ class ConnectorApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_folder_with_http_info(connector_id, folder, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_folder_with_http_info(
+                connector_id, folder, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_folder_with_http_info(connector_id, folder, **kwargs)  # noqa: E501
+            (data) = self.get_folder_with_http_info(
+                connector_id, folder, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_folder_with_http_info(self, connector_id, folder, **kwargs):  # noqa: E501
+    def get_folder_with_http_info(
+        self, connector_id, folder, **kwargs
+    ) -> FileListDto:  # noqa: E501
         """List files in a subfolder  # noqa: E501
 
         List files in a subfolder of the selected connector  # noqa: E501
@@ -599,47 +677,56 @@ class ConnectorApi(object):
                  returns the request thread.
         """
 
-        all_params = ['connector_id', 'folder', 'project_uid', 'file_type', 'sort', 'direction']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "connector_id",
+            "folder",
+            "project_uid",
+            "file_type",
+            "sort",
+            "direction",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_folder" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'connector_id' is set
-        if ('connector_id' not in params or
-                params['connector_id'] is None):
-            raise ValueError("Missing the required parameter `connector_id` when calling `get_folder`")  # noqa: E501
+        if "connector_id" not in params or params["connector_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `connector_id` when calling `get_folder`"
+            )  # noqa: E501
         # verify the required parameter 'folder' is set
-        if ('folder' not in params or
-                params['folder'] is None):
-            raise ValueError("Missing the required parameter `folder` when calling `get_folder`")  # noqa: E501
+        if "folder" not in params or params["folder"] is None:
+            raise ValueError(
+                "Missing the required parameter `folder` when calling `get_folder`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'connector_id' in params:
-            path_params['connectorId'] = params['connector_id']  # noqa: E501
-        if 'folder' in params:
-            path_params['folder'] = params['folder']  # noqa: E501
+        if "connector_id" in params:
+            path_params["connectorId"] = params["connector_id"]  # noqa: E501
+        if "folder" in params:
+            path_params["folder"] = params["folder"]  # noqa: E501
 
         query_params = []
-        if 'project_uid' in params:
-            query_params.append(('projectUid', params['project_uid']))  # noqa: E501
-        if 'file_type' in params:
-            query_params.append(('fileType', params['file_type']))  # noqa: E501
-        if 'sort' in params:
-            query_params.append(('sort', params['sort']))  # noqa: E501
-        if 'direction' in params:
-            query_params.append(('direction', params['direction']))  # noqa: E501
+        if "project_uid" in params:
+            query_params.append(("projectUid", params["project_uid"]))  # noqa: E501
+        if "file_type" in params:
+            query_params.append(("fileType", params["file_type"]))  # noqa: E501
+        if "sort" in params:
+            query_params.append(("sort", params["sort"]))  # noqa: E501
+        if "direction" in params:
+            query_params.append(("direction", params["direction"]))  # noqa: E501
 
         header_params = {}
 
@@ -648,29 +735,34 @@ class ConnectorApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/connectors/{connectorId}/folders/{folder}', 'GET',
+            "/api2/v1/connectors/{connectorId}/folders/{folder}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FileListDto',  # noqa: E501
+            response_type="FileListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_prepared_file(self, connector_id, folder, file, task_id, **kwargs):  # noqa: E501
+    def get_prepared_file(
+        self, connector_id, folder, file, task_id, **kwargs
+    ) -> InputStreamLength:  # noqa: E501
         """Download prepared file  # noqa: E501
 
         Download the file by referencing successfully finished async download request [Connector - Download file (async)](#operation/getFile_1).  # noqa: E501
@@ -688,14 +780,20 @@ class ConnectorApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_prepared_file_with_http_info(connector_id, folder, file, task_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_prepared_file_with_http_info(
+                connector_id, folder, file, task_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_prepared_file_with_http_info(connector_id, folder, file, task_id, **kwargs)  # noqa: E501
+            (data) = self.get_prepared_file_with_http_info(
+                connector_id, folder, file, task_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_prepared_file_with_http_info(self, connector_id, folder, file, task_id, **kwargs):  # noqa: E501
+    def get_prepared_file_with_http_info(
+        self, connector_id, folder, file, task_id, **kwargs
+    ) -> InputStreamLength:  # noqa: E501
         """Download prepared file  # noqa: E501
 
         Download the file by referencing successfully finished async download request [Connector - Download file (async)](#operation/getFile_1).  # noqa: E501
@@ -714,49 +812,53 @@ class ConnectorApi(object):
                  returns the request thread.
         """
 
-        all_params = ['connector_id', 'folder', 'file', 'task_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["connector_id", "folder", "file", "task_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_prepared_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'connector_id' is set
-        if ('connector_id' not in params or
-                params['connector_id'] is None):
-            raise ValueError("Missing the required parameter `connector_id` when calling `get_prepared_file`")  # noqa: E501
+        if "connector_id" not in params or params["connector_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `connector_id` when calling `get_prepared_file`"
+            )  # noqa: E501
         # verify the required parameter 'folder' is set
-        if ('folder' not in params or
-                params['folder'] is None):
-            raise ValueError("Missing the required parameter `folder` when calling `get_prepared_file`")  # noqa: E501
+        if "folder" not in params or params["folder"] is None:
+            raise ValueError(
+                "Missing the required parameter `folder` when calling `get_prepared_file`"
+            )  # noqa: E501
         # verify the required parameter 'file' is set
-        if ('file' not in params or
-                params['file'] is None):
-            raise ValueError("Missing the required parameter `file` when calling `get_prepared_file`")  # noqa: E501
+        if "file" not in params or params["file"] is None:
+            raise ValueError(
+                "Missing the required parameter `file` when calling `get_prepared_file`"
+            )  # noqa: E501
         # verify the required parameter 'task_id' is set
-        if ('task_id' not in params or
-                params['task_id'] is None):
-            raise ValueError("Missing the required parameter `task_id` when calling `get_prepared_file`")  # noqa: E501
+        if "task_id" not in params or params["task_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `task_id` when calling `get_prepared_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'connector_id' in params:
-            path_params['connectorId'] = params['connector_id']  # noqa: E501
-        if 'folder' in params:
-            path_params['folder'] = params['folder']  # noqa: E501
-        if 'file' in params:
-            path_params['file'] = params['file']  # noqa: E501
-        if 'task_id' in params:
-            path_params['taskId'] = params['task_id']  # noqa: E501
+        if "connector_id" in params:
+            path_params["connectorId"] = params["connector_id"]  # noqa: E501
+        if "folder" in params:
+            path_params["folder"] = params["folder"]  # noqa: E501
+        if "file" in params:
+            path_params["file"] = params["file"]  # noqa: E501
+        if "task_id" in params:
+            path_params["taskId"] = params["task_id"]  # noqa: E501
 
         query_params = []
 
@@ -767,29 +869,32 @@ class ConnectorApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/octet-stream'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/connectors/{connectorId}/folders/{folder}/files/{file}/tasks/{taskId}', 'GET',
+            "/api2/v2/connectors/{connectorId}/folders/{folder}/files/{file}/tasks/{taskId}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='InputStreamLength',  # noqa: E501
+            response_type="InputStreamLength",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_root_folder(self, connector_id, **kwargs):  # noqa: E501
+    def get_root_folder(self, connector_id, **kwargs) -> FileListDto:  # noqa: E501
         """List files in root  # noqa: E501
 
         List files in a root folder of the selected connector  # noqa: E501
@@ -807,14 +912,20 @@ class ConnectorApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_root_folder_with_http_info(connector_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_root_folder_with_http_info(
+                connector_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_root_folder_with_http_info(connector_id, **kwargs)  # noqa: E501
+            (data) = self.get_root_folder_with_http_info(
+                connector_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_root_folder_with_http_info(self, connector_id, **kwargs):  # noqa: E501
+    def get_root_folder_with_http_info(
+        self, connector_id, **kwargs
+    ) -> FileListDto:  # noqa: E501
         """List files in root  # noqa: E501
 
         List files in a root folder of the selected connector  # noqa: E501
@@ -833,39 +944,40 @@ class ConnectorApi(object):
                  returns the request thread.
         """
 
-        all_params = ['connector_id', 'file_type', 'sort', 'direction']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["connector_id", "file_type", "sort", "direction"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_root_folder" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'connector_id' is set
-        if ('connector_id' not in params or
-                params['connector_id'] is None):
-            raise ValueError("Missing the required parameter `connector_id` when calling `get_root_folder`")  # noqa: E501
+        if "connector_id" not in params or params["connector_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `connector_id` when calling `get_root_folder`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'connector_id' in params:
-            path_params['connectorId'] = params['connector_id']  # noqa: E501
+        if "connector_id" in params:
+            path_params["connectorId"] = params["connector_id"]  # noqa: E501
 
         query_params = []
-        if 'file_type' in params:
-            query_params.append(('fileType', params['file_type']))  # noqa: E501
-        if 'sort' in params:
-            query_params.append(('sort', params['sort']))  # noqa: E501
-        if 'direction' in params:
-            query_params.append(('direction', params['direction']))  # noqa: E501
+        if "file_type" in params:
+            query_params.append(("fileType", params["file_type"]))  # noqa: E501
+        if "sort" in params:
+            query_params.append(("sort", params["sort"]))  # noqa: E501
+        if "direction" in params:
+            query_params.append(("direction", params["direction"]))  # noqa: E501
 
         header_params = {}
 
@@ -874,29 +986,43 @@ class ConnectorApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/connectors/{connectorId}/folders', 'GET',
+            "/api2/v1/connectors/{connectorId}/folders",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='FileListDto',  # noqa: E501
+            response_type="FileListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def upload_file(self, file, source_file_name, subfolder_name, mime_type, commit_message, content_type, connector_id, folder, **kwargs):  # noqa: E501
+    def upload_file(
+        self,
+        file,
+        source_file_name,
+        subfolder_name,
+        mime_type,
+        commit_message,
+        content_type,
+        connector_id,
+        folder,
+        **kwargs
+    ) -> UploadResultDto:  # noqa: E501
         """Upload a file to a subfolder of the selected connector  # noqa: E501
 
         Upload a file to a subfolder of the selected connector  # noqa: E501
@@ -918,14 +1044,45 @@ class ConnectorApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.upload_file_with_http_info(file, source_file_name, subfolder_name, mime_type, commit_message, content_type, connector_id, folder, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.upload_file_with_http_info(
+                file,
+                source_file_name,
+                subfolder_name,
+                mime_type,
+                commit_message,
+                content_type,
+                connector_id,
+                folder,
+                **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.upload_file_with_http_info(file, source_file_name, subfolder_name, mime_type, commit_message, content_type, connector_id, folder, **kwargs)  # noqa: E501
+            (data) = self.upload_file_with_http_info(
+                file,
+                source_file_name,
+                subfolder_name,
+                mime_type,
+                commit_message,
+                content_type,
+                connector_id,
+                folder,
+                **kwargs
+            )  # noqa: E501
             return data
 
-    def upload_file_with_http_info(self, file, source_file_name, subfolder_name, mime_type, commit_message, content_type, connector_id, folder, **kwargs):  # noqa: E501
+    def upload_file_with_http_info(
+        self,
+        file,
+        source_file_name,
+        subfolder_name,
+        mime_type,
+        commit_message,
+        content_type,
+        connector_id,
+        folder,
+        **kwargs
+    ) -> UploadResultDto:  # noqa: E501
         """Upload a file to a subfolder of the selected connector  # noqa: E501
 
         Upload a file to a subfolder of the selected connector  # noqa: E501
@@ -948,110 +1105,141 @@ class ConnectorApi(object):
                  returns the request thread.
         """
 
-        all_params = ['file', 'source_file_name', 'subfolder_name', 'mime_type', 'commit_message', 'content_type', 'connector_id', 'folder']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "file",
+            "source_file_name",
+            "subfolder_name",
+            "mime_type",
+            "commit_message",
+            "content_type",
+            "connector_id",
+            "folder",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method upload_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'file' is set
-        if ('file' not in params or
-                params['file'] is None):
-            raise ValueError("Missing the required parameter `file` when calling `upload_file`")  # noqa: E501
+        if "file" not in params or params["file"] is None:
+            raise ValueError(
+                "Missing the required parameter `file` when calling `upload_file`"
+            )  # noqa: E501
         # verify the required parameter 'source_file_name' is set
-        if ('source_file_name' not in params or
-                params['source_file_name'] is None):
-            raise ValueError("Missing the required parameter `source_file_name` when calling `upload_file`")  # noqa: E501
+        if "source_file_name" not in params or params["source_file_name"] is None:
+            raise ValueError(
+                "Missing the required parameter `source_file_name` when calling `upload_file`"
+            )  # noqa: E501
         # verify the required parameter 'subfolder_name' is set
-        if ('subfolder_name' not in params or
-                params['subfolder_name'] is None):
-            raise ValueError("Missing the required parameter `subfolder_name` when calling `upload_file`")  # noqa: E501
+        if "subfolder_name" not in params or params["subfolder_name"] is None:
+            raise ValueError(
+                "Missing the required parameter `subfolder_name` when calling `upload_file`"
+            )  # noqa: E501
         # verify the required parameter 'mime_type' is set
-        if ('mime_type' not in params or
-                params['mime_type'] is None):
-            raise ValueError("Missing the required parameter `mime_type` when calling `upload_file`")  # noqa: E501
+        if "mime_type" not in params or params["mime_type"] is None:
+            raise ValueError(
+                "Missing the required parameter `mime_type` when calling `upload_file`"
+            )  # noqa: E501
         # verify the required parameter 'commit_message' is set
-        if ('commit_message' not in params or
-                params['commit_message'] is None):
-            raise ValueError("Missing the required parameter `commit_message` when calling `upload_file`")  # noqa: E501
+        if "commit_message" not in params or params["commit_message"] is None:
+            raise ValueError(
+                "Missing the required parameter `commit_message` when calling `upload_file`"
+            )  # noqa: E501
         # verify the required parameter 'content_type' is set
-        if ('content_type' not in params or
-                params['content_type'] is None):
-            raise ValueError("Missing the required parameter `content_type` when calling `upload_file`")  # noqa: E501
+        if "content_type" not in params or params["content_type"] is None:
+            raise ValueError(
+                "Missing the required parameter `content_type` when calling `upload_file`"
+            )  # noqa: E501
         # verify the required parameter 'connector_id' is set
-        if ('connector_id' not in params or
-                params['connector_id'] is None):
-            raise ValueError("Missing the required parameter `connector_id` when calling `upload_file`")  # noqa: E501
+        if "connector_id" not in params or params["connector_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `connector_id` when calling `upload_file`"
+            )  # noqa: E501
         # verify the required parameter 'folder' is set
-        if ('folder' not in params or
-                params['folder'] is None):
-            raise ValueError("Missing the required parameter `folder` when calling `upload_file`")  # noqa: E501
+        if "folder" not in params or params["folder"] is None:
+            raise ValueError(
+                "Missing the required parameter `folder` when calling `upload_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'connector_id' in params:
-            path_params['connectorId'] = params['connector_id']  # noqa: E501
-        if 'folder' in params:
-            path_params['folder'] = params['folder']  # noqa: E501
+        if "connector_id" in params:
+            path_params["connectorId"] = params["connector_id"]  # noqa: E501
+        if "folder" in params:
+            path_params["folder"] = params["folder"]  # noqa: E501
 
         query_params = []
 
         header_params = {}
-        if 'content_type' in params:
-            header_params['Content-Type'] = params['content_type']  # noqa: E501
+        if "content_type" in params:
+            header_params["Content-Type"] = params["content_type"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
-        if 'file' in params:
-            local_var_files['file'] = params['file']  # noqa: E501
-        if 'source_file_name' in params:
-            form_params.append(('sourceFileName', params['source_file_name']))  # noqa: E501
-        if 'subfolder_name' in params:
-            form_params.append(('subfolderName', params['subfolder_name']))  # noqa: E501
-        if 'mime_type' in params:
-            form_params.append(('mimeType', params['mime_type']))  # noqa: E501
-        if 'commit_message' in params:
-            form_params.append(('commitMessage', params['commit_message']))  # noqa: E501
+        if "file" in params:
+            local_var_files["file"] = params["file"]  # noqa: E501
+        if "source_file_name" in params:
+            form_params.append(
+                ("sourceFileName", params["source_file_name"])
+            )  # noqa: E501
+        if "subfolder_name" in params:
+            form_params.append(
+                ("subfolderName", params["subfolder_name"])
+            )  # noqa: E501
+        if "mime_type" in params:
+            form_params.append(("mimeType", params["mime_type"]))  # noqa: E501
+        if "commit_message" in params:
+            form_params.append(
+                ("commitMessage", params["commit_message"])
+            )  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['multipart/form-data'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["multipart/form-data"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/connectors/{connectorId}/folders/{folder}', 'POST',
+            "/api2/v1/connectors/{connectorId}/folders/{folder}",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UploadResultDto',  # noqa: E501
+            response_type="UploadResultDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def upload_file1(self, file, memsource, content_type, connector_id, folder, file_name, **kwargs):  # noqa: E501
+    def upload_file1(
+        self, file, memsource, content_type, connector_id, folder, file_name, **kwargs
+    ) -> AsyncFileOpResponseDto:  # noqa: E501
         """Upload file (async)  # noqa: E501
 
         Upload a file to a subfolder of the selected connector  # noqa: E501
@@ -1072,14 +1260,20 @@ class ConnectorApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.upload_file1_with_http_info(file, memsource, content_type, connector_id, folder, file_name, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.upload_file1_with_http_info(
+                file, memsource, content_type, connector_id, folder, file_name, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.upload_file1_with_http_info(file, memsource, content_type, connector_id, folder, file_name, **kwargs)  # noqa: E501
+            (data) = self.upload_file1_with_http_info(
+                file, memsource, content_type, connector_id, folder, file_name, **kwargs
+            )  # noqa: E501
             return data
 
-    def upload_file1_with_http_info(self, file, memsource, content_type, connector_id, folder, file_name, **kwargs):  # noqa: E501
+    def upload_file1_with_http_info(
+        self, file, memsource, content_type, connector_id, folder, file_name, **kwargs
+    ) -> AsyncFileOpResponseDto:  # noqa: E501
         """Upload file (async)  # noqa: E501
 
         Upload a file to a subfolder of the selected connector  # noqa: E501
@@ -1101,95 +1295,115 @@ class ConnectorApi(object):
                  returns the request thread.
         """
 
-        all_params = ['file', 'memsource', 'content_type', 'connector_id', 'folder', 'file_name', 'mime_type']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "file",
+            "memsource",
+            "content_type",
+            "connector_id",
+            "folder",
+            "file_name",
+            "mime_type",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method upload_file1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'file' is set
-        if ('file' not in params or
-                params['file'] is None):
-            raise ValueError("Missing the required parameter `file` when calling `upload_file1`")  # noqa: E501
+        if "file" not in params or params["file"] is None:
+            raise ValueError(
+                "Missing the required parameter `file` when calling `upload_file1`"
+            )  # noqa: E501
         # verify the required parameter 'memsource' is set
-        if ('memsource' not in params or
-                params['memsource'] is None):
-            raise ValueError("Missing the required parameter `memsource` when calling `upload_file1`")  # noqa: E501
+        if "memsource" not in params or params["memsource"] is None:
+            raise ValueError(
+                "Missing the required parameter `memsource` when calling `upload_file1`"
+            )  # noqa: E501
         # verify the required parameter 'content_type' is set
-        if ('content_type' not in params or
-                params['content_type'] is None):
-            raise ValueError("Missing the required parameter `content_type` when calling `upload_file1`")  # noqa: E501
+        if "content_type" not in params or params["content_type"] is None:
+            raise ValueError(
+                "Missing the required parameter `content_type` when calling `upload_file1`"
+            )  # noqa: E501
         # verify the required parameter 'connector_id' is set
-        if ('connector_id' not in params or
-                params['connector_id'] is None):
-            raise ValueError("Missing the required parameter `connector_id` when calling `upload_file1`")  # noqa: E501
+        if "connector_id" not in params or params["connector_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `connector_id` when calling `upload_file1`"
+            )  # noqa: E501
         # verify the required parameter 'folder' is set
-        if ('folder' not in params or
-                params['folder'] is None):
-            raise ValueError("Missing the required parameter `folder` when calling `upload_file1`")  # noqa: E501
+        if "folder" not in params or params["folder"] is None:
+            raise ValueError(
+                "Missing the required parameter `folder` when calling `upload_file1`"
+            )  # noqa: E501
         # verify the required parameter 'file_name' is set
-        if ('file_name' not in params or
-                params['file_name'] is None):
-            raise ValueError("Missing the required parameter `file_name` when calling `upload_file1`")  # noqa: E501
+        if "file_name" not in params or params["file_name"] is None:
+            raise ValueError(
+                "Missing the required parameter `file_name` when calling `upload_file1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'connector_id' in params:
-            path_params['connectorId'] = params['connector_id']  # noqa: E501
-        if 'folder' in params:
-            path_params['folder'] = params['folder']  # noqa: E501
-        if 'file_name' in params:
-            path_params['fileName'] = params['file_name']  # noqa: E501
+        if "connector_id" in params:
+            path_params["connectorId"] = params["connector_id"]  # noqa: E501
+        if "folder" in params:
+            path_params["folder"] = params["folder"]  # noqa: E501
+        if "file_name" in params:
+            path_params["fileName"] = params["file_name"]  # noqa: E501
 
         query_params = []
-        if 'mime_type' in params:
-            query_params.append(('mimeType', params['mime_type']))  # noqa: E501
+        if "mime_type" in params:
+            query_params.append(("mimeType", params["mime_type"]))  # noqa: E501
 
         header_params = {}
-        if 'memsource' in params:
-            header_params['Memsource'] = params['memsource']  # noqa: E501
-        if 'content_type' in params:
-            header_params['Content-Type'] = params['content_type']  # noqa: E501
+        if "memsource" in params:
+            header_params["Memsource"] = params["memsource"]  # noqa: E501
+        if "content_type" in params:
+            header_params["Content-Type"] = params["content_type"]  # noqa: E501
 
         form_params = []
         local_var_files = {}
-        if 'file' in params:
-            local_var_files['file'] = params['file']  # noqa: E501
+        if "file" in params:
+            local_var_files["file"] = params["file"]  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['multipart/form-data'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["multipart/form-data"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/connectors/{connectorId}/folders/{folder}/files/{fileName}/upload', 'POST',
+            "/api2/v2/connectors/{connectorId}/folders/{folder}/files/{fileName}/upload",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AsyncFileOpResponseDto',  # noqa: E501
+            response_type="AsyncFileOpResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

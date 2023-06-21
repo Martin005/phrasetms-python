@@ -17,6 +17,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import CustomFileTypeDto, PageDtoCustomFileTypeDto
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +33,7 @@ class CustomFileTypeApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def create_custom_file_types(self, **kwargs):  # noqa: E501
+    def create_custom_file_types(self, **kwargs) -> CustomFileTypeDto:  # noqa: E501
         """Create custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -46,14 +47,18 @@ class CustomFileTypeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_custom_file_types_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.create_custom_file_types_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.create_custom_file_types_with_http_info(
+                **kwargs
+            )  # noqa: E501
             return data
 
-    def create_custom_file_types_with_http_info(self, **kwargs):  # noqa: E501
+    def create_custom_file_types_with_http_info(
+        self, **kwargs
+    ) -> CustomFileTypeDto:  # noqa: E501
         """Create custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -68,21 +73,21 @@ class CustomFileTypeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_custom_file_types" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -96,36 +101,42 @@ class CustomFileTypeApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/customFileTypes', 'POST',
+            "/api2/v1/customFileTypes",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CustomFileTypeDto',  # noqa: E501
+            response_type="CustomFileTypeDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_batch_custom_file_type(self, **kwargs):  # noqa: E501
+    def delete_batch_custom_file_type(self, **kwargs) -> None:  # noqa: E501
         """Delete multiple Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -139,14 +150,20 @@ class CustomFileTypeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_batch_custom_file_type_with_http_info(**kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_batch_custom_file_type_with_http_info(
+                **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_batch_custom_file_type_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.delete_batch_custom_file_type_with_http_info(
+                **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_batch_custom_file_type_with_http_info(self, **kwargs):  # noqa: E501
+    def delete_batch_custom_file_type_with_http_info(
+        self, **kwargs
+    ) -> None:  # noqa: E501
         """Delete multiple Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -161,21 +178,21 @@ class CustomFileTypeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_batch_custom_file_type" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -189,17 +206,21 @@ class CustomFileTypeApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/customFileTypes', 'DELETE',
+            "/api2/v1/customFileTypes",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -208,13 +229,16 @@ class CustomFileTypeApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_custom_file_type(self, custom_file_type_uid, **kwargs):  # noqa: E501
+    def delete_custom_file_type(
+        self, custom_file_type_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -228,14 +252,20 @@ class CustomFileTypeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_custom_file_type_with_http_info(custom_file_type_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_custom_file_type_with_http_info(
+                custom_file_type_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_custom_file_type_with_http_info(custom_file_type_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_custom_file_type_with_http_info(
+                custom_file_type_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_custom_file_type_with_http_info(self, custom_file_type_uid, **kwargs):  # noqa: E501
+    def delete_custom_file_type_with_http_info(
+        self, custom_file_type_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -250,31 +280,37 @@ class CustomFileTypeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['custom_file_type_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["custom_file_type_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_custom_file_type" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'custom_file_type_uid' is set
-        if ('custom_file_type_uid' not in params or
-                params['custom_file_type_uid'] is None):
-            raise ValueError("Missing the required parameter `custom_file_type_uid` when calling `delete_custom_file_type`")  # noqa: E501
+        if (
+            "custom_file_type_uid" not in params
+            or params["custom_file_type_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `custom_file_type_uid` when calling `delete_custom_file_type`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'custom_file_type_uid' in params:
-            path_params['customFileTypeUid'] = params['custom_file_type_uid']  # noqa: E501
+        if "custom_file_type_uid" in params:
+            path_params["customFileTypeUid"] = params[
+                "custom_file_type_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -288,7 +324,8 @@ class CustomFileTypeApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/customFileTypes/{customFileTypeUid}', 'DELETE',
+            "/api2/v1/customFileTypes/{customFileTypeUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -297,13 +334,16 @@ class CustomFileTypeApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_all_custom_file_type(self, **kwargs):  # noqa: E501
+    def get_all_custom_file_type(
+        self, **kwargs
+    ) -> PageDtoCustomFileTypeDto:  # noqa: E501
         """Get All Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -318,14 +358,18 @@ class CustomFileTypeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_all_custom_file_type_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.get_all_custom_file_type_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.get_all_custom_file_type_with_http_info(
+                **kwargs
+            )  # noqa: E501
             return data
 
-    def get_all_custom_file_type_with_http_info(self, **kwargs):  # noqa: E501
+    def get_all_custom_file_type_with_http_info(
+        self, **kwargs
+    ) -> PageDtoCustomFileTypeDto:  # noqa: E501
         """Get All Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -341,31 +385,31 @@ class CustomFileTypeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["page_number", "page_size"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_all_custom_file_type" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -374,29 +418,34 @@ class CustomFileTypeApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/customFileTypes', 'GET',
+            "/api2/v1/customFileTypes",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoCustomFileTypeDto',  # noqa: E501
+            response_type="PageDtoCustomFileTypeDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_custom_file_type(self, custom_file_type_uid, **kwargs):  # noqa: E501
+    def get_custom_file_type(
+        self, custom_file_type_uid, **kwargs
+    ) -> CustomFileTypeDto:  # noqa: E501
         """Get Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -410,14 +459,20 @@ class CustomFileTypeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_custom_file_type_with_http_info(custom_file_type_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_custom_file_type_with_http_info(
+                custom_file_type_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_custom_file_type_with_http_info(custom_file_type_uid, **kwargs)  # noqa: E501
+            (data) = self.get_custom_file_type_with_http_info(
+                custom_file_type_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_custom_file_type_with_http_info(self, custom_file_type_uid, **kwargs):  # noqa: E501
+    def get_custom_file_type_with_http_info(
+        self, custom_file_type_uid, **kwargs
+    ) -> CustomFileTypeDto:  # noqa: E501
         """Get Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -432,31 +487,37 @@ class CustomFileTypeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['custom_file_type_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["custom_file_type_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_custom_file_type" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'custom_file_type_uid' is set
-        if ('custom_file_type_uid' not in params or
-                params['custom_file_type_uid'] is None):
-            raise ValueError("Missing the required parameter `custom_file_type_uid` when calling `get_custom_file_type`")  # noqa: E501
+        if (
+            "custom_file_type_uid" not in params
+            or params["custom_file_type_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `custom_file_type_uid` when calling `get_custom_file_type`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'custom_file_type_uid' in params:
-            path_params['customFileTypeUid'] = params['custom_file_type_uid']  # noqa: E501
+        if "custom_file_type_uid" in params:
+            path_params["customFileTypeUid"] = params[
+                "custom_file_type_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -467,29 +528,34 @@ class CustomFileTypeApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/customFileTypes/{customFileTypeUid}', 'GET',
+            "/api2/v1/customFileTypes/{customFileTypeUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CustomFileTypeDto',  # noqa: E501
+            response_type="CustomFileTypeDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_custom_file_type(self, custom_file_type_uid, **kwargs):  # noqa: E501
+    def update_custom_file_type(
+        self, custom_file_type_uid, **kwargs
+    ) -> CustomFileTypeDto:  # noqa: E501
         """Update Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -504,14 +570,20 @@ class CustomFileTypeApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_custom_file_type_with_http_info(custom_file_type_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_custom_file_type_with_http_info(
+                custom_file_type_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_custom_file_type_with_http_info(custom_file_type_uid, **kwargs)  # noqa: E501
+            (data) = self.update_custom_file_type_with_http_info(
+                custom_file_type_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_custom_file_type_with_http_info(self, custom_file_type_uid, **kwargs):  # noqa: E501
+    def update_custom_file_type_with_http_info(
+        self, custom_file_type_uid, **kwargs
+    ) -> CustomFileTypeDto:  # noqa: E501
         """Update Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -527,31 +599,37 @@ class CustomFileTypeApi(object):
                  returns the request thread.
         """
 
-        all_params = ['custom_file_type_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["custom_file_type_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_custom_file_type" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'custom_file_type_uid' is set
-        if ('custom_file_type_uid' not in params or
-                params['custom_file_type_uid'] is None):
-            raise ValueError("Missing the required parameter `custom_file_type_uid` when calling `update_custom_file_type`")  # noqa: E501
+        if (
+            "custom_file_type_uid" not in params
+            or params["custom_file_type_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `custom_file_type_uid` when calling `update_custom_file_type`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'custom_file_type_uid' in params:
-            path_params['customFileTypeUid'] = params['custom_file_type_uid']  # noqa: E501
+        if "custom_file_type_uid" in params:
+            path_params["customFileTypeUid"] = params[
+                "custom_file_type_uid"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -561,31 +639,37 @@ class CustomFileTypeApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/customFileTypes/{customFileTypeUid}', 'PUT',
+            "/api2/v1/customFileTypes/{customFileTypeUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='CustomFileTypeDto',  # noqa: E501
+            response_type="CustomFileTypeDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

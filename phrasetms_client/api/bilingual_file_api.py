@@ -17,6 +17,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import JobPartsDto, ComparedSegmentsDto
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +33,7 @@ class BilingualFileApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def compare_bilingual_file(self, **kwargs):  # noqa: E501
+    def compare_bilingual_file(self, **kwargs) -> ComparedSegmentsDto:  # noqa: E501
         """Compare bilingual file  # noqa: E501
 
         Compares bilingual file to job state. Returns list of compared segments.  # noqa: E501
@@ -48,14 +49,16 @@ class BilingualFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.compare_bilingual_file_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.compare_bilingual_file_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def compare_bilingual_file_with_http_info(self, **kwargs):  # noqa: E501
+    def compare_bilingual_file_with_http_info(
+        self, **kwargs
+    ) -> ComparedSegmentsDto:  # noqa: E501
         """Compare bilingual file  # noqa: E501
 
         Compares bilingual file to job state. Returns list of compared segments.  # noqa: E501
@@ -72,29 +75,31 @@ class BilingualFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body', 'workflow_level']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body", "workflow_level"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method compare_bilingual_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'workflow_level' in params:
-            query_params.append(('workflowLevel', params['workflow_level']))  # noqa: E501
+        if "workflow_level" in params:
+            query_params.append(
+                ("workflowLevel", params["workflow_level"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -102,36 +107,42 @@ class BilingualFileApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/bilingualFiles/compare', 'POST',
+            "/api2/v1/bilingualFiles/compare",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ComparedSegmentsDto',  # noqa: E501
+            response_type="ComparedSegmentsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def convert_bilingual_file(self, _from, to, **kwargs):  # noqa: E501
+    def convert_bilingual_file(self, _from, to, **kwargs) -> None:  # noqa: E501
         """Convert bilingual file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -147,14 +158,20 @@ class BilingualFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.convert_bilingual_file_with_http_info(_from, to, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.convert_bilingual_file_with_http_info(
+                _from, to, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.convert_bilingual_file_with_http_info(_from, to, **kwargs)  # noqa: E501
+            (data) = self.convert_bilingual_file_with_http_info(
+                _from, to, **kwargs
+            )  # noqa: E501
             return data
 
-    def convert_bilingual_file_with_http_info(self, _from, to, **kwargs):  # noqa: E501
+    def convert_bilingual_file_with_http_info(
+        self, _from, to, **kwargs
+    ) -> None:  # noqa: E501
         """Convert bilingual file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -171,39 +188,41 @@ class BilingualFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['_from', 'to', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["_from", "to", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method convert_bilingual_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter '_from' is set
-        if ('_from' not in params or
-                params['_from'] is None):
-            raise ValueError("Missing the required parameter `_from` when calling `convert_bilingual_file`")  # noqa: E501
+        if "_from" not in params or params["_from"] is None:
+            raise ValueError(
+                "Missing the required parameter `_from` when calling `convert_bilingual_file`"
+            )  # noqa: E501
         # verify the required parameter 'to' is set
-        if ('to' not in params or
-                params['to'] is None):
-            raise ValueError("Missing the required parameter `to` when calling `convert_bilingual_file`")  # noqa: E501
+        if "to" not in params or params["to"] is None:
+            raise ValueError(
+                "Missing the required parameter `to` when calling `convert_bilingual_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if '_from' in params:
-            query_params.append(('from', params['_from']))  # noqa: E501
-        if 'to' in params:
-            query_params.append(('to', params['to']))  # noqa: E501
+        if "_from" in params:
+            query_params.append(("from", params["_from"]))  # noqa: E501
+        if "to" in params:
+            query_params.append(("to", params["to"]))  # noqa: E501
 
         header_params = {}
 
@@ -211,17 +230,21 @@ class BilingualFileApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/bilingualFiles/convert', 'POST',
+            "/api2/v1/bilingualFiles/convert",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -230,13 +253,14 @@ class BilingualFileApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_bilingual_file(self, project_uid, **kwargs):  # noqa: E501
+    def get_bilingual_file(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Download bilingual file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -253,14 +277,20 @@ class BilingualFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_bilingual_file_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_bilingual_file_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_bilingual_file_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.get_bilingual_file_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_bilingual_file_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def get_bilingual_file_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Download bilingual file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -278,37 +308,38 @@ class BilingualFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body', 'format', 'preview']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body", "format", "preview"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_bilingual_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_bilingual_file`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_bilingual_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'format' in params:
-            query_params.append(('format', params['format']))  # noqa: E501
-        if 'preview' in params:
-            query_params.append(('preview', params['preview']))  # noqa: E501
+        if "format" in params:
+            query_params.append(("format", params["format"]))  # noqa: E501
+        if "preview" in params:
+            query_params.append(("preview", params["preview"]))  # noqa: E501
 
         header_params = {}
 
@@ -316,17 +347,21 @@ class BilingualFileApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/bilingualFile', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/bilingualFile",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -335,13 +370,14 @@ class BilingualFileApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_preview_file(self, **kwargs):  # noqa: E501
+    def get_preview_file(self, **kwargs) -> None:  # noqa: E501
         """Download preview  # noqa: E501
 
         Supports mxliff format  # noqa: E501
@@ -356,14 +392,14 @@ class BilingualFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_preview_file_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_preview_file_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_preview_file_with_http_info(self, **kwargs):  # noqa: E501
+    def get_preview_file_with_http_info(self, **kwargs) -> None:  # noqa: E501
         """Download preview  # noqa: E501
 
         Supports mxliff format  # noqa: E501
@@ -379,21 +415,21 @@ class BilingualFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_preview_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -407,17 +443,21 @@ class BilingualFileApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/bilingualFiles/preview', 'POST',
+            "/api2/v1/bilingualFiles/preview",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -426,13 +466,14 @@ class BilingualFileApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def upload_bilingual_file(self, **kwargs):  # noqa: E501
+    def upload_bilingual_file(self, **kwargs) -> JobPartsDto:  # noqa: E501
         """Upload bilingual file  # noqa: E501
 
         Returns updated job parts  # noqa: E501
@@ -450,14 +491,16 @@ class BilingualFileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.upload_bilingual_file_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.upload_bilingual_file_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def upload_bilingual_file_with_http_info(self, **kwargs):  # noqa: E501
+    def upload_bilingual_file_with_http_info(
+        self, **kwargs
+    ) -> JobPartsDto:  # noqa: E501
         """Upload bilingual file  # noqa: E501
 
         Returns updated job parts  # noqa: E501
@@ -476,33 +519,40 @@ class BilingualFileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body', 'format', 'save_to_trans_memory', 'set_completed']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "body",
+            "format",
+            "save_to_trans_memory",
+            "set_completed",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method upload_bilingual_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'format' in params:
-            query_params.append(('format', params['format']))  # noqa: E501
-        if 'save_to_trans_memory' in params:
-            query_params.append(('saveToTransMemory', params['save_to_trans_memory']))  # noqa: E501
-        if 'set_completed' in params:
-            query_params.append(('setCompleted', params['set_completed']))  # noqa: E501
+        if "format" in params:
+            query_params.append(("format", params["format"]))  # noqa: E501
+        if "save_to_trans_memory" in params:
+            query_params.append(
+                ("saveToTransMemory", params["save_to_trans_memory"])
+            )  # noqa: E501
+        if "set_completed" in params:
+            query_params.append(("setCompleted", params["set_completed"]))  # noqa: E501
 
         header_params = {}
 
@@ -510,31 +560,37 @@ class BilingualFileApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/bilingualFiles', 'PUT',
+            "/api2/v1/bilingualFiles",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='JobPartsDto',  # noqa: E501
+            response_type="JobPartsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

@@ -17,6 +17,15 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    LqaProfileDetailDto,
+    QualityAssuranceResponseDto,
+    LqaProfileReferenceDto,
+    PageDtoLqaProfileReferenceDto,
+    UserReference,
+    QualityAssuranceChecksDtoV2,
+    UpdateIgnoredWarningsDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +41,9 @@ class QualityAssuranceApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def add_ignored_warnings(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def add_ignored_warnings(
+        self, project_uid, job_uid, **kwargs
+    ) -> UpdateIgnoredWarningsDto:  # noqa: E501
         """Add ignored warnings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -48,14 +59,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.add_ignored_warnings_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.add_ignored_warnings_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.add_ignored_warnings_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.add_ignored_warnings_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def add_ignored_warnings_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def add_ignored_warnings_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> UpdateIgnoredWarningsDto:  # noqa: E501
         """Add ignored warnings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -72,37 +89,39 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method add_ignored_warnings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `add_ignored_warnings`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `add_ignored_warnings`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `add_ignored_warnings`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `add_ignored_warnings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -112,36 +131,44 @@ class QualityAssuranceApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/ignoredWarnings', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/ignoredWarnings",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UpdateIgnoredWarningsDto',  # noqa: E501
+            response_type="UpdateIgnoredWarningsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def add_ignored_warnings1(self, project_uid, **kwargs):  # noqa: E501
+    def add_ignored_warnings1(
+        self, project_uid, **kwargs
+    ) -> UpdateIgnoredWarningsDto:  # noqa: E501
         """Add ignored warnings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -156,14 +183,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.add_ignored_warnings1_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.add_ignored_warnings1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.add_ignored_warnings1_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.add_ignored_warnings1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def add_ignored_warnings1_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def add_ignored_warnings1_with_http_info(
+        self, project_uid, **kwargs
+    ) -> UpdateIgnoredWarningsDto:  # noqa: E501
         """Add ignored warnings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -179,31 +212,32 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method add_ignored_warnings1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `add_ignored_warnings1`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `add_ignored_warnings1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -213,36 +247,42 @@ class QualityAssuranceApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/qualityAssurances/ignoredWarnings', 'POST',
+            "/api2/v2/projects/{projectUid}/jobs/qualityAssurances/ignoredWarnings",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UpdateIgnoredWarningsDto',  # noqa: E501
+            response_type="UpdateIgnoredWarningsDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_lqa_profile(self, **kwargs):  # noqa: E501
+    def create_lqa_profile(self, **kwargs) -> LqaProfileDetailDto:  # noqa: E501
         """Create LQA profile  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -256,14 +296,16 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_lqa_profile_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_lqa_profile_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_lqa_profile_with_http_info(self, **kwargs):  # noqa: E501
+    def create_lqa_profile_with_http_info(
+        self, **kwargs
+    ) -> LqaProfileDetailDto:  # noqa: E501
         """Create LQA profile  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -278,21 +320,21 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_lqa_profile" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -306,36 +348,44 @@ class QualityAssuranceApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/lqa/profiles', 'POST',
+            "/api2/v1/lqa/profiles",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LqaProfileDetailDto',  # noqa: E501
+            response_type="LqaProfileDetailDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_ignored_warnings(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def delete_ignored_warnings(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete ignored warnings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -351,14 +401,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_ignored_warnings_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_ignored_warnings_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_ignored_warnings_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_ignored_warnings_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_ignored_warnings_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def delete_ignored_warnings_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete ignored warnings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -375,37 +431,39 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_ignored_warnings" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `delete_ignored_warnings`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `delete_ignored_warnings`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `delete_ignored_warnings`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `delete_ignored_warnings`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -415,17 +473,21 @@ class QualityAssuranceApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/ignoredWarnings', 'DELETE',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/ignoredWarnings",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -434,13 +496,14 @@ class QualityAssuranceApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_ignored_warnings1(self, project_uid, **kwargs):  # noqa: E501
+    def delete_ignored_warnings1(self, project_uid, **kwargs) -> None:  # noqa: E501
         """Delete ignored warnings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -455,14 +518,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_ignored_warnings1_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_ignored_warnings1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_ignored_warnings1_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_ignored_warnings1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_ignored_warnings1_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def delete_ignored_warnings1_with_http_info(
+        self, project_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete ignored warnings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -478,31 +547,32 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_ignored_warnings1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `delete_ignored_warnings1`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `delete_ignored_warnings1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -512,17 +582,21 @@ class QualityAssuranceApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/qualityAssurances/ignoredWarnings', 'DELETE',
+            "/api2/v2/projects/{projectUid}/jobs/qualityAssurances/ignoredWarnings",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -531,13 +605,14 @@ class QualityAssuranceApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_lqa_profile(self, profile_uid, **kwargs):  # noqa: E501
+    def delete_lqa_profile(self, profile_uid, **kwargs) -> None:  # noqa: E501
         """Delete LQA profile  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -551,14 +626,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_lqa_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_lqa_profile_with_http_info(
+                profile_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_lqa_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_lqa_profile_with_http_info(
+                profile_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_lqa_profile_with_http_info(self, profile_uid, **kwargs):  # noqa: E501
+    def delete_lqa_profile_with_http_info(
+        self, profile_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete LQA profile  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -573,31 +654,32 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['profile_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["profile_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_lqa_profile" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'profile_uid' is set
-        if ('profile_uid' not in params or
-                params['profile_uid'] is None):
-            raise ValueError("Missing the required parameter `profile_uid` when calling `delete_lqa_profile`")  # noqa: E501
+        if "profile_uid" not in params or params["profile_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `profile_uid` when calling `delete_lqa_profile`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'profile_uid' in params:
-            path_params['profileUid'] = params['profile_uid']  # noqa: E501
+        if "profile_uid" in params:
+            path_params["profileUid"] = params["profile_uid"]  # noqa: E501
 
         query_params = []
 
@@ -611,7 +693,8 @@ class QualityAssuranceApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/lqa/profiles/{profileUid}', 'DELETE',
+            "/api2/v1/lqa/profiles/{profileUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -620,13 +703,16 @@ class QualityAssuranceApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def duplicate_profile(self, profile_uid, **kwargs):  # noqa: E501
+    def duplicate_profile(
+        self, profile_uid, **kwargs
+    ) -> LqaProfileReferenceDto:  # noqa: E501
         """Duplicate LQA profile  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -640,14 +726,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.duplicate_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.duplicate_profile_with_http_info(
+                profile_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.duplicate_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
+            (data) = self.duplicate_profile_with_http_info(
+                profile_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def duplicate_profile_with_http_info(self, profile_uid, **kwargs):  # noqa: E501
+    def duplicate_profile_with_http_info(
+        self, profile_uid, **kwargs
+    ) -> LqaProfileReferenceDto:  # noqa: E501
         """Duplicate LQA profile  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -662,31 +754,32 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['profile_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["profile_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method duplicate_profile" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'profile_uid' is set
-        if ('profile_uid' not in params or
-                params['profile_uid'] is None):
-            raise ValueError("Missing the required parameter `profile_uid` when calling `duplicate_profile`")  # noqa: E501
+        if "profile_uid" not in params or params["profile_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `profile_uid` when calling `duplicate_profile`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'profile_uid' in params:
-            path_params['profileUid'] = params['profile_uid']  # noqa: E501
+        if "profile_uid" in params:
+            path_params["profileUid"] = params["profile_uid"]  # noqa: E501
 
         query_params = []
 
@@ -697,29 +790,34 @@ class QualityAssuranceApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/lqa/profiles/{profileUid}/duplicate', 'POST',
+            "/api2/v1/lqa/profiles/{profileUid}/duplicate",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LqaProfileReferenceDto',  # noqa: E501
+            response_type="LqaProfileReferenceDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def enabled_quality_checks_for_job(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def enabled_quality_checks_for_job(
+        self, project_uid, job_uid, **kwargs
+    ) -> QualityAssuranceChecksDtoV2:  # noqa: E501
         """Get QA settings for job  # noqa: E501
 
         Returns enabled quality assurance checks and settings for job.  # noqa: E501
@@ -735,14 +833,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.enabled_quality_checks_for_job_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.enabled_quality_checks_for_job_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.enabled_quality_checks_for_job_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.enabled_quality_checks_for_job_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def enabled_quality_checks_for_job_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def enabled_quality_checks_for_job_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> QualityAssuranceChecksDtoV2:  # noqa: E501
         """Get QA settings for job  # noqa: E501
 
         Returns enabled quality assurance checks and settings for job.  # noqa: E501
@@ -759,37 +863,39 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method enabled_quality_checks_for_job" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `enabled_quality_checks_for_job`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `enabled_quality_checks_for_job`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `enabled_quality_checks_for_job`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `enabled_quality_checks_for_job`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -800,29 +906,34 @@ class QualityAssuranceApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/settings', 'GET',
+            "/api2/v2/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/settings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='QualityAssuranceChecksDtoV2',  # noqa: E501
+            response_type="QualityAssuranceChecksDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def enabled_quality_checks_for_job1(self, project_uid, **kwargs):  # noqa: E501
+    def enabled_quality_checks_for_job1(
+        self, project_uid, **kwargs
+    ) -> QualityAssuranceChecksDtoV2:  # noqa: E501
         """Get QA settings  # noqa: E501
 
         Returns enabled quality assurance checks and settings.  # noqa: E501
@@ -837,14 +948,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.enabled_quality_checks_for_job1_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.enabled_quality_checks_for_job1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.enabled_quality_checks_for_job1_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.enabled_quality_checks_for_job1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def enabled_quality_checks_for_job1_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def enabled_quality_checks_for_job1_with_http_info(
+        self, project_uid, **kwargs
+    ) -> QualityAssuranceChecksDtoV2:  # noqa: E501
         """Get QA settings  # noqa: E501
 
         Returns enabled quality assurance checks and settings.  # noqa: E501
@@ -860,31 +977,32 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method enabled_quality_checks_for_job1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `enabled_quality_checks_for_job1`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `enabled_quality_checks_for_job1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -895,29 +1013,34 @@ class QualityAssuranceApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/projects/{projectUid}/jobs/qualityAssurances/settings', 'GET',
+            "/api2/v2/projects/{projectUid}/jobs/qualityAssurances/settings",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='QualityAssuranceChecksDtoV2',  # noqa: E501
+            response_type="QualityAssuranceChecksDtoV2",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_lqa_profile(self, profile_uid, **kwargs):  # noqa: E501
+    def get_lqa_profile(
+        self, profile_uid, **kwargs
+    ) -> LqaProfileDetailDto:  # noqa: E501
         """Get LQA profile details  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -931,14 +1054,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_lqa_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_lqa_profile_with_http_info(
+                profile_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_lqa_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
+            (data) = self.get_lqa_profile_with_http_info(
+                profile_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_lqa_profile_with_http_info(self, profile_uid, **kwargs):  # noqa: E501
+    def get_lqa_profile_with_http_info(
+        self, profile_uid, **kwargs
+    ) -> LqaProfileDetailDto:  # noqa: E501
         """Get LQA profile details  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -953,31 +1082,32 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['profile_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["profile_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_lqa_profile" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'profile_uid' is set
-        if ('profile_uid' not in params or
-                params['profile_uid'] is None):
-            raise ValueError("Missing the required parameter `profile_uid` when calling `get_lqa_profile`")  # noqa: E501
+        if "profile_uid" not in params or params["profile_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `profile_uid` when calling `get_lqa_profile`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'profile_uid' in params:
-            path_params['profileUid'] = params['profile_uid']  # noqa: E501
+        if "profile_uid" in params:
+            path_params["profileUid"] = params["profile_uid"]  # noqa: E501
 
         query_params = []
 
@@ -988,29 +1118,32 @@ class QualityAssuranceApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/lqa/profiles/{profileUid}', 'GET',
+            "/api2/v1/lqa/profiles/{profileUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LqaProfileDetailDto',  # noqa: E501
+            response_type="LqaProfileDetailDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_lqa_profile_authors(self, **kwargs):  # noqa: E501
+    def get_lqa_profile_authors(self, **kwargs) -> list[UserReference]:  # noqa: E501
         """Get list of LQA profile authors  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1023,14 +1156,16 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_lqa_profile_authors_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_lqa_profile_authors_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_lqa_profile_authors_with_http_info(self, **kwargs):  # noqa: E501
+    def get_lqa_profile_authors_with_http_info(
+        self, **kwargs
+    ) -> list[UserReference]:  # noqa: E501
         """Get list of LQA profile authors  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1045,20 +1180,20 @@ class QualityAssuranceApi(object):
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_lqa_profile_authors" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -1073,29 +1208,32 @@ class QualityAssuranceApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/lqa/profiles/authors', 'GET',
+            "/api2/v1/lqa/profiles/authors",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='list[UserReference]',  # noqa: E501
+            response_type="list[UserReference]",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_lqa_profiles(self, **kwargs):  # noqa: E501
+    def get_lqa_profiles(self, **kwargs) -> PageDtoLqaProfileReferenceDto:  # noqa: E501
         """GET list LQA profiles  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1115,14 +1253,16 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_lqa_profiles_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_lqa_profiles_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_lqa_profiles_with_http_info(self, **kwargs):  # noqa: E501
+    def get_lqa_profiles_with_http_info(
+        self, **kwargs
+    ) -> PageDtoLqaProfileReferenceDto:  # noqa: E501
         """GET list LQA profiles  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1143,43 +1283,51 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['name', 'created_by', 'date_created', 'page_number', 'page_size', 'sort', 'order']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "name",
+            "created_by",
+            "date_created",
+            "page_number",
+            "page_size",
+            "sort",
+            "order",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_lqa_profiles" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'created_by' in params:
-            query_params.append(('createdBy', params['created_by']))  # noqa: E501
-        if 'date_created' in params:
-            query_params.append(('dateCreated', params['date_created']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
-        if 'sort' in params:
-            query_params.append(('sort', params['sort']))  # noqa: E501
-            collection_formats['sort'] = 'multi'  # noqa: E501
-        if 'order' in params:
-            query_params.append(('order', params['order']))  # noqa: E501
-            collection_formats['order'] = 'multi'  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "created_by" in params:
+            query_params.append(("createdBy", params["created_by"]))  # noqa: E501
+        if "date_created" in params:
+            query_params.append(("dateCreated", params["date_created"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
+        if "sort" in params:
+            query_params.append(("sort", params["sort"]))  # noqa: E501
+            collection_formats["sort"] = "multi"  # noqa: E501
+        if "order" in params:
+            query_params.append(("order", params["order"]))  # noqa: E501
+            collection_formats["order"] = "multi"  # noqa: E501
 
         header_params = {}
 
@@ -1188,29 +1336,34 @@ class QualityAssuranceApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/lqa/profiles', 'GET',
+            "/api2/v1/lqa/profiles",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoLqaProfileReferenceDto',  # noqa: E501
+            response_type="PageDtoLqaProfileReferenceDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def make_default(self, profile_uid, **kwargs):  # noqa: E501
+    def make_default(
+        self, profile_uid, **kwargs
+    ) -> LqaProfileReferenceDto:  # noqa: E501
         """Make LQA profile default  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1224,14 +1377,18 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.make_default_with_http_info(profile_uid, **kwargs)  # noqa: E501
         else:
-            (data) = self.make_default_with_http_info(profile_uid, **kwargs)  # noqa: E501
+            (data) = self.make_default_with_http_info(
+                profile_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def make_default_with_http_info(self, profile_uid, **kwargs):  # noqa: E501
+    def make_default_with_http_info(
+        self, profile_uid, **kwargs
+    ) -> LqaProfileReferenceDto:  # noqa: E501
         """Make LQA profile default  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1246,31 +1403,32 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['profile_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["profile_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method make_default" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'profile_uid' is set
-        if ('profile_uid' not in params or
-                params['profile_uid'] is None):
-            raise ValueError("Missing the required parameter `profile_uid` when calling `make_default`")  # noqa: E501
+        if "profile_uid" not in params or params["profile_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `profile_uid` when calling `make_default`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'profile_uid' in params:
-            path_params['profileUid'] = params['profile_uid']  # noqa: E501
+        if "profile_uid" in params:
+            path_params["profileUid"] = params["profile_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1281,29 +1439,34 @@ class QualityAssuranceApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/lqa/profiles/{profileUid}/default', 'POST',
+            "/api2/v1/lqa/profiles/{profileUid}/default",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LqaProfileReferenceDto',  # noqa: E501
+            response_type="LqaProfileReferenceDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def run_qa_for_job_part_v3(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def run_qa_for_job_part_v3(
+        self, project_uid, job_uid, **kwargs
+    ) -> QualityAssuranceResponseDto:  # noqa: E501
         """Run quality assurance  # noqa: E501
 
         Call \"Get QA settings\" endpoint to get the list of enabled QA checks  # noqa: E501
@@ -1320,14 +1483,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.run_qa_for_job_part_v3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.run_qa_for_job_part_v3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.run_qa_for_job_part_v3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.run_qa_for_job_part_v3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def run_qa_for_job_part_v3_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def run_qa_for_job_part_v3_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> QualityAssuranceResponseDto:  # noqa: E501
         """Run quality assurance  # noqa: E501
 
         Call \"Get QA settings\" endpoint to get the list of enabled QA checks  # noqa: E501
@@ -1345,37 +1514,39 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method run_qa_for_job_part_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `run_qa_for_job_part_v3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `run_qa_for_job_part_v3`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `run_qa_for_job_part_v3`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `run_qa_for_job_part_v3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1385,36 +1556,44 @@ class QualityAssuranceApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/run', 'POST',
+            "/api2/v3/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/run",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='QualityAssuranceResponseDto',  # noqa: E501
+            response_type="QualityAssuranceResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def run_qa_for_job_parts_v3(self, project_uid, **kwargs):  # noqa: E501
+    def run_qa_for_job_parts_v3(
+        self, project_uid, **kwargs
+    ) -> QualityAssuranceResponseDto:  # noqa: E501
         """Run quality assurance (batch)  # noqa: E501
 
         Call \"Get QA settings\" endpoint to get the list of enabled QA checks  # noqa: E501
@@ -1430,14 +1609,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.run_qa_for_job_parts_v3_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.run_qa_for_job_parts_v3_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.run_qa_for_job_parts_v3_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.run_qa_for_job_parts_v3_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def run_qa_for_job_parts_v3_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def run_qa_for_job_parts_v3_with_http_info(
+        self, project_uid, **kwargs
+    ) -> QualityAssuranceResponseDto:  # noqa: E501
         """Run quality assurance (batch)  # noqa: E501
 
         Call \"Get QA settings\" endpoint to get the list of enabled QA checks  # noqa: E501
@@ -1454,31 +1639,32 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method run_qa_for_job_parts_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `run_qa_for_job_parts_v3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `run_qa_for_job_parts_v3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1488,36 +1674,44 @@ class QualityAssuranceApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/jobs/qualityAssurances/run', 'POST',
+            "/api2/v3/projects/{projectUid}/jobs/qualityAssurances/run",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='QualityAssuranceResponseDto',  # noqa: E501
+            response_type="QualityAssuranceResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def run_qa_for_segments_v3(self, project_uid, **kwargs):  # noqa: E501
+    def run_qa_for_segments_v3(
+        self, project_uid, **kwargs
+    ) -> QualityAssuranceResponseDto:  # noqa: E501
         """Run quality assurance on selected segments  # noqa: E501
 
         By default runs only fast running checks. Source and target language of jobs have to match.  # noqa: E501
@@ -1533,14 +1727,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.run_qa_for_segments_v3_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.run_qa_for_segments_v3_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.run_qa_for_segments_v3_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.run_qa_for_segments_v3_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def run_qa_for_segments_v3_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def run_qa_for_segments_v3_with_http_info(
+        self, project_uid, **kwargs
+    ) -> QualityAssuranceResponseDto:  # noqa: E501
         """Run quality assurance on selected segments  # noqa: E501
 
         By default runs only fast running checks. Source and target language of jobs have to match.  # noqa: E501
@@ -1557,31 +1757,32 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method run_qa_for_segments_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `run_qa_for_segments_v3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `run_qa_for_segments_v3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1591,36 +1792,44 @@ class QualityAssuranceApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/jobs/qualityAssurances/segments/run', 'POST',
+            "/api2/v3/projects/{projectUid}/jobs/qualityAssurances/segments/run",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='QualityAssuranceResponseDto',  # noqa: E501
+            response_type="QualityAssuranceResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_ignored_checks(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def update_ignored_checks(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Edit ignored checks  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1636,14 +1845,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_ignored_checks_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_ignored_checks_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_ignored_checks_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.update_ignored_checks_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_ignored_checks_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def update_ignored_checks_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Edit ignored checks  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1660,37 +1875,39 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_ignored_checks" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `update_ignored_checks`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `update_ignored_checks`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `update_ignored_checks`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `update_ignored_checks`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1700,17 +1917,21 @@ class QualityAssuranceApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/ignoreChecks', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/ignoreChecks",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -1719,13 +1940,16 @@ class QualityAssuranceApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_lqa_profile(self, profile_uid, **kwargs):  # noqa: E501
+    def update_lqa_profile(
+        self, profile_uid, **kwargs
+    ) -> LqaProfileDetailDto:  # noqa: E501
         """Update LQA profile  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1740,14 +1964,20 @@ class QualityAssuranceApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_lqa_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_lqa_profile_with_http_info(
+                profile_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_lqa_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
+            (data) = self.update_lqa_profile_with_http_info(
+                profile_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_lqa_profile_with_http_info(self, profile_uid, **kwargs):  # noqa: E501
+    def update_lqa_profile_with_http_info(
+        self, profile_uid, **kwargs
+    ) -> LqaProfileDetailDto:  # noqa: E501
         """Update LQA profile  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1763,31 +1993,32 @@ class QualityAssuranceApi(object):
                  returns the request thread.
         """
 
-        all_params = ['profile_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["profile_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_lqa_profile" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'profile_uid' is set
-        if ('profile_uid' not in params or
-                params['profile_uid'] is None):
-            raise ValueError("Missing the required parameter `profile_uid` when calling `update_lqa_profile`")  # noqa: E501
+        if "profile_uid" not in params or params["profile_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `profile_uid` when calling `update_lqa_profile`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'profile_uid' in params:
-            path_params['profileUid'] = params['profile_uid']  # noqa: E501
+        if "profile_uid" in params:
+            path_params["profileUid"] = params["profile_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1797,31 +2028,37 @@ class QualityAssuranceApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/lqa/profiles/{profileUid}', 'PUT',
+            "/api2/v1/lqa/profiles/{profileUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LqaProfileDetailDto',  # noqa: E501
+            response_type="LqaProfileDetailDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

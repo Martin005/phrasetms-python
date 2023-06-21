@@ -17,6 +17,10 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    PageDtoAdditionalWorkflowStepDto,
+    AdditionalWorkflowStepDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +36,7 @@ class AdditionalWorkflowStepApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def create_awf_step(self, **kwargs):  # noqa: E501
+    def create_awf_step(self, **kwargs) -> AdditionalWorkflowStepDto:  # noqa: E501
         """Create additional workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -46,14 +50,16 @@ class AdditionalWorkflowStepApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_awf_step_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_awf_step_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_awf_step_with_http_info(self, **kwargs):  # noqa: E501
+    def create_awf_step_with_http_info(
+        self, **kwargs
+    ) -> AdditionalWorkflowStepDto:  # noqa: E501
         """Create additional workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -68,21 +74,21 @@ class AdditionalWorkflowStepApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_awf_step" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -96,36 +102,42 @@ class AdditionalWorkflowStepApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['*/*'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["*/*"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/additionalWorkflowSteps', 'POST',
+            "/api2/v1/additionalWorkflowSteps",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AdditionalWorkflowStepDto',  # noqa: E501
+            response_type="AdditionalWorkflowStepDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_awf_step(self, id, **kwargs):  # noqa: E501
+    def delete_awf_step(self, id, **kwargs) -> None:  # noqa: E501
         """Delete additional workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -139,14 +151,14 @@ class AdditionalWorkflowStepApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.delete_awf_step_with_http_info(id, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_awf_step_with_http_info(id, **kwargs)  # noqa: E501
             return data
 
-    def delete_awf_step_with_http_info(self, id, **kwargs):  # noqa: E501
+    def delete_awf_step_with_http_info(self, id, **kwargs) -> None:  # noqa: E501
         """Delete additional workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -161,31 +173,32 @@ class AdditionalWorkflowStepApi(object):
                  returns the request thread.
         """
 
-        all_params = ['id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_awf_step" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'id' is set
-        if ('id' not in params or
-                params['id'] is None):
-            raise ValueError("Missing the required parameter `id` when calling `delete_awf_step`")  # noqa: E501
+        if "id" not in params or params["id"] is None:
+            raise ValueError(
+                "Missing the required parameter `id` when calling `delete_awf_step`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'id' in params:
-            path_params['id'] = params['id']  # noqa: E501
+        if "id" in params:
+            path_params["id"] = params["id"]  # noqa: E501
 
         query_params = []
 
@@ -199,7 +212,8 @@ class AdditionalWorkflowStepApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/additionalWorkflowSteps/{id}', 'DELETE',
+            "/api2/v1/additionalWorkflowSteps/{id}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -208,13 +222,16 @@ class AdditionalWorkflowStepApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_awf_steps(self, **kwargs):  # noqa: E501
+    def list_awf_steps(
+        self, **kwargs
+    ) -> PageDtoAdditionalWorkflowStepDto:  # noqa: E501
         """List additional workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -230,14 +247,16 @@ class AdditionalWorkflowStepApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.list_awf_steps_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_awf_steps_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def list_awf_steps_with_http_info(self, **kwargs):  # noqa: E501
+    def list_awf_steps_with_http_info(
+        self, **kwargs
+    ) -> PageDtoAdditionalWorkflowStepDto:  # noqa: E501
         """List additional workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -254,33 +273,33 @@ class AdditionalWorkflowStepApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page_number', 'page_size', 'name']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["page_number", "page_size", "name"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_awf_steps" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
 
         header_params = {}
 
@@ -289,24 +308,27 @@ class AdditionalWorkflowStepApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/additionalWorkflowSteps', 'GET',
+            "/api2/v1/additionalWorkflowSteps",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoAdditionalWorkflowStepDto',  # noqa: E501
+            response_type="PageDtoAdditionalWorkflowStepDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

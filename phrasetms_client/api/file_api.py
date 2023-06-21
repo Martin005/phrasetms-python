@@ -17,6 +17,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import PageDtoUploadedFileDto, UploadedFileDto
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +33,9 @@ class FileApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def create_url_file(self, body, content_disposition, **kwargs):  # noqa: E501
+    def create_url_file(
+        self, body, content_disposition, **kwargs
+    ) -> UploadedFileDto:  # noqa: E501
         """Upload file  # noqa: E501
 
         Accepts multipart/form-data, application/octet-stream or application/json.  # noqa: E501
@@ -48,14 +51,20 @@ class FileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_url_file_with_http_info(body, content_disposition, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_url_file_with_http_info(
+                body, content_disposition, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_url_file_with_http_info(body, content_disposition, **kwargs)  # noqa: E501
+            (data) = self.create_url_file_with_http_info(
+                body, content_disposition, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_url_file_with_http_info(self, body, content_disposition, **kwargs):  # noqa: E501
+    def create_url_file_with_http_info(
+        self, body, content_disposition, **kwargs
+    ) -> UploadedFileDto:  # noqa: E501
         """Upload file  # noqa: E501
 
         Accepts multipart/form-data, application/octet-stream or application/json.  # noqa: E501
@@ -72,29 +81,31 @@ class FileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body', 'content_disposition']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body", "content_disposition"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_url_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'body' is set
-        if ('body' not in params or
-                params['body'] is None):
-            raise ValueError("Missing the required parameter `body` when calling `create_url_file`")  # noqa: E501
+        if "body" not in params or params["body"] is None:
+            raise ValueError(
+                "Missing the required parameter `body` when calling `create_url_file`"
+            )  # noqa: E501
         # verify the required parameter 'content_disposition' is set
-        if ('content_disposition' not in params or
-                params['content_disposition'] is None):
-            raise ValueError("Missing the required parameter `content_disposition` when calling `create_url_file`")  # noqa: E501
+        if "content_disposition" not in params or params["content_disposition"] is None:
+            raise ValueError(
+                "Missing the required parameter `content_disposition` when calling `create_url_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -103,53 +114,63 @@ class FileApi(object):
         query_params = []
 
         header_params = {}
-        if 'content_disposition' in params:
-            header_params['Content-Disposition'] = params['content_disposition']  # noqa: E501
+        if "content_disposition" in params:
+            header_params["Content-Disposition"] = params[
+                "content_disposition"
+            ]  # noqa: E501
 
         form_params = []
         local_var_files = {}
-        if 'uid' in params:
-            form_params.append(('uid', params['uid']))  # noqa: E501
-        if 'name' in params:
-            form_params.append(('name', params['name']))  # noqa: E501
-        if 'size' in params:
-            form_params.append(('size', params['size']))  # noqa: E501
-        if 'type' in params:
-            form_params.append(('type', params['type']))  # noqa: E501
-        if 'url' in params:
-            form_params.append(('url', params['url']))  # noqa: E501
+        if "uid" in params:
+            form_params.append(("uid", params["uid"]))  # noqa: E501
+        if "name" in params:
+            form_params.append(("name", params["name"]))  # noqa: E501
+        if "size" in params:
+            form_params.append(("size", params["size"]))  # noqa: E501
+        if "type" in params:
+            form_params.append(("type", params["type"]))  # noqa: E501
+        if "url" in params:
+            form_params.append(("url", params["url"]))  # noqa: E501
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/octet-stream', 'multipart/form-data'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json", "application/octet-stream", "multipart/form-data"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/files', 'POST',
+            "/api2/v1/files",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UploadedFileDto',  # noqa: E501
+            response_type="UploadedFileDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_url_file(self, uid, name, size, type, url, content_disposition, **kwargs):  # noqa: E501
+    def create_url_file(
+        self, uid, name, size, type, url, content_disposition, **kwargs
+    ) -> UploadedFileDto:  # noqa: E501
         """Upload file  # noqa: E501
 
         Accepts multipart/form-data, application/octet-stream or application/json.  # noqa: E501
@@ -169,14 +190,20 @@ class FileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_url_file_with_http_info(uid, name, size, type, url, content_disposition, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_url_file_with_http_info(
+                uid, name, size, type, url, content_disposition, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_url_file_with_http_info(uid, name, size, type, url, content_disposition, **kwargs)  # noqa: E501
+            (data) = self.create_url_file_with_http_info(
+                uid, name, size, type, url, content_disposition, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_url_file_with_http_info(self, uid, name, size, type, url, content_disposition, **kwargs):  # noqa: E501
+    def create_url_file_with_http_info(
+        self, uid, name, size, type, url, content_disposition, **kwargs
+    ) -> UploadedFileDto:  # noqa: E501
         """Upload file  # noqa: E501
 
         Accepts multipart/form-data, application/octet-stream or application/json.  # noqa: E501
@@ -197,45 +224,58 @@ class FileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['uid', 'name', 'size', 'type', 'url', 'content_disposition']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "uid",
+            "name",
+            "size",
+            "type",
+            "url",
+            "content_disposition",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_url_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'uid' is set
-        if ('uid' not in params or
-                params['uid'] is None):
-            raise ValueError("Missing the required parameter `uid` when calling `create_url_file`")  # noqa: E501
+        if "uid" not in params or params["uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `uid` when calling `create_url_file`"
+            )  # noqa: E501
         # verify the required parameter 'name' is set
-        if ('name' not in params or
-                params['name'] is None):
-            raise ValueError("Missing the required parameter `name` when calling `create_url_file`")  # noqa: E501
+        if "name" not in params or params["name"] is None:
+            raise ValueError(
+                "Missing the required parameter `name` when calling `create_url_file`"
+            )  # noqa: E501
         # verify the required parameter 'size' is set
-        if ('size' not in params or
-                params['size'] is None):
-            raise ValueError("Missing the required parameter `size` when calling `create_url_file`")  # noqa: E501
+        if "size" not in params or params["size"] is None:
+            raise ValueError(
+                "Missing the required parameter `size` when calling `create_url_file`"
+            )  # noqa: E501
         # verify the required parameter 'type' is set
-        if ('type' not in params or
-                params['type'] is None):
-            raise ValueError("Missing the required parameter `type` when calling `create_url_file`")  # noqa: E501
+        if "type" not in params or params["type"] is None:
+            raise ValueError(
+                "Missing the required parameter `type` when calling `create_url_file`"
+            )  # noqa: E501
         # verify the required parameter 'url' is set
-        if ('url' not in params or
-                params['url'] is None):
-            raise ValueError("Missing the required parameter `url` when calling `create_url_file`")  # noqa: E501
+        if "url" not in params or params["url"] is None:
+            raise ValueError(
+                "Missing the required parameter `url` when calling `create_url_file`"
+            )  # noqa: E501
         # verify the required parameter 'content_disposition' is set
-        if ('content_disposition' not in params or
-                params['content_disposition'] is None):
-            raise ValueError("Missing the required parameter `content_disposition` when calling `create_url_file`")  # noqa: E501
+        if "content_disposition" not in params or params["content_disposition"] is None:
+            raise ValueError(
+                "Missing the required parameter `content_disposition` when calling `create_url_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
@@ -244,53 +284,61 @@ class FileApi(object):
         query_params = []
 
         header_params = {}
-        if 'content_disposition' in params:
-            header_params['Content-Disposition'] = params['content_disposition']  # noqa: E501
+        if "content_disposition" in params:
+            header_params["Content-Disposition"] = params[
+                "content_disposition"
+            ]  # noqa: E501
 
         form_params = []
         local_var_files = {}
-        if 'uid' in params:
-            form_params.append(('uid', params['uid']))  # noqa: E501
-        if 'name' in params:
-            form_params.append(('name', params['name']))  # noqa: E501
-        if 'size' in params:
-            form_params.append(('size', params['size']))  # noqa: E501
-        if 'type' in params:
-            form_params.append(('type', params['type']))  # noqa: E501
-        if 'url' in params:
-            form_params.append(('url', params['url']))  # noqa: E501
+        if "uid" in params:
+            form_params.append(("uid", params["uid"]))  # noqa: E501
+        if "name" in params:
+            form_params.append(("name", params["name"]))  # noqa: E501
+        if "size" in params:
+            form_params.append(("size", params["size"]))  # noqa: E501
+        if "type" in params:
+            form_params.append(("type", params["type"]))  # noqa: E501
+        if "url" in params:
+            form_params.append(("url", params["url"]))  # noqa: E501
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json', 'application/octet-stream', 'multipart/form-data'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json", "application/octet-stream", "multipart/form-data"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/files', 'POST',
+            "/api2/v1/files",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UploadedFileDto',  # noqa: E501
+            response_type="UploadedFileDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def deletes_file(self, file_uid, **kwargs):  # noqa: E501
+    def deletes_file(self, file_uid, **kwargs) -> None:  # noqa: E501
         """Delete file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -304,14 +352,14 @@ class FileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.deletes_file_with_http_info(file_uid, **kwargs)  # noqa: E501
         else:
             (data) = self.deletes_file_with_http_info(file_uid, **kwargs)  # noqa: E501
             return data
 
-    def deletes_file_with_http_info(self, file_uid, **kwargs):  # noqa: E501
+    def deletes_file_with_http_info(self, file_uid, **kwargs) -> None:  # noqa: E501
         """Delete file  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -326,31 +374,32 @@ class FileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['file_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["file_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method deletes_file" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'file_uid' is set
-        if ('file_uid' not in params or
-                params['file_uid'] is None):
-            raise ValueError("Missing the required parameter `file_uid` when calling `deletes_file`")  # noqa: E501
+        if "file_uid" not in params or params["file_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `file_uid` when calling `deletes_file`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'file_uid' in params:
-            path_params['fileUid'] = params['file_uid']  # noqa: E501
+        if "file_uid" in params:
+            path_params["fileUid"] = params["file_uid"]  # noqa: E501
 
         query_params = []
 
@@ -364,7 +413,8 @@ class FileApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/files/{fileUid}', 'DELETE',
+            "/api2/v1/files/{fileUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -373,13 +423,14 @@ class FileApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_file_json(self, file_uid, **kwargs):  # noqa: E501
+    def get_file_json(self, file_uid, **kwargs) -> UploadedFileDto:  # noqa: E501
         """Get file  # noqa: E501
 
         Get uploaded file as <b>octet-stream</b> or as <b>json</b> based on 'Accept' header  # noqa: E501
@@ -394,14 +445,16 @@ class FileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_file_json_with_http_info(file_uid, **kwargs)  # noqa: E501
         else:
             (data) = self.get_file_json_with_http_info(file_uid, **kwargs)  # noqa: E501
             return data
 
-    def get_file_json_with_http_info(self, file_uid, **kwargs):  # noqa: E501
+    def get_file_json_with_http_info(
+        self, file_uid, **kwargs
+    ) -> UploadedFileDto:  # noqa: E501
         """Get file  # noqa: E501
 
         Get uploaded file as <b>octet-stream</b> or as <b>json</b> based on 'Accept' header  # noqa: E501
@@ -417,31 +470,32 @@ class FileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['file_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["file_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_file_json" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'file_uid' is set
-        if ('file_uid' not in params or
-                params['file_uid'] is None):
-            raise ValueError("Missing the required parameter `file_uid` when calling `get_file_json`")  # noqa: E501
+        if "file_uid" not in params or params["file_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `file_uid` when calling `get_file_json`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'file_uid' in params:
-            path_params['fileUid'] = params['file_uid']  # noqa: E501
+        if "file_uid" in params:
+            path_params["fileUid"] = params["file_uid"]  # noqa: E501
 
         query_params = []
 
@@ -452,29 +506,32 @@ class FileApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/files/{fileUid}', 'GET',
+            "/api2/v1/files/{fileUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UploadedFileDto',  # noqa: E501
+            response_type="UploadedFileDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_files(self, **kwargs):  # noqa: E501
+    def get_files(self, **kwargs) -> PageDtoUploadedFileDto:  # noqa: E501
         """List files  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -493,14 +550,16 @@ class FileApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_files_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_files_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_files_with_http_info(self, **kwargs):  # noqa: E501
+    def get_files_with_http_info(
+        self, **kwargs
+    ) -> PageDtoUploadedFileDto:  # noqa: E501
         """List files  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -520,40 +579,47 @@ class FileApi(object):
                  returns the request thread.
         """
 
-        all_params = ['page_number', 'page_size', 'name', 'types', 'created_by', 'bigger_than']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "page_number",
+            "page_size",
+            "name",
+            "types",
+            "created_by",
+            "bigger_than",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_files" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'types' in params:
-            query_params.append(('types', params['types']))  # noqa: E501
-            collection_formats['types'] = 'multi'  # noqa: E501
-        if 'created_by' in params:
-            query_params.append(('createdBy', params['created_by']))  # noqa: E501
-        if 'bigger_than' in params:
-            query_params.append(('biggerThan', params['bigger_than']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "types" in params:
+            query_params.append(("types", params["types"]))  # noqa: E501
+            collection_formats["types"] = "multi"  # noqa: E501
+        if "created_by" in params:
+            query_params.append(("createdBy", params["created_by"]))  # noqa: E501
+        if "bigger_than" in params:
+            query_params.append(("biggerThan", params["bigger_than"]))  # noqa: E501
 
         header_params = {}
 
@@ -562,24 +628,27 @@ class FileApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/files', 'GET',
+            "/api2/v1/files",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoUploadedFileDto',  # noqa: E501
+            response_type="PageDtoUploadedFileDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

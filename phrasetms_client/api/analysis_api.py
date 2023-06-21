@@ -17,6 +17,18 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    AnalyseRecalculateResponseDto,
+    PageDtoAnalyseReference,
+    PageDtoAnalyseJobDto,
+    AnalyseJobDto,
+    AnalyseV3Dto,
+    AnalyseLanguagePartDto,
+    AnalyseV2Dto,
+    AsyncAnalyseListResponseDto,
+    AsyncAnalyseListResponseV2Dto,
+    AnalysesV2Dto,
+)
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +44,7 @@ class AnalysisApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def analyses_batch_edit_v2(self, **kwargs):  # noqa: E501
+    def analyses_batch_edit_v2(self, **kwargs) -> AnalysesV2Dto:  # noqa: E501
         """Edit analyses (batch)  # noqa: E501
 
         If no netRateScheme is provided in request, then netRateScheme associated with provider will be used if it exists, otherwise it will remain the same as it was.  # noqa: E501
@@ -47,14 +59,16 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.analyses_batch_edit_v2_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.analyses_batch_edit_v2_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def analyses_batch_edit_v2_with_http_info(self, **kwargs):  # noqa: E501
+    def analyses_batch_edit_v2_with_http_info(
+        self, **kwargs
+    ) -> AnalysesV2Dto:  # noqa: E501
         """Edit analyses (batch)  # noqa: E501
 
         If no netRateScheme is provided in request, then netRateScheme associated with provider will be used if it exists, otherwise it will remain the same as it was.  # noqa: E501
@@ -70,21 +84,21 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method analyses_batch_edit_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -98,36 +112,42 @@ class AnalysisApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/analyses/bulk', 'PUT',
+            "/api2/v2/analyses/bulk",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AnalysesV2Dto',  # noqa: E501
+            response_type="AnalysesV2Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def bulk_delete_analyses(self, **kwargs):  # noqa: E501
+    def bulk_delete_analyses(self, **kwargs) -> None:  # noqa: E501
         """Delete analyses (batch)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -141,14 +161,14 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.bulk_delete_analyses_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.bulk_delete_analyses_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def bulk_delete_analyses_with_http_info(self, **kwargs):  # noqa: E501
+    def bulk_delete_analyses_with_http_info(self, **kwargs) -> None:  # noqa: E501
         """Delete analyses (batch)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -163,21 +183,21 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method bulk_delete_analyses" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -191,17 +211,21 @@ class AnalysisApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/analyses/bulk', 'DELETE',
+            "/api2/v1/analyses/bulk",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -210,13 +234,16 @@ class AnalysisApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_analyse_async1(self, **kwargs):  # noqa: E501
+    def create_analyse_async1(
+        self, **kwargs
+    ) -> AsyncAnalyseListResponseV2Dto:  # noqa: E501
         """Create analysis  # noqa: E501
 
         Returns created analyses - batching analyses by number of segments (api.segment.count.approximation, default 100000), in case request contains more segments than maximum (api.segment.max.count, default 300000), returns 400 bad request.  # noqa: E501
@@ -231,14 +258,16 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_analyse_async1_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_analyse_async1_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_analyse_async1_with_http_info(self, **kwargs):  # noqa: E501
+    def create_analyse_async1_with_http_info(
+        self, **kwargs
+    ) -> AsyncAnalyseListResponseV2Dto:  # noqa: E501
         """Create analysis  # noqa: E501
 
         Returns created analyses - batching analyses by number of segments (api.segment.count.approximation, default 100000), in case request contains more segments than maximum (api.segment.max.count, default 300000), returns 400 bad request.  # noqa: E501
@@ -254,21 +283,21 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_analyse_async1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -282,36 +311,44 @@ class AnalysisApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/analyses', 'POST',
+            "/api2/v2/analyses",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AsyncAnalyseListResponseV2Dto',  # noqa: E501
+            response_type="AsyncAnalyseListResponseV2Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_analyses_for_langs(self, **kwargs):  # noqa: E501
+    def create_analyses_for_langs(
+        self, **kwargs
+    ) -> AsyncAnalyseListResponseDto:  # noqa: E501
         """Create analyses by languages  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -325,14 +362,18 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_analyses_for_langs_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.create_analyses_for_langs_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.create_analyses_for_langs_with_http_info(
+                **kwargs
+            )  # noqa: E501
             return data
 
-    def create_analyses_for_langs_with_http_info(self, **kwargs):  # noqa: E501
+    def create_analyses_for_langs_with_http_info(
+        self, **kwargs
+    ) -> AsyncAnalyseListResponseDto:  # noqa: E501
         """Create analyses by languages  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -347,21 +388,21 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_analyses_for_langs" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -375,36 +416,44 @@ class AnalysisApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/analyses/byLanguages', 'POST',
+            "/api2/v1/analyses/byLanguages",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AsyncAnalyseListResponseDto',  # noqa: E501
+            response_type="AsyncAnalyseListResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_analyses_for_providers(self, **kwargs):  # noqa: E501
+    def create_analyses_for_providers(
+        self, **kwargs
+    ) -> AsyncAnalyseListResponseDto:  # noqa: E501
         """Create analyses by providers  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -418,14 +467,20 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_analyses_for_providers_with_http_info(**kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_analyses_for_providers_with_http_info(
+                **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_analyses_for_providers_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.create_analyses_for_providers_with_http_info(
+                **kwargs
+            )  # noqa: E501
             return data
 
-    def create_analyses_for_providers_with_http_info(self, **kwargs):  # noqa: E501
+    def create_analyses_for_providers_with_http_info(
+        self, **kwargs
+    ) -> AsyncAnalyseListResponseDto:  # noqa: E501
         """Create analyses by providers  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -440,21 +495,21 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_analyses_for_providers" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -468,36 +523,42 @@ class AnalysisApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/analyses/byProviders', 'POST',
+            "/api2/v1/analyses/byProviders",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AsyncAnalyseListResponseDto',  # noqa: E501
+            response_type="AsyncAnalyseListResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete(self, analyse_uid, **kwargs):  # noqa: E501
+    def delete(self, analyse_uid, **kwargs) -> None:  # noqa: E501
         """Delete analysis  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -512,14 +573,14 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.delete_with_http_info(analyse_uid, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_with_http_info(analyse_uid, **kwargs)  # noqa: E501
             return data
 
-    def delete_with_http_info(self, analyse_uid, **kwargs):  # noqa: E501
+    def delete_with_http_info(self, analyse_uid, **kwargs) -> None:  # noqa: E501
         """Delete analysis  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -535,35 +596,35 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['analyse_uid', 'purge']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["analyse_uid", "purge"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method delete" % key
+                    "Got an unexpected keyword argument '%s'" " to method delete" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'analyse_uid' is set
-        if ('analyse_uid' not in params or
-                params['analyse_uid'] is None):
-            raise ValueError("Missing the required parameter `analyse_uid` when calling `delete`")  # noqa: E501
+        if "analyse_uid" not in params or params["analyse_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `analyse_uid` when calling `delete`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'analyse_uid' in params:
-            path_params['analyseUid'] = params['analyse_uid']  # noqa: E501
+        if "analyse_uid" in params:
+            path_params["analyseUid"] = params["analyse_uid"]  # noqa: E501
 
         query_params = []
-        if 'purge' in params:
-            query_params.append(('purge', params['purge']))  # noqa: E501
+        if "purge" in params:
+            query_params.append(("purge", params["purge"]))  # noqa: E501
 
         header_params = {}
 
@@ -575,7 +636,8 @@ class AnalysisApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/analyses/{analyseUid}', 'DELETE',
+            "/api2/v1/analyses/{analyseUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -584,13 +646,14 @@ class AnalysisApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def download_analyse(self, analyse_uid, format, **kwargs):  # noqa: E501
+    def download_analyse(self, analyse_uid, format, **kwargs) -> None:  # noqa: E501
         """Download analysis  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -605,14 +668,20 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.download_analyse_with_http_info(analyse_uid, format, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.download_analyse_with_http_info(
+                analyse_uid, format, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.download_analyse_with_http_info(analyse_uid, format, **kwargs)  # noqa: E501
+            (data) = self.download_analyse_with_http_info(
+                analyse_uid, format, **kwargs
+            )  # noqa: E501
             return data
 
-    def download_analyse_with_http_info(self, analyse_uid, format, **kwargs):  # noqa: E501
+    def download_analyse_with_http_info(
+        self, analyse_uid, format, **kwargs
+    ) -> None:  # noqa: E501
         """Download analysis  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -628,39 +697,41 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['analyse_uid', 'format']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["analyse_uid", "format"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method download_analyse" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'analyse_uid' is set
-        if ('analyse_uid' not in params or
-                params['analyse_uid'] is None):
-            raise ValueError("Missing the required parameter `analyse_uid` when calling `download_analyse`")  # noqa: E501
+        if "analyse_uid" not in params or params["analyse_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `analyse_uid` when calling `download_analyse`"
+            )  # noqa: E501
         # verify the required parameter 'format' is set
-        if ('format' not in params or
-                params['format'] is None):
-            raise ValueError("Missing the required parameter `format` when calling `download_analyse`")  # noqa: E501
+        if "format" not in params or params["format"] is None:
+            raise ValueError(
+                "Missing the required parameter `format` when calling `download_analyse`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'analyse_uid' in params:
-            path_params['analyseUid'] = params['analyse_uid']  # noqa: E501
+        if "analyse_uid" in params:
+            path_params["analyseUid"] = params["analyse_uid"]  # noqa: E501
 
         query_params = []
-        if 'format' in params:
-            query_params.append(('format', params['format']))  # noqa: E501
+        if "format" in params:
+            query_params.append(("format", params["format"]))  # noqa: E501
 
         header_params = {}
 
@@ -672,7 +743,8 @@ class AnalysisApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/analyses/{analyseUid}/download', 'GET',
+            "/api2/v1/analyses/{analyseUid}/download",
+            "GET",
             path_params,
             query_params,
             header_params,
@@ -681,13 +753,14 @@ class AnalysisApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_analysis(self, analyse_uid, **kwargs):  # noqa: E501
+    def edit_analysis(self, analyse_uid, **kwargs) -> AnalyseV2Dto:  # noqa: E501
         """Edit analysis  # noqa: E501
 
         If no netRateScheme is provided in request, then netRateScheme associated with provider will be used if it exists, otherwise it will remain the same as it was.  # noqa: E501
@@ -703,14 +776,20 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_analysis_with_http_info(analyse_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_analysis_with_http_info(
+                analyse_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_analysis_with_http_info(analyse_uid, **kwargs)  # noqa: E501
+            (data) = self.edit_analysis_with_http_info(
+                analyse_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_analysis_with_http_info(self, analyse_uid, **kwargs):  # noqa: E501
+    def edit_analysis_with_http_info(
+        self, analyse_uid, **kwargs
+    ) -> AnalyseV2Dto:  # noqa: E501
         """Edit analysis  # noqa: E501
 
         If no netRateScheme is provided in request, then netRateScheme associated with provider will be used if it exists, otherwise it will remain the same as it was.  # noqa: E501
@@ -727,31 +806,32 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['analyse_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["analyse_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_analysis" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'analyse_uid' is set
-        if ('analyse_uid' not in params or
-                params['analyse_uid'] is None):
-            raise ValueError("Missing the required parameter `analyse_uid` when calling `edit_analysis`")  # noqa: E501
+        if "analyse_uid" not in params or params["analyse_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `analyse_uid` when calling `edit_analysis`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'analyse_uid' in params:
-            path_params['analyseUid'] = params['analyse_uid']  # noqa: E501
+        if "analyse_uid" in params:
+            path_params["analyseUid"] = params["analyse_uid"]  # noqa: E501
 
         query_params = []
 
@@ -761,36 +841,44 @@ class AnalysisApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/analyses/{analyseUid}', 'PUT',
+            "/api2/v2/analyses/{analyseUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AnalyseV2Dto',  # noqa: E501
+            response_type="AnalyseV2Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_analyse_language_part(self, analyse_uid, analyse_language_part_id, **kwargs):  # noqa: E501
+    def get_analyse_language_part(
+        self, analyse_uid, analyse_language_part_id, **kwargs
+    ) -> AnalyseLanguagePartDto:  # noqa: E501
         """Get analysis language part  # noqa: E501
 
         Returns analysis language pair  # noqa: E501
@@ -806,14 +894,20 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_analyse_language_part_with_http_info(analyse_uid, analyse_language_part_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_analyse_language_part_with_http_info(
+                analyse_uid, analyse_language_part_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_analyse_language_part_with_http_info(analyse_uid, analyse_language_part_id, **kwargs)  # noqa: E501
+            (data) = self.get_analyse_language_part_with_http_info(
+                analyse_uid, analyse_language_part_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_analyse_language_part_with_http_info(self, analyse_uid, analyse_language_part_id, **kwargs):  # noqa: E501
+    def get_analyse_language_part_with_http_info(
+        self, analyse_uid, analyse_language_part_id, **kwargs
+    ) -> AnalyseLanguagePartDto:  # noqa: E501
         """Get analysis language part  # noqa: E501
 
         Returns analysis language pair  # noqa: E501
@@ -830,37 +924,44 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['analyse_uid', 'analyse_language_part_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["analyse_uid", "analyse_language_part_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_analyse_language_part" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'analyse_uid' is set
-        if ('analyse_uid' not in params or
-                params['analyse_uid'] is None):
-            raise ValueError("Missing the required parameter `analyse_uid` when calling `get_analyse_language_part`")  # noqa: E501
+        if "analyse_uid" not in params or params["analyse_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `analyse_uid` when calling `get_analyse_language_part`"
+            )  # noqa: E501
         # verify the required parameter 'analyse_language_part_id' is set
-        if ('analyse_language_part_id' not in params or
-                params['analyse_language_part_id'] is None):
-            raise ValueError("Missing the required parameter `analyse_language_part_id` when calling `get_analyse_language_part`")  # noqa: E501
+        if (
+            "analyse_language_part_id" not in params
+            or params["analyse_language_part_id"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `analyse_language_part_id` when calling `get_analyse_language_part`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'analyse_uid' in params:
-            path_params['analyseUid'] = params['analyse_uid']  # noqa: E501
-        if 'analyse_language_part_id' in params:
-            path_params['analyseLanguagePartId'] = params['analyse_language_part_id']  # noqa: E501
+        if "analyse_uid" in params:
+            path_params["analyseUid"] = params["analyse_uid"]  # noqa: E501
+        if "analyse_language_part_id" in params:
+            path_params["analyseLanguagePartId"] = params[
+                "analyse_language_part_id"
+            ]  # noqa: E501
 
         query_params = []
 
@@ -871,29 +972,32 @@ class AnalysisApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/analyses/{analyseUid}/analyseLanguageParts/{analyseLanguagePartId}', 'GET',
+            "/api2/v1/analyses/{analyseUid}/analyseLanguageParts/{analyseLanguagePartId}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AnalyseLanguagePartDto',  # noqa: E501
+            response_type="AnalyseLanguagePartDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_analyse_v3(self, analyse_uid, **kwargs):  # noqa: E501
+    def get_analyse_v3(self, analyse_uid, **kwargs) -> AnalyseV3Dto:  # noqa: E501
         """Get analysis  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -907,14 +1011,20 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_analyse_v3_with_http_info(analyse_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_analyse_v3_with_http_info(
+                analyse_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_analyse_v3_with_http_info(analyse_uid, **kwargs)  # noqa: E501
+            (data) = self.get_analyse_v3_with_http_info(
+                analyse_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_analyse_v3_with_http_info(self, analyse_uid, **kwargs):  # noqa: E501
+    def get_analyse_v3_with_http_info(
+        self, analyse_uid, **kwargs
+    ) -> AnalyseV3Dto:  # noqa: E501
         """Get analysis  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -929,31 +1039,32 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['analyse_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["analyse_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_analyse_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'analyse_uid' is set
-        if ('analyse_uid' not in params or
-                params['analyse_uid'] is None):
-            raise ValueError("Missing the required parameter `analyse_uid` when calling `get_analyse_v3`")  # noqa: E501
+        if "analyse_uid" not in params or params["analyse_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `analyse_uid` when calling `get_analyse_v3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'analyse_uid' in params:
-            path_params['analyseUid'] = params['analyse_uid']  # noqa: E501
+        if "analyse_uid" in params:
+            path_params["analyseUid"] = params["analyse_uid"]  # noqa: E501
 
         query_params = []
 
@@ -964,29 +1075,34 @@ class AnalysisApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/analyses/{analyseUid}', 'GET',
+            "/api2/v3/analyses/{analyseUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AnalyseV3Dto',  # noqa: E501
+            response_type="AnalyseV3Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_job_part_analyse(self, analyse_uid, job_uid, **kwargs):  # noqa: E501
+    def get_job_part_analyse(
+        self, analyse_uid, job_uid, **kwargs
+    ) -> AnalyseJobDto:  # noqa: E501
         """Get jobs analysis  # noqa: E501
 
         Returns job's analyse  # noqa: E501
@@ -1002,14 +1118,20 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_job_part_analyse_with_http_info(analyse_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_job_part_analyse_with_http_info(
+                analyse_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_job_part_analyse_with_http_info(analyse_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.get_job_part_analyse_with_http_info(
+                analyse_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_job_part_analyse_with_http_info(self, analyse_uid, job_uid, **kwargs):  # noqa: E501
+    def get_job_part_analyse_with_http_info(
+        self, analyse_uid, job_uid, **kwargs
+    ) -> AnalyseJobDto:  # noqa: E501
         """Get jobs analysis  # noqa: E501
 
         Returns job's analyse  # noqa: E501
@@ -1026,37 +1148,39 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['analyse_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["analyse_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_job_part_analyse" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'analyse_uid' is set
-        if ('analyse_uid' not in params or
-                params['analyse_uid'] is None):
-            raise ValueError("Missing the required parameter `analyse_uid` when calling `get_job_part_analyse`")  # noqa: E501
+        if "analyse_uid" not in params or params["analyse_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `analyse_uid` when calling `get_job_part_analyse`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_job_part_analyse`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_job_part_analyse`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'analyse_uid' in params:
-            path_params['analyseUid'] = params['analyse_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "analyse_uid" in params:
+            path_params["analyseUid"] = params["analyse_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1067,29 +1191,34 @@ class AnalysisApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/analyses/{analyseUid}/jobs/{jobUid}', 'GET',
+            "/api2/v1/analyses/{analyseUid}/jobs/{jobUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AnalyseJobDto',  # noqa: E501
+            response_type="AnalyseJobDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_by_project_v3(self, project_uid, **kwargs):  # noqa: E501
+    def list_by_project_v3(
+        self, project_uid, **kwargs
+    ) -> PageDtoAnalyseReference:  # noqa: E501
         """List analyses by project  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1110,14 +1239,20 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_by_project_v3_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_by_project_v3_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_by_project_v3_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.list_by_project_v3_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_by_project_v3_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def list_by_project_v3_with_http_info(
+        self, project_uid, **kwargs
+    ) -> PageDtoAnalyseReference:  # noqa: E501
         """List analyses by project  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1139,47 +1274,59 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'name', 'uid', 'page_number', 'page_size', 'sort', 'order', 'only_owner_org']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "name",
+            "uid",
+            "page_number",
+            "page_size",
+            "sort",
+            "order",
+            "only_owner_org",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_by_project_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `list_by_project_v3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `list_by_project_v3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'uid' in params:
-            query_params.append(('uid', params['uid']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
-        if 'sort' in params:
-            query_params.append(('sort', params['sort']))  # noqa: E501
-        if 'order' in params:
-            query_params.append(('order', params['order']))  # noqa: E501
-        if 'only_owner_org' in params:
-            query_params.append(('onlyOwnerOrg', params['only_owner_org']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "uid" in params:
+            query_params.append(("uid", params["uid"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
+        if "sort" in params:
+            query_params.append(("sort", params["sort"]))  # noqa: E501
+        if "order" in params:
+            query_params.append(("order", params["order"]))  # noqa: E501
+        if "only_owner_org" in params:
+            query_params.append(
+                ("onlyOwnerOrg", params["only_owner_org"])
+            )  # noqa: E501
 
         header_params = {}
 
@@ -1188,29 +1335,34 @@ class AnalysisApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/analyses', 'GET',
+            "/api2/v3/projects/{projectUid}/analyses",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoAnalyseReference',  # noqa: E501
+            response_type="PageDtoAnalyseReference",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_job_parts(self, analyse_uid, analyse_language_part_id, **kwargs):  # noqa: E501
+    def list_job_parts(
+        self, analyse_uid, analyse_language_part_id, **kwargs
+    ) -> PageDtoAnalyseJobDto:  # noqa: E501
         """List jobs of analyses  # noqa: E501
 
         Returns list of job's analyses  # noqa: E501
@@ -1228,14 +1380,20 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_job_parts_with_http_info(analyse_uid, analyse_language_part_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_job_parts_with_http_info(
+                analyse_uid, analyse_language_part_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_job_parts_with_http_info(analyse_uid, analyse_language_part_id, **kwargs)  # noqa: E501
+            (data) = self.list_job_parts_with_http_info(
+                analyse_uid, analyse_language_part_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_job_parts_with_http_info(self, analyse_uid, analyse_language_part_id, **kwargs):  # noqa: E501
+    def list_job_parts_with_http_info(
+        self, analyse_uid, analyse_language_part_id, **kwargs
+    ) -> PageDtoAnalyseJobDto:  # noqa: E501
         """List jobs of analyses  # noqa: E501
 
         Returns list of job's analyses  # noqa: E501
@@ -1254,43 +1412,55 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['analyse_uid', 'analyse_language_part_id', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "analyse_uid",
+            "analyse_language_part_id",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_job_parts" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'analyse_uid' is set
-        if ('analyse_uid' not in params or
-                params['analyse_uid'] is None):
-            raise ValueError("Missing the required parameter `analyse_uid` when calling `list_job_parts`")  # noqa: E501
+        if "analyse_uid" not in params or params["analyse_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `analyse_uid` when calling `list_job_parts`"
+            )  # noqa: E501
         # verify the required parameter 'analyse_language_part_id' is set
-        if ('analyse_language_part_id' not in params or
-                params['analyse_language_part_id'] is None):
-            raise ValueError("Missing the required parameter `analyse_language_part_id` when calling `list_job_parts`")  # noqa: E501
+        if (
+            "analyse_language_part_id" not in params
+            or params["analyse_language_part_id"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `analyse_language_part_id` when calling `list_job_parts`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'analyse_uid' in params:
-            path_params['analyseUid'] = params['analyse_uid']  # noqa: E501
-        if 'analyse_language_part_id' in params:
-            path_params['analyseLanguagePartId'] = params['analyse_language_part_id']  # noqa: E501
+        if "analyse_uid" in params:
+            path_params["analyseUid"] = params["analyse_uid"]  # noqa: E501
+        if "analyse_language_part_id" in params:
+            path_params["analyseLanguagePartId"] = params[
+                "analyse_language_part_id"
+            ]  # noqa: E501
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -1299,29 +1469,34 @@ class AnalysisApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/analyses/{analyseUid}/analyseLanguageParts/{analyseLanguagePartId}/jobs', 'GET',
+            "/api2/v1/analyses/{analyseUid}/analyseLanguageParts/{analyseLanguagePartId}/jobs",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoAnalyseJobDto',  # noqa: E501
+            response_type="PageDtoAnalyseJobDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_part_analyse_v3(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def list_part_analyse_v3(
+        self, project_uid, job_uid, **kwargs
+    ) -> PageDtoAnalyseReference:  # noqa: E501
         """List analyses  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1338,14 +1513,20 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_part_analyse_v3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_part_analyse_v3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_part_analyse_v3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.list_part_analyse_v3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_part_analyse_v3_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def list_part_analyse_v3_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> PageDtoAnalyseReference:  # noqa: E501
         """List analyses  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1363,43 +1544,50 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "job_uid",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_part_analyse_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `list_part_analyse_v3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `list_part_analyse_v3`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `list_part_analyse_v3`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `list_part_analyse_v3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -1408,29 +1596,32 @@ class AnalysisApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/jobs/{jobUid}/analyses', 'GET',
+            "/api2/v3/projects/{projectUid}/jobs/{jobUid}/analyses",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoAnalyseReference',  # noqa: E501
+            response_type="PageDtoAnalyseReference",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def recalculate(self, **kwargs):  # noqa: E501
+    def recalculate(self, **kwargs) -> AnalyseRecalculateResponseDto:  # noqa: E501
         """Recalculate analysis  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1444,14 +1635,16 @@ class AnalysisApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.recalculate_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.recalculate_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def recalculate_with_http_info(self, **kwargs):  # noqa: E501
+    def recalculate_with_http_info(
+        self, **kwargs
+    ) -> AnalyseRecalculateResponseDto:  # noqa: E501
         """Recalculate analysis  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1466,21 +1659,21 @@ class AnalysisApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method recalculate" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -1494,31 +1687,37 @@ class AnalysisApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/analyses/recalculate', 'POST',
+            "/api2/v1/analyses/recalculate",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AnalyseRecalculateResponseDto',  # noqa: E501
+            response_type="AnalyseRecalculateResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

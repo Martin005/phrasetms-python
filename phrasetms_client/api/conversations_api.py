@@ -17,6 +17,15 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    PlainConversationDto,
+    LQAConversationDto,
+    PlainConversationsListDto,
+    LQAConversationsListDto,
+    ConversationListDto,
+    AddPlainCommentResultDto,
+    AddLqaCommentResultDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +41,9 @@ class ConversationsApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def add_lqa_comment1(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def add_lqa_comment1(
+        self, job_uid, conversation_id, **kwargs
+    ) -> AddLqaCommentResultDto:  # noqa: E501
         """Add LQA comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -48,14 +59,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.add_lqa_comment1_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.add_lqa_comment1_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.add_lqa_comment1_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+            (data) = self.add_lqa_comment1_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def add_lqa_comment1_with_http_info(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def add_lqa_comment1_with_http_info(
+        self, job_uid, conversation_id, **kwargs
+    ) -> AddLqaCommentResultDto:  # noqa: E501
         """Add LQA comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -72,37 +89,39 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method add_lqa_comment1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `add_lqa_comment1`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `add_lqa_comment1`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `add_lqa_comment1`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `add_lqa_comment1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
 
         query_params = []
 
@@ -112,36 +131,44 @@ class ConversationsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/jobs/{jobUid}/conversations/lqas/{conversationId}/comments', 'POST',
+            "/api2/v2/jobs/{jobUid}/conversations/lqas/{conversationId}/comments",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AddLqaCommentResultDto',  # noqa: E501
+            response_type="AddLqaCommentResultDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def add_plain_comment2(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def add_plain_comment2(
+        self, job_uid, conversation_id, **kwargs
+    ) -> AddPlainCommentResultDto:  # noqa: E501
         """Add plain comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -157,14 +184,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.add_plain_comment2_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.add_plain_comment2_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.add_plain_comment2_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+            (data) = self.add_plain_comment2_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def add_plain_comment2_with_http_info(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def add_plain_comment2_with_http_info(
+        self, job_uid, conversation_id, **kwargs
+    ) -> AddPlainCommentResultDto:  # noqa: E501
         """Add plain comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -181,37 +214,39 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method add_plain_comment2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `add_plain_comment2`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `add_plain_comment2`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `add_plain_comment2`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `add_plain_comment2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
 
         query_params = []
 
@@ -221,36 +256,44 @@ class ConversationsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/jobs/{jobUid}/conversations/plains/{conversationId}/comments', 'POST',
+            "/api2/v3/jobs/{jobUid}/conversations/plains/{conversationId}/comments",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AddPlainCommentResultDto',  # noqa: E501
+            response_type="AddPlainCommentResultDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_lqa_conversation1(self, job_uid, **kwargs):  # noqa: E501
+    def create_lqa_conversation1(
+        self, job_uid, **kwargs
+    ) -> LQAConversationDto:  # noqa: E501
         """Create LQA conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -265,14 +308,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_lqa_conversation1_with_http_info(job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_lqa_conversation1_with_http_info(
+                job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_lqa_conversation1_with_http_info(job_uid, **kwargs)  # noqa: E501
+            (data) = self.create_lqa_conversation1_with_http_info(
+                job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_lqa_conversation1_with_http_info(self, job_uid, **kwargs):  # noqa: E501
+    def create_lqa_conversation1_with_http_info(
+        self, job_uid, **kwargs
+    ) -> LQAConversationDto:  # noqa: E501
         """Create LQA conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -288,31 +337,32 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_lqa_conversation1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `create_lqa_conversation1`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `create_lqa_conversation1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -322,36 +372,44 @@ class ConversationsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/jobs/{jobUid}/conversations/lqas', 'POST',
+            "/api2/v2/jobs/{jobUid}/conversations/lqas",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LQAConversationDto',  # noqa: E501
+            response_type="LQAConversationDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_segment_target_conversation1(self, job_uid, **kwargs):  # noqa: E501
+    def create_segment_target_conversation1(
+        self, job_uid, **kwargs
+    ) -> PlainConversationDto:  # noqa: E501
         """Create plain conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -366,14 +424,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.create_segment_target_conversation1_with_http_info(job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.create_segment_target_conversation1_with_http_info(
+                job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.create_segment_target_conversation1_with_http_info(job_uid, **kwargs)  # noqa: E501
+            (data) = self.create_segment_target_conversation1_with_http_info(
+                job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def create_segment_target_conversation1_with_http_info(self, job_uid, **kwargs):  # noqa: E501
+    def create_segment_target_conversation1_with_http_info(
+        self, job_uid, **kwargs
+    ) -> PlainConversationDto:  # noqa: E501
         """Create plain conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -389,31 +453,32 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_segment_target_conversation1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `create_segment_target_conversation1`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `create_segment_target_conversation1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -423,36 +488,44 @@ class ConversationsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/jobs/{jobUid}/conversations/plains', 'POST',
+            "/api2/v3/jobs/{jobUid}/conversations/plains",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PlainConversationDto',  # noqa: E501
+            response_type="PlainConversationDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_lqa_comment(self, job_uid, conversation_id, comment_id, **kwargs):  # noqa: E501
+    def delete_lqa_comment(
+        self, job_uid, conversation_id, comment_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete LQA comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -468,14 +541,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_lqa_comment_with_http_info(job_uid, conversation_id, comment_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_lqa_comment_with_http_info(
+                job_uid, conversation_id, comment_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_lqa_comment_with_http_info(job_uid, conversation_id, comment_id, **kwargs)  # noqa: E501
+            (data) = self.delete_lqa_comment_with_http_info(
+                job_uid, conversation_id, comment_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_lqa_comment_with_http_info(self, job_uid, conversation_id, comment_id, **kwargs):  # noqa: E501
+    def delete_lqa_comment_with_http_info(
+        self, job_uid, conversation_id, comment_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete LQA comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -492,43 +571,46 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id', 'comment_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id", "comment_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_lqa_comment" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `delete_lqa_comment`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `delete_lqa_comment`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `delete_lqa_comment`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `delete_lqa_comment`"
+            )  # noqa: E501
         # verify the required parameter 'comment_id' is set
-        if ('comment_id' not in params or
-                params['comment_id'] is None):
-            raise ValueError("Missing the required parameter `comment_id` when calling `delete_lqa_comment`")  # noqa: E501
+        if "comment_id" not in params or params["comment_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `comment_id` when calling `delete_lqa_comment`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
-        if 'comment_id' in params:
-            path_params['commentId'] = params['comment_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
+        if "comment_id" in params:
+            path_params["commentId"] = params["comment_id"]  # noqa: E501
 
         query_params = []
 
@@ -542,7 +624,8 @@ class ConversationsApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/{jobUid}/conversations/lqas/{conversationId}/comments/{commentId}', 'DELETE',
+            "/api2/v1/jobs/{jobUid}/conversations/lqas/{conversationId}/comments/{commentId}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -551,13 +634,16 @@ class ConversationsApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_lqa_conversation(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def delete_lqa_conversation(
+        self, job_uid, conversation_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete LQA conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -572,14 +658,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_lqa_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_lqa_conversation_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_lqa_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+            (data) = self.delete_lqa_conversation_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_lqa_conversation_with_http_info(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def delete_lqa_conversation_with_http_info(
+        self, job_uid, conversation_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete LQA conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -595,37 +687,39 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_lqa_conversation" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `delete_lqa_conversation`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `delete_lqa_conversation`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `delete_lqa_conversation`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `delete_lqa_conversation`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
 
         query_params = []
 
@@ -639,7 +733,8 @@ class ConversationsApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/{jobUid}/conversations/lqas/{conversationId}', 'DELETE',
+            "/api2/v1/jobs/{jobUid}/conversations/lqas/{conversationId}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -648,13 +743,16 @@ class ConversationsApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_plain_comment(self, job_uid, conversation_id, comment_id, **kwargs):  # noqa: E501
+    def delete_plain_comment(
+        self, job_uid, conversation_id, comment_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete plain comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -670,14 +768,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_plain_comment_with_http_info(job_uid, conversation_id, comment_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_plain_comment_with_http_info(
+                job_uid, conversation_id, comment_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_plain_comment_with_http_info(job_uid, conversation_id, comment_id, **kwargs)  # noqa: E501
+            (data) = self.delete_plain_comment_with_http_info(
+                job_uid, conversation_id, comment_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_plain_comment_with_http_info(self, job_uid, conversation_id, comment_id, **kwargs):  # noqa: E501
+    def delete_plain_comment_with_http_info(
+        self, job_uid, conversation_id, comment_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete plain comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -694,43 +798,46 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id', 'comment_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id", "comment_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_plain_comment" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `delete_plain_comment`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `delete_plain_comment`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `delete_plain_comment`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `delete_plain_comment`"
+            )  # noqa: E501
         # verify the required parameter 'comment_id' is set
-        if ('comment_id' not in params or
-                params['comment_id'] is None):
-            raise ValueError("Missing the required parameter `comment_id` when calling `delete_plain_comment`")  # noqa: E501
+        if "comment_id" not in params or params["comment_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `comment_id` when calling `delete_plain_comment`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
-        if 'comment_id' in params:
-            path_params['commentId'] = params['comment_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
+        if "comment_id" in params:
+            path_params["commentId"] = params["comment_id"]  # noqa: E501
 
         query_params = []
 
@@ -744,7 +851,8 @@ class ConversationsApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}/comments/{commentId}', 'DELETE',
+            "/api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}/comments/{commentId}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -753,13 +861,16 @@ class ConversationsApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_plain_conversation(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def delete_plain_conversation(
+        self, job_uid, conversation_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete plain conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -774,14 +885,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_plain_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_plain_conversation_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_plain_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+            (data) = self.delete_plain_conversation_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_plain_conversation_with_http_info(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def delete_plain_conversation_with_http_info(
+        self, job_uid, conversation_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete plain conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -797,37 +914,39 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_plain_conversation" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `delete_plain_conversation`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `delete_plain_conversation`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `delete_plain_conversation`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `delete_plain_conversation`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
 
         query_params = []
 
@@ -841,7 +960,8 @@ class ConversationsApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}', 'DELETE',
+            "/api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -850,13 +970,14 @@ class ConversationsApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def find_conversations(self, **kwargs):  # noqa: E501
+    def find_conversations(self, **kwargs) -> ConversationListDto:  # noqa: E501
         """Find all conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -870,14 +991,16 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.find_conversations_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.find_conversations_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def find_conversations_with_http_info(self, **kwargs):  # noqa: E501
+    def find_conversations_with_http_info(
+        self, **kwargs
+    ) -> ConversationListDto:  # noqa: E501
         """Find all conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -892,21 +1015,21 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method find_conversations" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -920,36 +1043,44 @@ class ConversationsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/conversations/find', 'POST',
+            "/api2/v1/jobs/conversations/find",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConversationListDto',  # noqa: E501
+            response_type="ConversationListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_lqa_conversation(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def get_lqa_conversation(
+        self, job_uid, conversation_id, **kwargs
+    ) -> LQAConversationDto:  # noqa: E501
         """Get LQA conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -964,14 +1095,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_lqa_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_lqa_conversation_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_lqa_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+            (data) = self.get_lqa_conversation_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_lqa_conversation_with_http_info(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def get_lqa_conversation_with_http_info(
+        self, job_uid, conversation_id, **kwargs
+    ) -> LQAConversationDto:  # noqa: E501
         """Get LQA conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -987,37 +1124,39 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_lqa_conversation" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_lqa_conversation`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_lqa_conversation`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `get_lqa_conversation`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `get_lqa_conversation`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
 
         query_params = []
 
@@ -1028,29 +1167,34 @@ class ConversationsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/{jobUid}/conversations/lqas/{conversationId}', 'GET',
+            "/api2/v1/jobs/{jobUid}/conversations/lqas/{conversationId}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LQAConversationDto',  # noqa: E501
+            response_type="LQAConversationDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_plain_conversation(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def get_plain_conversation(
+        self, job_uid, conversation_id, **kwargs
+    ) -> PlainConversationDto:  # noqa: E501
         """Get plain conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1065,14 +1209,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_plain_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_plain_conversation_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_plain_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+            (data) = self.get_plain_conversation_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_plain_conversation_with_http_info(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def get_plain_conversation_with_http_info(
+        self, job_uid, conversation_id, **kwargs
+    ) -> PlainConversationDto:  # noqa: E501
         """Get plain conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1088,37 +1238,39 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_plain_conversation" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_plain_conversation`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_plain_conversation`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `get_plain_conversation`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `get_plain_conversation`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
 
         query_params = []
 
@@ -1129,29 +1281,34 @@ class ConversationsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}', 'GET',
+            "/api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PlainConversationDto',  # noqa: E501
+            response_type="PlainConversationDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_all_conversations(self, job_uid, **kwargs):  # noqa: E501
+    def list_all_conversations(
+        self, job_uid, **kwargs
+    ) -> ConversationListDto:  # noqa: E501
         """List all conversations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1167,14 +1324,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_all_conversations_with_http_info(job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_all_conversations_with_http_info(
+                job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_all_conversations_with_http_info(job_uid, **kwargs)  # noqa: E501
+            (data) = self.list_all_conversations_with_http_info(
+                job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_all_conversations_with_http_info(self, job_uid, **kwargs):  # noqa: E501
+    def list_all_conversations_with_http_info(
+        self, job_uid, **kwargs
+    ) -> ConversationListDto:  # noqa: E501
         """List all conversations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1191,37 +1354,40 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'include_deleted', 'since']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "include_deleted", "since"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_all_conversations" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `list_all_conversations`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `list_all_conversations`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
-        if 'include_deleted' in params:
-            query_params.append(('includeDeleted', params['include_deleted']))  # noqa: E501
-        if 'since' in params:
-            query_params.append(('since', params['since']))  # noqa: E501
+        if "include_deleted" in params:
+            query_params.append(
+                ("includeDeleted", params["include_deleted"])
+            )  # noqa: E501
+        if "since" in params:
+            query_params.append(("since", params["since"]))  # noqa: E501
 
         header_params = {}
 
@@ -1230,29 +1396,34 @@ class ConversationsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/{jobUid}/conversations', 'GET',
+            "/api2/v1/jobs/{jobUid}/conversations",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ConversationListDto',  # noqa: E501
+            response_type="ConversationListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_lqa_conversations(self, job_uid, **kwargs):  # noqa: E501
+    def list_lqa_conversations(
+        self, job_uid, **kwargs
+    ) -> LQAConversationsListDto:  # noqa: E501
         """List LQA conversations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1268,14 +1439,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_lqa_conversations_with_http_info(job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_lqa_conversations_with_http_info(
+                job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_lqa_conversations_with_http_info(job_uid, **kwargs)  # noqa: E501
+            (data) = self.list_lqa_conversations_with_http_info(
+                job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_lqa_conversations_with_http_info(self, job_uid, **kwargs):  # noqa: E501
+    def list_lqa_conversations_with_http_info(
+        self, job_uid, **kwargs
+    ) -> LQAConversationsListDto:  # noqa: E501
         """List LQA conversations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1292,37 +1469,40 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'include_deleted', 'since']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "include_deleted", "since"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_lqa_conversations" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `list_lqa_conversations`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `list_lqa_conversations`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
-        if 'include_deleted' in params:
-            query_params.append(('includeDeleted', params['include_deleted']))  # noqa: E501
-        if 'since' in params:
-            query_params.append(('since', params['since']))  # noqa: E501
+        if "include_deleted" in params:
+            query_params.append(
+                ("includeDeleted", params["include_deleted"])
+            )  # noqa: E501
+        if "since" in params:
+            query_params.append(("since", params["since"]))  # noqa: E501
 
         header_params = {}
 
@@ -1331,29 +1511,34 @@ class ConversationsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/{jobUid}/conversations/lqas', 'GET',
+            "/api2/v1/jobs/{jobUid}/conversations/lqas",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LQAConversationsListDto',  # noqa: E501
+            response_type="LQAConversationsListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_plain_conversations(self, job_uid, **kwargs):  # noqa: E501
+    def list_plain_conversations(
+        self, job_uid, **kwargs
+    ) -> PlainConversationsListDto:  # noqa: E501
         """List plain conversations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1369,14 +1554,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_plain_conversations_with_http_info(job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_plain_conversations_with_http_info(
+                job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_plain_conversations_with_http_info(job_uid, **kwargs)  # noqa: E501
+            (data) = self.list_plain_conversations_with_http_info(
+                job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_plain_conversations_with_http_info(self, job_uid, **kwargs):  # noqa: E501
+    def list_plain_conversations_with_http_info(
+        self, job_uid, **kwargs
+    ) -> PlainConversationsListDto:  # noqa: E501
         """List plain conversations  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1393,37 +1584,40 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'include_deleted', 'since']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "include_deleted", "since"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_plain_conversations" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `list_plain_conversations`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `list_plain_conversations`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
-        if 'include_deleted' in params:
-            query_params.append(('includeDeleted', params['include_deleted']))  # noqa: E501
-        if 'since' in params:
-            query_params.append(('since', params['since']))  # noqa: E501
+        if "include_deleted" in params:
+            query_params.append(
+                ("includeDeleted", params["include_deleted"])
+            )  # noqa: E501
+        if "since" in params:
+            query_params.append(("since", params["since"]))  # noqa: E501
 
         header_params = {}
 
@@ -1432,29 +1626,34 @@ class ConversationsApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/{jobUid}/conversations/plains', 'GET',
+            "/api2/v1/jobs/{jobUid}/conversations/plains",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PlainConversationsListDto',  # noqa: E501
+            response_type="PlainConversationsListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_lqa_comment1(self, job_uid, conversation_id, comment_id, **kwargs):  # noqa: E501
+    def update_lqa_comment1(
+        self, job_uid, conversation_id, comment_id, **kwargs
+    ) -> LQAConversationDto:  # noqa: E501
         """Edit LQA comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1471,14 +1670,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_lqa_comment1_with_http_info(job_uid, conversation_id, comment_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_lqa_comment1_with_http_info(
+                job_uid, conversation_id, comment_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_lqa_comment1_with_http_info(job_uid, conversation_id, comment_id, **kwargs)  # noqa: E501
+            (data) = self.update_lqa_comment1_with_http_info(
+                job_uid, conversation_id, comment_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_lqa_comment1_with_http_info(self, job_uid, conversation_id, comment_id, **kwargs):  # noqa: E501
+    def update_lqa_comment1_with_http_info(
+        self, job_uid, conversation_id, comment_id, **kwargs
+    ) -> LQAConversationDto:  # noqa: E501
         """Edit LQA comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1496,43 +1701,46 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id', 'comment_id', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id", "comment_id", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_lqa_comment1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `update_lqa_comment1`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `update_lqa_comment1`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `update_lqa_comment1`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `update_lqa_comment1`"
+            )  # noqa: E501
         # verify the required parameter 'comment_id' is set
-        if ('comment_id' not in params or
-                params['comment_id'] is None):
-            raise ValueError("Missing the required parameter `comment_id` when calling `update_lqa_comment1`")  # noqa: E501
+        if "comment_id" not in params or params["comment_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `comment_id` when calling `update_lqa_comment1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
-        if 'comment_id' in params:
-            path_params['commentId'] = params['comment_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
+        if "comment_id" in params:
+            path_params["commentId"] = params["comment_id"]  # noqa: E501
 
         query_params = []
 
@@ -1542,36 +1750,44 @@ class ConversationsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/jobs/{jobUid}/conversations/lqas/{conversationId}/comments/{commentId}', 'PUT',
+            "/api2/v2/jobs/{jobUid}/conversations/lqas/{conversationId}/comments/{commentId}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LQAConversationDto',  # noqa: E501
+            response_type="LQAConversationDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_lqa_conversation1(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def update_lqa_conversation1(
+        self, job_uid, conversation_id, **kwargs
+    ) -> LQAConversationDto:  # noqa: E501
         """Update LQA conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1587,14 +1803,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_lqa_conversation1_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_lqa_conversation1_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_lqa_conversation1_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+            (data) = self.update_lqa_conversation1_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_lqa_conversation1_with_http_info(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def update_lqa_conversation1_with_http_info(
+        self, job_uid, conversation_id, **kwargs
+    ) -> LQAConversationDto:  # noqa: E501
         """Update LQA conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1611,37 +1833,39 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_lqa_conversation1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `update_lqa_conversation1`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `update_lqa_conversation1`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `update_lqa_conversation1`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `update_lqa_conversation1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
 
         query_params = []
 
@@ -1651,36 +1875,44 @@ class ConversationsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/jobs/{jobUid}/conversations/lqas/{conversationId}', 'PUT',
+            "/api2/v2/jobs/{jobUid}/conversations/lqas/{conversationId}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='LQAConversationDto',  # noqa: E501
+            response_type="LQAConversationDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_plain_comment1(self, job_uid, conversation_id, comment_id, **kwargs):  # noqa: E501
+    def update_plain_comment1(
+        self, job_uid, conversation_id, comment_id, **kwargs
+    ) -> PlainConversationDto:  # noqa: E501
         """Edit plain comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1697,14 +1929,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_plain_comment1_with_http_info(job_uid, conversation_id, comment_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_plain_comment1_with_http_info(
+                job_uid, conversation_id, comment_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_plain_comment1_with_http_info(job_uid, conversation_id, comment_id, **kwargs)  # noqa: E501
+            (data) = self.update_plain_comment1_with_http_info(
+                job_uid, conversation_id, comment_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_plain_comment1_with_http_info(self, job_uid, conversation_id, comment_id, **kwargs):  # noqa: E501
+    def update_plain_comment1_with_http_info(
+        self, job_uid, conversation_id, comment_id, **kwargs
+    ) -> PlainConversationDto:  # noqa: E501
         """Edit plain comment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1722,43 +1960,46 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id', 'comment_id', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id", "comment_id", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_plain_comment1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `update_plain_comment1`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `update_plain_comment1`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `update_plain_comment1`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `update_plain_comment1`"
+            )  # noqa: E501
         # verify the required parameter 'comment_id' is set
-        if ('comment_id' not in params or
-                params['comment_id'] is None):
-            raise ValueError("Missing the required parameter `comment_id` when calling `update_plain_comment1`")  # noqa: E501
+        if "comment_id" not in params or params["comment_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `comment_id` when calling `update_plain_comment1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
-        if 'comment_id' in params:
-            path_params['commentId'] = params['comment_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
+        if "comment_id" in params:
+            path_params["commentId"] = params["comment_id"]  # noqa: E501
 
         query_params = []
 
@@ -1768,36 +2009,44 @@ class ConversationsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/jobs/{jobUid}/conversations/plains/{conversationId}/comments/{commentId}', 'PUT',
+            "/api2/v3/jobs/{jobUid}/conversations/plains/{conversationId}/comments/{commentId}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PlainConversationDto',  # noqa: E501
+            response_type="PlainConversationDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_plain_conversation(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def update_plain_conversation(
+        self, job_uid, conversation_id, **kwargs
+    ) -> PlainConversationDto:  # noqa: E501
         """Edit plain conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1813,14 +2062,20 @@ class ConversationsApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_plain_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_plain_conversation_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_plain_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
+            (data) = self.update_plain_conversation_with_http_info(
+                job_uid, conversation_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_plain_conversation_with_http_info(self, job_uid, conversation_id, **kwargs):  # noqa: E501
+    def update_plain_conversation_with_http_info(
+        self, job_uid, conversation_id, **kwargs
+    ) -> PlainConversationDto:  # noqa: E501
         """Edit plain conversation  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1837,37 +2092,39 @@ class ConversationsApi(object):
                  returns the request thread.
         """
 
-        all_params = ['job_uid', 'conversation_id', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["job_uid", "conversation_id", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_plain_conversation" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `update_plain_conversation`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `update_plain_conversation`"
+            )  # noqa: E501
         # verify the required parameter 'conversation_id' is set
-        if ('conversation_id' not in params or
-                params['conversation_id'] is None):
-            raise ValueError("Missing the required parameter `conversation_id` when calling `update_plain_conversation`")  # noqa: E501
+        if "conversation_id" not in params or params["conversation_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `conversation_id` when calling `update_plain_conversation`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
-        if 'conversation_id' in params:
-            path_params['conversationId'] = params['conversation_id']  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
+        if "conversation_id" in params:
+            path_params["conversationId"] = params["conversation_id"]  # noqa: E501
 
         query_params = []
 
@@ -1877,31 +2134,37 @@ class ConversationsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}', 'PUT',
+            "/api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PlainConversationDto',  # noqa: E501
+            response_type="PlainConversationDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

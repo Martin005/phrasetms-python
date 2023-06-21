@@ -17,6 +17,17 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    PageDtoLastLoginDto,
+    UserDetailsDtoV3,
+    UserStatisticsListDto,
+    PageDtoWorkflowStepReference,
+    PageDtoString,
+    PageDtoAssignedJobDto,
+    PageDtoProjectReference,
+    PageDtoUserDto,
+    UserDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +43,7 @@ class UserApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def cancel_deletion(self, user_uid, **kwargs):  # noqa: E501
+    def cancel_deletion(self, user_uid, **kwargs) -> UserDto:  # noqa: E501
         """Restore user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -46,14 +57,18 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.cancel_deletion_with_http_info(user_uid, **kwargs)  # noqa: E501
         else:
-            (data) = self.cancel_deletion_with_http_info(user_uid, **kwargs)  # noqa: E501
+            (data) = self.cancel_deletion_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def cancel_deletion_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def cancel_deletion_with_http_info(
+        self, user_uid, **kwargs
+    ) -> UserDto:  # noqa: E501
         """Restore user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -68,31 +83,32 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["user_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method cancel_deletion" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `cancel_deletion`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `cancel_deletion`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
 
@@ -103,29 +119,32 @@ class UserApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users/{userUid}/undelete', 'POST',
+            "/api2/v1/users/{userUid}/undelete",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UserDto',  # noqa: E501
+            response_type="UserDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_user_v3(self, **kwargs):  # noqa: E501
+    def create_user_v3(self, **kwargs) -> UserDetailsDtoV3:  # noqa: E501
         """Create user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -139,14 +158,14 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_user_v3_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_user_v3_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_user_v3_with_http_info(self, **kwargs):  # noqa: E501
+    def create_user_v3_with_http_info(self, **kwargs) -> UserDetailsDtoV3:  # noqa: E501
         """Create user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -161,21 +180,21 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_user_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -189,36 +208,42 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/users', 'POST',
+            "/api2/v3/users",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UserDetailsDtoV3',  # noqa: E501
+            response_type="UserDetailsDtoV3",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_user1(self, user_uid, **kwargs):  # noqa: E501
+    def delete_user1(self, user_uid, **kwargs) -> None:  # noqa: E501
         """Delete user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -232,14 +257,14 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.delete_user1_with_http_info(user_uid, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_user1_with_http_info(user_uid, **kwargs)  # noqa: E501
             return data
 
-    def delete_user1_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def delete_user1_with_http_info(self, user_uid, **kwargs) -> None:  # noqa: E501
         """Delete user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -254,31 +279,32 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["user_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_user1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `delete_user1`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `delete_user1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
 
@@ -292,7 +318,8 @@ class UserApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users/{userUid}', 'DELETE',
+            "/api2/v1/users/{userUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -301,13 +328,16 @@ class UserApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def disable_two_factor_auth_v3(self, user_uid, **kwargs):  # noqa: E501
+    def disable_two_factor_auth_v3(
+        self, user_uid, **kwargs
+    ) -> UserDetailsDtoV3:  # noqa: E501
         """Disable two-factor authentication  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -321,14 +351,20 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.disable_two_factor_auth_v3_with_http_info(user_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.disable_two_factor_auth_v3_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.disable_two_factor_auth_v3_with_http_info(user_uid, **kwargs)  # noqa: E501
+            (data) = self.disable_two_factor_auth_v3_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def disable_two_factor_auth_v3_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def disable_two_factor_auth_v3_with_http_info(
+        self, user_uid, **kwargs
+    ) -> UserDetailsDtoV3:  # noqa: E501
         """Disable two-factor authentication  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -343,31 +379,32 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["user_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method disable_two_factor_auth_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `disable_two_factor_auth_v3`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `disable_two_factor_auth_v3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
 
@@ -378,29 +415,32 @@ class UserApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/users/{userUid}/disableTwoFactorAuth', 'POST',
+            "/api2/v3/users/{userUid}/disableTwoFactorAuth",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UserDetailsDtoV3',  # noqa: E501
+            response_type="UserDetailsDtoV3",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_list_of_users_filtered(self, **kwargs):  # noqa: E501
+    def get_list_of_users_filtered(self, **kwargs) -> PageDtoUserDto:  # noqa: E501
         """List users  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -425,14 +465,20 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_list_of_users_filtered_with_http_info(**kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_list_of_users_filtered_with_http_info(
+                **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_list_of_users_filtered_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.get_list_of_users_filtered_with_http_info(
+                **kwargs
+            )  # noqa: E501
             return data
 
-    def get_list_of_users_filtered_with_http_info(self, **kwargs):  # noqa: E501
+    def get_list_of_users_filtered_with_http_info(
+        self, **kwargs
+    ) -> PageDtoUserDto:  # noqa: E501
         """List users  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -458,54 +504,69 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['first_name', 'last_name', 'name', 'user_name', 'email', 'name_or_email', 'role', 'include_deleted', 'page_number', 'page_size', 'sort', 'order']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "first_name",
+            "last_name",
+            "name",
+            "user_name",
+            "email",
+            "name_or_email",
+            "role",
+            "include_deleted",
+            "page_number",
+            "page_size",
+            "sort",
+            "order",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_list_of_users_filtered" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'first_name' in params:
-            query_params.append(('firstName', params['first_name']))  # noqa: E501
-        if 'last_name' in params:
-            query_params.append(('lastName', params['last_name']))  # noqa: E501
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'user_name' in params:
-            query_params.append(('userName', params['user_name']))  # noqa: E501
-        if 'email' in params:
-            query_params.append(('email', params['email']))  # noqa: E501
-        if 'name_or_email' in params:
-            query_params.append(('nameOrEmail', params['name_or_email']))  # noqa: E501
-        if 'role' in params:
-            query_params.append(('role', params['role']))  # noqa: E501
-            collection_formats['role'] = 'multi'  # noqa: E501
-        if 'include_deleted' in params:
-            query_params.append(('includeDeleted', params['include_deleted']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
-        if 'sort' in params:
-            query_params.append(('sort', params['sort']))  # noqa: E501
-            collection_formats['sort'] = 'multi'  # noqa: E501
-        if 'order' in params:
-            query_params.append(('order', params['order']))  # noqa: E501
-            collection_formats['order'] = 'multi'  # noqa: E501
+        if "first_name" in params:
+            query_params.append(("firstName", params["first_name"]))  # noqa: E501
+        if "last_name" in params:
+            query_params.append(("lastName", params["last_name"]))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "user_name" in params:
+            query_params.append(("userName", params["user_name"]))  # noqa: E501
+        if "email" in params:
+            query_params.append(("email", params["email"]))  # noqa: E501
+        if "name_or_email" in params:
+            query_params.append(("nameOrEmail", params["name_or_email"]))  # noqa: E501
+        if "role" in params:
+            query_params.append(("role", params["role"]))  # noqa: E501
+            collection_formats["role"] = "multi"  # noqa: E501
+        if "include_deleted" in params:
+            query_params.append(
+                ("includeDeleted", params["include_deleted"])
+            )  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
+        if "sort" in params:
+            query_params.append(("sort", params["sort"]))  # noqa: E501
+            collection_formats["sort"] = "multi"  # noqa: E501
+        if "order" in params:
+            query_params.append(("order", params["order"]))  # noqa: E501
+            collection_formats["order"] = "multi"  # noqa: E501
 
         header_params = {}
 
@@ -514,29 +575,32 @@ class UserApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users', 'GET',
+            "/api2/v1/users",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoUserDto',  # noqa: E501
+            response_type="PageDtoUserDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_user_v3(self, user_uid, **kwargs):  # noqa: E501
+    def get_user_v3(self, user_uid, **kwargs) -> UserDetailsDtoV3:  # noqa: E501
         """Get user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -550,14 +614,16 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.get_user_v3_with_http_info(user_uid, **kwargs)  # noqa: E501
         else:
             (data) = self.get_user_v3_with_http_info(user_uid, **kwargs)  # noqa: E501
             return data
 
-    def get_user_v3_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def get_user_v3_with_http_info(
+        self, user_uid, **kwargs
+    ) -> UserDetailsDtoV3:  # noqa: E501
         """Get user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -572,31 +638,32 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["user_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_user_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `get_user_v3`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `get_user_v3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
 
@@ -607,29 +674,34 @@ class UserApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/users/{userUid}', 'GET',
+            "/api2/v3/users/{userUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UserDetailsDtoV3',  # noqa: E501
+            response_type="UserDetailsDtoV3",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_assigned_projects(self, user_uid, **kwargs):  # noqa: E501
+    def list_assigned_projects(
+        self, user_uid, **kwargs
+    ) -> PageDtoProjectReference:  # noqa: E501
         """List assigned projects  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -651,14 +723,20 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_assigned_projects_with_http_info(user_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_assigned_projects_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_assigned_projects_with_http_info(user_uid, **kwargs)  # noqa: E501
+            (data) = self.list_assigned_projects_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_assigned_projects_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def list_assigned_projects_with_http_info(
+        self, user_uid, **kwargs
+    ) -> PageDtoProjectReference:  # noqa: E501
         """List assigned projects  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -681,51 +759,64 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid', 'status', 'target_lang', 'workflow_step_id', 'due_in_hours', 'filename', 'project_name', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "user_uid",
+            "status",
+            "target_lang",
+            "workflow_step_id",
+            "due_in_hours",
+            "filename",
+            "project_name",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_assigned_projects" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `list_assigned_projects`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `list_assigned_projects`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
-        if 'status' in params:
-            query_params.append(('status', params['status']))  # noqa: E501
-            collection_formats['status'] = 'multi'  # noqa: E501
-        if 'target_lang' in params:
-            query_params.append(('targetLang', params['target_lang']))  # noqa: E501
-            collection_formats['targetLang'] = 'multi'  # noqa: E501
-        if 'workflow_step_id' in params:
-            query_params.append(('workflowStepId', params['workflow_step_id']))  # noqa: E501
-        if 'due_in_hours' in params:
-            query_params.append(('dueInHours', params['due_in_hours']))  # noqa: E501
-        if 'filename' in params:
-            query_params.append(('filename', params['filename']))  # noqa: E501
-        if 'project_name' in params:
-            query_params.append(('projectName', params['project_name']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "status" in params:
+            query_params.append(("status", params["status"]))  # noqa: E501
+            collection_formats["status"] = "multi"  # noqa: E501
+        if "target_lang" in params:
+            query_params.append(("targetLang", params["target_lang"]))  # noqa: E501
+            collection_formats["targetLang"] = "multi"  # noqa: E501
+        if "workflow_step_id" in params:
+            query_params.append(
+                ("workflowStepId", params["workflow_step_id"])
+            )  # noqa: E501
+        if "due_in_hours" in params:
+            query_params.append(("dueInHours", params["due_in_hours"]))  # noqa: E501
+        if "filename" in params:
+            query_params.append(("filename", params["filename"]))  # noqa: E501
+        if "project_name" in params:
+            query_params.append(("projectName", params["project_name"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -734,29 +825,32 @@ class UserApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users/{userUid}/projects', 'GET',
+            "/api2/v1/users/{userUid}/projects",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoProjectReference',  # noqa: E501
+            response_type="PageDtoProjectReference",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_jobs(self, user_uid, **kwargs):  # noqa: E501
+    def list_jobs(self, user_uid, **kwargs) -> PageDtoAssignedJobDto:  # noqa: E501
         """List assigned jobs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -778,14 +872,16 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.list_jobs_with_http_info(user_uid, **kwargs)  # noqa: E501
         else:
             (data) = self.list_jobs_with_http_info(user_uid, **kwargs)  # noqa: E501
             return data
 
-    def list_jobs_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def list_jobs_with_http_info(
+        self, user_uid, **kwargs
+    ) -> PageDtoAssignedJobDto:  # noqa: E501
         """List assigned jobs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -808,51 +904,64 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid', 'status', 'project_uid', 'target_lang', 'workflow_step_id', 'due_in_hours', 'filename', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "user_uid",
+            "status",
+            "project_uid",
+            "target_lang",
+            "workflow_step_id",
+            "due_in_hours",
+            "filename",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_jobs" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `list_jobs`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `list_jobs`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
-        if 'status' in params:
-            query_params.append(('status', params['status']))  # noqa: E501
-            collection_formats['status'] = 'multi'  # noqa: E501
-        if 'project_uid' in params:
-            query_params.append(('projectUid', params['project_uid']))  # noqa: E501
-        if 'target_lang' in params:
-            query_params.append(('targetLang', params['target_lang']))  # noqa: E501
-            collection_formats['targetLang'] = 'multi'  # noqa: E501
-        if 'workflow_step_id' in params:
-            query_params.append(('workflowStepId', params['workflow_step_id']))  # noqa: E501
-        if 'due_in_hours' in params:
-            query_params.append(('dueInHours', params['due_in_hours']))  # noqa: E501
-        if 'filename' in params:
-            query_params.append(('filename', params['filename']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "status" in params:
+            query_params.append(("status", params["status"]))  # noqa: E501
+            collection_formats["status"] = "multi"  # noqa: E501
+        if "project_uid" in params:
+            query_params.append(("projectUid", params["project_uid"]))  # noqa: E501
+        if "target_lang" in params:
+            query_params.append(("targetLang", params["target_lang"]))  # noqa: E501
+            collection_formats["targetLang"] = "multi"  # noqa: E501
+        if "workflow_step_id" in params:
+            query_params.append(
+                ("workflowStepId", params["workflow_step_id"])
+            )  # noqa: E501
+        if "due_in_hours" in params:
+            query_params.append(("dueInHours", params["due_in_hours"]))  # noqa: E501
+        if "filename" in params:
+            query_params.append(("filename", params["filename"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -861,29 +970,32 @@ class UserApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users/{userUid}/jobs', 'GET',
+            "/api2/v1/users/{userUid}/jobs",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoAssignedJobDto',  # noqa: E501
+            response_type="PageDtoAssignedJobDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_target_langs(self, user_uid, **kwargs):  # noqa: E501
+    def list_target_langs(self, user_uid, **kwargs) -> PageDtoString:  # noqa: E501
         """List assigned target languages  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -904,14 +1016,20 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_target_langs_with_http_info(user_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_target_langs_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_target_langs_with_http_info(user_uid, **kwargs)  # noqa: E501
+            (data) = self.list_target_langs_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_target_langs_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def list_target_langs_with_http_info(
+        self, user_uid, **kwargs
+    ) -> PageDtoString:  # noqa: E501
         """List assigned target languages  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -933,48 +1051,60 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid', 'status', 'project_uid', 'workflow_step_id', 'due_in_hours', 'filename', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "user_uid",
+            "status",
+            "project_uid",
+            "workflow_step_id",
+            "due_in_hours",
+            "filename",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_target_langs" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `list_target_langs`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `list_target_langs`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
-        if 'status' in params:
-            query_params.append(('status', params['status']))  # noqa: E501
-            collection_formats['status'] = 'multi'  # noqa: E501
-        if 'project_uid' in params:
-            query_params.append(('projectUid', params['project_uid']))  # noqa: E501
-        if 'workflow_step_id' in params:
-            query_params.append(('workflowStepId', params['workflow_step_id']))  # noqa: E501
-        if 'due_in_hours' in params:
-            query_params.append(('dueInHours', params['due_in_hours']))  # noqa: E501
-        if 'filename' in params:
-            query_params.append(('filename', params['filename']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "status" in params:
+            query_params.append(("status", params["status"]))  # noqa: E501
+            collection_formats["status"] = "multi"  # noqa: E501
+        if "project_uid" in params:
+            query_params.append(("projectUid", params["project_uid"]))  # noqa: E501
+        if "workflow_step_id" in params:
+            query_params.append(
+                ("workflowStepId", params["workflow_step_id"])
+            )  # noqa: E501
+        if "due_in_hours" in params:
+            query_params.append(("dueInHours", params["due_in_hours"]))  # noqa: E501
+        if "filename" in params:
+            query_params.append(("filename", params["filename"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -983,29 +1113,34 @@ class UserApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users/{userUid}/targetLangs', 'GET',
+            "/api2/v1/users/{userUid}/targetLangs",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoString',  # noqa: E501
+            response_type="PageDtoString",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_workflow_steps(self, user_uid, **kwargs):  # noqa: E501
+    def list_workflow_steps(
+        self, user_uid, **kwargs
+    ) -> PageDtoWorkflowStepReference:  # noqa: E501
         """List assigned workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1026,14 +1161,20 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.list_workflow_steps_with_http_info(user_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.list_workflow_steps_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.list_workflow_steps_with_http_info(user_uid, **kwargs)  # noqa: E501
+            (data) = self.list_workflow_steps_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def list_workflow_steps_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def list_workflow_steps_with_http_info(
+        self, user_uid, **kwargs
+    ) -> PageDtoWorkflowStepReference:  # noqa: E501
         """List assigned workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1055,49 +1196,59 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid', 'status', 'project_uid', 'target_lang', 'due_in_hours', 'filename', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "user_uid",
+            "status",
+            "project_uid",
+            "target_lang",
+            "due_in_hours",
+            "filename",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_workflow_steps" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `list_workflow_steps`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `list_workflow_steps`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
-        if 'status' in params:
-            query_params.append(('status', params['status']))  # noqa: E501
-            collection_formats['status'] = 'multi'  # noqa: E501
-        if 'project_uid' in params:
-            query_params.append(('projectUid', params['project_uid']))  # noqa: E501
-        if 'target_lang' in params:
-            query_params.append(('targetLang', params['target_lang']))  # noqa: E501
-            collection_formats['targetLang'] = 'multi'  # noqa: E501
-        if 'due_in_hours' in params:
-            query_params.append(('dueInHours', params['due_in_hours']))  # noqa: E501
-        if 'filename' in params:
-            query_params.append(('filename', params['filename']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "status" in params:
+            query_params.append(("status", params["status"]))  # noqa: E501
+            collection_formats["status"] = "multi"  # noqa: E501
+        if "project_uid" in params:
+            query_params.append(("projectUid", params["project_uid"]))  # noqa: E501
+        if "target_lang" in params:
+            query_params.append(("targetLang", params["target_lang"]))  # noqa: E501
+            collection_formats["targetLang"] = "multi"  # noqa: E501
+        if "due_in_hours" in params:
+            query_params.append(("dueInHours", params["due_in_hours"]))  # noqa: E501
+        if "filename" in params:
+            query_params.append(("filename", params["filename"]))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -1106,29 +1257,32 @@ class UserApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users/{userUid}/workflowSteps', 'GET',
+            "/api2/v1/users/{userUid}/workflowSteps",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoWorkflowStepReference',  # noqa: E501
+            response_type="PageDtoWorkflowStepReference",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def login_activity(self, user_uid, **kwargs):  # noqa: E501
+    def login_activity(self, user_uid, **kwargs) -> UserStatisticsListDto:  # noqa: E501
         """Login statistics  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1142,14 +1296,18 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.login_activity_with_http_info(user_uid, **kwargs)  # noqa: E501
         else:
-            (data) = self.login_activity_with_http_info(user_uid, **kwargs)  # noqa: E501
+            (data) = self.login_activity_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def login_activity_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def login_activity_with_http_info(
+        self, user_uid, **kwargs
+    ) -> UserStatisticsListDto:  # noqa: E501
         """Login statistics  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1164,31 +1322,32 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["user_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method login_activity" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `login_activity`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `login_activity`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1199,29 +1358,32 @@ class UserApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users/{userUid}/loginStatistics', 'GET',
+            "/api2/v1/users/{userUid}/loginStatistics",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UserStatisticsListDto',  # noqa: E501
+            response_type="UserStatisticsListDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def send_login_info(self, user_uid, **kwargs):  # noqa: E501
+    def send_login_info(self, user_uid, **kwargs) -> None:  # noqa: E501
         """Send login information  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1235,14 +1397,16 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.send_login_info_with_http_info(user_uid, **kwargs)  # noqa: E501
         else:
-            (data) = self.send_login_info_with_http_info(user_uid, **kwargs)  # noqa: E501
+            (data) = self.send_login_info_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def send_login_info_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def send_login_info_with_http_info(self, user_uid, **kwargs) -> None:  # noqa: E501
         """Send login information  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1257,31 +1421,32 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["user_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method send_login_info" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `send_login_info`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `send_login_info`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1295,7 +1460,8 @@ class UserApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users/{userUid}/emailLoginInformation', 'POST',
+            "/api2/v1/users/{userUid}/emailLoginInformation",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -1304,13 +1470,14 @@ class UserApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_password(self, user_uid, **kwargs):  # noqa: E501
+    def update_password(self, user_uid, **kwargs) -> None:  # noqa: E501
         """Update password  # noqa: E501
 
          * Password length must be between 8 and 255 * Password must not be same as the username   # noqa: E501
@@ -1326,14 +1493,16 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.update_password_with_http_info(user_uid, **kwargs)  # noqa: E501
         else:
-            (data) = self.update_password_with_http_info(user_uid, **kwargs)  # noqa: E501
+            (data) = self.update_password_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_password_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def update_password_with_http_info(self, user_uid, **kwargs) -> None:  # noqa: E501
         """Update password  # noqa: E501
 
          * Password length must be between 8 and 255 * Password must not be same as the username   # noqa: E501
@@ -1350,31 +1519,32 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["user_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_password" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `update_password`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `update_password`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1384,17 +1554,21 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users/{userUid}/updatePassword', 'POST',
+            "/api2/v1/users/{userUid}/updatePassword",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -1403,13 +1577,14 @@ class UserApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_user_v3(self, user_uid, **kwargs):  # noqa: E501
+    def update_user_v3(self, user_uid, **kwargs) -> UserDetailsDtoV3:  # noqa: E501
         """Edit user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1424,14 +1599,18 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.update_user_v3_with_http_info(user_uid, **kwargs)  # noqa: E501
         else:
-            (data) = self.update_user_v3_with_http_info(user_uid, **kwargs)  # noqa: E501
+            (data) = self.update_user_v3_with_http_info(
+                user_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_user_v3_with_http_info(self, user_uid, **kwargs):  # noqa: E501
+    def update_user_v3_with_http_info(
+        self, user_uid, **kwargs
+    ) -> UserDetailsDtoV3:  # noqa: E501
         """Edit user  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1447,31 +1626,32 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["user_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_user_v3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'user_uid' is set
-        if ('user_uid' not in params or
-                params['user_uid'] is None):
-            raise ValueError("Missing the required parameter `user_uid` when calling `update_user_v3`")  # noqa: E501
+        if "user_uid" not in params or params["user_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `user_uid` when calling `update_user_v3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'user_uid' in params:
-            path_params['userUid'] = params['user_uid']  # noqa: E501
+        if "user_uid" in params:
+            path_params["userUid"] = params["user_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1481,36 +1661,42 @@ class UserApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/users/{userUid}', 'PUT',
+            "/api2/v3/users/{userUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='UserDetailsDtoV3',  # noqa: E501
+            response_type="UserDetailsDtoV3",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def user_last_logins(self, **kwargs):  # noqa: E501
+    def user_last_logins(self, **kwargs) -> PageDtoLastLoginDto:  # noqa: E501
         """List last login dates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1529,14 +1715,16 @@ class UserApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.user_last_logins_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.user_last_logins_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def user_last_logins_with_http_info(self, **kwargs):  # noqa: E501
+    def user_last_logins_with_http_info(
+        self, **kwargs
+    ) -> PageDtoLastLoginDto:  # noqa: E501
         """List last login dates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1556,42 +1744,49 @@ class UserApi(object):
                  returns the request thread.
         """
 
-        all_params = ['user_name', 'role', 'sort', 'order', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "user_name",
+            "role",
+            "sort",
+            "order",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method user_last_logins" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'user_name' in params:
-            query_params.append(('userName', params['user_name']))  # noqa: E501
-        if 'role' in params:
-            query_params.append(('role', params['role']))  # noqa: E501
-            collection_formats['role'] = 'multi'  # noqa: E501
-        if 'sort' in params:
-            query_params.append(('sort', params['sort']))  # noqa: E501
-            collection_formats['sort'] = 'multi'  # noqa: E501
-        if 'order' in params:
-            query_params.append(('order', params['order']))  # noqa: E501
-            collection_formats['order'] = 'multi'  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "user_name" in params:
+            query_params.append(("userName", params["user_name"]))  # noqa: E501
+        if "role" in params:
+            query_params.append(("role", params["role"]))  # noqa: E501
+            collection_formats["role"] = "multi"  # noqa: E501
+        if "sort" in params:
+            query_params.append(("sort", params["sort"]))  # noqa: E501
+            collection_formats["sort"] = "multi"  # noqa: E501
+        if "order" in params:
+            query_params.append(("order", params["order"]))  # noqa: E501
+            collection_formats["order"] = "multi"  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -1600,24 +1795,27 @@ class UserApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/users/lastLogins', 'GET',
+            "/api2/v1/users/lastLogins",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoLastLoginDto',  # noqa: E501
+            response_type="PageDtoLastLoginDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )

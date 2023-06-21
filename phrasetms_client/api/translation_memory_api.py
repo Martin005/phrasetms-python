@@ -17,6 +17,21 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    SearchResponseListTmDto,
+    SearchResponseListTmDtoV3,
+    PageDtoTransMemoryDto,
+    AsyncRequestWrapperV2Dto,
+    TranslationResourcesDto,
+    TransMemoryDto,
+    PageDtoAbstractProjectDto,
+    ProjectTemplateTransMemoryListDtoV3,
+    MetadataResponse,
+    BackgroundTasksTmDto,
+    AsyncExportTMResponseDto,
+    AsyncRequestWrapperDto,
+    AsyncExportTMByQueryResponseDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 
@@ -32,7 +47,9 @@ class TranslationMemoryApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def add_target_lang_to_trans_memory(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def add_target_lang_to_trans_memory(
+        self, trans_memory_uid, **kwargs
+    ) -> TransMemoryDto:  # noqa: E501
         """Add target language to translation memory  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -47,14 +64,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.add_target_lang_to_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.add_target_lang_to_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.add_target_lang_to_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.add_target_lang_to_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def add_target_lang_to_trans_memory_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def add_target_lang_to_trans_memory_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> TransMemoryDto:  # noqa: E501
         """Add target language to translation memory  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -70,31 +93,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method add_target_lang_to_trans_memory" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `add_target_lang_to_trans_memory`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `add_target_lang_to_trans_memory`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -104,36 +128,42 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/targetLanguages', 'POST',
+            "/api2/v1/transMemories/{transMemoryUid}/targetLanguages",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TransMemoryDto',  # noqa: E501
+            response_type="TransMemoryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def clear_trans_memory(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def clear_trans_memory(self, trans_memory_uid, **kwargs) -> None:  # noqa: E501
         """Delete all segments  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -147,14 +177,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.clear_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.clear_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.clear_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.clear_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def clear_trans_memory_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def clear_trans_memory_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete all segments  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -169,31 +205,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method clear_trans_memory" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `clear_trans_memory`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `clear_trans_memory`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -207,7 +244,8 @@ class TranslationMemoryApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/segments', 'DELETE',
+            "/api2/v1/transMemories/{transMemoryUid}/segments",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -216,13 +254,14 @@ class TranslationMemoryApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def clear_trans_memory_v2(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def clear_trans_memory_v2(self, trans_memory_uid, **kwargs) -> None:  # noqa: E501
         """Delete all segments.  # noqa: E501
 
         This call is **asynchronous**, use [this API](#operation/getAsyncRequest) to check the result  # noqa: E501
@@ -237,14 +276,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.clear_trans_memory_v2_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.clear_trans_memory_v2_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.clear_trans_memory_v2_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.clear_trans_memory_v2_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def clear_trans_memory_v2_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def clear_trans_memory_v2_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete all segments.  # noqa: E501
 
         This call is **asynchronous**, use [this API](#operation/getAsyncRequest) to check the result  # noqa: E501
@@ -260,31 +305,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method clear_trans_memory_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `clear_trans_memory_v2`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `clear_trans_memory_v2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -298,7 +344,8 @@ class TranslationMemoryApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/transMemories/{transMemoryUid}/segments', 'DELETE',
+            "/api2/v2/transMemories/{transMemoryUid}/segments",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -307,13 +354,14 @@ class TranslationMemoryApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def create_trans_memory(self, **kwargs):  # noqa: E501
+    def create_trans_memory(self, **kwargs) -> TransMemoryDto:  # noqa: E501
         """Create translation memory  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -327,14 +375,16 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.create_trans_memory_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.create_trans_memory_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def create_trans_memory_with_http_info(self, **kwargs):  # noqa: E501
+    def create_trans_memory_with_http_info(
+        self, **kwargs
+    ) -> TransMemoryDto:  # noqa: E501
         """Create translation memory  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -349,21 +399,21 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method create_trans_memory" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -377,36 +427,44 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories', 'POST',
+            "/api2/v1/transMemories",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TransMemoryDto',  # noqa: E501
+            response_type="TransMemoryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_source_and_translations(self, trans_memory_uid, segment_id, **kwargs):  # noqa: E501
+    def delete_source_and_translations(
+        self, trans_memory_uid, segment_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete both source and translation  # noqa: E501
 
         Not recommended for bulk removal of segments  # noqa: E501
@@ -422,14 +480,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_source_and_translations_with_http_info(trans_memory_uid, segment_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_source_and_translations_with_http_info(
+                trans_memory_uid, segment_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_source_and_translations_with_http_info(trans_memory_uid, segment_id, **kwargs)  # noqa: E501
+            (data) = self.delete_source_and_translations_with_http_info(
+                trans_memory_uid, segment_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_source_and_translations_with_http_info(self, trans_memory_uid, segment_id, **kwargs):  # noqa: E501
+    def delete_source_and_translations_with_http_info(
+        self, trans_memory_uid, segment_id, **kwargs
+    ) -> None:  # noqa: E501
         """Delete both source and translation  # noqa: E501
 
         Not recommended for bulk removal of segments  # noqa: E501
@@ -446,37 +510,39 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'segment_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "segment_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_source_and_translations" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `delete_source_and_translations`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `delete_source_and_translations`"
+            )  # noqa: E501
         # verify the required parameter 'segment_id' is set
-        if ('segment_id' not in params or
-                params['segment_id'] is None):
-            raise ValueError("Missing the required parameter `segment_id` when calling `delete_source_and_translations`")  # noqa: E501
+        if "segment_id" not in params or params["segment_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `segment_id` when calling `delete_source_and_translations`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
-        if 'segment_id' in params:
-            path_params['segmentId'] = params['segment_id']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
+        if "segment_id" in params:
+            path_params["segmentId"] = params["segment_id"]  # noqa: E501
 
         query_params = []
 
@@ -490,7 +556,8 @@ class TranslationMemoryApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/segments/{segmentId}', 'DELETE',
+            "/api2/v1/transMemories/{transMemoryUid}/segments/{segmentId}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -499,13 +566,14 @@ class TranslationMemoryApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_trans_memory(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def delete_trans_memory(self, trans_memory_uid, **kwargs) -> None:  # noqa: E501
         """Delete translation memory  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -520,14 +588,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.delete_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_trans_memory_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def delete_trans_memory_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Delete translation memory  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -543,35 +617,36 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'purge']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "purge"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_trans_memory" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `delete_trans_memory`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `delete_trans_memory`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
-        if 'purge' in params:
-            query_params.append(('purge', params['purge']))  # noqa: E501
+        if "purge" in params:
+            query_params.append(("purge", params["purge"]))  # noqa: E501
 
         header_params = {}
 
@@ -583,7 +658,8 @@ class TranslationMemoryApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}', 'DELETE',
+            "/api2/v1/transMemories/{transMemoryUid}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -592,13 +668,16 @@ class TranslationMemoryApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def delete_translation(self, trans_memory_uid, segment_id, lang, **kwargs):  # noqa: E501
+    def delete_translation(
+        self, trans_memory_uid, segment_id, lang, **kwargs
+    ) -> None:  # noqa: E501
         """Delete segment of given language  # noqa: E501
 
         Not recommended for bulk removal of segments  # noqa: E501
@@ -615,14 +694,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.delete_translation_with_http_info(trans_memory_uid, segment_id, lang, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.delete_translation_with_http_info(
+                trans_memory_uid, segment_id, lang, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.delete_translation_with_http_info(trans_memory_uid, segment_id, lang, **kwargs)  # noqa: E501
+            (data) = self.delete_translation_with_http_info(
+                trans_memory_uid, segment_id, lang, **kwargs
+            )  # noqa: E501
             return data
 
-    def delete_translation_with_http_info(self, trans_memory_uid, segment_id, lang, **kwargs):  # noqa: E501
+    def delete_translation_with_http_info(
+        self, trans_memory_uid, segment_id, lang, **kwargs
+    ) -> None:  # noqa: E501
         """Delete segment of given language  # noqa: E501
 
         Not recommended for bulk removal of segments  # noqa: E501
@@ -640,43 +725,46 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'segment_id', 'lang']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "segment_id", "lang"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method delete_translation" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `delete_translation`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `delete_translation`"
+            )  # noqa: E501
         # verify the required parameter 'segment_id' is set
-        if ('segment_id' not in params or
-                params['segment_id'] is None):
-            raise ValueError("Missing the required parameter `segment_id` when calling `delete_translation`")  # noqa: E501
+        if "segment_id" not in params or params["segment_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `segment_id` when calling `delete_translation`"
+            )  # noqa: E501
         # verify the required parameter 'lang' is set
-        if ('lang' not in params or
-                params['lang'] is None):
-            raise ValueError("Missing the required parameter `lang` when calling `delete_translation`")  # noqa: E501
+        if "lang" not in params or params["lang"] is None:
+            raise ValueError(
+                "Missing the required parameter `lang` when calling `delete_translation`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
-        if 'segment_id' in params:
-            path_params['segmentId'] = params['segment_id']  # noqa: E501
-        if 'lang' in params:
-            path_params['lang'] = params['lang']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
+        if "segment_id" in params:
+            path_params["segmentId"] = params["segment_id"]  # noqa: E501
+        if "lang" in params:
+            path_params["lang"] = params["lang"]  # noqa: E501
 
         query_params = []
 
@@ -690,7 +778,8 @@ class TranslationMemoryApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/segments/{segmentId}/lang/{lang}', 'DELETE',
+            "/api2/v1/transMemories/{transMemoryUid}/segments/{segmentId}/lang/{lang}",
+            "DELETE",
             path_params,
             query_params,
             header_params,
@@ -699,13 +788,14 @@ class TranslationMemoryApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def download_cleaned_tm(self, async_request_id, **kwargs):  # noqa: E501
+    def download_cleaned_tm(self, async_request_id, **kwargs) -> None:  # noqa: E501
         """Download cleaned TM  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -719,14 +809,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.download_cleaned_tm_with_http_info(async_request_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.download_cleaned_tm_with_http_info(
+                async_request_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.download_cleaned_tm_with_http_info(async_request_id, **kwargs)  # noqa: E501
+            (data) = self.download_cleaned_tm_with_http_info(
+                async_request_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def download_cleaned_tm_with_http_info(self, async_request_id, **kwargs):  # noqa: E501
+    def download_cleaned_tm_with_http_info(
+        self, async_request_id, **kwargs
+    ) -> None:  # noqa: E501
         """Download cleaned TM  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -741,31 +837,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['async_request_id']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["async_request_id"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method download_cleaned_tm" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'async_request_id' is set
-        if ('async_request_id' not in params or
-                params['async_request_id'] is None):
-            raise ValueError("Missing the required parameter `async_request_id` when calling `download_cleaned_tm`")  # noqa: E501
+        if "async_request_id" not in params or params["async_request_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `async_request_id` when calling `download_cleaned_tm`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'async_request_id' in params:
-            path_params['asyncRequestId'] = params['async_request_id']  # noqa: E501
+        if "async_request_id" in params:
+            path_params["asyncRequestId"] = params["async_request_id"]  # noqa: E501
 
         query_params = []
 
@@ -779,7 +876,8 @@ class TranslationMemoryApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/downloadCleaned/{asyncRequestId}', 'GET',
+            "/api2/v1/transMemories/downloadCleaned/{asyncRequestId}",
+            "GET",
             path_params,
             query_params,
             header_params,
@@ -788,13 +886,14 @@ class TranslationMemoryApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def download_search_result(self, async_request_id, **kwargs):  # noqa: E501
+    def download_search_result(self, async_request_id, **kwargs) -> None:  # noqa: E501
         """Download export  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -810,14 +909,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.download_search_result_with_http_info(async_request_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.download_search_result_with_http_info(
+                async_request_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.download_search_result_with_http_info(async_request_id, **kwargs)  # noqa: E501
+            (data) = self.download_search_result_with_http_info(
+                async_request_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def download_search_result_with_http_info(self, async_request_id, **kwargs):  # noqa: E501
+    def download_search_result_with_http_info(
+        self, async_request_id, **kwargs
+    ) -> None:  # noqa: E501
         """Download export  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -834,38 +939,39 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['async_request_id', 'format', 'fields']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["async_request_id", "format", "fields"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method download_search_result" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'async_request_id' is set
-        if ('async_request_id' not in params or
-                params['async_request_id'] is None):
-            raise ValueError("Missing the required parameter `async_request_id` when calling `download_search_result`")  # noqa: E501
+        if "async_request_id" not in params or params["async_request_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `async_request_id` when calling `download_search_result`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'async_request_id' in params:
-            path_params['asyncRequestId'] = params['async_request_id']  # noqa: E501
+        if "async_request_id" in params:
+            path_params["asyncRequestId"] = params["async_request_id"]  # noqa: E501
 
         query_params = []
-        if 'format' in params:
-            query_params.append(('format', params['format']))  # noqa: E501
-        if 'fields' in params:
-            query_params.append(('fields', params['fields']))  # noqa: E501
-            collection_formats['fields'] = 'multi'  # noqa: E501
+        if "format" in params:
+            query_params.append(("format", params["format"]))  # noqa: E501
+        if "fields" in params:
+            query_params.append(("fields", params["fields"]))  # noqa: E501
+            collection_formats["fields"] = "multi"  # noqa: E501
 
         header_params = {}
 
@@ -877,7 +983,8 @@ class TranslationMemoryApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/downloadExport/{asyncRequestId}', 'GET',
+            "/api2/v1/transMemories/downloadExport/{asyncRequestId}",
+            "GET",
             path_params,
             query_params,
             header_params,
@@ -886,13 +993,16 @@ class TranslationMemoryApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def edit_trans_memory(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def edit_trans_memory(
+        self, trans_memory_uid, **kwargs
+    ) -> TransMemoryDto:  # noqa: E501
         """Edit translation memory  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -907,14 +1017,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.edit_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.edit_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.edit_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.edit_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def edit_trans_memory_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def edit_trans_memory_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> TransMemoryDto:  # noqa: E501
         """Edit translation memory  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -930,31 +1046,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method edit_trans_memory" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `edit_trans_memory`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `edit_trans_memory`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -964,36 +1081,44 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}', 'PUT',
+            "/api2/v1/transMemories/{transMemoryUid}",
+            "PUT",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TransMemoryDto',  # noqa: E501
+            response_type="TransMemoryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def export_by_query_async(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def export_by_query_async(
+        self, trans_memory_uid, **kwargs
+    ) -> AsyncExportTMByQueryResponseDto:  # noqa: E501
         """Search translation memory  # noqa: E501
 
         Use [this API](#operation/downloadSearchResult) to download result  # noqa: E501
@@ -1009,14 +1134,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.export_by_query_async_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.export_by_query_async_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.export_by_query_async_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.export_by_query_async_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def export_by_query_async_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def export_by_query_async_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> AsyncExportTMByQueryResponseDto:  # noqa: E501
         """Search translation memory  # noqa: E501
 
         Use [this API](#operation/downloadSearchResult) to download result  # noqa: E501
@@ -1033,31 +1164,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method export_by_query_async" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `export_by_query_async`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `export_by_query_async`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1067,36 +1199,42 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/exportByQueryAsync', 'POST',
+            "/api2/v1/transMemories/{transMemoryUid}/exportByQueryAsync",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AsyncExportTMByQueryResponseDto',  # noqa: E501
+            response_type="AsyncExportTMByQueryResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def export_cleaned_tms(self, **kwargs):  # noqa: E501
+    def export_cleaned_tms(self, **kwargs) -> AsyncRequestWrapperDto:  # noqa: E501
         """Extract cleaned translation memory  # noqa: E501
 
         Returns a ZIP file containing the cleaned translation memories in the specified outputFormat.  # noqa: E501
@@ -1111,14 +1249,16 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.export_cleaned_tms_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.export_cleaned_tms_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def export_cleaned_tms_with_http_info(self, **kwargs):  # noqa: E501
+    def export_cleaned_tms_with_http_info(
+        self, **kwargs
+    ) -> AsyncRequestWrapperDto:  # noqa: E501
         """Extract cleaned translation memory  # noqa: E501
 
         Returns a ZIP file containing the cleaned translation memories in the specified outputFormat.  # noqa: E501
@@ -1134,21 +1274,21 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method export_cleaned_tms" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
@@ -1162,36 +1302,44 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/extractCleaned', 'POST',
+            "/api2/v1/transMemories/extractCleaned",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AsyncRequestWrapperDto',  # noqa: E501
+            response_type="AsyncRequestWrapperDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def export_v2(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def export_v2(
+        self, trans_memory_uid, **kwargs
+    ) -> AsyncExportTMResponseDto:  # noqa: E501
         """Export translation memory  # noqa: E501
 
         Use [this API](#operation/downloadSearchResult) to download result  # noqa: E501
@@ -1207,14 +1355,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.export_v2_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.export_v2_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.export_v2_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.export_v2_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def export_v2_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def export_v2_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> AsyncExportTMResponseDto:  # noqa: E501
         """Export translation memory  # noqa: E501
 
         Use [this API](#operation/downloadSearchResult) to download result  # noqa: E501
@@ -1231,31 +1385,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method export_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `export_v2`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `export_v2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1265,36 +1420,44 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/transMemories/{transMemoryUid}/export', 'POST',
+            "/api2/v2/transMemories/{transMemoryUid}/export",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AsyncExportTMResponseDto',  # noqa: E501
+            response_type="AsyncExportTMResponseDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_background_tasks1(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def get_background_tasks1(
+        self, trans_memory_uid, **kwargs
+    ) -> BackgroundTasksTmDto:  # noqa: E501
         """Get last task information  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1308,14 +1471,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_background_tasks1_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_background_tasks1_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_background_tasks1_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.get_background_tasks1_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_background_tasks1_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def get_background_tasks1_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> BackgroundTasksTmDto:  # noqa: E501
         """Get last task information  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1330,31 +1499,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_background_tasks1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `get_background_tasks1`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `get_background_tasks1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1365,29 +1535,34 @@ class TranslationMemoryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/lastBackgroundTask', 'GET',
+            "/api2/v1/transMemories/{transMemoryUid}/lastBackgroundTask",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='BackgroundTasksTmDto',  # noqa: E501
+            response_type="BackgroundTasksTmDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_metadata(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def get_metadata(
+        self, trans_memory_uid, **kwargs
+    ) -> MetadataResponse:  # noqa: E501
         """Get translation memory metadata  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1402,14 +1577,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_metadata_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_metadata_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_metadata_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.get_metadata_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_metadata_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def get_metadata_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> MetadataResponse:  # noqa: E501
         """Get translation memory metadata  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1425,35 +1606,36 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'by_language']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "by_language"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_metadata" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `get_metadata`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `get_metadata`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
-        if 'by_language' in params:
-            query_params.append(('byLanguage', params['by_language']))  # noqa: E501
+        if "by_language" in params:
+            query_params.append(("byLanguage", params["by_language"]))  # noqa: E501
 
         header_params = {}
 
@@ -1462,29 +1644,34 @@ class TranslationMemoryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/metadata', 'GET',
+            "/api2/v1/transMemories/{transMemoryUid}/metadata",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='MetadataResponse',  # noqa: E501
+            response_type="MetadataResponse",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_project_template_trans_memories2(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_trans_memories2(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTransMemoryListDtoV3:  # noqa: E501
         """Get translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1500,14 +1687,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_project_template_trans_memories2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_project_template_trans_memories2_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_project_template_trans_memories2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.get_project_template_trans_memories2_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_project_template_trans_memories2_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def get_project_template_trans_memories2_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> ProjectTemplateTransMemoryListDtoV3:  # noqa: E501
         """Get translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1524,37 +1717,47 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'target_lang', 'wf_step_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_template_uid",
+            "target_lang",
+            "wf_step_uid",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_project_template_trans_memories2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `get_project_template_trans_memories2`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `get_project_template_trans_memories2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
-        if 'target_lang' in params:
-            query_params.append(('targetLang', params['target_lang']))  # noqa: E501
-        if 'wf_step_uid' in params:
-            query_params.append(('wfStepUid', params['wf_step_uid']))  # noqa: E501
+        if "target_lang" in params:
+            query_params.append(("targetLang", params["target_lang"]))  # noqa: E501
+        if "wf_step_uid" in params:
+            query_params.append(("wfStepUid", params["wf_step_uid"]))  # noqa: E501
 
         header_params = {}
 
@@ -1563,29 +1766,34 @@ class TranslationMemoryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projectTemplates/{projectTemplateUid}/transMemories', 'GET',
+            "/api2/v3/projectTemplates/{projectTemplateUid}/transMemories",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='ProjectTemplateTransMemoryListDtoV3',  # noqa: E501
+            response_type="ProjectTemplateTransMemoryListDtoV3",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_related_projects(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def get_related_projects(
+        self, trans_memory_uid, **kwargs
+    ) -> PageDtoAbstractProjectDto:  # noqa: E501
         """List related projects  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1601,14 +1809,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_related_projects_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_related_projects_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_related_projects_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.get_related_projects_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_related_projects_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def get_related_projects_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> PageDtoAbstractProjectDto:  # noqa: E501
         """List related projects  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1625,37 +1839,38 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "page_number", "page_size"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_related_projects" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `get_related_projects`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `get_related_projects`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -1664,29 +1879,34 @@ class TranslationMemoryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/relatedProjects', 'GET',
+            "/api2/v1/transMemories/{transMemoryUid}/relatedProjects",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoAbstractProjectDto',  # noqa: E501
+            response_type="PageDtoAbstractProjectDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_trans_memory(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def get_trans_memory(
+        self, trans_memory_uid, **kwargs
+    ) -> TransMemoryDto:  # noqa: E501
         """Get translation memory  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1700,14 +1920,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.get_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_trans_memory_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def get_trans_memory_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> TransMemoryDto:  # noqa: E501
         """Get translation memory  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1722,31 +1948,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_trans_memory" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `get_trans_memory`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `get_trans_memory`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1757,29 +1984,34 @@ class TranslationMemoryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}', 'GET',
+            "/api2/v1/transMemories/{transMemoryUid}",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TransMemoryDto',  # noqa: E501
+            response_type="TransMemoryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def get_translation_resources(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_translation_resources(
+        self, project_uid, job_uid, **kwargs
+    ) -> TranslationResourcesDto:  # noqa: E501
         """Get translation resources  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1794,14 +2026,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.get_translation_resources_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.get_translation_resources_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.get_translation_resources_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.get_translation_resources_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def get_translation_resources_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def get_translation_resources_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> TranslationResourcesDto:  # noqa: E501
         """Get translation resources  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1817,37 +2055,39 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method get_translation_resources" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `get_translation_resources`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `get_translation_resources`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `get_translation_resources`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `get_translation_resources`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -1858,29 +2098,34 @@ class TranslationMemoryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/translationResources', 'GET',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/translationResources",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TranslationResourcesDto',  # noqa: E501
+            response_type="TranslationResourcesDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def import_trans_memory_v2(self, content_disposition, trans_memory_uid, **kwargs):  # noqa: E501
+    def import_trans_memory_v2(
+        self, content_disposition, trans_memory_uid, **kwargs
+    ) -> AsyncRequestWrapperV2Dto:  # noqa: E501
         """Import TMX  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1899,14 +2144,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.import_trans_memory_v2_with_http_info(content_disposition, trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.import_trans_memory_v2_with_http_info(
+                content_disposition, trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.import_trans_memory_v2_with_http_info(content_disposition, trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.import_trans_memory_v2_with_http_info(
+                content_disposition, trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def import_trans_memory_v2_with_http_info(self, content_disposition, trans_memory_uid, **kwargs):  # noqa: E501
+    def import_trans_memory_v2_with_http_info(
+        self, content_disposition, trans_memory_uid, **kwargs
+    ) -> AsyncRequestWrapperV2Dto:  # noqa: E501
         """Import TMX  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1926,82 +2177,103 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['content_disposition', 'trans_memory_uid', 'body', 'content_length', 'strict_lang_matching', 'strip_native_codes']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "content_disposition",
+            "trans_memory_uid",
+            "body",
+            "content_length",
+            "strict_lang_matching",
+            "strip_native_codes",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method import_trans_memory_v2" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'content_disposition' is set
-        if ('content_disposition' not in params or
-                params['content_disposition'] is None):
-            raise ValueError("Missing the required parameter `content_disposition` when calling `import_trans_memory_v2`")  # noqa: E501
+        if "content_disposition" not in params or params["content_disposition"] is None:
+            raise ValueError(
+                "Missing the required parameter `content_disposition` when calling `import_trans_memory_v2`"
+            )  # noqa: E501
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `import_trans_memory_v2`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `import_trans_memory_v2`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
-        if 'strict_lang_matching' in params:
-            query_params.append(('strictLangMatching', params['strict_lang_matching']))  # noqa: E501
-        if 'strip_native_codes' in params:
-            query_params.append(('stripNativeCodes', params['strip_native_codes']))  # noqa: E501
+        if "strict_lang_matching" in params:
+            query_params.append(
+                ("strictLangMatching", params["strict_lang_matching"])
+            )  # noqa: E501
+        if "strip_native_codes" in params:
+            query_params.append(
+                ("stripNativeCodes", params["strip_native_codes"])
+            )  # noqa: E501
 
         header_params = {}
-        if 'content_length' in params:
-            header_params['Content-Length'] = params['content_length']  # noqa: E501
-        if 'content_disposition' in params:
-            header_params['Content-Disposition'] = params['content_disposition']  # noqa: E501
+        if "content_length" in params:
+            header_params["Content-Length"] = params["content_length"]  # noqa: E501
+        if "content_disposition" in params:
+            header_params["Content-Disposition"] = params[
+                "content_disposition"
+            ]  # noqa: E501
 
         form_params = []
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/octet-stream', 'multipart/form-data'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/octet-stream", "multipart/form-data"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v2/transMemories/{transMemoryUid}/import', 'POST',
+            "/api2/v2/transMemories/{transMemoryUid}/import",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='AsyncRequestWrapperV2Dto',  # noqa: E501
+            response_type="AsyncRequestWrapperV2Dto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def insert_to_trans_memory(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def insert_to_trans_memory(self, trans_memory_uid, **kwargs) -> None:  # noqa: E501
         """Insert segment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2016,14 +2288,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.insert_to_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.insert_to_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.insert_to_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.insert_to_trans_memory_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def insert_to_trans_memory_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def insert_to_trans_memory_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> None:  # noqa: E501
         """Insert segment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2039,31 +2317,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method insert_to_trans_memory" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `insert_to_trans_memory`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `insert_to_trans_memory`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2073,17 +2352,21 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/segments', 'POST',
+            "/api2/v1/transMemories/{transMemoryUid}/segments",
+            "POST",
             path_params,
             query_params,
             header_params,
@@ -2092,13 +2375,14 @@ class TranslationMemoryApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def list_trans_memories(self, **kwargs):  # noqa: E501
+    def list_trans_memories(self, **kwargs) -> PageDtoTransMemoryDto:  # noqa: E501
         """List translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2120,14 +2404,16 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.list_trans_memories_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_trans_memories_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def list_trans_memories_with_http_info(self, **kwargs):  # noqa: E501
+    def list_trans_memories_with_http_info(
+        self, **kwargs
+    ) -> PageDtoTransMemoryDto:  # noqa: E501
         """List translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2150,45 +2436,57 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['name', 'source_lang', 'target_lang', 'client_id', 'domain_id', 'sub_domain_id', 'business_unit_id', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "name",
+            "source_lang",
+            "target_lang",
+            "client_id",
+            "domain_id",
+            "sub_domain_id",
+            "business_unit_id",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method list_trans_memories" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'source_lang' in params:
-            query_params.append(('sourceLang', params['source_lang']))  # noqa: E501
-        if 'target_lang' in params:
-            query_params.append(('targetLang', params['target_lang']))  # noqa: E501
-        if 'client_id' in params:
-            query_params.append(('clientId', params['client_id']))  # noqa: E501
-        if 'domain_id' in params:
-            query_params.append(('domainId', params['domain_id']))  # noqa: E501
-        if 'sub_domain_id' in params:
-            query_params.append(('subDomainId', params['sub_domain_id']))  # noqa: E501
-        if 'business_unit_id' in params:
-            query_params.append(('businessUnitId', params['business_unit_id']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "source_lang" in params:
+            query_params.append(("sourceLang", params["source_lang"]))  # noqa: E501
+        if "target_lang" in params:
+            query_params.append(("targetLang", params["target_lang"]))  # noqa: E501
+        if "client_id" in params:
+            query_params.append(("clientId", params["client_id"]))  # noqa: E501
+        if "domain_id" in params:
+            query_params.append(("domainId", params["domain_id"]))  # noqa: E501
+        if "sub_domain_id" in params:
+            query_params.append(("subDomainId", params["sub_domain_id"]))  # noqa: E501
+        if "business_unit_id" in params:
+            query_params.append(
+                ("businessUnitId", params["business_unit_id"])
+            )  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -2197,29 +2495,34 @@ class TranslationMemoryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories', 'GET',
+            "/api2/v1/transMemories",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoTransMemoryDto',  # noqa: E501
+            response_type="PageDtoTransMemoryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def relevant_trans_memories(self, project_template_uid, **kwargs):  # noqa: E501
+    def relevant_trans_memories(
+        self, project_template_uid, **kwargs
+    ) -> PageDtoTransMemoryDto:  # noqa: E501
         """List project template relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2241,14 +2544,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.relevant_trans_memories_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.relevant_trans_memories_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.relevant_trans_memories_with_http_info(project_template_uid, **kwargs)  # noqa: E501
+            (data) = self.relevant_trans_memories_with_http_info(
+                project_template_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def relevant_trans_memories_with_http_info(self, project_template_uid, **kwargs):  # noqa: E501
+    def relevant_trans_memories_with_http_info(
+        self, project_template_uid, **kwargs
+    ) -> PageDtoTransMemoryDto:  # noqa: E501
         """List project template relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2271,50 +2580,70 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_template_uid', 'name', 'domain_name', 'client_name', 'sub_domain_name', 'target_langs', 'strict_lang_matching', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_template_uid",
+            "name",
+            "domain_name",
+            "client_name",
+            "sub_domain_name",
+            "target_langs",
+            "strict_lang_matching",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method relevant_trans_memories" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_template_uid' is set
-        if ('project_template_uid' not in params or
-                params['project_template_uid'] is None):
-            raise ValueError("Missing the required parameter `project_template_uid` when calling `relevant_trans_memories`")  # noqa: E501
+        if (
+            "project_template_uid" not in params
+            or params["project_template_uid"] is None
+        ):
+            raise ValueError(
+                "Missing the required parameter `project_template_uid` when calling `relevant_trans_memories`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_template_uid' in params:
-            path_params['projectTemplateUid'] = params['project_template_uid']  # noqa: E501
+        if "project_template_uid" in params:
+            path_params["projectTemplateUid"] = params[
+                "project_template_uid"
+            ]  # noqa: E501
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'domain_name' in params:
-            query_params.append(('domainName', params['domain_name']))  # noqa: E501
-        if 'client_name' in params:
-            query_params.append(('clientName', params['client_name']))  # noqa: E501
-        if 'sub_domain_name' in params:
-            query_params.append(('subDomainName', params['sub_domain_name']))  # noqa: E501
-        if 'target_langs' in params:
-            query_params.append(('targetLangs', params['target_langs']))  # noqa: E501
-            collection_formats['targetLangs'] = 'multi'  # noqa: E501
-        if 'strict_lang_matching' in params:
-            query_params.append(('strictLangMatching', params['strict_lang_matching']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "domain_name" in params:
+            query_params.append(("domainName", params["domain_name"]))  # noqa: E501
+        if "client_name" in params:
+            query_params.append(("clientName", params["client_name"]))  # noqa: E501
+        if "sub_domain_name" in params:
+            query_params.append(
+                ("subDomainName", params["sub_domain_name"])
+            )  # noqa: E501
+        if "target_langs" in params:
+            query_params.append(("targetLangs", params["target_langs"]))  # noqa: E501
+            collection_formats["targetLangs"] = "multi"  # noqa: E501
+        if "strict_lang_matching" in params:
+            query_params.append(
+                ("strictLangMatching", params["strict_lang_matching"])
+            )  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -2323,29 +2652,34 @@ class TranslationMemoryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projectTemplates/{projectTemplateUid}/transMemories/relevant', 'GET',
+            "/api2/v1/projectTemplates/{projectTemplateUid}/transMemories/relevant",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoTransMemoryDto',  # noqa: E501
+            response_type="PageDtoTransMemoryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def relevant_trans_memories1(self, project_uid, **kwargs):  # noqa: E501
+    def relevant_trans_memories1(
+        self, project_uid, **kwargs
+    ) -> PageDtoTransMemoryDto:  # noqa: E501
         """List project relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2367,14 +2701,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.relevant_trans_memories1_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.relevant_trans_memories1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.relevant_trans_memories1_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.relevant_trans_memories1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def relevant_trans_memories1_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def relevant_trans_memories1_with_http_info(
+        self, project_uid, **kwargs
+    ) -> PageDtoTransMemoryDto:  # noqa: E501
         """List project relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2397,50 +2737,65 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'name', 'domain_name', 'client_name', 'sub_domain_name', 'target_langs', 'strict_lang_matching', 'page_number', 'page_size']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            "project_uid",
+            "name",
+            "domain_name",
+            "client_name",
+            "sub_domain_name",
+            "target_langs",
+            "strict_lang_matching",
+            "page_number",
+            "page_size",
+        ]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method relevant_trans_memories1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `relevant_trans_memories1`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `relevant_trans_memories1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
-        if 'name' in params:
-            query_params.append(('name', params['name']))  # noqa: E501
-        if 'domain_name' in params:
-            query_params.append(('domainName', params['domain_name']))  # noqa: E501
-        if 'client_name' in params:
-            query_params.append(('clientName', params['client_name']))  # noqa: E501
-        if 'sub_domain_name' in params:
-            query_params.append(('subDomainName', params['sub_domain_name']))  # noqa: E501
-        if 'target_langs' in params:
-            query_params.append(('targetLangs', params['target_langs']))  # noqa: E501
-            collection_formats['targetLangs'] = 'multi'  # noqa: E501
-        if 'strict_lang_matching' in params:
-            query_params.append(('strictLangMatching', params['strict_lang_matching']))  # noqa: E501
-        if 'page_number' in params:
-            query_params.append(('pageNumber', params['page_number']))  # noqa: E501
-        if 'page_size' in params:
-            query_params.append(('pageSize', params['page_size']))  # noqa: E501
+        if "name" in params:
+            query_params.append(("name", params["name"]))  # noqa: E501
+        if "domain_name" in params:
+            query_params.append(("domainName", params["domain_name"]))  # noqa: E501
+        if "client_name" in params:
+            query_params.append(("clientName", params["client_name"]))  # noqa: E501
+        if "sub_domain_name" in params:
+            query_params.append(
+                ("subDomainName", params["sub_domain_name"])
+            )  # noqa: E501
+        if "target_langs" in params:
+            query_params.append(("targetLangs", params["target_langs"]))  # noqa: E501
+            collection_formats["targetLangs"] = "multi"  # noqa: E501
+        if "strict_lang_matching" in params:
+            query_params.append(
+                ("strictLangMatching", params["strict_lang_matching"])
+            )  # noqa: E501
+        if "page_number" in params:
+            query_params.append(("pageNumber", params["page_number"]))  # noqa: E501
+        if "page_size" in params:
+            query_params.append(("pageSize", params["page_size"]))  # noqa: E501
 
         header_params = {}
 
@@ -2449,29 +2804,34 @@ class TranslationMemoryApi(object):
 
         body_params = None
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/transMemories/relevant', 'GET',
+            "/api2/v1/projects/{projectUid}/transMemories/relevant",
+            "GET",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='PageDtoTransMemoryDto',  # noqa: E501
+            response_type="PageDtoTransMemoryDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def search(
+        self, trans_memory_uid, **kwargs
+    ) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory (sync)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2486,14 +2846,18 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
             return self.search_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
         else:
-            (data) = self.search_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.search_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def search_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory (sync)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2509,31 +2873,31 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method search" % key
+                    "Got an unexpected keyword argument '%s'" " to method search" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `search`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `search`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2543,36 +2907,44 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/search', 'POST',
+            "/api2/v1/transMemories/{transMemoryUid}/search",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchResponseListTmDto',  # noqa: E501
+            response_type="SearchResponseListTmDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_by_job3(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def search_by_job3(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Search job's translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2588,14 +2960,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_by_job3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_by_job3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_by_job3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.search_by_job3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_by_job3_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def search_by_job3_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Search job's translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2612,37 +2990,39 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_by_job3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `search_by_job3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `search_by_job3`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `search_by_job3`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `search_by_job3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2652,36 +3032,44 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['*/*'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["*/*"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/search', 'POST',
+            "/api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/search",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchResponseListTmDtoV3',  # noqa: E501
+            response_type="SearchResponseListTmDtoV3",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_segment1(self, project_uid, **kwargs):  # noqa: E501
+    def search_segment1(
+        self, project_uid, **kwargs
+    ) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory for segment in the project  # noqa: E501
 
         Returns at most <i>maxSegments</i>             records with <i>score >= scoreThreshold</i> and at most <i>maxSubsegments</i> records which are subsegment,             i.e. the source text is substring of the query text.  # noqa: E501
@@ -2697,14 +3085,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_segment1_with_http_info(project_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_segment1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_segment1_with_http_info(project_uid, **kwargs)  # noqa: E501
+            (data) = self.search_segment1_with_http_info(
+                project_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_segment1_with_http_info(self, project_uid, **kwargs):  # noqa: E501
+    def search_segment1_with_http_info(
+        self, project_uid, **kwargs
+    ) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory for segment in the project  # noqa: E501
 
         Returns at most <i>maxSegments</i>             records with <i>score >= scoreThreshold</i> and at most <i>maxSubsegments</i> records which are subsegment,             i.e. the source text is substring of the query text.  # noqa: E501
@@ -2721,31 +3115,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_segment1" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `search_segment1`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `search_segment1`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2755,36 +3150,44 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/transMemories/searchSegmentInProject', 'POST',
+            "/api2/v1/projects/{projectUid}/transMemories/searchSegmentInProject",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchResponseListTmDto',  # noqa: E501
+            response_type="SearchResponseListTmDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def search_segment_by_job(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def search_segment_by_job(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory for segment by job  # noqa: E501
 
         Returns at most <i>maxSegments</i>             records with <i>score >= scoreThreshold</i> and at most <i>maxSubsegments</i> records which are subsegment,             i.e. the source text is substring of the query text.  # noqa: E501
@@ -2801,14 +3204,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.search_segment_by_job_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.search_segment_by_job_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.search_segment_by_job_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.search_segment_by_job_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def search_segment_by_job_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def search_segment_by_job_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory for segment by job  # noqa: E501
 
         Returns at most <i>maxSegments</i>             records with <i>score >= scoreThreshold</i> and at most <i>maxSubsegments</i> records which are subsegment,             i.e. the source text is substring of the query text.  # noqa: E501
@@ -2826,37 +3235,39 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method search_segment_by_job" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `search_segment_by_job`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `search_segment_by_job`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `search_segment_by_job`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `search_segment_by_job`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -2866,36 +3277,44 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/projects/{projectUid}/jobs/{jobUid}/transMemories/searchSegment', 'POST',
+            "/api2/v1/projects/{projectUid}/jobs/{jobUid}/transMemories/searchSegment",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchResponseListTmDto',  # noqa: E501
+            response_type="SearchResponseListTmDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def update_translation(self, trans_memory_uid, segment_id, **kwargs):  # noqa: E501
+    def update_translation(
+        self, trans_memory_uid, segment_id, **kwargs
+    ) -> None:  # noqa: E501
         """Edit segment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2911,14 +3330,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.update_translation_with_http_info(trans_memory_uid, segment_id, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.update_translation_with_http_info(
+                trans_memory_uid, segment_id, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.update_translation_with_http_info(trans_memory_uid, segment_id, **kwargs)  # noqa: E501
+            (data) = self.update_translation_with_http_info(
+                trans_memory_uid, segment_id, **kwargs
+            )  # noqa: E501
             return data
 
-    def update_translation_with_http_info(self, trans_memory_uid, segment_id, **kwargs):  # noqa: E501
+    def update_translation_with_http_info(
+        self, trans_memory_uid, segment_id, **kwargs
+    ) -> None:  # noqa: E501
         """Edit segment  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2935,37 +3360,39 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'segment_id', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "segment_id", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method update_translation" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `update_translation`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `update_translation`"
+            )  # noqa: E501
         # verify the required parameter 'segment_id' is set
-        if ('segment_id' not in params or
-                params['segment_id'] is None):
-            raise ValueError("Missing the required parameter `segment_id` when calling `update_translation`")  # noqa: E501
+        if "segment_id" not in params or params["segment_id"] is None:
+            raise ValueError(
+                "Missing the required parameter `segment_id` when calling `update_translation`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
-        if 'segment_id' in params:
-            path_params['segmentId'] = params['segment_id']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
+        if "segment_id" in params:
+            path_params["segmentId"] = params["segment_id"]  # noqa: E501
 
         query_params = []
 
@@ -2975,17 +3402,21 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/segments/{segmentId}', 'PUT',
+            "/api2/v1/transMemories/{transMemoryUid}/segments/{segmentId}",
+            "PUT",
             path_params,
             query_params,
             header_params,
@@ -2994,13 +3425,16 @@ class TranslationMemoryApi(object):
             files=local_var_files,
             response_type=None,  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def wild_card_search_by_job3(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def wild_card_search_by_job3(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Wildcard search job's translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3016,14 +3450,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.wild_card_search_by_job3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.wild_card_search_by_job3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.wild_card_search_by_job3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
+            (data) = self.wild_card_search_by_job3_with_http_info(
+                project_uid, job_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def wild_card_search_by_job3_with_http_info(self, project_uid, job_uid, **kwargs):  # noqa: E501
+    def wild_card_search_by_job3_with_http_info(
+        self, project_uid, job_uid, **kwargs
+    ) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Wildcard search job's translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3040,37 +3480,39 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['project_uid', 'job_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["project_uid", "job_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method wild_card_search_by_job3" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'project_uid' is set
-        if ('project_uid' not in params or
-                params['project_uid'] is None):
-            raise ValueError("Missing the required parameter `project_uid` when calling `wild_card_search_by_job3`")  # noqa: E501
+        if "project_uid" not in params or params["project_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `project_uid` when calling `wild_card_search_by_job3`"
+            )  # noqa: E501
         # verify the required parameter 'job_uid' is set
-        if ('job_uid' not in params or
-                params['job_uid'] is None):
-            raise ValueError("Missing the required parameter `job_uid` when calling `wild_card_search_by_job3`")  # noqa: E501
+        if "job_uid" not in params or params["job_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `job_uid` when calling `wild_card_search_by_job3`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'project_uid' in params:
-            path_params['projectUid'] = params['project_uid']  # noqa: E501
-        if 'job_uid' in params:
-            path_params['jobUid'] = params['job_uid']  # noqa: E501
+        if "project_uid" in params:
+            path_params["projectUid"] = params["project_uid"]  # noqa: E501
+        if "job_uid" in params:
+            path_params["jobUid"] = params["job_uid"]  # noqa: E501
 
         query_params = []
 
@@ -3080,36 +3522,44 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/wildCardSearch', 'POST',
+            "/api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/wildCardSearch",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchResponseListTmDtoV3',  # noqa: E501
+            response_type="SearchResponseListTmDtoV3",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
 
-    def wildcard_search(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def wildcard_search(
+        self, trans_memory_uid, **kwargs
+    ) -> SearchResponseListTmDto:  # noqa: E501
         """Wildcard search  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3124,14 +3574,20 @@ class TranslationMemoryApi(object):
                  If the method is called asynchronously,
                  returns the request thread.
         """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async_req'):
-            return self.wildcard_search_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+        kwargs["_return_http_data_only"] = True
+        if kwargs.get("async_req"):
+            return self.wildcard_search_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
         else:
-            (data) = self.wildcard_search_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
+            (data) = self.wildcard_search_with_http_info(
+                trans_memory_uid, **kwargs
+            )  # noqa: E501
             return data
 
-    def wildcard_search_with_http_info(self, trans_memory_uid, **kwargs):  # noqa: E501
+    def wildcard_search_with_http_info(
+        self, trans_memory_uid, **kwargs
+    ) -> SearchResponseListTmDto:  # noqa: E501
         """Wildcard search  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3147,31 +3603,32 @@ class TranslationMemoryApi(object):
                  returns the request thread.
         """
 
-        all_params = ['trans_memory_uid', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = ["trans_memory_uid", "body"]  # noqa: E501
+        all_params.append("async_req")
+        all_params.append("_return_http_data_only")
+        all_params.append("_preload_content")
+        all_params.append("_request_timeout")
 
         params = locals()
-        for key, val in six.iteritems(params['kwargs']):
+        for key, val in six.iteritems(params["kwargs"]):
             if key not in all_params:
                 raise TypeError(
                     "Got an unexpected keyword argument '%s'"
                     " to method wildcard_search" % key
                 )
             params[key] = val
-        del params['kwargs']
+        del params["kwargs"]
         # verify the required parameter 'trans_memory_uid' is set
-        if ('trans_memory_uid' not in params or
-                params['trans_memory_uid'] is None):
-            raise ValueError("Missing the required parameter `trans_memory_uid` when calling `wildcard_search`")  # noqa: E501
+        if "trans_memory_uid" not in params or params["trans_memory_uid"] is None:
+            raise ValueError(
+                "Missing the required parameter `trans_memory_uid` when calling `wildcard_search`"
+            )  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
-        if 'trans_memory_uid' in params:
-            path_params['transMemoryUid'] = params['trans_memory_uid']  # noqa: E501
+        if "trans_memory_uid" in params:
+            path_params["transMemoryUid"] = params["trans_memory_uid"]  # noqa: E501
 
         query_params = []
 
@@ -3181,31 +3638,37 @@ class TranslationMemoryApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'body' in params:
-            body_params = params['body']
+        if "body" in params:
+            body_params = params["body"]
         # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['application/json'])  # noqa: E501
+        header_params["Accept"] = self.api_client.select_header_accept(
+            ["application/json"]
+        )  # noqa: E501
 
         # HTTP header `Content-Type`
-        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
-            ['application/json'])  # noqa: E501
+        header_params[
+            "Content-Type"
+        ] = self.api_client.select_header_content_type(  # noqa: E501
+            ["application/json"]
+        )  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/api2/v1/transMemories/{transMemoryUid}/wildCardSearch', 'POST',
+            "/api2/v1/transMemories/{transMemoryUid}/wildCardSearch",
+            "POST",
             path_params,
             query_params,
             header_params,
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='SearchResponseListTmDto',  # noqa: E501
+            response_type="SearchResponseListTmDto",  # noqa: E501
             auth_settings=auth_settings,
-            async_req=params.get('async_req'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
+            async_req=params.get("async_req"),
+            _return_http_data_only=params.get("_return_http_data_only"),
+            _preload_content=params.get("_preload_content", True),
+            _request_timeout=params.get("_request_timeout"),
+            collection_formats=collection_formats,
+        )
