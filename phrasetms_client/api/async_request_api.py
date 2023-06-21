@@ -17,6 +17,11 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    PageDtoAsyncRequestDto,
+    AsyncRequestStatusDto,
+    AsyncRequestDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 

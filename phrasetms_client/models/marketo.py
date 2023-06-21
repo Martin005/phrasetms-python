@@ -14,6 +14,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from phrasetms_client.models import MarketoSegmentationMappingDto, VariableDto
 from phrasetms_client.models.abstract_connector_dto import (
     AbstractConnectorDto,
 )  # noqa: F401,E501

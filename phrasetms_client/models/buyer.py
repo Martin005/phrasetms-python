@@ -12,8 +12,21 @@
 
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 
 import six
+
+from phrasetms_client.models import (
+    ProgressDto,
+    ClientReference,
+    CostCenterReference,
+    BusinessUnitReference,
+    UserReference,
+    ObjectReference,
+    ProjectWorkflowStepDto,
+    VendorReference,
+    User,
+)
 from phrasetms_client.models.abstract_project_dto import (
     AbstractProjectDto,
 )  # noqa: F401,E501
@@ -50,7 +63,7 @@ class Buyer(AbstractProjectDto):
         "access_settings": "ObjectReference",
         "financial_settings": "ObjectReference",
         "archived": "bool",
-        "vendor_owner": "USER",
+        "vendor_owner": "User",
         "vendor": "VendorReference",
     }
     if hasattr(AbstractProjectDto, "swagger_types"):
@@ -542,12 +555,12 @@ class Buyer(AbstractProjectDto):
         self._archived = archived
 
     @property
-    def vendor_owner(self) -> USER:
+    def vendor_owner(self) -> User:
         """Gets the vendor_owner of this Buyer.  # noqa: E501
 
 
         :return: The vendor_owner of this Buyer.  # noqa: E501
-        :rtype: USER
+        :rtype: User
         """
         return self._vendor_owner
 
@@ -557,7 +570,7 @@ class Buyer(AbstractProjectDto):
 
 
         :param vendor_owner: The vendor_owner of this Buyer.  # noqa: E501
-        :type: USER
+        :type: User
         """
 
         self._vendor_owner = vendor_owner

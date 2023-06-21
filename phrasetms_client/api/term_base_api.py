@@ -17,6 +17,25 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    TermBaseDto,
+    TermDto,
+    ConceptWithMetadataDto,
+    ProjectTermBaseListDto,
+    ProjectTemplateTermBaseListDto,
+    SearchInTextResponseList2Dto,
+    SearchTbResponseListDto,
+    SearchResponseListTbDto,
+    PageDtoTermBaseDto,
+    ConceptDto,
+    ConceptListResponseDto,
+    ImportTermBaseResponseDto,
+    TranslationResourcesDto,
+    MetadataTbDto,
+    BackgroundTasksTbDto,
+    TermPairDto,
+    BrowseResponseListDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 

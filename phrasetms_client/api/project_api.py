@@ -17,6 +17,38 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    FileNamingSettingsDto,
+    ProjectTransMemoryListDtoV3,
+    ProjectTermBaseListDto,
+    QASettingsDtoV2,
+    MTSettingsPerLanguageListDto,
+    FinancialSettingsDto,
+    SearchResponseListTmDto,
+    PageDtoTransMemoryDto,
+    PageDtoTermBaseDto,
+    AbstractProjectDto,
+    ProviderListDtoV2,
+    PageDtoAbstractProjectDto,
+    PageDtoAnalyseReference,
+    PageDtoProjectReference,
+    PageDtoQuoteDto,
+    ProjectWorkflowStepListDtoV2,
+    LqaSettingsDto,
+    PageDtoProviderReference,
+    ProjectSecuritySettingsDtoV2,
+    PreTranslateSettingsV3Dto,
+    FileImportSettingsDto,
+    PageDtoCustomFieldInstanceDto,
+    CustomFieldInstanceDto,
+    AnalyseSettingsDto,
+    EnabledQualityChecksDto,
+    AbstractProjectDtoV2,
+    CustomFieldInstancesDto,
+    AsyncRequestWrapperV2Dto,
+    AssignableTemplatesDto,
+    JobPartsDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 

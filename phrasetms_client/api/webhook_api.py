@@ -17,6 +17,12 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    WebHookDtoV2,
+    WebhookPreviewsDto,
+    PageDtoWebhookCallDto,
+    PageDtoWebHookDtoV2,
+)
 from phrasetms_client.api_client import ApiClient
 
 

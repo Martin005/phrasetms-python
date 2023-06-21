@@ -12,8 +12,11 @@
 
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 
 import six
+
+from phrasetms_client.models import UidReference, IdReference
 
 
 class ExportByQueryDto(object):

@@ -14,6 +14,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from phrasetms_client.models import MisspelledWordDto
 from phrasetms_client.models.segment_warning import SegmentWarning  # noqa: F401,E501
 
 

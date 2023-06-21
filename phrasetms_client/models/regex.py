@@ -14,6 +14,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from phrasetms_client.models import RegexpCheckRuleDtoV2
 from phrasetms_client.models.qa_check_dto_v2 import QACheckDtoV2  # noqa: F401,E501
 
 

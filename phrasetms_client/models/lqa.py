@@ -14,6 +14,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from phrasetms_client.models import LQAReferences
 from phrasetms_client.models.common_conversation_dto import (
     CommonConversationDto,
 )  # noqa: F401,E501

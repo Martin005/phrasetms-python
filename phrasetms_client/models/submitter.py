@@ -14,6 +14,8 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from phrasetms_client.models import IdReference
 from phrasetms_client.models.abstract_user_create_dto import (
     AbstractUserCreateDto,
 )  # noqa: F401,E501

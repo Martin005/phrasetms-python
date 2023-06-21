@@ -12,8 +12,23 @@
 
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 
 import six
+
+from phrasetms_client.models import (
+    UidReference,
+    AssignmentPerTargetLangDto,
+    ProjectTemplateNotifyProviderDto,
+    BusinessUnitReference,
+    WorkflowStepSettingsDto,
+    WorkflowStepDto,
+    UserReference,
+    VendorReference,
+    SubDomainReference,
+    DomainReference,
+    ClientReference,
+)
 
 
 class ProjectTemplateDto(object):

@@ -17,6 +17,15 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    PlainConversationDto,
+    LQAConversationDto,
+    PlainConversationsListDto,
+    LQAConversationsListDto,
+    ConversationListDto,
+    AddPlainCommentResultDto,
+    AddLqaCommentResultDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 

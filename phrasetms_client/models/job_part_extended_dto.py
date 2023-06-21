@@ -12,8 +12,19 @@
 
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 
 import six
+
+from phrasetms_client.models import (
+    ContinuousJobInfoDto,
+    ImportStatusDto,
+    ObjectReference,
+    ProjectReference,
+    JobReference,
+    ProjectWorkflowStepReference,
+    ProviderReference,
+)
 
 
 class JobPartExtendedDto(object):

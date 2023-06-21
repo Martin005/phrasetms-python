@@ -14,6 +14,15 @@ import pprint
 import re  # noqa: F401
 
 import six
+
+from phrasetms_client.models import (
+    PriceListReference,
+    DiscountSchemeReference,
+    SubDomainReference,
+    DomainReference,
+    ClientReference,
+    WorkflowStepReferenceV3,
+)
 from phrasetms_client.models.user_details_dto_v3 import (
     UserDetailsDtoV3,
 )  # noqa: F401,E501

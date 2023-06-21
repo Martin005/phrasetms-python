@@ -17,6 +17,34 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    SearchResponseListTmDtoV3,
+    WebEditorLinkDtoV2,
+    FileHandoverDto,
+    JobPartsDto,
+    JobUpdateSourceResponseDto,
+    JobPartStatusChangesDto,
+    SearchInTextResponseList2Dto,
+    SearchTbResponseListDto,
+    SearchResponseListTmDto,
+    SearchJobsDto,
+    PreviewUrlsDto,
+    JobPartPatchResultDto,
+    JobPartExtendedDto,
+    SegmentListDto,
+    ProviderListDtoV2,
+    PageDtoJobPartReferenceV2,
+    PageDtoAnalyseReference,
+    TranslationResourcesDto,
+    SegmentsCountsResponseListDto,
+    ProjectWorkflowStepDto,
+    FileImportSettingsDto,
+    TargetFileWarningsDto,
+    JobExportResponseDto,
+    TermPairDto,
+    JobListDto,
+    ComparedSegmentsDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 

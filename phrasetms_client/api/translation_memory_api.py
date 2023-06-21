@@ -17,6 +17,21 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    SearchResponseListTmDto,
+    SearchResponseListTmDtoV3,
+    PageDtoTransMemoryDto,
+    AsyncRequestWrapperV2Dto,
+    TranslationResourcesDto,
+    TransMemoryDto,
+    PageDtoAbstractProjectDto,
+    ProjectTemplateTransMemoryListDtoV3,
+    MetadataResponse,
+    BackgroundTasksTmDto,
+    AsyncExportTMResponseDto,
+    AsyncRequestWrapperDto,
+    AsyncExportTMByQueryResponseDto,
+)
 from phrasetms_client.api_client import ApiClient
 
 

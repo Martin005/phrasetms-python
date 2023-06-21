@@ -12,8 +12,19 @@
 
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 
 import six
+
+from phrasetms_client.models import (
+    ProjectReference,
+    ImportStatusDto,
+    AbstractAnalyseSettingsDto,
+    AnalyseLanguagePartV3Dto,
+    NetRateSchemeReference,
+    UserReference,
+    ProviderReference,
+)
 
 
 class AnalyseV3Dto(object):

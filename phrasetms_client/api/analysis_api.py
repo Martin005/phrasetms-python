@@ -17,6 +17,18 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
+from phrasetms_client.models import (
+    AnalyseRecalculateResponseDto,
+    PageDtoAnalyseReference,
+    PageDtoAnalyseJobDto,
+    AnalyseJobDto,
+    AnalyseV3Dto,
+    AnalyseLanguagePartDto,
+    AnalyseV2Dto,
+    AsyncAnalyseListResponseDto,
+    AsyncAnalyseListResponseV2Dto,
+    AnalysesV2Dto,
+)
 from phrasetms_client.api_client import ApiClient
 
 
