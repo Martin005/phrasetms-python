@@ -68,7 +68,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         self.logger["package_logger"] = logging.getLogger("phrasetms_client")
         self.logger["urllib3_logger"] = logging.getLogger("urllib3")
         # Log format
-        self.logger_format = '%(asctime)s %(levelname)s %(message)s'
+        self.logger_format = "%(asctime)s %(levelname)s %(message)s"
         # Log stream handler
         self.logger_stream_handler = None
         # Log file handler
@@ -101,7 +101,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         # Proxy URL
         self.proxy = None
         # Safe chars for path_param
-        self.safe_chars_for_path_param = ''
+        self.safe_chars_for_path_param = ""
 
     @property
     def logger_file(self):
@@ -222,8 +222,8 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
         :return: The token for basic HTTP authentication.
         """
         return urllib3.util.make_headers(
-            basic_auth=self.username + ':' + self.password
-        ).get('authorization')
+            basic_auth=self.username + ":" + self.password
+        ).get("authorization")
 
     def auth_settings(self):
         """Gets Auth Settings dict for api client.
@@ -254,9 +254,10 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
 
         :return: The report for debugging.
         """
-        return "Python SDK Debug Report:\n"\
-               "OS: {env}\n"\
-               "Python Version: {pyversion}\n"\
-               "Version of the API: Latest\n"\
-               "SDK Package Version: 0.1.1".\
-               format(env=sys.platform, pyversion=sys.version)
+        return (
+            "Python SDK Debug Report:\n"
+            "OS: {env}\n"
+            "Python Version: {pyversion}\n"
+            "Version of the API: Latest\n"
+            "SDK Package Version: 0.2.0".format(env=sys.platform, pyversion=sys.version)
+        )
