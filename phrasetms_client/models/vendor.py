@@ -25,8 +25,12 @@ from phrasetms_client.models.business_unit_reference import BusinessUnitReferenc
 from phrasetms_client.models.buyer_reference import BuyerReference
 from phrasetms_client.models.client_reference import ClientReference
 from phrasetms_client.models.cost_center_reference import CostCenterReference
+from phrasetms_client.models.domain_reference import DomainReference
+from phrasetms_client.models.mt_settings_per_language_reference import MTSettingsPerLanguageReference
 from phrasetms_client.models.progress_dto import ProgressDto
 from phrasetms_client.models.project_workflow_step_dto import ProjectWorkflowStepDto
+from phrasetms_client.models.reference_file_reference import ReferenceFileReference
+from phrasetms_client.models.sub_domain_reference import SubDomainReference
 from phrasetms_client.models.user_ import USER
 from phrasetms_client.models.user_reference import UserReference
 

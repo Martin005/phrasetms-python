@@ -19,7 +19,7 @@ import json
 import phrasetms_client.models
 
 
-from typing import Optional
+from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictStr
 
 class ProviderReference(BaseModel):

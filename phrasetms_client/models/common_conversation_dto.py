@@ -19,7 +19,7 @@ import json
 import phrasetms_client.models
 
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Optional, Union
 from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
 from phrasetms_client.models.comment_dto import CommentDto
 from phrasetms_client.models.mentionable_user_dto import MentionableUserDto

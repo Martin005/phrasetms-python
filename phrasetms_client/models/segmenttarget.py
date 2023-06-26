@@ -20,8 +20,11 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel
+from phrasetms_client.models.comment_dto import CommentDto
 from phrasetms_client.models.common_conversation_dto import CommonConversationDto
+from phrasetms_client.models.mentionable_user_dto import MentionableUserDto
 from phrasetms_client.models.plain_references import PlainReferences
+from phrasetms_client.models.status_dto import StatusDto
 
 class SEGMENTTARGET(CommonConversationDto):
     """

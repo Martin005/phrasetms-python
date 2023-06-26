@@ -19,7 +19,7 @@ import json
 import phrasetms_client.models
 
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Optional, Union
 from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
 from phrasetms_client.models.domain_reference import DomainReference
 from phrasetms_client.models.mt_settings_per_language_reference import MTSettingsPerLanguageReference

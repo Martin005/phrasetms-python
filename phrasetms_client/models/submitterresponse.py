@@ -22,6 +22,7 @@ from typing import List, Optional
 from pydantic import BaseModel, Field, StrictBool, conlist
 from phrasetms_client.models.id_reference import IdReference
 from phrasetms_client.models.user_details_dto_v3 import UserDetailsDtoV3
+from phrasetms_client.models.user_reference import UserReference
 
 class SUBMITTERRESPONSE(UserDetailsDtoV3):
     """
