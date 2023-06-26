@@ -37,31 +37,45 @@ Method | HTTP request | Description
 [**update_analyse_settings_for_project_template**](ProjectTemplateApi.md#update_analyse_settings_for_project_template) | **PUT** /api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings | Edit analyse settings
 [**update_pre_translate_settings_for_project_template2**](ProjectTemplateApi.md#update_pre_translate_settings_for_project_template2) | **PUT** /api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings | Update Pre-translate settings
 
+
 # **assign_linguists_from_template**
 > JobPartsDto assign_linguists_from_template(template_uid, project_uid)
 
 Assigns providers from template
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.job_parts_dto import JobPartsDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-template_uid = 'template_uid_example' # str | 
-project_uid = 'project_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Assigns providers from template
-    api_response = api_instance.assign_linguists_from_template(template_uid, project_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->assign_linguists_from_template: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    template_uid = 'template_uid_example' # str | 
+    project_uid = 'project_uid_example' # str | 
+
+    try:
+        # Assigns providers from template
+        api_response = api_instance.assign_linguists_from_template(template_uid, project_uid)
+        print("The response of ProjectTemplateApi->assign_linguists_from_template:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->assign_linguists_from_template: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -83,6 +97,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **assign_linguists_from_template_to_job_parts**
@@ -91,26 +121,40 @@ No authorization required
 Assigns providers from template (specific jobs)
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.job_part_references import JobPartReferences
+from phrasetms_client.models.job_parts_dto import JobPartsDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-template_uid = 'template_uid_example' # str | 
-project_uid = 'project_uid_example' # str | 
-body = phrasetms_client.JobPartReferences() # JobPartReferences |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Assigns providers from template (specific jobs)
-    api_response = api_instance.assign_linguists_from_template_to_job_parts(template_uid, project_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->assign_linguists_from_template_to_job_parts: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    template_uid = 'template_uid_example' # str | 
+    project_uid = 'project_uid_example' # str | 
+    body = phrasetms_client.JobPartReferences() # JobPartReferences |  (optional)
+
+    try:
+        # Assigns providers from template (specific jobs)
+        api_response = api_instance.assign_linguists_from_template_to_job_parts(template_uid, project_uid, body=body)
+        print("The response of ProjectTemplateApi->assign_linguists_from_template_to_job_parts:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->assign_linguists_from_template_to_job_parts: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -133,6 +177,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **assignable_templates**
@@ -141,24 +201,37 @@ No authorization required
 List assignable templates
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.assignable_templates_dto import AssignableTemplatesDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_uid = 'project_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # List assignable templates
-    api_response = api_instance.assignable_templates(project_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->assignable_templates: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_uid = 'project_uid_example' # str | 
+
+    try:
+        # List assignable templates
+        api_response = api_instance.assignable_templates(project_uid)
+        print("The response of ProjectTemplateApi->assignable_templates:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->assignable_templates: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -179,6 +252,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_custom_fields1**
@@ -187,25 +276,39 @@ No authorization required
 Create custom field instances
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.create_custom_field_instances_dto import CreateCustomFieldInstancesDto
+from phrasetms_client.models.custom_field_instances_dto import CustomFieldInstancesDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-body = phrasetms_client.CreateCustomFieldInstancesDto() # CreateCustomFieldInstancesDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Create custom field instances
-    api_response = api_instance.create_custom_fields1(project_template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->create_custom_fields1: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    body = phrasetms_client.CreateCustomFieldInstancesDto() # CreateCustomFieldInstancesDto |  (optional)
+
+    try:
+        # Create custom field instances
+        api_response = api_instance.create_custom_fields1(project_template_uid, body=body)
+        print("The response of ProjectTemplateApi->create_custom_fields1:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->create_custom_fields1: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -224,8 +327,24 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: */*
+ - **Content-Type**: Not defined
  - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -235,25 +354,39 @@ No authorization required
 Create project from template
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.abstract_project_dto_v2 import AbstractProjectDtoV2
+from phrasetms_client.models.create_project_from_template_v2_dto import CreateProjectFromTemplateV2Dto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-template_uid = 'template_uid_example' # str | 
-body = phrasetms_client.CreateProjectFromTemplateV2Dto() # CreateProjectFromTemplateV2Dto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Create project from template
-    api_response = api_instance.create_project_from_template_v2(template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->create_project_from_template_v2: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    template_uid = 'template_uid_example' # str | 
+    body = phrasetms_client.CreateProjectFromTemplateV2Dto() # CreateProjectFromTemplateV2Dto |  (optional)
+
+    try:
+        # Create project from template
+        api_response = api_instance.create_project_from_template_v2(template_uid, body=body)
+        print("The response of ProjectTemplateApi->create_project_from_template_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->create_project_from_template_v2: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -275,6 +408,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_project_from_template_v2_async**
@@ -283,25 +432,39 @@ No authorization required
 Create project from template (async)
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.async_request_wrapper_v2_dto import AsyncRequestWrapperV2Dto
+from phrasetms_client.models.create_project_from_template_async_v2_dto import CreateProjectFromTemplateAsyncV2Dto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-template_uid = 'template_uid_example' # str | 
-body = phrasetms_client.CreateProjectFromTemplateAsyncV2Dto() # CreateProjectFromTemplateAsyncV2Dto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Create project from template (async)
-    api_response = api_instance.create_project_from_template_v2_async(template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->create_project_from_template_v2_async: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    template_uid = 'template_uid_example' # str | 
+    body = phrasetms_client.CreateProjectFromTemplateAsyncV2Dto() # CreateProjectFromTemplateAsyncV2Dto |  (optional)
+
+    try:
+        # Create project from template (async)
+        api_response = api_instance.create_project_from_template_v2_async(template_uid, body=body)
+        print("The response of ProjectTemplateApi->create_project_from_template_v2_async:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->create_project_from_template_v2_async: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -323,6 +486,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Accepted |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_project_template**
@@ -331,24 +510,38 @@ No authorization required
 Create project template
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.project_template_create_action_dto import ProjectTemplateCreateActionDto
+from phrasetms_client.models.project_template_dto import ProjectTemplateDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-body = phrasetms_client.ProjectTemplateCreateActionDto() # ProjectTemplateCreateActionDto | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Create project template
-    api_response = api_instance.create_project_template(body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->create_project_template: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    body = phrasetms_client.ProjectTemplateCreateActionDto() # ProjectTemplateCreateActionDto | 
+
+    try:
+        # Create project template
+        api_response = api_instance.create_project_template(body)
+        print("The response of ProjectTemplateApi->create_project_template:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->create_project_template: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -369,6 +562,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_custom_field2**
@@ -377,24 +586,35 @@ No authorization required
 Delete custom field of project template
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-field_instance_uid = 'field_instance_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Delete custom field of project template
-    api_instance.delete_custom_field2(project_template_uid, field_instance_uid)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->delete_custom_field2: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    field_instance_uid = 'field_instance_uid_example' # str | 
+
+    try:
+        # Delete custom field of project template
+        api_instance.delete_custom_field2(project_template_uid, field_instance_uid)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->delete_custom_field2: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -416,6 +636,21 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_project_template**
@@ -424,23 +659,34 @@ No authorization required
 Delete project template
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Delete project template
-    api_instance.delete_project_template(project_template_uid)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->delete_project_template: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+
+    try:
+        # Delete project template
+        api_instance.delete_project_template(project_template_uid)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->delete_project_template: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -461,6 +707,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **edit_custom_field1**
@@ -469,26 +731,40 @@ No authorization required
 Edit custom field of project template
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.custom_field_instance_dto import CustomFieldInstanceDto
+from phrasetms_client.models.update_custom_field_instance_dto import UpdateCustomFieldInstanceDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-field_instance_uid = 'field_instance_uid_example' # str | 
-body = phrasetms_client.UpdateCustomFieldInstanceDto() # UpdateCustomFieldInstanceDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit custom field of project template
-    api_response = api_instance.edit_custom_field1(project_template_uid, field_instance_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->edit_custom_field1: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    field_instance_uid = 'field_instance_uid_example' # str | 
+    body = phrasetms_client.UpdateCustomFieldInstanceDto() # UpdateCustomFieldInstanceDto |  (optional)
+
+    try:
+        # Edit custom field of project template
+        api_response = api_instance.edit_custom_field1(project_template_uid, field_instance_uid, body=body)
+        print("The response of ProjectTemplateApi->edit_custom_field1:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->edit_custom_field1: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -508,8 +784,24 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: */*
+ - **Content-Type**: Not defined
  - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -519,25 +811,39 @@ No authorization required
 Edit custom fields of the project template (batch)
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.custom_field_instances_dto import CustomFieldInstancesDto
+from phrasetms_client.models.update_custom_field_instances_dto import UpdateCustomFieldInstancesDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-body = phrasetms_client.UpdateCustomFieldInstancesDto() # UpdateCustomFieldInstancesDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit custom fields of the project template (batch)
-    api_response = api_instance.edit_custom_fields1(project_template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->edit_custom_fields1: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    body = phrasetms_client.UpdateCustomFieldInstancesDto() # UpdateCustomFieldInstancesDto |  (optional)
+
+    try:
+        # Edit custom fields of the project template (batch)
+        api_response = api_instance.edit_custom_fields1(project_template_uid, body=body)
+        print("The response of ProjectTemplateApi->edit_custom_fields1:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->edit_custom_fields1: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -556,43 +862,73 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: */*
+ - **Content-Type**: Not defined
  - **Accept**: */*
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **edit_project_template**
-> ProjectTemplateDto edit_project_template(body, project_template_uid)
+> ProjectTemplateDto edit_project_template(project_template_uid, body)
 
 Edit project template
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.project_template_dto import ProjectTemplateDto
+from phrasetms_client.models.project_template_edit_dto import ProjectTemplateEditDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-body = phrasetms_client.ProjectTemplateEditDto() # ProjectTemplateEditDto | 
-project_template_uid = 'project_template_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit project template
-    api_response = api_instance.edit_project_template(body, project_template_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->edit_project_template: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    body = phrasetms_client.ProjectTemplateEditDto() # ProjectTemplateEditDto | 
+
+    try:
+        # Edit project template
+        api_response = api_instance.edit_project_template(project_template_uid, body)
+        print("The response of ProjectTemplateApi->edit_project_template:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->edit_project_template: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ProjectTemplateEditDto**](ProjectTemplateEditDto.md)|  | 
  **project_template_uid** | **str**|  | 
+ **body** | [**ProjectTemplateEditDto**](ProjectTemplateEditDto.md)|  | 
 
 ### Return type
 
@@ -607,6 +943,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Edited |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **edit_project_template_access_settings**
@@ -615,25 +967,39 @@ No authorization required
 Edit project template access and security settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.edit_project_security_settings_dto_v2 import EditProjectSecuritySettingsDtoV2
+from phrasetms_client.models.project_security_settings_dto_v2 import ProjectSecuritySettingsDtoV2
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-body = phrasetms_client.EditProjectSecuritySettingsDtoV2() # EditProjectSecuritySettingsDtoV2 |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit project template access and security settings
-    api_response = api_instance.edit_project_template_access_settings(project_template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->edit_project_template_access_settings: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    body = phrasetms_client.EditProjectSecuritySettingsDtoV2() # EditProjectSecuritySettingsDtoV2 |  (optional)
+
+    try:
+        # Edit project template access and security settings
+        api_response = api_instance.edit_project_template_access_settings(project_template_uid, body=body)
+        print("The response of ProjectTemplateApi->edit_project_template_access_settings:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->edit_project_template_access_settings: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -655,6 +1021,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **edit_project_template_import_settings**
@@ -663,25 +1045,39 @@ No authorization required
 Edit project template import settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.file_import_settings_create_dto import FileImportSettingsCreateDto
+from phrasetms_client.models.file_import_settings_dto import FileImportSettingsDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-body = phrasetms_client.FileImportSettingsCreateDto() # FileImportSettingsCreateDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit project template import settings
-    api_response = api_instance.edit_project_template_import_settings(project_template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->edit_project_template_import_settings: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    body = phrasetms_client.FileImportSettingsCreateDto() # FileImportSettingsCreateDto |  (optional)
+
+    try:
+        # Edit project template import settings
+        api_response = api_instance.edit_project_template_import_settings(project_template_uid, body=body)
+        print("The response of ProjectTemplateApi->edit_project_template_import_settings:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->edit_project_template_import_settings: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -703,6 +1099,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_analyse_settings_for_project_template**
@@ -711,24 +1123,37 @@ No authorization required
 Get analyse settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get analyse settings
-    api_response = api_instance.get_analyse_settings_for_project_template(project_template_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_analyse_settings_for_project_template: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+
+    try:
+        # Get analyse settings
+        api_response = api_instance.get_analyse_settings_for_project_template(project_template_uid)
+        print("The response of ProjectTemplateApi->get_analyse_settings_for_project_template:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_analyse_settings_for_project_template: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -749,6 +1174,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_custom_field2**
@@ -757,25 +1198,38 @@ No authorization required
 Get custom field of project template
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.custom_field_instance_dto import CustomFieldInstanceDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-field_instance_uid = 'field_instance_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get custom field of project template
-    api_response = api_instance.get_custom_field2(project_template_uid, field_instance_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_custom_field2: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    field_instance_uid = 'field_instance_uid_example' # str | 
+
+    try:
+        # Get custom field of project template
+        api_response = api_instance.get_custom_field2(project_template_uid, field_instance_uid)
+        print("The response of ProjectTemplateApi->get_custom_field2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_custom_field2: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -797,6 +1251,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: */*
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_custom_fields_page1**
@@ -805,30 +1275,43 @@ No authorization required
 Get custom fields of project template (page)
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.page_dto_custom_field_instance_dto import PageDtoCustomFieldInstanceDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-page_number = 0 # int | Page number, starting with 0, default 0 (optional) (default to 0)
-page_size = 20 # int | Page size, accepts values between 1 and 50, default 20 (optional) (default to 20)
-created_by = ['created_by_example'] # list[str] | Filter by webhook creators UIDs (optional)
-modified_by = ['modified_by_example'] # list[str] | Filter by webhook updaters UIDs (optional)
-sort_field = 'sort_field_example' # str | Sort by this field (optional)
-sort_trend = 'ASC' # str | Sort direction (optional) (default to ASC)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get custom fields of project template (page)
-    api_response = api_instance.get_custom_fields_page1(project_template_uid, page_number=page_number, page_size=page_size, created_by=created_by, modified_by=modified_by, sort_field=sort_field, sort_trend=sort_trend)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_custom_fields_page1: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    page_number = 0 # int | Page number, starting with 0, default 0 (optional) (default to 0)
+    page_size = 20 # int | Page size, accepts values between 1 and 50, default 20 (optional) (default to 20)
+    created_by = ['created_by_example'] # List[str] | Filter by webhook creators UIDs (optional)
+    modified_by = ['modified_by_example'] # List[str] | Filter by webhook updaters UIDs (optional)
+    sort_field = 'sort_field_example' # str | Sort by this field (optional)
+    sort_trend = 'ASC' # str | Sort direction (optional) (default to 'ASC')
+
+    try:
+        # Get custom fields of project template (page)
+        api_response = api_instance.get_custom_fields_page1(project_template_uid, page_number=page_number, page_size=page_size, created_by=created_by, modified_by=modified_by, sort_field=sort_field, sort_trend=sort_trend)
+        print("The response of ProjectTemplateApi->get_custom_fields_page1:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_custom_fields_page1: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -837,10 +1320,10 @@ Name | Type | Description  | Notes
  **project_template_uid** | **str**|  | 
  **page_number** | **int**| Page number, starting with 0, default 0 | [optional] [default to 0]
  **page_size** | **int**| Page size, accepts values between 1 and 50, default 20 | [optional] [default to 20]
- **created_by** | [**list[str]**](str.md)| Filter by webhook creators UIDs | [optional] 
- **modified_by** | [**list[str]**](str.md)| Filter by webhook updaters UIDs | [optional] 
+ **created_by** | [**List[str]**](str.md)| Filter by webhook creators UIDs | [optional] 
+ **modified_by** | [**List[str]**](str.md)| Filter by webhook updaters UIDs | [optional] 
  **sort_field** | **str**| Sort by this field | [optional] 
- **sort_trend** | **str**| Sort direction | [optional] [default to ASC]
+ **sort_trend** | **str**| Sort direction | [optional] [default to &#39;ASC&#39;]
 
 ### Return type
 
@@ -855,6 +1338,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: */*
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_import_settings_for_project_template**
@@ -863,24 +1362,37 @@ No authorization required
 Get import settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.file_import_settings_dto import FileImportSettingsDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get import settings
-    api_response = api_instance.get_import_settings_for_project_template(project_template_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_import_settings_for_project_template: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+
+    try:
+        # Get import settings
+        api_response = api_instance.get_import_settings_for_project_template(project_template_uid)
+        print("The response of ProjectTemplateApi->get_import_settings_for_project_template:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_import_settings_for_project_template: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -901,6 +1413,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_machine_translate_settings_for_project_template**
@@ -909,24 +1437,37 @@ No authorization required
 Get project template machine translate settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.mt_settings_per_language_list_dto import MTSettingsPerLanguageListDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get project template machine translate settings
-    api_response = api_instance.get_machine_translate_settings_for_project_template(project_template_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_machine_translate_settings_for_project_template: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+
+    try:
+        # Get project template machine translate settings
+        api_response = api_instance.get_machine_translate_settings_for_project_template(project_template_uid)
+        print("The response of ProjectTemplateApi->get_machine_translate_settings_for_project_template:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_machine_translate_settings_for_project_template: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -947,6 +1488,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pre_translate_settings_for_project_template2**
@@ -955,24 +1512,37 @@ No authorization required
 Get Pre-translate settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.pre_translate_settings_v3_dto import PreTranslateSettingsV3Dto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get Pre-translate settings
-    api_response = api_instance.get_pre_translate_settings_for_project_template2(project_template_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_pre_translate_settings_for_project_template2: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+
+    try:
+        # Get Pre-translate settings
+        api_response = api_instance.get_pre_translate_settings_for_project_template2(project_template_uid)
+        print("The response of ProjectTemplateApi->get_pre_translate_settings_for_project_template2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_pre_translate_settings_for_project_template2: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -993,6 +1563,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_template**
@@ -1003,24 +1589,37 @@ Get project template
 Note: importSettings in response is deprecated and will be always null
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.project_template_dto import ProjectTemplateDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get project template
-    api_response = api_instance.get_project_template(project_template_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_project_template: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+
+    try:
+        # Get project template
+        api_response = api_instance.get_project_template(project_template_uid)
+        print("The response of ProjectTemplateApi->get_project_template:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_project_template: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1041,6 +1640,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_template_access_settings**
@@ -1049,24 +1664,37 @@ No authorization required
 Get project template access and security settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.project_security_settings_dto_v2 import ProjectSecuritySettingsDtoV2
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get project template access and security settings
-    api_response = api_instance.get_project_template_access_settings(project_template_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_project_template_access_settings: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+
+    try:
+        # Get project template access and security settings
+        api_response = api_instance.get_project_template_access_settings(project_template_uid)
+        print("The response of ProjectTemplateApi->get_project_template_access_settings:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_project_template_access_settings: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1087,6 +1715,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_template_qa_settings**
@@ -1095,24 +1739,37 @@ No authorization required
 Get quality assurance settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.qa_settings_dto_v2 import QASettingsDtoV2
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get quality assurance settings
-    api_response = api_instance.get_project_template_qa_settings(project_template_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_project_template_qa_settings: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+
+    try:
+        # Get quality assurance settings
+        api_response = api_instance.get_project_template_qa_settings(project_template_uid)
+        print("The response of ProjectTemplateApi->get_project_template_qa_settings:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_project_template_qa_settings: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1133,6 +1790,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_template_term_bases**
@@ -1141,24 +1814,37 @@ No authorization required
 Get term bases
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.project_template_term_base_list_dto import ProjectTemplateTermBaseListDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get term bases
-    api_response = api_instance.get_project_template_term_bases(project_template_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_project_template_term_bases: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+
+    try:
+        # Get term bases
+        api_response = api_instance.get_project_template_term_bases(project_template_uid)
+        print("The response of ProjectTemplateApi->get_project_template_term_bases:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_project_template_term_bases: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1179,6 +1865,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_template_trans_memories2**
@@ -1187,26 +1889,39 @@ No authorization required
 Get translation memories
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.project_template_trans_memory_list_dto_v3 import ProjectTemplateTransMemoryListDtoV3
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-target_lang = 'target_lang_example' # str | Filter project translation memories by target language (optional)
-wf_step_uid = 'wf_step_uid_example' # str | Filter project translation memories by workflow step (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get translation memories
-    api_response = api_instance.get_project_template_trans_memories2(project_template_uid, target_lang=target_lang, wf_step_uid=wf_step_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_project_template_trans_memories2: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    target_lang = 'target_lang_example' # str | Filter project translation memories by target language (optional)
+    wf_step_uid = 'wf_step_uid_example' # str | Filter project translation memories by workflow step (optional)
+
+    try:
+        # Get translation memories
+        api_response = api_instance.get_project_template_trans_memories2(project_template_uid, target_lang=target_lang, wf_step_uid=wf_step_uid)
+        print("The response of ProjectTemplateApi->get_project_template_trans_memories2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_project_template_trans_memories2: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1229,6 +1944,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_templates**
@@ -1237,36 +1968,49 @@ No authorization required
 List project templates
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.page_dto_project_template_reference import PageDtoProjectTemplateReference
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-name = 'name_example' # str |  (optional)
-client_id = 789 # int |  (optional)
-client_name = 'client_name_example' # str |  (optional)
-owner_uid = 'owner_uid_example' # str |  (optional)
-domain_name = 'domain_name_example' # str |  (optional)
-sub_domain_name = 'sub_domain_name_example' # str |  (optional)
-cost_center_id = 789 # int |  (optional)
-cost_center_name = 'cost_center_name_example' # str |  (optional)
-business_unit_name = 'business_unit_name_example' # str |  (optional)
-sort = 'dateCreated' # str |  (optional) (default to dateCreated)
-direction = 'desc' # str |  (optional) (default to desc)
-page_number = 0 # int | Page number, starting with 0, default 0 (optional) (default to 0)
-page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # List project templates
-    api_response = api_instance.get_project_templates(name=name, client_id=client_id, client_name=client_name, owner_uid=owner_uid, domain_name=domain_name, sub_domain_name=sub_domain_name, cost_center_id=cost_center_id, cost_center_name=cost_center_name, business_unit_name=business_unit_name, sort=sort, direction=direction, page_number=page_number, page_size=page_size)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->get_project_templates: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    name = 'name_example' # str |  (optional)
+    client_id = 56 # int |  (optional)
+    client_name = 'client_name_example' # str |  (optional)
+    owner_uid = 'owner_uid_example' # str |  (optional)
+    domain_name = 'domain_name_example' # str |  (optional)
+    sub_domain_name = 'sub_domain_name_example' # str |  (optional)
+    cost_center_id = 56 # int |  (optional)
+    cost_center_name = 'cost_center_name_example' # str |  (optional)
+    business_unit_name = 'business_unit_name_example' # str |  (optional)
+    sort = 'dateCreated' # str |  (optional) (default to 'dateCreated')
+    direction = 'desc' # str |  (optional) (default to 'desc')
+    page_number = 0 # int | Page number, starting with 0, default 0 (optional) (default to 0)
+    page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+
+    try:
+        # List project templates
+        api_response = api_instance.get_project_templates(name=name, client_id=client_id, client_name=client_name, owner_uid=owner_uid, domain_name=domain_name, sub_domain_name=sub_domain_name, cost_center_id=cost_center_id, cost_center_name=cost_center_name, business_unit_name=business_unit_name, sort=sort, direction=direction, page_number=page_number, page_size=page_size)
+        print("The response of ProjectTemplateApi->get_project_templates:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->get_project_templates: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1281,8 +2025,8 @@ Name | Type | Description  | Notes
  **cost_center_id** | **int**|  | [optional] 
  **cost_center_name** | **str**|  | [optional] 
  **business_unit_name** | **str**|  | [optional] 
- **sort** | **str**|  | [optional] [default to dateCreated]
- **direction** | **str**|  | [optional] [default to desc]
+ **sort** | **str**|  | [optional] [default to &#39;dateCreated&#39;]
+ **direction** | **str**|  | [optional] [default to &#39;desc&#39;]
  **page_number** | **int**| Page number, starting with 0, default 0 | [optional] [default to 0]
  **page_size** | **int**| Page size, accepts values between 1 and 50, default 50 | [optional] [default to 50]
 
@@ -1299,6 +2043,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **relevant_trans_memories**
@@ -1307,32 +2067,45 @@ No authorization required
 List project template relevant translation memories
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.page_dto_trans_memory_dto import PageDtoTransMemoryDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-name = 'name_example' # str |  (optional)
-domain_name = 'domain_name_example' # str |  (optional)
-client_name = 'client_name_example' # str |  (optional)
-sub_domain_name = 'sub_domain_name_example' # str |  (optional)
-target_langs = ['target_langs_example'] # list[str] |  (optional)
-strict_lang_matching = false # bool |  (optional) (default to false)
-page_number = 0 # int | Page number, starting with 0, default 0 (optional) (default to 0)
-page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # List project template relevant translation memories
-    api_response = api_instance.relevant_trans_memories(project_template_uid, name=name, domain_name=domain_name, client_name=client_name, sub_domain_name=sub_domain_name, target_langs=target_langs, strict_lang_matching=strict_lang_matching, page_number=page_number, page_size=page_size)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->relevant_trans_memories: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    name = 'name_example' # str |  (optional)
+    domain_name = 'domain_name_example' # str |  (optional)
+    client_name = 'client_name_example' # str |  (optional)
+    sub_domain_name = 'sub_domain_name_example' # str |  (optional)
+    target_langs = ['target_langs_example'] # List[str] |  (optional)
+    strict_lang_matching = False # bool |  (optional) (default to False)
+    page_number = 0 # int | Page number, starting with 0, default 0 (optional) (default to 0)
+    page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+
+    try:
+        # List project template relevant translation memories
+        api_response = api_instance.relevant_trans_memories(project_template_uid, name=name, domain_name=domain_name, client_name=client_name, sub_domain_name=sub_domain_name, target_langs=target_langs, strict_lang_matching=strict_lang_matching, page_number=page_number, page_size=page_size)
+        print("The response of ProjectTemplateApi->relevant_trans_memories:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->relevant_trans_memories: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1343,8 +2116,8 @@ Name | Type | Description  | Notes
  **domain_name** | **str**|  | [optional] 
  **client_name** | **str**|  | [optional] 
  **sub_domain_name** | **str**|  | [optional] 
- **target_langs** | [**list[str]**](str.md)|  | [optional] 
- **strict_lang_matching** | **bool**|  | [optional] [default to false]
+ **target_langs** | [**List[str]**](str.md)|  | [optional] 
+ **strict_lang_matching** | **bool**|  | [optional] [default to False]
  **page_number** | **int**| Page number, starting with 0, default 0 | [optional] [default to 0]
  **page_size** | **int**| Page size, accepts values between 1 and 50, default 50 | [optional] [default to 50]
 
@@ -1361,6 +2134,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_project_template_qa_settings**
@@ -1369,25 +2158,39 @@ No authorization required
 Edit quality assurance settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.edit_qa_settings_dto_v2 import EditQASettingsDtoV2
+from phrasetms_client.models.qa_settings_dto_v2 import QASettingsDtoV2
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-body = phrasetms_client.EditQASettingsDtoV2() # EditQASettingsDtoV2 |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit quality assurance settings
-    api_response = api_instance.set_project_template_qa_settings(project_template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->set_project_template_qa_settings: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    body = phrasetms_client.EditQASettingsDtoV2() # EditQASettingsDtoV2 |  (optional)
+
+    try:
+        # Edit quality assurance settings
+        api_response = api_instance.set_project_template_qa_settings(project_template_uid, body=body)
+        print("The response of ProjectTemplateApi->set_project_template_qa_settings:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->set_project_template_qa_settings: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1409,6 +2212,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: */*
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_project_template_term_bases**
@@ -1417,25 +2236,39 @@ No authorization required
 Edit term bases in project template
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.project_template_term_base_list_dto import ProjectTemplateTermBaseListDto
+from phrasetms_client.models.set_project_template_term_base_dto import SetProjectTemplateTermBaseDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-body = phrasetms_client.SetProjectTemplateTermBaseDto() # SetProjectTemplateTermBaseDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit term bases in project template
-    api_response = api_instance.set_project_template_term_bases(project_template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->set_project_template_term_bases: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    body = phrasetms_client.SetProjectTemplateTermBaseDto() # SetProjectTemplateTermBaseDto |  (optional)
+
+    try:
+        # Edit term bases in project template
+        api_response = api_instance.set_project_template_term_bases(project_template_uid, body=body)
+        print("The response of ProjectTemplateApi->set_project_template_term_bases:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->set_project_template_term_bases: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1457,6 +2290,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: */*
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_project_template_trans_memories_v2**
@@ -1467,25 +2316,39 @@ Edit translation memories
 If user wants to edit “All target languages” or \"All workflow steps”,                         but there are already varied TM settings for individual languages or steps,                         then the user risks to overwrite these individual choices.
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.project_template_trans_memory_list_v2_dto import ProjectTemplateTransMemoryListV2Dto
+from phrasetms_client.models.set_project_template_trans_memories_v2_dto import SetProjectTemplateTransMemoriesV2Dto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-body = phrasetms_client.SetProjectTemplateTransMemoriesV2Dto() # SetProjectTemplateTransMemoriesV2Dto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit translation memories
-    api_response = api_instance.set_project_template_trans_memories_v2(project_template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->set_project_template_trans_memories_v2: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    body = phrasetms_client.SetProjectTemplateTransMemoriesV2Dto() # SetProjectTemplateTransMemoriesV2Dto |  (optional)
+
+    try:
+        # Edit translation memories
+        api_response = api_instance.set_project_template_trans_memories_v2(project_template_uid, body=body)
+        print("The response of ProjectTemplateApi->set_project_template_trans_memories_v2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->set_project_template_trans_memories_v2: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1507,6 +2370,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_analyse_settings_for_project_template**
@@ -1515,25 +2394,39 @@ No authorization required
 Edit analyse settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
+from phrasetms_client.models.edit_analyse_settings_dto import EditAnalyseSettingsDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-body = phrasetms_client.EditAnalyseSettingsDto() # EditAnalyseSettingsDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit analyse settings
-    api_response = api_instance.update_analyse_settings_for_project_template(project_template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->update_analyse_settings_for_project_template: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    body = phrasetms_client.EditAnalyseSettingsDto() # EditAnalyseSettingsDto |  (optional)
+
+    try:
+        # Edit analyse settings
+        api_response = api_instance.update_analyse_settings_for_project_template(project_template_uid, body=body)
+        print("The response of ProjectTemplateApi->update_analyse_settings_for_project_template:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->update_analyse_settings_for_project_template: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1555,6 +2448,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_pre_translate_settings_for_project_template2**
@@ -1563,25 +2472,38 @@ No authorization required
 Update Pre-translate settings
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.pre_translate_settings_v3_dto import PreTranslateSettingsV3Dto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ProjectTemplateApi()
-project_template_uid = 'project_template_uid_example' # str | 
-body = phrasetms_client.PreTranslateSettingsV3Dto() # PreTranslateSettingsV3Dto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Update Pre-translate settings
-    api_response = api_instance.update_pre_translate_settings_for_project_template2(project_template_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ProjectTemplateApi->update_pre_translate_settings_for_project_template2: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ProjectTemplateApi(api_client)
+    project_template_uid = 'project_template_uid_example' # str | 
+    body = phrasetms_client.PreTranslateSettingsV3Dto() # PreTranslateSettingsV3Dto |  (optional)
+
+    try:
+        # Update Pre-translate settings
+        api_response = api_instance.update_pre_translate_settings_for_project_template2(project_template_uid, body=body)
+        print("The response of ProjectTemplateApi->update_pre_translate_settings_for_project_template2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectTemplateApi->update_pre_translate_settings_for_project_template2: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -1602,6 +2524,22 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

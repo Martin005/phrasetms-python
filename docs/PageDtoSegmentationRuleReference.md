@@ -1,14 +1,32 @@
 # PageDtoSegmentationRuleReference
 
 ## Properties
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**total_elements** | **int** |  | [optional] 
-**total_pages** | **int** |  | [optional] 
-**page_size** | **int** |  | [optional] 
-**page_number** | **int** |  | [optional] 
-**number_of_elements** | **int** |  | [optional] 
-**content** | [**list[SegmentationRuleReference]**](SegmentationRuleReference.md) |  | [optional] 
+
+| Name                   | Type                                                                | Description | Notes      |
+| ---------------------- | ------------------------------------------------------------------- | ----------- | ---------- |
+| **total_elements**     | **int**                                                             |             | [optional] |
+| **total_pages**        | **int**                                                             |             | [optional] |
+| **page_size**          | **int**                                                             |             | [optional] |
+| **page_number**        | **int**                                                             |             | [optional] |
+| **number_of_elements** | **int**                                                             |             | [optional] |
+| **content**            | [**List[SegmentationRuleReference]**](SegmentationRuleReference.md) |             | [optional] |
+
+## Example
+
+```python
+from phrasetms_client.models.page_dto_segmentation_rule_reference import PageDtoSegmentationRuleReference
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of PageDtoSegmentationRuleReference from a JSON string
+page_dto_segmentation_rule_reference_instance = PageDtoSegmentationRuleReference.from_json(json)
+# print the JSON string representation of the object
+print PageDtoSegmentationRuleReference.to_json()
+
+# convert the object into a dict
+page_dto_segmentation_rule_reference_dict = page_dto_segmentation_rule_reference_instance.to_dict()
+# create an instance of PageDtoSegmentationRuleReference from a dict
+page_dto_segmentation_rule_reference_from_dict = PageDtoSegmentationRuleReference.from_dict(page_dto_segmentation_rule_reference_dict)
+```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-

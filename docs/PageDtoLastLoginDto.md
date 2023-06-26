@@ -1,14 +1,32 @@
 # PageDtoLastLoginDto
 
 ## Properties
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**total_elements** | **int** |  | [optional] 
-**total_pages** | **int** |  | [optional] 
-**page_size** | **int** |  | [optional] 
-**page_number** | **int** |  | [optional] 
-**number_of_elements** | **int** |  | [optional] 
-**content** | [**list[LastLoginDto]**](LastLoginDto.md) |  | [optional] 
+
+| Name                   | Type                                      | Description | Notes      |
+| ---------------------- | ----------------------------------------- | ----------- | ---------- |
+| **total_elements**     | **int**                                   |             | [optional] |
+| **total_pages**        | **int**                                   |             | [optional] |
+| **page_size**          | **int**                                   |             | [optional] |
+| **page_number**        | **int**                                   |             | [optional] |
+| **number_of_elements** | **int**                                   |             | [optional] |
+| **content**            | [**List[LastLoginDto]**](LastLoginDto.md) |             | [optional] |
+
+## Example
+
+```python
+from phrasetms_client.models.page_dto_last_login_dto import PageDtoLastLoginDto
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of PageDtoLastLoginDto from a JSON string
+page_dto_last_login_dto_instance = PageDtoLastLoginDto.from_json(json)
+# print the JSON string representation of the object
+print PageDtoLastLoginDto.to_json()
+
+# convert the object into a dict
+page_dto_last_login_dto_dict = page_dto_last_login_dto_instance.to_dict()
+# create an instance of PageDtoLastLoginDto from a dict
+page_dto_last_login_dto_from_dict = PageDtoLastLoginDto.from_dict(page_dto_last_login_dto_dict)
+```
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-

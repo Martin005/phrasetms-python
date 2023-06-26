@@ -15,42 +15,57 @@ Method | HTTP request | Description
 [**upload_file**](ConnectorApi.md#upload_file) | **POST** /api2/v1/connectors/{connectorId}/folders/{folder} | Upload a file to a subfolder of the selected connector
 [**upload_file1**](ConnectorApi.md#upload_file1) | **POST** /api2/v2/connectors/{connectorId}/folders/{folder}/files/{fileName}/upload | Upload file (async)
 
+
 # **edit_connector**
-> ConnectorCreateResponseDto edit_connector(connector_id, body=body, connection_test=connection_test)
+> ConnectorCreateResponseDto edit_connector(connector_id, connection_test=connection_test, body=body)
 
 Edit connector
 
 Edit selected connector
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.abstract_connector_dto import AbstractConnectorDto
+from phrasetms_client.models.connector_create_response_dto import ConnectorCreateResponseDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ConnectorApi()
-connector_id = 'connector_id_example' # str | 
-body = phrasetms_client.AbstractConnectorDto() # AbstractConnectorDto |  (optional)
-connection_test = true # bool | For running connection test (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit connector
-    api_response = api_instance.edit_connector(connector_id, body=body, connection_test=connection_test)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ConnectorApi->edit_connector: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | 
+    connection_test = True # bool | For running connection test (optional)
+    body = phrasetms_client.AbstractConnectorDto() # AbstractConnectorDto |  (optional)
+
+    try:
+        # Edit connector
+        api_response = api_instance.edit_connector(connector_id, connection_test=connection_test, body=body)
+        print("The response of ConnectorApi->edit_connector:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorApi->edit_connector: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**|  | 
- **body** | [**AbstractConnectorDto**](AbstractConnectorDto.md)|  | [optional] 
  **connection_test** | **bool**| For running connection test | [optional] 
+ **body** | [**AbstractConnectorDto**](AbstractConnectorDto.md)|  | [optional] 
 
 ### Return type
 
@@ -65,6 +80,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Edited |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_connector**
@@ -73,24 +104,37 @@ No authorization required
 Get a connector
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.connector_dto import ConnectorDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ConnectorApi()
-connector_id = 'connector_id_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get a connector
-    api_response = api_instance.get_connector(connector_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ConnectorApi->get_connector: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | 
+
+    try:
+        # Get a connector
+        api_response = api_instance.get_connector(connector_id)
+        print("The response of ConnectorApi->get_connector:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorApi->get_connector: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -111,6 +155,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_connector_list**
@@ -119,24 +179,37 @@ No authorization required
 List connectors
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.connector_list_dto import ConnectorListDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ConnectorApi()
-type = 'type_example' # str |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # List connectors
-    api_response = api_instance.get_connector_list(type=type)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ConnectorApi->get_connector_list: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ConnectorApi(api_client)
+    type = 'type_example' # str |  (optional)
+
+    try:
+        # List connectors
+        api_response = api_instance.get_connector_list(type=type)
+        print("The response of ConnectorApi->get_connector_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorApi->get_connector_list: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -157,6 +230,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_file**
@@ -167,26 +256,39 @@ Download file
 Download a file from a subfolder of the selected connector
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.input_stream_length import InputStreamLength
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ConnectorApi()
-connector_id = 'connector_id_example' # str | 
-folder = 'folder_example' # str | 
-file = 'file_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Download file
-    api_response = api_instance.get_file(connector_id, folder, file)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ConnectorApi->get_file: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | 
+    folder = 'folder_example' # str | 
+    file = 'file_example' # str | 
+
+    try:
+        # Download file
+        api_response = api_instance.get_file(connector_id, folder, file)
+        print("The response of ConnectorApi->get_file:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorApi->get_file: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -209,6 +311,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/octet-stream
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_file1**
@@ -219,27 +337,41 @@ Download file (async)
  Create an asynchronous request to download a file from a (sub)folder of the selected connector.  After a callback with successful response is received, prepared file can be downloaded by [Download prepared file](#operation/getPreparedFile)  or [Create job from connector asynchronous download task](#operation/createJobFromAsyncDownloadTask). 
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.async_file_op_response_dto import AsyncFileOpResponseDto
+from phrasetms_client.models.get_file_request_params_dto import GetFileRequestParamsDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ConnectorApi()
-connector_id = 'connector_id_example' # str | 
-folder = 'folder_example' # str | 
-file = 'file_example' # str | 
-body = phrasetms_client.GetFileRequestParamsDto() # GetFileRequestParamsDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Download file (async)
-    api_response = api_instance.get_file1(connector_id, folder, file, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ConnectorApi->get_file1: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | 
+    folder = 'folder_example' # str | 
+    file = 'file_example' # str | 
+    body = phrasetms_client.GetFileRequestParamsDto() # GetFileRequestParamsDto |  (optional)
+
+    try:
+        # Download file (async)
+        api_response = api_instance.get_file1(connector_id, folder, file, body=body)
+        print("The response of ConnectorApi->get_file1:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorApi->get_file1: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -263,6 +395,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_folder**
@@ -273,29 +421,42 @@ List files in a subfolder
 List files in a subfolder of the selected connector
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.file_list_dto import FileListDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ConnectorApi()
-connector_id = 'connector_id_example' # str | 
-folder = 'folder_example' # str | 
-project_uid = 'project_uid_example' # str |  (optional)
-file_type = 'ALL' # str |  (optional) (default to ALL)
-sort = 'NAME' # str |  (optional) (default to NAME)
-direction = 'ASCENDING' # str |  (optional) (default to ASCENDING)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # List files in a subfolder
-    api_response = api_instance.get_folder(connector_id, folder, project_uid=project_uid, file_type=file_type, sort=sort, direction=direction)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ConnectorApi->get_folder: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | 
+    folder = 'folder_example' # str | 
+    project_uid = 'project_uid_example' # str |  (optional)
+    file_type = 'ALL' # str |  (optional) (default to 'ALL')
+    sort = 'NAME' # str |  (optional) (default to 'NAME')
+    direction = 'ASCENDING' # str |  (optional) (default to 'ASCENDING')
+
+    try:
+        # List files in a subfolder
+        api_response = api_instance.get_folder(connector_id, folder, project_uid=project_uid, file_type=file_type, sort=sort, direction=direction)
+        print("The response of ConnectorApi->get_folder:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorApi->get_folder: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -304,9 +465,9 @@ Name | Type | Description  | Notes
  **connector_id** | **str**|  | 
  **folder** | **str**|  | 
  **project_uid** | **str**|  | [optional] 
- **file_type** | **str**|  | [optional] [default to ALL]
- **sort** | **str**|  | [optional] [default to NAME]
- **direction** | **str**|  | [optional] [default to ASCENDING]
+ **file_type** | **str**|  | [optional] [default to &#39;ALL&#39;]
+ **sort** | **str**|  | [optional] [default to &#39;NAME&#39;]
+ **direction** | **str**|  | [optional] [default to &#39;ASCENDING&#39;]
 
 ### Return type
 
@@ -321,6 +482,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_prepared_file**
@@ -331,27 +508,40 @@ Download prepared file
 Download the file by referencing successfully finished async download request [Connector - Download file (async)](#operation/getFile_1).
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.input_stream_length import InputStreamLength
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ConnectorApi()
-connector_id = 'connector_id_example' # str | 
-folder = 'folder_example' # str | 
-file = 'file_example' # str | 
-task_id = 'task_id_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Download prepared file
-    api_response = api_instance.get_prepared_file(connector_id, folder, file, task_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ConnectorApi->get_prepared_file: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | 
+    folder = 'folder_example' # str | 
+    file = 'file_example' # str | 
+    task_id = 'task_id_example' # str | 
+
+    try:
+        # Download prepared file
+        api_response = api_instance.get_prepared_file(connector_id, folder, file, task_id)
+        print("The response of ConnectorApi->get_prepared_file:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorApi->get_prepared_file: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -375,6 +565,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/octet-stream
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_root_folder**
@@ -385,36 +591,49 @@ List files in root
 List files in a root folder of the selected connector
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.file_list_dto import FileListDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ConnectorApi()
-connector_id = 'connector_id_example' # str | 
-file_type = 'ALL' # str |  (optional) (default to ALL)
-sort = 'NAME' # str |  (optional) (default to NAME)
-direction = 'ASCENDING' # str |  (optional) (default to ASCENDING)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # List files in root
-    api_response = api_instance.get_root_folder(connector_id, file_type=file_type, sort=sort, direction=direction)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ConnectorApi->get_root_folder: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | 
+    file_type = 'ALL' # str |  (optional) (default to 'ALL')
+    sort = 'NAME' # str |  (optional) (default to 'NAME')
+    direction = 'ASCENDING' # str |  (optional) (default to 'ASCENDING')
+
+    try:
+        # List files in root
+        api_response = api_instance.get_root_folder(connector_id, file_type=file_type, sort=sort, direction=direction)
+        print("The response of ConnectorApi->get_root_folder:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorApi->get_root_folder: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**|  | 
- **file_type** | **str**|  | [optional] [default to ALL]
- **sort** | **str**|  | [optional] [default to NAME]
- **direction** | **str**|  | [optional] [default to ASCENDING]
+ **file_type** | **str**|  | [optional] [default to &#39;ALL&#39;]
+ **sort** | **str**|  | [optional] [default to &#39;NAME&#39;]
+ **direction** | **str**|  | [optional] [default to &#39;ASCENDING&#39;]
 
 ### Return type
 
@@ -429,54 +648,83 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upload_file**
-> UploadResultDto upload_file(file, source_file_name, subfolder_name, mime_type, commit_message, content_type, connector_id, folder)
+> UploadResultDto upload_file(connector_id, folder, content_type, file, source_file_name=source_file_name, subfolder_name=subfolder_name, mime_type=mime_type, commit_message=commit_message)
 
 Upload a file to a subfolder of the selected connector
 
 Upload a file to a subfolder of the selected connector
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.upload_result_dto import UploadResultDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ConnectorApi()
-file = 'file_example' # str | 
-source_file_name = 'source_file_name_example' # str | 
-subfolder_name = 'subfolder_name_example' # str | 
-mime_type = 'mime_type_example' # str | 
-commit_message = 'commit_message_example' # str | 
-content_type = 'content_type_example' # str | 
-connector_id = 'connector_id_example' # str | 
-folder = 'folder_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Upload a file to a subfolder of the selected connector
-    api_response = api_instance.upload_file(file, source_file_name, subfolder_name, mime_type, commit_message, content_type, connector_id, folder)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ConnectorApi->upload_file: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | 
+    folder = 'folder_example' # str | 
+    content_type = 'content_type_example' # str | 
+    file = None # bytearray | Translated file to upload
+    source_file_name = 'source_file_name_example' # str | Name or ID of the original file (optional)
+    subfolder_name = 'subfolder_name_example' # str | Optional subfolder to upload the file to (optional)
+    mime_type = 'mime_type_example' # str | Mime type of the file to upload (optional)
+    commit_message = 'commit_message_example' # str | Commit message for upload to Git, etc. (optional)
+
+    try:
+        # Upload a file to a subfolder of the selected connector
+        api_response = api_instance.upload_file(connector_id, folder, content_type, file, source_file_name=source_file_name, subfolder_name=subfolder_name, mime_type=mime_type, commit_message=commit_message)
+        print("The response of ConnectorApi->upload_file:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorApi->upload_file: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file** | **str**|  | 
- **source_file_name** | **str**|  | 
- **subfolder_name** | **str**|  | 
- **mime_type** | **str**|  | 
- **commit_message** | **str**|  | 
- **content_type** | **str**|  | 
  **connector_id** | **str**|  | 
  **folder** | **str**|  | 
+ **content_type** | **str**|  | 
+ **file** | **bytearray**| Translated file to upload | 
+ **source_file_name** | **str**| Name or ID of the original file | [optional] 
+ **subfolder_name** | **str**| Optional subfolder to upload the file to | [optional] 
+ **mime_type** | **str**| Mime type of the file to upload | [optional] 
+ **commit_message** | **str**| Commit message for upload to Git, etc. | [optional] 
 
 ### Return type
 
@@ -491,51 +739,80 @@ No authorization required
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **upload_file1**
-> AsyncFileOpResponseDto upload_file1(file, memsource, content_type, connector_id, folder, file_name, mime_type=mime_type)
+> AsyncFileOpResponseDto upload_file1(connector_id, folder, file_name, memsource, content_type, file, mime_type=mime_type)
 
 Upload file (async)
 
 Upload a file to a subfolder of the selected connector
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.async_file_op_response_dto import AsyncFileOpResponseDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.ConnectorApi()
-file = 'file_example' # str | 
-memsource = 'memsource_example' # str | 
-content_type = 'content_type_example' # str | 
-connector_id = 'connector_id_example' # str | 
-folder = 'folder_example' # str | 
-file_name = 'file_name_example' # str | 
-mime_type = 'mime_type_example' # str | Mime type of the file to upload (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Upload file (async)
-    api_response = api_instance.upload_file1(file, memsource, content_type, connector_id, folder, file_name, mime_type=mime_type)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling ConnectorApi->upload_file1: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.ConnectorApi(api_client)
+    connector_id = 'connector_id_example' # str | 
+    folder = 'folder_example' # str | 
+    file_name = 'file_name_example' # str | 
+    memsource = '{\"subfolderName\":\"myFolder\",\"commitMessage\":\"add translation\",\"callbackUrl\":\"https://webhook.site/83b222a1-5cf2-48ec-b8b9-7f79bb2a25e4\"}' # str | 
+    content_type = 'content_type_example' # str | 
+    file = None # bytearray | Translated file to upload
+    mime_type = 'mime_type_example' # str | Mime type of the file to upload (optional)
+
+    try:
+        # Upload file (async)
+        api_response = api_instance.upload_file1(connector_id, folder, file_name, memsource, content_type, file, mime_type=mime_type)
+        print("The response of ConnectorApi->upload_file1:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConnectorApi->upload_file1: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file** | **str**|  | 
- **memsource** | **str**|  | 
- **content_type** | **str**|  | 
  **connector_id** | **str**|  | 
  **folder** | **str**|  | 
  **file_name** | **str**|  | 
+ **memsource** | **str**|  | 
+ **content_type** | **str**|  | 
+ **file** | **bytearray**| Translated file to upload | 
  **mime_type** | **str**| Mime type of the file to upload | [optional] 
 
 ### Return type
@@ -550,6 +827,22 @@ No authorization required
 
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
