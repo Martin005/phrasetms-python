@@ -12,6 +12,7 @@
 """
 
 
+from datetime import datetime, timezone
 import unittest
 
 import phrasetms_client
@@ -61,6 +62,57 @@ class TestJobApi(unittest.TestCase):
 
         Create job  # noqa: E501
         """
+        # Defining the host is optional and defaults to https://cloud.memsource.com/web
+        # See configuration.py for a list of all supported configuration parameters.
+        configuration = phrasetms_client.Configuration(
+            host="https://cloud.memsource.com/web"
+        )
+
+        # Enter a context with an instance of the API client
+        with phrasetms_client.ApiClient(configuration) as api_client:
+            # Create an instance of the API class
+            api_instance = phrasetms_client.JobApi(api_client)
+            project_uid = "project_uid_example"  # str |
+            workflow_settings = [
+                phrasetms_client.WorkflowStepConfiguration(
+                    assignments=[
+                        phrasetms_client.ProvidersPerLanguage(
+                            targetLang="cs_cz",
+                            providers=[
+                                phrasetms_client.ProviderReference(
+                                    type="USER", id="id_example", uid="uid_example"
+                                )
+                            ],
+                        )
+                    ],
+                    due=datetime(2024, 1, 2, 3, 4, 5, 6, tzinfo=timezone.utc),
+                    notify_provider=phrasetms_client.NotifyProviderDto(
+                        organizationEmailTemplate=phrasetms_client.IdReference(
+                            id="id_example"
+                        ),
+                    ),
+                )
+            ]
+            memsource = phrasetms_client.JobCreateRequestDto(
+                target_langs=["cs_cz", "de_de"],
+                due=datetime(2024, 4, 5, 6, 7, 8, 9, tzinfo=timezone.utc),
+                workflow_settings=workflow_settings,
+            ).to_json()
+            content_disposition = "content_disposition_example"  # str | must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)` (optional)
+            body = None  # object |  (optional)
+
+            try:
+                # Create job
+                api_response = api_instance.create_job(
+                    project_uid,
+                    memsource=memsource,
+                    content_disposition=content_disposition,
+                    body=body,
+                )
+                print("The response of JobApi->create_job:\n")
+
+            except Exception as e:
+                print("Exception when calling JobApi->create_job: %s\n" % e)
         pass
 
     def test_create_job_from_async_download_task(self):
@@ -386,5 +438,5 @@ class TestJobApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

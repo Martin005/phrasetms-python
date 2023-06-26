@@ -25,6 +25,7 @@ from phrasetms_client.models.notify_provider_dto import NotifyProviderDto
 from phrasetms_client.models.providers_per_language import ProvidersPerLanguage
 from phrasetms_client.models.uid_reference import UidReference
 from phrasetms_client.models.workflow_step_configuration import WorkflowStepConfiguration
+from phrasetms_client.utils import DateTimeEncoder
 
 class JobCreateRequestDto(BaseModel):
     """
@@ -54,7 +55,7 @@ class JobCreateRequestDto(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+        return json.dumps(self.to_dict(), cls=DateTimeEncoder)
 
     @classmethod
     def from_json(cls, json_str: str) -> JobCreateRequestDto:
