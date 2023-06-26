@@ -12,30 +12,45 @@ Method | HTTP request | Description
 [**get_discount_schemes**](NetRateSchemeApi.md#get_discount_schemes) | **GET** /api2/v1/netRateSchemes | List net rate schemes
 [**update_discount_scheme**](NetRateSchemeApi.md#update_discount_scheme) | **PUT** /api2/v1/netRateSchemes/{netRateSchemeUid} | Edit net rate scheme
 
+
 # **create_discount_scheme**
 > NetRateScheme create_discount_scheme(body=body)
 
 Create net rate scheme
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.discount_scheme_create_dto import DiscountSchemeCreateDto
+from phrasetms_client.models.net_rate_scheme import NetRateScheme
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.NetRateSchemeApi()
-body = phrasetms_client.DiscountSchemeCreateDto() # DiscountSchemeCreateDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Create net rate scheme
-    api_response = api_instance.create_discount_scheme(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling NetRateSchemeApi->create_discount_scheme: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.NetRateSchemeApi(api_client)
+    body = phrasetms_client.DiscountSchemeCreateDto() # DiscountSchemeCreateDto |  (optional)
+
+    try:
+        # Create net rate scheme
+        api_response = api_instance.create_discount_scheme(body=body)
+        print("The response of NetRateSchemeApi->create_discount_scheme:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NetRateSchemeApi->create_discount_scheme: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -56,6 +71,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **edit_discount_scheme_workflow_step**
@@ -64,26 +95,40 @@ No authorization required
 Edit scheme for workflow step
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.net_rate_scheme_workflow_step import NetRateSchemeWorkflowStep
+from phrasetms_client.models.net_rate_scheme_workflow_step_edit import NetRateSchemeWorkflowStepEdit
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.NetRateSchemeApi()
-net_rate_scheme_uid = 'net_rate_scheme_uid_example' # str | 
-net_rate_scheme_workflow_step_id = 789 # int | 
-body = phrasetms_client.NetRateSchemeWorkflowStepEdit() # NetRateSchemeWorkflowStepEdit |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit scheme for workflow step
-    api_response = api_instance.edit_discount_scheme_workflow_step(net_rate_scheme_uid, net_rate_scheme_workflow_step_id, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling NetRateSchemeApi->edit_discount_scheme_workflow_step: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.NetRateSchemeApi(api_client)
+    net_rate_scheme_uid = 'net_rate_scheme_uid_example' # str | 
+    net_rate_scheme_workflow_step_id = 56 # int | 
+    body = phrasetms_client.NetRateSchemeWorkflowStepEdit() # NetRateSchemeWorkflowStepEdit |  (optional)
+
+    try:
+        # Edit scheme for workflow step
+        api_response = api_instance.edit_discount_scheme_workflow_step(net_rate_scheme_uid, net_rate_scheme_workflow_step_id, body=body)
+        print("The response of NetRateSchemeApi->edit_discount_scheme_workflow_step:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NetRateSchemeApi->edit_discount_scheme_workflow_step: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -103,8 +148,24 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: */*
+ - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -114,24 +175,37 @@ No authorization required
 Get net rate scheme
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.net_rate_scheme import NetRateScheme
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.NetRateSchemeApi()
-net_rate_scheme_uid = 'net_rate_scheme_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get net rate scheme
-    api_response = api_instance.get_discount_scheme(net_rate_scheme_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling NetRateSchemeApi->get_discount_scheme: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.NetRateSchemeApi(api_client)
+    net_rate_scheme_uid = 'net_rate_scheme_uid_example' # str | 
+
+    try:
+        # Get net rate scheme
+        api_response = api_instance.get_discount_scheme(net_rate_scheme_uid)
+        print("The response of NetRateSchemeApi->get_discount_scheme:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NetRateSchemeApi->get_discount_scheme: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -152,6 +226,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_discount_scheme_workflow_step**
@@ -160,25 +250,38 @@ No authorization required
 Get scheme for workflow step
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.net_rate_scheme_workflow_step import NetRateSchemeWorkflowStep
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.NetRateSchemeApi()
-net_rate_scheme_uid = 'net_rate_scheme_uid_example' # str | 
-net_rate_scheme_workflow_step_id = 789 # int | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get scheme for workflow step
-    api_response = api_instance.get_discount_scheme_workflow_step(net_rate_scheme_uid, net_rate_scheme_workflow_step_id)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling NetRateSchemeApi->get_discount_scheme_workflow_step: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.NetRateSchemeApi(api_client)
+    net_rate_scheme_uid = 'net_rate_scheme_uid_example' # str | 
+    net_rate_scheme_workflow_step_id = 56 # int | 
+
+    try:
+        # Get scheme for workflow step
+        api_response = api_instance.get_discount_scheme_workflow_step(net_rate_scheme_uid, net_rate_scheme_workflow_step_id)
+        print("The response of NetRateSchemeApi->get_discount_scheme_workflow_step:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NetRateSchemeApi->get_discount_scheme_workflow_step: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -200,6 +303,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_discount_scheme_workflow_steps**
@@ -208,26 +327,39 @@ No authorization required
 List schemes for workflow step
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.page_dto_net_rate_scheme_workflow_step_reference import PageDtoNetRateSchemeWorkflowStepReference
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.NetRateSchemeApi()
-net_rate_scheme_uid = 'net_rate_scheme_uid_example' # str | 
-page_number = 0 # int |  (optional) (default to 0)
-page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # List schemes for workflow step
-    api_response = api_instance.get_discount_scheme_workflow_steps(net_rate_scheme_uid, page_number=page_number, page_size=page_size)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling NetRateSchemeApi->get_discount_scheme_workflow_steps: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.NetRateSchemeApi(api_client)
+    net_rate_scheme_uid = 'net_rate_scheme_uid_example' # str | 
+    page_number = 0 # int |  (optional) (default to 0)
+    page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+
+    try:
+        # List schemes for workflow step
+        api_response = api_instance.get_discount_scheme_workflow_steps(net_rate_scheme_uid, page_number=page_number, page_size=page_size)
+        print("The response of NetRateSchemeApi->get_discount_scheme_workflow_steps:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NetRateSchemeApi->get_discount_scheme_workflow_steps: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -250,6 +382,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_discount_schemes**
@@ -258,25 +406,38 @@ No authorization required
 List net rate schemes
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.page_dto_net_rate_scheme_reference import PageDtoNetRateSchemeReference
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.NetRateSchemeApi()
-page_number = 0 # int |  (optional) (default to 0)
-page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # List net rate schemes
-    api_response = api_instance.get_discount_schemes(page_number=page_number, page_size=page_size)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling NetRateSchemeApi->get_discount_schemes: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.NetRateSchemeApi(api_client)
+    page_number = 0 # int |  (optional) (default to 0)
+    page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+
+    try:
+        # List net rate schemes
+        api_response = api_instance.get_discount_schemes(page_number=page_number, page_size=page_size)
+        print("The response of NetRateSchemeApi->get_discount_schemes:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NetRateSchemeApi->get_discount_schemes: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -298,6 +459,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_discount_scheme**
@@ -306,25 +483,39 @@ No authorization required
 Edit net rate scheme
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.net_rate_scheme import NetRateScheme
+from phrasetms_client.models.net_rate_scheme_edit import NetRateSchemeEdit
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.NetRateSchemeApi()
-net_rate_scheme_uid = 'net_rate_scheme_uid_example' # str | 
-body = phrasetms_client.NetRateSchemeEdit() # NetRateSchemeEdit |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit net rate scheme
-    api_response = api_instance.update_discount_scheme(net_rate_scheme_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling NetRateSchemeApi->update_discount_scheme: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.NetRateSchemeApi(api_client)
+    net_rate_scheme_uid = 'net_rate_scheme_uid_example' # str | 
+    body = phrasetms_client.NetRateSchemeEdit() # NetRateSchemeEdit |  (optional)
+
+    try:
+        # Edit net rate scheme
+        api_response = api_instance.update_discount_scheme(net_rate_scheme_uid, body=body)
+        print("The response of NetRateSchemeApi->update_discount_scheme:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NetRateSchemeApi->update_discount_scheme: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -345,6 +536,22 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

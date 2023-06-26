@@ -1,20 +1,27 @@
-# LINGUIST
+# Linguist
+
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**edit_all_terms_in_tb** | **bool** | Edit all terms in TB. Default: false | [optional] 
-**edit_translations_in_tm** | **bool** | Edit translations in TM. Default: false | [optional] 
-**enable_mt** | **bool** | Enable MT. Default: true | [optional] 
-**may_reject_jobs** | **bool** | Reject jobs. Default: false | [optional] 
-**source_locales** | **list[str]** |  | [optional] 
-**target_locales** | **list[str]** |  | [optional] 
-**workflow_steps** | [**list[UidReference]**](UidReference.md) |  | [optional] 
-**clients** | [**list[UidReference]**](UidReference.md) |  | [optional] 
-**domains** | [**list[UidReference]**](UidReference.md) |  | [optional] 
-**sub_domains** | [**list[UidReference]**](UidReference.md) |  | [optional] 
-**net_rate_scheme** | [**UidReference**](UidReference.md) |  | [optional] 
-**translation_price_list** | [**UidReference**](UidReference.md) |  | [optional] 
 
+## Example
+
+```python
+from phrasetms_client.models.linguist import Linguist
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of Linguist from a JSON string
+linguist_instance = Linguist.from_json(json)
+# print the JSON string representation of the object
+print Linguist.to_json()
+
+# convert the object into a dict
+linguist_dict = linguist_instance.to_dict()
+# create an instance of Linguist from a dict
+linguist_from_dict = Linguist.from_dict(linguist_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

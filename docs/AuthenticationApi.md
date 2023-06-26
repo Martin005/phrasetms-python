@@ -17,30 +17,45 @@ Method | HTTP request | Description
 [**refresh_apple_token**](AuthenticationApi.md#refresh_apple_token) | **GET** /api2/v1/auth/refreshAppleToken | refresh apple token
 [**who_am_i**](AuthenticationApi.md#who_am_i) | **GET** /api2/v1/auth/whoAmI | Who am I
 
+
 # **login**
 > LoginResponseDto login(body=body)
 
 Login
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.login_dto import LoginDto
+from phrasetms_client.models.login_response_dto import LoginResponseDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-body = phrasetms_client.LoginDto() # LoginDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Login
-    api_response = api_instance.login(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->login: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    body = phrasetms_client.LoginDto() # LoginDto |  (optional)
+
+    try:
+        # Login
+        api_response = api_instance.login(body=body)
+        print("The response of AuthenticationApi->login:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->login: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -61,6 +76,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login1**
@@ -69,24 +100,38 @@ No authorization required
 Login
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.login_response_v3_dto import LoginResponseV3Dto
+from phrasetms_client.models.login_v3_dto import LoginV3Dto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-body = phrasetms_client.LoginV3Dto() # LoginV3Dto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Login
-    api_response = api_instance.login1(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->login1: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    body = phrasetms_client.LoginV3Dto() # LoginV3Dto |  (optional)
+
+    try:
+        # Login
+        api_response = api_instance.login1(body=body)
+        print("The response of AuthenticationApi->login1:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->login1: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -107,40 +152,70 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login_by_apple_with_code**
-> LoginResponseDto login_by_apple_with_code(body=body, native=native)
+> LoginResponseDto login_by_apple_with_code(native=native, body=body)
 
 Login with Apple with code
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.login_response_dto import LoginResponseDto
+from phrasetms_client.models.login_with_apple_dto import LoginWithAppleDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-body = phrasetms_client.LoginWithAppleDto() # LoginWithAppleDto |  (optional)
-native = true # bool | For sign in with code from native device (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Login with Apple with code
-    api_response = api_instance.login_by_apple_with_code(body=body, native=native)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->login_by_apple_with_code: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    native = True # bool | For sign in with code from native device (optional)
+    body = phrasetms_client.LoginWithAppleDto() # LoginWithAppleDto |  (optional)
+
+    try:
+        # Login with Apple with code
+        api_response = api_instance.login_by_apple_with_code(native=native, body=body)
+        print("The response of AuthenticationApi->login_by_apple_with_code:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->login_by_apple_with_code: %s\n" % e)
 ```
+
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LoginWithAppleDto**](LoginWithAppleDto.md)|  | [optional] 
  **native** | **bool**| For sign in with code from native device | [optional] 
+ **body** | [**LoginWithAppleDto**](LoginWithAppleDto.md)|  | [optional] 
 
 ### Return type
 
@@ -154,6 +229,22 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -163,24 +254,38 @@ No authorization required
 Login with Apple refresh token
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.login_response_dto import LoginResponseDto
+from phrasetms_client.models.login_with_apple_dto import LoginWithAppleDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-body = phrasetms_client.LoginWithAppleDto() # LoginWithAppleDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Login with Apple refresh token
-    api_response = api_instance.login_by_apple_with_refresh_token(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->login_by_apple_with_refresh_token: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    body = phrasetms_client.LoginWithAppleDto() # LoginWithAppleDto |  (optional)
+
+    try:
+        # Login with Apple refresh token
+        api_response = api_instance.login_by_apple_with_refresh_token(body=body)
+        print("The response of AuthenticationApi->login_by_apple_with_refresh_token:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->login_by_apple_with_refresh_token: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -201,6 +306,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login_by_google**
@@ -209,24 +330,38 @@ No authorization required
 Login with Google
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.login_response_dto import LoginResponseDto
+from phrasetms_client.models.login_with_google_dto import LoginWithGoogleDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-body = phrasetms_client.LoginWithGoogleDto() # LoginWithGoogleDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Login with Google
-    api_response = api_instance.login_by_google(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->login_by_google: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    body = phrasetms_client.LoginWithGoogleDto() # LoginWithGoogleDto |  (optional)
+
+    try:
+        # Login with Google
+        api_response = api_instance.login_by_google(body=body)
+        print("The response of AuthenticationApi->login_by_google:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->login_by_google: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -247,6 +382,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login_other**
@@ -257,24 +408,38 @@ Login as another user
 Available only for admin
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.login_other_dto import LoginOtherDto
+from phrasetms_client.models.login_response_dto import LoginResponseDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-body = phrasetms_client.LoginOtherDto() # LoginOtherDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Login as another user
-    api_response = api_instance.login_other(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->login_other: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    body = phrasetms_client.LoginOtherDto() # LoginOtherDto |  (optional)
+
+    try:
+        # Login as another user
+        api_response = api_instance.login_other(body=body)
+        print("The response of AuthenticationApi->login_other:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->login_other: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -295,6 +460,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login_other1**
@@ -305,24 +486,38 @@ Login as another user
 Available only for admin
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.login_other_v3_dto import LoginOtherV3Dto
+from phrasetms_client.models.login_response_v3_dto import LoginResponseV3Dto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-body = phrasetms_client.LoginOtherV3Dto() # LoginOtherV3Dto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Login as another user
-    api_response = api_instance.login_other1(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->login_other1: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    body = phrasetms_client.LoginOtherV3Dto() # LoginOtherV3Dto |  (optional)
+
+    try:
+        # Login as another user
+        api_response = api_instance.login_other1(body=body)
+        print("The response of AuthenticationApi->login_other1:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->login_other1: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -343,6 +538,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login_to_session**
@@ -351,24 +562,38 @@ No authorization required
 Login to session
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.login_to_session_dto import LoginToSessionDto
+from phrasetms_client.models.login_to_session_response_dto import LoginToSessionResponseDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-body = phrasetms_client.LoginToSessionDto() # LoginToSessionDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Login to session
-    api_response = api_instance.login_to_session(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->login_to_session: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    body = phrasetms_client.LoginToSessionDto() # LoginToSessionDto |  (optional)
+
+    try:
+        # Login to session
+        api_response = api_instance.login_to_session(body=body)
+        print("The response of AuthenticationApi->login_to_session:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->login_to_session: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -389,6 +614,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **login_to_session2**
@@ -397,24 +638,38 @@ No authorization required
 Login to session
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.login_to_session_response_v3_dto import LoginToSessionResponseV3Dto
+from phrasetms_client.models.login_to_session_v3_dto import LoginToSessionV3Dto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-body = phrasetms_client.LoginToSessionV3Dto() # LoginToSessionV3Dto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Login to session
-    api_response = api_instance.login_to_session2(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->login_to_session2: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    body = phrasetms_client.LoginToSessionV3Dto() # LoginToSessionV3Dto |  (optional)
+
+    try:
+        # Login to session
+        api_response = api_instance.login_to_session2(body=body)
+        print("The response of AuthenticationApi->login_to_session2:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->login_to_session2: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -435,6 +690,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **logout**
@@ -443,24 +714,35 @@ No authorization required
 Logout
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-token = 'token_example' # str |  (optional)
-authorization = 'authorization_example' # str |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Logout
-    api_instance.logout(token=token, authorization=authorization)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->logout: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    token = 'token_example' # str |  (optional)
+    authorization = 'authorization_example' # str |  (optional)
+
+    try:
+        # Logout
+        api_instance.logout(token=token, authorization=authorization)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->logout: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -482,6 +764,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **refresh_apple_token**
@@ -490,24 +788,37 @@ No authorization required
 refresh apple token
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.apple_token_response_dto import AppleTokenResponseDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
-token = 'token_example' # str |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # refresh apple token
-    api_response = api_instance.refresh_apple_token(token=token)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->refresh_apple_token: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+    token = 'token_example' # str |  (optional)
+
+    try:
+        # refresh apple token
+        api_response = api_instance.refresh_apple_token(token=token)
+        print("The response of AuthenticationApi->refresh_apple_token:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->refresh_apple_token: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -528,6 +839,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **who_am_i**
@@ -536,23 +863,36 @@ No authorization required
 Who am I
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.login_user_dto import LoginUserDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.AuthenticationApi()
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Who am I
-    api_response = api_instance.who_am_i()
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthenticationApi->who_am_i: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.AuthenticationApi(api_client)
+
+    try:
+        # Who am I
+        api_response = api_instance.who_am_i()
+        print("The response of AuthenticationApi->who_am_i:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthenticationApi->who_am_i: %s\n" % e)
 ```
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -569,6 +909,22 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

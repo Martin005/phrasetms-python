@@ -16,31 +16,46 @@ Method | HTTP request | Description
 [**set_prices**](PriceListApi.md#set_prices) | **POST** /api2/v1/priceLists/{priceListUid}/priceSets/prices | Edit prices
 [**update_price_list**](PriceListApi.md#update_price_list) | **PUT** /api2/v1/priceLists/{priceListUid} | Update price list
 
+
 # **create_language_pair**
 > TranslationPriceSetListDto create_language_pair(price_list_uid, body=body)
 
 Add language pairs
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.translation_price_set_create_dto import TranslationPriceSetCreateDto
+from phrasetms_client.models.translation_price_set_list_dto import TranslationPriceSetListDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-price_list_uid = 'price_list_uid_example' # str | 
-body = phrasetms_client.TranslationPriceSetCreateDto() # TranslationPriceSetCreateDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Add language pairs
-    api_response = api_instance.create_language_pair(price_list_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PriceListApi->create_language_pair: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    price_list_uid = 'price_list_uid_example' # str | 
+    body = phrasetms_client.TranslationPriceSetCreateDto() # TranslationPriceSetCreateDto |  (optional)
+
+    try:
+        # Add language pairs
+        api_response = api_instance.create_language_pair(price_list_uid, body=body)
+        print("The response of PriceListApi->create_language_pair:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PriceListApi->create_language_pair: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -62,6 +77,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_price_list**
@@ -70,24 +101,38 @@ No authorization required
 Create price list
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.translation_price_list_create_dto import TranslationPriceListCreateDto
+from phrasetms_client.models.translation_price_list_dto import TranslationPriceListDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-body = phrasetms_client.TranslationPriceListCreateDto() # TranslationPriceListCreateDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Create price list
-    api_response = api_instance.create_price_list(body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PriceListApi->create_price_list: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    body = phrasetms_client.TranslationPriceListCreateDto() # TranslationPriceListCreateDto |  (optional)
+
+    try:
+        # Create price list
+        api_response = api_instance.create_price_list(body=body)
+        print("The response of PriceListApi->create_price_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PriceListApi->create_price_list: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -108,6 +153,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_language_pair**
@@ -116,25 +177,36 @@ No authorization required
 Remove language pair
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-price_list_uid = 'price_list_uid_example' # str | 
-source_language = 'source_language_example' # str | 
-target_language = 'target_language_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Remove language pair
-    api_instance.delete_language_pair(price_list_uid, source_language, target_language)
-except ApiException as e:
-    print("Exception when calling PriceListApi->delete_language_pair: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    price_list_uid = 'price_list_uid_example' # str | 
+    source_language = 'source_language_example' # str | 
+    target_language = 'target_language_example' # str | 
+
+    try:
+        # Remove language pair
+        api_instance.delete_language_pair(price_list_uid, source_language, target_language)
+    except Exception as e:
+        print("Exception when calling PriceListApi->delete_language_pair: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -157,6 +229,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_language_pairs**
@@ -165,24 +253,36 @@ No authorization required
 Remove language pairs
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.translation_price_set_bulk_delete_dto import TranslationPriceSetBulkDeleteDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-price_list_uid = 'price_list_uid_example' # str | 
-body = phrasetms_client.TranslationPriceSetBulkDeleteDto() # TranslationPriceSetBulkDeleteDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Remove language pairs
-    api_instance.delete_language_pairs(price_list_uid, body=body)
-except ApiException as e:
-    print("Exception when calling PriceListApi->delete_language_pairs: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    price_list_uid = 'price_list_uid_example' # str | 
+    body = phrasetms_client.TranslationPriceSetBulkDeleteDto() # TranslationPriceSetBulkDeleteDto |  (optional)
+
+    try:
+        # Remove language pairs
+        api_instance.delete_language_pairs(price_list_uid, body=body)
+    except Exception as e:
+        print("Exception when calling PriceListApi->delete_language_pairs: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -204,6 +304,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_price_list**
@@ -212,23 +328,34 @@ No authorization required
 Delete price list
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-price_list_uid = 'price_list_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Delete price list
-    api_instance.delete_price_list(price_list_uid)
-except ApiException as e:
-    print("Exception when calling PriceListApi->delete_price_list: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    price_list_uid = 'price_list_uid_example' # str | 
+
+    try:
+        # Delete price list
+        api_instance.delete_price_list(price_list_uid)
+    except Exception as e:
+        print("Exception when calling PriceListApi->delete_price_list: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -249,6 +376,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_list_of_price_list**
@@ -257,25 +400,38 @@ No authorization required
 List price lists
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.page_dto_translation_price_list_dto import PageDtoTranslationPriceListDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-page_number = 0 # int | Page number, starting with 0, default 0 (optional) (default to 0)
-page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # List price lists
-    api_response = api_instance.get_list_of_price_list(page_number=page_number, page_size=page_size)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PriceListApi->get_list_of_price_list: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    page_number = 0 # int | Page number, starting with 0, default 0 (optional) (default to 0)
+    page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+
+    try:
+        # List price lists
+        api_response = api_instance.get_list_of_price_list(page_number=page_number, page_size=page_size)
+        print("The response of PriceListApi->get_list_of_price_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PriceListApi->get_list_of_price_list: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -297,6 +453,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_price_list**
@@ -305,24 +477,37 @@ No authorization required
 Get price list
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.translation_price_list_dto import TranslationPriceListDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-price_list_uid = 'price_list_uid_example' # str | 
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Get price list
-    api_response = api_instance.get_price_list(price_list_uid)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PriceListApi->get_price_list: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    price_list_uid = 'price_list_uid_example' # str | 
+
+    try:
+        # Get price list
+        api_response = api_instance.get_price_list(price_list_uid)
+        print("The response of PriceListApi->get_price_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PriceListApi->get_price_list: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -343,6 +528,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_prices_with_workflow_steps**
@@ -351,28 +552,41 @@ No authorization required
 List price sets
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.page_dto_translation_price_set_dto import PageDtoTranslationPriceSetDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-price_list_uid = 'price_list_uid_example' # str | 
-page_number = 0 # int | Page number, starting with 0, default 0 (optional) (default to 0)
-page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
-source_languages = ['source_languages_example'] # list[str] |  (optional)
-target_languages = ['target_languages_example'] # list[str] |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # List price sets
-    api_response = api_instance.get_prices_with_workflow_steps(price_list_uid, page_number=page_number, page_size=page_size, source_languages=source_languages, target_languages=target_languages)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PriceListApi->get_prices_with_workflow_steps: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    price_list_uid = 'price_list_uid_example' # str | 
+    page_number = 0 # int | Page number, starting with 0, default 0 (optional) (default to 0)
+    page_size = 50 # int | Page size, accepts values between 1 and 50, default 50 (optional) (default to 50)
+    source_languages = ['source_languages_example'] # List[str] |  (optional)
+    target_languages = ['target_languages_example'] # List[str] |  (optional)
+
+    try:
+        # List price sets
+        api_response = api_instance.get_prices_with_workflow_steps(price_list_uid, page_number=page_number, page_size=page_size, source_languages=source_languages, target_languages=target_languages)
+        print("The response of PriceListApi->get_prices_with_workflow_steps:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PriceListApi->get_prices_with_workflow_steps: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -381,8 +595,8 @@ Name | Type | Description  | Notes
  **price_list_uid** | **str**|  | 
  **page_number** | **int**| Page number, starting with 0, default 0 | [optional] [default to 0]
  **page_size** | **int**| Page size, accepts values between 1 and 50, default 50 | [optional] [default to 50]
- **source_languages** | [**list[str]**](str.md)|  | [optional] 
- **target_languages** | [**list[str]**](str.md)|  | [optional] 
+ **source_languages** | [**List[str]**](str.md)|  | [optional] 
+ **target_languages** | [**List[str]**](str.md)|  | [optional] 
 
 ### Return type
 
@@ -397,6 +611,22 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_minimum_price_for_set**
@@ -405,25 +635,39 @@ No authorization required
 Edit minimum prices
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.translation_price_list_dto import TranslationPriceListDto
+from phrasetms_client.models.translation_price_set_bulk_minimum_prices_dto import TranslationPriceSetBulkMinimumPricesDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-price_list_uid = 'price_list_uid_example' # str | 
-body = phrasetms_client.TranslationPriceSetBulkMinimumPricesDto() # TranslationPriceSetBulkMinimumPricesDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit minimum prices
-    api_response = api_instance.set_minimum_price_for_set(price_list_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PriceListApi->set_minimum_price_for_set: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    price_list_uid = 'price_list_uid_example' # str | 
+    body = phrasetms_client.TranslationPriceSetBulkMinimumPricesDto() # TranslationPriceSetBulkMinimumPricesDto |  (optional)
+
+    try:
+        # Edit minimum prices
+        api_response = api_instance.set_minimum_price_for_set(price_list_uid, body=body)
+        print("The response of PriceListApi->set_minimum_price_for_set:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PriceListApi->set_minimum_price_for_set: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -445,6 +689,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_prices**
@@ -455,25 +715,39 @@ Edit prices
 If object contains only price, all languages and workflow steps will be updated
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.translation_price_list_dto import TranslationPriceListDto
+from phrasetms_client.models.translation_price_set_bulk_prices_dto import TranslationPriceSetBulkPricesDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-price_list_uid = 'price_list_uid_example' # str | 
-body = phrasetms_client.TranslationPriceSetBulkPricesDto() # TranslationPriceSetBulkPricesDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Edit prices
-    api_response = api_instance.set_prices(price_list_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PriceListApi->set_prices: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    price_list_uid = 'price_list_uid_example' # str | 
+    body = phrasetms_client.TranslationPriceSetBulkPricesDto() # TranslationPriceSetBulkPricesDto |  (optional)
+
+    try:
+        # Edit prices
+        api_response = api_instance.set_prices(price_list_uid, body=body)
+        print("The response of PriceListApi->set_prices:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PriceListApi->set_prices: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -495,6 +769,22 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_price_list**
@@ -503,25 +793,39 @@ No authorization required
 Update price list
 
 ### Example
+
 ```python
-from __future__ import print_function
 import time
+import os
 import phrasetms_client
+from phrasetms_client.models.translation_price_list_create_dto import TranslationPriceListCreateDto
+from phrasetms_client.models.translation_price_list_dto import TranslationPriceListDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = phrasetms_client.PriceListApi()
-price_list_uid = 'price_list_uid_example' # str | 
-body = phrasetms_client.TranslationPriceListCreateDto() # TranslationPriceListCreateDto |  (optional)
+# Defining the host is optional and defaults to https://cloud.memsource.com/web
+# See configuration.py for a list of all supported configuration parameters.
+configuration = phrasetms_client.Configuration(
+    host = "https://cloud.memsource.com/web"
+)
 
-try:
-    # Update price list
-    api_response = api_instance.update_price_list(price_list_uid, body=body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling PriceListApi->update_price_list: %s\n" % e)
+
+# Enter a context with an instance of the API client
+with phrasetms_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = phrasetms_client.PriceListApi(api_client)
+    price_list_uid = 'price_list_uid_example' # str | 
+    body = phrasetms_client.TranslationPriceListCreateDto() # TranslationPriceListCreateDto |  (optional)
+
+    try:
+        # Update price list
+        api_response = api_instance.update_price_list(price_list_uid, body=body)
+        print("The response of PriceListApi->update_price_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling PriceListApi->update_price_list: %s\n" % e)
 ```
+
 
 ### Parameters
 
@@ -542,6 +846,22 @@ No authorization required
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful operation |  -  |
+**400** | Bad request |  -  |
+**401** | Not authorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Resource not found |  -  |
+**405** | Method not allowed |  -  |
+**408** | Timeout |  -  |
+**410** | Gone |  -  |
+**415** | Unsupported media type |  -  |
+**429** | Too many requests |  -  |
+**500** | Internal server error |  -  |
+**501** | Not implemented |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
