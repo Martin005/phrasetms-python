@@ -21,6 +21,11 @@ import json
 
 from pydantic import BaseModel
 from phrasetms_client.models.abstract_project_dto_v2 import AbstractProjectDtoV2
+from phrasetms_client.models.domain_reference import DomainReference
+from phrasetms_client.models.mt_settings_per_language_reference import MTSettingsPerLanguageReference
+from phrasetms_client.models.reference_file_reference import ReferenceFileReference
+from phrasetms_client.models.sub_domain_reference import SubDomainReference
+from phrasetms_client.models.user_reference import UserReference
 
 class LinguistV2(AbstractProjectDtoV2):
     """

@@ -22,6 +22,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, StrictBool
 from phrasetms_client.models.client_reference import ClientReference
 from phrasetms_client.models.user_details_dto_v3 import UserDetailsDtoV3
+from phrasetms_client.models.user_reference import UserReference
 
 class GUESTRESPONSE(UserDetailsDtoV3):
     """

@@ -20,8 +20,11 @@ import json
 
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
+from phrasetms_client.models.comment_dto import CommentDto
 from phrasetms_client.models.common_conversation_dto import CommonConversationDto
 from phrasetms_client.models.lqa_references import LQAReferences
+from phrasetms_client.models.mentionable_user_dto import MentionableUserDto
+from phrasetms_client.models.status_dto import StatusDto
 
 class LQA(CommonConversationDto):
     """

@@ -21,6 +21,7 @@ import json
 
 from pydantic import BaseModel
 from phrasetms_client.models.user_details_dto_v3 import UserDetailsDtoV3
+from phrasetms_client.models.user_reference import UserReference
 
 class ADMINRESPONSE(UserDetailsDtoV3):
     """

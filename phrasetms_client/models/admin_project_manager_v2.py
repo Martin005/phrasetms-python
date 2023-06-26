@@ -24,8 +24,12 @@ from phrasetms_client.models.abstract_project_dto_v2 import AbstractProjectDtoV2
 from phrasetms_client.models.business_unit_reference import BusinessUnitReference
 from phrasetms_client.models.client_reference import ClientReference
 from phrasetms_client.models.cost_center_reference import CostCenterReference
+from phrasetms_client.models.domain_reference import DomainReference
+from phrasetms_client.models.mt_settings_per_language_reference import MTSettingsPerLanguageReference
 from phrasetms_client.models.progress_dto_v2 import ProgressDtoV2
 from phrasetms_client.models.project_workflow_step_dto_v2 import ProjectWorkflowStepDtoV2
+from phrasetms_client.models.reference_file_reference import ReferenceFileReference
+from phrasetms_client.models.sub_domain_reference import SubDomainReference
 from phrasetms_client.models.user_reference import UserReference
 
 class AdminProjectManagerV2(AbstractProjectDtoV2):

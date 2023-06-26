@@ -26,6 +26,7 @@ from phrasetms_client.models.domain_reference import DomainReference
 from phrasetms_client.models.price_list_reference import PriceListReference
 from phrasetms_client.models.sub_domain_reference import SubDomainReference
 from phrasetms_client.models.user_details_dto_v3 import UserDetailsDtoV3
+from phrasetms_client.models.user_reference import UserReference
 from phrasetms_client.models.workflow_step_reference_v3 import WorkflowStepReferenceV3
 
 class LINGUISTRESPONSE(UserDetailsDtoV3):
