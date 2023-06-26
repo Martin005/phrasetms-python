@@ -78,7 +78,7 @@ class AbstractProjectDtoV2(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union(AdminProjectManagerV2, LinguistV2):
+    def from_json(cls, json_str: str) -> Union(AdminProjectManagerV2, LinguistV2):  # noqa: F821
         """Create an instance of AbstractProjectDtoV2 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -115,7 +115,7 @@ class AbstractProjectDtoV2(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union(AdminProjectManagerV2, LinguistV2):
+    def from_dict(cls, obj: dict) -> Union(AdminProjectManagerV2, LinguistV2):  # noqa: F821
         """Create an instance of AbstractProjectDtoV2 from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

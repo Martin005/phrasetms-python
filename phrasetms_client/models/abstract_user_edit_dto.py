@@ -79,7 +79,7 @@ class AbstractUserEditDto(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union(ADMINEDIT, GUESTEDIT, LINGUISTEDIT, PROJECTMANAGEREDIT, SUBMITTEREDIT):
+    def from_json(cls, json_str: str) -> Union(ADMINEDIT, GUESTEDIT, LINGUISTEDIT, PROJECTMANAGEREDIT, SUBMITTEREDIT):  # noqa: F821
         """Create an instance of AbstractUserEditDto from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -92,7 +92,7 @@ class AbstractUserEditDto(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union(ADMINEDIT, GUESTEDIT, LINGUISTEDIT, PROJECTMANAGEREDIT, SUBMITTEREDIT):
+    def from_dict(cls, obj: dict) -> Union(ADMINEDIT, GUESTEDIT, LINGUISTEDIT, PROJECTMANAGEREDIT, SUBMITTEREDIT):  # noqa: F821
         """Create an instance of AbstractUserEditDto from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

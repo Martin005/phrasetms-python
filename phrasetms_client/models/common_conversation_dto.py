@@ -72,7 +72,7 @@ class CommonConversationDto(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union(LQA, SEGMENTTARGET):
+    def from_json(cls, json_str: str) -> Union(LQA, SEGMENTTARGET):  # noqa: F821
         """Create an instance of CommonConversationDto from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -98,7 +98,7 @@ class CommonConversationDto(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union(LQA, SEGMENTTARGET):
+    def from_dict(cls, obj: dict) -> Union(LQA, SEGMENTTARGET):  # noqa: F821
         """Create an instance of CommonConversationDto from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

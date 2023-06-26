@@ -85,7 +85,7 @@ class UserDetailsDtoV3(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union(ADMINRESPONSE, GUESTRESPONSE, LINGUISTRESPONSE, PROJECTMANAGERRESPONSE, SUBMITTERRESPONSE):
+    def from_json(cls, json_str: str) -> Union(ADMINRESPONSE, GUESTRESPONSE, LINGUISTRESPONSE, PROJECTMANAGERRESPONSE, SUBMITTERRESPONSE):  # noqa: F821
         """Create an instance of UserDetailsDtoV3 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -101,7 +101,7 @@ class UserDetailsDtoV3(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union(ADMINRESPONSE, GUESTRESPONSE, LINGUISTRESPONSE, PROJECTMANAGERRESPONSE, SUBMITTERRESPONSE):
+    def from_dict(cls, obj: dict) -> Union(ADMINRESPONSE, GUESTRESPONSE, LINGUISTRESPONSE, PROJECTMANAGERRESPONSE, SUBMITTERRESPONSE):  # noqa: F821
         """Create an instance of UserDetailsDtoV3 from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)
