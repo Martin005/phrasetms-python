@@ -98,7 +98,7 @@ class TestJobApi(unittest.TestCase):
                 due=datetime(2024, 4, 5, 6, 7, 8, 9, tzinfo=timezone.utc),
                 workflow_settings=workflow_settings,
             ).to_json()
-            content_disposition = "content_disposition_example"  # str | must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)` (optional)
+            content_disposition = 'filename="test.xlsx"'  # str | must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)` (optional)
             body = None  # object |  (optional)
 
             try:
@@ -110,6 +110,7 @@ class TestJobApi(unittest.TestCase):
                     body=body,
                 )
                 print("The response of JobApi->create_job:\n")
+                pprint(api_response)
 
             except Exception as e:
                 print("Exception when calling JobApi->create_job: %s\n" % e)
