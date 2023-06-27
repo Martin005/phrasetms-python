@@ -60,7 +60,8 @@ class AbstractAnalyseSettingsDto(BaseModel):
     __discriminator_value_class_map = {
         'PostAnalyse': 'PostAnalyse',
         'PreAnalyse': 'PreAnalyse',
-        'PreAnalyseTarget, Compare': 'PreAnalyseTargetCompare'
+        'PreAnalyseTarget': 'PreAnalyseTargetCompare',
+        'Compare': 'PreAnalyseTargetCompare'
     }
 
     @classmethod

@@ -26,7 +26,7 @@ class MTSettingsPerLanguageReference(BaseModel):
     """
     MTSettingsPerLanguageReference
     """
-    target_lang: StrictStr = Field(..., alias="targetLang", description="mtSettings is set for whole project if targetLang == null")
+    target_lang: Optional[StrictStr] = Field(..., alias="targetLang", description="mtSettings is set for whole project if targetLang == null")
     machine_translate_settings: Optional[MachineTranslateSettingsReference] = Field(None, alias="machineTranslateSettings")
     __properties = ["targetLang", "machineTranslateSettings"]
 
