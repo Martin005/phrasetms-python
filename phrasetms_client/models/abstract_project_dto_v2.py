@@ -51,24 +51,6 @@ class AbstractProjectDtoV2(BaseModel):
         allow_population_by_field_name = True
         validate_assignment = True
 
-    # JSON field name that stores the object type
-    __discriminator_property_name = 'userRole'
-
-    # discriminator mappings
-    __discriminator_value_class_map = {
-        'Admin, Project Manager (v2)': 'AdminProjectManagerV2',
-        'Linguist (v2)': 'LinguistV2'
-    }
-
-    @classmethod
-    def get_discriminator_value(cls, obj: dict) -> str:
-        """Returns the discriminator value (object type) of the data"""
-        discriminator_value = obj[cls.__discriminator_property_name]
-        if discriminator_value:
-            return cls.__discriminator_value_class_map.get(discriminator_value)
-        else:
-            return None
-
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
         return pprint.pformat(self.dict(by_alias=True))
@@ -78,7 +60,7 @@ class AbstractProjectDtoV2(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union(AdminProjectManagerV2, LinguistV2):  # noqa: F821
+    def from_json(cls, json_str: str) -> AbstractProjectDtoV2:  # noqa: F821
         """Create an instance of AbstractProjectDtoV2 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -115,15 +97,28 @@ class AbstractProjectDtoV2(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union(AdminProjectManagerV2, LinguistV2):  # noqa: F821
+    def from_dict(cls, obj: dict) -> AbstractProjectDtoV2:  # noqa: F821
         """Create an instance of AbstractProjectDtoV2 from a dict"""
-        # look up the object type based on discriminator mapping
-        object_type = cls.get_discriminator_value(obj)
-        if object_type:
-            klass = getattr(phrasetms_client.models, object_type)
-            return klass.from_dict(obj)
-        else:
-            raise ValueError("AbstractProjectDtoV2 failed to lookup discriminator value from " +
-                             json.dumps(obj) + ". Discriminator property name: " + cls.__discriminator_property_name +
-                             ", mapping: " + json.dumps(cls.__discriminator_value_class_map))
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return AbstractProjectDtoV2.parse_obj(obj)
+
+        _obj = AbstractProjectDtoV2.parse_obj({
+            "uid": obj.get("uid"),
+            "internal_id": obj.get("internalId"),
+            "id": obj.get("id"),
+            "name": obj.get("name"),
+            "date_created": obj.get("dateCreated"),
+            "domain": DomainReference.from_dict(obj.get("domain")) if obj.get("domain") is not None else None,
+            "sub_domain": SubDomainReference.from_dict(obj.get("subDomain")) if obj.get("subDomain") is not None else None,
+            "owner": UserReference.from_dict(obj.get("owner")) if obj.get("owner") is not None else None,
+            "source_lang": obj.get("sourceLang"),
+            "target_langs": obj.get("targetLangs"),
+            "references": [ReferenceFileReference.from_dict(_item) for _item in obj.get("references")] if obj.get("references") is not None else None,
+            "mt_settings_per_language_list": [MTSettingsPerLanguageReference.from_dict(_item) for _item in obj.get("mtSettingsPerLanguageList")] if obj.get("mtSettingsPerLanguageList") is not None else None,
+            "user_role": obj.get("userRole"),
+        })
+        return _obj
 

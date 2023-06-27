@@ -4,7 +4,7 @@
 
 | Name                           | Type                                                              | Description                                                         | Notes      |
 | ------------------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- | ---------- |
-| **target_lang**                | **str**                                                           | mtSettings is set for whole project if targetLang &#x3D;&#x3D; null |
+| **target_lang**                | **str**                                                           | mtSettings is set for whole project if targetLang &#x3D;&#x3D; null | [optional] |
 | **machine_translate_settings** | [**MachineTranslateSettingsDto**](MachineTranslateSettingsDto.md) |                                                                     | [optional] |
 
 ## Example

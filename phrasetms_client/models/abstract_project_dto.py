@@ -56,10 +56,11 @@ class AbstractProjectDto(BaseModel):
 
     # discriminator mappings
     __discriminator_value_class_map = {
-        'Admin, Project Manager': 'AdminProjectManager',
-        'Buyer': 'Buyer',
-        'Linguist': 'Linguist',
-        'Vendor': 'Vendor'
+        'ADMIN': 'AdminProjectManager',
+        'PROJECT_MANAGER': 'AdminProjectManager',
+        'BUYER': 'Buyer',
+        'LINGUIST': 'Linguist',
+        'VENDOR': 'Vendor'
     }
 
     @classmethod
