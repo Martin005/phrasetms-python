@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel, Field, conlist
 from phrasetms_client.models.metadata_field import MetadataField
 
@@ -26,7 +26,7 @@ class MetadataPrioritySettingsDto(BaseModel):
     """
     MetadataPrioritySettingsDto
     """
-    prioritized_fields: conlist(MetadataField) = Field(..., alias="prioritizedFields")
+    prioritized_fields: Optional[conlist(MetadataField)] = Field(None, alias="prioritizedFields")
     __properties = ["prioritizedFields"]
 
     class Config:
