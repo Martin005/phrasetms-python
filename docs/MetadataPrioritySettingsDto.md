@@ -2,9 +2,9 @@
 
 ## Properties
 
-| Name                   | Type                                        | Description | Notes |
-| ---------------------- | ------------------------------------------- | ----------- | ----- |
-| **prioritized_fields** | [**List[MetadataField]**](MetadataField.md) |             |
+| Name                   | Type                                        | Description | Notes      |
+| ---------------------- | ------------------------------------------- | ----------- | ---------- |
+| **prioritized_fields** | [**List[MetadataField]**](MetadataField.md) |             | [optional] |
 
 ## Example
 

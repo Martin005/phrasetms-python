@@ -14,7 +14,7 @@
 """
 
 
-__version__ = "0.3.2"
+__version__ = "0.3.3"
 
 # import apis into sdk package
 from phrasetms_client.api.additional_workflow_step_api import AdditionalWorkflowStepApi
