@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "phrasetms_client"
-version = "0.3.3"
+version = "0.3.4"
 description = "Phrase TMS API"
 authors = ["Martin Chrástek"]
 license = "NoLicense"
 readme = "README.md"
-repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
+repository = "https://github.com/Martin005/phrasetms-python"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Phrase TMS API"]
 
 [tool.poetry.dependencies]
