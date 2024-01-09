@@ -18,6 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
+from dateutil.parser import parse
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 from phrasetms_client.models.file_import_settings_dto import FileImportSettingsDto
@@ -79,7 +80,7 @@ class ImportSettingsDto(BaseModel):
             "uid": obj.get("uid"),
             "name": obj.get("name"),
             "created_by": UserReference.from_dict(obj.get("createdBy")) if obj.get("createdBy") is not None else None,
-            "date_created": obj.get("dateCreated"),
+            "date_created": parse(obj.get("dateCreated")),
             "file_import_settings": FileImportSettingsDto.from_dict(obj.get("fileImportSettings")) if obj.get("fileImportSettings") is not None else None
         })
         return _obj
