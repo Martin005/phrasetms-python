@@ -779,6 +779,7 @@ from phrasetms_client.models.price_list_reference import PriceListReference
 from phrasetms_client.models.progress_dto import ProgressDto
 from phrasetms_client.models.progress_dto_v2 import ProgressDtoV2
 from phrasetms_client.models.progress_reference import ProgressReference
+from phrasetms_client.models.project_job_parts_dto import ProjectJobPartsDto
 from phrasetms_client.models.project_mt_settings_per_lang_dto import (
     ProjectMTSettingsPerLangDto,
 )
