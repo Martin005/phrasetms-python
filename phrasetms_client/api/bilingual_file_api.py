@@ -25,7 +25,8 @@ from typing import Any, Dict, Optional
 
 from phrasetms_client.models.compared_segments_dto import ComparedSegmentsDto
 from phrasetms_client.models.get_bilingual_file_dto import GetBilingualFileDto
-from phrasetms_client.models.job_parts_dto import JobPartsDto
+from phrasetms_client.models.multipart_file import MultipartFile
+from phrasetms_client.models.project_job_parts_dto import ProjectJobPartsDto
 
 from phrasetms_client.api_client import ApiClient
 from phrasetms_client.api_response import ApiResponse
@@ -175,7 +176,7 @@ class BilingualFileApi(object):
             self.api_client.select_header_content_type(
                 ['application/octet-stream']))
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = []  # noqa: E501
@@ -342,7 +343,7 @@ class BilingualFileApi(object):
             self.api_client.select_header_content_type(
                 ['application/octet-stream']))
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = []  # noqa: E501
@@ -370,6 +371,7 @@ class BilingualFileApi(object):
     def get_bilingual_file(self, project_uid : StrictStr, format : Optional[StrictStr] = None, preview : Optional[StrictBool] = None, body : Optional[GetBilingualFileDto] = None, **kwargs) -> None:  # noqa: E501
         """Download bilingual file  # noqa: E501
 
+         This API call generates a bilingual file in the chosen format by merging all submitted jobs together. Note that all submitted jobs must belong to the same project; it's not feasible to merge jobs from multiple projects.  When dealing with MXLIFF or DOCX files, modifications made externally can be imported back into the Phrase TMS project. Any changes will be synchronized into the editor, allowing actions like confirming or locking segments.  Unlike the user interface (UI), the APIs also support XLIFF as a bilingual format, intended primarily for export purposes. However, TMX and XLIFF files cannot be imported back into the project to reflect external changes.  While MXLIFF files are editable using various means, their primary intended use is with the [CAT Desktop Editor](https://support.phrase.com/hc/en-us/articles/5709683873052-CAT-Desktop-Editor-TMS-). It's crucial to note that alterations to the file incompatible with the CAT Desktop Editor's features may result in a corrupted file, leading to potential loss or duplication of work.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -404,6 +406,7 @@ class BilingualFileApi(object):
     def get_bilingual_file_with_http_info(self, project_uid : StrictStr, format : Optional[StrictStr] = None, preview : Optional[StrictBool] = None, body : Optional[GetBilingualFileDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download bilingual file  # noqa: E501
 
+         This API call generates a bilingual file in the chosen format by merging all submitted jobs together. Note that all submitted jobs must belong to the same project; it's not feasible to merge jobs from multiple projects.  When dealing with MXLIFF or DOCX files, modifications made externally can be imported back into the Phrase TMS project. Any changes will be synchronized into the editor, allowing actions like confirming or locking segments.  Unlike the user interface (UI), the APIs also support XLIFF as a bilingual format, intended primarily for export purposes. However, TMX and XLIFF files cannot be imported back into the project to reflect external changes.  While MXLIFF files are editable using various means, their primary intended use is with the [CAT Desktop Editor](https://support.phrase.com/hc/en-us/articles/5709683873052-CAT-Desktop-Editor-TMS-). It's crucial to note that alterations to the file incompatible with the CAT Desktop Editor's features may result in a corrupted file, leading to potential loss or duplication of work.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -504,7 +507,7 @@ class BilingualFileApi(object):
             self.api_client.select_header_content_type(
                 ['application/json']))
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = []  # noqa: E501
@@ -644,7 +647,7 @@ class BilingualFileApi(object):
             self.api_client.select_header_content_type(
                 ['application/octet-stream']))
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = []  # noqa: E501
@@ -669,24 +672,22 @@ class BilingualFileApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def upload_bilingual_file(self, format : Optional[StrictStr] = None, save_to_trans_memory : Optional[StrictStr] = None, set_completed : Optional[StrictBool] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> JobPartsDto:  # noqa: E501
+    def upload_bilingual_file_v2(self, file : MultipartFile, save_to_trans_memory : Optional[StrictStr] = None, set_completed : Optional[StrictBool] = None, **kwargs) -> ProjectJobPartsDto:  # noqa: E501
         """Upload bilingual file  # noqa: E501
 
-        Returns updated job parts  # noqa: E501
+        Returns updated job parts and projects  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.upload_bilingual_file(format, save_to_trans_memory, set_completed, body, async_req=True)
+        >>> thread = api.upload_bilingual_file_v2(file, save_to_trans_memory, set_completed, async_req=True)
         >>> result = thread.get()
 
-        :param format:
-        :type format: str
+        :param file: (required)
+        :type file: MultipartFile
         :param save_to_trans_memory:
         :type save_to_trans_memory: str
         :param set_completed:
         :type set_completed: bool
-        :param body:
-        :type body: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -696,32 +697,30 @@ class BilingualFileApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: JobPartsDto
+        :rtype: ProjectJobPartsDto
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the upload_bilingual_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.upload_bilingual_file_with_http_info(format, save_to_trans_memory, set_completed, body, **kwargs)  # noqa: E501
+            raise ValueError("Error! Please call the upload_bilingual_file_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.upload_bilingual_file_v2_with_http_info(file, save_to_trans_memory, set_completed, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def upload_bilingual_file_with_http_info(self, format : Optional[StrictStr] = None, save_to_trans_memory : Optional[StrictStr] = None, set_completed : Optional[StrictBool] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def upload_bilingual_file_v2_with_http_info(self, file : MultipartFile, save_to_trans_memory : Optional[StrictStr] = None, set_completed : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Upload bilingual file  # noqa: E501
 
-        Returns updated job parts  # noqa: E501
+        Returns updated job parts and projects  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.upload_bilingual_file_with_http_info(format, save_to_trans_memory, set_completed, body, async_req=True)
+        >>> thread = api.upload_bilingual_file_v2_with_http_info(file, save_to_trans_memory, set_completed, async_req=True)
         >>> result = thread.get()
 
-        :param format:
-        :type format: str
+        :param file: (required)
+        :type file: MultipartFile
         :param save_to_trans_memory:
         :type save_to_trans_memory: str
         :param set_completed:
         :type set_completed: bool
-        :param body:
-        :type body: object
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -744,16 +743,15 @@ class BilingualFileApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(JobPartsDto, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(ProjectJobPartsDto, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
 
         _all_params = [
-            'format',
+            'file',
             'save_to_trans_memory',
-            'set_completed',
-            'body'
+            'set_completed'
         ]
         _all_params.extend(
             [
@@ -772,7 +770,7 @@ class BilingualFileApi(object):
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method upload_bilingual_file" % _key
+                    " to method upload_bilingual_file_v2" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -784,9 +782,6 @@ class BilingualFileApi(object):
 
         # process the query parameters
         _query_params = []
-        if _params.get('format') is not None:  # noqa: E501
-            _query_params.append(('format', _params['format'].value))
-
         if _params.get('save_to_trans_memory') is not None:  # noqa: E501
             _query_params.append(('saveToTransMemory', _params['save_to_trans_memory'].value))
 
@@ -798,11 +793,11 @@ class BilingualFileApi(object):
         # process the form parameters
         _form_params = []
         _files = {}
+        if _params['file']:
+            _form_params.append(('file', _params['file']))
+
         # process the body parameter
         _body_params = None
-        if _params['body'] is not None:
-            _body_params = _params['body']
-
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
@@ -810,15 +805,15 @@ class BilingualFileApi(object):
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/octet-stream']))
+                ['multipart/form-data']))
         if _content_types_list:
-                _header_params['Content-Type'] = _content_types_list
+            _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = []  # noqa: E501
 
         _response_types_map = {
-            '200': "JobPartsDto",
+            '200': "ProjectJobPartsDto",
             '400': None,
             '401': None,
             '403': None,
@@ -833,7 +828,7 @@ class BilingualFileApi(object):
         }
 
         return self.api_client.call_api(
-            '/api2/v1/bilingualFiles', 'PUT',
+            '/api2/v2/bilingualFiles', 'POST',
             _path_params,
             _query_params,
             _header_params,

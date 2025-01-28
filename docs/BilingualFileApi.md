@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**convert_bilingual_file**](BilingualFileApi.md#convert_bilingual_file) | **POST** /api2/v1/bilingualFiles/convert | Convert bilingual file
 [**get_bilingual_file**](BilingualFileApi.md#get_bilingual_file) | **POST** /api2/v1/projects/{projectUid}/jobs/bilingualFile | Download bilingual file
 [**get_preview_file**](BilingualFileApi.md#get_preview_file) | **POST** /api2/v1/bilingualFiles/preview | Download preview
-[**upload_bilingual_file**](BilingualFileApi.md#upload_bilingual_file) | **PUT** /api2/v1/bilingualFiles | Upload bilingual file
+[**upload_bilingual_file_v2**](BilingualFileApi.md#upload_bilingual_file_v2) | **POST** /api2/v2/bilingualFiles | Upload bilingual file
 
 
 # **compare_bilingual_file**
@@ -50,6 +50,7 @@ with phrasetms_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling BilingualFileApi->compare_bilingual_file: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -127,6 +128,7 @@ with phrasetms_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -171,6 +173,8 @@ No authorization required
 
 Download bilingual file
 
+ This API call generates a bilingual file in the chosen format by merging all submitted jobs together. Note that all submitted jobs must belong to the same project; it's not feasible to merge jobs from multiple projects.  When dealing with MXLIFF or DOCX files, modifications made externally can be imported back into the Phrase TMS project. Any changes will be synchronized into the editor, allowing actions like confirming or locking segments.  Unlike the user interface (UI), the APIs also support XLIFF as a bilingual format, intended primarily for export purposes. However, TMX and XLIFF files cannot be imported back into the project to reflect external changes.  While MXLIFF files are editable using various means, their primary intended use is with the [CAT Desktop Editor](https://support.phrase.com/hc/en-us/articles/5709683873052-CAT-Desktop-Editor-TMS-). It's crucial to note that alterations to the file incompatible with the CAT Desktop Editor's features may result in a corrupted file, leading to potential loss or duplication of work. 
+
 ### Example
 
 ```python
@@ -203,6 +207,7 @@ with phrasetms_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling BilingualFileApi->get_bilingual_file: %s\n" % e)
 ```
+
 
 
 ### Parameters
@@ -282,6 +287,7 @@ with phrasetms_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
 
 Name | Type | Description  | Notes
@@ -319,12 +325,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **upload_bilingual_file**
-> JobPartsDto upload_bilingual_file(format=format, save_to_trans_memory=save_to_trans_memory, set_completed=set_completed, body=body)
+# **upload_bilingual_file_v2**
+> ProjectJobPartsDto upload_bilingual_file_v2(file, save_to_trans_memory=save_to_trans_memory, set_completed=set_completed)
 
 Upload bilingual file
 
-Returns updated job parts
+Returns updated job parts and projects
 
 ### Example
 
@@ -332,7 +338,8 @@ Returns updated job parts
 import time
 import os
 import phrasetms_client
-from phrasetms_client.models.job_parts_dto import JobPartsDto
+from phrasetms_client.models.multipart_file import MultipartFile
+from phrasetms_client.models.project_job_parts_dto import ProjectJobPartsDto
 from phrasetms_client.rest import ApiException
 from pprint import pprint
 
@@ -347,33 +354,32 @@ configuration = phrasetms_client.Configuration(
 with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = phrasetms_client.BilingualFileApi(api_client)
-    format = 'MXLF' # str |  (optional) (default to 'MXLF')
+    file = phrasetms_client.MultipartFile() # MultipartFile | 
     save_to_trans_memory = 'Confirmed' # str |  (optional) (default to 'Confirmed')
     set_completed = False # bool |  (optional) (default to False)
-    body = None # object |  (optional)
 
     try:
         # Upload bilingual file
-        api_response = api_instance.upload_bilingual_file(format=format, save_to_trans_memory=save_to_trans_memory, set_completed=set_completed, body=body)
-        print("The response of BilingualFileApi->upload_bilingual_file:\n")
+        api_response = api_instance.upload_bilingual_file_v2(file, save_to_trans_memory=save_to_trans_memory, set_completed=set_completed)
+        print("The response of BilingualFileApi->upload_bilingual_file_v2:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling BilingualFileApi->upload_bilingual_file: %s\n" % e)
+        print("Exception when calling BilingualFileApi->upload_bilingual_file_v2: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **format** | **str**|  | [optional] [default to &#39;MXLF&#39;]
+ **file** | [**MultipartFile**](MultipartFile.md)|  | 
  **save_to_trans_memory** | **str**|  | [optional] [default to &#39;Confirmed&#39;]
  **set_completed** | **bool**|  | [optional] [default to False]
- **body** | **object**|  | [optional] 
 
 ### Return type
 
-[**JobPartsDto**](JobPartsDto.md)
+[**ProjectJobPartsDto**](ProjectJobPartsDto.md)
 
 ### Authorization
 
@@ -381,7 +387,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/octet-stream
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
