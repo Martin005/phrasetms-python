@@ -36,7 +36,7 @@ class TestMultipartFile(unittest.TestCase):
         model = MultipartFile()  # noqa: E501
         if include_optional:
             return MultipartFile(
-                name = '',
+                local_path = '',
                 empty = True,
                 bytes = [
                     'YQ=='
