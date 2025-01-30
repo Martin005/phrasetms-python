@@ -37,7 +37,7 @@ class MultipartFile(BaseModel):
     MultipartFile
     """
 
-    local_path: Optional[StrictStr] = None
+    local_path: StrictStr = Field(...)
     empty: Optional[StrictBool] = None
     bytes: Optional[conlist(Union[conbytes(strict=True), constr(strict=True)])] = None
     size: Optional[StrictInt] = None
