@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** |  | [optional] 
+**local_path** | **str** |  | [optional] 
 **empty** | **bool** |  | [optional] 
 **bytes** | **List[bytearray]** |  | [optional] 
 **size** | **int** |  | [optional] 

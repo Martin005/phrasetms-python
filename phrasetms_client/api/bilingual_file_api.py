@@ -794,7 +794,7 @@ class BilingualFileApi(object):
         _form_params = []
         _files = {}
         if _params['file']:
-            _form_params.append(('file', _params['file']))
+            _files['file'] = _params['file'].local_path
 
         # process the body parameter
         _body_params = None

@@ -354,7 +354,7 @@ configuration = phrasetms_client.Configuration(
 with phrasetms_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = phrasetms_client.BilingualFileApi(api_client)
-    file = phrasetms_client.MultipartFile() # MultipartFile | 
+    file = phrasetms_client.MultipartFile(local_path="output.mxliff") # MultipartFile | 
     save_to_trans_memory = 'Confirmed' # str |  (optional) (default to 'Confirmed')
     set_completed = False # bool |  (optional) (default to False)
 

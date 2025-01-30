@@ -37,7 +37,7 @@ class MultipartFile(BaseModel):
     MultipartFile
     """
 
-    name: Optional[StrictStr] = None
+    local_path: Optional[StrictStr] = None
     empty: Optional[StrictBool] = None
     bytes: Optional[conlist(Union[conbytes(strict=True), constr(strict=True)])] = None
     size: Optional[StrictInt] = None
@@ -45,7 +45,7 @@ class MultipartFile(BaseModel):
     content_type: Optional[StrictStr] = Field(None, alias="contentType")
     original_filename: Optional[StrictStr] = Field(None, alias="originalFilename")
     __properties = [
-        "name",
+        "local_path",
         "empty",
         "bytes",
         "size",
@@ -89,7 +89,7 @@ class MultipartFile(BaseModel):
 
         _obj = MultipartFile.parse_obj(
             {
-                "name": obj.get("name"),
+                "local_path": obj.get("local_path"),
                 "empty": obj.get("empty"),
                 "bytes": obj.get("bytes"),
                 "size": obj.get("size"),
