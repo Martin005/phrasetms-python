@@ -27,9 +27,9 @@ class USER(ProviderReference):
     USER
     """
 
-    user_name: Optional[StrictInt] = Field(None, alias="userName")
-    first_name: Optional[StrictInt] = Field(None, alias="firstName")
-    last_name: Optional[StrictInt] = Field(None, alias="lastName")
+    user_name: Optional[StrictStr] = Field(None, alias="userName")
+    first_name: Optional[StrictStr] = Field(None, alias="firstName")
+    last_name: Optional[StrictStr] = Field(None, alias="lastName")
     email: Optional[StrictStr] = None
     active: Optional[StrictBool] = None
     __properties = [
@@ -88,6 +88,7 @@ class USER(ProviderReference):
 
         _obj = USER.parse_obj(
             {
+                "type": obj.get("type"),
                 "user_name": obj.get("userName"),
                 "first_name": obj.get("firstName"),
                 "last_name": obj.get("lastName"),
