@@ -1,0 +1,1202 @@
+
+
+## Documentation for API Endpoints
+
+All URIs are relative to *https://cloud.memsource.com/web*
+
+| Class                           | Method                                                                                                                                    | HTTP request                                                                                            | Description                                            |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| _AdditionalWorkflowStepApi_     | [**create_awf_step**](docs/AdditionalWorkflowStepApi.md#create_awf_step)                                                                  | **POST** /api2/v1/additionalWorkflowSteps                                                               | Create additional workflow step                        |
+| _AdditionalWorkflowStepApi_     | [**delete_awf_step**](docs/AdditionalWorkflowStepApi.md#delete_awf_step)                                                                  | **DELETE** /api2/v1/additionalWorkflowSteps/{id}                                                        | Delete additional workflow step                        |
+| _AdditionalWorkflowStepApi_     | [**list_awf_steps**](docs/AdditionalWorkflowStepApi.md#list_awf_steps)                                                                    | **GET** /api2/v1/additionalWorkflowSteps                                                                | List additional workflow steps                         |
+| _AnalysisApi_                   | [**analyses_batch_edit_v2**](docs/AnalysisApi.md#analyses_batch_edit_v2)                                                                  | **PUT** /api2/v2/analyses/bulk                                                                          | Edit analyses (batch)                                  |
+| _AnalysisApi_                   | [**bulk_delete_analyses**](docs/AnalysisApi.md#bulk_delete_analyses)                                                                      | **DELETE** /api2/v1/analyses/bulk                                                                       | Delete analyses (batch)                                |
+| _AnalysisApi_                   | [**create_analyse_async1**](docs/AnalysisApi.md#create_analyse_async1)                                                                    | **POST** /api2/v2/analyses                                                                              | Create analysis                                        |
+| _AnalysisApi_                   | [**create_analyses_for_langs**](docs/AnalysisApi.md#create_analyses_for_langs)                                                            | **POST** /api2/v1/analyses/byLanguages                                                                  | Create analyses by languages                           |
+| _AnalysisApi_                   | [**create_analyses_for_providers**](docs/AnalysisApi.md#create_analyses_for_providers)                                                    | **POST** /api2/v1/analyses/byProviders                                                                  | Create analyses by providers                           |
+| _AnalysisApi_                   | [**delete**](docs/AnalysisApi.md#delete)                                                                                                  | **DELETE** /api2/v1/analyses/{analyseUid}                                                               | Delete analysis                                        |
+| _AnalysisApi_                   | [**download_analyse**](docs/AnalysisApi.md#download_analyse)                                                                              | **GET** /api2/v1/analyses/{analyseUid}/download                                                         | Download analysis                                      |
+| _AnalysisApi_                   | [**edit_analysis**](docs/AnalysisApi.md#edit_analysis)                                                                                    | **PUT** /api2/v2/analyses/{analyseUid}                                                                  | Edit analysis                                          |
+| _AnalysisApi_                   | [**get_analyse_language_part**](docs/AnalysisApi.md#get_analyse_language_part)                                                            | **GET** /api2/v1/analyses/{analyseUid}/analyseLanguageParts/{analyseLanguagePartId}                     | Get analysis language part                             |
+| _AnalysisApi_                   | [**get_analyse_v3**](docs/AnalysisApi.md#get_analyse_v3)                                                                                  | **GET** /api2/v3/analyses/{analyseUid}                                                                  | Get analysis                                           |
+| _AnalysisApi_                   | [**get_job_part_analyse**](docs/AnalysisApi.md#get_job_part_analyse)                                                                      | **GET** /api2/v1/analyses/{analyseUid}/jobs/{jobUid}                                                    | Get jobs analysis                                      |
+| _AnalysisApi_                   | [**list_by_project_v3**](docs/AnalysisApi.md#list_by_project_v3)                                                                          | **GET** /api2/v3/projects/{projectUid}/analyses                                                         | List analyses by project                               |
+| _AnalysisApi_                   | [**list_job_parts**](docs/AnalysisApi.md#list_job_parts)                                                                                  | **GET** /api2/v1/analyses/{analyseUid}/analyseLanguageParts/{analyseLanguagePartId}/jobs                | List jobs of analyses                                  |
+| _AnalysisApi_                   | [**list_part_analyse_v3**](docs/AnalysisApi.md#list_part_analyse_v3)                                                                      | **GET** /api2/v3/projects/{projectUid}/jobs/{jobUid}/analyses                                           | List analyses                                          |
+| _AnalysisApi_                   | [**recalculate**](docs/AnalysisApi.md#recalculate)                                                                                        | **POST** /api2/v1/analyses/recalculate                                                                  | Recalculate analysis                                   |
+| _AsyncRequestApi_               | [**get_async_request**](docs/AsyncRequestApi.md#get_async_request)                                                                        | **GET** /api2/v1/async/{asyncRequestId}                                                                 | Get asynchronous request                               |
+| _AsyncRequestApi_               | [**get_current_limit_status**](docs/AsyncRequestApi.md#get_current_limit_status)                                                          | **GET** /api2/v1/async/status                                                                           | Get current limits                                     |
+| _AsyncRequestApi_               | [**list_pending_requests**](docs/AsyncRequestApi.md#list_pending_requests)                                                                | **GET** /api2/v1/async                                                                                  | List pending requests                                  |
+| _AuthenticationApi_             | [**login**](docs/AuthenticationApi.md#login)                                                                                              | **POST** /api2/v1/auth/login                                                                            | Login                                                  |
+| _AuthenticationApi_             | [**login1**](docs/AuthenticationApi.md#login1)                                                                                            | **POST** /api2/v3/auth/login                                                                            | Login                                                  |
+| _AuthenticationApi_             | [**login_by_apple_with_code**](docs/AuthenticationApi.md#login_by_apple_with_code)                                                        | **POST** /api2/v1/auth/loginWithApple/code                                                              | Login with Apple with code                             |
+| _AuthenticationApi_             | [**login_by_apple_with_refresh_token**](docs/AuthenticationApi.md#login_by_apple_with_refresh_token)                                      | **POST** /api2/v1/auth/loginWithApple/refreshToken                                                      | Login with Apple refresh token                         |
+| _AuthenticationApi_             | [**login_by_google**](docs/AuthenticationApi.md#login_by_google)                                                                          | **POST** /api2/v1/auth/loginWithGoogle                                                                  | Login with Google                                      |
+| _AuthenticationApi_             | [**login_other**](docs/AuthenticationApi.md#login_other)                                                                                  | **POST** /api2/v1/auth/loginOther                                                                       | Login as another user                                  |
+| _AuthenticationApi_             | [**login_other1**](docs/AuthenticationApi.md#login_other1)                                                                                | **POST** /api2/v3/auth/loginOther                                                                       | Login as another user                                  |
+| _AuthenticationApi_             | [**login_to_session**](docs/AuthenticationApi.md#login_to_session)                                                                        | **POST** /api2/v1/auth/loginToSession                                                                   | Login to session                                       |
+| _AuthenticationApi_             | [**login_to_session2**](docs/AuthenticationApi.md#login_to_session2)                                                                      | **POST** /api2/v3/auth/loginToSession                                                                   | Login to session                                       |
+| _AuthenticationApi_             | [**logout**](docs/AuthenticationApi.md#logout)                                                                                            | **POST** /api2/v1/auth/logout                                                                           | Logout                                                 |
+| _AuthenticationApi_             | [**refresh_apple_token**](docs/AuthenticationApi.md#refresh_apple_token)                                                                  | **GET** /api2/v1/auth/refreshAppleToken                                                                 | refresh apple token                                    |
+| _AuthenticationApi_             | [**who_am_i**](docs/AuthenticationApi.md#who_am_i)                                                                                        | **GET** /api2/v1/auth/whoAmI                                                                            | Who am I                                               |
+| _BilingualFileApi_              | [**compare_bilingual_file**](docs/BilingualFileApi.md#compare_bilingual_file)                                                             | **POST** /api2/v1/bilingualFiles/compare                                                                | Compare bilingual file                                 |
+| _BilingualFileApi_              | [**convert_bilingual_file**](docs/BilingualFileApi.md#convert_bilingual_file)                                                             | **POST** /api2/v1/bilingualFiles/convert                                                                | Convert bilingual file                                 |
+| _BilingualFileApi_              | [**get_bilingual_file**](docs/BilingualFileApi.md#get_bilingual_file)                                                                     | **POST** /api2/v1/projects/{projectUid}/jobs/bilingualFile                                              | Download bilingual file                                |
+| _BilingualFileApi_              | [**get_preview_file**](docs/BilingualFileApi.md#get_preview_file)                                                                         | **POST** /api2/v1/bilingualFiles/preview                                                                | Download preview                                       |
+| _BilingualFileApi_              | [**upload_bilingual_file**](docs/BilingualFileApi.md#upload_bilingual_file)                                                               | **PUT** /api2/v1/bilingualFiles                                                                         | Upload bilingual file                                  |
+| _BusinessUnitApi_               | [**create_business_unit**](docs/BusinessUnitApi.md#create_business_unit)                                                                  | **POST** /api2/v1/businessUnits                                                                         | Create business unit                                   |
+| _BusinessUnitApi_               | [**delete_business_unit**](docs/BusinessUnitApi.md#delete_business_unit)                                                                  | **DELETE** /api2/v1/businessUnits/{businessUnitUid}                                                     | Delete business unit                                   |
+| _BusinessUnitApi_               | [**get_business_unit**](docs/BusinessUnitApi.md#get_business_unit)                                                                        | **GET** /api2/v1/businessUnits/{businessUnitUid}                                                        | Get business unit                                      |
+| _BusinessUnitApi_               | [**list_business_units**](docs/BusinessUnitApi.md#list_business_units)                                                                    | **GET** /api2/v1/businessUnits                                                                          | List business units                                    |
+| _BusinessUnitApi_               | [**update_business_unit**](docs/BusinessUnitApi.md#update_business_unit)                                                                  | **PUT** /api2/v1/businessUnits/{businessUnitUid}                                                        | Edit business unit                                     |
+| _ClientApi_                     | [**create_client**](docs/ClientApi.md#create_client)                                                                                      | **POST** /api2/v1/clients                                                                               | Create client                                          |
+| _ClientApi_                     | [**delete_client**](docs/ClientApi.md#delete_client)                                                                                      | **DELETE** /api2/v1/clients/{clientUid}                                                                 | Delete client                                          |
+| _ClientApi_                     | [**get_client**](docs/ClientApi.md#get_client)                                                                                            | **GET** /api2/v1/clients/{clientUid}                                                                    | Get client                                             |
+| _ClientApi_                     | [**list_clients**](docs/ClientApi.md#list_clients)                                                                                        | **GET** /api2/v1/clients                                                                                | List clients                                           |
+| _ClientApi_                     | [**update_client**](docs/ClientApi.md#update_client)                                                                                      | **PUT** /api2/v1/clients/{clientUid}                                                                    | Edit client                                            |
+| _ConnectorApi_                  | [**edit_connector**](docs/ConnectorApi.md#edit_connector)                                                                                 | **PUT** /api2/v1/connectors/{connectorId}                                                               | Edit connector                                         |
+| _ConnectorApi_                  | [**get_connector**](docs/ConnectorApi.md#get_connector)                                                                                   | **GET** /api2/v1/connectors/{connectorId}                                                               | Get a connector                                        |
+| _ConnectorApi_                  | [**get_connector_list**](docs/ConnectorApi.md#get_connector_list)                                                                         | **GET** /api2/v1/connectors                                                                             | List connectors                                        |
+| _ConnectorApi_                  | [**get_file**](docs/ConnectorApi.md#get_file)                                                                                             | **GET** /api2/v1/connectors/{connectorId}/folders/{folder}/files/{file}                                 | Download file                                          |
+| _ConnectorApi_                  | [**get_file1**](docs/ConnectorApi.md#get_file1)                                                                                           | **POST** /api2/v2/connectors/{connectorId}/folders/{folder}/files/{file}                                | Download file (async)                                  |
+| _ConnectorApi_                  | [**get_folder**](docs/ConnectorApi.md#get_folder)                                                                                         | **GET** /api2/v1/connectors/{connectorId}/folders/{folder}                                              | List files in a subfolder                              |
+| _ConnectorApi_                  | [**get_prepared_file**](docs/ConnectorApi.md#get_prepared_file)                                                                           | **GET** /api2/v2/connectors/{connectorId}/folders/{folder}/files/{file}/tasks/{taskId}                  | Download prepared file                                 |
+| _ConnectorApi_                  | [**get_root_folder**](docs/ConnectorApi.md#get_root_folder)                                                                               | **GET** /api2/v1/connectors/{connectorId}/folders                                                       | List files in root                                     |
+| _ConnectorApi_                  | [**upload_file**](docs/ConnectorApi.md#upload_file)                                                                                       | **POST** /api2/v1/connectors/{connectorId}/folders/{folder}                                             | Upload a file to a subfolder of the selected connector |
+| _ConnectorApi_                  | [**upload_file1**](docs/ConnectorApi.md#upload_file1)                                                                                     | **POST** /api2/v2/connectors/{connectorId}/folders/{folder}/files/{fileName}/upload                     | Upload file (async)                                    |
+| _ConversationsApi_              | [**add_lqa_comment1**](docs/ConversationsApi.md#add_lqa_comment1)                                                                         | **POST** /api2/v2/jobs/{jobUid}/conversations/lqas/{conversationId}/comments                            | Add LQA comment                                        |
+| _ConversationsApi_              | [**add_plain_comment2**](docs/ConversationsApi.md#add_plain_comment2)                                                                     | **POST** /api2/v3/jobs/{jobUid}/conversations/plains/{conversationId}/comments                          | Add plain comment                                      |
+| _ConversationsApi_              | [**create_lqa_conversation1**](docs/ConversationsApi.md#create_lqa_conversation1)                                                         | **POST** /api2/v2/jobs/{jobUid}/conversations/lqas                                                      | Create LQA conversation                                |
+| _ConversationsApi_              | [**create_segment_target_conversation1**](docs/ConversationsApi.md#create_segment_target_conversation1)                                   | **POST** /api2/v3/jobs/{jobUid}/conversations/plains                                                    | Create plain conversation                              |
+| _ConversationsApi_              | [**delete_lqa_comment**](docs/ConversationsApi.md#delete_lqa_comment)                                                                     | **DELETE** /api2/v1/jobs/{jobUid}/conversations/lqas/{conversationId}/comments/{commentId}              | Delete LQA comment                                     |
+| _ConversationsApi_              | [**delete_lqa_conversation**](docs/ConversationsApi.md#delete_lqa_conversation)                                                           | **DELETE** /api2/v1/jobs/{jobUid}/conversations/lqas/{conversationId}                                   | Delete LQA conversation                                |
+| _ConversationsApi_              | [**delete_plain_comment**](docs/ConversationsApi.md#delete_plain_comment)                                                                 | **DELETE** /api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}/comments/{commentId}            | Delete plain comment                                   |
+| _ConversationsApi_              | [**delete_plain_conversation**](docs/ConversationsApi.md#delete_plain_conversation)                                                       | **DELETE** /api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}                                 | Delete plain conversation                              |
+| _ConversationsApi_              | [**find_conversations**](docs/ConversationsApi.md#find_conversations)                                                                     | **POST** /api2/v1/jobs/conversations/find                                                               | Find all conversation                                  |
+| _ConversationsApi_              | [**get_lqa_conversation**](docs/ConversationsApi.md#get_lqa_conversation)                                                                 | **GET** /api2/v1/jobs/{jobUid}/conversations/lqas/{conversationId}                                      | Get LQA conversation                                   |
+| _ConversationsApi_              | [**get_plain_conversation**](docs/ConversationsApi.md#get_plain_conversation)                                                             | **GET** /api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}                                    | Get plain conversation                                 |
+| _ConversationsApi_              | [**list_all_conversations**](docs/ConversationsApi.md#list_all_conversations)                                                             | **GET** /api2/v1/jobs/{jobUid}/conversations                                                            | List all conversations                                 |
+| _ConversationsApi_              | [**list_lqa_conversations**](docs/ConversationsApi.md#list_lqa_conversations)                                                             | **GET** /api2/v1/jobs/{jobUid}/conversations/lqas                                                       | List LQA conversations                                 |
+| _ConversationsApi_              | [**list_plain_conversations**](docs/ConversationsApi.md#list_plain_conversations)                                                         | **GET** /api2/v1/jobs/{jobUid}/conversations/plains                                                     | List plain conversations                               |
+| _ConversationsApi_              | [**update_lqa_comment1**](docs/ConversationsApi.md#update_lqa_comment1)                                                                   | **PUT** /api2/v2/jobs/{jobUid}/conversations/lqas/{conversationId}/comments/{commentId}                 | Edit LQA comment                                       |
+| _ConversationsApi_              | [**update_lqa_conversation1**](docs/ConversationsApi.md#update_lqa_conversation1)                                                         | **PUT** /api2/v2/jobs/{jobUid}/conversations/lqas/{conversationId}                                      | Update LQA conversation                                |
+| _ConversationsApi_              | [**update_plain_comment1**](docs/ConversationsApi.md#update_plain_comment1)                                                               | **PUT** /api2/v3/jobs/{jobUid}/conversations/plains/{conversationId}/comments/{commentId}               | Edit plain comment                                     |
+| _ConversationsApi_              | [**update_plain_conversation**](docs/ConversationsApi.md#update_plain_conversation)                                                       | **PUT** /api2/v1/jobs/{jobUid}/conversations/plains/{conversationId}                                    | Edit plain conversation                                |
+| _CostCenterApi_                 | [**create_cost_center**](docs/CostCenterApi.md#create_cost_center)                                                                        | **POST** /api2/v1/costCenters                                                                           | Create cost center                                     |
+| _CostCenterApi_                 | [**delete_cost_center**](docs/CostCenterApi.md#delete_cost_center)                                                                        | **DELETE** /api2/v1/costCenters/{costCenterUid}                                                         | Delete cost center                                     |
+| _CostCenterApi_                 | [**get_cost_center**](docs/CostCenterApi.md#get_cost_center)                                                                              | **GET** /api2/v1/costCenters/{costCenterUid}                                                            | Get cost center                                        |
+| _CostCenterApi_                 | [**list_cost_centers**](docs/CostCenterApi.md#list_cost_centers)                                                                          | **GET** /api2/v1/costCenters                                                                            | List of cost centers                                   |
+| _CostCenterApi_                 | [**update_cost_center**](docs/CostCenterApi.md#update_cost_center)                                                                        | **PUT** /api2/v1/costCenters/{costCenterUid}                                                            | Edit cost center                                       |
+| _CustomFieldsApi_               | [**create_custom_field**](docs/CustomFieldsApi.md#create_custom_field)                                                                    | **POST** /api2/v1/customFields                                                                          | Create custom field                                    |
+| _CustomFieldsApi_               | [**get_custom_field**](docs/CustomFieldsApi.md#get_custom_field)                                                                          | **GET** /api2/v1/customFields/{fieldUid}                                                                | Get custom field                                       |
+| _CustomFieldsApi_               | [**get_custom_field_list**](docs/CustomFieldsApi.md#get_custom_field_list)                                                                | **GET** /api2/v1/customFields                                                                           | Lists custom fields                                    |
+| _CustomFieldsApi_               | [**get_custom_field_option_list**](docs/CustomFieldsApi.md#get_custom_field_option_list)                                                  | **GET** /api2/v1/customFields/{fieldUid}/options                                                        | Lists options of custom field                          |
+| _CustomFileTypeApi_             | [**create_custom_file_types**](docs/CustomFileTypeApi.md#create_custom_file_types)                                                        | **POST** /api2/v1/customFileTypes                                                                       | Create custom file type                                |
+| _CustomFileTypeApi_             | [**delete_batch_custom_file_type**](docs/CustomFileTypeApi.md#delete_batch_custom_file_type)                                              | **DELETE** /api2/v1/customFileTypes                                                                     | Delete multiple Custom file type                       |
+| _CustomFileTypeApi_             | [**delete_custom_file_type**](docs/CustomFileTypeApi.md#delete_custom_file_type)                                                          | **DELETE** /api2/v1/customFileTypes/{customFileTypeUid}                                                 | Delete Custom file type                                |
+| _CustomFileTypeApi_             | [**get_all_custom_file_type**](docs/CustomFileTypeApi.md#get_all_custom_file_type)                                                        | **GET** /api2/v1/customFileTypes                                                                        | Get All Custom file type                               |
+| _CustomFileTypeApi_             | [**get_custom_file_type**](docs/CustomFileTypeApi.md#get_custom_file_type)                                                                | **GET** /api2/v1/customFileTypes/{customFileTypeUid}                                                    | Get Custom file type                                   |
+| _CustomFileTypeApi_             | [**update_custom_file_type**](docs/CustomFileTypeApi.md#update_custom_file_type)                                                          | **PUT** /api2/v1/customFileTypes/{customFileTypeUid}                                                    | Update Custom file type                                |
+| _DomainApi_                     | [**create_domain**](docs/DomainApi.md#create_domain)                                                                                      | **POST** /api2/v1/domains                                                                               | Create domain                                          |
+| _DomainApi_                     | [**delete_domain**](docs/DomainApi.md#delete_domain)                                                                                      | **DELETE** /api2/v1/domains/{domainUid}                                                                 | Delete domain                                          |
+| _DomainApi_                     | [**get_domain**](docs/DomainApi.md#get_domain)                                                                                            | **GET** /api2/v1/domains/{domainUid}                                                                    | Get domain                                             |
+| _DomainApi_                     | [**list_domains**](docs/DomainApi.md#list_domains)                                                                                        | **GET** /api2/v1/domains                                                                                | List of domains                                        |
+| _DomainApi_                     | [**update_domain**](docs/DomainApi.md#update_domain)                                                                                      | **PUT** /api2/v1/domains/{domainUid}                                                                    | Edit domain                                            |
+| _EmailTemplateApi_              | [**get_org_email_template**](docs/EmailTemplateApi.md#get_org_email_template)                                                             | **GET** /api2/v1/emailTemplates/{templateUid}                                                           | Get email template                                     |
+| _EmailTemplateApi_              | [**list_org_email_templates**](docs/EmailTemplateApi.md#list_org_email_templates)                                                         | **GET** /api2/v1/emailTemplates                                                                         | List email templates                                   |
+| _FileApi_                       | [**create_url_file**](docs/FileApi.md#create_url_file)                                                                                    | **POST** /api2/v1/files                                                                                 | Upload file                                            |
+| _FileApi_                       | [**deletes_file**](docs/FileApi.md#deletes_file)                                                                                          | **DELETE** /api2/v1/files/{fileUid}                                                                     | Delete file                                            |
+| _FileApi_                       | [**get_file_json**](docs/FileApi.md#get_file_json)                                                                                        | **GET** /api2/v1/files/{fileUid}                                                                        | Get file                                               |
+| _FileApi_                       | [**get_files**](docs/FileApi.md#get_files)                                                                                                | **GET** /api2/v1/files                                                                                  | List files                                             |
+| _GlossaryApi_                   | [**activate_glossary**](docs/GlossaryApi.md#activate_glossary)                                                                            | **PUT** /api2/v1/glossaries/{glossaryUid}/activate                                                      | Activate/Deactivate glossary                           |
+| _GlossaryApi_                   | [**create_glossary**](docs/GlossaryApi.md#create_glossary)                                                                                | **POST** /api2/v1/glossaries                                                                            | Create glossary                                        |
+| _GlossaryApi_                   | [**delete_glossary**](docs/GlossaryApi.md#delete_glossary)                                                                                | **DELETE** /api2/v1/glossaries/{glossaryUid}                                                            | Delete glossary                                        |
+| _GlossaryApi_                   | [**get_glossary**](docs/GlossaryApi.md#get_glossary)                                                                                      | **GET** /api2/v1/glossaries/{glossaryUid}                                                               | Get glossary                                           |
+| _GlossaryApi_                   | [**list_glossaries**](docs/GlossaryApi.md#list_glossaries)                                                                                | **GET** /api2/v1/glossaries                                                                             | List glossaries                                        |
+| _GlossaryApi_                   | [**update_glossary**](docs/GlossaryApi.md#update_glossary)                                                                                | **PUT** /api2/v1/glossaries/{glossaryUid}                                                               | Edit glossary                                          |
+| _ImportSettingsApi_             | [**create_import_settings**](docs/ImportSettingsApi.md#create_import_settings)                                                            | **POST** /api2/v1/importSettings                                                                        | Create import settings                                 |
+| _ImportSettingsApi_             | [**delete_import_settings**](docs/ImportSettingsApi.md#delete_import_settings)                                                            | **DELETE** /api2/v1/importSettings/{uid}                                                                | Delete import settings                                 |
+| _ImportSettingsApi_             | [**edit_import_settings**](docs/ImportSettingsApi.md#edit_import_settings)                                                                | **PUT** /api2/v1/importSettings                                                                         | Edit import settings                                   |
+| _ImportSettingsApi_             | [**get_import_settings**](docs/ImportSettingsApi.md#get_import_settings)                                                                  | **GET** /api2/v1/importSettings/{uid}                                                                   | Get import settings                                    |
+| _ImportSettingsApi_             | [**get_import_settings1**](docs/ImportSettingsApi.md#get_import_settings1)                                                                | **GET** /api2/v1/importSettings/default                                                                 | Get organization&#39;s default import settings         |
+| _ImportSettingsApi_             | [**list_import_settings**](docs/ImportSettingsApi.md#list_import_settings)                                                                | **GET** /api2/v1/importSettings                                                                         | List import settings                                   |
+| _JobApi_                        | [**compare_part**](docs/JobApi.md#compare_part)                                                                                           | **POST** /api2/v1/projects/{projectUid}/jobs/compare                                                    | Compare jobs on workflow levels                        |
+| _JobApi_                        | [**completed_file1**](docs/JobApi.md#completed_file1)                                                                                     | **PUT** /api2/v2/projects/{projectUid}/jobs/{jobUid}/targetFile                                         | Download target file (async)                           |
+| _JobApi_                        | [**copy_source_to_target**](docs/JobApi.md#copy_source_to_target)                                                                         | **POST** /api2/v1/projects/{projectUid}/jobs/copySourceToTarget                                         | Copy Source to Target                                  |
+| _JobApi_                        | [**copy_source_to_target_job_part**](docs/JobApi.md#copy_source_to_target_job_part)                                                       | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/copySourceToTarget                                | Copy Source to Target job                              |
+| _JobApi_                        | [**create_job**](docs/JobApi.md#create_job)                                                                                               | **POST** /api2/v1/projects/{projectUid}/jobs                                                            | Create job                                             |
+| _JobApi_                        | [**create_job_from_async_download_task**](docs/JobApi.md#create_job_from_async_download_task)                                             | **POST** /api2/v1/projects/{projectUid}/jobs/connectorTask                                              | Create job from connector asynchronous download task   |
+| _JobApi_                        | [**create_term_by_job**](docs/JobApi.md#create_term_by_job)                                                                               | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/termBases/createByJob                             | Create term in job&#39;s term bases                    |
+| _JobApi_                        | [**delete_all_translations**](docs/JobApi.md#delete_all_translations)                                                                     | **DELETE** /api2/v1/projects/{projectUid}/jobs/translations                                             | Delete all translations                                |
+| _JobApi_                        | [**delete_all_translations1**](docs/JobApi.md#delete_all_translations1)                                                                   | **DELETE** /api2/v2/projects/{projectUid}/jobs/translations                                             | Delete specific translations                           |
+| _JobApi_                        | [**delete_handover_file**](docs/JobApi.md#delete_handover_file)                                                                           | **DELETE** /api2/v1/projects/{projectUid}/fileHandovers                                                 | Delete handover file                                   |
+| _JobApi_                        | [**delete_parts**](docs/JobApi.md#delete_parts)                                                                                           | **DELETE** /api2/v1/projects/{projectUid}/jobs/batch                                                    | Delete job (batch)                                     |
+| _JobApi_                        | [**download_completed_file**](docs/JobApi.md#download_completed_file)                                                                     | **GET** /api2/v2/projects/{projectUid}/jobs/{jobUid}/downloadTargetFile/{asyncRequestId}                | Download target file based on async request            |
+| _JobApi_                        | [**edit_job_import_settings**](docs/JobApi.md#edit_job_import_settings)                                                                   | **PUT** /api2/v1/projects/{projectUid}/jobs/{jobUid}/importSettings                                     | Edit job import settings                               |
+| _JobApi_                        | [**edit_part**](docs/JobApi.md#edit_part)                                                                                                 | **PUT** /api2/v1/projects/{projectUid}/jobs/{jobUid}                                                    | Edit job                                               |
+| _JobApi_                        | [**edit_parts**](docs/JobApi.md#edit_parts)                                                                                               | **PUT** /api2/v1/projects/{projectUid}/jobs/batch                                                       | Edit jobs (batch)                                      |
+| _JobApi_                        | [**export_to_online_repository**](docs/JobApi.md#export_to_online_repository)                                                             | **POST** /api2/v3/projects/{projectUid}/jobs/export                                                     | Export jobs to online repository                       |
+| _JobApi_                        | [**file_preview**](docs/JobApi.md#file_preview)                                                                                           | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/preview                                           | Download preview file                                  |
+| _JobApi_                        | [**file_preview_job**](docs/JobApi.md#file_preview_job)                                                                                   | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/preview                                            | Download preview file                                  |
+| _JobApi_                        | [**get_bilingual_file**](docs/JobApi.md#get_bilingual_file)                                                                               | **POST** /api2/v1/projects/{projectUid}/jobs/bilingualFile                                              | Download bilingual file                                |
+| _JobApi_                        | [**get_completed_file_warnings**](docs/JobApi.md#get_completed_file_warnings)                                                             | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/targetFileWarnings                                 | Get target file&#39;s warnings                         |
+| _JobApi_                        | [**get_handover_files**](docs/JobApi.md#get_handover_files)                                                                               | **GET** /api2/v1/projects/{projectUid}/fileHandovers                                                    | Download handover file(s)                              |
+| _JobApi_                        | [**get_import_settings3**](docs/JobApi.md#get_import_settings3)                                                                           | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/importSettings                                     | Get import settings for job                            |
+| _JobApi_                        | [**get_original_file**](docs/JobApi.md#get_original_file)                                                                                 | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/original                                           | Download original file                                 |
+| _JobApi_                        | [**get_part**](docs/JobApi.md#get_part)                                                                                                   | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}                                                    | Get job                                                |
+| _JobApi_                        | [**get_parts_workflow_step**](docs/JobApi.md#get_parts_workflow_step)                                                                     | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/workflowStep                                       | Get job&#39;s workflowStep                             |
+| _JobApi_                        | [**get_segments_count**](docs/JobApi.md#get_segments_count)                                                                               | **POST** /api2/v1/projects/{projectUid}/jobs/segmentsCount                                              | Get segments count                                     |
+| _JobApi_                        | [**get_translation_resources**](docs/JobApi.md#get_translation_resources)                                                                 | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/translationResources                               | Get translation resources                              |
+| _JobApi_                        | [**list_part_analyse_v3**](docs/JobApi.md#list_part_analyse_v3)                                                                           | **GET** /api2/v3/projects/{projectUid}/jobs/{jobUid}/analyses                                           | List analyses                                          |
+| _JobApi_                        | [**list_parts_v2**](docs/JobApi.md#list_parts_v2)                                                                                         | **GET** /api2/v2/projects/{projectUid}/jobs                                                             | List jobs                                              |
+| _JobApi_                        | [**list_providers4**](docs/JobApi.md#list_providers4)                                                                                     | **POST** /api2/v2/projects/{projectUid}/jobs/{jobUid}/providers/suggest                                 | Get suggested providers                                |
+| _JobApi_                        | [**list_segments**](docs/JobApi.md#list_segments)                                                                                         | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/segments                                           | Get segments                                           |
+| _JobApi_                        | [**notify_assigned**](docs/JobApi.md#notify_assigned)                                                                                     | **POST** /api2/v1/projects/{projectUid}/jobs/notifyAssigned                                             | Notify assigned users                                  |
+| _JobApi_                        | [**patch_part**](docs/JobApi.md#patch_part)                                                                                               | **PATCH** /api2/v1/projects/{projectUid}/jobs/{jobUid}                                                  | Patch job                                              |
+| _JobApi_                        | [**patch_update_job_parts**](docs/JobApi.md#patch_update_job_parts)                                                                       | **PATCH** /api2/v3/jobs                                                                                 | Edit jobs (with possible partial updates)              |
+| _JobApi_                        | [**preview_urls**](docs/JobApi.md#preview_urls)                                                                                           | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/previewUrl                                         | Get PDF preview                                        |
+| _JobApi_                        | [**pseudo_translate1**](docs/JobApi.md#pseudo_translate1)                                                                                 | **POST** /api2/v2/projects/{projectUid}/jobs/pseudoTranslate                                            | Pseudo-translate job                                   |
+| _JobApi_                        | [**pseudo_translate_job_part**](docs/JobApi.md#pseudo_translate_job_part)                                                                 | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/pseudoTranslate                                   | Pseudo-translates job                                  |
+| _JobApi_                        | [**search_by_job3**](docs/JobApi.md#search_by_job3)                                                                                       | **POST** /api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/search                              | Search job&#39;s translation memories                  |
+| _JobApi_                        | [**search_parts_in_project**](docs/JobApi.md#search_parts_in_project)                                                                     | **POST** /api2/v1/projects/{projectUid}/jobs/search                                                     | Search jobs in project                                 |
+| _JobApi_                        | [**search_segment_by_job**](docs/JobApi.md#search_segment_by_job)                                                                         | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/transMemories/searchSegment                       | Search translation memory for segment by job           |
+| _JobApi_                        | [**search_terms_by_job1**](docs/JobApi.md#search_terms_by_job1)                                                                           | **POST** /api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchByJob                             | Search job&#39;s term bases                            |
+| _JobApi_                        | [**search_terms_in_text_by_job_v2**](docs/JobApi.md#search_terms_in_text_by_job_v2)                                                       | **POST** /api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchInTextByJob                       | Search terms in text                                   |
+| _JobApi_                        | [**set_status**](docs/JobApi.md#set_status)                                                                                               | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/setStatus                                         | Edit job status                                        |
+| _JobApi_                        | [**split**](docs/JobApi.md#split)                                                                                                         | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/split                                             | Split job                                              |
+| _JobApi_                        | [**status_changes**](docs/JobApi.md#status_changes)                                                                                       | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/statusChanges                                      | Get status changes                                     |
+| _JobApi_                        | [**update_source**](docs/JobApi.md#update_source)                                                                                         | **POST** /api2/v1/projects/{projectUid}/jobs/source                                                     | Update source                                          |
+| _JobApi_                        | [**update_target**](docs/JobApi.md#update_target)                                                                                         | **POST** /api2/v1/projects/{projectUid}/jobs/target                                                     | Update target                                          |
+| _JobApi_                        | [**upload_bilingual_file**](docs/JobApi.md#upload_bilingual_file)                                                                         | **PUT** /api2/v1/bilingualFiles                                                                         | Upload bilingual file                                  |
+| _JobApi_                        | [**upload_handover_file**](docs/JobApi.md#upload_handover_file)                                                                           | **PUT** /api2/v1/projects/{projectUid}/fileHandovers                                                    | Upload handover file                                   |
+| _JobApi_                        | [**web_editor_link_v2**](docs/JobApi.md#web_editor_link_v2)                                                                               | **POST** /api2/v2/projects/{projectUid}/jobs/webEditor                                                  | Get Web Editor URL                                     |
+| _JobApi_                        | [**wild_card_search_by_job3**](docs/JobApi.md#wild_card_search_by_job3)                                                                   | **POST** /api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/wildCardSearch                      | Wildcard search job&#39;s translation memories         |
+| _LanguageQualityAssessmentApi_  | [**download_lqa_reports**](docs/LanguageQualityAssessmentApi.md#download_lqa_reports)                                                     | **GET** /api2/v1/lqa/assessments/reports                                                                | Download LQA Assessment XLSX reports                   |
+| _MachineTranslationApi_         | [**machine_translation**](docs/MachineTranslationApi.md#machine_translation)                                                              | **POST** /api2/v1/machineTranslations/{mtSettingsUid}/translate                                         | Translate with MT                                      |
+| _MachineTranslationSettingsApi_ | [**get_list**](docs/MachineTranslationSettingsApi.md#get_list)                                                                            | **GET** /api2/v1/machineTranslateSettings                                                               | List machine translate settings                        |
+| _MachineTranslationSettingsApi_ | [**get_mt_settings**](docs/MachineTranslationSettingsApi.md#get_mt_settings)                                                              | **GET** /api2/v1/machineTranslateSettings/{mtsUid}                                                      | Get machine translate settings                         |
+| _MachineTranslationSettingsApi_ | [**get_mt_types**](docs/MachineTranslationSettingsApi.md#get_mt_types)                                                                    | **GET** /api2/v1/machineTranslateSettings/types                                                         | Get machine translate settings types                   |
+| _MachineTranslationSettingsApi_ | [**get_status**](docs/MachineTranslationSettingsApi.md#get_status)                                                                        | **GET** /api2/v1/machineTranslateSettings/{mtsUid}/status                                               | Get status of machine translate engine                 |
+| _MachineTranslationSettingsApi_ | [**get_third_party_engines_list**](docs/MachineTranslationSettingsApi.md#get_third_party_engines_list)                                    | **GET** /api2/v1/machineTranslateSettings/thirdPartyEngines                                             | List third party machine translate settings            |
+| _MachineTranslationSettingsApi_ | [**get_translation_resources**](docs/MachineTranslationSettingsApi.md#get_translation_resources)                                          | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/translationResources                               | Get translation resources                              |
+| _MappingApi_                    | [**get_mapping_for_task**](docs/MappingApi.md#get_mapping_for_task)                                                                       | **GET** /api2/v1/mappings/tasks/{id}                                                                    | Returns mapping for taskId (mxliff)                    |
+| _NetRateSchemeApi_              | [**create_discount_scheme**](docs/NetRateSchemeApi.md#create_discount_scheme)                                                             | **POST** /api2/v1/netRateSchemes                                                                        | Create net rate scheme                                 |
+| _NetRateSchemeApi_              | [**edit_discount_scheme_workflow_step**](docs/NetRateSchemeApi.md#edit_discount_scheme_workflow_step)                                     | **PUT** /api2/v1/netRateSchemes/{netRateSchemeUid}/workflowStepNetSchemes/{netRateSchemeWorkflowStepId} | Edit scheme for workflow step                          |
+| _NetRateSchemeApi_              | [**get_discount_scheme**](docs/NetRateSchemeApi.md#get_discount_scheme)                                                                   | **GET** /api2/v1/netRateSchemes/{netRateSchemeUid}                                                      | Get net rate scheme                                    |
+| _NetRateSchemeApi_              | [**get_discount_scheme_workflow_step**](docs/NetRateSchemeApi.md#get_discount_scheme_workflow_step)                                       | **GET** /api2/v1/netRateSchemes/{netRateSchemeUid}/workflowStepNetSchemes/{netRateSchemeWorkflowStepId} | Get scheme for workflow step                           |
+| _NetRateSchemeApi_              | [**get_discount_scheme_workflow_steps**](docs/NetRateSchemeApi.md#get_discount_scheme_workflow_steps)                                     | **GET** /api2/v1/netRateSchemes/{netRateSchemeUid}/workflowStepNetSchemes                               | List schemes for workflow step                         |
+| _NetRateSchemeApi_              | [**get_discount_schemes**](docs/NetRateSchemeApi.md#get_discount_schemes)                                                                 | **GET** /api2/v1/netRateSchemes                                                                         | List net rate schemes                                  |
+| _NetRateSchemeApi_              | [**update_discount_scheme**](docs/NetRateSchemeApi.md#update_discount_scheme)                                                             | **PUT** /api2/v1/netRateSchemes/{netRateSchemeUid}                                                      | Edit net rate scheme                                   |
+| _PriceListApi_                  | [**create_language_pair**](docs/PriceListApi.md#create_language_pair)                                                                     | **POST** /api2/v1/priceLists/{priceListUid}/priceSets                                                   | Add language pairs                                     |
+| _PriceListApi_                  | [**create_price_list**](docs/PriceListApi.md#create_price_list)                                                                           | **POST** /api2/v1/priceLists                                                                            | Create price list                                      |
+| _PriceListApi_                  | [**delete_language_pair**](docs/PriceListApi.md#delete_language_pair)                                                                     | **DELETE** /api2/v1/priceLists/{priceListUid}/priceSets/{sourceLanguage}/{targetLanguage}               | Remove language pair                                   |
+| _PriceListApi_                  | [**delete_language_pairs**](docs/PriceListApi.md#delete_language_pairs)                                                                   | **DELETE** /api2/v1/priceLists/{priceListUid}/priceSets                                                 | Remove language pairs                                  |
+| _PriceListApi_                  | [**delete_price_list**](docs/PriceListApi.md#delete_price_list)                                                                           | **DELETE** /api2/v1/priceLists/{priceListUid}                                                           | Delete price list                                      |
+| _PriceListApi_                  | [**get_list_of_price_list**](docs/PriceListApi.md#get_list_of_price_list)                                                                 | **GET** /api2/v1/priceLists                                                                             | List price lists                                       |
+| _PriceListApi_                  | [**get_price_list**](docs/PriceListApi.md#get_price_list)                                                                                 | **GET** /api2/v1/priceLists/{priceListUid}                                                              | Get price list                                         |
+| _PriceListApi_                  | [**get_prices_with_workflow_steps**](docs/PriceListApi.md#get_prices_with_workflow_steps)                                                 | **GET** /api2/v1/priceLists/{priceListUid}/priceSets                                                    | List price sets                                        |
+| _PriceListApi_                  | [**set_minimum_price_for_set**](docs/PriceListApi.md#set_minimum_price_for_set)                                                           | **POST** /api2/v1/priceLists/{priceListUid}/priceSets/minimumPrices                                     | Edit minimum prices                                    |
+| _PriceListApi_                  | [**set_prices**](docs/PriceListApi.md#set_prices)                                                                                         | **POST** /api2/v1/priceLists/{priceListUid}/priceSets/prices                                            | Edit prices                                            |
+| _PriceListApi_                  | [**update_price_list**](docs/PriceListApi.md#update_price_list)                                                                           | **PUT** /api2/v1/priceLists/{priceListUid}                                                              | Update price list                                      |
+| _ProjectApi_                    | [**add_target_language_to_project**](docs/ProjectApi.md#add_target_language_to_project)                                                   | **POST** /api2/v1/projects/{projectUid}/targetLangs                                                     | Add target languages                                   |
+| _ProjectApi_                    | [**add_workflow_steps**](docs/ProjectApi.md#add_workflow_steps)                                                                           | **POST** /api2/v1/projects/{projectUid}/workflowSteps                                                   | Add workflow steps                                     |
+| _ProjectApi_                    | [**assign_linguists_from_template**](docs/ProjectApi.md#assign_linguists_from_template)                                                   | **POST** /api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders                     | Assigns providers from template                        |
+| _ProjectApi_                    | [**assign_linguists_from_template_to_job_parts**](docs/ProjectApi.md#assign_linguists_from_template_to_job_parts)                         | **POST** /api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders/forJobParts         | Assigns providers from template (specific jobs)        |
+| _ProjectApi_                    | [**assign_vendor_to_project**](docs/ProjectApi.md#assign_vendor_to_project)                                                               | **POST** /api2/v1/projects/{projectUid}/assignVendor                                                    | Assign vendor                                          |
+| _ProjectApi_                    | [**assignable_templates**](docs/ProjectApi.md#assignable_templates)                                                                       | **GET** /api2/v1/projects/{projectUid}/assignableTemplates                                              | List assignable templates                              |
+| _ProjectApi_                    | [**clone_project**](docs/ProjectApi.md#clone_project)                                                                                     | **POST** /api2/v1/projects/{projectUid}/clone                                                           | Clone project                                          |
+| _ProjectApi_                    | [**create_custom_fields**](docs/ProjectApi.md#create_custom_fields)                                                                       | **POST** /api2/v1/projects/{projectUid}/customFields                                                    | Create custom field instances                          |
+| _ProjectApi_                    | [**create_project_from_template_v2**](docs/ProjectApi.md#create_project_from_template_v2)                                                 | **POST** /api2/v2/projects/applyTemplate/{templateUid}                                                  | Create project from template                           |
+| _ProjectApi_                    | [**create_project_from_template_v2_async**](docs/ProjectApi.md#create_project_from_template_v2_async)                                     | **POST** /api2/v2/projects/applyTemplate/async/{templateUid}                                            | Create project from template (async)                   |
+| _ProjectApi_                    | [**create_project_v3**](docs/ProjectApi.md#create_project_v3)                                                                             | **POST** /api2/v3/projects                                                                              | Create project                                         |
+| _ProjectApi_                    | [**delete_custom_field1**](docs/ProjectApi.md#delete_custom_field1)                                                                       | **DELETE** /api2/v1/projects/{projectUid}/customFields/{fieldInstanceUid}                               | Delete custom field of project                         |
+| _ProjectApi_                    | [**delete_project**](docs/ProjectApi.md#delete_project)                                                                                   | **DELETE** /api2/v1/projects/{projectUid}                                                               | Delete project                                         |
+| _ProjectApi_                    | [**edit_custom_field**](docs/ProjectApi.md#edit_custom_field)                                                                             | **PUT** /api2/v1/projects/{projectUid}/customFields/{fieldInstanceUid}                                  | Edit custom field of project                           |
+| _ProjectApi_                    | [**edit_custom_fields**](docs/ProjectApi.md#edit_custom_fields)                                                                           | **PUT** /api2/v1/projects/{projectUid}/customFields                                                     | Edit custom fields of the project (batch)              |
+| _ProjectApi_                    | [**edit_import_settings1**](docs/ProjectApi.md#edit_import_settings1)                                                                     | **PUT** /api2/v1/projects/{projectUid}/importSettings                                                   | Edit project import settings                           |
+| _ProjectApi_                    | [**edit_project_access_settings_v2**](docs/ProjectApi.md#edit_project_access_settings_v2)                                                 | **PUT** /api2/v2/projects/{projectUid}/accessSettings                                                   | Edit access and security settings                      |
+| _ProjectApi_                    | [**edit_project_pre_translate_settings2**](docs/ProjectApi.md#edit_project_pre_translate_settings2)                                       | **PUT** /api2/v3/projects/{projectUid}/preTranslateSettings                                             | Update Pre-translate settings                          |
+| _ProjectApi_                    | [**edit_project_v2**](docs/ProjectApi.md#edit_project_v2)                                                                                 | **PUT** /api2/v2/projects/{projectUid}                                                                  | Edit project                                           |
+| _ProjectApi_                    | [**enabled_quality_checks**](docs/ProjectApi.md#enabled_quality_checks)                                                                   | **GET** /api2/v1/projects/{projectUid}/qaSettingsChecks                                                 | Get QA checks                                          |
+| _ProjectApi_                    | [**get_analyse_settings_for_project**](docs/ProjectApi.md#get_analyse_settings_for_project)                                               | **GET** /api2/v1/projects/{projectUid}/analyseSettings                                                  | Get analyse settings                                   |
+| _ProjectApi_                    | [**get_custom_field1**](docs/ProjectApi.md#get_custom_field1)                                                                             | **GET** /api2/v1/projects/{projectUid}/customFields/{fieldInstanceUid}                                  | Get custom field of project                            |
+| _ProjectApi_                    | [**get_custom_fields_page**](docs/ProjectApi.md#get_custom_fields_page)                                                                   | **GET** /api2/v1/projects/{projectUid}/customFields                                                     | Get custom fields of project (page)                    |
+| _ProjectApi_                    | [**get_file_naming_settings**](docs/ProjectApi.md#get_file_naming_settings)                                                               | **GET** /api2/v1/projects/{projectUid}/fileNamingSettings                                               | Get file naming settings for project                   |
+| _ProjectApi_                    | [**get_financial_settings**](docs/ProjectApi.md#get_financial_settings)                                                                   | **GET** /api2/v1/projects/{projectUid}/financialSettings                                                | Get financial settings                                 |
+| _ProjectApi_                    | [**get_import_settings2**](docs/ProjectApi.md#get_import_settings2)                                                                       | **GET** /api2/v1/projects/{projectUid}/importSettings                                                   | Get projects&#39;s default import settings             |
+| _ProjectApi_                    | [**get_mt_settings_for_project**](docs/ProjectApi.md#get_mt_settings_for_project)                                                         | **GET** /api2/v1/projects/{projectUid}/mtSettings                                                       | Get project machine translate settings                 |
+| _ProjectApi_                    | [**get_pre_translate_settings_for_project2**](docs/ProjectApi.md#get_pre_translate_settings_for_project2)                                 | **GET** /api2/v3/projects/{projectUid}/preTranslateSettings                                             | Get Pre-translate settings                             |
+| _ProjectApi_                    | [**get_project**](docs/ProjectApi.md#get_project)                                                                                         | **GET** /api2/v1/projects/{projectUid}                                                                  | Get project                                            |
+| _ProjectApi_                    | [**get_project_access_settings_v2**](docs/ProjectApi.md#get_project_access_settings_v2)                                                   | **GET** /api2/v2/projects/{projectUid}/accessSettings                                                   | Get access and security settings                       |
+| _ProjectApi_                    | [**get_project_assignments**](docs/ProjectApi.md#get_project_assignments)                                                                 | **GET** /api2/v1/projects/{projectUid}/providers                                                        | List project providers                                 |
+| _ProjectApi_                    | [**get_project_settings**](docs/ProjectApi.md#get_project_settings)                                                                       | **GET** /api2/v1/projects/{projectUid}/lqaSettings                                                      | Get LQA settings                                       |
+| _ProjectApi_                    | [**get_project_term_bases**](docs/ProjectApi.md#get_project_term_bases)                                                                   | **GET** /api2/v1/projects/{projectUid}/termBases                                                        | Get term bases                                         |
+| _ProjectApi_                    | [**get_project_trans_memories1**](docs/ProjectApi.md#get_project_trans_memories1)                                                         | **GET** /api2/v3/projects/{projectUid}/transMemories                                                    | Get translation memories                               |
+| _ProjectApi_                    | [**get_project_workflow_steps_v2**](docs/ProjectApi.md#get_project_workflow_steps_v2)                                                     | **GET** /api2/v2/projects/{projectUid}/workflowSteps                                                    | Get workflow steps                                     |
+| _ProjectApi_                    | [**get_quotes_for_project**](docs/ProjectApi.md#get_quotes_for_project)                                                                   | **GET** /api2/v1/projects/{projectUid}/quotes                                                           | List quotes                                            |
+| _ProjectApi_                    | [**list_assigned_projects**](docs/ProjectApi.md#list_assigned_projects)                                                                   | **GET** /api2/v1/users/{userUid}/projects                                                               | List assigned projects                                 |
+| _ProjectApi_                    | [**list_by_project_v3**](docs/ProjectApi.md#list_by_project_v3)                                                                           | **GET** /api2/v3/projects/{projectUid}/analyses                                                         | List analyses by project                               |
+| _ProjectApi_                    | [**list_projects**](docs/ProjectApi.md#list_projects)                                                                                     | **GET** /api2/v1/projects                                                                               | List projects                                          |
+| _ProjectApi_                    | [**list_providers3**](docs/ProjectApi.md#list_providers3)                                                                                 | **POST** /api2/v2/projects/{projectUid}/providers/suggest                                               | Get suggested providers                                |
+| _ProjectApi_                    | [**patch_project**](docs/ProjectApi.md#patch_project)                                                                                     | **PATCH** /api2/v1/projects/{projectUid}                                                                | Edit project                                           |
+| _ProjectApi_                    | [**relevant_term_bases**](docs/ProjectApi.md#relevant_term_bases)                                                                         | **GET** /api2/v1/projects/{projectUid}/termBases/relevant                                               | List project relevant term bases                       |
+| _ProjectApi_                    | [**relevant_trans_memories1**](docs/ProjectApi.md#relevant_trans_memories1)                                                               | **GET** /api2/v1/projects/{projectUid}/transMemories/relevant                                           | List project relevant translation memories             |
+| _ProjectApi_                    | [**search_segment1**](docs/ProjectApi.md#search_segment1)                                                                                 | **POST** /api2/v1/projects/{projectUid}/transMemories/searchSegmentInProject                            | Search translation memory for segment in the project   |
+| _ProjectApi_                    | [**set_financial_settings**](docs/ProjectApi.md#set_financial_settings)                                                                   | **PUT** /api2/v1/projects/{projectUid}/financialSettings                                                | Edit financial settings                                |
+| _ProjectApi_                    | [**set_mt_settings_for_project**](docs/ProjectApi.md#set_mt_settings_for_project)                                                         | **PUT** /api2/v1/projects/{projectUid}/mtSettings                                                       | Edit machine translate settings                        |
+| _ProjectApi_                    | [**set_mt_settings_per_language_for_project**](docs/ProjectApi.md#set_mt_settings_per_language_for_project)                               | **PUT** /api2/v1/projects/{projectUid}/mtSettingsPerLanguage                                            | Edit machine translate settings per language           |
+| _ProjectApi_                    | [**set_project_qa_settings_v2**](docs/ProjectApi.md#set_project_qa_settings_v2)                                                           | **PUT** /api2/v2/projects/{projectUid}/qaSettings                                                       | Edit quality assurance settings                        |
+| _ProjectApi_                    | [**set_project_status**](docs/ProjectApi.md#set_project_status)                                                                           | **POST** /api2/v1/projects/{projectUid}/setStatus                                                       | Edit project status                                    |
+| _ProjectApi_                    | [**set_project_term_bases**](docs/ProjectApi.md#set_project_term_bases)                                                                   | **PUT** /api2/v1/projects/{projectUid}/termBases                                                        | Edit term bases                                        |
+| _ProjectApi_                    | [**set_project_trans_memories_v3**](docs/ProjectApi.md#set_project_trans_memories_v3)                                                     | **PUT** /api2/v3/projects/{projectUid}/transMemories                                                    | Edit translation memories                              |
+| _ProjectApi_                    | [**update_file_naming_settings**](docs/ProjectApi.md#update_file_naming_settings)                                                         | **PUT** /api2/v1/projects/{projectUid}/fileNamingSettings                                               | Update file naming settings for project                |
+| _ProjectReferenceFileApi_       | [**batch_delete_reference_files**](docs/ProjectReferenceFileApi.md#batch_delete_reference_files)                                          | **DELETE** /api2/v1/projects/{projectUid}/references                                                    | Delete project reference files (batch)                 |
+| _ProjectReferenceFileApi_       | [**batch_download_reference_files**](docs/ProjectReferenceFileApi.md#batch_download_reference_files)                                      | **POST** /api2/v1/projects/{projectUid}/references/download                                             | Download project reference files (batch)               |
+| _ProjectReferenceFileApi_       | [**create_note_ref**](docs/ProjectReferenceFileApi.md#create_note_ref)                                                                    | **POST** /api2/v1/projects/{projectUid}/references                                                      | Create project reference file                          |
+| _ProjectReferenceFileApi_       | [**download_reference**](docs/ProjectReferenceFileApi.md#download_reference)                                                              | **GET** /api2/v1/projects/{projectUid}/references/{referenceFileId}                                     | Download project reference file                        |
+| _ProjectReferenceFileApi_       | [**list_reference_file_creators**](docs/ProjectReferenceFileApi.md#list_reference_file_creators)                                          | **GET** /api2/v1/projects/{projectUid}/references/creators                                              | List project reference file creators                   |
+| _ProjectReferenceFileApi_       | [**list_reference_files**](docs/ProjectReferenceFileApi.md#list_reference_files)                                                          | **GET** /api2/v1/projects/{projectUid}/references                                                       | List project reference files                           |
+| _ProjectTemplateApi_            | [**assign_linguists_from_template**](docs/ProjectTemplateApi.md#assign_linguists_from_template)                                           | **POST** /api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders                     | Assigns providers from template                        |
+| _ProjectTemplateApi_            | [**assign_linguists_from_template_to_job_parts**](docs/ProjectTemplateApi.md#assign_linguists_from_template_to_job_parts)                 | **POST** /api2/v1/projects/{projectUid}/applyTemplate/{templateUid}/assignProviders/forJobParts         | Assigns providers from template (specific jobs)        |
+| _ProjectTemplateApi_            | [**assignable_templates**](docs/ProjectTemplateApi.md#assignable_templates)                                                               | **GET** /api2/v1/projects/{projectUid}/assignableTemplates                                              | List assignable templates                              |
+| _ProjectTemplateApi_            | [**create_custom_fields1**](docs/ProjectTemplateApi.md#create_custom_fields1)                                                             | **POST** /api2/v1/projectTemplates/{projectTemplateUid}/customFields                                    | Create custom field instances                          |
+| _ProjectTemplateApi_            | [**create_project_from_template_v2**](docs/ProjectTemplateApi.md#create_project_from_template_v2)                                         | **POST** /api2/v2/projects/applyTemplate/{templateUid}                                                  | Create project from template                           |
+| _ProjectTemplateApi_            | [**create_project_from_template_v2_async**](docs/ProjectTemplateApi.md#create_project_from_template_v2_async)                             | **POST** /api2/v2/projects/applyTemplate/async/{templateUid}                                            | Create project from template (async)                   |
+| _ProjectTemplateApi_            | [**create_project_template**](docs/ProjectTemplateApi.md#create_project_template)                                                         | **POST** /api2/v1/projectTemplates                                                                      | Create project template                                |
+| _ProjectTemplateApi_            | [**delete_custom_field2**](docs/ProjectTemplateApi.md#delete_custom_field2)                                                               | **DELETE** /api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}               | Delete custom field of project template                |
+| _ProjectTemplateApi_            | [**delete_project_template**](docs/ProjectTemplateApi.md#delete_project_template)                                                         | **DELETE** /api2/v1/projectTemplates/{projectTemplateUid}                                               | Delete project template                                |
+| _ProjectTemplateApi_            | [**edit_custom_field1**](docs/ProjectTemplateApi.md#edit_custom_field1)                                                                   | **PUT** /api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}                  | Edit custom field of project template                  |
+| _ProjectTemplateApi_            | [**edit_custom_fields1**](docs/ProjectTemplateApi.md#edit_custom_fields1)                                                                 | **PUT** /api2/v1/projectTemplates/{projectTemplateUid}/customFields                                     | Edit custom fields of the project template (batch)     |
+| _ProjectTemplateApi_            | [**edit_project_template**](docs/ProjectTemplateApi.md#edit_project_template)                                                             | **PUT** /api2/v1/projectTemplates/{projectTemplateUid}                                                  | Edit project template                                  |
+| _ProjectTemplateApi_            | [**edit_project_template_access_settings**](docs/ProjectTemplateApi.md#edit_project_template_access_settings)                             | **PUT** /api2/v1/projectTemplates/{projectTemplateUid}/accessSettings                                   | Edit project template access and security settings     |
+| _ProjectTemplateApi_            | [**edit_project_template_import_settings**](docs/ProjectTemplateApi.md#edit_project_template_import_settings)                             | **PUT** /api2/v1/projectTemplates/{projectTemplateUid}/importSettings                                   | Edit project template import settings                  |
+| _ProjectTemplateApi_            | [**get_analyse_settings_for_project_template**](docs/ProjectTemplateApi.md#get_analyse_settings_for_project_template)                     | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings                                  | Get analyse settings                                   |
+| _ProjectTemplateApi_            | [**get_custom_field2**](docs/ProjectTemplateApi.md#get_custom_field2)                                                                     | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/customFields/{fieldInstanceUid}                  | Get custom field of project template                   |
+| _ProjectTemplateApi_            | [**get_custom_fields_page1**](docs/ProjectTemplateApi.md#get_custom_fields_page1)                                                         | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/customFields                                     | Get custom fields of project template (page)           |
+| _ProjectTemplateApi_            | [**get_import_settings_for_project_template**](docs/ProjectTemplateApi.md#get_import_settings_for_project_template)                       | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/importSettings                                   | Get import settings                                    |
+| _ProjectTemplateApi_            | [**get_machine_translate_settings_for_project_template**](docs/ProjectTemplateApi.md#get_machine_translate_settings_for_project_template) | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/mtSettings                                       | Get project template machine translate settings        |
+| _ProjectTemplateApi_            | [**get_pre_translate_settings_for_project_template2**](docs/ProjectTemplateApi.md#get_pre_translate_settings_for_project_template2)       | **GET** /api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings                             | Get Pre-translate settings                             |
+| _ProjectTemplateApi_            | [**get_project_template**](docs/ProjectTemplateApi.md#get_project_template)                                                               | **GET** /api2/v1/projectTemplates/{projectTemplateUid}                                                  | Get project template                                   |
+| _ProjectTemplateApi_            | [**get_project_template_access_settings**](docs/ProjectTemplateApi.md#get_project_template_access_settings)                               | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/accessSettings                                   | Get project template access and security settings      |
+| _ProjectTemplateApi_            | [**get_project_template_qa_settings**](docs/ProjectTemplateApi.md#get_project_template_qa_settings)                                       | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/qaSettings                                       | Get quality assurance settings                         |
+| _ProjectTemplateApi_            | [**get_project_template_term_bases**](docs/ProjectTemplateApi.md#get_project_template_term_bases)                                         | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/termBases                                        | Get term bases                                         |
+| _ProjectTemplateApi_            | [**get_project_template_trans_memories2**](docs/ProjectTemplateApi.md#get_project_template_trans_memories2)                               | **GET** /api2/v3/projectTemplates/{projectTemplateUid}/transMemories                                    | Get translation memories                               |
+| _ProjectTemplateApi_            | [**get_project_templates**](docs/ProjectTemplateApi.md#get_project_templates)                                                             | **GET** /api2/v1/projectTemplates                                                                       | List project templates                                 |
+| _ProjectTemplateApi_            | [**relevant_trans_memories**](docs/ProjectTemplateApi.md#relevant_trans_memories)                                                         | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/transMemories/relevant                           | List project template relevant translation memories    |
+| _ProjectTemplateApi_            | [**set_project_template_qa_settings**](docs/ProjectTemplateApi.md#set_project_template_qa_settings)                                       | **PUT** /api2/v1/projectTemplates/{projectTemplateUid}/qaSettings                                       | Edit quality assurance settings                        |
+| _ProjectTemplateApi_            | [**set_project_template_term_bases**](docs/ProjectTemplateApi.md#set_project_template_term_bases)                                         | **PUT** /api2/v1/projectTemplates/{projectTemplateUid}/termBases                                        | Edit term bases in project template                    |
+| _ProjectTemplateApi_            | [**set_project_template_trans_memories_v2**](docs/ProjectTemplateApi.md#set_project_template_trans_memories_v2)                           | **PUT** /api2/v2/projectTemplates/{projectTemplateUid}/transMemories                                    | Edit translation memories                              |
+| _ProjectTemplateApi_            | [**update_analyse_settings_for_project_template**](docs/ProjectTemplateApi.md#update_analyse_settings_for_project_template)               | **PUT** /api2/v1/projectTemplates/{projectTemplateUid}/analyseSettings                                  | Edit analyse settings                                  |
+| _ProjectTemplateApi_            | [**update_pre_translate_settings_for_project_template2**](docs/ProjectTemplateApi.md#update_pre_translate_settings_for_project_template2) | **PUT** /api2/v3/projectTemplates/{projectTemplateUid}/preTranslateSettings                             | Update Pre-translate settings                          |
+| _ProviderApi_                   | [**get_project_assignments**](docs/ProviderApi.md#get_project_assignments)                                                                | **GET** /api2/v1/projects/{projectUid}/providers                                                        | List project providers                                 |
+| _ProviderApi_                   | [**list_providers3**](docs/ProviderApi.md#list_providers3)                                                                                | **POST** /api2/v2/projects/{projectUid}/providers/suggest                                               | Get suggested providers                                |
+| _ProviderApi_                   | [**list_providers4**](docs/ProviderApi.md#list_providers4)                                                                                | **POST** /api2/v2/projects/{projectUid}/jobs/{jobUid}/providers/suggest                                 | Get suggested providers                                |
+| _QualityAssuranceApi_           | [**add_ignored_warnings**](docs/QualityAssuranceApi.md#add_ignored_warnings)                                                              | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/ignoredWarnings                 | Add ignored warnings                                   |
+| _QualityAssuranceApi_           | [**add_ignored_warnings1**](docs/QualityAssuranceApi.md#add_ignored_warnings1)                                                            | **POST** /api2/v2/projects/{projectUid}/jobs/qualityAssurances/ignoredWarnings                          | Add ignored warnings                                   |
+| _QualityAssuranceApi_           | [**create_lqa_profile**](docs/QualityAssuranceApi.md#create_lqa_profile)                                                                  | **POST** /api2/v1/lqa/profiles                                                                          | Create LQA profile                                     |
+| _QualityAssuranceApi_           | [**delete_ignored_warnings**](docs/QualityAssuranceApi.md#delete_ignored_warnings)                                                        | **DELETE** /api2/v1/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/ignoredWarnings               | Delete ignored warnings                                |
+| _QualityAssuranceApi_           | [**delete_ignored_warnings1**](docs/QualityAssuranceApi.md#delete_ignored_warnings1)                                                      | **DELETE** /api2/v2/projects/{projectUid}/jobs/qualityAssurances/ignoredWarnings                        | Delete ignored warnings                                |
+| _QualityAssuranceApi_           | [**delete_lqa_profile**](docs/QualityAssuranceApi.md#delete_lqa_profile)                                                                  | **DELETE** /api2/v1/lqa/profiles/{profileUid}                                                           | Delete LQA profile                                     |
+| _QualityAssuranceApi_           | [**duplicate_profile**](docs/QualityAssuranceApi.md#duplicate_profile)                                                                    | **POST** /api2/v1/lqa/profiles/{profileUid}/duplicate                                                   | Duplicate LQA profile                                  |
+| _QualityAssuranceApi_           | [**enabled_quality_checks_for_job**](docs/QualityAssuranceApi.md#enabled_quality_checks_for_job)                                          | **GET** /api2/v2/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/settings                         | Get QA settings for job                                |
+| _QualityAssuranceApi_           | [**enabled_quality_checks_for_job1**](docs/QualityAssuranceApi.md#enabled_quality_checks_for_job1)                                        | **GET** /api2/v2/projects/{projectUid}/jobs/qualityAssurances/settings                                  | Get QA settings                                        |
+| _QualityAssuranceApi_           | [**get_lqa_profile**](docs/QualityAssuranceApi.md#get_lqa_profile)                                                                        | **GET** /api2/v1/lqa/profiles/{profileUid}                                                              | Get LQA profile details                                |
+| _QualityAssuranceApi_           | [**get_lqa_profile_authors**](docs/QualityAssuranceApi.md#get_lqa_profile_authors)                                                        | **GET** /api2/v1/lqa/profiles/authors                                                                   | Get list of LQA profile authors                        |
+| _QualityAssuranceApi_           | [**get_lqa_profiles**](docs/QualityAssuranceApi.md#get_lqa_profiles)                                                                      | **GET** /api2/v1/lqa/profiles                                                                           | GET list LQA profiles                                  |
+| _QualityAssuranceApi_           | [**make_default**](docs/QualityAssuranceApi.md#make_default)                                                                              | **POST** /api2/v1/lqa/profiles/{profileUid}/default                                                     | Make LQA profile default                               |
+| _QualityAssuranceApi_           | [**run_qa_for_job_part_v3**](docs/QualityAssuranceApi.md#run_qa_for_job_part_v3)                                                          | **POST** /api2/v3/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/run                             | Run quality assurance                                  |
+| _QualityAssuranceApi_           | [**run_qa_for_job_parts_v3**](docs/QualityAssuranceApi.md#run_qa_for_job_parts_v3)                                                        | **POST** /api2/v3/projects/{projectUid}/jobs/qualityAssurances/run                                      | Run quality assurance (batch)                          |
+| _QualityAssuranceApi_           | [**run_qa_for_segments_v3**](docs/QualityAssuranceApi.md#run_qa_for_segments_v3)                                                          | **POST** /api2/v3/projects/{projectUid}/jobs/qualityAssurances/segments/run                             | Run quality assurance on selected segments             |
+| _QualityAssuranceApi_           | [**update_ignored_checks**](docs/QualityAssuranceApi.md#update_ignored_checks)                                                            | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/qualityAssurances/ignoreChecks                    | Edit ignored checks                                    |
+| _QualityAssuranceApi_           | [**update_lqa_profile**](docs/QualityAssuranceApi.md#update_lqa_profile)                                                                  | **PUT** /api2/v1/lqa/profiles/{profileUid}                                                              | Update LQA profile                                     |
+| _QuoteApi_                      | [**create_quote_v2**](docs/QuoteApi.md#create_quote_v2)                                                                                   | **POST** /api2/v2/quotes                                                                                | Create quote                                           |
+| _QuoteApi_                      | [**delete_quote**](docs/QuoteApi.md#delete_quote)                                                                                         | **DELETE** /api2/v1/quotes/{quoteUid}                                                                   | Delete quote                                           |
+| _QuoteApi_                      | [**email_quotes**](docs/QuoteApi.md#email_quotes)                                                                                         | **POST** /api2/v1/quotes/email                                                                          | Email quotes                                           |
+| _QuoteApi_                      | [**get2**](docs/QuoteApi.md#get2)                                                                                                         | **GET** /api2/v1/quotes/{quoteUid}                                                                      | Get quote                                              |
+| _SCIMApi_                       | [**create_user_scim**](docs/SCIMApi.md#create_user_scim)                                                                                  | **POST** /api2/v1/scim/Users                                                                            | Create user using SCIM                                 |
+| _SCIMApi_                       | [**delete_user**](docs/SCIMApi.md#delete_user)                                                                                            | **DELETE** /api2/v1/scim/Users/{userId}                                                                 | Delete user using SCIM                                 |
+| _SCIMApi_                       | [**edit_user**](docs/SCIMApi.md#edit_user)                                                                                                | **PUT** /api2/v1/scim/Users/{userId}                                                                    | Edit user using SCIM                                   |
+| _SCIMApi_                       | [**get_resource_types**](docs/SCIMApi.md#get_resource_types)                                                                              | **GET** /api2/v1/scim/ResourceTypes                                                                     | List the types of SCIM Resources available             |
+| _SCIMApi_                       | [**get_schema_by_urn**](docs/SCIMApi.md#get_schema_by_urn)                                                                                | **GET** /api2/v1/scim/Schemas/{schemaUrn}                                                               | Get supported SCIM Schema by urn                       |
+| _SCIMApi_                       | [**get_schemas**](docs/SCIMApi.md#get_schemas)                                                                                            | **GET** /api2/v1/scim/Schemas                                                                           | Get supported SCIM Schemas                             |
+| _SCIMApi_                       | [**get_scim_user**](docs/SCIMApi.md#get_scim_user)                                                                                        | **GET** /api2/v1/scim/Users/{userId}                                                                    | Get user                                               |
+| _SCIMApi_                       | [**get_service_provider_config_dto**](docs/SCIMApi.md#get_service_provider_config_dto)                                                    | **GET** /api2/v1/scim/ServiceProviderConfig                                                             | Retrieve the Service Provider&#39;s Configuration      |
+| _SCIMApi_                       | [**patch_user**](docs/SCIMApi.md#patch_user)                                                                                              | **PATCH** /api2/v1/scim/Users/{userId}                                                                  | Patch user using SCIM                                  |
+| _SCIMApi_                       | [**search_users**](docs/SCIMApi.md#search_users)                                                                                          | **GET** /api2/v1/scim/Users                                                                             | Search users                                           |
+| _SegmentApi_                    | [**get_segments_count**](docs/SegmentApi.md#get_segments_count)                                                                           | **POST** /api2/v1/projects/{projectUid}/jobs/segmentsCount                                              | Get segments count                                     |
+| _SegmentApi_                    | [**list_segments**](docs/SegmentApi.md#list_segments)                                                                                     | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/segments                                           | Get segments                                           |
+| _SegmentationRulesApi_          | [**create_segmentation_rule**](docs/SegmentationRulesApi.md#create_segmentation_rule)                                                     | **POST** /api2/v1/segmentationRules                                                                     | Create segmentation rule                               |
+| _SegmentationRulesApi_          | [**deletes_segmentation_rule**](docs/SegmentationRulesApi.md#deletes_segmentation_rule)                                                   | **DELETE** /api2/v1/segmentationRules/{segRuleId}                                                       | Delete segmentation rule                               |
+| _SegmentationRulesApi_          | [**get_list_of_segmentation_rules**](docs/SegmentationRulesApi.md#get_list_of_segmentation_rules)                                         | **GET** /api2/v1/segmentationRules                                                                      | List segmentation rules                                |
+| _SegmentationRulesApi_          | [**get_segmentation_rule**](docs/SegmentationRulesApi.md#get_segmentation_rule)                                                           | **GET** /api2/v1/segmentationRules/{segRuleId}                                                          | Get segmentation rule                                  |
+| _SegmentationRulesApi_          | [**updates_segmentation_rule**](docs/SegmentationRulesApi.md#updates_segmentation_rule)                                                   | **PUT** /api2/v1/segmentationRules/{segRuleId}                                                          | Edit segmentation rule                                 |
+| _SpellCheckApi_                 | [**add_word**](docs/SpellCheckApi.md#add_word)                                                                                            | **POST** /api2/v1/spellCheck/words                                                                      | Add word to dictionary                                 |
+| _SpellCheckApi_                 | [**check**](docs/SpellCheckApi.md#check)                                                                                                  | **POST** /api2/v1/spellCheck/check                                                                      | Spell check                                            |
+| _SpellCheckApi_                 | [**check_by_job**](docs/SpellCheckApi.md#check_by_job)                                                                                    | **POST** /api2/v1/spellCheck/check/{jobUid}                                                             | Spell check for job                                    |
+| _SpellCheckApi_                 | [**suggest**](docs/SpellCheckApi.md#suggest)                                                                                              | **POST** /api2/v1/spellCheck/suggest                                                                    | Suggest a word                                         |
+| _SubDomainApi_                  | [**create_sub_domain**](docs/SubDomainApi.md#create_sub_domain)                                                                           | **POST** /api2/v1/subDomains                                                                            | Create subdomain                                       |
+| _SubDomainApi_                  | [**delete_sub_domain**](docs/SubDomainApi.md#delete_sub_domain)                                                                           | **DELETE** /api2/v1/subDomains/{subDomainUid}                                                           | Delete subdomain                                       |
+| _SubDomainApi_                  | [**get_sub_domain**](docs/SubDomainApi.md#get_sub_domain)                                                                                 | **GET** /api2/v1/subDomains/{subDomainUid}                                                              | Get subdomain                                          |
+| _SubDomainApi_                  | [**list_sub_domains**](docs/SubDomainApi.md#list_sub_domains)                                                                             | **GET** /api2/v1/subDomains                                                                             | List subdomains                                        |
+| _SubDomainApi_                  | [**update_sub_domain**](docs/SubDomainApi.md#update_sub_domain)                                                                           | **PUT** /api2/v1/subDomains/{subDomainUid}                                                              | Edit subdomain                                         |
+| _SupportedLanguagesApi_         | [**list_of_languages**](docs/SupportedLanguagesApi.md#list_of_languages)                                                                  | **GET** /api2/v1/languages                                                                              | List supported languages                               |
+| _TermBaseApi_                   | [**browse_terms**](docs/TermBaseApi.md#browse_terms)                                                                                      | **POST** /api2/v1/termBases/{termBaseUid}/browse                                                        | Browse term base                                       |
+| _TermBaseApi_                   | [**clear_term_base**](docs/TermBaseApi.md#clear_term_base)                                                                                | **DELETE** /api2/v1/termBases/{termBaseUid}/terms                                                       | Clear term base                                        |
+| _TermBaseApi_                   | [**create_concept**](docs/TermBaseApi.md#create_concept)                                                                                  | **POST** /api2/v1/termBases/{termBaseUid}/concepts                                                      | Create concept                                         |
+| _TermBaseApi_                   | [**create_term**](docs/TermBaseApi.md#create_term)                                                                                        | **POST** /api2/v1/termBases/{termBaseUid}/terms                                                         | Create term                                            |
+| _TermBaseApi_                   | [**create_term_base**](docs/TermBaseApi.md#create_term_base)                                                                              | **POST** /api2/v1/termBases                                                                             | Create term base                                       |
+| _TermBaseApi_                   | [**create_term_by_job**](docs/TermBaseApi.md#create_term_by_job)                                                                          | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/termBases/createByJob                             | Create term in job&#39;s term bases                    |
+| _TermBaseApi_                   | [**delete_concept**](docs/TermBaseApi.md#delete_concept)                                                                                  | **DELETE** /api2/v1/termBases/{termBaseUid}/concepts/{conceptId}                                        | Delete concept                                         |
+| _TermBaseApi_                   | [**delete_concepts**](docs/TermBaseApi.md#delete_concepts)                                                                                | **DELETE** /api2/v1/termBases/{termBaseUid}/concepts                                                    | Delete concepts                                        |
+| _TermBaseApi_                   | [**delete_term**](docs/TermBaseApi.md#delete_term)                                                                                        | **DELETE** /api2/v1/termBases/{termBaseUid}/terms/{termId}                                              | Delete term                                            |
+| _TermBaseApi_                   | [**delete_term_base**](docs/TermBaseApi.md#delete_term_base)                                                                              | **DELETE** /api2/v1/termBases/{termBaseUid}                                                             | Delete term base                                       |
+| _TermBaseApi_                   | [**export_term_base**](docs/TermBaseApi.md#export_term_base)                                                                              | **GET** /api2/v1/termBases/{termBaseUid}/export                                                         | Export term base                                       |
+| _TermBaseApi_                   | [**get_concept**](docs/TermBaseApi.md#get_concept)                                                                                        | **GET** /api2/v1/termBases/{termBaseUid}/concepts/{conceptUid}                                          | Get concept                                            |
+| _TermBaseApi_                   | [**get_last_background_task**](docs/TermBaseApi.md#get_last_background_task)                                                              | **GET** /api2/v1/termBases/{termBaseUid}/lastBackgroundTask                                             | Last import status                                     |
+| _TermBaseApi_                   | [**get_project_template_term_bases**](docs/TermBaseApi.md#get_project_template_term_bases)                                                | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/termBases                                        | Get term bases                                         |
+| _TermBaseApi_                   | [**get_project_term_bases**](docs/TermBaseApi.md#get_project_term_bases)                                                                  | **GET** /api2/v1/projects/{projectUid}/termBases                                                        | Get term bases                                         |
+| _TermBaseApi_                   | [**get_term**](docs/TermBaseApi.md#get_term)                                                                                              | **GET** /api2/v1/termBases/{termBaseUid}/terms/{termId}                                                 | Get term                                               |
+| _TermBaseApi_                   | [**get_term_base**](docs/TermBaseApi.md#get_term_base)                                                                                    | **GET** /api2/v1/termBases/{termBaseUid}                                                                | Get term base                                          |
+| _TermBaseApi_                   | [**get_term_base_metadata**](docs/TermBaseApi.md#get_term_base_metadata)                                                                  | **GET** /api2/v1/termBases/{termBaseUid}/metadata                                                       | Get term base metadata                                 |
+| _TermBaseApi_                   | [**get_translation_resources**](docs/TermBaseApi.md#get_translation_resources)                                                            | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/translationResources                               | Get translation resources                              |
+| _TermBaseApi_                   | [**import_term_base**](docs/TermBaseApi.md#import_term_base)                                                                              | **POST** /api2/v1/termBases/{termBaseUid}/upload                                                        | Upload term base                                       |
+| _TermBaseApi_                   | [**list_concepts**](docs/TermBaseApi.md#list_concepts)                                                                                    | **GET** /api2/v1/termBases/{termBaseUid}/concepts                                                       | List concepts                                          |
+| _TermBaseApi_                   | [**list_term_bases**](docs/TermBaseApi.md#list_term_bases)                                                                                | **GET** /api2/v1/termBases                                                                              | List term bases                                        |
+| _TermBaseApi_                   | [**list_terms_of_concept**](docs/TermBaseApi.md#list_terms_of_concept)                                                                    | **GET** /api2/v1/termBases/{termBaseUid}/concepts/{conceptId}/terms                                     | Get terms of concept                                   |
+| _TermBaseApi_                   | [**relevant_term_bases**](docs/TermBaseApi.md#relevant_term_bases)                                                                        | **GET** /api2/v1/projects/{projectUid}/termBases/relevant                                               | List project relevant term bases                       |
+| _TermBaseApi_                   | [**search_terms**](docs/TermBaseApi.md#search_terms)                                                                                      | **POST** /api2/v1/termBases/{termBaseUid}/search                                                        | Search term base                                       |
+| _TermBaseApi_                   | [**search_terms_by_job1**](docs/TermBaseApi.md#search_terms_by_job1)                                                                      | **POST** /api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchByJob                             | Search job&#39;s term bases                            |
+| _TermBaseApi_                   | [**search_terms_in_text_by_job_v2**](docs/TermBaseApi.md#search_terms_in_text_by_job_v2)                                                  | **POST** /api2/v2/projects/{projectUid}/jobs/{jobUid}/termBases/searchInTextByJob                       | Search terms in text                                   |
+| _TermBaseApi_                   | [**set_project_template_term_bases**](docs/TermBaseApi.md#set_project_template_term_bases)                                                | **PUT** /api2/v1/projectTemplates/{projectTemplateUid}/termBases                                        | Edit term bases in project template                    |
+| _TermBaseApi_                   | [**set_project_term_bases**](docs/TermBaseApi.md#set_project_term_bases)                                                                  | **PUT** /api2/v1/projects/{projectUid}/termBases                                                        | Edit term bases                                        |
+| _TermBaseApi_                   | [**update_concept**](docs/TermBaseApi.md#update_concept)                                                                                  | **PUT** /api2/v1/termBases/{termBaseUid}/concepts/{conceptUid}                                          | Update concept                                         |
+| _TermBaseApi_                   | [**update_term**](docs/TermBaseApi.md#update_term)                                                                                        | **PUT** /api2/v1/termBases/{termBaseUid}/terms/{termId}                                                 | Edit term                                              |
+| _TermBaseApi_                   | [**update_term_base**](docs/TermBaseApi.md#update_term_base)                                                                              | **PUT** /api2/v1/termBases/{termBaseUid}                                                                | Edit term base                                         |
+| _TranslationApi_                | [**human_translate**](docs/TranslationApi.md#human_translate)                                                                             | **POST** /api2/v1/projects/{projectUid}/jobs/humanTranslate                                             | Human translate (Gengo or Unbabel)                     |
+| _TranslationApi_                | [**machine_translation_job**](docs/TranslationApi.md#machine_translation_job)                                                             | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/translations/translateWithMachineTranslation      | Translate using machine translation                    |
+| _TranslationApi_                | [**pre_translate1**](docs/TranslationApi.md#pre_translate1)                                                                               | **POST** /api2/v2/projects/{projectUid}/jobs/preTranslate                                               | Pre-translate job                                      |
+| _TranslationMemoryApi_          | [**add_target_lang_to_trans_memory**](docs/TranslationMemoryApi.md#add_target_lang_to_trans_memory)                                       | **POST** /api2/v1/transMemories/{transMemoryUid}/targetLanguages                                        | Add target language to translation memory              |
+| _TranslationMemoryApi_          | [**clear_trans_memory**](docs/TranslationMemoryApi.md#clear_trans_memory)                                                                 | **DELETE** /api2/v1/transMemories/{transMemoryUid}/segments                                             | Delete all segments                                    |
+| _TranslationMemoryApi_          | [**clear_trans_memory_v2**](docs/TranslationMemoryApi.md#clear_trans_memory_v2)                                                           | **DELETE** /api2/v2/transMemories/{transMemoryUid}/segments                                             | Delete all segments.                                   |
+| _TranslationMemoryApi_          | [**create_trans_memory**](docs/TranslationMemoryApi.md#create_trans_memory)                                                               | **POST** /api2/v1/transMemories                                                                         | Create translation memory                              |
+| _TranslationMemoryApi_          | [**delete_source_and_translations**](docs/TranslationMemoryApi.md#delete_source_and_translations)                                         | **DELETE** /api2/v1/transMemories/{transMemoryUid}/segments/{segmentId}                                 | Delete both source and translation                     |
+| _TranslationMemoryApi_          | [**delete_trans_memory**](docs/TranslationMemoryApi.md#delete_trans_memory)                                                               | **DELETE** /api2/v1/transMemories/{transMemoryUid}                                                      | Delete translation memory                              |
+| _TranslationMemoryApi_          | [**delete_translation**](docs/TranslationMemoryApi.md#delete_translation)                                                                 | **DELETE** /api2/v1/transMemories/{transMemoryUid}/segments/{segmentId}/lang/{lang}                     | Delete segment of given language                       |
+| _TranslationMemoryApi_          | [**download_cleaned_tm**](docs/TranslationMemoryApi.md#download_cleaned_tm)                                                               | **GET** /api2/v1/transMemories/downloadCleaned/{asyncRequestId}                                         | Download cleaned TM                                    |
+| _TranslationMemoryApi_          | [**download_search_result**](docs/TranslationMemoryApi.md#download_search_result)                                                         | **GET** /api2/v1/transMemories/downloadExport/{asyncRequestId}                                          | Download export                                        |
+| _TranslationMemoryApi_          | [**edit_trans_memory**](docs/TranslationMemoryApi.md#edit_trans_memory)                                                                   | **PUT** /api2/v1/transMemories/{transMemoryUid}                                                         | Edit translation memory                                |
+| _TranslationMemoryApi_          | [**export_by_query_async**](docs/TranslationMemoryApi.md#export_by_query_async)                                                           | **POST** /api2/v1/transMemories/{transMemoryUid}/exportByQueryAsync                                     | Search translation memory                              |
+| _TranslationMemoryApi_          | [**export_cleaned_tms**](docs/TranslationMemoryApi.md#export_cleaned_tms)                                                                 | **POST** /api2/v1/transMemories/extractCleaned                                                          | Extract cleaned translation memory                     |
+| _TranslationMemoryApi_          | [**export_v2**](docs/TranslationMemoryApi.md#export_v2)                                                                                   | **POST** /api2/v2/transMemories/{transMemoryUid}/export                                                 | Export translation memory                              |
+| _TranslationMemoryApi_          | [**get_background_tasks1**](docs/TranslationMemoryApi.md#get_background_tasks1)                                                           | **GET** /api2/v1/transMemories/{transMemoryUid}/lastBackgroundTask                                      | Get last task information                              |
+| _TranslationMemoryApi_          | [**get_metadata**](docs/TranslationMemoryApi.md#get_metadata)                                                                             | **GET** /api2/v1/transMemories/{transMemoryUid}/metadata                                                | Get translation memory metadata                        |
+| _TranslationMemoryApi_          | [**get_project_template_trans_memories2**](docs/TranslationMemoryApi.md#get_project_template_trans_memories2)                             | **GET** /api2/v3/projectTemplates/{projectTemplateUid}/transMemories                                    | Get translation memories                               |
+| _TranslationMemoryApi_          | [**get_related_projects**](docs/TranslationMemoryApi.md#get_related_projects)                                                             | **GET** /api2/v1/transMemories/{transMemoryUid}/relatedProjects                                         | List related projects                                  |
+| _TranslationMemoryApi_          | [**get_trans_memory**](docs/TranslationMemoryApi.md#get_trans_memory)                                                                     | **GET** /api2/v1/transMemories/{transMemoryUid}                                                         | Get translation memory                                 |
+| _TranslationMemoryApi_          | [**get_translation_resources**](docs/TranslationMemoryApi.md#get_translation_resources)                                                   | **GET** /api2/v1/projects/{projectUid}/jobs/{jobUid}/translationResources                               | Get translation resources                              |
+| _TranslationMemoryApi_          | [**import_trans_memory_v2**](docs/TranslationMemoryApi.md#import_trans_memory_v2)                                                         | **POST** /api2/v2/transMemories/{transMemoryUid}/import                                                 | Import TMX                                             |
+| _TranslationMemoryApi_          | [**insert_to_trans_memory**](docs/TranslationMemoryApi.md#insert_to_trans_memory)                                                         | **POST** /api2/v1/transMemories/{transMemoryUid}/segments                                               | Insert segment                                         |
+| _TranslationMemoryApi_          | [**list_trans_memories**](docs/TranslationMemoryApi.md#list_trans_memories)                                                               | **GET** /api2/v1/transMemories                                                                          | List translation memories                              |
+| _TranslationMemoryApi_          | [**relevant_trans_memories**](docs/TranslationMemoryApi.md#relevant_trans_memories)                                                       | **GET** /api2/v1/projectTemplates/{projectTemplateUid}/transMemories/relevant                           | List project template relevant translation memories    |
+| _TranslationMemoryApi_          | [**relevant_trans_memories1**](docs/TranslationMemoryApi.md#relevant_trans_memories1)                                                     | **GET** /api2/v1/projects/{projectUid}/transMemories/relevant                                           | List project relevant translation memories             |
+| _TranslationMemoryApi_          | [**search**](docs/TranslationMemoryApi.md#search)                                                                                         | **POST** /api2/v1/transMemories/{transMemoryUid}/search                                                 | Search translation memory (sync)                       |
+| _TranslationMemoryApi_          | [**search_by_job3**](docs/TranslationMemoryApi.md#search_by_job3)                                                                         | **POST** /api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/search                              | Search job&#39;s translation memories                  |
+| _TranslationMemoryApi_          | [**search_segment1**](docs/TranslationMemoryApi.md#search_segment1)                                                                       | **POST** /api2/v1/projects/{projectUid}/transMemories/searchSegmentInProject                            | Search translation memory for segment in the project   |
+| _TranslationMemoryApi_          | [**search_segment_by_job**](docs/TranslationMemoryApi.md#search_segment_by_job)                                                           | **POST** /api2/v1/projects/{projectUid}/jobs/{jobUid}/transMemories/searchSegment                       | Search translation memory for segment by job           |
+| _TranslationMemoryApi_          | [**update_translation**](docs/TranslationMemoryApi.md#update_translation)                                                                 | **PUT** /api2/v1/transMemories/{transMemoryUid}/segments/{segmentId}                                    | Edit segment                                           |
+| _TranslationMemoryApi_          | [**wild_card_search_by_job3**](docs/TranslationMemoryApi.md#wild_card_search_by_job3)                                                     | **POST** /api2/v3/projects/{projectUid}/jobs/{jobUid}/transMemories/wildCardSearch                      | Wildcard search job&#39;s translation memories         |
+| _TranslationMemoryApi_          | [**wildcard_search**](docs/TranslationMemoryApi.md#wildcard_search)                                                                       | **POST** /api2/v1/transMemories/{transMemoryUid}/wildCardSearch                                         | Wildcard search                                        |
+| _UserApi_                       | [**cancel_deletion**](docs/UserApi.md#cancel_deletion)                                                                                    | **POST** /api2/v1/users/{userUid}/undelete                                                              | Restore user                                           |
+| _UserApi_                       | [**create_user_v3**](docs/UserApi.md#create_user_v3)                                                                                      | **POST** /api2/v3/users                                                                                 | Create user                                            |
+| _UserApi_                       | [**delete_user1**](docs/UserApi.md#delete_user1)                                                                                          | **DELETE** /api2/v1/users/{userUid}                                                                     | Delete user                                            |
+| _UserApi_                       | [**disable_two_factor_auth_v3**](docs/UserApi.md#disable_two_factor_auth_v3)                                                              | **POST** /api2/v3/users/{userUid}/disableTwoFactorAuth                                                  | Disable two-factor authentication                      |
+| _UserApi_                       | [**get_list_of_users_filtered**](docs/UserApi.md#get_list_of_users_filtered)                                                              | **GET** /api2/v1/users                                                                                  | List users                                             |
+| _UserApi_                       | [**get_user_v3**](docs/UserApi.md#get_user_v3)                                                                                            | **GET** /api2/v3/users/{userUid}                                                                        | Get user                                               |
+| _UserApi_                       | [**list_assigned_projects**](docs/UserApi.md#list_assigned_projects)                                                                      | **GET** /api2/v1/users/{userUid}/projects                                                               | List assigned projects                                 |
+| _UserApi_                       | [**list_jobs**](docs/UserApi.md#list_jobs)                                                                                                | **GET** /api2/v1/users/{userUid}/jobs                                                                   | List assigned jobs                                     |
+| _UserApi_                       | [**list_target_langs**](docs/UserApi.md#list_target_langs)                                                                                | **GET** /api2/v1/users/{userUid}/targetLangs                                                            | List assigned target languages                         |
+| _UserApi_                       | [**list_workflow_steps**](docs/UserApi.md#list_workflow_steps)                                                                            | **GET** /api2/v1/users/{userUid}/workflowSteps                                                          | List assigned workflow steps                           |
+| _UserApi_                       | [**login_activity**](docs/UserApi.md#login_activity)                                                                                      | **GET** /api2/v1/users/{userUid}/loginStatistics                                                        | Login statistics                                       |
+| _UserApi_                       | [**send_login_info**](docs/UserApi.md#send_login_info)                                                                                    | **POST** /api2/v1/users/{userUid}/emailLoginInformation                                                 | Send login information                                 |
+| _UserApi_                       | [**update_password**](docs/UserApi.md#update_password)                                                                                    | **POST** /api2/v1/users/{userUid}/updatePassword                                                        | Update password                                        |
+| _UserApi_                       | [**update_user_v3**](docs/UserApi.md#update_user_v3)                                                                                      | **PUT** /api2/v3/users/{userUid}                                                                        | Edit user                                              |
+| _UserApi_                       | [**user_last_logins**](docs/UserApi.md#user_last_logins)                                                                                  | **GET** /api2/v1/users/lastLogins                                                                       | List last login dates                                  |
+| _VendorApi_                     | [**create_vendor**](docs/VendorApi.md#create_vendor)                                                                                      | **POST** /api2/v1/vendors                                                                               | Create vendor                                          |
+| _VendorApi_                     | [**get_vendor**](docs/VendorApi.md#get_vendor)                                                                                            | **GET** /api2/v1/vendors/{vendorUid}                                                                    | Get vendor                                             |
+| _VendorApi_                     | [**list_vendors**](docs/VendorApi.md#list_vendors)                                                                                        | **GET** /api2/v1/vendors                                                                                | List vendors                                           |
+| _WebhookApi_                    | [**create_web_hook1**](docs/WebhookApi.md#create_web_hook1)                                                                               | **POST** /api2/v2/webhooks                                                                              | Create webhook                                         |
+| _WebhookApi_                    | [**delete_web_hook1**](docs/WebhookApi.md#delete_web_hook1)                                                                               | **DELETE** /api2/v2/webhooks/{webHookUid}                                                               | Delete webhook                                         |
+| _WebhookApi_                    | [**get_web_hook1**](docs/WebhookApi.md#get_web_hook1)                                                                                     | **GET** /api2/v2/webhooks/{webHookUid}                                                                  | Get webhook                                            |
+| _WebhookApi_                    | [**get_web_hook_list1**](docs/WebhookApi.md#get_web_hook_list1)                                                                           | **GET** /api2/v2/webhooks                                                                               | Lists webhooks                                         |
+| _WebhookApi_                    | [**get_webhook_calls_list**](docs/WebhookApi.md#get_webhook_calls_list)                                                                   | **GET** /api2/v1/webhooksCalls                                                                          | Lists webhook calls                                    |
+| _WebhookApi_                    | [**get_webhook_previews**](docs/WebhookApi.md#get_webhook_previews)                                                                       | **GET** /api2/v2/webhooks/previews                                                                      | Get webhook body previews                              |
+| _WebhookApi_                    | [**replay_last**](docs/WebhookApi.md#replay_last)                                                                                         | **POST** /api2/v1/webhooksCalls/replay/latest                                                           | Replay last webhook calls                              |
+| _WebhookApi_                    | [**replay_webhook_calls**](docs/WebhookApi.md#replay_webhook_calls)                                                                       | **POST** /api2/v1/webhooksCalls/replay                                                                  | Replay webhook calls                                   |
+| _WebhookApi_                    | [**send_test_webhook**](docs/WebhookApi.md#send_test_webhook)                                                                             | **POST** /api2/v2/webhooks/{webhookUid}/test                                                            | Send test webhook                                      |
+| _WebhookApi_                    | [**update_web_hook1**](docs/WebhookApi.md#update_web_hook1)                                                                               | **PUT** /api2/v2/webhooks/{webHookUid}                                                                  | Edit webhook                                           |
+| _WorkflowStepApi_               | [**create_wf_step**](docs/WorkflowStepApi.md#create_wf_step)                                                                              | **POST** /api2/v1/workflowSteps                                                                         | Create workflow step                                   |
+| _WorkflowStepApi_               | [**edit_wf_step**](docs/WorkflowStepApi.md#edit_wf_step)                                                                                  | **PUT** /api2/v1/workflowSteps/{workflowStepUid}                                                        | Edit workflow step                                     |
+| _WorkflowStepApi_               | [**list_wf_steps**](docs/WorkflowStepApi.md#list_wf_steps)                                                                                | **GET** /api2/v1/workflowSteps                                                                          | List workflow steps                                    |
+| _WorkflowStepApi_               | [**list_workflow_steps**](docs/WorkflowStepApi.md#list_workflow_steps)                                                                    | **GET** /api2/v1/users/{userUid}/workflowSteps                                                          | List assigned workflow steps                           |
+| _WorkflowChangesApi_            | [**download_workflow_changes**](docs/WorkflowChangesApi.md#download_workflow_changes)                                                     | **POST** /api2/v2/jobs/workflowChanges                                                                  | Download workflow changes report                       |
+
+## Documentation For Models
+
+- [ADMIN](docs/ADMIN.md)
+- [ADMINEDIT](docs/ADMINEDIT.md)
+- [ADMINRESPONSE](docs/ADMINRESPONSE.md)
+- [AbsoluteTranslationLengthWarningDto](docs/AbsoluteTranslationLengthWarningDto.md)
+- [AbsoluteTranslationLengthWarningDtoAllOf](docs/AbsoluteTranslationLengthWarningDtoAllOf.md)
+- [AbstractAnalyseSettingsDto](docs/AbstractAnalyseSettingsDto.md)
+- [AbstractConnectorDto](docs/AbstractConnectorDto.md)
+- [AbstractProjectDto](docs/AbstractProjectDto.md)
+- [AbstractProjectDtoV2](docs/AbstractProjectDtoV2.md)
+- [AbstractUserCreateDto](docs/AbstractUserCreateDto.md)
+- [AbstractUserEditDto](docs/AbstractUserEditDto.md)
+- [AccuracyWeightsDto](docs/AccuracyWeightsDto.md)
+- [AddCommentDto](docs/AddCommentDto.md)
+- [AddLqaCommentResultDto](docs/AddLqaCommentResultDto.md)
+- [AddPlainCommentResultDto](docs/AddPlainCommentResultDto.md)
+- [AddTargetLangDto](docs/AddTargetLangDto.md)
+- [AddWorkflowStepsDto](docs/AddWorkflowStepsDto.md)
+- [AdditionalWorkflowStepDto](docs/AdditionalWorkflowStepDto.md)
+- [AdditionalWorkflowStepRequestDto](docs/AdditionalWorkflowStepRequestDto.md)
+- [AdditionalWorkflowStepV2Dto](docs/AdditionalWorkflowStepV2Dto.md)
+- [AdminProjectManager](docs/AdminProjectManager.md)
+- [AdminProjectManagerAllOf](docs/AdminProjectManagerAllOf.md)
+- [AdminProjectManagerV2](docs/AdminProjectManagerV2.md)
+- [AdminProjectManagerV2AllOf](docs/AdminProjectManagerV2AllOf.md)
+- [AdobeExperienceManager](docs/AdobeExperienceManager.md)
+- [AdobeExperienceManagerAllOf](docs/AdobeExperienceManagerAllOf.md)
+- [AmazonS3](docs/AmazonS3.md)
+- [AmazonS3AllOf](docs/AmazonS3AllOf.md)
+- [AnalyseJobDto](docs/AnalyseJobDto.md)
+- [AnalyseJobReference](docs/AnalyseJobReference.md)
+- [AnalyseLanguagePartDto](docs/AnalyseLanguagePartDto.md)
+- [AnalyseLanguagePartReference](docs/AnalyseLanguagePartReference.md)
+- [AnalyseLanguagePartV2Dto](docs/AnalyseLanguagePartV2Dto.md)
+- [AnalyseLanguagePartV3Dto](docs/AnalyseLanguagePartV3Dto.md)
+- [AnalyseRecalculateRequestDto](docs/AnalyseRecalculateRequestDto.md)
+- [AnalyseRecalculateResponseDto](docs/AnalyseRecalculateResponseDto.md)
+- [AnalyseReference](docs/AnalyseReference.md)
+- [AnalyseSettingsDto](docs/AnalyseSettingsDto.md)
+- [AnalyseV2Dto](docs/AnalyseV2Dto.md)
+- [AnalyseV3Dto](docs/AnalyseV3Dto.md)
+- [AnalysesV2Dto](docs/AnalysesV2Dto.md)
+- [AndroidSettingsDto](docs/AndroidSettingsDto.md)
+- [AppleTokenResponseDto](docs/AppleTokenResponseDto.md)
+- [AsciidocSettingsDto](docs/AsciidocSettingsDto.md)
+- [AssignVendorDto](docs/AssignVendorDto.md)
+- [AssignableTemplatesDto](docs/AssignableTemplatesDto.md)
+- [AssignedJobDto](docs/AssignedJobDto.md)
+- [AssignmentPerTargetLangDto](docs/AssignmentPerTargetLangDto.md)
+- [AsyncAnalyseListResponseDto](docs/AsyncAnalyseListResponseDto.md)
+- [AsyncAnalyseListResponseV2Dto](docs/AsyncAnalyseListResponseV2Dto.md)
+- [AsyncAnalyseResponseDto](docs/AsyncAnalyseResponseDto.md)
+- [AsyncAnalyseResponseV2Dto](docs/AsyncAnalyseResponseV2Dto.md)
+- [AsyncExportTMByQueryDto](docs/AsyncExportTMByQueryDto.md)
+- [AsyncExportTMByQueryResponseDto](docs/AsyncExportTMByQueryResponseDto.md)
+- [AsyncExportTMDto](docs/AsyncExportTMDto.md)
+- [AsyncExportTMResponseDto](docs/AsyncExportTMResponseDto.md)
+- [AsyncFileOpResponseDto](docs/AsyncFileOpResponseDto.md)
+- [AsyncRequestDto](docs/AsyncRequestDto.md)
+- [AsyncRequestReference](docs/AsyncRequestReference.md)
+- [AsyncRequestStatusDto](docs/AsyncRequestStatusDto.md)
+- [AsyncRequestV2Dto](docs/AsyncRequestV2Dto.md)
+- [AsyncRequestWrapperDto](docs/AsyncRequestWrapperDto.md)
+- [AsyncRequestWrapperV2Dto](docs/AsyncRequestWrapperV2Dto.md)
+- [AsyncResponseDto](docs/AsyncResponseDto.md)
+- [AsyncResponseV2Dto](docs/AsyncResponseV2Dto.md)
+- [Attribute](docs/Attribute.md)
+- [AuthSchema](docs/AuthSchema.md)
+- [AutomatedProjectSettingsDto](docs/AutomatedProjectSettingsDto.md)
+- [BackgroundTasksTbDto](docs/BackgroundTasksTbDto.md)
+- [BackgroundTasksTmDto](docs/BackgroundTasksTmDto.md)
+- [BitbucketServer](docs/BitbucketServer.md)
+- [BitbucketServerAllOf](docs/BitbucketServerAllOf.md)
+- [BrowseRequestDto](docs/BrowseRequestDto.md)
+- [BrowseResponseListDto](docs/BrowseResponseListDto.md)
+- [BulkDeleteAnalyseDto](docs/BulkDeleteAnalyseDto.md)
+- [BulkEditAnalyseV2Dto](docs/BulkEditAnalyseV2Dto.md)
+- [BusinessUnitDto](docs/BusinessUnitDto.md)
+- [BusinessUnitEditDto](docs/BusinessUnitEditDto.md)
+- [BusinessUnitReference](docs/BusinessUnitReference.md)
+- [Buyer](docs/Buyer.md)
+- [BuyerAllOf](docs/BuyerAllOf.md)
+- [BuyerReference](docs/BuyerReference.md)
+- [CheckResponse](docs/CheckResponse.md)
+- [CleanedTransMemoriesDto](docs/CleanedTransMemoriesDto.md)
+- [ClientDto](docs/ClientDto.md)
+- [ClientEditDto](docs/ClientEditDto.md)
+- [ClientReference](docs/ClientReference.md)
+- [CloneProjectDto](docs/CloneProjectDto.md)
+- [CommentDto](docs/CommentDto.md)
+- [CommonConversationDto](docs/CommonConversationDto.md)
+- [ComparedSegmentDto](docs/ComparedSegmentDto.md)
+- [ComparedSegmentsDto](docs/ComparedSegmentsDto.md)
+- [ConceptDto](docs/ConceptDto.md)
+- [ConceptDtov2](docs/ConceptDtov2.md)
+- [ConceptEditDto](docs/ConceptEditDto.md)
+- [ConceptListReference](docs/ConceptListReference.md)
+- [ConceptListResponseDto](docs/ConceptListResponseDto.md)
+- [ConceptWithMetadataDto](docs/ConceptWithMetadataDto.md)
+- [ConcurrentRequestsDto](docs/ConcurrentRequestsDto.md)
+- [ConnectorCreateResponseDto](docs/ConnectorCreateResponseDto.md)
+- [ConnectorDto](docs/ConnectorDto.md)
+- [ConnectorErrorDetailDto](docs/ConnectorErrorDetailDto.md)
+- [ConnectorErrorsDto](docs/ConnectorErrorsDto.md)
+- [ConnectorListDto](docs/ConnectorListDto.md)
+- [Contentstack](docs/Contentstack.md)
+- [ContentstackAllOf](docs/ContentstackAllOf.md)
+- [ContinuousJobInfoDto](docs/ContinuousJobInfoDto.md)
+- [ConversationListDto](docs/ConversationListDto.md)
+- [CostCenterDto](docs/CostCenterDto.md)
+- [CostCenterEditDto](docs/CostCenterEditDto.md)
+- [CostCenterReference](docs/CostCenterReference.md)
+- [CountsDto](docs/CountsDto.md)
+- [CreateAnalyseAsyncV2Dto](docs/CreateAnalyseAsyncV2Dto.md)
+- [CreateAnalyseListAsyncDto](docs/CreateAnalyseListAsyncDto.md)
+- [CreateCustomFieldDto](docs/CreateCustomFieldDto.md)
+- [CreateCustomFieldInstanceDto](docs/CreateCustomFieldInstanceDto.md)
+- [CreateCustomFieldInstancesDto](docs/CreateCustomFieldInstancesDto.md)
+- [CreateCustomFileTypeDto](docs/CreateCustomFileTypeDto.md)
+- [CreateLqaConversationDto](docs/CreateLqaConversationDto.md)
+- [CreateLqaProfileDto](docs/CreateLqaProfileDto.md)
+- [CreatePlainConversationDto](docs/CreatePlainConversationDto.md)
+- [CreateProjectFromTemplateAsyncV2Dto](docs/CreateProjectFromTemplateAsyncV2Dto.md)
+- [CreateProjectFromTemplateV2Dto](docs/CreateProjectFromTemplateV2Dto.md)
+- [CreateProjectV3Dto](docs/CreateProjectV3Dto.md)
+- [CreateReferenceFileNoteDto](docs/CreateReferenceFileNoteDto.md)
+- [CreateTermsDto](docs/CreateTermsDto.md)
+- [CreateVendorDto](docs/CreateVendorDto.md)
+- [CreateWebEditorLinkDtoV2](docs/CreateWebEditorLinkDtoV2.md)
+- [CreateWebHookDto](docs/CreateWebHookDto.md)
+- [CreateWorkflowStepDto](docs/CreateWorkflowStepDto.md)
+- [CsvSettingsDto](docs/CsvSettingsDto.md)
+- [CustomFieldDto](docs/CustomFieldDto.md)
+- [CustomFieldInstanceApiDto](docs/CustomFieldInstanceApiDto.md)
+- [CustomFieldInstanceDto](docs/CustomFieldInstanceDto.md)
+- [CustomFieldInstancesDto](docs/CustomFieldInstancesDto.md)
+- [CustomFieldOptionDto](docs/CustomFieldOptionDto.md)
+- [CustomFieldOptionsTruncatedDto](docs/CustomFieldOptionsTruncatedDto.md)
+- [CustomFileTypeDto](docs/CustomFileTypeDto.md)
+- [CustomQAWarningDto](docs/CustomQAWarningDto.md)
+- [CustomQAWarningDtoAllOf](docs/CustomQAWarningDtoAllOf.md)
+- [DataDto](docs/DataDto.md)
+- [DataDtoV1](docs/DataDtoV1.md)
+- [DeleteCustomFileTypeDto](docs/DeleteCustomFileTypeDto.md)
+- [DesignWeightsDto](docs/DesignWeightsDto.md)
+- [DictionaryItemDto](docs/DictionaryItemDto.md)
+- [DiscountSchemeCreateDto](docs/DiscountSchemeCreateDto.md)
+- [DiscountSchemeReference](docs/DiscountSchemeReference.md)
+- [DiscountSettingsDto](docs/DiscountSettingsDto.md)
+- [DitaSettingsDto](docs/DitaSettingsDto.md)
+- [DocBookSettingsDto](docs/DocBookSettingsDto.md)
+- [DocSettingsDto](docs/DocSettingsDto.md)
+- [DomainDto](docs/DomainDto.md)
+- [DomainEditDto](docs/DomainEditDto.md)
+- [DomainReference](docs/DomainReference.md)
+- [EditAnalyseSettingsDto](docs/EditAnalyseSettingsDto.md)
+- [EditAnalyseV2Dto](docs/EditAnalyseV2Dto.md)
+- [EditLqaConversationDto](docs/EditLqaConversationDto.md)
+- [EditPlainConversationDto](docs/EditPlainConversationDto.md)
+- [EditProjectMTSettPerLangDto](docs/EditProjectMTSettPerLangDto.md)
+- [EditProjectMTSettPerLangListDto](docs/EditProjectMTSettPerLangListDto.md)
+- [EditProjectMTSettingsDto](docs/EditProjectMTSettingsDto.md)
+- [EditProjectSecuritySettingsDtoV2](docs/EditProjectSecuritySettingsDtoV2.md)
+- [EditProjectV2Dto](docs/EditProjectV2Dto.md)
+- [EditQASettingsDtoV2](docs/EditQASettingsDtoV2.md)
+- [EditSegmentationRuleDto](docs/EditSegmentationRuleDto.md)
+- [EditWorkflowStepDto](docs/EditWorkflowStepDto.md)
+- [EditionDto](docs/EditionDto.md)
+- [Email](docs/Email.md)
+- [EmailQuotesRequestDto](docs/EmailQuotesRequestDto.md)
+- [EmailQuotesResponseDto](docs/EmailQuotesResponseDto.md)
+- [EmptyPairTagsWarningDto](docs/EmptyPairTagsWarningDto.md)
+- [EmptyTagContentWarningDto](docs/EmptyTagContentWarningDto.md)
+- [EmptyTranslationWarningDto](docs/EmptyTranslationWarningDto.md)
+- [EnabledCheckContextDtoV2](docs/EnabledCheckContextDtoV2.md)
+- [EnabledCheckDtoV2](docs/EnabledCheckDtoV2.md)
+- [EnabledQualityChecksDto](docs/EnabledQualityChecksDto.md)
+- [ErrorCategoriesDto](docs/ErrorCategoriesDto.md)
+- [ErrorDetailDto](docs/ErrorDetailDto.md)
+- [ErrorDetailDtoV2](docs/ErrorDetailDtoV2.md)
+- [ErrorDetailDtoV3](docs/ErrorDetailDtoV3.md)
+- [ErrorDto](docs/ErrorDto.md)
+- [ExportByQueryDto](docs/ExportByQueryDto.md)
+- [ExportTMDto](docs/ExportTMDto.md)
+- [ExtraNumbersV3WarningDto](docs/ExtraNumbersV3WarningDto.md)
+- [ExtraNumbersV3WarningDtoAllOf](docs/ExtraNumbersV3WarningDtoAllOf.md)
+- [ExtraNumbersWarningDto](docs/ExtraNumbersWarningDto.md)
+- [ExtraNumbersWarningDtoAllOf](docs/ExtraNumbersWarningDtoAllOf.md)
+- [FeaturesDto](docs/FeaturesDto.md)
+- [FileDto](docs/FileDto.md)
+- [FileHandoverDto](docs/FileHandoverDto.md)
+- [FileImportSettingsCreateDto](docs/FileImportSettingsCreateDto.md)
+- [FileImportSettingsDto](docs/FileImportSettingsDto.md)
+- [FileListDto](docs/FileListDto.md)
+- [FileNamingSettingsDto](docs/FileNamingSettingsDto.md)
+- [FinancialSettingsDto](docs/FinancialSettingsDto.md)
+- [FindConversationsDto](docs/FindConversationsDto.md)
+- [FluencyWeightsDto](docs/FluencyWeightsDto.md)
+- [ForbiddenStringWarningDto](docs/ForbiddenStringWarningDto.md)
+- [ForbiddenStringWarningDtoAllOf](docs/ForbiddenStringWarningDtoAllOf.md)
+- [ForbiddenTermWarningDto](docs/ForbiddenTermWarningDto.md)
+- [ForbiddenTermWarningDtoAllOf](docs/ForbiddenTermWarningDtoAllOf.md)
+- [FormattingWarningDto](docs/FormattingWarningDto.md)
+- [Ftp](docs/Ftp.md)
+- [FtpAllOf](docs/FtpAllOf.md)
+- [FuzzyInconsistencyWarningDto](docs/FuzzyInconsistencyWarningDto.md)
+- [FuzzyInconsistencyWarningDtoAllOf](docs/FuzzyInconsistencyWarningDtoAllOf.md)
+- [GUEST](docs/GUEST.md)
+- [GUESTEDIT](docs/GUESTEDIT.md)
+- [GUESTEDITAllOf](docs/GUESTEDITAllOf.md)
+- [GUESTRESPONSE](docs/GUESTRESPONSE.md)
+- [GUESTRESPONSEAllOf](docs/GUESTRESPONSEAllOf.md)
+- [GetBilingualFileDto](docs/GetBilingualFileDto.md)
+- [GetFileRequestParamsDto](docs/GetFileRequestParamsDto.md)
+- [Git](docs/Git.md)
+- [GitAllOf](docs/GitAllOf.md)
+- [GitLab](docs/GitLab.md)
+- [GitLabAllOf](docs/GitLabAllOf.md)
+- [GlossaryActivationDto](docs/GlossaryActivationDto.md)
+- [GlossaryDto](docs/GlossaryDto.md)
+- [GlossaryEditDto](docs/GlossaryEditDto.md)
+- [HtmlSettingsDto](docs/HtmlSettingsDto.md)
+- [HumanTranslateJobsDto](docs/HumanTranslateJobsDto.md)
+- [IdReference](docs/IdReference.md)
+- [IdmlSettingsDto](docs/IdmlSettingsDto.md)
+- [ImportSettingsCreateDto](docs/ImportSettingsCreateDto.md)
+- [ImportSettingsDto](docs/ImportSettingsDto.md)
+- [ImportSettingsEditDto](docs/ImportSettingsEditDto.md)
+- [ImportSettingsReference](docs/ImportSettingsReference.md)
+- [ImportStatusDto](docs/ImportStatusDto.md)
+- [ImportStatusDtoV2](docs/ImportStatusDtoV2.md)
+- [ImportTermBaseResponseDto](docs/ImportTermBaseResponseDto.md)
+- [InconsistentTagContentWarningDto](docs/InconsistentTagContentWarningDto.md)
+- [InconsistentTranslationWarningDto](docs/InconsistentTranslationWarningDto.md)
+- [InconsistentTranslationWarningDtoAllOf](docs/InconsistentTranslationWarningDtoAllOf.md)
+- [InputStreamLength](docs/InputStreamLength.md)
+- [JobCreateRemoteFileDto](docs/JobCreateRemoteFileDto.md)
+- [JobCreateRequestDto](docs/JobCreateRequestDto.md)
+- [JobExportActionDto](docs/JobExportActionDto.md)
+- [JobExportResponseDto](docs/JobExportResponseDto.md)
+- [JobListDto](docs/JobListDto.md)
+- [JobMachineTranslationSettingsDto](docs/JobMachineTranslationSettingsDto.md)
+- [JobNonTranslatableSettingsDto](docs/JobNonTranslatableSettingsDto.md)
+- [JobPartDeleteReferences](docs/JobPartDeleteReferences.md)
+- [JobPartExtendedDto](docs/JobPartExtendedDto.md)
+- [JobPartPatchBatchDto](docs/JobPartPatchBatchDto.md)
+- [JobPartPatchResultDto](docs/JobPartPatchResultDto.md)
+- [JobPartPatchSingleDto](docs/JobPartPatchSingleDto.md)
+- [JobPartReadyDeleteTranslationDto](docs/JobPartReadyDeleteTranslationDto.md)
+- [JobPartReadyDeleteTranslationFilterDto](docs/JobPartReadyDeleteTranslationFilterDto.md)
+- [JobPartReadyReferences](docs/JobPartReadyReferences.md)
+- [JobPartReference](docs/JobPartReference.md)
+- [JobPartReferenceV2](docs/JobPartReferenceV2.md)
+- [JobPartReferences](docs/JobPartReferences.md)
+- [JobPartSegmentsDtoV3](docs/JobPartSegmentsDtoV3.md)
+- [JobPartStatusChangeDto](docs/JobPartStatusChangeDto.md)
+- [JobPartStatusChangesDto](docs/JobPartStatusChangesDto.md)
+- [JobPartUpdateBatchDto](docs/JobPartUpdateBatchDto.md)
+- [JobPartUpdateSingleDto](docs/JobPartUpdateSingleDto.md)
+- [JobPartUpdateSourceDto](docs/JobPartUpdateSourceDto.md)
+- [JobPartsDto](docs/JobPartsDto.md)
+- [JobReference](docs/JobReference.md)
+- [JobRoleDto](docs/JobRoleDto.md)
+- [JobSegmentDto](docs/JobSegmentDto.md)
+- [JobStatusChangeActionDto](docs/JobStatusChangeActionDto.md)
+- [JobTranslationMemorySettingsDto](docs/JobTranslationMemorySettingsDto.md)
+- [JobUpdateSourceResponseDto](docs/JobUpdateSourceResponseDto.md)
+- [JoinTagsWarningDto](docs/JoinTagsWarningDto.md)
+- [JoinTagsWarningDtoAllOf](docs/JoinTagsWarningDtoAllOf.md)
+- [Joomla](docs/Joomla.md)
+- [JoomlaAllOf](docs/JoomlaAllOf.md)
+- [JsonSettingsDto](docs/JsonSettingsDto.md)
+- [Kentico](docs/Kentico.md)
+- [KenticoAllOf](docs/KenticoAllOf.md)
+- [LINGUIST](docs/LINGUIST_.md)
+- [LINGUISTEDIT](docs/LINGUISTEDIT.md)
+- [LINGUISTEDITAllOf](docs/LINGUISTEDITAllOf.md)
+- [LINGUISTRESPONSE](docs/LINGUISTRESPONSE.md)
+- [LINGUISTRESPONSEAllOf](docs/LINGUISTRESPONSEAllOf.md)
+- [LQA](docs/LQA.md)
+- [LQAAllOf](docs/LQAAllOf.md)
+- [LQAConversationDto](docs/LQAConversationDto.md)
+- [LQAConversationsListDto](docs/LQAConversationsListDto.md)
+- [LQAReference](docs/LQAReference.md)
+- [LQAReferences](docs/LQAReferences.md)
+- [LanguageDto](docs/LanguageDto.md)
+- [LanguageListDto](docs/LanguageListDto.md)
+- [LanguageMetadata1](docs/LanguageMetadata1.md)
+- [LastLoginDto](docs/LastLoginDto.md)
+- [LeadingAndTrailingSpacesWarningDto](docs/LeadingAndTrailingSpacesWarningDto.md)
+- [LeadingAndTrailingSpacesWarningDtoAllOf](docs/LeadingAndTrailingSpacesWarningDtoAllOf.md)
+- [Linguist](docs/Linguist.md)
+- [LinguistV2](docs/LinguistV2.md)
+- [LocaleConventionWeightsDto](docs/LocaleConventionWeightsDto.md)
+- [LoginDto](docs/LoginDto.md)
+- [LoginOtherDto](docs/LoginOtherDto.md)
+- [LoginOtherV3Dto](docs/LoginOtherV3Dto.md)
+- [LoginResponseDto](docs/LoginResponseDto.md)
+- [LoginResponseV3Dto](docs/LoginResponseV3Dto.md)
+- [LoginToSessionDto](docs/LoginToSessionDto.md)
+- [LoginToSessionResponseDto](docs/LoginToSessionResponseDto.md)
+- [LoginToSessionResponseV3Dto](docs/LoginToSessionResponseV3Dto.md)
+- [LoginToSessionV3Dto](docs/LoginToSessionV3Dto.md)
+- [LoginUserDto](docs/LoginUserDto.md)
+- [LoginV3Dto](docs/LoginV3Dto.md)
+- [LoginWithAppleDto](docs/LoginWithAppleDto.md)
+- [LoginWithGoogleDto](docs/LoginWithGoogleDto.md)
+- [LqaErrorCategoryDto](docs/LqaErrorCategoryDto.md)
+- [LqaProfileDetailDto](docs/LqaProfileDetailDto.md)
+- [LqaProfileReferenceDto](docs/LqaProfileReferenceDto.md)
+- [LqaProfilesForWsV2Dto](docs/LqaProfilesForWsV2Dto.md)
+- [LqaSettingsDto](docs/LqaSettingsDto.md)
+- [LqaSeverityDto](docs/LqaSeverityDto.md)
+- [MORAVIA](docs/MORAVIA.md)
+- [MORAVIAAllOf](docs/MORAVIAAllOf.md)
+- [MTSettingsPerLanguageDto](docs/MTSettingsPerLanguageDto.md)
+- [MTSettingsPerLanguageListDto](docs/MTSettingsPerLanguageListDto.md)
+- [MTSettingsPerLanguageReference](docs/MTSettingsPerLanguageReference.md)
+- [MacSettingsDto](docs/MacSettingsDto.md)
+- [MachineTranslateResponse](docs/MachineTranslateResponse.md)
+- [MachineTranslateSettingsDto](docs/MachineTranslateSettingsDto.md)
+- [MachineTranslateSettingsLangsDto](docs/MachineTranslateSettingsLangsDto.md)
+- [MachineTranslateSettingsPbmDto](docs/MachineTranslateSettingsPbmDto.md)
+- [MachineTranslateSettingsReference](docs/MachineTranslateSettingsReference.md)
+- [MachineTranslateStatusDto](docs/MachineTranslateStatusDto.md)
+- [MachineTranslationSettingsDto](docs/MachineTranslationSettingsDto.md)
+- [Magento](docs/Magento.md)
+- [MalformedWarningDto](docs/MalformedWarningDto.md)
+- [MalformedWarningDtoAllOf](docs/MalformedWarningDtoAllOf.md)
+- [Marketo](docs/Marketo.md)
+- [MarketoAllOf](docs/MarketoAllOf.md)
+- [MarketoSegmentMappingDto](docs/MarketoSegmentMappingDto.md)
+- [MarketoSegmentationMappingDto](docs/MarketoSegmentationMappingDto.md)
+- [Match](docs/Match.md)
+- [MatchCounts101Dto](docs/MatchCounts101Dto.md)
+- [MatchCountsDto](docs/MatchCountsDto.md)
+- [MatchCountsNTDto](docs/MatchCountsNTDto.md)
+- [MatchCountsNTDtoV1](docs/MatchCountsNTDtoV1.md)
+- [MdSettingsDto](docs/MdSettingsDto.md)
+- [MemTransMachineTranslateSettingsDto](docs/MemTransMachineTranslateSettingsDto.md)
+- [MemsourceTranslateProfileSimpleDto](docs/MemsourceTranslateProfileSimpleDto.md)
+- [MentionDto](docs/MentionDto.md)
+- [MentionableGroupDto](docs/MentionableGroupDto.md)
+- [MentionableUserDto](docs/MentionableUserDto.md)
+- [MetadataField](docs/MetadataField.md)
+- [MetadataOptionReference](docs/MetadataOptionReference.md)
+- [MetadataPrioritySettingsDto](docs/MetadataPrioritySettingsDto.md)
+- [MetadataReference](docs/MetadataReference.md)
+- [MetadataResponse](docs/MetadataResponse.md)
+- [MetadataTbDto](docs/MetadataTbDto.md)
+- [MicrosoftAzure](docs/MicrosoftAzure.md)
+- [MicrosoftAzureAllOf](docs/MicrosoftAzureAllOf.md)
+- [MifSettingsDto](docs/MifSettingsDto.md)
+- [MissingNumbersV3WarningDto](docs/MissingNumbersV3WarningDto.md)
+- [MissingNumbersWarningDto](docs/MissingNumbersWarningDto.md)
+- [MissingNumbersWarningDtoAllOf](docs/MissingNumbersWarningDtoAllOf.md)
+- [MisspelledWord](docs/MisspelledWord.md)
+- [MisspelledWordDto](docs/MisspelledWordDto.md)
+- [MoraviaWarningDto](docs/MoraviaWarningDto.md)
+- [MoraviaWarningDtoAllOf](docs/MoraviaWarningDtoAllOf.md)
+- [MultilingualCsvSettingsDto](docs/MultilingualCsvSettingsDto.md)
+- [MultilingualXlsSettingsDto](docs/MultilingualXlsSettingsDto.md)
+- [MultilingualXmlSettingsDto](docs/MultilingualXmlSettingsDto.md)
+- [MultipleSpacesV3WarningDto](docs/MultipleSpacesV3WarningDto.md)
+- [MultipleSpacesV3WarningDtoAllOf](docs/MultipleSpacesV3WarningDtoAllOf.md)
+- [MultipleSpacesWarningDto](docs/MultipleSpacesWarningDto.md)
+- [NUMBER](docs/NUMBER.md)
+- [NUMBERAllOf](docs/NUMBERAllOf.md)
+- [Name](docs/Name.md)
+- [NameDto](docs/NameDto.md)
+- [NestedTagsWarningDto](docs/NestedTagsWarningDto.md)
+- [NestedTagsWarningDtoAllOf](docs/NestedTagsWarningDtoAllOf.md)
+- [NetRateScheme](docs/NetRateScheme.md)
+- [NetRateSchemeEdit](docs/NetRateSchemeEdit.md)
+- [NetRateSchemeReference](docs/NetRateSchemeReference.md)
+- [NetRateSchemeWorkflowStep](docs/NetRateSchemeWorkflowStep.md)
+- [NetRateSchemeWorkflowStepCreate](docs/NetRateSchemeWorkflowStepCreate.md)
+- [NetRateSchemeWorkflowStepEdit](docs/NetRateSchemeWorkflowStepEdit.md)
+- [NetRateSchemeWorkflowStepReference](docs/NetRateSchemeWorkflowStepReference.md)
+- [NewerAtLowerLevelWarningDto](docs/NewerAtLowerLevelWarningDto.md)
+- [NonConformingTermWarningDto](docs/NonConformingTermWarningDto.md)
+- [NonConformingTermWarningDtoAllOf](docs/NonConformingTermWarningDtoAllOf.md)
+- [NonTranslatableSettingsDto](docs/NonTranslatableSettingsDto.md)
+- [NotConfirmedWarningDto](docs/NotConfirmedWarningDto.md)
+- [NotifyJobPartsRequestDto](docs/NotifyJobPartsRequestDto.md)
+- [NotifyProviderDto](docs/NotifyProviderDto.md)
+- [OrganizationEmailTemplateDto](docs/OrganizationEmailTemplateDto.md)
+- [OrganizationReference](docs/OrganizationReference.md)
+- [OtherWeightsDto](docs/OtherWeightsDto.md)
+- [PROJECTMANAGER](docs/PROJECTMANAGER.md)
+- [PROJECTMANAGEREDIT](docs/PROJECTMANAGEREDIT.md)
+- [PROJECTMANAGEREDITAllOf](docs/PROJECTMANAGEREDITAllOf.md)
+- [PROJECTMANAGERRESPONSE](docs/PROJECTMANAGERRESPONSE.md)
+- [PROJECTMANAGERRESPONSEAllOf](docs/PROJECTMANAGERRESPONSEAllOf.md)
+- [PageDtoAbstractProjectDto](docs/PageDtoAbstractProjectDto.md)
+- [PageDtoAdditionalWorkflowStepDto](docs/PageDtoAdditionalWorkflowStepDto.md)
+- [PageDtoAnalyseJobDto](docs/PageDtoAnalyseJobDto.md)
+- [PageDtoAnalyseReference](docs/PageDtoAnalyseReference.md)
+- [PageDtoAssignedJobDto](docs/PageDtoAssignedJobDto.md)
+- [PageDtoAsyncRequestDto](docs/PageDtoAsyncRequestDto.md)
+- [PageDtoBusinessUnitDto](docs/PageDtoBusinessUnitDto.md)
+- [PageDtoClientDto](docs/PageDtoClientDto.md)
+- [PageDtoCostCenterDto](docs/PageDtoCostCenterDto.md)
+- [PageDtoCustomFieldDto](docs/PageDtoCustomFieldDto.md)
+- [PageDtoCustomFieldInstanceDto](docs/PageDtoCustomFieldInstanceDto.md)
+- [PageDtoCustomFieldOptionDto](docs/PageDtoCustomFieldOptionDto.md)
+- [PageDtoCustomFileTypeDto](docs/PageDtoCustomFileTypeDto.md)
+- [PageDtoDomainDto](docs/PageDtoDomainDto.md)
+- [PageDtoGlossaryDto](docs/PageDtoGlossaryDto.md)
+- [PageDtoImportSettingsReference](docs/PageDtoImportSettingsReference.md)
+- [PageDtoJobPartReferenceV2](docs/PageDtoJobPartReferenceV2.md)
+- [PageDtoLastLoginDto](docs/PageDtoLastLoginDto.md)
+- [PageDtoLqaProfileReferenceDto](docs/PageDtoLqaProfileReferenceDto.md)
+- [PageDtoMachineTranslateSettingsPbmDto](docs/PageDtoMachineTranslateSettingsPbmDto.md)
+- [PageDtoNetRateSchemeReference](docs/PageDtoNetRateSchemeReference.md)
+- [PageDtoNetRateSchemeWorkflowStepReference](docs/PageDtoNetRateSchemeWorkflowStepReference.md)
+- [PageDtoOrganizationEmailTemplateDto](docs/PageDtoOrganizationEmailTemplateDto.md)
+- [PageDtoProjectReference](docs/PageDtoProjectReference.md)
+- [PageDtoProjectTemplateReference](docs/PageDtoProjectTemplateReference.md)
+- [PageDtoProviderReference](docs/PageDtoProviderReference.md)
+- [PageDtoQuoteDto](docs/PageDtoQuoteDto.md)
+- [PageDtoSegmentationRuleReference](docs/PageDtoSegmentationRuleReference.md)
+- [PageDtoString](docs/PageDtoString.md)
+- [PageDtoSubDomainDto](docs/PageDtoSubDomainDto.md)
+- [PageDtoTermBaseDto](docs/PageDtoTermBaseDto.md)
+- [PageDtoTransMemoryDto](docs/PageDtoTransMemoryDto.md)
+- [PageDtoTranslationPriceListDto](docs/PageDtoTranslationPriceListDto.md)
+- [PageDtoTranslationPriceSetDto](docs/PageDtoTranslationPriceSetDto.md)
+- [PageDtoUploadedFileDto](docs/PageDtoUploadedFileDto.md)
+- [PageDtoUserDto](docs/PageDtoUserDto.md)
+- [PageDtoVendorDto](docs/PageDtoVendorDto.md)
+- [PageDtoWebHookDtoV2](docs/PageDtoWebHookDtoV2.md)
+- [PageDtoWebhookCallDto](docs/PageDtoWebhookCallDto.md)
+- [PageDtoWorkflowStepDto](docs/PageDtoWorkflowStepDto.md)
+- [PageDtoWorkflowStepReference](docs/PageDtoWorkflowStepReference.md)
+- [PassFailThresholdDto](docs/PassFailThresholdDto.md)
+- [PatchProjectDto](docs/PatchProjectDto.md)
+- [PdfSettingsDto](docs/PdfSettingsDto.md)
+- [PenaltyPointsDto](docs/PenaltyPointsDto.md)
+- [PhpSettingsDto](docs/PhpSettingsDto.md)
+- [PlainConversationDto](docs/PlainConversationDto.md)
+- [PlainConversationsListDto](docs/PlainConversationsListDto.md)
+- [PlainReferences](docs/PlainReferences.md)
+- [PoSettingsDto](docs/PoSettingsDto.md)
+- [Position](docs/Position.md)
+- [PostAnalyse](docs/PostAnalyse.md)
+- [PostAnalyseAllOf](docs/PostAnalyseAllOf.md)
+- [PptSettingsDto](docs/PptSettingsDto.md)
+- [PreAnalyse](docs/PreAnalyse.md)
+- [PreAnalyseAllOf](docs/PreAnalyseAllOf.md)
+- [PreAnalyseTargetCompare](docs/PreAnalyseTargetCompare.md)
+- [PreAnalyseTargetCompareAllOf](docs/PreAnalyseTargetCompareAllOf.md)
+- [PreTranslateJobSettingsDto](docs/PreTranslateJobSettingsDto.md)
+- [PreTranslateJobsV2Dto](docs/PreTranslateJobsV2Dto.md)
+- [PreTranslateSettingsV3Dto](docs/PreTranslateSettingsV3Dto.md)
+- [PreviewUrlDto](docs/PreviewUrlDto.md)
+- [PreviewUrlsDto](docs/PreviewUrlsDto.md)
+- [PreviousWorkflowDto](docs/PreviousWorkflowDto.md)
+- [PriceListReference](docs/PriceListReference.md)
+- [ProgressDto](docs/ProgressDto.md)
+- [ProgressDtoV2](docs/ProgressDtoV2.md)
+- [ProgressReference](docs/ProgressReference.md)
+- [ProjectMTSettingsPerLangDto](docs/ProjectMTSettingsPerLangDto.md)
+- [ProjectReference](docs/ProjectReference.md)
+- [ProjectReferenceFilesRequestDto](docs/ProjectReferenceFilesRequestDto.md)
+- [ProjectSecuritySettingsDtoV2](docs/ProjectSecuritySettingsDtoV2.md)
+- [ProjectTemplateCreateActionDto](docs/ProjectTemplateCreateActionDto.md)
+- [ProjectTemplateDto](docs/ProjectTemplateDto.md)
+- [ProjectTemplateEditDto](docs/ProjectTemplateEditDto.md)
+- [ProjectTemplateNotifyProviderDto](docs/ProjectTemplateNotifyProviderDto.md)
+- [ProjectTemplateReference](docs/ProjectTemplateReference.md)
+- [ProjectTemplateTermBaseDto](docs/ProjectTemplateTermBaseDto.md)
+- [ProjectTemplateTermBaseListDto](docs/ProjectTemplateTermBaseListDto.md)
+- [ProjectTemplateTransMemoryDtoV3](docs/ProjectTemplateTransMemoryDtoV3.md)
+- [ProjectTemplateTransMemoryListDtoV3](docs/ProjectTemplateTransMemoryListDtoV3.md)
+- [ProjectTemplateTransMemoryListV2Dto](docs/ProjectTemplateTransMemoryListV2Dto.md)
+- [ProjectTemplateTransMemoryV2Dto](docs/ProjectTemplateTransMemoryV2Dto.md)
+- [ProjectTemplateWorkflowSettingsAssignedToDto](docs/ProjectTemplateWorkflowSettingsAssignedToDto.md)
+- [ProjectTermBaseDto](docs/ProjectTermBaseDto.md)
+- [ProjectTermBaseListDto](docs/ProjectTermBaseListDto.md)
+- [ProjectTermBaseReference](docs/ProjectTermBaseReference.md)
+- [ProjectTransMemoryDtoV3](docs/ProjectTransMemoryDtoV3.md)
+- [ProjectTransMemoryListDtoV3](docs/ProjectTransMemoryListDtoV3.md)
+- [ProjectTranslationMemoryReference](docs/ProjectTranslationMemoryReference.md)
+- [ProjectWorkflowStepDto](docs/ProjectWorkflowStepDto.md)
+- [ProjectWorkflowStepDtoV2](docs/ProjectWorkflowStepDtoV2.md)
+- [ProjectWorkflowStepListDtoV2](docs/ProjectWorkflowStepListDtoV2.md)
+- [ProjectWorkflowStepReference](docs/ProjectWorkflowStepReference.md)
+- [PropertiesSettingsDto](docs/PropertiesSettingsDto.md)
+- [ProviderListDtoV2](docs/ProviderListDtoV2.md)
+- [ProviderReference](docs/ProviderReference.md)
+- [Providers](docs/Providers.md)
+- [ProvidersPerLanguage](docs/ProvidersPerLanguage.md)
+- [PsdSettingsDto](docs/PsdSettingsDto.md)
+- [PseudoTranslateActionDto](docs/PseudoTranslateActionDto.md)
+- [PseudoTranslateActionDtoV2](docs/PseudoTranslateActionDtoV2.md)
+- [PseudoTranslateWrapperDto](docs/PseudoTranslateWrapperDto.md)
+- [QACheckDtoV2](docs/QACheckDtoV2.md)
+- [QASettingsDtoV2](docs/QASettingsDtoV2.md)
+- [QualityAssuranceBatchRunDtoV3](docs/QualityAssuranceBatchRunDtoV3.md)
+- [QualityAssuranceChecksDtoV2](docs/QualityAssuranceChecksDtoV2.md)
+- [QualityAssuranceDto](docs/QualityAssuranceDto.md)
+- [QualityAssuranceResponseDto](docs/QualityAssuranceResponseDto.md)
+- [QualityAssuranceRunDtoV3](docs/QualityAssuranceRunDtoV3.md)
+- [QualityAssuranceSegmentsRunDtoV3](docs/QualityAssuranceSegmentsRunDtoV3.md)
+- [QuarkTagSettingsDto](docs/QuarkTagSettingsDto.md)
+- [Query](docs/Query.md)
+- [QuoteCreateV2Dto](docs/QuoteCreateV2Dto.md)
+- [QuoteDto](docs/QuoteDto.md)
+- [QuoteUnitsDto](docs/QuoteUnitsDto.md)
+- [QuoteV2Dto](docs/QuoteV2Dto.md)
+- [QuoteWorkflowSettingDto](docs/QuoteWorkflowSettingDto.md)
+- [REGEX](docs/REGEX.md)
+- [REGEXAllOf](docs/REGEXAllOf.md)
+- [ReferenceCorrelation](docs/ReferenceCorrelation.md)
+- [ReferenceFileAccessDto](docs/ReferenceFileAccessDto.md)
+- [ReferenceFilePageDto](docs/ReferenceFilePageDto.md)
+- [ReferenceFileReference](docs/ReferenceFileReference.md)
+- [RegexpCheckRuleDtoV2](docs/RegexpCheckRuleDtoV2.md)
+- [RelativeTranslationLengthWarningDto](docs/RelativeTranslationLengthWarningDto.md)
+- [RemoteUploadedFileDto](docs/RemoteUploadedFileDto.md)
+- [RepeatedWordWarningDto](docs/RepeatedWordWarningDto.md)
+- [RepeatedWordWarningDtoAllOf](docs/RepeatedWordWarningDtoAllOf.md)
+- [RepeatedWordsWarningDto](docs/RepeatedWordsWarningDto.md)
+- [RepeatedWordsWarningDtoAllOf](docs/RepeatedWordsWarningDtoAllOf.md)
+- [RepetitionsSettingsDto](docs/RepetitionsSettingsDto.md)
+- [ReplayRequestDto](docs/ReplayRequestDto.md)
+- [Response](docs/Response.md)
+- [ResxSettingsDto](docs/ResxSettingsDto.md)
+- [SEGMENTTARGET](docs/SEGMENTTARGET.md)
+- [SEGMENTTARGETAllOf](docs/SEGMENTTARGETAllOf.md)
+- [STRING](docs/STRING.md)
+- [STRINGAllOf](docs/STRINGAllOf.md)
+- [SUBMITTER](docs/SUBMITTER.md)
+- [SUBMITTERAllOf](docs/SUBMITTERAllOf.md)
+- [SUBMITTEREDIT](docs/SUBMITTEREDIT.md)
+- [SUBMITTEREDITAllOf](docs/SUBMITTEREDITAllOf.md)
+- [SUBMITTERRESPONSE](docs/SUBMITTERRESPONSE.md)
+- [SUBMITTERRESPONSEAllOf](docs/SUBMITTERRESPONSEAllOf.md)
+- [SchemaExtension](docs/SchemaExtension.md)
+- [ScimMeta](docs/ScimMeta.md)
+- [ScimResourceSchema](docs/ScimResourceSchema.md)
+- [ScimResourceTypeSchema](docs/ScimResourceTypeSchema.md)
+- [ScimUserCoreDto](docs/ScimUserCoreDto.md)
+- [SdlXlfSettingsDto](docs/SdlXlfSettingsDto.md)
+- [SearchInTextResponse2Dto](docs/SearchInTextResponse2Dto.md)
+- [SearchInTextResponseList2Dto](docs/SearchInTextResponseList2Dto.md)
+- [SearchJobsDto](docs/SearchJobsDto.md)
+- [SearchJobsRequestDto](docs/SearchJobsRequestDto.md)
+- [SearchRequestDto](docs/SearchRequestDto.md)
+- [SearchResponseListTbDto](docs/SearchResponseListTbDto.md)
+- [SearchResponseListTmDto](docs/SearchResponseListTmDto.md)
+- [SearchResponseListTmDtoV3](docs/SearchResponseListTmDtoV3.md)
+- [SearchResponseTbDto](docs/SearchResponseTbDto.md)
+- [SearchTMByJobRequestDto](docs/SearchTMByJobRequestDto.md)
+- [SearchTMByJobRequestDtoV3](docs/SearchTMByJobRequestDtoV3.md)
+- [SearchTMClientDto](docs/SearchTMClientDto.md)
+- [SearchTMClientDtoV3](docs/SearchTMClientDtoV3.md)
+- [SearchTMDomainDto](docs/SearchTMDomainDto.md)
+- [SearchTMDomainDtoV3](docs/SearchTMDomainDtoV3.md)
+- [SearchTMProjectDto](docs/SearchTMProjectDto.md)
+- [SearchTMProjectDtoV3](docs/SearchTMProjectDtoV3.md)
+- [SearchTMRequestDto](docs/SearchTMRequestDto.md)
+- [SearchTMResponseDto](docs/SearchTMResponseDto.md)
+- [SearchTMResponseDtoV3](docs/SearchTMResponseDtoV3.md)
+- [SearchTMSegmentDto](docs/SearchTMSegmentDto.md)
+- [SearchTMSegmentDtoV3](docs/SearchTMSegmentDtoV3.md)
+- [SearchTMSubDomainDto](docs/SearchTMSubDomainDto.md)
+- [SearchTMSubDomainDtoV3](docs/SearchTMSubDomainDtoV3.md)
+- [SearchTMTransMemoryDto](docs/SearchTMTransMemoryDto.md)
+- [SearchTMTransMemoryDtoV3](docs/SearchTMTransMemoryDtoV3.md)
+- [SearchTbByJobRequestDto](docs/SearchTbByJobRequestDto.md)
+- [SearchTbInTextByJobRequestDto](docs/SearchTbInTextByJobRequestDto.md)
+- [SearchTbResponseDto](docs/SearchTbResponseDto.md)
+- [SearchTbResponseListDto](docs/SearchTbResponseListDto.md)
+- [SegRuleReference](docs/SegRuleReference.md)
+- [SegmentDto](docs/SegmentDto.md)
+- [SegmentListDto](docs/SegmentListDto.md)
+- [SegmentReference](docs/SegmentReference.md)
+- [SegmentWarning](docs/SegmentWarning.md)
+- [SegmentWarningsDto](docs/SegmentWarningsDto.md)
+- [SegmentationRuleDto](docs/SegmentationRuleDto.md)
+- [SegmentationRuleReference](docs/SegmentationRuleReference.md)
+- [SegmentsCountsDto](docs/SegmentsCountsDto.md)
+- [SegmentsCountsResponseDto](docs/SegmentsCountsResponseDto.md)
+- [SegmentsCountsResponseListDto](docs/SegmentsCountsResponseListDto.md)
+- [ServiceProviderConfigDto](docs/ServiceProviderConfigDto.md)
+- [SetContextPTTransMemoriesV2Dto](docs/SetContextPTTransMemoriesV2Dto.md)
+- [SetContextTransMemoriesDtoV3Dto](docs/SetContextTransMemoriesDtoV3Dto.md)
+- [SetFinancialSettingsDto](docs/SetFinancialSettingsDto.md)
+- [SetProjectStatusDto](docs/SetProjectStatusDto.md)
+- [SetProjectTemplateTermBaseDto](docs/SetProjectTemplateTermBaseDto.md)
+- [SetProjectTemplateTransMemoriesV2Dto](docs/SetProjectTemplateTransMemoriesV2Dto.md)
+- [SetProjectTemplateTransMemoryV2Dto](docs/SetProjectTemplateTransMemoryV2Dto.md)
+- [SetProjectTransMemoriesV3Dto](docs/SetProjectTransMemoriesV3Dto.md)
+- [SetProjectTransMemoryV3Dto](docs/SetProjectTransMemoryV3Dto.md)
+- [SetTermBaseDto](docs/SetTermBaseDto.md)
+- [SeverityDto](docs/SeverityDto.md)
+- [Sftp](docs/Sftp.md)
+- [SftpAllOf](docs/SftpAllOf.md)
+- [Sitecore](docs/Sitecore.md)
+- [SitecoreAllOf](docs/SitecoreAllOf.md)
+- [SourceTargetRegexpWarningDto](docs/SourceTargetRegexpWarningDto.md)
+- [SourceTargetRegexpWarningDtoAllOf](docs/SourceTargetRegexpWarningDtoAllOf.md)
+- [SpellCheckRequestDto](docs/SpellCheckRequestDto.md)
+- [SpellCheckResponseDto](docs/SpellCheckResponseDto.md)
+- [SpellCheckWarningDto](docs/SpellCheckWarningDto.md)
+- [SpellCheckWarningDtoAllOf](docs/SpellCheckWarningDtoAllOf.md)
+- [SplitJobActionDto](docs/SplitJobActionDto.md)
+- [StatusDto](docs/StatusDto.md)
+- [StyleWeightsDto](docs/StyleWeightsDto.md)
+- [SubDomainDto](docs/SubDomainDto.md)
+- [SubDomainEditDto](docs/SubDomainEditDto.md)
+- [SubDomainReference](docs/SubDomainReference.md)
+- [SubstituteDto](docs/SubstituteDto.md)
+- [SubstituteDtoV2](docs/SubstituteDtoV2.md)
+- [SuggestRequestDto](docs/SuggestRequestDto.md)
+- [SuggestResponse](docs/SuggestResponse.md)
+- [SuggestResponseDto](docs/SuggestResponseDto.md)
+- [Suggestion](docs/Suggestion.md)
+- [Supported](docs/Supported.md)
+- [TMMatchSettingsDto](docs/TMMatchSettingsDto.md)
+- [TagMetadata](docs/TagMetadata.md)
+- [TagMetadataDto](docs/TagMetadataDto.md)
+- [TargetFileWarningsDto](docs/TargetFileWarningsDto.md)
+- [TargetLanguageDto](docs/TargetLanguageDto.md)
+- [TargetSourceIdenticalWarningDto](docs/TargetSourceIdenticalWarningDto.md)
+- [TaskMappingDto](docs/TaskMappingDto.md)
+- [Term](docs/Term.md)
+- [TermBaseDto](docs/TermBaseDto.md)
+- [TermBaseEditDto](docs/TermBaseEditDto.md)
+- [TermBaseReference](docs/TermBaseReference.md)
+- [TermBaseSearchRequestDto](docs/TermBaseSearchRequestDto.md)
+- [TermCreateByJobDto](docs/TermCreateByJobDto.md)
+- [TermCreateDto](docs/TermCreateDto.md)
+- [TermDto](docs/TermDto.md)
+- [TermEditDto](docs/TermEditDto.md)
+- [TermPairDto](docs/TermPairDto.md)
+- [TermV2Dto](docs/TermV2Dto.md)
+- [TerminologyWarningDto](docs/TerminologyWarningDto.md)
+- [TerminologyWarningDtoAllOf](docs/TerminologyWarningDtoAllOf.md)
+- [TerminologyWeightsDto](docs/TerminologyWeightsDto.md)
+- [ToggleableWeightDto](docs/ToggleableWeightDto.md)
+- [TrailingPunctuationWarningDto](docs/TrailingPunctuationWarningDto.md)
+- [TrailingPunctuationWarningDtoAllOf](docs/TrailingPunctuationWarningDtoAllOf.md)
+- [TrailingSpaceWarningDto](docs/TrailingSpaceWarningDto.md)
+- [TransMemoryCreateDto](docs/TransMemoryCreateDto.md)
+- [TransMemoryDto](docs/TransMemoryDto.md)
+- [TransMemoryDtoV2](docs/TransMemoryDtoV2.md)
+- [TransMemoryDtoV3](docs/TransMemoryDtoV3.md)
+- [TransMemoryEditDto](docs/TransMemoryEditDto.md)
+- [TransMemoryReferenceDtoV2](docs/TransMemoryReferenceDtoV2.md)
+- [TranslationDto](docs/TranslationDto.md)
+- [TranslationLengthWarningDto](docs/TranslationLengthWarningDto.md)
+- [TranslationMemorySettingsDto](docs/TranslationMemorySettingsDto.md)
+- [TranslationPriceDto](docs/TranslationPriceDto.md)
+- [TranslationPriceListCreateDto](docs/TranslationPriceListCreateDto.md)
+- [TranslationPriceListDto](docs/TranslationPriceListDto.md)
+- [TranslationPriceSetBulkDeleteDto](docs/TranslationPriceSetBulkDeleteDto.md)
+- [TranslationPriceSetBulkMinimumPricesDto](docs/TranslationPriceSetBulkMinimumPricesDto.md)
+- [TranslationPriceSetBulkPricesDto](docs/TranslationPriceSetBulkPricesDto.md)
+- [TranslationPriceSetCreateDto](docs/TranslationPriceSetCreateDto.md)
+- [TranslationPriceSetDto](docs/TranslationPriceSetDto.md)
+- [TranslationPriceSetListDto](docs/TranslationPriceSetListDto.md)
+- [TranslationRequestDto](docs/TranslationRequestDto.md)
+- [TranslationRequestExtendedDto](docs/TranslationRequestExtendedDto.md)
+- [TranslationResourcesDto](docs/TranslationResourcesDto.md)
+- [TranslationSegmentsReferenceV2](docs/TranslationSegmentsReferenceV2.md)
+- [Tridion](docs/Tridion.md)
+- [TtxSettingsDto](docs/TtxSettingsDto.md)
+- [TxtSettingsDto](docs/TxtSettingsDto.md)
+- [TypesDto](docs/TypesDto.md)
+- [Typo3](docs/Typo3.md)
+- [Typo3AllOf](docs/Typo3AllOf.md)
+- [USER](docs/USER_.md)
+- [USERAllOf](docs/USER_AllOf.md)
+- [UidReference](docs/UidReference.md)
+- [UnmodifiedFuzzyTranslationMTNTWarningDto](docs/UnmodifiedFuzzyTranslationMTNTWarningDto.md)
+- [UnmodifiedFuzzyTranslationMTNTWarningDtoAllOf](docs/UnmodifiedFuzzyTranslationMTNTWarningDtoAllOf.md)
+- [UnmodifiedFuzzyTranslationTMWarningDto](docs/UnmodifiedFuzzyTranslationTMWarningDto.md)
+- [UnmodifiedFuzzyTranslationWarningDto](docs/UnmodifiedFuzzyTranslationWarningDto.md)
+- [UnresolvedCommentWarningDto](docs/UnresolvedCommentWarningDto.md)
+- [UnresolvedConversationWarningDto](docs/UnresolvedConversationWarningDto.md)
+- [UpdateCustomFieldInstanceDto](docs/UpdateCustomFieldInstanceDto.md)
+- [UpdateCustomFieldInstanceWithUidDto](docs/UpdateCustomFieldInstanceWithUidDto.md)
+- [UpdateCustomFieldInstancesDto](docs/UpdateCustomFieldInstancesDto.md)
+- [UpdateCustomFileTypeDto](docs/UpdateCustomFileTypeDto.md)
+- [UpdateIgnoredChecksDto](docs/UpdateIgnoredChecksDto.md)
+- [UpdateIgnoredJobPartSegment](docs/UpdateIgnoredJobPartSegment.md)
+- [UpdateIgnoredSegment](docs/UpdateIgnoredSegment.md)
+- [UpdateIgnoredWarning](docs/UpdateIgnoredWarning.md)
+- [UpdateIgnoredWarningsDto](docs/UpdateIgnoredWarningsDto.md)
+- [UpdateLqaProfileDto](docs/UpdateLqaProfileDto.md)
+- [UploadResultDto](docs/UploadResultDto.md)
+- [UploadedFileDto](docs/UploadedFileDto.md)
+- [User](docs/User.md)
+- [UserDetailsDtoV3](docs/UserDetailsDtoV3.md)
+- [UserDto](docs/UserDto.md)
+- [UserPasswordEditDto](docs/UserPasswordEditDto.md)
+- [UserReference](docs/UserReference.md)
+- [UserReferencesDto](docs/UserReferencesDto.md)
+- [UserStatisticsDto](docs/UserStatisticsDto.md)
+- [UserStatisticsListDto](docs/UserStatisticsListDto.md)
+- [VENDOR](docs/VENDOR_.md)
+- [VENDORAllOf](docs/VENDOR_AllOf.md)
+- [VOID](docs/VOID.md)
+- [VOIDAllOf](docs/VOIDAllOf.md)
+- [VariableDto](docs/VariableDto.md)
+- [Vendor](docs/Vendor.md)
+- [VendorAllOf](docs/VendorAllOf.md)
+- [VendorDto](docs/VendorDto.md)
+- [VendorReference](docs/VendorReference.md)
+- [VendorSecuritySettingsDto](docs/VendorSecuritySettingsDto.md)
+- [VendorUserReference](docs/VendorUserReference.md)
+- [VerityWeightsDto](docs/VerityWeightsDto.md)
+- [WebEditorLinkDtoV2](docs/WebEditorLinkDtoV2.md)
+- [WebHookDtoV2](docs/WebHookDtoV2.md)
+- [WebhookCallDto](docs/WebhookCallDto.md)
+- [WebhookPreviewDto](docs/WebhookPreviewDto.md)
+- [WebhookPreviewsDto](docs/WebhookPreviewsDto.md)
+- [WildCardSearchByJobRequestDtoV3](docs/WildCardSearchByJobRequestDtoV3.md)
+- [WildCardSearchRequestDto](docs/WildCardSearchRequestDto.md)
+- [Wordpress](docs/Wordpress.md)
+- [WordpressAllOf](docs/WordpressAllOf.md)
+- [WorkflowChangesDto](docs/WorkflowChangesDto.md)
+- [WorkflowStepConfiguration](docs/WorkflowStepConfiguration.md)
+- [WorkflowStepDto](docs/WorkflowStepDto.md)
+- [WorkflowStepReference](docs/WorkflowStepReference.md)
+- [WorkflowStepReferenceV2](docs/WorkflowStepReferenceV2.md)
+- [WorkflowStepReferenceV3](docs/WorkflowStepReferenceV3.md)
+- [WorkflowStepSettingsDto](docs/WorkflowStepSettingsDto.md)
+- [WorkflowStepSettingsEditDto](docs/WorkflowStepSettingsEditDto.md)
+- [Xlf2SettingsDto](docs/Xlf2SettingsDto.md)
+- [XlfSettingsDto](docs/XlfSettingsDto.md)
+- [XlsSettingsDto](docs/XlsSettingsDto.md)
+- [XmlSettingsDto](docs/XmlSettingsDto.md)
+- [YamlSettingsDto](docs/YamlSettingsDto.md)
+
+<a id="documentation-for-authorization"></a>
+
+## Documentation For Authorization
+
+Authentication schemes defined for the API:
+<a id="ApiToken"></a>
+
+### ApiToken
+
+- **Type**: API key
+- **API key parameter name**: Authorization
+- **Location**: HTTP header
+
+<a id="OAuth2"></a>
+
+### OAuth2
+
+- **Type**: OAuth
+- **Flow**: accessCode
+- **Authorization URL**: https://cloud.memsource.com/web/oauth/authorize
+- **Scopes**: N/A
