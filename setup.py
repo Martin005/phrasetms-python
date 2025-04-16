@@ -13,6 +13,9 @@
 
 
 from setuptools import setup, find_packages  # noqa: H301
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 
 # To install the library, run the following
 #
@@ -37,7 +40,5 @@ setup(
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
     long_description_content_type="text/markdown",
-    long_description="""\
-    Welcome to Phrase&#39;s TMS API documentation.    Please visit our [help center](https://support.phrase.com/hc/en-us/sections/5709662083612) for more information about the APIs.    If you have any questions, please contact [Support](https://support.phrase.com/hc/requests/new).    Please, include the &#x60;User-Agent&#x60; header with the name of your application or project. It might be a good idea to include some sort of contact information as well, so that we can get in touch if necessary. Examples of excellent &#x60;User-Agent&#x60; headers:  &gt; User-Agent: Example mobile app (example@phrase.com) &lt;br/&gt; User-Agent: ACME Inc Java 1.8 Client (http://acmeinc.com/contact)  # noqa: E501
-    """,
+    long_description=long_description,
 )
