@@ -21,7 +21,6 @@ from typing_extensions import Annotated
 
 from typing import Optional
 
-from phrasetms_client.models.response import Response
 from phrasetms_client.models.workflow_changes_dto import WorkflowChangesDto
 
 from phrasetms_client.api_client import ApiClient
@@ -45,7 +44,7 @@ class WorkflowChangesApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def download_workflow_changes(self, body : Optional[WorkflowChangesDto] = None, **kwargs) -> Response:  # noqa: E501
+    def download_workflow_changes(self, body : Optional[WorkflowChangesDto] = None, **kwargs) -> None:  # noqa: E501
         """Download workflow changes report  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -65,7 +64,7 @@ class WorkflowChangesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: Response
+        :rtype: None
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -106,7 +105,7 @@ class WorkflowChangesApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(Response, status_code(int), headers(HTTPHeaderDict))
+        :rtype: None
         """
 
         _params = locals()
@@ -157,23 +156,18 @@ class WorkflowChangesApi(object):
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['text/html'])  # noqa: E501
 
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get(
+            "_content_type",
+            self.api_client.select_header_content_type(["application/json"]),
+        )
+        if _content_types_list:
+            _header_params["Content-Type"] = _content_types_list
+
         # authentication setting
         _auth_settings = []  # noqa: E501
 
-        _response_types_map = {
-            '200': "Response",
-            '400': None,
-            '401': None,
-            '403': None,
-            '404': None,
-            '405': None,
-            '408': None,
-            '410': None,
-            '415': None,
-            '429': None,
-            '500': None,
-            '501': None,
-        }
+        _response_types_map = {}
 
         return self.api_client.call_api(
             '/api2/v2/jobs/workflowChanges', 'POST',
