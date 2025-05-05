@@ -615,7 +615,7 @@ class ClientApi(object):
             _query_params.append(('sort', _params['sort']))
 
         if _params.get('order') is not None:  # noqa: E501
-            _query_params.append(('order', _params['order']
+            _query_params.append(('order', _params['order']))
 
         if _params.get('page_number') is not None:  # noqa: E501
             _query_params.append(('pageNumber', _params['page_number']))
