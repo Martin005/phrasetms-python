@@ -972,10 +972,10 @@ class ProjectReferenceFileApi(object):
             _query_params.append(('pageSize', _params['page_size']))
 
         if _params.get('sort') is not None:  # noqa: E501
-            _query_params.append(('sort', _params['sort'].value))
+            _query_params.append(('sort', _params['sort']))
 
         if _params.get('order') is not None:  # noqa: E501
-            _query_params.append(('order', _params['order'].value))
+            _query_params.append(('order', _params['order']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

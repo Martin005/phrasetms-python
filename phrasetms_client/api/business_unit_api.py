@@ -612,10 +612,10 @@ class BusinessUnitApi(object):
             _query_params.append(('createdBy', _params['created_by']))
 
         if _params.get('sort') is not None:  # noqa: E501
-            _query_params.append(('sort', _params['sort'].value))
+            _query_params.append(('sort', _params['sort']))
 
         if _params.get('order') is not None:  # noqa: E501
-            _query_params.append(('order', _params['order'].value))
+            _query_params.append(('order', _params['order']))
 
         if _params.get('page_number') is not None:  # noqa: E501
             _query_params.append(('pageNumber', _params['page_number']))
