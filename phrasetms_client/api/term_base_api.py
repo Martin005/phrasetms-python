@@ -1706,13 +1706,13 @@ class TermBaseApi(object):
         # process the query parameters
         _query_params = []
         if _params.get('format') is not None:  # noqa: E501
-            _query_params.append(('format', _params['format'].value))
+            _query_params.append(('format', _params['format']))
 
         if _params.get('charset') is not None:  # noqa: E501
             _query_params.append(('charset', _params['charset']))
 
         if _params.get('term_status') is not None:  # noqa: E501
-            _query_params.append(('termStatus', _params['term_status'].value))
+            _query_params.append(('termStatus', _params['term_status']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

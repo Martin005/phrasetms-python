@@ -1062,7 +1062,7 @@ class AnalysisApi(object):
         # process the query parameters
         _query_params = []
         if _params.get('format') is not None:  # noqa: E501
-            _query_params.append(('format', _params['format'].value))
+            _query_params.append(('format', _params['format']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -1865,10 +1865,10 @@ class AnalysisApi(object):
             _query_params.append(('pageSize', _params['page_size']))
 
         if _params.get('sort') is not None:  # noqa: E501
-            _query_params.append(('sort', _params['sort'].value))
+            _query_params.append(('sort', _params['sort']))
 
         if _params.get('order') is not None:  # noqa: E501
-            _query_params.append(('order', _params['order'].value))
+            _query_params.append(('order', _params['order']))
 
         if _params.get('only_owner_org') is not None:  # noqa: E501
             _query_params.append(('onlyOwnerOrg', _params['only_owner_org']))

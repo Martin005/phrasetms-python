@@ -1326,7 +1326,7 @@ class TranslationMemoryApi(object):
         # process the query parameters
         _query_params = []
         if _params.get('format') is not None:  # noqa: E501
-            _query_params.append(('format', _params['format'].value))
+            _query_params.append(('format', _params['format']))
 
         if _params.get('fields') is not None:  # noqa: E501
             _query_params.append(('fields', _params['fields']))

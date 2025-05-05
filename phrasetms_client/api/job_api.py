@@ -1946,7 +1946,7 @@ class JobApi(object):
         # process the query parameters
         _query_params = []
         if _params.get('format') is not None:  # noqa: E501
-            _query_params.append(('format', _params['format'].value))
+            _query_params.append(('format', _params['format']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -3053,7 +3053,7 @@ class JobApi(object):
         # process the query parameters
         _query_params = []
         if _params.get('format') is not None:  # noqa: E501
-            _query_params.append(('format', _params['format'].value))
+            _query_params.append(('format', _params['format']))
 
         if _params.get('preview') is not None:  # noqa: E501
             _query_params.append(('preview', _params['preview']))
@@ -7793,10 +7793,10 @@ class JobApi(object):
         # process the query parameters
         _query_params = []
         if _params.get('format') is not None:  # noqa: E501
-            _query_params.append(('format', _params['format'].value))
+            _query_params.append(('format', _params['format']))
 
         if _params.get('save_to_trans_memory') is not None:  # noqa: E501
-            _query_params.append(('saveToTransMemory', _params['save_to_trans_memory'].value))
+            _query_params.append(('saveToTransMemory', _params['save_to_trans_memory']))
 
         if _params.get('set_completed') is not None:  # noqa: E501
             _query_params.append(('setCompleted', _params['set_completed']))

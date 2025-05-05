@@ -323,10 +323,10 @@ class BilingualFileApi(object):
         # process the query parameters
         _query_params = []
         if _params.get('var_from') is not None:  # noqa: E501
-            _query_params.append(('from', _params['var_from'].value))
+            _query_params.append(('from', _params['var_from']))
 
         if _params.get('to') is not None:  # noqa: E501
-            _query_params.append(('to', _params['to'].value))
+            _query_params.append(('to', _params['to']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -487,7 +487,7 @@ class BilingualFileApi(object):
         # process the query parameters
         _query_params = []
         if _params.get('format') is not None:  # noqa: E501
-            _query_params.append(('format', _params['format'].value))
+            _query_params.append(('format', _params['format']))
 
         if _params.get('preview') is not None:  # noqa: E501
             _query_params.append(('preview', _params['preview']))
@@ -783,7 +783,7 @@ class BilingualFileApi(object):
         # process the query parameters
         _query_params = []
         if _params.get('save_to_trans_memory') is not None:  # noqa: E501
-            _query_params.append(('saveToTransMemory', _params['save_to_trans_memory'].value))
+            _query_params.append(('saveToTransMemory', _params['save_to_trans_memory']))
 
         if _params.get('set_completed') is not None:  # noqa: E501
             _query_params.append(('setCompleted', _params['set_completed']))

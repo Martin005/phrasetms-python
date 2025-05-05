@@ -533,10 +533,10 @@ class CustomFieldsApi(object):
             _query_params.append(('required', _params['required']))
 
         if _params.get('sort_field') is not None:  # noqa: E501
-            _query_params.append(('sortField', _params['sort_field'].value))
+            _query_params.append(('sortField', _params['sort_field']))
 
         if _params.get('sort_trend') is not None:  # noqa: E501
-            _query_params.append(('sortTrend', _params['sort_trend'].value))
+            _query_params.append(('sortTrend', _params['sort_trend']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
@@ -721,10 +721,10 @@ class CustomFieldsApi(object):
             _query_params.append(('name', _params['name']))
 
         if _params.get('sort_field') is not None:  # noqa: E501
-            _query_params.append(('sortField', _params['sort_field'].value))
+            _query_params.append(('sortField', _params['sort_field']))
 
         if _params.get('sort_trend') is not None:  # noqa: E501
-            _query_params.append(('sortTrend', _params['sort_trend'].value))
+            _query_params.append(('sortTrend', _params['sort_trend']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

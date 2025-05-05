@@ -1552,7 +1552,7 @@ class SCIMApi(object):
             _query_params.append(('sortBy', _params['sort_by']))
 
         if _params.get('sort_order') is not None:  # noqa: E501
-            _query_params.append(('sortOrder', _params['sort_order'].value))
+            _query_params.append(('sortOrder', _params['sort_order']))
 
         if _params.get('start_index') is not None:  # noqa: E501
             _query_params.append(('startIndex', _params['start_index']))
