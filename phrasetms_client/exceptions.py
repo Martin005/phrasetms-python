@@ -133,12 +133,6 @@ class BadRequestException(ApiException):
         super(BadRequestException, self).__init__(status, reason, http_resp)
 
 
-class NotFoundException(ApiException):
-
-    def __init__(self, status=None, reason=None, http_resp=None):
-        super(NotFoundException, self).__init__(status, reason, http_resp)
-
-
 class UnauthorizedException(ApiException):
 
     def __init__(self, status=None, reason=None, http_resp=None):
@@ -149,6 +143,42 @@ class ForbiddenException(ApiException):
 
     def __init__(self, status=None, reason=None, http_resp=None):
         super(ForbiddenException, self).__init__(status, reason, http_resp)
+
+
+class NotFoundException(ApiException):
+
+    def __init__(self, status=None, reason=None, http_resp=None):
+        super(NotFoundException, self).__init__(status, reason, http_resp)
+
+
+class MethodNotAllowedException(ApiException):
+
+    def __init__(self, status=None, reason=None, http_resp=None):
+        super(MethodNotAllowedException, self).__init__(status, reason, http_resp)
+
+
+class TimeoutException(ApiException):
+
+    def __init__(self, status=None, reason=None, http_resp=None):
+        super(TimeoutException, self).__init__(status, reason, http_resp)
+
+
+class GoneException(ApiException):
+
+    def __init__(self, status=None, reason=None, http_resp=None):
+        super(GoneException, self).__init__(status, reason, http_resp)
+
+
+class UnsupportedMediaTypeException(ApiException):
+
+    def __init__(self, status=None, reason=None, http_resp=None):
+        super(UnsupportedMediaTypeException, self).__init__(status, reason, http_resp)
+
+
+class TooManyRequestsException(ApiException):
+
+    def __init__(self, status=None, reason=None, http_resp=None):
+        super(TooManyRequestsException, self).__init__(status, reason, http_resp)
 
 
 class ServiceException(ApiException):
