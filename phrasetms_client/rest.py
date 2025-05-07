@@ -21,7 +21,7 @@ import ssl
 from urllib.parse import urlencode, quote_plus
 import urllib3
 
-from phrasetms_client.exceptions import ApiException, UnauthorizedException, ForbiddenException, NotFoundException, ServiceException, ApiValueError, BadRequestException
+from phrasetms_client.exceptions import ApiException, GoneException, MethodNotAllowedException, TimeoutException, TooManyRequestsException, UnauthorizedException, ForbiddenException, NotFoundException, ServiceException, ApiValueError, BadRequestException, UnsupportedMediaTypeException
 
 
 logger = logging.getLogger(__name__)
@@ -68,7 +68,6 @@ class RESTClientObject(object):
 
         if configuration.tls_server_name:
             addition_pool_args['server_hostname'] = configuration.tls_server_name
-
 
         if configuration.socket_options is not None:
             addition_pool_args['socket_options'] = configuration.socket_options
@@ -220,7 +219,7 @@ class RESTClientObject(object):
         if not 200 <= r.status <= 299:
             if r.status == 400:
                 raise BadRequestException(http_resp=r)
-            
+
             if r.status == 401:
                 raise UnauthorizedException(http_resp=r)
 
@@ -229,6 +228,21 @@ class RESTClientObject(object):
 
             if r.status == 404:
                 raise NotFoundException(http_resp=r)
+
+            if r.status == 405:
+                raise MethodNotAllowedException(http_resp=r)
+
+            if r.status == 408:
+                raise TimeoutException(http_resp=r)
+
+            if r.status == 410:
+                raise GoneException(http_resp=r)
+
+            if r.status == 415:
+                raise UnsupportedMediaTypeException(http_resp=r)
+
+            if r.status == 429:
+                raise TooManyRequestsException(http_resp=r)
 
             if 500 <= r.status <= 599:
                 raise ServiceException(http_resp=r)
