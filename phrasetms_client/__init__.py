@@ -14,7 +14,7 @@ Do not edit the class manually.
 """
 
 
-__version__ = "0.3.12"
+__version__ = "0.3.13"
 
 # import apis into sdk package
 from phrasetms_client.api.additional_workflow_step_api import AdditionalWorkflowStepApi
