@@ -67,7 +67,7 @@ class TermBaseReference(BaseModel):
 
         _obj = TermBaseReference.parse_obj({
             "name": obj.get("name"),
-            "id": obj.get("id"),
+            "id": str(obj.get("id")),
             "uid": obj.get("uid")
         })
         return _obj
