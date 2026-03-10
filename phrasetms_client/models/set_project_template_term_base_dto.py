@@ -19,28 +19,24 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.id_reference import IdReference
 
 class SetProjectTemplateTermBaseDto(BaseModel):
     """
     SetProjectTemplateTermBaseDto
     """
-    read_term_bases: Optional[conlist(IdReference)] = Field(None, alias="readTermBases")
+    read_term_bases: Optional[List[IdReference]] = Field(None, alias="readTermBases")
     write_term_base: Optional[IdReference] = Field(None, alias="writeTermBase")
-    quality_assurance_term_bases: Optional[conlist(IdReference)] = Field(None, alias="qualityAssuranceTermBases")
+    quality_assurance_term_bases: Optional[List[IdReference]] = Field(None, alias="qualityAssuranceTermBases")
     target_lang: Optional[StrictStr] = Field(None, alias="targetLang")
     workflow_step: Optional[IdReference] = Field(None, alias="workflowStep")
     __properties = ["readTermBases", "writeTermBase", "qualityAssuranceTermBases", "targetLang", "workflowStep"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class SetProjectTemplateTermBaseDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -86,9 +82,9 @@ class SetProjectTemplateTermBaseDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SetProjectTemplateTermBaseDto.parse_obj(obj)
+            return SetProjectTemplateTermBaseDto.model_validate(obj)
 
-        _obj = SetProjectTemplateTermBaseDto.parse_obj({
+        _obj = SetProjectTemplateTermBaseDto.model_validate({
             "read_term_bases": [IdReference.from_dict(_item) for _item in obj.get("readTermBases")] if obj.get("readTermBases") is not None else None,
             "write_term_base": IdReference.from_dict(obj.get("writeTermBase")) if obj.get("writeTermBase") is not None else None,
             "quality_assurance_term_bases": [IdReference.from_dict(_item) for _item in obj.get("qualityAssuranceTermBases")] if obj.get("qualityAssuranceTermBases") is not None else None,

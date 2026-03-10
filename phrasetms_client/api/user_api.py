@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, StringConstraints, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import List, Optional
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr, conint, conlist, constr, validator
+from pydantic import Field, StrictBool, StrictInt, StrictStr, StringConstraints
 
-from typing import Optional
 
 from phrasetms_client.models.abstract_user_create_dto import AbstractUserCreateDto
 from phrasetms_client.models.abstract_user_edit_dto import AbstractUserEditDto
@@ -56,7 +56,7 @@ class UserApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def cancel_deletion(self, user_uid : StrictStr, **kwargs) -> UserDto:  # noqa: E501
         """Restore user  # noqa: E501
 
@@ -84,7 +84,7 @@ class UserApi(object):
             raise ValueError("Error! Please call the cancel_deletion_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.cancel_deletion_with_http_info(user_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def cancel_deletion_with_http_info(self, user_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Restore user  # noqa: E501
 
@@ -204,7 +204,7 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_user_v3(self, body : Optional[AbstractUserCreateDto] = None, **kwargs) -> UserDetailsDtoV3:  # noqa: E501
         """Create user  # noqa: E501
 
@@ -232,7 +232,7 @@ class UserApi(object):
             raise ValueError("Error! Please call the create_user_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_user_v3_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_user_v3_with_http_info(self, body : Optional[AbstractUserCreateDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create user  # noqa: E501
 
@@ -359,7 +359,7 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_user1(self, user_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete user  # noqa: E501
 
@@ -387,7 +387,7 @@ class UserApi(object):
             raise ValueError("Error! Please call the delete_user1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_user1_with_http_info(user_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_user1_with_http_info(self, user_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete user  # noqa: E501
 
@@ -490,7 +490,7 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def disable_two_factor_auth_v3(self, user_uid : StrictStr, **kwargs) -> UserDetailsDtoV3:  # noqa: E501
         """Disable two-factor authentication  # noqa: E501
 
@@ -518,7 +518,7 @@ class UserApi(object):
             raise ValueError("Error! Please call the disable_two_factor_auth_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.disable_two_factor_auth_v3_with_http_info(user_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def disable_two_factor_auth_v3_with_http_info(self, user_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Disable two-factor authentication  # noqa: E501
 
@@ -638,8 +638,8 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_list_of_users_filtered(self, first_name : Annotated[Optional[constr(strict=True, max_length=255, min_length=0)], Field(description="Filter for first name, that starts with value")] = None, last_name : Annotated[Optional[constr(strict=True, max_length=255, min_length=0)], Field(description="Filter for last name, that starts with value")] = None, name : Annotated[Optional[constr(strict=True, max_length=255, min_length=0)], Field(description="Filter for last name or first name, that starts with value")] = None, user_name : Optional[constr(strict=True, max_length=255, min_length=0)] = None, email : Optional[constr(strict=True, max_length=255, min_length=0)] = None, name_or_email : Annotated[Optional[constr(strict=True, max_length=255, min_length=0)], Field(description="Filter for last name, first name or email starting with the value")] = None, role : Optional[conlist(StrictStr)] = None, include_deleted : Optional[StrictBool] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Optional[conlist(StrictStr)] = None, order : Optional[conlist(StrictStr)] = None, **kwargs) -> PageDtoUserDto:  # noqa: E501
+    @validate_call
+    def get_list_of_users_filtered(self, first_name : Annotated[Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]], Field(description="Filter for first name, that starts with value")] = None, last_name : Annotated[Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]], Field(description="Filter for last name, that starts with value")] = None, name : Annotated[Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]], Field(description="Filter for last name or first name, that starts with value")] = None, user_name : Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None, email : Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None, name_or_email : Annotated[Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]], Field(description="Filter for last name, first name or email starting with the value")] = None, role : Optional[List[StrictStr]] = None, include_deleted : Optional[StrictBool] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Optional[List[StrictStr]] = None, order : Optional[List[StrictStr]] = None, **kwargs) -> PageDtoUserDto:  # noqa: E501
         """List users  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -688,8 +688,8 @@ class UserApi(object):
             raise ValueError("Error! Please call the get_list_of_users_filtered_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_list_of_users_filtered_with_http_info(first_name, last_name, name, user_name, email, name_or_email, role, include_deleted, page_number, page_size, sort, order, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_list_of_users_filtered_with_http_info(self, first_name : Annotated[Optional[constr(strict=True, max_length=255, min_length=0)], Field(description="Filter for first name, that starts with value")] = None, last_name : Annotated[Optional[constr(strict=True, max_length=255, min_length=0)], Field(description="Filter for last name, that starts with value")] = None, name : Annotated[Optional[constr(strict=True, max_length=255, min_length=0)], Field(description="Filter for last name or first name, that starts with value")] = None, user_name : Optional[constr(strict=True, max_length=255, min_length=0)] = None, email : Optional[constr(strict=True, max_length=255, min_length=0)] = None, name_or_email : Annotated[Optional[constr(strict=True, max_length=255, min_length=0)], Field(description="Filter for last name, first name or email starting with the value")] = None, role : Optional[conlist(StrictStr)] = None, include_deleted : Optional[StrictBool] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Optional[conlist(StrictStr)] = None, order : Optional[conlist(StrictStr)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_list_of_users_filtered_with_http_info(self, first_name : Annotated[Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]], Field(description="Filter for first name, that starts with value")] = None, last_name : Annotated[Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]], Field(description="Filter for last name, that starts with value")] = None, name : Annotated[Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]], Field(description="Filter for last name or first name, that starts with value")] = None, user_name : Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None, email : Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None, name_or_email : Annotated[Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]], Field(description="Filter for last name, first name or email starting with the value")] = None, role : Optional[List[StrictStr]] = None, include_deleted : Optional[StrictBool] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Optional[List[StrictStr]] = None, order : Optional[List[StrictStr]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List users  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -877,7 +877,7 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_user_v3(self, user_uid : StrictStr, **kwargs) -> UserDetailsDtoV3:  # noqa: E501
         """Get user  # noqa: E501
 
@@ -905,7 +905,7 @@ class UserApi(object):
             raise ValueError("Error! Please call the get_user_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_user_v3_with_http_info(user_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_user_v3_with_http_info(self, user_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get user  # noqa: E501
 
@@ -1025,8 +1025,8 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_assigned_projects(self, user_uid : StrictStr, status : Optional[conlist(StrictStr)] = None, target_lang : Optional[conlist(StrictStr)] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[conint(strict=True, ge=-1)], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, project_name : Optional[StrictStr] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> PageDtoProjectReference:  # noqa: E501
+    @validate_call
+    def list_assigned_projects(self, user_uid : StrictStr, status : Optional[List[StrictStr]] = None, target_lang : Optional[List[StrictStr]] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[Annotated[int, Field(strict=True, ge=-1)]], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, project_name : Optional[StrictStr] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> PageDtoProjectReference:  # noqa: E501
         """List assigned projects  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1069,8 +1069,8 @@ class UserApi(object):
             raise ValueError("Error! Please call the list_assigned_projects_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_assigned_projects_with_http_info(user_uid, status, target_lang, workflow_step_id, due_in_hours, filename, project_name, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_assigned_projects_with_http_info(self, user_uid : StrictStr, status : Optional[conlist(StrictStr)] = None, target_lang : Optional[conlist(StrictStr)] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[conint(strict=True, ge=-1)], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, project_name : Optional[StrictStr] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_assigned_projects_with_http_info(self, user_uid : StrictStr, status : Optional[List[StrictStr]] = None, target_lang : Optional[List[StrictStr]] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[Annotated[int, Field(strict=True, ge=-1)]], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, project_name : Optional[StrictStr] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List assigned projects  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1239,8 +1239,8 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_jobs(self, user_uid : StrictStr, status : Optional[conlist(StrictStr)] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[conlist(StrictStr)] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[conint(strict=True, ge=-1)], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> PageDtoAssignedJobDto:  # noqa: E501
+    @validate_call
+    def list_jobs(self, user_uid : StrictStr, status : Optional[List[StrictStr]] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[List[StrictStr]] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[Annotated[int, Field(strict=True, ge=-1)]], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> PageDtoAssignedJobDto:  # noqa: E501
         """List assigned jobs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1283,8 +1283,8 @@ class UserApi(object):
             raise ValueError("Error! Please call the list_jobs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_jobs_with_http_info(user_uid, status, project_uid, target_lang, workflow_step_id, due_in_hours, filename, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_jobs_with_http_info(self, user_uid : StrictStr, status : Optional[conlist(StrictStr)] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[conlist(StrictStr)] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[conint(strict=True, ge=-1)], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_jobs_with_http_info(self, user_uid : StrictStr, status : Optional[List[StrictStr]] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[List[StrictStr]] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[Annotated[int, Field(strict=True, ge=-1)]], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List assigned jobs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1453,8 +1453,8 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_target_langs(self, user_uid : StrictStr, status : Optional[conlist(StrictStr)] = None, project_uid : Optional[StrictStr] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[conint(strict=True, ge=-1)], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> PageDtoString:  # noqa: E501
+    @validate_call
+    def list_target_langs(self, user_uid : StrictStr, status : Optional[List[StrictStr]] = None, project_uid : Optional[StrictStr] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[Annotated[int, Field(strict=True, ge=-1)]], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> PageDtoString:  # noqa: E501
         """List assigned target languages  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1495,8 +1495,8 @@ class UserApi(object):
             raise ValueError("Error! Please call the list_target_langs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_target_langs_with_http_info(user_uid, status, project_uid, workflow_step_id, due_in_hours, filename, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_target_langs_with_http_info(self, user_uid : StrictStr, status : Optional[conlist(StrictStr)] = None, project_uid : Optional[StrictStr] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[conint(strict=True, ge=-1)], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_target_langs_with_http_info(self, user_uid : StrictStr, status : Optional[List[StrictStr]] = None, project_uid : Optional[StrictStr] = None, workflow_step_id : Optional[StrictInt] = None, due_in_hours : Annotated[Optional[Annotated[int, Field(strict=True, ge=-1)]], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List assigned target languages  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1658,8 +1658,8 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_workflow_steps(self, user_uid : StrictStr, status : Optional[conlist(StrictStr)] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[conlist(StrictStr)] = None, due_in_hours : Annotated[Optional[conint(strict=True, ge=-1)], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> PageDtoWorkflowStepReference:  # noqa: E501
+    @validate_call
+    def list_workflow_steps(self, user_uid : StrictStr, status : Optional[List[StrictStr]] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[List[StrictStr]] = None, due_in_hours : Annotated[Optional[Annotated[int, Field(strict=True, ge=-1)]], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> PageDtoWorkflowStepReference:  # noqa: E501
         """List assigned workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1700,8 +1700,8 @@ class UserApi(object):
             raise ValueError("Error! Please call the list_workflow_steps_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_workflow_steps_with_http_info(user_uid, status, project_uid, target_lang, due_in_hours, filename, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_workflow_steps_with_http_info(self, user_uid : StrictStr, status : Optional[conlist(StrictStr)] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[conlist(StrictStr)] = None, due_in_hours : Annotated[Optional[conint(strict=True, ge=-1)], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_workflow_steps_with_http_info(self, user_uid : StrictStr, status : Optional[List[StrictStr]] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[List[StrictStr]] = None, due_in_hours : Annotated[Optional[Annotated[int, Field(strict=True, ge=-1)]], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List assigned workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1864,7 +1864,7 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def login_activity(self, user_uid : StrictStr, **kwargs) -> UserStatisticsListDto:  # noqa: E501
         """Login statistics  # noqa: E501
 
@@ -1892,7 +1892,7 @@ class UserApi(object):
             raise ValueError("Error! Please call the login_activity_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.login_activity_with_http_info(user_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def login_activity_with_http_info(self, user_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Login statistics  # noqa: E501
 
@@ -2012,7 +2012,7 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def send_login_info(self, user_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Send login information  # noqa: E501
 
@@ -2040,7 +2040,7 @@ class UserApi(object):
             raise ValueError("Error! Please call the send_login_info_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.send_login_info_with_http_info(user_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def send_login_info_with_http_info(self, user_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Send login information  # noqa: E501
 
@@ -2143,7 +2143,7 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_password(self, user_uid : StrictStr, body : Optional[UserPasswordEditDto] = None, **kwargs) -> None:  # noqa: E501
         """Update password  # noqa: E501
 
@@ -2174,7 +2174,7 @@ class UserApi(object):
             raise ValueError("Error! Please call the update_password_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_password_with_http_info(user_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_password_with_http_info(self, user_uid : StrictStr, body : Optional[UserPasswordEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update password  # noqa: E501
 
@@ -2291,7 +2291,7 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_user_v3(self, user_uid : StrictStr, body : Optional[AbstractUserEditDto] = None, **kwargs) -> UserDetailsDtoV3:  # noqa: E501
         """Edit user  # noqa: E501
 
@@ -2321,7 +2321,7 @@ class UserApi(object):
             raise ValueError("Error! Please call the update_user_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_user_v3_with_http_info(user_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_user_v3_with_http_info(self, user_uid : StrictStr, body : Optional[AbstractUserEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit user  # noqa: E501
 
@@ -2454,8 +2454,8 @@ class UserApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def user_last_logins(self, user_name : Optional[constr(strict=True, max_length=255, min_length=0)] = None, role : Optional[conlist(StrictStr)] = None, sort : Optional[conlist(StrictStr)] = None, order : Optional[conlist(StrictStr)] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description="Page size, accepts values between 1 and 100, default 100")] = None, **kwargs) -> PageDtoLastLoginDto:  # noqa: E501
+    @validate_call
+    def user_last_logins(self, user_name : Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None, role : Optional[List[StrictStr]] = None, sort : Optional[List[StrictStr]] = None, order : Optional[List[StrictStr]] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=100, ge=1)]], Field(description="Page size, accepts values between 1 and 100, default 100")] = None, **kwargs) -> PageDtoLastLoginDto:  # noqa: E501
         """List last login dates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2492,8 +2492,8 @@ class UserApi(object):
             raise ValueError("Error! Please call the user_last_logins_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.user_last_logins_with_http_info(user_name, role, sort, order, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def user_last_logins_with_http_info(self, user_name : Optional[constr(strict=True, max_length=255, min_length=0)] = None, role : Optional[conlist(StrictStr)] = None, sort : Optional[conlist(StrictStr)] = None, order : Optional[conlist(StrictStr)] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description="Page size, accepts values between 1 and 100, default 100")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def user_last_logins_with_http_info(self, user_name : Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None, role : Optional[List[StrictStr]] = None, sort : Optional[List[StrictStr]] = None, order : Optional[List[StrictStr]] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=100, ge=1)]], Field(description="Page size, accepts values between 1 and 100, default 100")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List last login dates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

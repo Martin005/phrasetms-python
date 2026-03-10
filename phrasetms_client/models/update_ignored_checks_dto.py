@@ -19,7 +19,7 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.segment_reference import SegmentReference
 
 class UpdateIgnoredChecksDto(BaseModel):
@@ -27,10 +27,11 @@ class UpdateIgnoredChecksDto(BaseModel):
     UpdateIgnoredChecksDto
     """
     segment: SegmentReference = Field(...)
-    warning_types: conlist(StrictStr, max_items=100, min_items=1) = Field(..., alias="warningTypes")
+    warning_types: List[StrictStr] = Field(..., alias="warningTypes")
     __properties = ["segment", "warningTypes"]
 
-    @validator('warning_types')
+    @field_validator('warning_types')
+    @classmethod
     def warning_types_validate_enum(cls, value):
         """Validates the enum"""
         for i in value:
@@ -38,14 +39,10 @@ class UpdateIgnoredChecksDto(BaseModel):
                 raise ValueError("each list item must be one of ('EmptyTranslation', 'TrailingPunctuation', 'Formatting', 'JoinTags', 'MissingNumbersV3', 'MultipleSpacesV3', 'NonConformingTerm', 'NotConfirmed', 'TranslationLength', 'AbsoluteLength', 'RelativeLength', 'UnresolvedComment', 'EmptyPairTags', 'InconsistentTranslationTargetSource', 'InconsistentTranslationSourceTarget', 'ForbiddenString', 'SpellCheck', 'RepeatedWord', 'InconsistentTagContent', 'EmptyTagContent', 'Malformed', 'ForbiddenTerm', 'NewerAtLowerLevel', 'LeadingAndTrailingSpaces', 'LeadingSpaces', 'TrailingSpaces', 'TargetSourceIdentical', 'SourceOrTargetRegexp', 'UnmodifiedFuzzyTranslation', 'UnmodifiedFuzzyTranslationTM', 'UnmodifiedFuzzyTranslationMTNT', 'Moravia', 'ExtraNumbersV3', 'UnresolvedConversation', 'NestedTags', 'FuzzyInconsistencyTargetSource', 'FuzzyInconsistencySourceTarget', 'CustomQA')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -58,7 +55,7 @@ class UpdateIgnoredChecksDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -74,9 +71,9 @@ class UpdateIgnoredChecksDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return UpdateIgnoredChecksDto.parse_obj(obj)
+            return UpdateIgnoredChecksDto.model_validate(obj)
 
-        _obj = UpdateIgnoredChecksDto.parse_obj({
+        _obj = UpdateIgnoredChecksDto.model_validate({
             "segment": SegmentReference.from_dict(obj.get("segment")) if obj.get("segment") is not None else None,
             "warning_types": obj.get("warningTypes")
         })

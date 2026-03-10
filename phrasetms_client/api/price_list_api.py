@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import List, Optional
 
-from pydantic import Field, StrictStr, conint, conlist
+from pydantic import Field, StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.page_dto_translation_price_list_dto import PageDtoTranslationPriceListDto
 from phrasetms_client.models.page_dto_translation_price_set_dto import PageDtoTranslationPriceSetDto
@@ -53,7 +53,7 @@ class PriceListApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_language_pair(self, price_list_uid : StrictStr, body : Optional[TranslationPriceSetCreateDto] = None, **kwargs) -> TranslationPriceSetListDto:  # noqa: E501
         """Add language pairs  # noqa: E501
 
@@ -83,7 +83,7 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the create_language_pair_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_language_pair_with_http_info(price_list_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_language_pair_with_http_info(self, price_list_uid : StrictStr, body : Optional[TranslationPriceSetCreateDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Add language pairs  # noqa: E501
 
@@ -216,7 +216,7 @@ class PriceListApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_price_list(self, body : Optional[TranslationPriceListCreateDto] = None, **kwargs) -> TranslationPriceListDto:  # noqa: E501
         """Create price list  # noqa: E501
 
@@ -244,7 +244,7 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the create_price_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_price_list_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_price_list_with_http_info(self, body : Optional[TranslationPriceListCreateDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create price list  # noqa: E501
 
@@ -371,7 +371,7 @@ class PriceListApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_language_pair(self, price_list_uid : StrictStr, source_language : StrictStr, target_language : StrictStr, **kwargs) -> None:  # noqa: E501
         """Remove language pair  # noqa: E501
 
@@ -403,7 +403,7 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the delete_language_pair_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_language_pair_with_http_info(price_list_uid, source_language, target_language, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_language_pair_with_http_info(self, price_list_uid : StrictStr, source_language : StrictStr, target_language : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Remove language pair  # noqa: E501
 
@@ -518,7 +518,7 @@ class PriceListApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_language_pairs(self, price_list_uid : StrictStr, body : Optional[TranslationPriceSetBulkDeleteDto] = None, **kwargs) -> None:  # noqa: E501
         """Remove language pairs  # noqa: E501
 
@@ -548,7 +548,7 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the delete_language_pairs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_language_pairs_with_http_info(price_list_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_language_pairs_with_http_info(self, price_list_uid : StrictStr, body : Optional[TranslationPriceSetBulkDeleteDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Remove language pairs  # noqa: E501
 
@@ -664,7 +664,7 @@ class PriceListApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_price_list(self, price_list_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete price list  # noqa: E501
 
@@ -692,7 +692,7 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the delete_price_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_price_list_with_http_info(price_list_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_price_list_with_http_info(self, price_list_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete price list  # noqa: E501
 
@@ -795,8 +795,8 @@ class PriceListApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_list_of_price_list(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTranslationPriceListDto:  # noqa: E501
+    @validate_call
+    def get_list_of_price_list(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTranslationPriceListDto:  # noqa: E501
         """List price lists  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -825,8 +825,8 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the get_list_of_price_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_list_of_price_list_with_http_info(page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_list_of_price_list_with_http_info(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_list_of_price_list_with_http_info(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List price lists  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -951,7 +951,7 @@ class PriceListApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_price_list(self, price_list_uid : StrictStr, **kwargs) -> TranslationPriceListDto:  # noqa: E501
         """Get price list  # noqa: E501
 
@@ -979,7 +979,7 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the get_price_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_price_list_with_http_info(price_list_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_price_list_with_http_info(self, price_list_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get price list  # noqa: E501
 
@@ -1099,8 +1099,8 @@ class PriceListApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_prices_with_workflow_steps(self, price_list_uid : StrictStr, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, source_languages : Optional[conlist(StrictStr)] = None, target_languages : Optional[conlist(StrictStr)] = None, **kwargs) -> PageDtoTranslationPriceSetDto:  # noqa: E501
+    @validate_call
+    def get_prices_with_workflow_steps(self, price_list_uid : StrictStr, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, source_languages : Optional[List[StrictStr]] = None, target_languages : Optional[List[StrictStr]] = None, **kwargs) -> PageDtoTranslationPriceSetDto:  # noqa: E501
         """List price sets  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1135,8 +1135,8 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the get_prices_with_workflow_steps_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_prices_with_workflow_steps_with_http_info(price_list_uid, page_number, page_size, source_languages, target_languages, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_prices_with_workflow_steps_with_http_info(self, price_list_uid : StrictStr, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, source_languages : Optional[conlist(StrictStr)] = None, target_languages : Optional[conlist(StrictStr)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_prices_with_workflow_steps_with_http_info(self, price_list_uid : StrictStr, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, source_languages : Optional[List[StrictStr]] = None, target_languages : Optional[List[StrictStr]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List price sets  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1281,7 +1281,7 @@ class PriceListApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def set_minimum_price_for_set(self, price_list_uid : StrictStr, body : Optional[TranslationPriceSetBulkMinimumPricesDto] = None, **kwargs) -> TranslationPriceListDto:  # noqa: E501
         """Edit minimum prices  # noqa: E501
 
@@ -1311,7 +1311,7 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the set_minimum_price_for_set_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.set_minimum_price_for_set_with_http_info(price_list_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def set_minimum_price_for_set_with_http_info(self, price_list_uid : StrictStr, body : Optional[TranslationPriceSetBulkMinimumPricesDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit minimum prices  # noqa: E501
 
@@ -1444,7 +1444,7 @@ class PriceListApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def set_prices(self, price_list_uid : StrictStr, body : Optional[TranslationPriceSetBulkPricesDto] = None, **kwargs) -> TranslationPriceListDto:  # noqa: E501
         """Edit prices  # noqa: E501
 
@@ -1475,7 +1475,7 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the set_prices_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.set_prices_with_http_info(price_list_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def set_prices_with_http_info(self, price_list_uid : StrictStr, body : Optional[TranslationPriceSetBulkPricesDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit prices  # noqa: E501
 
@@ -1609,7 +1609,7 @@ class PriceListApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_price_list(self, price_list_uid : StrictStr, body : Optional[TranslationPriceListCreateDto] = None, **kwargs) -> TranslationPriceListDto:  # noqa: E501
         """Update price list  # noqa: E501
 
@@ -1639,7 +1639,7 @@ class PriceListApi(object):
             raise ValueError("Error! Please call the update_price_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_price_list_with_http_info(price_list_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_price_list_with_http_info(self, price_list_uid : StrictStr, body : Optional[TranslationPriceListCreateDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update price list  # noqa: E501
 

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 
 class IdmlSettingsDto(BaseModel):
     """
@@ -42,14 +42,10 @@ class IdmlSettingsDto(BaseModel):
     extract_variables: Optional[StrictBool] = Field(None, alias="extractVariables", description="Default: true")
     __properties = ["extractNotes", "simplifyCodes", "extractMasterSpreads", "extractLockedLayers", "extractInvisibleLayers", "extractHiddenConditionalText", "extractHyperlinks", "keepKerning", "keepTracking", "targetFont", "replaceFont", "removeXmlElements", "tagRegexp", "extractCrossReferenceFormats", "extractVariables"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -62,7 +58,7 @@ class IdmlSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -75,9 +71,9 @@ class IdmlSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return IdmlSettingsDto.parse_obj(obj)
+            return IdmlSettingsDto.model_validate(obj)
 
-        _obj = IdmlSettingsDto.parse_obj({
+        _obj = IdmlSettingsDto.model_validate({
             "extract_notes": obj.get("extractNotes"),
             "simplify_codes": obj.get("simplifyCodes"),
             "extract_master_spreads": obj.get("extractMasterSpreads"),

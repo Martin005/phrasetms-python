@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.task_mapping_dto import TaskMappingDto
 
@@ -45,8 +45,8 @@ class MappingApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
-    def get_mapping_for_task(self, id : StrictStr, workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, **kwargs) -> TaskMappingDto:  # noqa: E501
+    @validate_call
+    def get_mapping_for_task(self, id : StrictStr, workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, **kwargs) -> TaskMappingDto:  # noqa: E501
         """Returns mapping for taskId (mxliff)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -75,8 +75,8 @@ class MappingApi(object):
             raise ValueError("Error! Please call the get_mapping_for_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_mapping_for_task_with_http_info(id, workflow_level, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_mapping_for_task_with_http_info(self, id : StrictStr, workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_mapping_for_task_with_http_info(self, id : StrictStr, workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Returns mapping for taskId (mxliff)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

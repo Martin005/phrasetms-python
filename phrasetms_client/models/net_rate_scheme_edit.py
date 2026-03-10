@@ -18,26 +18,23 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Optional
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel, Field, ConfigDict, StringConstraints
 from phrasetms_client.models.discount_settings_dto import DiscountSettingsDto
 
 class NetRateSchemeEdit(BaseModel):
     """
     NetRateSchemeEdit
     """
-    name: constr(strict=True, max_length=255, min_length=1) = Field(...)
+    name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=1)] = Field(...)
     rates: Optional[DiscountSettingsDto] = None
     __properties = ["name", "rates"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +47,7 @@ class NetRateSchemeEdit(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -66,9 +63,9 @@ class NetRateSchemeEdit(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return NetRateSchemeEdit.parse_obj(obj)
+            return NetRateSchemeEdit.model_validate(obj)
 
-        _obj = NetRateSchemeEdit.parse_obj({
+        _obj = NetRateSchemeEdit.model_validate({
             "name": obj.get("name"),
             "rates": DiscountSettingsDto.from_dict(obj.get("rates")) if obj.get("rates") is not None else None
         })

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt, StrictStr
 
 class WorkflowStepReference(BaseModel):
     """
@@ -32,14 +32,10 @@ class WorkflowStepReference(BaseModel):
     lqa_enabled: Optional[StrictBool] = Field(None, alias="lqaEnabled")
     __properties = ["name", "id", "uid", "order", "lqaEnabled"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class WorkflowStepReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -65,9 +61,9 @@ class WorkflowStepReference(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return WorkflowStepReference.parse_obj(obj)
+            return WorkflowStepReference.model_validate(obj)
 
-        _obj = WorkflowStepReference.parse_obj({
+        _obj = WorkflowStepReference.model_validate({
             "name": obj.get("name"),
             "id": obj.get("id"),
             "uid": obj.get("uid"),

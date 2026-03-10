@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.notify_provider_dto import NotifyProviderDto
 from phrasetms_client.models.providers_per_language import ProvidersPerLanguage
 
@@ -28,19 +28,15 @@ class WorkflowStepConfiguration(BaseModel):
     WorkflowStepConfiguration
     """
     id: Optional[StrictStr] = None
-    assignments: conlist(ProvidersPerLanguage) = Field(...)
+    assignments: List[ProvidersPerLanguage] = Field(...)
     due: Optional[datetime] = Field(None, description="Use ISO 8601 date format.")
     notify_provider: Optional[NotifyProviderDto] = Field(None, alias="notifyProvider")
     __properties = ["id", "assignments", "due", "notifyProvider"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class WorkflowStepConfiguration(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -76,9 +72,9 @@ class WorkflowStepConfiguration(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return WorkflowStepConfiguration.parse_obj(obj)
+            return WorkflowStepConfiguration.model_validate(obj)
 
-        _obj = WorkflowStepConfiguration.parse_obj({
+        _obj = WorkflowStepConfiguration.model_validate({
             "id": obj.get("id"),
             "assignments": [ProvidersPerLanguage.from_dict(_item) for _item in obj.get("assignments")] if obj.get("assignments") is not None else None,
             "due": obj.get("due"),

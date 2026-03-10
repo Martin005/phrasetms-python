@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic import BaseModel, Field, ConfigDict, StrictBool
 from phrasetms_client.models.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
 
 class PostAnalyse(AbstractAnalyseSettingsDto):
@@ -31,14 +31,10 @@ class PostAnalyse(AbstractAnalyseSettingsDto):
     machine_translate_post_editing: Optional[StrictBool] = Field(None, alias="machineTranslatePostEditing", description="Default: false")
     __properties = ["type", "includeConfirmedSegments", "includeNumbers", "includeLockedSegments", "countSourceUnits", "includeTransMemory", "namingPattern", "analyzeByLanguage", "analyzeByProvider", "allowAutomaticPostAnalysis", "transMemoryPostEditing", "nonTranslatablePostEditing", "machineTranslatePostEditing"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +47,7 @@ class PostAnalyse(AbstractAnalyseSettingsDto):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -64,9 +60,9 @@ class PostAnalyse(AbstractAnalyseSettingsDto):
             return None
 
         if not isinstance(obj, dict):
-            return PostAnalyse.parse_obj(obj)
+            return PostAnalyse.model_validate(obj)
 
-        _obj = PostAnalyse.parse_obj({
+        _obj = PostAnalyse.model_validate({
             "type": obj.get("type"),
             "include_confirmed_segments": obj.get("includeConfirmedSegments"),
             "include_numbers": obj.get("includeNumbers"),

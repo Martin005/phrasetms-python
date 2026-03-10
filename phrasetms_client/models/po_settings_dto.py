@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class PoSettingsDto(BaseModel):
     """
@@ -41,7 +41,8 @@ class PoSettingsDto(BaseModel):
     icu_sub_filter: Optional[StrictBool] = Field(None, alias="icuSubFilter", description="Default: `false`")
     __properties = ["tagRegexp", "exportMultiline", "htmlSubFilter", "segment", "markupSubFilterTranslatable", "markupSubFilterNonTranslatable", "saveConfirmedSegments", "importSetSegmentConfirmedWhen", "importSetSegmentLockedWhen", "exportConfirmedLocked", "exportConfirmedNotLocked", "exportNotConfirmedLocked", "exportNotConfirmedNotLocked", "icuSubFilter"]
 
-    @validator('import_set_segment_confirmed_when')
+    @field_validator('import_set_segment_confirmed_when')
+    @classmethod
     def import_set_segment_confirmed_when_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -51,7 +52,8 @@ class PoSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('FUZZY', 'NONFUZZY')")
         return value
 
-    @validator('import_set_segment_locked_when')
+    @field_validator('import_set_segment_locked_when')
+    @classmethod
     def import_set_segment_locked_when_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -61,7 +63,8 @@ class PoSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('FUZZY', 'NONFUZZY')")
         return value
 
-    @validator('export_confirmed_locked')
+    @field_validator('export_confirmed_locked')
+    @classmethod
     def export_confirmed_locked_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -71,7 +74,8 @@ class PoSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('FUZZY', 'NONFUZZY')")
         return value
 
-    @validator('export_confirmed_not_locked')
+    @field_validator('export_confirmed_not_locked')
+    @classmethod
     def export_confirmed_not_locked_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -81,7 +85,8 @@ class PoSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('FUZZY', 'NONFUZZY')")
         return value
 
-    @validator('export_not_confirmed_locked')
+    @field_validator('export_not_confirmed_locked')
+    @classmethod
     def export_not_confirmed_locked_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -91,7 +96,8 @@ class PoSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('FUZZY', 'NONFUZZY')")
         return value
 
-    @validator('export_not_confirmed_not_locked')
+    @field_validator('export_not_confirmed_not_locked')
+    @classmethod
     def export_not_confirmed_not_locked_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -101,14 +107,10 @@ class PoSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('FUZZY', 'NONFUZZY')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -121,7 +123,7 @@ class PoSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -134,9 +136,9 @@ class PoSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PoSettingsDto.parse_obj(obj)
+            return PoSettingsDto.model_validate(obj)
 
-        _obj = PoSettingsDto.parse_obj({
+        _obj = PoSettingsDto.model_validate({
             "tag_regexp": obj.get("tagRegexp"),
             "export_multiline": obj.get("exportMultiline"),
             "html_sub_filter": obj.get("htmlSubFilter"),

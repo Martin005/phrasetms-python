@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictInt
 from phrasetms_client.models.job_part_reference_v2 import JobPartReferenceV2
 
 class PageDtoJobPartReferenceV2(BaseModel):
@@ -31,17 +31,13 @@ class PageDtoJobPartReferenceV2(BaseModel):
     page_size: Optional[StrictInt] = Field(None, alias="pageSize")
     page_number: Optional[StrictInt] = Field(None, alias="pageNumber")
     number_of_elements: Optional[StrictInt] = Field(None, alias="numberOfElements")
-    content: Optional[conlist(JobPartReferenceV2)] = None
+    content: Optional[List[JobPartReferenceV2]] = None
     __properties = ["totalElements", "totalPages", "pageSize", "pageNumber", "numberOfElements", "content"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -54,7 +50,7 @@ class PageDtoJobPartReferenceV2(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -74,9 +70,9 @@ class PageDtoJobPartReferenceV2(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PageDtoJobPartReferenceV2.parse_obj(obj)
+            return PageDtoJobPartReferenceV2.model_validate(obj)
 
-        _obj = PageDtoJobPartReferenceV2.parse_obj({
+        _obj = PageDtoJobPartReferenceV2.model_validate({
             "total_elements": obj.get("totalElements"),
             "total_pages": obj.get("totalPages"),
             "page_size": obj.get("pageSize"),

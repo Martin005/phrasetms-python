@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, conint, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.quality_assurance_run_dto_v3 import QualityAssuranceRunDtoV3
 from phrasetms_client.models.uid_reference import UidReference
 
@@ -27,19 +28,15 @@ class QualityAssuranceBatchRunDtoV3(BaseModel):
     """
     QualityAssuranceBatchRunDtoV3
     """
-    jobs: conlist(UidReference, max_items=500, min_items=1) = Field(...)
+    jobs: List[UidReference] = Field(...)
     settings: Optional[QualityAssuranceRunDtoV3] = None
-    max_qa_warnings_count: Optional[conint(strict=True, le=1000, ge=1)] = Field(None, alias="maxQaWarningsCount", description="Maximum number of QA warnings in result, default: 100. For efficiency reasons QA warnings are processed with minimum segments chunk size 10, therefore slightly more warnings are returned.")
+    max_qa_warnings_count: Optional[Annotated[int, Field(strict=True, le=1000, ge=1)]] = Field(None, alias="maxQaWarningsCount", description="Maximum number of QA warnings in result, default: 100. For efficiency reasons QA warnings are processed with minimum segments chunk size 10, therefore slightly more warnings are returned.")
     __properties = ["jobs", "settings", "maxQaWarningsCount"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +49,7 @@ class QualityAssuranceBatchRunDtoV3(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -75,9 +72,9 @@ class QualityAssuranceBatchRunDtoV3(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return QualityAssuranceBatchRunDtoV3.parse_obj(obj)
+            return QualityAssuranceBatchRunDtoV3.model_validate(obj)
 
-        _obj = QualityAssuranceBatchRunDtoV3.parse_obj({
+        _obj = QualityAssuranceBatchRunDtoV3.model_validate({
             "jobs": [UidReference.from_dict(_item) for _item in obj.get("jobs")] if obj.get("jobs") is not None else None,
             "settings": QualityAssuranceRunDtoV3.from_dict(obj.get("settings")) if obj.get("settings") is not None else None,
             "max_qa_warnings_count": obj.get("maxQaWarningsCount")

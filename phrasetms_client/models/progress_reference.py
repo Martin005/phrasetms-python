@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from pydantic import BaseModel, Field, ConfigDict, StrictFloat, StrictInt
 
 class ProgressReference(BaseModel):
     """
@@ -32,14 +32,10 @@ class ProgressReference(BaseModel):
     overdue_ratio: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="overdueRatio")
     __properties = ["totalCount", "finishedCount", "overdueCount", "finishedRatio", "overdueRatio"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class ProgressReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -65,9 +61,9 @@ class ProgressReference(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ProgressReference.parse_obj(obj)
+            return ProgressReference.model_validate(obj)
 
-        _obj = ProgressReference.parse_obj({
+        _obj = ProgressReference.model_validate({
             "total_count": obj.get("totalCount"),
             "finished_count": obj.get("finishedCount"),
             "overdue_count": obj.get("overdueCount"),

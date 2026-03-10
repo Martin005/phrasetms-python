@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, StringConstraints, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import List, Optional
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr, conint, conlist, constr, validator
+from pydantic import Field, StrictBool, StrictInt, StrictStr, StringConstraints
 
-from typing import Optional
 
 from phrasetms_client.models.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
 from phrasetms_client.models.abstract_project_dto_v2 import AbstractProjectDtoV2
@@ -77,7 +77,7 @@ class ProjectTemplateApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def assign_linguists_from_template(self, template_uid : StrictStr, project_uid : StrictStr, **kwargs) -> JobPartsDto:  # noqa: E501
         """Assigns providers from template  # noqa: E501
 
@@ -107,7 +107,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the assign_linguists_from_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.assign_linguists_from_template_with_http_info(template_uid, project_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def assign_linguists_from_template_with_http_info(self, template_uid : StrictStr, project_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Assigns providers from template  # noqa: E501
 
@@ -233,7 +233,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def assign_linguists_from_template_to_job_parts(self, template_uid : StrictStr, project_uid : StrictStr, body : Optional[JobPartReferences] = None, **kwargs) -> JobPartsDto:  # noqa: E501
         """Assigns providers from template (specific jobs)  # noqa: E501
 
@@ -265,7 +265,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the assign_linguists_from_template_to_job_parts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.assign_linguists_from_template_to_job_parts_with_http_info(template_uid, project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def assign_linguists_from_template_to_job_parts_with_http_info(self, template_uid : StrictStr, project_uid : StrictStr, body : Optional[JobPartReferences] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Assigns providers from template (specific jobs)  # noqa: E501
 
@@ -404,7 +404,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def assignable_templates(self, project_uid : StrictStr, **kwargs) -> AssignableTemplatesDto:  # noqa: E501
         """List assignable templates  # noqa: E501
 
@@ -432,7 +432,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the assignable_templates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.assignable_templates_with_http_info(project_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def assignable_templates_with_http_info(self, project_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """List assignable templates  # noqa: E501
 
@@ -552,7 +552,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_custom_fields1(self, project_template_uid : StrictStr, body : Optional[CreateCustomFieldInstancesDto] = None, **kwargs) -> CustomFieldInstancesDto:  # noqa: E501
         """Create custom field instances  # noqa: E501
 
@@ -582,7 +582,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the create_custom_fields1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_custom_fields1_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_custom_fields1_with_http_info(self, project_template_uid : StrictStr, body : Optional[CreateCustomFieldInstancesDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create custom field instances  # noqa: E501
 
@@ -708,7 +708,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_project_from_template_v2(self, template_uid : StrictStr, body : Optional[CreateProjectFromTemplateV2Dto] = None, **kwargs) -> AbstractProjectDtoV2:  # noqa: E501
         """Create project from template  # noqa: E501
 
@@ -738,7 +738,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the create_project_from_template_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_project_from_template_v2_with_http_info(template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_project_from_template_v2_with_http_info(self, template_uid : StrictStr, body : Optional[CreateProjectFromTemplateV2Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create project from template  # noqa: E501
 
@@ -871,7 +871,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_project_from_template_v2_async(self, template_uid : StrictStr, body : Optional[CreateProjectFromTemplateAsyncV2Dto] = None, **kwargs) -> AsyncRequestWrapperV2Dto:  # noqa: E501
         """Create project from template (async)  # noqa: E501
 
@@ -901,7 +901,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the create_project_from_template_v2_async_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_project_from_template_v2_async_with_http_info(template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_project_from_template_v2_async_with_http_info(self, template_uid : StrictStr, body : Optional[CreateProjectFromTemplateAsyncV2Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create project from template (async)  # noqa: E501
 
@@ -1034,7 +1034,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_project_template(self, body : ProjectTemplateCreateActionDto, **kwargs) -> ProjectTemplateDto:  # noqa: E501
         """Create project template  # noqa: E501
 
@@ -1062,7 +1062,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the create_project_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_project_template_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_project_template_with_http_info(self, body : ProjectTemplateCreateActionDto, **kwargs) -> ApiResponse:  # noqa: E501
         """Create project template  # noqa: E501
 
@@ -1189,7 +1189,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_custom_field2(self, project_template_uid : StrictStr, field_instance_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete custom field of project template  # noqa: E501
 
@@ -1219,7 +1219,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the delete_custom_field2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_custom_field2_with_http_info(project_template_uid, field_instance_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_custom_field2_with_http_info(self, project_template_uid : StrictStr, field_instance_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete custom field of project template  # noqa: E501
 
@@ -1328,7 +1328,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_project_template(self, project_template_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete project template  # noqa: E501
 
@@ -1356,7 +1356,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the delete_project_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_project_template_with_http_info(self, project_template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete project template  # noqa: E501
 
@@ -1459,7 +1459,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_custom_field1(self, project_template_uid : StrictStr, field_instance_uid : StrictStr, body : Optional[UpdateCustomFieldInstanceDto] = None, **kwargs) -> CustomFieldInstanceDto:  # noqa: E501
         """Edit custom field of project template  # noqa: E501
 
@@ -1491,7 +1491,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the edit_custom_field1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_custom_field1_with_http_info(project_template_uid, field_instance_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_custom_field1_with_http_info(self, project_template_uid : StrictStr, field_instance_uid : StrictStr, body : Optional[UpdateCustomFieldInstanceDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit custom field of project template  # noqa: E501
 
@@ -1623,7 +1623,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_custom_fields1(self, project_template_uid : StrictStr, body : Optional[UpdateCustomFieldInstancesDto] = None, **kwargs) -> CustomFieldInstancesDto:  # noqa: E501
         """Edit custom fields of the project template (batch)  # noqa: E501
 
@@ -1653,7 +1653,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the edit_custom_fields1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_custom_fields1_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_custom_fields1_with_http_info(self, project_template_uid : StrictStr, body : Optional[UpdateCustomFieldInstancesDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit custom fields of the project template (batch)  # noqa: E501
 
@@ -1779,7 +1779,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_project_template(self, project_template_uid : StrictStr, body : ProjectTemplateEditDto, **kwargs) -> ProjectTemplateDto:  # noqa: E501
         """Edit project template  # noqa: E501
 
@@ -1809,7 +1809,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the edit_project_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_project_template_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_project_template_with_http_info(self, project_template_uid : StrictStr, body : ProjectTemplateEditDto, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit project template  # noqa: E501
 
@@ -1942,7 +1942,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_project_template_access_settings(self, project_template_uid : StrictStr, body : Optional[EditProjectSecuritySettingsDtoV2] = None, **kwargs) -> ProjectSecuritySettingsDtoV2:  # noqa: E501
         """Edit project template access and security settings  # noqa: E501
 
@@ -1972,7 +1972,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the edit_project_template_access_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_project_template_access_settings_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_project_template_access_settings_with_http_info(self, project_template_uid : StrictStr, body : Optional[EditProjectSecuritySettingsDtoV2] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit project template access and security settings  # noqa: E501
 
@@ -2105,7 +2105,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_project_template_import_settings(self, project_template_uid : StrictStr, body : Optional[FileImportSettingsCreateDto] = None, **kwargs) -> FileImportSettingsDto:  # noqa: E501
         """Edit project template import settings  # noqa: E501
 
@@ -2135,7 +2135,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the edit_project_template_import_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_project_template_import_settings_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_project_template_import_settings_with_http_info(self, project_template_uid : StrictStr, body : Optional[FileImportSettingsCreateDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit project template import settings  # noqa: E501
 
@@ -2268,7 +2268,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_analyse_settings_for_project_template(self, project_template_uid : StrictStr, **kwargs) -> AbstractAnalyseSettingsDto:  # noqa: E501
         """Get analyse settings  # noqa: E501
 
@@ -2296,7 +2296,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_analyse_settings_for_project_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_analyse_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_analyse_settings_for_project_template_with_http_info(self, project_template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get analyse settings  # noqa: E501
 
@@ -2416,7 +2416,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_custom_field2(self, project_template_uid : StrictStr, field_instance_uid : StrictStr, **kwargs) -> CustomFieldInstanceDto:  # noqa: E501
         """Get custom field of project template  # noqa: E501
 
@@ -2446,7 +2446,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_custom_field2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_custom_field2_with_http_info(project_template_uid, field_instance_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_custom_field2_with_http_info(self, project_template_uid : StrictStr, field_instance_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get custom field of project template  # noqa: E501
 
@@ -2572,8 +2572,8 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_custom_fields_page1(self, project_template_uid : StrictStr, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 20")] = None, created_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook creators UIDs")] = None, modified_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook updaters UIDs")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> PageDtoCustomFieldInstanceDto:  # noqa: E501
+    @validate_call
+    def get_custom_fields_page1(self, project_template_uid : StrictStr, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 20")] = None, created_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook creators UIDs")] = None, modified_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook updaters UIDs")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> PageDtoCustomFieldInstanceDto:  # noqa: E501
         """Get custom fields of project template (page)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2612,8 +2612,8 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_custom_fields_page1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_custom_fields_page1_with_http_info(project_template_uid, page_number, page_size, created_by, modified_by, sort_field, sort_trend, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_custom_fields_page1_with_http_info(self, project_template_uid : StrictStr, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 20")] = None, created_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook creators UIDs")] = None, modified_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook updaters UIDs")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_custom_fields_page1_with_http_info(self, project_template_uid : StrictStr, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 20")] = None, created_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook creators UIDs")] = None, modified_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook updaters UIDs")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get custom fields of project template (page)  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2770,7 +2770,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_import_settings_for_project_template(self, project_template_uid : StrictStr, **kwargs) -> FileImportSettingsDto:  # noqa: E501
         """Get import settings  # noqa: E501
 
@@ -2798,7 +2798,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_import_settings_for_project_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_import_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_import_settings_for_project_template_with_http_info(self, project_template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get import settings  # noqa: E501
 
@@ -2918,7 +2918,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_machine_translate_settings_for_project_template(self, project_template_uid : StrictStr, **kwargs) -> MTSettingsPerLanguageListDto:  # noqa: E501
         """Get project template machine translate settings  # noqa: E501
 
@@ -2946,7 +2946,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_machine_translate_settings_for_project_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_machine_translate_settings_for_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_machine_translate_settings_for_project_template_with_http_info(self, project_template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get project template machine translate settings  # noqa: E501
 
@@ -3066,7 +3066,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_pre_translate_settings_for_project_template2(self, project_template_uid : StrictStr, **kwargs) -> PreTranslateSettingsV3Dto:  # noqa: E501
         """Get Pre-translate settings  # noqa: E501
 
@@ -3094,7 +3094,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_pre_translate_settings_for_project_template2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_pre_translate_settings_for_project_template2_with_http_info(project_template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_pre_translate_settings_for_project_template2_with_http_info(self, project_template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Pre-translate settings  # noqa: E501
 
@@ -3214,7 +3214,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_project_template(self, project_template_uid : StrictStr, **kwargs) -> ProjectTemplateDto:  # noqa: E501
         """Get project template  # noqa: E501
 
@@ -3243,7 +3243,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_project_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_project_template_with_http_info(project_template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_project_template_with_http_info(self, project_template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get project template  # noqa: E501
 
@@ -3364,7 +3364,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_project_template_access_settings(self, project_template_uid : StrictStr, **kwargs) -> ProjectSecuritySettingsDtoV2:  # noqa: E501
         """Get project template access and security settings  # noqa: E501
 
@@ -3392,7 +3392,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_project_template_access_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_project_template_access_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_project_template_access_settings_with_http_info(self, project_template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get project template access and security settings  # noqa: E501
 
@@ -3512,7 +3512,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_project_template_qa_settings(self, project_template_uid : StrictStr, **kwargs) -> QASettingsDtoV2:  # noqa: E501
         """Get quality assurance settings  # noqa: E501
 
@@ -3540,7 +3540,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_project_template_qa_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_project_template_qa_settings_with_http_info(project_template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_project_template_qa_settings_with_http_info(self, project_template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get quality assurance settings  # noqa: E501
 
@@ -3660,7 +3660,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_project_template_term_bases(self, project_template_uid : StrictStr, **kwargs) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Get term bases  # noqa: E501
 
@@ -3688,7 +3688,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_project_template_term_bases_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_project_template_term_bases_with_http_info(project_template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_project_template_term_bases_with_http_info(self, project_template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get term bases  # noqa: E501
 
@@ -3808,7 +3808,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_project_template_trans_memories2(self, project_template_uid : StrictStr, target_lang : Annotated[Optional[StrictStr], Field(description="Filter project translation memories by target language")] = None, wf_step_uid : Annotated[Optional[StrictStr], Field(description="Filter project translation memories by workflow step")] = None, **kwargs) -> ProjectTemplateTransMemoryListDtoV3:  # noqa: E501
         """Get translation memories  # noqa: E501
 
@@ -3840,7 +3840,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_project_template_trans_memories2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_project_template_trans_memories2_with_http_info(project_template_uid, target_lang, wf_step_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_project_template_trans_memories2_with_http_info(self, project_template_uid : StrictStr, target_lang : Annotated[Optional[StrictStr], Field(description="Filter project translation memories by target language")] = None, wf_step_uid : Annotated[Optional[StrictStr], Field(description="Filter project translation memories by workflow step")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get translation memories  # noqa: E501
 
@@ -3972,8 +3972,8 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_project_templates(self, name : Optional[StrictStr] = None, client_id : Optional[StrictInt] = None, client_name : Optional[StrictStr] = None, owner_uid : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, cost_center_id : Optional[StrictInt] = None, cost_center_name : Optional[StrictStr] = None, business_unit_name : Optional[StrictStr] = None, sort : Optional[constr(strict=True)] = None, direction : Optional[constr(strict=True)] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoProjectTemplateReference:  # noqa: E501
+    @validate_call
+    def get_project_templates(self, name : Optional[StrictStr] = None, client_id : Optional[StrictInt] = None, client_name : Optional[StrictStr] = None, owner_uid : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, cost_center_id : Optional[StrictInt] = None, cost_center_name : Optional[StrictStr] = None, business_unit_name : Optional[StrictStr] = None, sort : Optional[Annotated[str, StringConstraints(strict=True)]] = None, direction : Optional[Annotated[str, StringConstraints(strict=True)]] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoProjectTemplateReference:  # noqa: E501
         """List project templates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4024,8 +4024,8 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the get_project_templates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_project_templates_with_http_info(name, client_id, client_name, owner_uid, domain_name, sub_domain_name, cost_center_id, cost_center_name, business_unit_name, sort, direction, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_project_templates_with_http_info(self, name : Optional[StrictStr] = None, client_id : Optional[StrictInt] = None, client_name : Optional[StrictStr] = None, owner_uid : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, cost_center_id : Optional[StrictInt] = None, cost_center_name : Optional[StrictStr] = None, business_unit_name : Optional[StrictStr] = None, sort : Optional[constr(strict=True)] = None, direction : Optional[constr(strict=True)] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_project_templates_with_http_info(self, name : Optional[StrictStr] = None, client_id : Optional[StrictInt] = None, client_name : Optional[StrictStr] = None, owner_uid : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, cost_center_id : Optional[StrictInt] = None, cost_center_name : Optional[StrictStr] = None, business_unit_name : Optional[StrictStr] = None, sort : Optional[Annotated[str, StringConstraints(strict=True)]] = None, direction : Optional[Annotated[str, StringConstraints(strict=True)]] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List project templates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4216,8 +4216,8 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def relevant_trans_memories(self, project_template_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[conlist(StrictStr)] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTransMemoryDto:  # noqa: E501
+    @validate_call
+    def relevant_trans_memories(self, project_template_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[List[StrictStr]] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTransMemoryDto:  # noqa: E501
         """List project template relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4260,8 +4260,8 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the relevant_trans_memories_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.relevant_trans_memories_with_http_info(project_template_uid, name, domain_name, client_name, sub_domain_name, target_langs, strict_lang_matching, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def relevant_trans_memories_with_http_info(self, project_template_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[conlist(StrictStr)] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def relevant_trans_memories_with_http_info(self, project_template_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[List[StrictStr]] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List project template relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4429,7 +4429,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def set_project_template_qa_settings(self, project_template_uid : StrictStr, body : Optional[EditQASettingsDtoV2] = None, **kwargs) -> QASettingsDtoV2:  # noqa: E501
         """Edit quality assurance settings  # noqa: E501
 
@@ -4459,7 +4459,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the set_project_template_qa_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.set_project_template_qa_settings_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def set_project_template_qa_settings_with_http_info(self, project_template_uid : StrictStr, body : Optional[EditQASettingsDtoV2] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit quality assurance settings  # noqa: E501
 
@@ -4592,7 +4592,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def set_project_template_term_bases(self, project_template_uid : StrictStr, body : Optional[SetProjectTemplateTermBaseDto] = None, **kwargs) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Edit term bases in project template  # noqa: E501
 
@@ -4622,7 +4622,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the set_project_template_term_bases_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.set_project_template_term_bases_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def set_project_template_term_bases_with_http_info(self, project_template_uid : StrictStr, body : Optional[SetProjectTemplateTermBaseDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit term bases in project template  # noqa: E501
 
@@ -4755,7 +4755,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def set_project_template_trans_memories_v2(self, project_template_uid : StrictStr, body : Optional[SetProjectTemplateTransMemoriesV2Dto] = None, **kwargs) -> ProjectTemplateTransMemoryListV2Dto:  # noqa: E501
         """Edit translation memories  # noqa: E501
 
@@ -4786,7 +4786,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the set_project_template_trans_memories_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.set_project_template_trans_memories_v2_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def set_project_template_trans_memories_v2_with_http_info(self, project_template_uid : StrictStr, body : Optional[SetProjectTemplateTransMemoriesV2Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit translation memories  # noqa: E501
 
@@ -4920,7 +4920,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_analyse_settings_for_project_template(self, project_template_uid : StrictStr, body : Optional[EditAnalyseSettingsDto] = None, **kwargs) -> AbstractAnalyseSettingsDto:  # noqa: E501
         """Edit analyse settings  # noqa: E501
 
@@ -4950,7 +4950,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the update_analyse_settings_for_project_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_analyse_settings_for_project_template_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_analyse_settings_for_project_template_with_http_info(self, project_template_uid : StrictStr, body : Optional[EditAnalyseSettingsDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit analyse settings  # noqa: E501
 
@@ -5083,7 +5083,7 @@ class ProjectTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_pre_translate_settings_for_project_template2(self, project_template_uid : StrictStr, body : Optional[PreTranslateSettingsV3Dto] = None, **kwargs) -> PreTranslateSettingsV3Dto:  # noqa: E501
         """Update Pre-translate settings  # noqa: E501
 
@@ -5113,7 +5113,7 @@ class ProjectTemplateApi(object):
             raise ValueError("Error! Please call the update_pre_translate_settings_for_project_template2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_pre_translate_settings_for_project_template2_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_pre_translate_settings_for_project_template2_with_http_info(self, project_template_uid : StrictStr, body : Optional[PreTranslateSettingsV3Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update Pre-translate settings  # noqa: E501
 

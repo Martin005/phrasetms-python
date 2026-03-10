@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.async_request_reference import AsyncRequestReference
 from phrasetms_client.models.job_part_update_source_dto import JobPartUpdateSourceDto
 
@@ -28,17 +28,13 @@ class JobUpdateSourceResponseDto(BaseModel):
     JobUpdateSourceResponseDto
     """
     async_request: Optional[AsyncRequestReference] = Field(None, alias="asyncRequest")
-    jobs: Optional[conlist(JobPartUpdateSourceDto)] = None
+    jobs: Optional[List[JobPartUpdateSourceDto]] = None
     __properties = ["asyncRequest", "jobs"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +47,7 @@ class JobUpdateSourceResponseDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -74,9 +70,9 @@ class JobUpdateSourceResponseDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobUpdateSourceResponseDto.parse_obj(obj)
+            return JobUpdateSourceResponseDto.model_validate(obj)
 
-        _obj = JobUpdateSourceResponseDto.parse_obj({
+        _obj = JobUpdateSourceResponseDto.model_validate({
             "async_request": AsyncRequestReference.from_dict(obj.get("asyncRequest")) if obj.get("asyncRequest") is not None else None,
             "jobs": [JobPartUpdateSourceDto.from_dict(_item) for _item in obj.get("jobs")] if obj.get("jobs") is not None else None
         })

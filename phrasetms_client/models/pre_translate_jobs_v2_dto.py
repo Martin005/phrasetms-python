@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.pre_translate_job_settings_dto import PreTranslateJobSettingsDto
 from phrasetms_client.models.uid_reference import UidReference
 
@@ -27,14 +27,15 @@ class PreTranslateJobsV2Dto(BaseModel):
     """
     PreTranslateJobsV2Dto
     """
-    jobs: conlist(UidReference, max_items=100, min_items=1) = Field(..., description="Jobs to be pre-translated")
-    segment_filters: Optional[conlist(StrictStr)] = Field(None, alias="segmentFilters")
+    jobs: List[UidReference] = Field(..., description="Jobs to be pre-translated")
+    segment_filters: Optional[List[StrictStr]] = Field(None, alias="segmentFilters")
     use_project_pre_translate_settings: Optional[StrictBool] = Field(None, alias="useProjectPreTranslateSettings", description="If pre-translate settings from project should be used. If true, preTranslateSettings values are ignored. Default: false")
     callback_url: Optional[StrictStr] = Field(None, alias="callbackUrl")
     pre_translate_settings: Optional[PreTranslateJobSettingsDto] = Field(None, alias="preTranslateSettings")
     __properties = ["jobs", "segmentFilters", "useProjectPreTranslateSettings", "callbackUrl", "preTranslateSettings"]
 
-    @validator('segment_filters')
+    @field_validator('segment_filters')
+    @classmethod
     def segment_filters_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -45,14 +46,10 @@ class PreTranslateJobsV2Dto(BaseModel):
                 raise ValueError("each list item must be one of ('LOCKED', 'NOT_LOCKED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -65,7 +62,7 @@ class PreTranslateJobsV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -88,9 +85,9 @@ class PreTranslateJobsV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PreTranslateJobsV2Dto.parse_obj(obj)
+            return PreTranslateJobsV2Dto.model_validate(obj)
 
-        _obj = PreTranslateJobsV2Dto.parse_obj({
+        _obj = PreTranslateJobsV2Dto.model_validate({
             "jobs": [UidReference.from_dict(_item) for _item in obj.get("jobs")] if obj.get("jobs") is not None else None,
             "segment_filters": obj.get("segmentFilters"),
             "use_project_pre_translate_settings": obj.get("useProjectPreTranslateSettings"),

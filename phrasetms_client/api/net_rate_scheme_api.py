@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictInt, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictInt, StrictStr
+
 
 from phrasetms_client.models.discount_scheme_create_dto import DiscountSchemeCreateDto
 from phrasetms_client.models.net_rate_scheme import NetRateScheme
@@ -51,7 +51,7 @@ class NetRateSchemeApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_discount_scheme(self, body : Optional[DiscountSchemeCreateDto] = None, **kwargs) -> NetRateScheme:  # noqa: E501
         """Create net rate scheme  # noqa: E501
 
@@ -79,7 +79,7 @@ class NetRateSchemeApi(object):
             raise ValueError("Error! Please call the create_discount_scheme_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_discount_scheme_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_discount_scheme_with_http_info(self, body : Optional[DiscountSchemeCreateDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create net rate scheme  # noqa: E501
 
@@ -206,7 +206,7 @@ class NetRateSchemeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_discount_scheme_workflow_step(self, net_rate_scheme_uid : StrictStr, net_rate_scheme_workflow_step_id : StrictInt, body : Optional[NetRateSchemeWorkflowStepEdit] = None, **kwargs) -> NetRateSchemeWorkflowStep:  # noqa: E501
         """Edit scheme for workflow step  # noqa: E501
 
@@ -238,7 +238,7 @@ class NetRateSchemeApi(object):
             raise ValueError("Error! Please call the edit_discount_scheme_workflow_step_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_discount_scheme_workflow_step_with_http_info(net_rate_scheme_uid, net_rate_scheme_workflow_step_id, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_discount_scheme_workflow_step_with_http_info(self, net_rate_scheme_uid : StrictStr, net_rate_scheme_workflow_step_id : StrictInt, body : Optional[NetRateSchemeWorkflowStepEdit] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit scheme for workflow step  # noqa: E501
 
@@ -370,7 +370,7 @@ class NetRateSchemeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_discount_scheme(self, net_rate_scheme_uid : StrictStr, **kwargs) -> NetRateScheme:  # noqa: E501
         """Get net rate scheme  # noqa: E501
 
@@ -398,7 +398,7 @@ class NetRateSchemeApi(object):
             raise ValueError("Error! Please call the get_discount_scheme_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_discount_scheme_with_http_info(net_rate_scheme_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_discount_scheme_with_http_info(self, net_rate_scheme_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get net rate scheme  # noqa: E501
 
@@ -518,7 +518,7 @@ class NetRateSchemeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_discount_scheme_workflow_step(self, net_rate_scheme_uid : StrictStr, net_rate_scheme_workflow_step_id : StrictInt, **kwargs) -> NetRateSchemeWorkflowStep:  # noqa: E501
         """Get scheme for workflow step  # noqa: E501
 
@@ -548,7 +548,7 @@ class NetRateSchemeApi(object):
             raise ValueError("Error! Please call the get_discount_scheme_workflow_step_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_discount_scheme_workflow_step_with_http_info(net_rate_scheme_uid, net_rate_scheme_workflow_step_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_discount_scheme_workflow_step_with_http_info(self, net_rate_scheme_uid : StrictStr, net_rate_scheme_workflow_step_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Get scheme for workflow step  # noqa: E501
 
@@ -674,8 +674,8 @@ class NetRateSchemeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_discount_scheme_workflow_steps(self, net_rate_scheme_uid : StrictStr, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoNetRateSchemeWorkflowStepReference:  # noqa: E501
+    @validate_call
+    def get_discount_scheme_workflow_steps(self, net_rate_scheme_uid : StrictStr, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoNetRateSchemeWorkflowStepReference:  # noqa: E501
         """List schemes for workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -706,8 +706,8 @@ class NetRateSchemeApi(object):
             raise ValueError("Error! Please call the get_discount_scheme_workflow_steps_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_discount_scheme_workflow_steps_with_http_info(net_rate_scheme_uid, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_discount_scheme_workflow_steps_with_http_info(self, net_rate_scheme_uid : StrictStr, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_discount_scheme_workflow_steps_with_http_info(self, net_rate_scheme_uid : StrictStr, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List schemes for workflow step  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -838,8 +838,8 @@ class NetRateSchemeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_discount_schemes(self, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoNetRateSchemeReference:  # noqa: E501
+    @validate_call
+    def get_discount_schemes(self, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoNetRateSchemeReference:  # noqa: E501
         """List net rate schemes  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -868,8 +868,8 @@ class NetRateSchemeApi(object):
             raise ValueError("Error! Please call the get_discount_schemes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_discount_schemes_with_http_info(page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_discount_schemes_with_http_info(self, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_discount_schemes_with_http_info(self, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List net rate schemes  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -994,7 +994,7 @@ class NetRateSchemeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_discount_scheme(self, net_rate_scheme_uid : StrictStr, body : Optional[NetRateSchemeEdit] = None, **kwargs) -> NetRateScheme:  # noqa: E501
         """Edit net rate scheme  # noqa: E501
 
@@ -1024,7 +1024,7 @@ class NetRateSchemeApi(object):
             raise ValueError("Error! Please call the update_discount_scheme_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_discount_scheme_with_http_info(net_rate_scheme_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_discount_scheme_with_http_info(self, net_rate_scheme_uid : StrictStr, body : Optional[NetRateSchemeEdit] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit net rate scheme  # noqa: E501
 

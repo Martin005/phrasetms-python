@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from phrasetms_client.models.comment_dto import CommentDto
 from phrasetms_client.models.common_conversation_dto import CommonConversationDto
 from phrasetms_client.models.mentionable_user_dto import MentionableUserDto
@@ -33,14 +33,10 @@ class SEGMENTTARGET(CommonConversationDto):
     references: Optional[PlainReferences] = None
     __properties = ["id", "type", "dateCreated", "dateModified", "dateEdited", "createdBy", "comments", "status", "deleted", "references"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class SEGMENTTARGET(CommonConversationDto):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -82,9 +78,9 @@ class SEGMENTTARGET(CommonConversationDto):
             return None
 
         if not isinstance(obj, dict):
-            return SEGMENTTARGET.parse_obj(obj)
+            return SEGMENTTARGET.model_validate(obj)
 
-        _obj = SEGMENTTARGET.parse_obj({
+        _obj = SEGMENTTARGET.model_validate({
             "id": obj.get("id"),
             "type": obj.get("type"),
             "date_created": obj.get("dateCreated"),

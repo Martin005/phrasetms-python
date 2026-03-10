@@ -18,22 +18,32 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, constr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictStr,
+    StringConstraints,
+    field_validator,
+)
 
 class CreateWebHookDto(BaseModel):
     """
     CreateWebHookDto
     """
-    name: Optional[constr(strict=True, max_length=255, min_length=0)] = None
+    name: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None
     url: StrictStr = Field(...)
-    events: conlist(StrictStr) = Field(...)
-    secret_token: Optional[constr(strict=True, max_length=255, min_length=0)] = Field(None, alias="secretToken")
+    events: List[StrictStr] = Field(...)
+    secret_token: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = Field(None, alias="secretToken")
     hidden: Optional[StrictBool] = Field(None, description="Default: false")
     status: Optional[StrictStr] = Field(None, description="Default: ENABLED")
     __properties = ["name", "url", "events", "secretToken", "hidden", "status"]
 
-    @validator('events')
+    @field_validator('events')
+    @classmethod
     def events_validate_enum(cls, value):
         """Validates the enum"""
         for i in value:
@@ -41,7 +51,8 @@ class CreateWebHookDto(BaseModel):
                 raise ValueError("each list item must be one of ('JOB_STATUS_CHANGED', 'JOB_CREATED', 'JOB_DELETED', 'JOB_ASSIGNED', 'JOB_DUE_DATE_CHANGED', 'JOB_UPDATED', 'JOB_TARGET_UPDATED', 'JOB_EXPORTED', 'JOB_UNEXPORTED', 'PROJECT_CREATED', 'PROJECT_DELETED', 'PROJECT_STATUS_CHANGED', 'PROJECT_DUE_DATE_CHANGED', 'SHARED_PROJECT_ASSIGNED', 'PROJECT_METADATA_UPDATED', 'PRE_TRANSLATION_FINISHED', 'ANALYSIS_CREATED', 'CONTINUOUS_JOB_UPDATED', 'PROJECT_TEMPLATE_CREATED', 'PROJECT_TEMPLATE_UPDATED', 'PROJECT_TEMPLATE_DELETED')")
         return value
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -51,14 +62,10 @@ class CreateWebHookDto(BaseModel):
             raise ValueError("must be one of enum values ('ENABLED', 'DISABLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -71,7 +78,7 @@ class CreateWebHookDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -84,9 +91,9 @@ class CreateWebHookDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CreateWebHookDto.parse_obj(obj)
+            return CreateWebHookDto.model_validate(obj)
 
-        _obj = CreateWebHookDto.parse_obj({
+        _obj = CreateWebHookDto.model_validate({
             "name": obj.get("name"),
             "url": obj.get("url"),
             "events": obj.get("events"),

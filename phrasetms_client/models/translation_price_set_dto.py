@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictFloat, StrictInt, StrictStr
 from phrasetms_client.models.translation_price_dto import TranslationPriceDto
 
 class TranslationPriceSetDto(BaseModel):
@@ -29,17 +29,13 @@ class TranslationPriceSetDto(BaseModel):
     source_lang: Optional[StrictStr] = Field(None, alias="sourceLang")
     target_lang: Optional[StrictStr] = Field(None, alias="targetLang")
     minimum_price: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="minimumPrice")
-    prices: Optional[conlist(TranslationPriceDto)] = None
+    prices: Optional[List[TranslationPriceDto]] = None
     __properties = ["sourceLang", "targetLang", "minimumPrice", "prices"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class TranslationPriceSetDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -72,9 +68,9 @@ class TranslationPriceSetDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TranslationPriceSetDto.parse_obj(obj)
+            return TranslationPriceSetDto.model_validate(obj)
 
-        _obj = TranslationPriceSetDto.parse_obj({
+        _obj = TranslationPriceSetDto.model_validate({
             "source_lang": obj.get("sourceLang"),
             "target_lang": obj.get("targetLang"),
             "minimum_price": obj.get("minimumPrice"),

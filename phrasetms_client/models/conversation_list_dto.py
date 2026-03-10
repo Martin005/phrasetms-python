@@ -19,24 +19,20 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, conlist
+from pydantic import BaseModel, ConfigDict
 from phrasetms_client.models.common_conversation_dto import CommonConversationDto
 
 class ConversationListDto(BaseModel):
     """
     ConversationListDto
     """
-    conversations: Optional[conlist(CommonConversationDto)] = None
+    conversations: Optional[List[CommonConversationDto]] = None
     __properties = ["conversations"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class ConversationListDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class ConversationListDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ConversationListDto.parse_obj(obj)
+            return ConversationListDto.model_validate(obj)
 
-        _obj = ConversationListDto.parse_obj({
+        _obj = ConversationListDto.model_validate({
             "conversations": [CommonConversationDto.from_dict(_item) for _item in obj.get("conversations")] if obj.get("conversations") is not None else None
         })
         return _obj

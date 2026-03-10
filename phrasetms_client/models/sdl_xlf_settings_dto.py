@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 
 class SdlXlfSettingsDto(BaseModel):
     """
@@ -37,14 +37,10 @@ class SdlXlfSettingsDto(BaseModel):
     tag_regexp: Optional[StrictStr] = Field(None, alias="tagRegexp")
     __properties = ["icuSubFilter", "skipImportRules", "importAsConfirmedRules", "importAsLockedRules", "exportAttrsWhenConfirmedAndLocked", "exportAttrsWhenConfirmedAndNotLocked", "exportAttrsWhenNotConfirmedAndLocked", "exportAttrsWhenNotConfirmedAndNotLocked", "saveConfirmedSegments", "tagRegexp"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -57,7 +53,7 @@ class SdlXlfSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -70,9 +66,9 @@ class SdlXlfSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SdlXlfSettingsDto.parse_obj(obj)
+            return SdlXlfSettingsDto.model_validate(obj)
 
-        _obj = SdlXlfSettingsDto.parse_obj({
+        _obj = SdlXlfSettingsDto.model_validate({
             "icu_sub_filter": obj.get("icuSubFilter"),
             "skip_import_rules": obj.get("skipImportRules"),
             "import_as_confirmed_rules": obj.get("importAsConfirmedRules"),

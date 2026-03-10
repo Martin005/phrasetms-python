@@ -19,7 +19,16 @@ import json
 
 from datetime import datetime
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, conlist, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictFloat,
+    StrictInt,
+    StrictStr,
+    field_validator,
+)
 from phrasetms_client.models.additional_workflow_step_v2_dto import AdditionalWorkflowStepV2Dto
 from phrasetms_client.models.net_rate_scheme_reference import NetRateSchemeReference
 from phrasetms_client.models.price_list_reference import PriceListReference
@@ -42,16 +51,17 @@ class QuoteV2Dto(BaseModel):
     total_price: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="totalPrice")
     net_rate_scheme: Optional[NetRateSchemeReference] = Field(None, alias="netRateScheme")
     price_list: Optional[PriceListReference] = Field(None, alias="priceList")
-    workflow_step_list: Optional[conlist(WorkflowStepReference)] = Field(None, alias="workflowStepList")
+    workflow_step_list: Optional[List[WorkflowStepReference]] = Field(None, alias="workflowStepList")
     provider: Optional[ProviderReference] = None
     customer_email: Optional[StrictStr] = Field(None, alias="customerEmail")
     quote_type: Optional[StrictStr] = Field(None, alias="quoteType")
     editable: Optional[StrictBool] = None
     outdated: Optional[StrictBool] = None
-    additional_steps: Optional[conlist(AdditionalWorkflowStepV2Dto)] = Field(None, alias="additionalSteps")
+    additional_steps: Optional[List[AdditionalWorkflowStepV2Dto]] = Field(None, alias="additionalSteps")
     __properties = ["id", "uid", "name", "status", "currency", "billingUnit", "createdBy", "dateCreated", "totalPrice", "netRateScheme", "priceList", "workflowStepList", "provider", "customerEmail", "quoteType", "editable", "outdated", "additionalSteps"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -61,7 +71,8 @@ class QuoteV2Dto(BaseModel):
             raise ValueError("must be one of enum values ('APPROVED', 'DECLINED', 'DRAFT', 'FOR_APPROVAL', 'NEW')")
         return value
 
-    @validator('billing_unit')
+    @field_validator('billing_unit')
+    @classmethod
     def billing_unit_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -71,7 +82,8 @@ class QuoteV2Dto(BaseModel):
             raise ValueError("must be one of enum values ('Character', 'Word', 'Page', 'Hour')")
         return value
 
-    @validator('quote_type')
+    @field_validator('quote_type')
+    @classmethod
     def quote_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -81,14 +93,10 @@ class QuoteV2Dto(BaseModel):
             raise ValueError("must be one of enum values ('BUYER', 'PROVIDER')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -101,7 +109,7 @@ class QuoteV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -140,9 +148,9 @@ class QuoteV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return QuoteV2Dto.parse_obj(obj)
+            return QuoteV2Dto.model_validate(obj)
 
-        _obj = QuoteV2Dto.parse_obj({
+        _obj = QuoteV2Dto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "name": obj.get("name"),

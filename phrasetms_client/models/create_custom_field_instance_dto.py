@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist, constr
+from pydantic import BaseModel, Field, ConfigDict, StringConstraints
 from phrasetms_client.models.uid_reference import UidReference
 
 class CreateCustomFieldInstanceDto(BaseModel):
@@ -27,18 +28,14 @@ class CreateCustomFieldInstanceDto(BaseModel):
     CreateCustomFieldInstanceDto
     """
     custom_field: Optional[UidReference] = Field(None, alias="customField")
-    selected_options: Optional[conlist(UidReference)] = Field(None, alias="selectedOptions")
-    value: Optional[constr(strict=True, max_length=4096, min_length=0)] = None
+    selected_options: Optional[List[UidReference]] = Field(None, alias="selectedOptions")
+    value: Optional[Annotated[str, StringConstraints(strict=True, max_length=4096, min_length=0)]] = None
     __properties = ["customField", "selectedOptions", "value"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +48,7 @@ class CreateCustomFieldInstanceDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -74,9 +71,9 @@ class CreateCustomFieldInstanceDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CreateCustomFieldInstanceDto.parse_obj(obj)
+            return CreateCustomFieldInstanceDto.model_validate(obj)
 
-        _obj = CreateCustomFieldInstanceDto.parse_obj({
+        _obj = CreateCustomFieldInstanceDto.model_validate({
             "custom_field": UidReference.from_dict(obj.get("customField")) if obj.get("customField") is not None else None,
             "selected_options": [UidReference.from_dict(_item) for _item in obj.get("selectedOptions")] if obj.get("selectedOptions") is not None else None,
             "value": obj.get("value")

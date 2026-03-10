@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, StrictStr
 from phrasetms_client.models.suggestion import Suggestion
 
 class SuggestResponse(BaseModel):
@@ -27,17 +27,13 @@ class SuggestResponse(BaseModel):
     SuggestResponse
     """
     word: Optional[StrictStr] = None
-    suggestions: Optional[conlist(Suggestion)] = None
+    suggestions: Optional[List[Suggestion]] = None
     __properties = ["word", "suggestions"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class SuggestResponse(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -70,9 +66,9 @@ class SuggestResponse(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SuggestResponse.parse_obj(obj)
+            return SuggestResponse.model_validate(obj)
 
-        _obj = SuggestResponse.parse_obj({
+        _obj = SuggestResponse.model_validate({
             "word": obj.get("word"),
             "suggestions": [Suggestion.from_dict(_item) for _item in obj.get("suggestions")] if obj.get("suggestions") is not None else None
         })

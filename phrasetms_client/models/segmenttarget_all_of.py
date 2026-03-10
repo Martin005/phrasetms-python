@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from phrasetms_client.models.plain_references import PlainReferences
 
 class SEGMENTTARGETAllOf(BaseModel):
@@ -29,14 +29,10 @@ class SEGMENTTARGETAllOf(BaseModel):
     references: Optional[PlainReferences] = None
     __properties = ["references"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class SEGMENTTARGETAllOf(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -65,9 +61,9 @@ class SEGMENTTARGETAllOf(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SEGMENTTARGETAllOf.parse_obj(obj)
+            return SEGMENTTARGETAllOf.model_validate(obj)
 
-        _obj = SEGMENTTARGETAllOf.parse_obj({
+        _obj = SEGMENTTARGETAllOf.model_validate({
             "references": PlainReferences.from_dict(obj.get("references")) if obj.get("references") is not None else None
         })
         return _obj

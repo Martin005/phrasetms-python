@@ -19,7 +19,7 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.update_ignored_segment import UpdateIgnoredSegment
 
 class UpdateIgnoredJobPartSegment(BaseModel):
@@ -27,17 +27,13 @@ class UpdateIgnoredJobPartSegment(BaseModel):
     UpdateIgnoredJobPartSegment
     """
     job_part_uid: StrictStr = Field(..., alias="jobPartUid")
-    segments: conlist(UpdateIgnoredSegment, max_items=500, min_items=1) = Field(...)
+    segments: List[UpdateIgnoredSegment] = Field(...)
     __properties = ["jobPartUid", "segments"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class UpdateIgnoredJobPartSegment(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -70,9 +66,9 @@ class UpdateIgnoredJobPartSegment(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return UpdateIgnoredJobPartSegment.parse_obj(obj)
+            return UpdateIgnoredJobPartSegment.model_validate(obj)
 
-        _obj = UpdateIgnoredJobPartSegment.parse_obj({
+        _obj = UpdateIgnoredJobPartSegment.model_validate({
             "job_part_uid": obj.get("jobPartUid"),
             "segments": [UpdateIgnoredSegment.from_dict(_item) for _item in obj.get("segments")] if obj.get("segments") is not None else None
         })

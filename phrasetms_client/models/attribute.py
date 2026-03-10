@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class Attribute(BaseModel):
     """
@@ -27,7 +27,7 @@ class Attribute(BaseModel):
     """
     name: Optional[StrictStr] = None
     type: Optional[StrictStr] = None
-    sub_attributes: Optional[conlist(Attribute)] = Field(None, alias="subAttributes")
+    sub_attributes: Optional[List[Attribute]] = Field(None, alias="subAttributes")
     multi_valued: Optional[StrictBool] = Field(None, alias="multiValued")
     description: Optional[StrictStr] = None
     required: Optional[StrictBool] = None
@@ -37,7 +37,8 @@ class Attribute(BaseModel):
     uniqueness: Optional[StrictStr] = None
     __properties = ["name", "type", "subAttributes", "multiValued", "description", "required", "caseExact", "mutability", "returned", "uniqueness"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -47,7 +48,8 @@ class Attribute(BaseModel):
             raise ValueError("must be one of enum values ('STRING', 'BOOLEAN', 'DECIMAL', 'INTEGER', 'DATE_TIME', 'BINARY', 'REFERENCE', 'COMPLEX')")
         return value
 
-    @validator('mutability')
+    @field_validator('mutability')
+    @classmethod
     def mutability_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -57,7 +59,8 @@ class Attribute(BaseModel):
             raise ValueError("must be one of enum values ('READ_ONLY', 'READ_WRITE', 'IMMUTABLE', 'WRITE_ONLY')")
         return value
 
-    @validator('returned')
+    @field_validator('returned')
+    @classmethod
     def returned_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -67,7 +70,8 @@ class Attribute(BaseModel):
             raise ValueError("must be one of enum values ('ALWAYS', 'NEVER', 'DEFAULT', 'REQUEST')")
         return value
 
-    @validator('uniqueness')
+    @field_validator('uniqueness')
+    @classmethod
     def uniqueness_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -77,14 +81,10 @@ class Attribute(BaseModel):
             raise ValueError("must be one of enum values ('NONE', 'SERVER', 'GLOBAL')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -97,7 +97,7 @@ class Attribute(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -117,9 +117,9 @@ class Attribute(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return Attribute.parse_obj(obj)
+            return Attribute.model_validate(obj)
 
-        _obj = Attribute.parse_obj({
+        _obj = Attribute.model_validate({
             "name": obj.get("name"),
             "type": obj.get("type"),
             "sub_attributes": [Attribute.from_dict(_item) for _item in obj.get("subAttributes")] if obj.get("subAttributes") is not None else None,

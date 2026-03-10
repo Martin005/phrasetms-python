@@ -18,17 +18,17 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Any, Dict, List, Optional, Union
 from pydantic import (
     BaseModel,
     Field,
+    ConfigDict,
     StrictBool,
+    StrictBytes,
     StrictInt,
     StrictStr,
-    conbytes,
-    conlist,
-    constr,
-    validator,
+    StringConstraints,
 )
 
 
@@ -39,7 +39,7 @@ class MultipartFile(BaseModel):
 
     local_path: StrictStr = Field(...)
     empty: Optional[StrictBool] = None
-    bytes: Optional[conlist(Union[conbytes(strict=True), constr(strict=True)])] = None
+    bytes: Optional[List[Union[StrictBytes, Annotated[str, StringConstraints(strict=True)]]]] = None
     size: Optional[StrictInt] = None
     input_stream: Optional[Dict[str, Any]] = Field(None, alias="inputStream")
     content_type: Optional[StrictStr] = Field(None, alias="contentType")
@@ -54,15 +54,10 @@ class MultipartFile(BaseModel):
         "originalFilename",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -75,7 +70,7 @@ class MultipartFile(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -85,9 +80,9 @@ class MultipartFile(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MultipartFile.parse_obj(obj)
+            return MultipartFile.model_validate(obj)
 
-        _obj = MultipartFile.parse_obj(
+        _obj = MultipartFile.model_validate(
             {
                 "local_path": obj.get("local_path"),
                 "empty": obj.get("empty"),

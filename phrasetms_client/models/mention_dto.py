@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.mentionable_group_dto import MentionableGroupDto
 from phrasetms_client.models.mentionable_user_dto import MentionableUserDto
 from phrasetms_client.models.uid_reference import UidReference
@@ -31,19 +31,21 @@ class MentionDto(BaseModel):
     mention_type: StrictStr = Field(..., alias="mentionType")
     mention_group_type: Optional[StrictStr] = Field(None, alias="mentionGroupType")
     uid_reference: Optional[UidReference] = Field(None, alias="uidReference")
-    user_references: Optional[conlist(MentionableUserDto)] = Field(None, alias="userReferences")
+    user_references: Optional[List[MentionableUserDto]] = Field(None, alias="userReferences")
     mentionable_group: Optional[MentionableGroupDto] = Field(None, alias="mentionableGroup")
     tag: Optional[StrictStr] = None
     __properties = ["mentionType", "mentionGroupType", "uidReference", "userReferences", "mentionableGroup", "tag"]
 
-    @validator('mention_type')
+    @field_validator('mention_type')
+    @classmethod
     def mention_type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('USER', 'GROUP'):
             raise ValueError("must be one of enum values ('USER', 'GROUP')")
         return value
 
-    @validator('mention_group_type')
+    @field_validator('mention_group_type')
+    @classmethod
     def mention_group_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -53,14 +55,10 @@ class MentionDto(BaseModel):
             raise ValueError("must be one of enum values ('JOB', 'OWNERS', 'PROVIDERS', 'GUESTS', 'WORKFLOW_STEP')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -73,7 +71,7 @@ class MentionDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -99,9 +97,9 @@ class MentionDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MentionDto.parse_obj(obj)
+            return MentionDto.model_validate(obj)
 
-        _obj = MentionDto.parse_obj({
+        _obj = MentionDto.model_validate({
             "mention_type": obj.get("mentionType"),
             "mention_group_type": obj.get("mentionGroupType"),
             "uid_reference": UidReference.from_dict(obj.get("uidReference")) if obj.get("uidReference") is not None else None,

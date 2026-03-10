@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.user_reference import UserReference
 
 class JobPartStatusChangeDto(BaseModel):
@@ -31,7 +31,8 @@ class JobPartStatusChangeDto(BaseModel):
     changed_by: Optional[UserReference] = Field(None, alias="changedBy")
     __properties = ["status", "changedDate", "changedBy"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -41,14 +42,10 @@ class JobPartStatusChangeDto(BaseModel):
             raise ValueError("must be one of enum values ('NEW', 'ACCEPTED', 'DECLINED', 'REJECTED', 'DELIVERED', 'EMAILED', 'COMPLETED', 'CANCELLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -61,7 +58,7 @@ class JobPartStatusChangeDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -77,9 +74,9 @@ class JobPartStatusChangeDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobPartStatusChangeDto.parse_obj(obj)
+            return JobPartStatusChangeDto.model_validate(obj)
 
-        _obj = JobPartStatusChangeDto.parse_obj({
+        _obj = JobPartStatusChangeDto.model_validate({
             "status": obj.get("status"),
             "changed_date": obj.get("changedDate"),
             "changed_by": UserReference.from_dict(obj.get("changedBy")) if obj.get("changedBy") is not None else None

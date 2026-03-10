@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 
 class PdfSettingsDto(BaseModel):
     """
@@ -28,7 +28,8 @@ class PdfSettingsDto(BaseModel):
     filter: Optional[StrictStr] = Field(None, description="Default: TRANS_PDF")
     __properties = ["filter"]
 
-    @validator('filter')
+    @field_validator('filter')
+    @classmethod
     def filter_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -38,14 +39,10 @@ class PdfSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('TRANS_PDF', 'DEFAULT')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -58,7 +55,7 @@ class PdfSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -71,9 +68,9 @@ class PdfSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PdfSettingsDto.parse_obj(obj)
+            return PdfSettingsDto.model_validate(obj)
 
-        _obj = PdfSettingsDto.parse_obj({
+        _obj = PdfSettingsDto.model_validate({
             "filter": obj.get("filter")
         })
         return _obj

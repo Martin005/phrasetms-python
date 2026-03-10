@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.accuracy_weights_dto import AccuracyWeightsDto
 from phrasetms_client.models.design_weights_dto import DesignWeightsDto
 from phrasetms_client.models.fluency_weights_dto import FluencyWeightsDto
@@ -43,14 +43,10 @@ class ErrorCategoriesDto(BaseModel):
     other: Optional[OtherWeightsDto] = None
     __properties = ["accuracy", "fluency", "terminology", "style", "localeConvention", "verity", "design", "other"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -63,7 +59,7 @@ class ErrorCategoriesDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -100,9 +96,9 @@ class ErrorCategoriesDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ErrorCategoriesDto.parse_obj(obj)
+            return ErrorCategoriesDto.model_validate(obj)
 
-        _obj = ErrorCategoriesDto.parse_obj({
+        _obj = ErrorCategoriesDto.model_validate({
             "accuracy": AccuracyWeightsDto.from_dict(obj.get("accuracy")) if obj.get("accuracy") is not None else None,
             "fluency": FluencyWeightsDto.from_dict(obj.get("fluency")) if obj.get("fluency") is not None else None,
             "terminology": TerminologyWeightsDto.from_dict(obj.get("terminology")) if obj.get("terminology") is not None else None,

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class XmlSettingsDto(BaseModel):
     """
@@ -56,7 +56,8 @@ class XmlSettingsDto(BaseModel):
     icu_sub_filter: Optional[StrictBool] = Field(None, alias="icuSubFilter", description="Default: `false`")
     __properties = ["rulesFormat", "includeElementsPlain", "excludeElementsPlain", "includeAttributesPlain", "excludeAttributesPlain", "inlineElementsNonTranslatablePlain", "inlineElementsPlain", "inlineElementsAutoPlain", "htmlSubfilterElementsPlain", "entities", "lockElementsPlain", "lockAttributesPlain", "includeXPath", "inlineElementsXpath", "inlineElementsNonTranslatableXPath", "inlineElementsAutoXPath", "htmlSubfilterElementsXpath", "lockXPath", "segmentation", "tagRegexp", "contextNoteXpath", "maxLenXPath", "preserveWhitespaceXPath", "preserveCharEntities", "contextKeyXPath", "xslUrl", "xslFile", "importComments", "icuSubFilter"]
 
-    @validator('rules_format')
+    @field_validator('rules_format')
+    @classmethod
     def rules_format_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -66,14 +67,10 @@ class XmlSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('PLAIN', 'XPATH')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -86,7 +83,7 @@ class XmlSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -99,9 +96,9 @@ class XmlSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return XmlSettingsDto.parse_obj(obj)
+            return XmlSettingsDto.model_validate(obj)
 
-        _obj = XmlSettingsDto.parse_obj({
+        _obj = XmlSettingsDto.model_validate({
             "rules_format": obj.get("rulesFormat"),
             "include_elements_plain": obj.get("includeElementsPlain"),
             "exclude_elements_plain": obj.get("excludeElementsPlain"),

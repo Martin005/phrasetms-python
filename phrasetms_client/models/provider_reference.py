@@ -20,7 +20,7 @@ import phrasetms_client.models
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 
 class ProviderReference(BaseModel):
     """
@@ -31,11 +31,7 @@ class ProviderReference(BaseModel):
     uid: Optional[StrictStr] = None
     __properties = ["type", "id", "uid"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     # JSON field name that stores the object type
     __discriminator_property_name = 'type'
 
@@ -56,7 +52,7 @@ class ProviderReference(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -69,7 +65,7 @@ class ProviderReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                             "uid",
                           },

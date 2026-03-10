@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class XlsSettingsDto(BaseModel):
     """
@@ -35,7 +35,8 @@ class XlsSettingsDto(BaseModel):
     specified_columns: Optional[StrictStr] = Field(None, alias="specifiedColumns")
     __properties = ["sheetNames", "hidden", "comments", "other", "cellFlow", "htmlSubfilter", "tagRegexp", "specifiedColumns"]
 
-    @validator('cell_flow')
+    @field_validator('cell_flow')
+    @classmethod
     def cell_flow_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -45,14 +46,10 @@ class XlsSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('DownRight', 'RightDown', 'DownLeft', 'LeftDown')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -65,7 +62,7 @@ class XlsSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -78,9 +75,9 @@ class XlsSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return XlsSettingsDto.parse_obj(obj)
+            return XlsSettingsDto.model_validate(obj)
 
-        _obj = XlsSettingsDto.parse_obj({
+        _obj = XlsSettingsDto.model_validate({
             "sheet_names": obj.get("sheetNames"),
             "hidden": obj.get("hidden"),
             "comments": obj.get("comments"),

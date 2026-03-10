@@ -18,22 +18,32 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, constr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictStr,
+    StringConstraints,
+    field_validator,
+)
 
 class CreateCustomFieldDto(BaseModel):
     """
     CreateCustomFieldDto
     """
-    name: constr(strict=True, max_length=255, min_length=0) = Field(...)
-    allowed_entities: conlist(StrictStr) = Field(..., alias="allowedEntities")
-    options: Optional[conlist(StrictStr)] = None
+    name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
+    allowed_entities: List[StrictStr] = Field(..., alias="allowedEntities")
+    options: Optional[List[StrictStr]] = None
     type: Optional[StrictStr] = None
     required: Optional[StrictBool] = None
-    description: Optional[constr(strict=True, max_length=500, min_length=0)] = None
+    description: Optional[Annotated[str, StringConstraints(strict=True, max_length=500, min_length=0)]] = None
     __properties = ["name", "allowedEntities", "options", "type", "required", "description"]
 
-    @validator('allowed_entities')
+    @field_validator('allowed_entities')
+    @classmethod
     def allowed_entities_validate_enum(cls, value):
         """Validates the enum"""
         for i in value:
@@ -41,7 +51,8 @@ class CreateCustomFieldDto(BaseModel):
                 raise ValueError("each list item must be one of ('PROJECT')")
         return value
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -51,14 +62,10 @@ class CreateCustomFieldDto(BaseModel):
             raise ValueError("must be one of enum values ('MULTI_SELECT', 'SINGLE_SELECT', 'STRING', 'NUMBER', 'URL', 'DATE')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -71,7 +78,7 @@ class CreateCustomFieldDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -84,9 +91,9 @@ class CreateCustomFieldDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CreateCustomFieldDto.parse_obj(obj)
+            return CreateCustomFieldDto.model_validate(obj)
 
-        _obj = CreateCustomFieldDto.parse_obj({
+        _obj = CreateCustomFieldDto.model_validate({
             "name": obj.get("name"),
             "allowed_entities": obj.get("allowedEntities"),
             "options": obj.get("options"),

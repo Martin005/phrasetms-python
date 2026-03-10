@@ -18,21 +18,23 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, conint, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.id_reference import IdReference
 
 class LQAReference(BaseModel):
     """
     LQAReference
     """
-    error_category_id: conint(strict=True, ge=1) = Field(..., alias="errorCategoryId")
-    severity_id: conint(strict=True, ge=1) = Field(..., alias="severityId")
+    error_category_id: Annotated[int, Field(strict=True, ge=1)] = Field(..., alias="errorCategoryId")
+    severity_id: Annotated[int, Field(strict=True, ge=1)] = Field(..., alias="severityId")
     user: Optional[IdReference] = None
     repeated: Optional[StrictStr] = Field(None, description="Default: `NOT_REPEATED`")
     __properties = ["errorCategoryId", "severityId", "user", "repeated"]
 
-    @validator('repeated')
+    @field_validator('repeated')
+    @classmethod
     def repeated_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -42,14 +44,10 @@ class LQAReference(BaseModel):
             raise ValueError("must be one of enum values ('REPEATED', 'NOT_REPEATED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -62,7 +60,7 @@ class LQAReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -78,9 +76,9 @@ class LQAReference(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return LQAReference.parse_obj(obj)
+            return LQAReference.model_validate(obj)
 
-        _obj = LQAReference.parse_obj({
+        _obj = LQAReference.model_validate({
             "error_category_id": obj.get("errorCategoryId"),
             "severity_id": obj.get("severityId"),
             "user": IdReference.from_dict(obj.get("user")) if obj.get("user") is not None else None,

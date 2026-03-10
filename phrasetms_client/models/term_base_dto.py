@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt, StrictStr
 from phrasetms_client.models.business_unit_reference import BusinessUnitReference
 from phrasetms_client.models.client_reference import ClientReference
 from phrasetms_client.models.domain_reference import DomainReference
@@ -34,7 +34,7 @@ class TermBaseDto(BaseModel):
     uid: Optional[StrictStr] = None
     internal_id: Optional[StrictInt] = Field(None, alias="internalId")
     name: StrictStr = Field(...)
-    langs: Optional[conlist(StrictStr)] = None
+    langs: Optional[List[StrictStr]] = None
     client: Optional[ClientReference] = None
     domain: Optional[DomainReference] = None
     sub_domain: Optional[SubDomainReference] = Field(None, alias="subDomain")
@@ -46,14 +46,10 @@ class TermBaseDto(BaseModel):
     can_show: Optional[StrictBool] = Field(None, alias="canShow")
     __properties = ["id", "uid", "internalId", "name", "langs", "client", "domain", "subDomain", "businessUnit", "createdBy", "owner", "dateCreated", "note", "canShow"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -66,7 +62,7 @@ class TermBaseDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -97,9 +93,9 @@ class TermBaseDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TermBaseDto.parse_obj(obj)
+            return TermBaseDto.model_validate(obj)
 
-        _obj = TermBaseDto.parse_obj({
+        _obj = TermBaseDto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "internal_id": obj.get("internalId"),

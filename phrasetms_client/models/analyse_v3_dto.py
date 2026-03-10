@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
 from phrasetms_client.models.abstract_analyse_settings_dto import AbstractAnalyseSettingsDto
 from phrasetms_client.models.analyse_language_part_v3_dto import AnalyseLanguagePartV3Dto
 from phrasetms_client.models.import_status_dto import ImportStatusDto
@@ -42,15 +42,16 @@ class AnalyseV3Dto(BaseModel):
     date_created: Optional[datetime] = Field(None, alias="dateCreated")
     net_rate_scheme: Optional[NetRateSchemeReference] = Field(None, alias="netRateScheme")
     can_change_net_rate_scheme: Optional[StrictBool] = Field(None, alias="canChangeNetRateScheme")
-    analyse_language_parts: Optional[conlist(AnalyseLanguagePartV3Dto)] = Field(None, alias="analyseLanguageParts")
+    analyse_language_parts: Optional[List[AnalyseLanguagePartV3Dto]] = Field(None, alias="analyseLanguageParts")
     settings: Optional[AbstractAnalyseSettingsDto] = None
     outdated: Optional[StrictBool] = None
     import_status: Optional[ImportStatusDto] = Field(None, alias="importStatus")
-    pure_warnings: Optional[conlist(StrictStr)] = Field(None, alias="pureWarnings")
+    pure_warnings: Optional[List[StrictStr]] = Field(None, alias="pureWarnings")
     project: Optional[ProjectReference] = None
     __properties = ["id", "uid", "innerId", "type", "name", "provider", "createdBy", "dateCreated", "netRateScheme", "canChangeNetRateScheme", "analyseLanguageParts", "settings", "outdated", "importStatus", "pureWarnings", "project"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -60,14 +61,10 @@ class AnalyseV3Dto(BaseModel):
             raise ValueError("must be one of enum values ('PreAnalyse', 'PostAnalyse', 'PreAnalyseTarget', 'Compare', 'PreAnalyseProvider')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -80,7 +77,7 @@ class AnalyseV3Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -118,9 +115,9 @@ class AnalyseV3Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AnalyseV3Dto.parse_obj(obj)
+            return AnalyseV3Dto.model_validate(obj)
 
-        _obj = AnalyseV3Dto.parse_obj({
+        _obj = AnalyseV3Dto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "inner_id": obj.get("innerId"),

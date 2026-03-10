@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from phrasetms_client.models.abstract_user_edit_dto import AbstractUserEditDto
 
 class ADMINEDIT(AbstractUserEditDto):
@@ -28,14 +28,10 @@ class ADMINEDIT(AbstractUserEditDto):
     """
     __properties = ["userName", "firstName", "lastName", "email", "role", "timezone", "receiveNewsletter", "note", "active"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -48,7 +44,7 @@ class ADMINEDIT(AbstractUserEditDto):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -61,9 +57,9 @@ class ADMINEDIT(AbstractUserEditDto):
             return None
 
         if not isinstance(obj, dict):
-            return ADMINEDIT.parse_obj(obj)
+            return ADMINEDIT.model_validate(obj)
 
-        _obj = ADMINEDIT.parse_obj({
+        _obj = ADMINEDIT.model_validate({
             "user_name": obj.get("userName"),
             "first_name": obj.get("firstName"),
             "last_name": obj.get("lastName"),

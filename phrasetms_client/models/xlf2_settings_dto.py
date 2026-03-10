@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 
 class Xlf2SettingsDto(BaseModel):
     """
@@ -47,14 +47,10 @@ class Xlf2SettingsDto(BaseModel):
     tag_regexp: Optional[StrictStr] = Field(None, alias="tagRegexp")
     __properties = ["icuSubFilter", "importNotes", "saveConfirmedSegments", "segmentation", "lineBreakTags", "preserveWhitespace", "copySourceToTargetIfNotImported", "respectTranslateAttr", "skipImportRules", "importAsConfirmedRules", "importAsLockedRules", "exportAttrsWhenConfirmedAndLocked", "exportAttrsWhenConfirmedAndNotLocked", "exportAttrsWhenNotConfirmedAndLocked", "exportAttrsWhenNotConfirmedAndNotLocked", "contextKeyXPath", "preserveCharEntities", "xslUrl", "xslFile", "tagRegexp"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -67,7 +63,7 @@ class Xlf2SettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -80,9 +76,9 @@ class Xlf2SettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return Xlf2SettingsDto.parse_obj(obj)
+            return Xlf2SettingsDto.model_validate(obj)
 
-        _obj = Xlf2SettingsDto.parse_obj({
+        _obj = Xlf2SettingsDto.model_validate({
             "icu_sub_filter": obj.get("icuSubFilter"),
             "import_notes": obj.get("importNotes"),
             "save_confirmed_segments": obj.get("saveConfirmedSegments"),

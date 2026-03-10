@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.import_status_dto_v2 import ImportStatusDtoV2
 from phrasetms_client.models.project_workflow_step_reference import ProjectWorkflowStepReference
 from phrasetms_client.models.provider_reference import ProviderReference
@@ -32,7 +32,7 @@ class JobPartReferenceV2(BaseModel):
     uid: Optional[StrictStr] = None
     inner_id: Optional[StrictStr] = Field(None, alias="innerId", description="InnerId is a sequential number of a job in a project.             Jobs created from the same file share the same innerId across workflow steps")
     status: Optional[StrictStr] = None
-    providers: Optional[conlist(ProviderReference)] = None
+    providers: Optional[List[ProviderReference]] = None
     target_lang: Optional[StrictStr] = Field(None, alias="targetLang")
     workflow_step: Optional[ProjectWorkflowStepReference] = Field(None, alias="workflowStep")
     filename: Optional[StrictStr] = None
@@ -48,7 +48,8 @@ class JobPartReferenceV2(BaseModel):
     imported: Optional[StrictBool] = Field(None, description="Default: false")
     __properties = ["uid", "innerId", "status", "providers", "targetLang", "workflowStep", "filename", "originalFileDirectory", "dateDue", "dateCreated", "importStatus", "continuous", "sourceFileUid", "split", "serverTaskId", "owner", "imported"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -58,14 +59,10 @@ class JobPartReferenceV2(BaseModel):
             raise ValueError("must be one of enum values ('NEW', 'ACCEPTED', 'DECLINED', 'REJECTED', 'DELIVERED', 'EMAILED', 'COMPLETED', 'CANCELLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -78,7 +75,7 @@ class JobPartReferenceV2(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -107,9 +104,9 @@ class JobPartReferenceV2(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobPartReferenceV2.parse_obj(obj)
+            return JobPartReferenceV2.model_validate(obj)
 
-        _obj = JobPartReferenceV2.parse_obj({
+        _obj = JobPartReferenceV2.model_validate({
             "uid": obj.get("uid"),
             "inner_id": obj.get("innerId"),
             "status": obj.get("status"),

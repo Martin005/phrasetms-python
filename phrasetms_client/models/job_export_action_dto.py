@@ -19,24 +19,20 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.uid_reference import UidReference
 
 class JobExportActionDto(BaseModel):
     """
     JobExportActionDto
     """
-    jobs: conlist(UidReference, max_items=1000, min_items=1) = Field(...)
+    jobs: List[UidReference] = Field(...)
     __properties = ["jobs"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class JobExportActionDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class JobExportActionDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobExportActionDto.parse_obj(obj)
+            return JobExportActionDto.model_validate(obj)
 
-        _obj = JobExportActionDto.parse_obj({
+        _obj = JobExportActionDto.model_validate({
             "jobs": [UidReference.from_dict(_item) for _item in obj.get("jobs")] if obj.get("jobs") is not None else None
         })
         return _obj

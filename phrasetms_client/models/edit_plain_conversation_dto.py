@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, StrictStr, validator
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.reference_correlation import ReferenceCorrelation
 
 class EditPlainConversationDto(BaseModel):
@@ -30,7 +30,8 @@ class EditPlainConversationDto(BaseModel):
     correlation: Optional[ReferenceCorrelation] = None
     __properties = ["status", "correlation"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -40,14 +41,10 @@ class EditPlainConversationDto(BaseModel):
             raise ValueError("must be one of enum values ('resolved', 'unresolved')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -60,7 +57,7 @@ class EditPlainConversationDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -76,9 +73,9 @@ class EditPlainConversationDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return EditPlainConversationDto.parse_obj(obj)
+            return EditPlainConversationDto.model_validate(obj)
 
-        _obj = EditPlainConversationDto.parse_obj({
+        _obj = EditPlainConversationDto.model_validate({
             "status": obj.get("status"),
             "correlation": ReferenceCorrelation.from_dict(obj.get("correlation")) if obj.get("correlation") is not None else None
         })

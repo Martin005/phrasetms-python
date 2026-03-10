@@ -19,24 +19,20 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.mt_settings_per_language_dto import MTSettingsPerLanguageDto
 
 class MTSettingsPerLanguageListDto(BaseModel):
     """
     MTSettingsPerLanguageListDto
     """
-    mt_settings_per_lang_list: Optional[conlist(MTSettingsPerLanguageDto, unique_items=True)] = Field(None, alias="mtSettingsPerLangList")
+    mt_settings_per_lang_list: Optional[List[MTSettingsPerLanguageDto]] = Field(None, alias="mtSettingsPerLangList")
     __properties = ["mtSettingsPerLangList"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class MTSettingsPerLanguageListDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class MTSettingsPerLanguageListDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MTSettingsPerLanguageListDto.parse_obj(obj)
+            return MTSettingsPerLanguageListDto.model_validate(obj)
 
-        _obj = MTSettingsPerLanguageListDto.parse_obj({
+        _obj = MTSettingsPerLanguageListDto.model_validate({
             "mt_settings_per_lang_list": [MTSettingsPerLanguageDto.from_dict(_item) for _item in obj.get("mtSettingsPerLangList")] if obj.get("mtSettingsPerLangList") is not None else None
         })
         return _obj

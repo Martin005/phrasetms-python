@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
 from phrasetms_client.models.continuous_job_info_dto import ContinuousJobInfoDto
 from phrasetms_client.models.import_status_dto import ImportStatusDto
 from phrasetms_client.models.job_reference import JobReference
@@ -34,7 +34,7 @@ class JobPartExtendedDto(BaseModel):
     uid: Optional[StrictStr] = None
     inner_id: Optional[StrictStr] = Field(None, alias="innerId", description="InnerId is a sequential number of a job in a project. Jobs created from the same file share the same innerId across workflow steps.")
     status: Optional[StrictStr] = None
-    providers: Optional[conlist(ProviderReference)] = None
+    providers: Optional[List[ProviderReference]] = None
     source_lang: Optional[StrictStr] = Field(None, alias="sourceLang")
     target_lang: Optional[StrictStr] = Field(None, alias="targetLang")
     workflow_level: Optional[StrictInt] = Field(None, alias="workflowLevel")
@@ -59,7 +59,8 @@ class JobPartExtendedDto(BaseModel):
     original_file_directory: Optional[StrictStr] = Field(None, alias="originalFileDirectory")
     __properties = ["uid", "innerId", "status", "providers", "sourceLang", "targetLang", "workflowLevel", "workflowStep", "filename", "dateDue", "wordsCount", "beginIndex", "endIndex", "isParentJobSplit", "updateSourceDate", "updateTargetDate", "dateCreated", "jobReference", "project", "lastWorkflowLevel", "workUnit", "importStatus", "imported", "continuous", "continuousJobInfo", "originalFileDirectory"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -69,14 +70,10 @@ class JobPartExtendedDto(BaseModel):
             raise ValueError("must be one of enum values ('NEW', 'ACCEPTED', 'DECLINED', 'REJECTED', 'DELIVERED', 'EMAILED', 'COMPLETED', 'CANCELLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -89,7 +86,7 @@ class JobPartExtendedDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -124,9 +121,9 @@ class JobPartExtendedDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobPartExtendedDto.parse_obj(obj)
+            return JobPartExtendedDto.model_validate(obj)
 
-        _obj = JobPartExtendedDto.parse_obj({
+        _obj = JobPartExtendedDto.model_validate({
             "uid": obj.get("uid"),
             "inner_id": obj.get("innerId"),
             "status": obj.get("status"),

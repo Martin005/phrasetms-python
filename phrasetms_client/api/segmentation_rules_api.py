@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, StringConstraints, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import Any, Dict, List, Optional
 
-from pydantic import Field, StrictInt, StrictStr, conint, conlist, constr
+from pydantic import Field, StrictInt, StrictStr, StringConstraints
 
-from typing import Any, Dict, Optional
 
 from phrasetms_client.models.edit_segmentation_rule_dto import EditSegmentationRuleDto
 from phrasetms_client.models.page_dto_segmentation_rule_reference import PageDtoSegmentationRuleReference
@@ -47,8 +47,8 @@ class SegmentationRulesApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
-    def create_segmentation_rule(self, seg_rule : constr(strict=True, max_length=255, min_length=0), body : Annotated[Dict[str, Any], Field(..., description="streamed file")], **kwargs) -> SegmentationRuleDto:  # noqa: E501
+    @validate_call
+    def create_segmentation_rule(self, seg_rule : Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)], body : Annotated[Dict[str, Any], Field(..., description="streamed file")], **kwargs) -> SegmentationRuleDto:  # noqa: E501
         """Create segmentation rule  # noqa: E501
 
         Creates new Segmentation Rule with file and segRule JSON Object as header parameter. The same object is used for GET action.  # noqa: E501
@@ -78,8 +78,8 @@ class SegmentationRulesApi(object):
             raise ValueError("Error! Please call the create_segmentation_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_segmentation_rule_with_http_info(seg_rule, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def create_segmentation_rule_with_http_info(self, seg_rule : constr(strict=True, max_length=255, min_length=0), body : Annotated[Dict[str, Any], Field(..., description="streamed file")], **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def create_segmentation_rule_with_http_info(self, seg_rule : Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)], body : Annotated[Dict[str, Any], Field(..., description="streamed file")], **kwargs) -> ApiResponse:  # noqa: E501
         """Create segmentation rule  # noqa: E501
 
         Creates new Segmentation Rule with file and segRule JSON Object as header parameter. The same object is used for GET action.  # noqa: E501
@@ -212,7 +212,7 @@ class SegmentationRulesApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def deletes_segmentation_rule(self, seg_rule_id : StrictInt, **kwargs) -> None:  # noqa: E501
         """Delete segmentation rule  # noqa: E501
 
@@ -240,7 +240,7 @@ class SegmentationRulesApi(object):
             raise ValueError("Error! Please call the deletes_segmentation_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.deletes_segmentation_rule_with_http_info(seg_rule_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def deletes_segmentation_rule_with_http_info(self, seg_rule_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete segmentation rule  # noqa: E501
 
@@ -343,8 +343,8 @@ class SegmentationRulesApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_list_of_segmentation_rules(self, locales : Optional[conlist(StrictStr)] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoSegmentationRuleReference:  # noqa: E501
+    @validate_call
+    def get_list_of_segmentation_rules(self, locales : Optional[List[StrictStr]] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoSegmentationRuleReference:  # noqa: E501
         """List segmentation rules  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -375,8 +375,8 @@ class SegmentationRulesApi(object):
             raise ValueError("Error! Please call the get_list_of_segmentation_rules_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_list_of_segmentation_rules_with_http_info(locales, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_list_of_segmentation_rules_with_http_info(self, locales : Optional[conlist(StrictStr)] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_list_of_segmentation_rules_with_http_info(self, locales : Optional[List[StrictStr]] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List segmentation rules  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -508,7 +508,7 @@ class SegmentationRulesApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_segmentation_rule(self, seg_rule_id : StrictInt, **kwargs) -> SegmentationRuleDto:  # noqa: E501
         """Get segmentation rule  # noqa: E501
 
@@ -536,7 +536,7 @@ class SegmentationRulesApi(object):
             raise ValueError("Error! Please call the get_segmentation_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_segmentation_rule_with_http_info(seg_rule_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_segmentation_rule_with_http_info(self, seg_rule_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Get segmentation rule  # noqa: E501
 
@@ -656,7 +656,7 @@ class SegmentationRulesApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def updates_segmentation_rule(self, seg_rule_id : StrictInt, body : Optional[EditSegmentationRuleDto] = None, **kwargs) -> SegmentationRuleDto:  # noqa: E501
         """Edit segmentation rule  # noqa: E501
 
@@ -686,7 +686,7 @@ class SegmentationRulesApi(object):
             raise ValueError("Error! Please call the updates_segmentation_rule_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.updates_segmentation_rule_with_http_info(seg_rule_id, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def updates_segmentation_rule_with_http_info(self, seg_rule_id : StrictInt, body : Optional[EditSegmentationRuleDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit segmentation rule  # noqa: E501
 

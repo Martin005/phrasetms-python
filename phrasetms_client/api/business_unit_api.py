@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.business_unit_dto import BusinessUnitDto
 from phrasetms_client.models.business_unit_edit_dto import BusinessUnitEditDto
@@ -47,7 +47,7 @@ class BusinessUnitApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_business_unit(self, body : Optional[BusinessUnitEditDto] = None, **kwargs) -> BusinessUnitDto:  # noqa: E501
         """Create business unit  # noqa: E501
 
@@ -75,7 +75,7 @@ class BusinessUnitApi(object):
             raise ValueError("Error! Please call the create_business_unit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_business_unit_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_business_unit_with_http_info(self, body : Optional[BusinessUnitEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create business unit  # noqa: E501
 
@@ -202,7 +202,7 @@ class BusinessUnitApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_business_unit(self, business_unit_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete business unit  # noqa: E501
 
@@ -230,7 +230,7 @@ class BusinessUnitApi(object):
             raise ValueError("Error! Please call the delete_business_unit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_business_unit_with_http_info(business_unit_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_business_unit_with_http_info(self, business_unit_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete business unit  # noqa: E501
 
@@ -333,7 +333,7 @@ class BusinessUnitApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_business_unit(self, business_unit_uid : StrictStr, **kwargs) -> BusinessUnitDto:  # noqa: E501
         """Get business unit  # noqa: E501
 
@@ -361,7 +361,7 @@ class BusinessUnitApi(object):
             raise ValueError("Error! Please call the get_business_unit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_business_unit_with_http_info(business_unit_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_business_unit_with_http_info(self, business_unit_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get business unit  # noqa: E501
 
@@ -481,8 +481,8 @@ class BusinessUnitApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_business_units(self, name : Annotated[Optional[StrictStr], Field(description="Unique name of the business unit")] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoBusinessUnitDto:  # noqa: E501
+    @validate_call
+    def list_business_units(self, name : Annotated[Optional[StrictStr], Field(description="Unique name of the business unit")] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoBusinessUnitDto:  # noqa: E501
         """List business units  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -519,8 +519,8 @@ class BusinessUnitApi(object):
             raise ValueError("Error! Please call the list_business_units_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_business_units_with_http_info(name, created_by, sort, order, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_business_units_with_http_info(self, name : Annotated[Optional[StrictStr], Field(description="Unique name of the business unit")] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_business_units_with_http_info(self, name : Annotated[Optional[StrictStr], Field(description="Unique name of the business unit")] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List business units  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -669,7 +669,7 @@ class BusinessUnitApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_business_unit(self, business_unit_uid : StrictStr, body : Optional[BusinessUnitEditDto] = None, **kwargs) -> BusinessUnitDto:  # noqa: E501
         """Edit business unit  # noqa: E501
 
@@ -699,7 +699,7 @@ class BusinessUnitApi(object):
             raise ValueError("Error! Please call the update_business_unit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_business_unit_with_http_info(business_unit_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_business_unit_with_http_info(self, business_unit_uid : StrictStr, body : Optional[BusinessUnitEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit business unit  # noqa: E501
 

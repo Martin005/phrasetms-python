@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.automated_project_settings_dto import AutomatedProjectSettingsDto
 from phrasetms_client.models.name_dto import NameDto
 
@@ -34,10 +34,11 @@ class ConnectorDto(BaseModel):
     created_by: Optional[NameDto] = Field(None, alias="createdBy")
     created_at: Optional[datetime] = Field(None, alias="createdAt")
     local_token: Optional[StrictStr] = Field(None, alias="localToken")
-    automated_project_settings: Optional[conlist(AutomatedProjectSettingsDto)] = Field(None, alias="automatedProjectSettings")
+    automated_project_settings: Optional[List[AutomatedProjectSettingsDto]] = Field(None, alias="automatedProjectSettings")
     __properties = ["id", "name", "type", "organization", "createdBy", "createdAt", "localToken", "automatedProjectSettings"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -47,14 +48,10 @@ class ConnectorDto(BaseModel):
             raise ValueError("must be one of enum values ('DROPBOX', 'GOOGLE', 'FTP', 'WORDPRESS', 'GITHUB', 'SFTP', 'DRUPAL', 'BOX', 'GIT', 'ZENDESK', 'ONEDRIVE', 'GITLAB', 'MARKETO', 'HUBSPOT', 'HELPSCOUT', 'SALESFORCE', 'BITBUCKET', 'BITBUCKETSERVER', 'BRAZE', 'SHAREPOINT', 'AZURE', 'SITECORE', 'KENTICO', 'KENTICO_KONTENT', 'MAGENTO', 'CONTENTFULENTRYLEVEL', 'CONTENTFUL', 'CONTENTSTACK', 'JOOMLA', 'CONFLUENCE', 'TRIDION', 'TYPO3', 'AEM_PLUGIN', 'DRUPAL_PLUGIN', 'AMAZON_S3', 'PARDOT', 'PHRASE')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -67,7 +64,7 @@ class ConnectorDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -93,9 +90,9 @@ class ConnectorDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ConnectorDto.parse_obj(obj)
+            return ConnectorDto.model_validate(obj)
 
-        _obj = ConnectorDto.parse_obj({
+        _obj = ConnectorDto.model_validate({
             "id": obj.get("id"),
             "name": obj.get("name"),
             "type": obj.get("type"),

@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.tag_metadata_dto import TagMetadataDto
 
 class SegmentDto(BaseModel):
@@ -31,18 +31,14 @@ class SegmentDto(BaseModel):
     target_segment: StrictStr = Field(..., alias="targetSegment")
     previous_source_segment: Optional[StrictStr] = Field(None, alias="previousSourceSegment")
     next_source_segment: Optional[StrictStr] = Field(None, alias="nextSourceSegment")
-    source_tag_metadata: Optional[conlist(TagMetadataDto)] = Field(None, alias="sourceTagMetadata")
-    target_tag_metadata: Optional[conlist(TagMetadataDto)] = Field(None, alias="targetTagMetadata")
+    source_tag_metadata: Optional[List[TagMetadataDto]] = Field(None, alias="sourceTagMetadata")
+    target_tag_metadata: Optional[List[TagMetadataDto]] = Field(None, alias="targetTagMetadata")
     __properties = ["targetLang", "sourceSegment", "targetSegment", "previousSourceSegment", "nextSourceSegment", "sourceTagMetadata", "targetTagMetadata"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -55,7 +51,7 @@ class SegmentDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -82,9 +78,9 @@ class SegmentDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SegmentDto.parse_obj(obj)
+            return SegmentDto.model_validate(obj)
 
-        _obj = SegmentDto.parse_obj({
+        _obj = SegmentDto.model_validate({
             "target_lang": obj.get("targetLang"),
             "source_segment": obj.get("sourceSegment"),
             "target_segment": obj.get("targetSegment"),

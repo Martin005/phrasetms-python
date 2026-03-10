@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.lqa_conversation_dto import LQAConversationDto
 
 class AddLqaCommentResultDto(BaseModel):
@@ -30,14 +30,10 @@ class AddLqaCommentResultDto(BaseModel):
     conversation: Optional[LQAConversationDto] = None
     __properties = ["id", "conversation"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class AddLqaCommentResultDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -66,9 +62,9 @@ class AddLqaCommentResultDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AddLqaCommentResultDto.parse_obj(obj)
+            return AddLqaCommentResultDto.model_validate(obj)
 
-        _obj = AddLqaCommentResultDto.parse_obj({
+        _obj = AddLqaCommentResultDto.model_validate({
             "id": obj.get("id"),
             "conversation": LQAConversationDto.from_dict(obj.get("conversation")) if obj.get("conversation") is not None else None
         })

@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.custom_field_dto import CustomFieldDto
 from phrasetms_client.models.custom_field_option_dto import CustomFieldOptionDto
 from phrasetms_client.models.uid_reference import UidReference
@@ -30,7 +30,7 @@ class CustomFieldInstanceDto(BaseModel):
     """
     uid: Optional[StrictStr] = None
     custom_field: Optional[CustomFieldDto] = Field(None, alias="customField")
-    selected_options: Optional[conlist(CustomFieldOptionDto)] = Field(None, alias="selectedOptions")
+    selected_options: Optional[List[CustomFieldOptionDto]] = Field(None, alias="selectedOptions")
     value: Optional[StrictStr] = None
     created_at: Optional[datetime] = Field(None, alias="createdAt")
     created_by: Optional[UidReference] = Field(None, alias="createdBy")
@@ -38,14 +38,10 @@ class CustomFieldInstanceDto(BaseModel):
     updated_by: Optional[UidReference] = Field(None, alias="updatedBy")
     __properties = ["uid", "customField", "selectedOptions", "value", "createdAt", "createdBy", "updatedAt", "updatedBy"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -58,7 +54,7 @@ class CustomFieldInstanceDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -87,9 +83,9 @@ class CustomFieldInstanceDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CustomFieldInstanceDto.parse_obj(obj)
+            return CustomFieldInstanceDto.model_validate(obj)
 
-        _obj = CustomFieldInstanceDto.parse_obj({
+        _obj = CustomFieldInstanceDto.model_validate({
             "uid": obj.get("uid"),
             "custom_field": CustomFieldDto.from_dict(obj.get("customField")) if obj.get("customField") is not None else None,
             "selected_options": [CustomFieldOptionDto.from_dict(_item) for _item in obj.get("selectedOptions")] if obj.get("selectedOptions") is not None else None,

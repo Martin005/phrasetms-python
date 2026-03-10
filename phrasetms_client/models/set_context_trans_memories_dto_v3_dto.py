@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 from phrasetms_client.models.set_project_trans_memory_v3_dto import SetProjectTransMemoryV3Dto
 from phrasetms_client.models.uid_reference import UidReference
 
@@ -27,20 +27,16 @@ class SetContextTransMemoriesDtoV3Dto(BaseModel):
     """
     SetContextTransMemoriesDtoV3Dto
     """
-    trans_memories: conlist(SetProjectTransMemoryV3Dto) = Field(..., alias="transMemories")
+    trans_memories: List[SetProjectTransMemoryV3Dto] = Field(..., alias="transMemories")
     target_lang: Optional[StrictStr] = Field(None, alias="targetLang", description="Set translation memory only for the specific project target language")
     workflow_step: Optional[UidReference] = Field(None, alias="workflowStep")
     order_enabled: Optional[StrictBool] = Field(None, alias="orderEnabled", description="Default: false")
     __properties = ["transMemories", "targetLang", "workflowStep", "orderEnabled"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class SetContextTransMemoriesDtoV3Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -76,9 +72,9 @@ class SetContextTransMemoriesDtoV3Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SetContextTransMemoriesDtoV3Dto.parse_obj(obj)
+            return SetContextTransMemoriesDtoV3Dto.model_validate(obj)
 
-        _obj = SetContextTransMemoriesDtoV3Dto.parse_obj({
+        _obj = SetContextTransMemoriesDtoV3Dto.model_validate({
             "trans_memories": [SetProjectTransMemoryV3Dto.from_dict(_item) for _item in obj.get("transMemories")] if obj.get("transMemories") is not None else None,
             "target_lang": obj.get("targetLang"),
             "workflow_step": UidReference.from_dict(obj.get("workflowStep")) if obj.get("workflowStep") is not None else None,

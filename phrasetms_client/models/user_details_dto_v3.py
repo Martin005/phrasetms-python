@@ -19,42 +19,48 @@ import json
 import phrasetms_client.models
 
 from datetime import datetime
+from typing_extensions import Annotated
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictStr, constr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictStr,
+    StringConstraints,
+    field_validator,
+)
 from phrasetms_client.models.user_reference import UserReference
 
 class UserDetailsDtoV3(BaseModel):
     """
     User with all belonging objects
     """
-    uid: constr(strict=True, max_length=255, min_length=0) = Field(...)
-    user_name: constr(strict=True, max_length=255, min_length=0) = Field(..., alias="userName")
-    first_name: constr(strict=True, max_length=255, min_length=0) = Field(..., alias="firstName")
-    last_name: constr(strict=True, max_length=255, min_length=0) = Field(..., alias="lastName")
-    email: constr(strict=True, max_length=255, min_length=0) = Field(...)
+    uid: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
+    user_name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(..., alias="userName")
+    first_name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(..., alias="firstName")
+    last_name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(..., alias="lastName")
+    email: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
     date_created: Optional[datetime] = Field(None, alias="dateCreated")
     date_deleted: Optional[datetime] = Field(None, alias="dateDeleted")
     created_by: Optional[UserReference] = Field(None, alias="createdBy")
     role: StrictStr = Field(..., description="Enum: \"ADMIN\", \"PROJECT_MANAGER\", \"LINGUIST\", \"GUEST\", \"SUBMITTER\"")
-    timezone: constr(strict=True, max_length=255, min_length=0) = Field(...)
-    note: Optional[constr(strict=True, max_length=4096, min_length=0)] = None
+    timezone: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
+    note: Optional[Annotated[str, StringConstraints(strict=True, max_length=4096, min_length=0)]] = None
     receive_newsletter: Optional[StrictBool] = Field(None, alias="receiveNewsletter")
     active: Optional[StrictBool] = None
     pending_email_change: Optional[StrictBool] = Field(None, alias="pendingEmailChange", description="If user has email change pending (new email not verified)")
     __properties = ["uid", "userName", "firstName", "lastName", "email", "dateCreated", "dateDeleted", "createdBy", "role", "timezone", "note", "receiveNewsletter", "active", "pendingEmailChange"]
 
-    @validator('role')
+    @field_validator('role')
+    @classmethod
     def role_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('SYS_ADMIN', 'SYS_ADMIN_READ', 'ADMIN', 'PROJECT_MANAGER', 'LINGUIST', 'GUEST', 'SUBMITTER'):
             raise ValueError("must be one of enum values ('SYS_ADMIN', 'SYS_ADMIN_READ', 'ADMIN', 'PROJECT_MANAGER', 'LINGUIST', 'GUEST', 'SUBMITTER')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     # JSON field name that stores the object type
     __discriminator_property_name = 'role'
 
@@ -78,7 +84,7 @@ class UserDetailsDtoV3(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -91,7 +97,7 @@ class UserDetailsDtoV3(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)

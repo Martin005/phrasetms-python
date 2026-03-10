@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.business_unit_reference import BusinessUnitReference
 from phrasetms_client.models.client_reference import ClientReference
 from phrasetms_client.models.cost_center_reference import CostCenterReference
@@ -43,14 +43,15 @@ class AdminProjectManagerAllOf(BaseModel):
     note: Optional[StrictStr] = None
     created_by: Optional[UserReference] = Field(None, alias="createdBy")
     quality_assurance_settings: Optional[Dict[str, Any]] = Field(None, alias="qualityAssuranceSettings")
-    workflow_steps: Optional[conlist(ProjectWorkflowStepDto)] = Field(None, alias="workflowSteps")
+    workflow_steps: Optional[List[ProjectWorkflowStepDto]] = Field(None, alias="workflowSteps")
     analyse_settings: Optional[Dict[str, Any]] = Field(None, alias="analyseSettings")
     access_settings: Optional[Dict[str, Any]] = Field(None, alias="accessSettings")
     financial_settings: Optional[Dict[str, Any]] = Field(None, alias="financialSettings")
     archived: Optional[StrictBool] = None
     __properties = ["shared", "progress", "client", "costCenter", "businessUnit", "dateDue", "status", "purchaseOrder", "isPublishedOnJobBoard", "note", "createdBy", "qualityAssuranceSettings", "workflowSteps", "analyseSettings", "accessSettings", "financialSettings", "archived"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -60,14 +61,10 @@ class AdminProjectManagerAllOf(BaseModel):
             raise ValueError("must be one of enum values ('NEW', 'ASSIGNED', 'COMPLETED', 'ACCEPTED_BY_VENDOR', 'DECLINED_BY_VENDOR', 'COMPLETED_BY_VENDOR', 'CANCELLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -80,7 +77,7 @@ class AdminProjectManagerAllOf(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -115,9 +112,9 @@ class AdminProjectManagerAllOf(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AdminProjectManagerAllOf.parse_obj(obj)
+            return AdminProjectManagerAllOf.model_validate(obj)
 
-        _obj = AdminProjectManagerAllOf.parse_obj({
+        _obj = AdminProjectManagerAllOf.model_validate({
             "shared": obj.get("shared"),
             "progress": ProgressDto.from_dict(obj.get("progress")) if obj.get("progress") is not None else None,
             "client": ClientReference.from_dict(obj.get("client")) if obj.get("client") is not None else None,

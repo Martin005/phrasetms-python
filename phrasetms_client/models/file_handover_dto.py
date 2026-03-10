@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 
 class FileHandoverDto(BaseModel):
     """
@@ -29,14 +29,10 @@ class FileHandoverDto(BaseModel):
     filename: Optional[StrictStr] = Field(None, description="Filename of the uploaded file")
     __properties = ["fileId", "filename"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class FileHandoverDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -62,9 +58,9 @@ class FileHandoverDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return FileHandoverDto.parse_obj(obj)
+            return FileHandoverDto.model_validate(obj)
 
-        _obj = FileHandoverDto.parse_obj({
+        _obj = FileHandoverDto.model_validate({
             "file_id": obj.get("fileId"),
             "filename": obj.get("filename")
         })

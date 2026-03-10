@@ -19,24 +19,20 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.language_dto import LanguageDto
 
 class LanguageListDto(BaseModel):
     """
     envelope for list of languages
     """
-    languages: conlist(LanguageDto) = Field(...)
+    languages: List[LanguageDto] = Field(...)
     __properties = ["languages"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class LanguageListDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class LanguageListDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return LanguageListDto.parse_obj(obj)
+            return LanguageListDto.model_validate(obj)
 
-        _obj = LanguageListDto.parse_obj({
+        _obj = LanguageListDto.model_validate({
             "languages": [LanguageDto.from_dict(_item) for _item in obj.get("languages")] if obj.get("languages") is not None else None
         })
         return _obj

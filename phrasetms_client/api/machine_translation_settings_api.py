@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.machine_translate_settings_pbm_dto import MachineTranslateSettingsPbmDto
 from phrasetms_client.models.machine_translate_status_dto import MachineTranslateStatusDto
@@ -49,8 +49,8 @@ class MachineTranslationSettingsApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
-    def get_list(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Optional[StrictStr] = None, **kwargs) -> PageDtoMachineTranslateSettingsPbmDto:  # noqa: E501
+    @validate_call
+    def get_list(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Optional[StrictStr] = None, **kwargs) -> PageDtoMachineTranslateSettingsPbmDto:  # noqa: E501
         """List machine translate settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -85,8 +85,8 @@ class MachineTranslationSettingsApi(object):
             raise ValueError("Error! Please call the get_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_list_with_http_info(name, page_number, page_size, sort, order, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_list_with_http_info(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_list_with_http_info(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List machine translate settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -229,7 +229,7 @@ class MachineTranslationSettingsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_mt_settings(self, mts_uid : StrictStr, **kwargs) -> MachineTranslateSettingsPbmDto:  # noqa: E501
         """Get machine translate settings  # noqa: E501
 
@@ -257,7 +257,7 @@ class MachineTranslationSettingsApi(object):
             raise ValueError("Error! Please call the get_mt_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_mt_settings_with_http_info(mts_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_mt_settings_with_http_info(self, mts_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get machine translate settings  # noqa: E501
 
@@ -377,7 +377,7 @@ class MachineTranslationSettingsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_mt_types(self, **kwargs) -> TypesDto:  # noqa: E501
         """Get machine translate settings types  # noqa: E501
 
@@ -403,7 +403,7 @@ class MachineTranslationSettingsApi(object):
             raise ValueError("Error! Please call the get_mt_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_mt_types_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_mt_types_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get machine translate settings types  # noqa: E501
 
@@ -517,7 +517,7 @@ class MachineTranslationSettingsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_status(self, mts_uid : StrictStr, **kwargs) -> MachineTranslateStatusDto:  # noqa: E501
         """Get status of machine translate engine  # noqa: E501
 
@@ -545,7 +545,7 @@ class MachineTranslationSettingsApi(object):
             raise ValueError("Error! Please call the get_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_status_with_http_info(mts_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_status_with_http_info(self, mts_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get status of machine translate engine  # noqa: E501
 
@@ -665,8 +665,8 @@ class MachineTranslationSettingsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_third_party_engines_list(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Optional[StrictStr] = None, **kwargs) -> PageDtoMachineTranslateSettingsPbmDto:  # noqa: E501
+    @validate_call
+    def get_third_party_engines_list(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Optional[StrictStr] = None, **kwargs) -> PageDtoMachineTranslateSettingsPbmDto:  # noqa: E501
         """List third party machine translate settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -701,8 +701,8 @@ class MachineTranslationSettingsApi(object):
             raise ValueError("Error! Please call the get_third_party_engines_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_third_party_engines_list_with_http_info(name, page_number, page_size, sort, order, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_third_party_engines_list_with_http_info(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_third_party_engines_list_with_http_info(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List third party machine translate settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -845,7 +845,7 @@ class MachineTranslationSettingsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_translation_resources(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> TranslationResourcesDto:  # noqa: E501
         """Get translation resources  # noqa: E501
 
@@ -875,7 +875,7 @@ class MachineTranslationSettingsApi(object):
             raise ValueError("Error! Please call the get_translation_resources_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_translation_resources_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_translation_resources_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get translation resources  # noqa: E501
 

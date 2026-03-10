@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.mention_dto import MentionDto
 from phrasetms_client.models.mentionable_user_dto import MentionableUserDto
 
@@ -32,17 +32,13 @@ class CommentDto(BaseModel):
     created_by: Optional[MentionableUserDto] = Field(None, alias="createdBy")
     date_created: Optional[datetime] = Field(None, alias="dateCreated")
     date_modified: Optional[datetime] = Field(None, alias="dateModified")
-    mentions: Optional[conlist(MentionDto)] = None
+    mentions: Optional[List[MentionDto]] = None
     __properties = ["id", "text", "createdBy", "dateCreated", "dateModified", "mentions"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -55,7 +51,7 @@ class CommentDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -78,9 +74,9 @@ class CommentDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CommentDto.parse_obj(obj)
+            return CommentDto.model_validate(obj)
 
-        _obj = CommentDto.parse_obj({
+        _obj = CommentDto.model_validate({
             "id": obj.get("id"),
             "text": obj.get("text"),
             "created_by": MentionableUserDto.from_dict(obj.get("createdBy")) if obj.get("createdBy") is not None else None,

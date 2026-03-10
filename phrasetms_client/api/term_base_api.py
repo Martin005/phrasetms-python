@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import Any, Dict, List, Optional
 
-from pydantic import Field, StrictBool, StrictStr, conint, conlist
+from pydantic import Field, StrictBool, StrictStr
 
-from typing import Any, Dict, Optional
 
 from phrasetms_client.models.background_tasks_tb_dto import BackgroundTasksTbDto
 from phrasetms_client.models.browse_request_dto import BrowseRequestDto
@@ -73,7 +73,7 @@ class TermBaseApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def browse_terms(self, term_base_uid : StrictStr, body : Optional[BrowseRequestDto] = None, **kwargs) -> BrowseResponseListDto:  # noqa: E501
         """Browse term base  # noqa: E501
 
@@ -103,7 +103,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the browse_terms_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.browse_terms_with_http_info(term_base_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def browse_terms_with_http_info(self, term_base_uid : StrictStr, body : Optional[BrowseRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Browse term base  # noqa: E501
 
@@ -236,7 +236,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def clear_term_base(self, term_base_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Clear term base  # noqa: E501
 
@@ -265,7 +265,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the clear_term_base_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.clear_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def clear_term_base_with_http_info(self, term_base_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Clear term base  # noqa: E501
 
@@ -369,7 +369,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_concept(self, term_base_uid : StrictStr, body : Optional[ConceptEditDto] = None, **kwargs) -> ConceptWithMetadataDto:  # noqa: E501
         """Create concept  # noqa: E501
 
@@ -399,7 +399,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the create_concept_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_concept_with_http_info(term_base_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_concept_with_http_info(self, term_base_uid : StrictStr, body : Optional[ConceptEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create concept  # noqa: E501
 
@@ -532,7 +532,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_term(self, term_base_uid : StrictStr, body : Optional[TermCreateDto] = None, **kwargs) -> TermDto:  # noqa: E501
         """Create term  # noqa: E501
 
@@ -563,7 +563,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the create_term_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_term_with_http_info(term_base_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_term_with_http_info(self, term_base_uid : StrictStr, body : Optional[TermCreateDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create term  # noqa: E501
 
@@ -697,7 +697,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_term_base(self, body : Optional[TermBaseEditDto] = None, **kwargs) -> TermBaseDto:  # noqa: E501
         """Create term base  # noqa: E501
 
@@ -725,7 +725,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the create_term_base_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_term_base_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_term_base_with_http_info(self, body : Optional[TermBaseEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create term base  # noqa: E501
 
@@ -852,7 +852,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_term_by_job(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[CreateTermsDto] = None, **kwargs) -> TermPairDto:  # noqa: E501
         """Create term in job's term bases  # noqa: E501
 
@@ -885,7 +885,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the create_term_by_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_term_by_job_with_http_info(job_uid, project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_term_by_job_with_http_info(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[CreateTermsDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create term in job's term bases  # noqa: E501
 
@@ -1025,7 +1025,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_concept(self, term_base_uid : StrictStr, concept_id : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete concept  # noqa: E501
 
@@ -1055,7 +1055,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the delete_concept_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_concept_with_http_info(term_base_uid, concept_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_concept_with_http_info(self, term_base_uid : StrictStr, concept_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete concept  # noqa: E501
 
@@ -1164,7 +1164,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_concepts(self, term_base_uid : StrictStr, body : Optional[ConceptListReference] = None, **kwargs) -> None:  # noqa: E501
         """Delete concepts  # noqa: E501
 
@@ -1194,7 +1194,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the delete_concepts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_concepts_with_http_info(term_base_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_concepts_with_http_info(self, term_base_uid : StrictStr, body : Optional[ConceptListReference] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete concepts  # noqa: E501
 
@@ -1310,7 +1310,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_term(self, term_base_uid : StrictStr, term_id : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete term  # noqa: E501
 
@@ -1340,7 +1340,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the delete_term_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_term_with_http_info(term_base_uid, term_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_term_with_http_info(self, term_base_uid : StrictStr, term_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete term  # noqa: E501
 
@@ -1449,7 +1449,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_term_base(self, term_base_uid : StrictStr, purge : Annotated[Optional[StrictBool], Field(description="purge=false - the Termbase is can later be restored,                      \"purge=true - the Termbase is completely deleted and cannot be restored")] = None, **kwargs) -> None:  # noqa: E501
         """Delete term base  # noqa: E501
 
@@ -1479,7 +1479,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the delete_term_base_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_term_base_with_http_info(term_base_uid, purge, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_term_base_with_http_info(self, term_base_uid : StrictStr, purge : Annotated[Optional[StrictBool], Field(description="purge=false - the Termbase is can later be restored,                      \"purge=true - the Termbase is completely deleted and cannot be restored")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete term base  # noqa: E501
 
@@ -1588,7 +1588,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def export_term_base(self, term_base_uid : StrictStr, format : Optional[StrictStr] = None, charset : Optional[StrictStr] = None, term_status : Optional[StrictStr] = None, **kwargs) -> None:  # noqa: E501
         """Export term base  # noqa: E501
 
@@ -1622,7 +1622,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the export_term_base_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.export_term_base_with_http_info(term_base_uid, format, charset, term_status, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def export_term_base_with_http_info(self, term_base_uid : StrictStr, format : Optional[StrictStr] = None, charset : Optional[StrictStr] = None, term_status : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Export term base  # noqa: E501
 
@@ -1743,7 +1743,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_concept(self, term_base_uid : StrictStr, concept_uid : StrictStr, **kwargs) -> ConceptWithMetadataDto:  # noqa: E501
         """Get concept  # noqa: E501
 
@@ -1773,7 +1773,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the get_concept_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_concept_with_http_info(term_base_uid, concept_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_concept_with_http_info(self, term_base_uid : StrictStr, concept_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get concept  # noqa: E501
 
@@ -1899,7 +1899,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_last_background_task(self, term_base_uid : StrictStr, **kwargs) -> BackgroundTasksTbDto:  # noqa: E501
         """Last import status  # noqa: E501
 
@@ -1927,7 +1927,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the get_last_background_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_last_background_task_with_http_info(term_base_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_last_background_task_with_http_info(self, term_base_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Last import status  # noqa: E501
 
@@ -2047,7 +2047,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_project_template_term_bases(self, project_template_uid : StrictStr, **kwargs) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Get term bases  # noqa: E501
 
@@ -2075,7 +2075,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the get_project_template_term_bases_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_project_template_term_bases_with_http_info(project_template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_project_template_term_bases_with_http_info(self, project_template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get term bases  # noqa: E501
 
@@ -2195,7 +2195,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_project_term_bases(self, project_uid : StrictStr, **kwargs) -> ProjectTermBaseListDto:  # noqa: E501
         """Get term bases  # noqa: E501
 
@@ -2223,7 +2223,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the get_project_term_bases_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_project_term_bases_with_http_info(project_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_project_term_bases_with_http_info(self, project_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get term bases  # noqa: E501
 
@@ -2343,7 +2343,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_term(self, term_base_uid : StrictStr, term_id : StrictStr, **kwargs) -> TermDto:  # noqa: E501
         """Get term  # noqa: E501
 
@@ -2373,7 +2373,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the get_term_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_term_with_http_info(term_base_uid, term_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_term_with_http_info(self, term_base_uid : StrictStr, term_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get term  # noqa: E501
 
@@ -2499,7 +2499,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_term_base(self, term_base_uid : StrictStr, **kwargs) -> TermBaseDto:  # noqa: E501
         """Get term base  # noqa: E501
 
@@ -2527,7 +2527,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the get_term_base_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_term_base_with_http_info(term_base_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_term_base_with_http_info(self, term_base_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get term base  # noqa: E501
 
@@ -2647,7 +2647,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_term_base_metadata(self, term_base_uid : StrictStr, **kwargs) -> MetadataTbDto:  # noqa: E501
         """Get term base metadata  # noqa: E501
 
@@ -2675,7 +2675,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the get_term_base_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_term_base_metadata_with_http_info(term_base_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_term_base_metadata_with_http_info(self, term_base_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get term base metadata  # noqa: E501
 
@@ -2795,7 +2795,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_translation_resources(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> TranslationResourcesDto:  # noqa: E501
         """Get translation resources  # noqa: E501
 
@@ -2825,7 +2825,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the get_translation_resources_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_translation_resources_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_translation_resources_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get translation resources  # noqa: E501
 
@@ -2951,7 +2951,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def import_term_base(self, content_disposition : Annotated[StrictStr, Field(..., description="must match pattern `((inline|attachment); )?filename\\*=UTF-8''(.+)`")], term_base_uid : StrictStr, charset : Optional[StrictStr] = None, strict_lang_matching : Optional[StrictBool] = None, update_terms : Optional[StrictBool] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ImportTermBaseResponseDto:  # noqa: E501
         """Upload term base  # noqa: E501
 
@@ -2990,7 +2990,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the import_term_base_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.import_term_base_with_http_info(content_disposition, term_base_uid, charset, strict_lang_matching, update_terms, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def import_term_base_with_http_info(self, content_disposition : Annotated[StrictStr, Field(..., description="must match pattern `((inline|attachment); )?filename\\*=UTF-8''(.+)`")], term_base_uid : StrictStr, charset : Optional[StrictStr] = None, strict_lang_matching : Optional[StrictBool] = None, update_terms : Optional[StrictBool] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Upload term base  # noqa: E501
 
@@ -3148,8 +3148,8 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_concepts(self, term_base_uid : StrictStr, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ConceptListResponseDto:  # noqa: E501
+    @validate_call
+    def list_concepts(self, term_base_uid : StrictStr, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ConceptListResponseDto:  # noqa: E501
         """List concepts  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3180,8 +3180,8 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the list_concepts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_concepts_with_http_info(term_base_uid, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_concepts_with_http_info(self, term_base_uid : StrictStr, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_concepts_with_http_info(self, term_base_uid : StrictStr, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List concepts  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3312,8 +3312,8 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_term_bases(self, name : Optional[StrictStr] = None, lang : Annotated[Optional[conlist(StrictStr)], Field(description="Language of the term base")] = None, client_id : Optional[StrictStr] = None, domain_id : Optional[StrictStr] = None, sub_domain_id : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTermBaseDto:  # noqa: E501
+    @validate_call
+    def list_term_bases(self, name : Optional[StrictStr] = None, lang : Annotated[Optional[List[StrictStr]], Field(description="Language of the term base")] = None, client_id : Optional[StrictStr] = None, domain_id : Optional[StrictStr] = None, sub_domain_id : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTermBaseDto:  # noqa: E501
         """List term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3352,8 +3352,8 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the list_term_bases_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_term_bases_with_http_info(name, lang, client_id, domain_id, sub_domain_id, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_term_bases_with_http_info(self, name : Optional[StrictStr] = None, lang : Annotated[Optional[conlist(StrictStr)], Field(description="Language of the term base")] = None, client_id : Optional[StrictStr] = None, domain_id : Optional[StrictStr] = None, sub_domain_id : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_term_bases_with_http_info(self, name : Optional[StrictStr] = None, lang : Annotated[Optional[List[StrictStr]], Field(description="Language of the term base")] = None, client_id : Optional[StrictStr] = None, domain_id : Optional[StrictStr] = None, sub_domain_id : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3509,7 +3509,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_terms_of_concept(self, term_base_uid : StrictStr, concept_id : StrictStr, **kwargs) -> ConceptDto:  # noqa: E501
         """Get terms of concept  # noqa: E501
 
@@ -3539,7 +3539,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the list_terms_of_concept_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_terms_of_concept_with_http_info(term_base_uid, concept_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_terms_of_concept_with_http_info(self, term_base_uid : StrictStr, concept_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get terms of concept  # noqa: E501
 
@@ -3665,8 +3665,8 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def relevant_term_bases(self, project_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[conlist(StrictStr)] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTermBaseDto:  # noqa: E501
+    @validate_call
+    def relevant_term_bases(self, project_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[List[StrictStr]] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTermBaseDto:  # noqa: E501
         """List project relevant term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3709,8 +3709,8 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the relevant_term_bases_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.relevant_term_bases_with_http_info(project_uid, name, domain_name, client_name, sub_domain_name, target_langs, strict_lang_matching, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def relevant_term_bases_with_http_info(self, project_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[conlist(StrictStr)] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def relevant_term_bases_with_http_info(self, project_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[List[StrictStr]] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List project relevant term bases  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3878,7 +3878,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_terms(self, term_base_uid : StrictStr, body : Optional[TermBaseSearchRequestDto] = None, **kwargs) -> SearchResponseListTbDto:  # noqa: E501
         """Search term base  # noqa: E501
 
@@ -3908,7 +3908,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the search_terms_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_terms_with_http_info(term_base_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_terms_with_http_info(self, term_base_uid : StrictStr, body : Optional[TermBaseSearchRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search term base  # noqa: E501
 
@@ -4041,7 +4041,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_terms_by_job1(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[SearchTbByJobRequestDto] = None, **kwargs) -> SearchTbResponseListDto:  # noqa: E501
         """Search job's term bases  # noqa: E501
 
@@ -4074,7 +4074,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the search_terms_by_job1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_terms_by_job1_with_http_info(job_uid, project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_terms_by_job1_with_http_info(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[SearchTbByJobRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search job's term bases  # noqa: E501
 
@@ -4214,7 +4214,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_terms_in_text_by_job_v2(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[SearchTbInTextByJobRequestDto] = None, **kwargs) -> SearchInTextResponseList2Dto:  # noqa: E501
         """Search terms in text  # noqa: E501
 
@@ -4247,7 +4247,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the search_terms_in_text_by_job_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_terms_in_text_by_job_v2_with_http_info(job_uid, project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_terms_in_text_by_job_v2_with_http_info(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[SearchTbInTextByJobRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search terms in text  # noqa: E501
 
@@ -4387,7 +4387,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def set_project_template_term_bases(self, project_template_uid : StrictStr, body : Optional[SetProjectTemplateTermBaseDto] = None, **kwargs) -> ProjectTemplateTermBaseListDto:  # noqa: E501
         """Edit term bases in project template  # noqa: E501
 
@@ -4417,7 +4417,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the set_project_template_term_bases_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.set_project_template_term_bases_with_http_info(project_template_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def set_project_template_term_bases_with_http_info(self, project_template_uid : StrictStr, body : Optional[SetProjectTemplateTermBaseDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit term bases in project template  # noqa: E501
 
@@ -4550,7 +4550,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def set_project_term_bases(self, project_uid : StrictStr, body : Optional[SetTermBaseDto] = None, **kwargs) -> ProjectTermBaseListDto:  # noqa: E501
         """Edit term bases  # noqa: E501
 
@@ -4580,7 +4580,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the set_project_term_bases_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.set_project_term_bases_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def set_project_term_bases_with_http_info(self, project_uid : StrictStr, body : Optional[SetTermBaseDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit term bases  # noqa: E501
 
@@ -4713,7 +4713,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_concept(self, term_base_uid : StrictStr, concept_uid : StrictStr, body : Optional[ConceptEditDto] = None, **kwargs) -> ConceptWithMetadataDto:  # noqa: E501
         """Update concept  # noqa: E501
 
@@ -4745,7 +4745,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the update_concept_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_concept_with_http_info(term_base_uid, concept_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_concept_with_http_info(self, term_base_uid : StrictStr, concept_uid : StrictStr, body : Optional[ConceptEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update concept  # noqa: E501
 
@@ -4884,7 +4884,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_term(self, term_base_uid : StrictStr, term_id : StrictStr, body : Optional[TermEditDto] = None, **kwargs) -> TermDto:  # noqa: E501
         """Edit term  # noqa: E501
 
@@ -4916,7 +4916,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the update_term_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_term_with_http_info(term_base_uid, term_id, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_term_with_http_info(self, term_base_uid : StrictStr, term_id : StrictStr, body : Optional[TermEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit term  # noqa: E501
 
@@ -5055,7 +5055,7 @@ class TermBaseApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_term_base(self, term_base_uid : StrictStr, body : Optional[TermBaseEditDto] = None, **kwargs) -> TermBaseDto:  # noqa: E501
         """Edit term base  # noqa: E501
 
@@ -5086,7 +5086,7 @@ class TermBaseApi(object):
             raise ValueError("Error! Please call the update_term_base_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_term_base_with_http_info(term_base_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_term_base_with_http_info(self, term_base_uid : StrictStr, body : Optional[TermBaseEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit term base  # noqa: E501
 

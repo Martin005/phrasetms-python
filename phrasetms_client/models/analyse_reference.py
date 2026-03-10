@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.analyse_language_part_reference import AnalyseLanguagePartReference
 from phrasetms_client.models.import_status_dto import ImportStatusDto
 from phrasetms_client.models.net_rate_scheme_reference import NetRateSchemeReference
@@ -39,13 +39,14 @@ class AnalyseReference(BaseModel):
     created_by: Optional[UserReference] = Field(None, alias="createdBy")
     date_created: Optional[datetime] = Field(None, alias="dateCreated")
     net_rate_scheme: Optional[NetRateSchemeReference] = Field(None, alias="netRateScheme")
-    analyse_language_parts: Optional[conlist(AnalyseLanguagePartReference)] = Field(None, alias="analyseLanguageParts")
+    analyse_language_parts: Optional[List[AnalyseLanguagePartReference]] = Field(None, alias="analyseLanguageParts")
     outdated: Optional[StrictBool] = None
     import_status: Optional[ImportStatusDto] = Field(None, alias="importStatus")
-    pure_warnings: Optional[conlist(StrictStr)] = Field(None, alias="pureWarnings")
+    pure_warnings: Optional[List[StrictStr]] = Field(None, alias="pureWarnings")
     __properties = ["id", "uid", "innerId", "type", "name", "provider", "createdBy", "dateCreated", "netRateScheme", "analyseLanguageParts", "outdated", "importStatus", "pureWarnings"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -55,14 +56,10 @@ class AnalyseReference(BaseModel):
             raise ValueError("must be one of enum values ('PreAnalyse', 'PostAnalyse', 'PreAnalyseTarget', 'Compare', 'PreAnalyseProvider')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -75,7 +72,7 @@ class AnalyseReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -107,9 +104,9 @@ class AnalyseReference(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AnalyseReference.parse_obj(obj)
+            return AnalyseReference.model_validate(obj)
 
-        _obj = AnalyseReference.parse_obj({
+        _obj = AnalyseReference.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "inner_id": obj.get("innerId"),

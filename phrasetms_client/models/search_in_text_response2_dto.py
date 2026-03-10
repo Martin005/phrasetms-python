@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool
 from phrasetms_client.models.concept_dtov2 import ConceptDtov2
 from phrasetms_client.models.match import Match
 from phrasetms_client.models.term_base_reference import TermBaseReference
@@ -32,19 +32,15 @@ class SearchInTextResponse2Dto(BaseModel):
     term_base: Optional[TermBaseReference] = Field(None, alias="termBase")
     source_term: Optional[TermV2Dto] = Field(None, alias="sourceTerm")
     concept: Optional[ConceptDtov2] = None
-    translation_terms: Optional[conlist(TermV2Dto)] = Field(None, alias="translationTerms")
+    translation_terms: Optional[List[TermV2Dto]] = Field(None, alias="translationTerms")
     sub_term: Optional[StrictBool] = Field(None, alias="subTerm")
-    matches: Optional[conlist(Match)] = None
+    matches: Optional[List[Match]] = None
     __properties = ["termBase", "sourceTerm", "concept", "translationTerms", "subTerm", "matches"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -57,7 +53,7 @@ class SearchInTextResponse2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -93,9 +89,9 @@ class SearchInTextResponse2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SearchInTextResponse2Dto.parse_obj(obj)
+            return SearchInTextResponse2Dto.model_validate(obj)
 
-        _obj = SearchInTextResponse2Dto.parse_obj({
+        _obj = SearchInTextResponse2Dto.model_validate({
             "term_base": TermBaseReference.from_dict(obj.get("termBase")) if obj.get("termBase") is not None else None,
             "source_term": TermV2Dto.from_dict(obj.get("sourceTerm")) if obj.get("sourceTerm") is not None else None,
             "concept": ConceptDtov2.from_dict(obj.get("concept")) if obj.get("concept") is not None else None,

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Dict, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt, StrictStr
 from phrasetms_client.models.machine_translate_settings_langs_dto import MachineTranslateSettingsLangsDto
 
 class MachineTranslateSettingsPbmDto(BaseModel):
@@ -42,14 +42,10 @@ class MachineTranslateSettingsPbmDto(BaseModel):
     langs: Optional[MachineTranslateSettingsLangsDto] = None
     __properties = ["id", "uid", "baseName", "name", "type", "default_", "includeTags", "mtQualityEstimation", "args", "payForMtPossible", "payForMtActive", "charCount", "sharingSettings", "langs"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -62,7 +58,7 @@ class MachineTranslateSettingsPbmDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -78,9 +74,9 @@ class MachineTranslateSettingsPbmDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MachineTranslateSettingsPbmDto.parse_obj(obj)
+            return MachineTranslateSettingsPbmDto.model_validate(obj)
 
-        _obj = MachineTranslateSettingsPbmDto.parse_obj({
+        _obj = MachineTranslateSettingsPbmDto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "base_name": obj.get("baseName"),

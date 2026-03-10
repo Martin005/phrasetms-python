@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing_extensions import Annotated
+from typing import Optional
 
 from pydantic import Field, StrictBool, StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.apple_token_response_dto import AppleTokenResponseDto
 from phrasetms_client.models.login_dto import LoginDto
@@ -58,7 +58,7 @@ class AuthenticationApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def login(self, body : Optional[LoginDto] = None, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login  # noqa: E501
 
@@ -86,7 +86,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the login_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.login_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def login_with_http_info(self, body : Optional[LoginDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Login  # noqa: E501
 
@@ -213,7 +213,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def login1(self, body : Optional[LoginV3Dto] = None, **kwargs) -> LoginResponseV3Dto:  # noqa: E501
         """Login  # noqa: E501
 
@@ -241,7 +241,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the login1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.login1_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def login1_with_http_info(self, body : Optional[LoginV3Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Login  # noqa: E501
 
@@ -368,7 +368,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def login_by_apple_with_code(self, native : Annotated[Optional[StrictBool], Field(description="For sign in with code from native device")] = None, body : Optional[LoginWithAppleDto] = None, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login with Apple with code  # noqa: E501
 
@@ -398,7 +398,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the login_by_apple_with_code_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.login_by_apple_with_code_with_http_info(native, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def login_by_apple_with_code_with_http_info(self, native : Annotated[Optional[StrictBool], Field(description="For sign in with code from native device")] = None, body : Optional[LoginWithAppleDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Login with Apple with code  # noqa: E501
 
@@ -531,7 +531,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def login_by_apple_with_refresh_token(self, body : Optional[LoginWithAppleDto] = None, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login with Apple refresh token  # noqa: E501
 
@@ -559,7 +559,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the login_by_apple_with_refresh_token_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.login_by_apple_with_refresh_token_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def login_by_apple_with_refresh_token_with_http_info(self, body : Optional[LoginWithAppleDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Login with Apple refresh token  # noqa: E501
 
@@ -686,7 +686,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def login_by_google(self, body : Optional[LoginWithGoogleDto] = None, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login with Google  # noqa: E501
 
@@ -714,7 +714,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the login_by_google_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.login_by_google_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def login_by_google_with_http_info(self, body : Optional[LoginWithGoogleDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Login with Google  # noqa: E501
 
@@ -841,7 +841,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def login_other(self, body : Optional[LoginOtherDto] = None, **kwargs) -> LoginResponseDto:  # noqa: E501
         """Login as another user  # noqa: E501
 
@@ -870,7 +870,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the login_other_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.login_other_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def login_other_with_http_info(self, body : Optional[LoginOtherDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Login as another user  # noqa: E501
 
@@ -998,7 +998,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def login_other1(self, body : Optional[LoginOtherV3Dto] = None, **kwargs) -> LoginResponseV3Dto:  # noqa: E501
         """Login as another user  # noqa: E501
 
@@ -1027,7 +1027,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the login_other1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.login_other1_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def login_other1_with_http_info(self, body : Optional[LoginOtherV3Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Login as another user  # noqa: E501
 
@@ -1155,7 +1155,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def login_to_session(self, body : Optional[LoginToSessionDto] = None, **kwargs) -> LoginToSessionResponseDto:  # noqa: E501
         """Login to session  # noqa: E501
 
@@ -1183,7 +1183,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the login_to_session_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.login_to_session_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def login_to_session_with_http_info(self, body : Optional[LoginToSessionDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Login to session  # noqa: E501
 
@@ -1310,7 +1310,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def login_to_session2(self, body : Optional[LoginToSessionV3Dto] = None, **kwargs) -> LoginToSessionResponseV3Dto:  # noqa: E501
         """Login to session  # noqa: E501
 
@@ -1338,7 +1338,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the login_to_session2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.login_to_session2_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def login_to_session2_with_http_info(self, body : Optional[LoginToSessionV3Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Login to session  # noqa: E501
 
@@ -1465,7 +1465,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def logout(self, token : Optional[StrictStr] = None, authorization : Optional[StrictStr] = None, **kwargs) -> None:  # noqa: E501
         """Logout  # noqa: E501
 
@@ -1495,7 +1495,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the logout_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.logout_with_http_info(token, authorization, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def logout_with_http_info(self, token : Optional[StrictStr] = None, authorization : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Logout  # noqa: E501
 
@@ -1604,7 +1604,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def refresh_apple_token(self, token : Optional[StrictStr] = None, **kwargs) -> AppleTokenResponseDto:  # noqa: E501
         """refresh apple token  # noqa: E501
 
@@ -1632,7 +1632,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the refresh_apple_token_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.refresh_apple_token_with_http_info(token, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def refresh_apple_token_with_http_info(self, token : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """refresh apple token  # noqa: E501
 
@@ -1752,7 +1752,7 @@ class AuthenticationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def who_am_i(self, **kwargs) -> LoginUserDto:  # noqa: E501
         """Who am I  # noqa: E501
 
@@ -1778,7 +1778,7 @@ class AuthenticationApi(object):
             raise ValueError("Error! Please call the who_am_i_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.who_am_i_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def who_am_i_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Who am I  # noqa: E501
 

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.comment_dto import CommentDto
 from phrasetms_client.models.common_conversation_dto import CommonConversationDto
 from phrasetms_client.models.lqa_references import LQAReferences
@@ -34,14 +34,10 @@ class LQA(CommonConversationDto):
     lqa_description: Optional[StrictStr] = Field(None, alias="lqaDescription")
     __properties = ["id", "type", "dateCreated", "dateModified", "dateEdited", "createdBy", "comments", "status", "deleted", "references", "lqaDescription"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -54,7 +50,7 @@ class LQA(CommonConversationDto):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -83,9 +79,9 @@ class LQA(CommonConversationDto):
             return None
 
         if not isinstance(obj, dict):
-            return LQA.parse_obj(obj)
+            return LQA.model_validate(obj)
 
-        _obj = LQA.parse_obj({
+        _obj = LQA.model_validate({
             "id": obj.get("id"),
             "type": obj.get("type"),
             "date_created": obj.get("dateCreated"),

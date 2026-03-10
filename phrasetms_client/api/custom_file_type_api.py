@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.create_custom_file_type_dto import CreateCustomFileTypeDto
 from phrasetms_client.models.custom_file_type_dto import CustomFileTypeDto
@@ -49,7 +49,7 @@ class CustomFileTypeApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_custom_file_types(self, body : Optional[CreateCustomFileTypeDto] = None, **kwargs) -> CustomFileTypeDto:  # noqa: E501
         """Create custom file type  # noqa: E501
 
@@ -77,7 +77,7 @@ class CustomFileTypeApi(object):
             raise ValueError("Error! Please call the create_custom_file_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_custom_file_types_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_custom_file_types_with_http_info(self, body : Optional[CreateCustomFileTypeDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create custom file type  # noqa: E501
 
@@ -204,7 +204,7 @@ class CustomFileTypeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_batch_custom_file_type(self, body : Optional[DeleteCustomFileTypeDto] = None, **kwargs) -> None:  # noqa: E501
         """Delete multiple Custom file type  # noqa: E501
 
@@ -232,7 +232,7 @@ class CustomFileTypeApi(object):
             raise ValueError("Error! Please call the delete_batch_custom_file_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_batch_custom_file_type_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_batch_custom_file_type_with_http_info(self, body : Optional[DeleteCustomFileTypeDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete multiple Custom file type  # noqa: E501
 
@@ -342,7 +342,7 @@ class CustomFileTypeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_custom_file_type(self, custom_file_type_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete Custom file type  # noqa: E501
 
@@ -370,7 +370,7 @@ class CustomFileTypeApi(object):
             raise ValueError("Error! Please call the delete_custom_file_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_custom_file_type_with_http_info(custom_file_type_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_custom_file_type_with_http_info(self, custom_file_type_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete Custom file type  # noqa: E501
 
@@ -473,8 +473,8 @@ class CustomFileTypeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_all_custom_file_type(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoCustomFileTypeDto:  # noqa: E501
+    @validate_call
+    def get_all_custom_file_type(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoCustomFileTypeDto:  # noqa: E501
         """Get All Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -503,8 +503,8 @@ class CustomFileTypeApi(object):
             raise ValueError("Error! Please call the get_all_custom_file_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_all_custom_file_type_with_http_info(page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_all_custom_file_type_with_http_info(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_all_custom_file_type_with_http_info(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get All Custom file type  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -629,7 +629,7 @@ class CustomFileTypeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_custom_file_type(self, custom_file_type_uid : StrictStr, **kwargs) -> CustomFileTypeDto:  # noqa: E501
         """Get Custom file type  # noqa: E501
 
@@ -657,7 +657,7 @@ class CustomFileTypeApi(object):
             raise ValueError("Error! Please call the get_custom_file_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_custom_file_type_with_http_info(custom_file_type_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_custom_file_type_with_http_info(self, custom_file_type_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Custom file type  # noqa: E501
 
@@ -777,7 +777,7 @@ class CustomFileTypeApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_custom_file_type(self, custom_file_type_uid : StrictStr, body : Optional[UpdateCustomFileTypeDto] = None, **kwargs) -> CustomFileTypeDto:  # noqa: E501
         """Update Custom file type  # noqa: E501
 
@@ -807,7 +807,7 @@ class CustomFileTypeApi(object):
             raise ValueError("Error! Please call the update_custom_file_type_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_custom_file_type_with_http_info(custom_file_type_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_custom_file_type_with_http_info(self, custom_file_type_uid : StrictStr, body : Optional[UpdateCustomFileTypeDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update Custom file type  # noqa: E501
 

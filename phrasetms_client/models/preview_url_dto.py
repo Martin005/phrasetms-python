@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, StrictStr, validator
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 
 class PreviewUrlDto(BaseModel):
     """
@@ -29,7 +29,8 @@ class PreviewUrlDto(BaseModel):
     url: Optional[StrictStr] = None
     __properties = ["type", "url"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -39,14 +40,10 @@ class PreviewUrlDto(BaseModel):
             raise ValueError("must be one of enum values ('ORIGINAL', 'PDF')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -59,7 +56,7 @@ class PreviewUrlDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -72,9 +69,9 @@ class PreviewUrlDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PreviewUrlDto.parse_obj(obj)
+            return PreviewUrlDto.model_validate(obj)
 
-        _obj = PreviewUrlDto.parse_obj({
+        _obj = PreviewUrlDto.model_validate({
             "type": obj.get("type"),
             "url": obj.get("url")
         })

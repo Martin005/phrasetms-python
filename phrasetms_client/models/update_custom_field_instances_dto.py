@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.create_custom_field_instance_dto import CreateCustomFieldInstanceDto
 from phrasetms_client.models.uid_reference import UidReference
 from phrasetms_client.models.update_custom_field_instance_with_uid_dto import UpdateCustomFieldInstanceWithUidDto
@@ -28,19 +28,15 @@ class UpdateCustomFieldInstancesDto(BaseModel):
     """
     UpdateCustomFieldInstancesDto
     """
-    add_instances: Optional[conlist(CreateCustomFieldInstanceDto)] = Field(None, alias="addInstances")
-    remove_instances: Optional[conlist(UidReference)] = Field(None, alias="removeInstances")
-    update_instances: Optional[conlist(UpdateCustomFieldInstanceWithUidDto)] = Field(None, alias="updateInstances")
+    add_instances: Optional[List[CreateCustomFieldInstanceDto]] = Field(None, alias="addInstances")
+    remove_instances: Optional[List[UidReference]] = Field(None, alias="removeInstances")
+    update_instances: Optional[List[UpdateCustomFieldInstanceWithUidDto]] = Field(None, alias="updateInstances")
     __properties = ["addInstances", "removeInstances", "updateInstances"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class UpdateCustomFieldInstancesDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -87,9 +83,9 @@ class UpdateCustomFieldInstancesDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return UpdateCustomFieldInstancesDto.parse_obj(obj)
+            return UpdateCustomFieldInstancesDto.model_validate(obj)
 
-        _obj = UpdateCustomFieldInstancesDto.parse_obj({
+        _obj = UpdateCustomFieldInstancesDto.model_validate({
             "add_instances": [CreateCustomFieldInstanceDto.from_dict(_item) for _item in obj.get("addInstances")] if obj.get("addInstances") is not None else None,
             "remove_instances": [UidReference.from_dict(_item) for _item in obj.get("removeInstances")] if obj.get("removeInstances") is not None else None,
             "update_instances": [UpdateCustomFieldInstanceWithUidDto.from_dict(_item) for _item in obj.get("updateInstances")] if obj.get("updateInstances") is not None else None

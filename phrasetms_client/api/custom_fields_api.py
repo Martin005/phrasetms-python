@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import List, Optional
 
-from pydantic import Field, StrictBool, StrictStr, conint, conlist, validator
+from pydantic import Field, StrictBool, StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.create_custom_field_dto import CreateCustomFieldDto
 from phrasetms_client.models.custom_field_dto import CustomFieldDto
@@ -48,7 +48,7 @@ class CustomFieldsApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_custom_field(self, body : Optional[CreateCustomFieldDto] = None, **kwargs) -> CustomFieldDto:  # noqa: E501
         """Create custom field  # noqa: E501
 
@@ -76,7 +76,7 @@ class CustomFieldsApi(object):
             raise ValueError("Error! Please call the create_custom_field_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_custom_field_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_custom_field_with_http_info(self, body : Optional[CreateCustomFieldDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create custom field  # noqa: E501
 
@@ -203,7 +203,7 @@ class CustomFieldsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_custom_field(self, field_uid : StrictStr, **kwargs) -> CustomFieldDto:  # noqa: E501
         """Get custom field  # noqa: E501
 
@@ -231,7 +231,7 @@ class CustomFieldsApi(object):
             raise ValueError("Error! Please call the get_custom_field_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_custom_field_with_http_info(field_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_custom_field_with_http_info(self, field_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get custom field  # noqa: E501
 
@@ -351,8 +351,8 @@ class CustomFieldsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_custom_field_list(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by custom field name")] = None, allowed_entities : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by custom field allowed entities")] = None, types : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by custom field types")] = None, created_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by custom field creators UIDs")] = None, modified_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by custom field updaters UIDs")] = None, uids : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by custom field UIDs")] = None, required : Annotated[Optional[StrictBool], Field(description="Filter by custom field required parameter")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> PageDtoCustomFieldDto:  # noqa: E501
+    @validate_call
+    def get_custom_field_list(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by custom field name")] = None, allowed_entities : Annotated[Optional[List[StrictStr]], Field(description="Filter by custom field allowed entities")] = None, types : Annotated[Optional[List[StrictStr]], Field(description="Filter by custom field types")] = None, created_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by custom field creators UIDs")] = None, modified_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by custom field updaters UIDs")] = None, uids : Annotated[Optional[List[StrictStr]], Field(description="Filter by custom field UIDs")] = None, required : Annotated[Optional[StrictBool], Field(description="Filter by custom field required parameter")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> PageDtoCustomFieldDto:  # noqa: E501
         """Lists custom fields  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -399,8 +399,8 @@ class CustomFieldsApi(object):
             raise ValueError("Error! Please call the get_custom_field_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_custom_field_list_with_http_info(page_number, page_size, name, allowed_entities, types, created_by, modified_by, uids, required, sort_field, sort_trend, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_custom_field_list_with_http_info(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by custom field name")] = None, allowed_entities : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by custom field allowed entities")] = None, types : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by custom field types")] = None, created_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by custom field creators UIDs")] = None, modified_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by custom field updaters UIDs")] = None, uids : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by custom field UIDs")] = None, required : Annotated[Optional[StrictBool], Field(description="Filter by custom field required parameter")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_custom_field_list_with_http_info(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by custom field name")] = None, allowed_entities : Annotated[Optional[List[StrictStr]], Field(description="Filter by custom field allowed entities")] = None, types : Annotated[Optional[List[StrictStr]], Field(description="Filter by custom field types")] = None, created_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by custom field creators UIDs")] = None, modified_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by custom field updaters UIDs")] = None, uids : Annotated[Optional[List[StrictStr]], Field(description="Filter by custom field UIDs")] = None, required : Annotated[Optional[StrictBool], Field(description="Filter by custom field required parameter")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Lists custom fields  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -584,8 +584,8 @@ class CustomFieldsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_custom_field_option_list(self, field_uid : StrictStr, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by option name")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> PageDtoCustomFieldOptionDto:  # noqa: E501
+    @validate_call
+    def get_custom_field_option_list(self, field_uid : StrictStr, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by option name")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> PageDtoCustomFieldOptionDto:  # noqa: E501
         """Lists options of custom field  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -622,8 +622,8 @@ class CustomFieldsApi(object):
             raise ValueError("Error! Please call the get_custom_field_option_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_custom_field_option_list_with_http_info(field_uid, page_number, page_size, name, sort_field, sort_trend, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_custom_field_option_list_with_http_info(self, field_uid : StrictStr, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by option name")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_custom_field_option_list_with_http_info(self, field_uid : StrictStr, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by option name")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Lists options of custom field  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

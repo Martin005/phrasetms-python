@@ -19,24 +19,20 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.translation_price_set_dto import TranslationPriceSetDto
 
 class TranslationPriceSetListDto(BaseModel):
     """
     TranslationPriceSetListDto
     """
-    price_sets: Optional[conlist(TranslationPriceSetDto)] = Field(None, alias="priceSets")
+    price_sets: Optional[List[TranslationPriceSetDto]] = Field(None, alias="priceSets")
     __properties = ["priceSets"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class TranslationPriceSetListDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class TranslationPriceSetListDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TranslationPriceSetListDto.parse_obj(obj)
+            return TranslationPriceSetListDto.model_validate(obj)
 
-        _obj = TranslationPriceSetListDto.parse_obj({
+        _obj = TranslationPriceSetListDto.model_validate({
             "price_sets": [TranslationPriceSetDto.from_dict(_item) for _item in obj.get("priceSets")] if obj.get("priceSets") is not None else None
         })
         return _obj

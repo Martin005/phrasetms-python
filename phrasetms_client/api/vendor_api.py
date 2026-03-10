@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.create_vendor_dto import CreateVendorDto
 from phrasetms_client.models.page_dto_vendor_dto import PageDtoVendorDto
@@ -47,7 +47,7 @@ class VendorApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_vendor(self, body : Optional[CreateVendorDto] = None, **kwargs) -> VendorDto:  # noqa: E501
         """Create vendor  # noqa: E501
 
@@ -75,7 +75,7 @@ class VendorApi(object):
             raise ValueError("Error! Please call the create_vendor_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_vendor_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_vendor_with_http_info(self, body : Optional[CreateVendorDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create vendor  # noqa: E501
 
@@ -195,7 +195,7 @@ class VendorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_vendor(self, vendor_uid : StrictStr, **kwargs) -> VendorDto:  # noqa: E501
         """Get vendor  # noqa: E501
 
@@ -223,7 +223,7 @@ class VendorApi(object):
             raise ValueError("Error! Please call the get_vendor_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_vendor_with_http_info(vendor_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_vendor_with_http_info(self, vendor_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get vendor  # noqa: E501
 
@@ -343,8 +343,8 @@ class VendorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_vendors(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Name or the vendor, for filtering")] = None, **kwargs) -> PageDtoVendorDto:  # noqa: E501
+    @validate_call
+    def list_vendors(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Name or the vendor, for filtering")] = None, **kwargs) -> PageDtoVendorDto:  # noqa: E501
         """List vendors  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -375,8 +375,8 @@ class VendorApi(object):
             raise ValueError("Error! Please call the list_vendors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_vendors_with_http_info(page_number, page_size, name, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_vendors_with_http_info(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Name or the vendor, for filtering")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_vendors_with_http_info(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Name or the vendor, for filtering")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List vendors  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

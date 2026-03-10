@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, constr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, StringConstraints
 from phrasetms_client.models.job_create_remote_file_dto import JobCreateRemoteFileDto
 from phrasetms_client.models.notify_provider_dto import NotifyProviderDto
 from phrasetms_client.models.providers_per_language import ProvidersPerLanguage
@@ -31,27 +32,23 @@ class JobCreateRequestDto(BaseModel):
     """
     JobCreateRequestDto
     """
-    target_langs: conlist(StrictStr) = Field(..., alias="targetLangs")
+    target_langs: List[StrictStr] = Field(..., alias="targetLangs")
     due: Optional[datetime] = Field(None, description="only use for projects without workflows; otherwise specify in the workflowSettings object. Use ISO 8601 date format.")
-    workflow_settings: Optional[conlist(WorkflowStepConfiguration)] = Field(None, alias="workflowSettings")
-    assignments: Optional[conlist(ProvidersPerLanguage)] = Field(None, description="only use for projects without workflows; otherwise specify in the workflowSettings object")
+    workflow_settings: Optional[List[WorkflowStepConfiguration]] = Field(None, alias="workflowSettings")
+    assignments: Optional[List[ProvidersPerLanguage]] = Field(None, description="only use for projects without workflows; otherwise specify in the workflowSettings object")
     import_settings: Optional[UidReference] = Field(None, alias="importSettings")
     use_project_file_import_settings: Optional[StrictBool] = Field(None, alias="useProjectFileImportSettings", description="Default: false")
     pre_translate: Optional[StrictBool] = Field(None, alias="preTranslate")
     notify_provider: Optional[NotifyProviderDto] = Field(None, alias="notifyProvider")
     callback_url: Optional[StrictStr] = Field(None, alias="callbackUrl")
-    path: Optional[constr(strict=True, max_length=255, min_length=0)] = None
+    path: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None
     remote_file: Optional[JobCreateRemoteFileDto] = Field(None, alias="remoteFile")
     __properties = ["targetLangs", "due", "workflowSettings", "assignments", "importSettings", "useProjectFileImportSettings", "preTranslate", "notifyProvider", "callbackUrl", "path", "remoteFile"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -64,7 +61,7 @@ class JobCreateRequestDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -100,9 +97,9 @@ class JobCreateRequestDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobCreateRequestDto.parse_obj(obj)
+            return JobCreateRequestDto.model_validate(obj)
 
-        _obj = JobCreateRequestDto.parse_obj({
+        _obj = JobCreateRequestDto.model_validate({
             "target_langs": obj.get("targetLangs"),
             "due": obj.get("due"),
             "workflow_settings": [WorkflowStepConfiguration.from_dict(_item) for _item in obj.get("workflowSettings")] if obj.get("workflowSettings") is not None else None,

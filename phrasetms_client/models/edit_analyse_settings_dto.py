@@ -18,8 +18,17 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, constr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictStr,
+    StringConstraints,
+    field_validator,
+)
 
 class EditAnalyseSettingsDto(BaseModel):
     """
@@ -38,13 +47,14 @@ class EditAnalyseSettingsDto(BaseModel):
     machine_translate_post_editing: Optional[StrictBool] = Field(None, alias="machineTranslatePostEditing", description="Default: false")
     count_source_units: Optional[StrictBool] = Field(None, alias="countSourceUnits", description="Default: false")
     include_trans_memory: Optional[StrictBool] = Field(None, alias="includeTransMemory", description="Default: false")
-    naming_pattern: Optional[constr(strict=True, max_length=255, min_length=0)] = Field(None, alias="namingPattern")
+    naming_pattern: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = Field(None, alias="namingPattern")
     analyze_by_language: Optional[StrictBool] = Field(None, alias="analyzeByLanguage", description="Mutually exclusive with analyzeByProvider. Default: false")
     analyze_by_provider: Optional[StrictBool] = Field(None, alias="analyzeByProvider", description="Mutually exclusive with analyzeByLanguage. Default: true")
     allow_automatic_post_analysis: Optional[StrictBool] = Field(None, alias="allowAutomaticPostAnalysis", description="Default: false")
     __properties = ["type", "includeFuzzyRepetitions", "separateFuzzyRepetitions", "includeNonTranslatables", "includeMachineTranslationMatches", "includeConfirmedSegments", "includeNumbers", "includeLockedSegments", "transMemoryPostEditing", "nonTranslatablePostEditing", "machineTranslatePostEditing", "countSourceUnits", "includeTransMemory", "namingPattern", "analyzeByLanguage", "analyzeByProvider", "allowAutomaticPostAnalysis"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -54,14 +64,10 @@ class EditAnalyseSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('PreAnalyse', 'PostAnalyse', 'PreAnalyseTarget', 'Compare')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -74,7 +80,7 @@ class EditAnalyseSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -87,9 +93,9 @@ class EditAnalyseSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return EditAnalyseSettingsDto.parse_obj(obj)
+            return EditAnalyseSettingsDto.model_validate(obj)
 
-        _obj = EditAnalyseSettingsDto.parse_obj({
+        _obj = EditAnalyseSettingsDto.model_validate({
             "type": obj.get("type"),
             "include_fuzzy_repetitions": obj.get("includeFuzzyRepetitions"),
             "separate_fuzzy_repetitions": obj.get("separateFuzzyRepetitions"),

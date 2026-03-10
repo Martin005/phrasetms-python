@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictInt, StrictStr
 from phrasetms_client.models.workflow_step_reference_v2 import WorkflowStepReferenceV2
 
 class ProjectWorkflowStepDtoV2(BaseModel):
@@ -33,14 +33,10 @@ class ProjectWorkflowStepDtoV2(BaseModel):
     workflow_step: Optional[WorkflowStepReferenceV2] = Field(None, alias="workflowStep")
     __properties = ["id", "abbreviation", "name", "workflowLevel", "workflowStep"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class ProjectWorkflowStepDtoV2(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class ProjectWorkflowStepDtoV2(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ProjectWorkflowStepDtoV2.parse_obj(obj)
+            return ProjectWorkflowStepDtoV2.model_validate(obj)
 
-        _obj = ProjectWorkflowStepDtoV2.parse_obj({
+        _obj = ProjectWorkflowStepDtoV2.model_validate({
             "id": obj.get("id"),
             "abbreviation": obj.get("abbreviation"),
             "name": obj.get("name"),

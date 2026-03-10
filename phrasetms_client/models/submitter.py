@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool
 from phrasetms_client.models.abstract_user_create_dto import AbstractUserCreateDto
 from phrasetms_client.models.id_reference import IdReference
 
@@ -27,18 +27,14 @@ class SUBMITTER(AbstractUserCreateDto):
     """
     SUBMITTER
     """
-    automation_widgets: Optional[conlist(IdReference)] = Field(None, alias="automationWidgets", description="If no automation widgets are assigned in request the default automation widgets will be assigned instead")
+    automation_widgets: Optional[List[IdReference]] = Field(None, alias="automationWidgets", description="If no automation widgets are assigned in request the default automation widgets will be assigned instead")
     project_view_created_by_other_submitters: Optional[StrictBool] = Field(None, alias="projectViewCreatedByOtherSubmitters", description="View projects created by other Submitters. Default: false")
     __properties = ["userName", "firstName", "lastName", "email", "password", "role", "timezone", "receiveNewsletter", "note", "active", "automationWidgets", "projectViewCreatedByOtherSubmitters"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +47,7 @@ class SUBMITTER(AbstractUserCreateDto):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -71,9 +67,9 @@ class SUBMITTER(AbstractUserCreateDto):
             return None
 
         if not isinstance(obj, dict):
-            return SUBMITTER.parse_obj(obj)
+            return SUBMITTER.model_validate(obj)
 
-        _obj = SUBMITTER.parse_obj({
+        _obj = SUBMITTER.model_validate({
             "user_name": obj.get("userName"),
             "first_name": obj.get("firstName"),
             "last_name": obj.get("lastName"),

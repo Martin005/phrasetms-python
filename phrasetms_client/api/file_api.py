@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import List, Optional
 
-from pydantic import Field, StrictInt, StrictStr, conint, conlist
+from pydantic import Field, StrictInt, StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.page_dto_uploaded_file_dto import PageDtoUploadedFileDto
 from phrasetms_client.models.remote_uploaded_file_dto import RemoteUploadedFileDto
@@ -47,7 +47,7 @@ class FileApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_url_file(self, content_disposition : Annotated[StrictStr, Field(..., description="must match pattern `((inline|attachment); )?filename\\*=UTF-8''(.+)`")], body : Annotated[RemoteUploadedFileDto, Field(..., description="file")], **kwargs) -> UploadedFileDto:  # noqa: E501
         """Upload file  # noqa: E501
 
@@ -78,7 +78,7 @@ class FileApi(object):
             raise ValueError("Error! Please call the create_url_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_url_file_with_http_info(content_disposition, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_url_file_with_http_info(self, content_disposition : Annotated[StrictStr, Field(..., description="must match pattern `((inline|attachment); )?filename\\*=UTF-8''(.+)`")], body : Annotated[RemoteUploadedFileDto, Field(..., description="file")], **kwargs) -> ApiResponse:  # noqa: E501
         """Upload file  # noqa: E501
 
@@ -212,7 +212,7 @@ class FileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def deletes_file(self, file_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete file  # noqa: E501
 
@@ -240,7 +240,7 @@ class FileApi(object):
             raise ValueError("Error! Please call the deletes_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.deletes_file_with_http_info(file_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def deletes_file_with_http_info(self, file_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete file  # noqa: E501
 
@@ -343,7 +343,7 @@ class FileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_file_json(self, file_uid : StrictStr, **kwargs) -> UploadedFileDto:  # noqa: E501
         """Get file  # noqa: E501
 
@@ -372,7 +372,7 @@ class FileApi(object):
             raise ValueError("Error! Please call the get_file_json_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_file_json_with_http_info(file_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_file_json_with_http_info(self, file_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get file  # noqa: E501
 
@@ -493,8 +493,8 @@ class FileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_files(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Optional[StrictStr] = None, types : Optional[conlist(StrictStr)] = None, created_by : Optional[StrictInt] = None, bigger_than : Annotated[Optional[StrictInt], Field(description="Size in bytes")] = None, **kwargs) -> PageDtoUploadedFileDto:  # noqa: E501
+    @validate_call
+    def get_files(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Optional[StrictStr] = None, types : Optional[List[StrictStr]] = None, created_by : Optional[StrictInt] = None, bigger_than : Annotated[Optional[StrictInt], Field(description="Size in bytes")] = None, **kwargs) -> PageDtoUploadedFileDto:  # noqa: E501
         """List files  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -531,8 +531,8 @@ class FileApi(object):
             raise ValueError("Error! Please call the get_files_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_files_with_http_info(page_number, page_size, name, types, created_by, bigger_than, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_files_with_http_info(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Optional[StrictStr] = None, types : Optional[conlist(StrictStr)] = None, created_by : Optional[StrictInt] = None, bigger_than : Annotated[Optional[StrictInt], Field(description="Size in bytes")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_files_with_http_info(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Optional[StrictStr] = None, types : Optional[List[StrictStr]] = None, created_by : Optional[StrictInt] = None, bigger_than : Annotated[Optional[StrictInt], Field(description="Size in bytes")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List files  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

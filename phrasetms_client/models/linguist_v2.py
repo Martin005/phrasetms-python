@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from phrasetms_client.models.abstract_project_dto_v2 import AbstractProjectDtoV2
 from phrasetms_client.models.domain_reference import DomainReference
 from phrasetms_client.models.mt_settings_per_language_reference import MTSettingsPerLanguageReference
@@ -33,14 +33,10 @@ class LinguistV2(AbstractProjectDtoV2):
     """
     __properties = ["uid", "internalId", "id", "name", "dateCreated", "domain", "subDomain", "owner", "sourceLang", "targetLangs", "references", "mtSettingsPerLanguageList", "userRole"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class LinguistV2(AbstractProjectDtoV2):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -89,9 +85,9 @@ class LinguistV2(AbstractProjectDtoV2):
             return None
 
         if not isinstance(obj, dict):
-            return LinguistV2.parse_obj(obj)
+            return LinguistV2.model_validate(obj)
 
-        _obj = LinguistV2.parse_obj({
+        _obj = LinguistV2.model_validate({
             "uid": obj.get("uid"),
             "internal_id": obj.get("internalId"),
             "id": obj.get("id"),

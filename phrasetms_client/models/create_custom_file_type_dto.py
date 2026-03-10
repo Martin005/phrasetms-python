@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.file_import_settings_create_dto import FileImportSettingsCreateDto
 
 class CreateCustomFileTypeDto(BaseModel):
@@ -32,21 +32,18 @@ class CreateCustomFileTypeDto(BaseModel):
     file_import_settings: Optional[FileImportSettingsCreateDto] = Field(None, alias="fileImportSettings")
     __properties = ["name", "filenamePattern", "type", "fileImportSettings"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('html', 'json', 'xml', 'multiling_xml', 'txt'):
             raise ValueError("must be one of enum values ('html', 'json', 'xml', 'multiling_xml', 'txt')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -59,7 +56,7 @@ class CreateCustomFileTypeDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -75,9 +72,9 @@ class CreateCustomFileTypeDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CreateCustomFileTypeDto.parse_obj(obj)
+            return CreateCustomFileTypeDto.model_validate(obj)
 
-        _obj = CreateCustomFileTypeDto.parse_obj({
+        _obj = CreateCustomFileTypeDto.model_validate({
             "name": obj.get("name"),
             "filename_pattern": obj.get("filenamePattern"),
             "type": obj.get("type"),

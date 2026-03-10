@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.discount_scheme_reference import DiscountSchemeReference
 from phrasetms_client.models.price_list_reference import PriceListReference
 from phrasetms_client.models.user_reference import UserReference
@@ -41,14 +41,15 @@ class UserDto(BaseModel):
     timezone: Optional[StrictStr] = None
     note: Optional[StrictStr] = None
     terminologist: Optional[StrictBool] = None
-    source_langs: Optional[conlist(StrictStr)] = Field(None, alias="sourceLangs")
-    target_langs: Optional[conlist(StrictStr)] = Field(None, alias="targetLangs")
+    source_langs: Optional[List[StrictStr]] = Field(None, alias="sourceLangs")
+    target_langs: Optional[List[StrictStr]] = Field(None, alias="targetLangs")
     active: Optional[StrictBool] = None
     price_list: Optional[PriceListReference] = Field(None, alias="priceList")
     net_rate_scheme: Optional[DiscountSchemeReference] = Field(None, alias="netRateScheme")
     __properties = ["id", "uid", "userName", "firstName", "lastName", "email", "dateCreated", "dateDeleted", "createdBy", "role", "timezone", "note", "terminologist", "sourceLangs", "targetLangs", "active", "priceList", "netRateScheme"]
 
-    @validator('role')
+    @field_validator('role')
+    @classmethod
     def role_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -58,14 +59,10 @@ class UserDto(BaseModel):
             raise ValueError("must be one of enum values ('SYS_ADMIN', 'SYS_ADMIN_READ', 'ADMIN', 'PROJECT_MANAGER', 'LINGUIST', 'GUEST', 'SUBMITTER')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -78,7 +75,7 @@ class UserDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -100,9 +97,9 @@ class UserDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return UserDto.parse_obj(obj)
+            return UserDto.model_validate(obj)
 
-        _obj = UserDto.parse_obj({
+        _obj = UserDto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "user_name": obj.get("userName"),

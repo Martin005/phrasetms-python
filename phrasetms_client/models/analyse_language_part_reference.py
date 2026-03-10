@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.analyse_job_reference import AnalyseJobReference
 
 class AnalyseLanguagePartReference(BaseModel):
@@ -29,17 +29,13 @@ class AnalyseLanguagePartReference(BaseModel):
     id: Optional[StrictStr] = None
     source_lang: Optional[StrictStr] = Field(None, alias="sourceLang")
     target_lang: Optional[StrictStr] = Field(None, alias="targetLang")
-    jobs: Optional[conlist(AnalyseJobReference)] = None
+    jobs: Optional[List[AnalyseJobReference]] = None
     __properties = ["id", "sourceLang", "targetLang", "jobs"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class AnalyseLanguagePartReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -72,9 +68,9 @@ class AnalyseLanguagePartReference(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AnalyseLanguagePartReference.parse_obj(obj)
+            return AnalyseLanguagePartReference.model_validate(obj)
 
-        _obj = AnalyseLanguagePartReference.parse_obj({
+        _obj = AnalyseLanguagePartReference.model_validate({
             "id": obj.get("id"),
             "source_lang": obj.get("sourceLang"),
             "target_lang": obj.get("targetLang"),

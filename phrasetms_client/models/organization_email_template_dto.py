@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 
 class OrganizationEmailTemplateDto(BaseModel):
     """
@@ -35,7 +35,8 @@ class OrganizationEmailTemplateDto(BaseModel):
     bcc_address: Optional[StrictStr] = Field(None, alias="bccAddress")
     __properties = ["id", "uid", "type", "name", "subject", "body", "ccAddress", "bccAddress"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -45,14 +46,10 @@ class OrganizationEmailTemplateDto(BaseModel):
             raise ValueError("must be one of enum values ('JobAssigned', 'JobStatusChanged', 'NextWorkflowStep', 'JobRejected', 'LoginInfo', 'ProjectTransferredToBuyer', 'SharedProjectAssigned', 'SharedProjectStatusChanged', 'AutomatedProjectCreated', 'AutomatedProjectSourceUpdated', 'AutomatedProjectStatusChanged', 'JobWidgetProjectQuotePrepared', 'JobWidgetProjectQuotePreparationFailure', 'JobWidgetProjectCreated', 'JobWidgetProjectCompleted', 'CmsQuoteReady', 'CmsWorkCompleted', 'CmsJobRejected', 'QUOTE_UPDATED', 'QUOTE_STATUS_CHANGED', 'LQA_SHARE_REPORT')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -65,7 +62,7 @@ class OrganizationEmailTemplateDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -78,9 +75,9 @@ class OrganizationEmailTemplateDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return OrganizationEmailTemplateDto.parse_obj(obj)
+            return OrganizationEmailTemplateDto.model_validate(obj)
 
-        _obj = OrganizationEmailTemplateDto.parse_obj({
+        _obj = OrganizationEmailTemplateDto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "type": obj.get("type"),

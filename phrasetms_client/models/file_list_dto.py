@@ -19,28 +19,24 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 from phrasetms_client.models.file_dto import FileDto
 
 class FileListDto(BaseModel):
     """
     FileListDto
     """
-    files: Optional[conlist(FileDto)] = None
+    files: Optional[List[FileDto]] = None
     current_folder: Optional[StrictStr] = Field(None, alias="currentFolder")
     encoded_current_folder: Optional[StrictStr] = Field(None, alias="encodedCurrentFolder")
     root_folder: Optional[StrictBool] = Field(None, alias="rootFolder")
-    last_changed_files: Optional[conlist(FileDto)] = Field(None, alias="lastChangedFiles")
+    last_changed_files: Optional[List[FileDto]] = Field(None, alias="lastChangedFiles")
     __properties = ["files", "currentFolder", "encodedCurrentFolder", "rootFolder", "lastChangedFiles"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class FileListDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -80,9 +76,9 @@ class FileListDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return FileListDto.parse_obj(obj)
+            return FileListDto.model_validate(obj)
 
-        _obj = FileListDto.parse_obj({
+        _obj = FileListDto.model_validate({
             "files": [FileDto.from_dict(_item) for _item in obj.get("files")] if obj.get("files") is not None else None,
             "current_folder": obj.get("currentFolder"),
             "encoded_current_folder": obj.get("encodedCurrentFolder"),

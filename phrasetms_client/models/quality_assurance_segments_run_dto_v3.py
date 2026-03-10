@@ -18,20 +18,22 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conint, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.job_part_segments_dto_v3 import JobPartSegmentsDtoV3
 
 class QualityAssuranceSegmentsRunDtoV3(BaseModel):
     """
     QualityAssuranceSegmentsRunDtoV3
     """
-    jobs_and_segments: conlist(JobPartSegmentsDtoV3, max_items=100, min_items=1) = Field(..., alias="jobsAndSegments")
-    warning_types: Optional[conlist(StrictStr, max_items=100, min_items=0)] = Field(None, alias="warningTypes", description="When empty only fast checks run")
-    max_qa_warnings_count: Optional[conint(strict=True, le=1000, ge=1)] = Field(None, alias="maxQaWarningsCount", description="Maximum number of QA warnings in result, default: 100. For efficiency reasons QA warnings are processed with minimum segments chunk size 10, therefore slightly more warnings are returned.")
+    jobs_and_segments: List[JobPartSegmentsDtoV3] = Field(..., alias="jobsAndSegments")
+    warning_types: Optional[List[StrictStr]] = Field(None, alias="warningTypes", description="When empty only fast checks run")
+    max_qa_warnings_count: Optional[Annotated[int, Field(strict=True, le=1000, ge=1)]] = Field(None, alias="maxQaWarningsCount", description="Maximum number of QA warnings in result, default: 100. For efficiency reasons QA warnings are processed with minimum segments chunk size 10, therefore slightly more warnings are returned.")
     __properties = ["jobsAndSegments", "warningTypes", "maxQaWarningsCount"]
 
-    @validator('warning_types')
+    @field_validator('warning_types')
+    @classmethod
     def warning_types_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -42,14 +44,10 @@ class QualityAssuranceSegmentsRunDtoV3(BaseModel):
                 raise ValueError("each list item must be one of ('EmptyTranslation', 'TrailingPunctuation', 'Formatting', 'JoinTags', 'MissingNumbersV3', 'MultipleSpacesV3', 'NonConformingTerm', 'NotConfirmed', 'TranslationLength', 'AbsoluteLength', 'RelativeLength', 'UnresolvedComment', 'EmptyPairTags', 'InconsistentTranslationTargetSource', 'InconsistentTranslationSourceTarget', 'ForbiddenString', 'SpellCheck', 'RepeatedWord', 'InconsistentTagContent', 'EmptyTagContent', 'Malformed', 'ForbiddenTerm', 'NewerAtLowerLevel', 'LeadingAndTrailingSpaces', 'LeadingSpaces', 'TrailingSpaces', 'TargetSourceIdentical', 'SourceOrTargetRegexp', 'UnmodifiedFuzzyTranslation', 'UnmodifiedFuzzyTranslationTM', 'UnmodifiedFuzzyTranslationMTNT', 'Moravia', 'ExtraNumbersV3', 'UnresolvedConversation', 'NestedTags', 'FuzzyInconsistencyTargetSource', 'FuzzyInconsistencySourceTarget', 'CustomQA')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -62,7 +60,7 @@ class QualityAssuranceSegmentsRunDtoV3(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -82,9 +80,9 @@ class QualityAssuranceSegmentsRunDtoV3(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return QualityAssuranceSegmentsRunDtoV3.parse_obj(obj)
+            return QualityAssuranceSegmentsRunDtoV3.model_validate(obj)
 
-        _obj = QualityAssuranceSegmentsRunDtoV3.parse_obj({
+        _obj = QualityAssuranceSegmentsRunDtoV3.model_validate({
             "jobs_and_segments": [JobPartSegmentsDtoV3.from_dict(_item) for _item in obj.get("jobsAndSegments")] if obj.get("jobsAndSegments") is not None else None,
             "warning_types": obj.get("warningTypes"),
             "max_qa_warnings_count": obj.get("maxQaWarningsCount")

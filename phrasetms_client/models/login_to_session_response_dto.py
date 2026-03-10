@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.user_reference import UserReference
 
 class LoginToSessionResponseDto(BaseModel):
@@ -31,14 +31,10 @@ class LoginToSessionResponseDto(BaseModel):
     csrf_token: Optional[StrictStr] = Field(None, alias="csrfToken")
     __properties = ["user", "cookie", "csrfToken"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +47,7 @@ class LoginToSessionResponseDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -67,9 +63,9 @@ class LoginToSessionResponseDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return LoginToSessionResponseDto.parse_obj(obj)
+            return LoginToSessionResponseDto.model_validate(obj)
 
-        _obj = LoginToSessionResponseDto.parse_obj({
+        _obj = LoginToSessionResponseDto.model_validate({
             "user": UserReference.from_dict(obj.get("user")) if obj.get("user") is not None else None,
             "cookie": obj.get("cookie"),
             "csrf_token": obj.get("csrfToken")

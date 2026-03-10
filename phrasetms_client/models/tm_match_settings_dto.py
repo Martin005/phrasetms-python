@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.metadata_priority_settings_dto import MetadataPrioritySettingsDto
 
 class TMMatchSettingsDto(BaseModel):
@@ -33,7 +33,8 @@ class TMMatchSettingsDto(BaseModel):
     metadata_priority: Optional[MetadataPrioritySettingsDto] = Field(None, alias="metadataPriority")
     __properties = ["contextType", "prevOrNextSegment", "penalizeMultiContextMatch", "ignoreTagMetadata", "metadataPriority"]
 
-    @validator('context_type')
+    @field_validator('context_type')
+    @classmethod
     def context_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -43,14 +44,10 @@ class TMMatchSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('AUTO', 'PREV_AND_NEXT_SEGMENT', 'SEGMENT_KEY', 'NO_CONTEXT')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -63,7 +60,7 @@ class TMMatchSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -79,9 +76,9 @@ class TMMatchSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TMMatchSettingsDto.parse_obj(obj)
+            return TMMatchSettingsDto.model_validate(obj)
 
-        _obj = TMMatchSettingsDto.parse_obj({
+        _obj = TMMatchSettingsDto.model_validate({
             "context_type": obj.get("contextType"),
             "prev_or_next_segment": obj.get("prevOrNextSegment"),
             "penalize_multi_context_match": obj.get("penalizeMultiContextMatch"),

@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.id_reference import IdReference
 from phrasetms_client.models.uid_reference import UidReference
 
@@ -27,20 +27,16 @@ class NotifyJobPartsRequestDto(BaseModel):
     """
     NotifyJobPartsRequestDto
     """
-    jobs: conlist(UidReference) = Field(...)
+    jobs: List[UidReference] = Field(...)
     email_template: IdReference = Field(..., alias="emailTemplate")
-    cc: Optional[conlist(StrictStr)] = None
-    bcc: Optional[conlist(StrictStr)] = None
+    cc: Optional[List[StrictStr]] = None
+    bcc: Optional[List[StrictStr]] = None
     __properties = ["jobs", "emailTemplate", "cc", "bcc"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class NotifyJobPartsRequestDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -76,9 +72,9 @@ class NotifyJobPartsRequestDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return NotifyJobPartsRequestDto.parse_obj(obj)
+            return NotifyJobPartsRequestDto.model_validate(obj)
 
-        _obj = NotifyJobPartsRequestDto.parse_obj({
+        _obj = NotifyJobPartsRequestDto.model_validate({
             "jobs": [UidReference.from_dict(_item) for _item in obj.get("jobs")] if obj.get("jobs") is not None else None,
             "email_template": IdReference.from_dict(obj.get("emailTemplate")) if obj.get("emailTemplate") is not None else None,
             "cc": obj.get("cc"),

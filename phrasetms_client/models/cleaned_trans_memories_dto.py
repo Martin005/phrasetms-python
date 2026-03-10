@@ -18,20 +18,22 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictStr, confloat, conint, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 
 class CleanedTransMemoriesDto(BaseModel):
     """
     CleanedTransMemoriesDto
     """
-    uids: conlist(StrictStr) = Field(...)
+    uids: List[StrictStr] = Field(...)
     output_format: Optional[StrictStr] = Field(None, alias="outputFormat")
-    preserve_ratio: Optional[Union[confloat(le=1, gt=0, strict=True), conint(le=1, gt=0, strict=True)]] = Field(None, alias="preserveRatio")
-    target_langs: Optional[conlist(StrictStr)] = Field(None, alias="targetLangs")
+    preserve_ratio: Optional[Union[Annotated[float, Field(le=1, gt=0, strict=True)], Annotated[int, Field(le=1, gt=0, strict=True)]]] = Field(None, alias="preserveRatio")
+    target_langs: Optional[List[StrictStr]] = Field(None, alias="targetLangs")
     __properties = ["uids", "outputFormat", "preserveRatio", "targetLangs"]
 
-    @validator('output_format')
+    @field_validator('output_format')
+    @classmethod
     def output_format_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -41,14 +43,10 @@ class CleanedTransMemoriesDto(BaseModel):
             raise ValueError("must be one of enum values ('TXT', 'TSV')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -61,7 +59,7 @@ class CleanedTransMemoriesDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -74,9 +72,9 @@ class CleanedTransMemoriesDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CleanedTransMemoriesDto.parse_obj(obj)
+            return CleanedTransMemoriesDto.model_validate(obj)
 
-        _obj = CleanedTransMemoriesDto.parse_obj({
+        _obj = CleanedTransMemoriesDto.model_validate({
             "uids": obj.get("uids"),
             "output_format": obj.get("outputFormat"),
             "preserve_ratio": obj.get("preserveRatio"),

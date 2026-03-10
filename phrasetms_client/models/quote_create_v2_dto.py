@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, constr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, StringConstraints
 from phrasetms_client.models.id_reference import IdReference
 from phrasetms_client.models.provider_reference import ProviderReference
 from phrasetms_client.models.quote_units_dto import QuoteUnitsDto
@@ -30,25 +31,21 @@ class QuoteCreateV2Dto(BaseModel):
     """
     QuoteCreateV2Dto
     """
-    name: constr(strict=True, max_length=255, min_length=0) = Field(...)
+    name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
     project: UidReference = Field(...)
     analyse: IdReference = Field(...)
     price_list: IdReference = Field(..., alias="priceList")
     net_rate_scheme: Optional[IdReference] = Field(None, alias="netRateScheme")
     provider: Optional[ProviderReference] = None
-    workflow_settings: Optional[conlist(QuoteWorkflowSettingDto, unique_items=True)] = Field(None, alias="workflowSettings")
-    units: Optional[conlist(QuoteUnitsDto)] = None
-    additional_steps: Optional[conlist(StrictStr)] = Field(None, alias="additionalSteps")
+    workflow_settings: Optional[List[QuoteWorkflowSettingDto]] = Field(None, alias="workflowSettings")
+    units: Optional[List[QuoteUnitsDto]] = None
+    additional_steps: Optional[List[StrictStr]] = Field(None, alias="additionalSteps")
     __properties = ["name", "project", "analyse", "priceList", "netRateScheme", "provider", "workflowSettings", "units", "additionalSteps"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -61,7 +58,7 @@ class QuoteCreateV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -103,9 +100,9 @@ class QuoteCreateV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return QuoteCreateV2Dto.parse_obj(obj)
+            return QuoteCreateV2Dto.model_validate(obj)
 
-        _obj = QuoteCreateV2Dto.parse_obj({
+        _obj = QuoteCreateV2Dto.model_validate({
             "name": obj.get("name"),
             "project": UidReference.from_dict(obj.get("project")) if obj.get("project") is not None else None,
             "analyse": IdReference.from_dict(obj.get("analyse")) if obj.get("analyse") is not None else None,

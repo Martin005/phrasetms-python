@@ -19,24 +19,20 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.metadata_field import MetadataField
 
 class MetadataPrioritySettingsDto(BaseModel):
     """
     MetadataPrioritySettingsDto
     """
-    prioritized_fields: Optional[conlist(MetadataField)] = Field(None, alias="prioritizedFields")
+    prioritized_fields: Optional[List[MetadataField]] = Field(None, alias="prioritizedFields")
     __properties = ["prioritizedFields"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class MetadataPrioritySettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class MetadataPrioritySettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MetadataPrioritySettingsDto.parse_obj(obj)
+            return MetadataPrioritySettingsDto.model_validate(obj)
 
-        _obj = MetadataPrioritySettingsDto.parse_obj({
+        _obj = MetadataPrioritySettingsDto.model_validate({
             "prioritized_fields": [MetadataField.from_dict(_item) for _item in obj.get("prioritizedFields")] if obj.get("prioritizedFields") is not None else None
         })
         return _obj

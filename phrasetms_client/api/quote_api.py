@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing_extensions import Annotated
+from typing import Optional
 
 from pydantic import StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.email_quotes_request_dto import EmailQuotesRequestDto
 from phrasetms_client.models.email_quotes_response_dto import EmailQuotesResponseDto
@@ -49,7 +49,7 @@ class QuoteApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_quote_v2(self, body : Optional[QuoteCreateV2Dto] = None, **kwargs) -> QuoteV2Dto:  # noqa: E501
         """Create quote  # noqa: E501
 
@@ -78,7 +78,7 @@ class QuoteApi(object):
             raise ValueError("Error! Please call the create_quote_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_quote_v2_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_quote_v2_with_http_info(self, body : Optional[QuoteCreateV2Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create quote  # noqa: E501
 
@@ -206,7 +206,7 @@ class QuoteApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_quote(self, quote_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete quote  # noqa: E501
 
@@ -234,7 +234,7 @@ class QuoteApi(object):
             raise ValueError("Error! Please call the delete_quote_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_quote_with_http_info(quote_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_quote_with_http_info(self, quote_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete quote  # noqa: E501
 
@@ -337,7 +337,7 @@ class QuoteApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def email_quotes(self, body : Optional[EmailQuotesRequestDto] = None, **kwargs) -> EmailQuotesResponseDto:  # noqa: E501
         """Email quotes  # noqa: E501
 
@@ -365,7 +365,7 @@ class QuoteApi(object):
             raise ValueError("Error! Please call the email_quotes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.email_quotes_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def email_quotes_with_http_info(self, body : Optional[EmailQuotesRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Email quotes  # noqa: E501
 
@@ -492,7 +492,7 @@ class QuoteApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get2(self, quote_uid : StrictStr, **kwargs) -> QuoteDto:  # noqa: E501
         """Get quote  # noqa: E501
 
@@ -520,7 +520,7 @@ class QuoteApi(object):
             raise ValueError("Error! Please call the get2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get2_with_http_info(quote_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get2_with_http_info(self, quote_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get quote  # noqa: E501
 

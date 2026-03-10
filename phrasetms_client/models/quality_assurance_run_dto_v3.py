@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conint, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.segment_reference import SegmentReference
 
 class QualityAssuranceRunDtoV3(BaseModel):
@@ -27,11 +28,12 @@ class QualityAssuranceRunDtoV3(BaseModel):
     QualityAssuranceRunDtoV3
     """
     initial_segment: Optional[SegmentReference] = Field(None, alias="initialSegment")
-    max_qa_warnings_count: Optional[conint(strict=True, le=1000, ge=1)] = Field(None, alias="maxQaWarningsCount", description="Maximum number of QA warnings in result, default: 100. For efficiency reasons QA warnings are processed with minimum segments chunk size 10, therefore slightly more warnings are returned.")
-    warning_types: Optional[conlist(StrictStr, max_items=100, min_items=0)] = Field(None, alias="warningTypes")
+    max_qa_warnings_count: Optional[Annotated[int, Field(strict=True, le=1000, ge=1)]] = Field(None, alias="maxQaWarningsCount", description="Maximum number of QA warnings in result, default: 100. For efficiency reasons QA warnings are processed with minimum segments chunk size 10, therefore slightly more warnings are returned.")
+    warning_types: Optional[List[StrictStr]] = Field(None, alias="warningTypes")
     __properties = ["initialSegment", "maxQaWarningsCount", "warningTypes"]
 
-    @validator('warning_types')
+    @field_validator('warning_types')
+    @classmethod
     def warning_types_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -42,14 +44,10 @@ class QualityAssuranceRunDtoV3(BaseModel):
                 raise ValueError("each list item must be one of ('EmptyTranslation', 'TrailingPunctuation', 'Formatting', 'JoinTags', 'MissingNumbersV3', 'MultipleSpacesV3', 'NonConformingTerm', 'NotConfirmed', 'TranslationLength', 'AbsoluteLength', 'RelativeLength', 'UnresolvedComment', 'EmptyPairTags', 'InconsistentTranslationTargetSource', 'InconsistentTranslationSourceTarget', 'ForbiddenString', 'SpellCheck', 'RepeatedWord', 'InconsistentTagContent', 'EmptyTagContent', 'Malformed', 'ForbiddenTerm', 'NewerAtLowerLevel', 'LeadingAndTrailingSpaces', 'LeadingSpaces', 'TrailingSpaces', 'TargetSourceIdentical', 'SourceOrTargetRegexp', 'UnmodifiedFuzzyTranslation', 'UnmodifiedFuzzyTranslationTM', 'UnmodifiedFuzzyTranslationMTNT', 'Moravia', 'ExtraNumbersV3', 'UnresolvedConversation', 'NestedTags', 'FuzzyInconsistencyTargetSource', 'FuzzyInconsistencySourceTarget', 'CustomQA')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -62,7 +60,7 @@ class QualityAssuranceRunDtoV3(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -78,9 +76,9 @@ class QualityAssuranceRunDtoV3(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return QualityAssuranceRunDtoV3.parse_obj(obj)
+            return QualityAssuranceRunDtoV3.model_validate(obj)
 
-        _obj = QualityAssuranceRunDtoV3.parse_obj({
+        _obj = QualityAssuranceRunDtoV3.model_validate({
             "initial_segment": SegmentReference.from_dict(obj.get("initialSegment")) if obj.get("initialSegment") is not None else None,
             "max_qa_warnings_count": obj.get("maxQaWarningsCount"),
             "warning_types": obj.get("warningTypes")

@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.user_reference import UserReference
 
 class ImportSettingsReference(BaseModel):
@@ -32,14 +32,10 @@ class ImportSettingsReference(BaseModel):
     date_created: Optional[datetime] = Field(None, alias="dateCreated")
     __properties = ["uid", "name", "createdBy", "dateCreated"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class ImportSettingsReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -68,9 +64,9 @@ class ImportSettingsReference(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ImportSettingsReference.parse_obj(obj)
+            return ImportSettingsReference.model_validate(obj)
 
-        _obj = ImportSettingsReference.parse_obj({
+        _obj = ImportSettingsReference.model_validate({
             "uid": obj.get("uid"),
             "name": obj.get("name"),
             "created_by": UserReference.from_dict(obj.get("createdBy")) if obj.get("createdBy") is not None else None,

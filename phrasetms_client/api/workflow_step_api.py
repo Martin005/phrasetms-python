@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import List, Optional
 
-from pydantic import Field, StrictStr, conint, conlist, validator
+from pydantic import Field, StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.create_workflow_step_dto import CreateWorkflowStepDto
 from phrasetms_client.models.edit_workflow_step_dto import EditWorkflowStepDto
@@ -49,7 +49,7 @@ class WorkflowStepApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_wf_step(self, body : Optional[CreateWorkflowStepDto] = None, **kwargs) -> WorkflowStepDto:  # noqa: E501
         """Create workflow step  # noqa: E501
 
@@ -77,7 +77,7 @@ class WorkflowStepApi(object):
             raise ValueError("Error! Please call the create_wf_step_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_wf_step_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_wf_step_with_http_info(self, body : Optional[CreateWorkflowStepDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create workflow step  # noqa: E501
 
@@ -204,7 +204,7 @@ class WorkflowStepApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_wf_step(self, workflow_step_uid : StrictStr, body : Optional[EditWorkflowStepDto] = None, **kwargs) -> WorkflowStepDto:  # noqa: E501
         """Edit workflow step  # noqa: E501
 
@@ -234,7 +234,7 @@ class WorkflowStepApi(object):
             raise ValueError("Error! Please call the edit_wf_step_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_wf_step_with_http_info(workflow_step_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_wf_step_with_http_info(self, workflow_step_uid : StrictStr, body : Optional[EditWorkflowStepDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit workflow step  # noqa: E501
 
@@ -367,8 +367,8 @@ class WorkflowStepApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_wf_steps(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, name : Annotated[Optional[StrictStr], Field(description="Name of the workflow step")] = None, abbr : Annotated[Optional[StrictStr], Field(description="Abbreviation of workflow step")] = None, **kwargs) -> PageDtoWorkflowStepDto:  # noqa: E501
+    @validate_call
+    def list_wf_steps(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, name : Annotated[Optional[StrictStr], Field(description="Name of the workflow step")] = None, abbr : Annotated[Optional[StrictStr], Field(description="Abbreviation of workflow step")] = None, **kwargs) -> PageDtoWorkflowStepDto:  # noqa: E501
         """List workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -405,8 +405,8 @@ class WorkflowStepApi(object):
             raise ValueError("Error! Please call the list_wf_steps_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_wf_steps_with_http_info(page_number, page_size, sort, order, name, abbr, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_wf_steps_with_http_info(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, name : Annotated[Optional[StrictStr], Field(description="Name of the workflow step")] = None, abbr : Annotated[Optional[StrictStr], Field(description="Abbreviation of workflow step")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_wf_steps_with_http_info(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, name : Annotated[Optional[StrictStr], Field(description="Name of the workflow step")] = None, abbr : Annotated[Optional[StrictStr], Field(description="Abbreviation of workflow step")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -555,8 +555,8 @@ class WorkflowStepApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_workflow_steps(self, user_uid : StrictStr, status : Optional[conlist(StrictStr)] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[conlist(StrictStr)] = None, due_in_hours : Annotated[Optional[conint(strict=True, ge=-1)], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> PageDtoWorkflowStepReference:  # noqa: E501
+    @validate_call
+    def list_workflow_steps(self, user_uid : StrictStr, status : Optional[List[StrictStr]] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[List[StrictStr]] = None, due_in_hours : Annotated[Optional[Annotated[int, Field(strict=True, ge=-1)]], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> PageDtoWorkflowStepReference:  # noqa: E501
         """List assigned workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -597,8 +597,8 @@ class WorkflowStepApi(object):
             raise ValueError("Error! Please call the list_workflow_steps_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_workflow_steps_with_http_info(user_uid, status, project_uid, target_lang, due_in_hours, filename, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_workflow_steps_with_http_info(self, user_uid : StrictStr, status : Optional[conlist(StrictStr)] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[conlist(StrictStr)] = None, due_in_hours : Annotated[Optional[conint(strict=True, ge=-1)], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_workflow_steps_with_http_info(self, user_uid : StrictStr, status : Optional[List[StrictStr]] = None, project_uid : Optional[StrictStr] = None, target_lang : Optional[List[StrictStr]] = None, due_in_hours : Annotated[Optional[Annotated[int, Field(strict=True, ge=-1)]], Field(description="-1 for jobs that are overdue")] = None, filename : Optional[StrictStr] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List assigned workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

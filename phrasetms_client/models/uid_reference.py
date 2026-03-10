@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
 
 
 class UidReference(BaseModel):
@@ -30,15 +30,10 @@ class UidReference(BaseModel):
     uid: Optional[StrictStr] = None
     __properties = ["uid"]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +46,7 @@ class UidReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         return _dict
 
     @classmethod
@@ -61,9 +56,9 @@ class UidReference(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return UidReference.parse_obj(obj)
+            return UidReference.model_validate(obj)
 
-        _obj = UidReference.parse_obj(
+        _obj = UidReference.model_validate(
             {"uid": obj.get("uid") if obj.get("uid") is not None else None}
         )
         return _obj

@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, conint
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.reference_correlation import ReferenceCorrelation
 
 class PlainReferences(BaseModel):
@@ -28,22 +29,18 @@ class PlainReferences(BaseModel):
     """
     task_id: Optional[StrictStr] = Field(None, alias="taskId")
     job_part_uid: Optional[StrictStr] = Field(None, alias="jobPartUid")
-    trans_group_id: conint(strict=True, ge=0) = Field(..., alias="transGroupId")
+    trans_group_id: Annotated[int, Field(strict=True, ge=0)] = Field(..., alias="transGroupId")
     segment_id: StrictStr = Field(..., alias="segmentId")
     conversation_title: Optional[StrictStr] = Field(None, alias="conversationTitle")
-    conversation_title_offset: Optional[conint(strict=True, ge=0)] = Field(None, alias="conversationTitleOffset")
+    conversation_title_offset: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(None, alias="conversationTitleOffset")
     commented_text: Optional[StrictStr] = Field(None, alias="commentedText")
     correlation: Optional[ReferenceCorrelation] = None
     __properties = ["taskId", "jobPartUid", "transGroupId", "segmentId", "conversationTitle", "conversationTitleOffset", "commentedText", "correlation"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -56,7 +53,7 @@ class PlainReferences(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                             "task_id",
                             "job_part_uid",
@@ -74,9 +71,9 @@ class PlainReferences(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PlainReferences.parse_obj(obj)
+            return PlainReferences.model_validate(obj)
 
-        _obj = PlainReferences.parse_obj({
+        _obj = PlainReferences.model_validate({
             "task_id": obj.get("taskId"),
             "job_part_uid": obj.get("jobPartUid"),
             "trans_group_id": obj.get("transGroupId"),

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from typing import Optional
-from pydantic import Field, StrictBool, StrictInt, StrictStr
+from pydantic import Field, ConfigDict, StrictBool, StrictInt, StrictStr
 from phrasetms_client.models.provider_reference import ProviderReference
 
 
@@ -43,15 +43,10 @@ class USER(ProviderReference):
         "active",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -64,7 +59,7 @@ class USER(ProviderReference):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(
+        _dict = self.model_dump(
             by_alias=True,
             exclude={
                 "user_name",
@@ -84,9 +79,9 @@ class USER(ProviderReference):
             return None
 
         if not isinstance(obj, dict):
-            return USER.parse_obj(obj)
+            return USER.model_validate(obj)
 
-        _obj = USER.parse_obj(
+        _obj = USER.model_validate(
             {
                 "type": obj.get("type"),
                 "user_name": obj.get("userName"),

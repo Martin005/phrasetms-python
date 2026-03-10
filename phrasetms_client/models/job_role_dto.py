@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.project_workflow_step_dto_v2 import ProjectWorkflowStepDtoV2
 
 class JobRoleDto(BaseModel):
@@ -31,14 +31,16 @@ class JobRoleDto(BaseModel):
     organization_type: Optional[StrictStr] = Field(None, alias="organizationType", description="not null only for shared projects")
     __properties = ["type", "workflowStep", "organizationType"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('PROJECT_OWNER', 'JOB_OWNER', 'PROVIDER', 'GUEST'):
             raise ValueError("must be one of enum values ('PROJECT_OWNER', 'JOB_OWNER', 'PROVIDER', 'GUEST')")
         return value
 
-    @validator('organization_type')
+    @field_validator('organization_type')
+    @classmethod
     def organization_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -48,14 +50,10 @@ class JobRoleDto(BaseModel):
             raise ValueError("must be one of enum values ('VENDOR', 'BUYER')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -68,7 +66,7 @@ class JobRoleDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -84,9 +82,9 @@ class JobRoleDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobRoleDto.parse_obj(obj)
+            return JobRoleDto.model_validate(obj)
 
-        _obj = JobRoleDto.parse_obj({
+        _obj = JobRoleDto.model_validate({
             "type": obj.get("type"),
             "workflow_step": ProjectWorkflowStepDtoV2.from_dict(obj.get("workflowStep")) if obj.get("workflowStep") is not None else None,
             "organization_type": obj.get("organizationType")

@@ -19,24 +19,20 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.custom_field_instance_dto import CustomFieldInstanceDto
 
 class CustomFieldInstancesDto(BaseModel):
     """
     CustomFieldInstancesDto
     """
-    custom_field_instances: Optional[conlist(CustomFieldInstanceDto)] = Field(None, alias="customFieldInstances")
+    custom_field_instances: Optional[List[CustomFieldInstanceDto]] = Field(None, alias="customFieldInstances")
     __properties = ["customFieldInstances"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class CustomFieldInstancesDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class CustomFieldInstancesDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CustomFieldInstancesDto.parse_obj(obj)
+            return CustomFieldInstancesDto.model_validate(obj)
 
-        _obj = CustomFieldInstancesDto.parse_obj({
+        _obj = CustomFieldInstancesDto.model_validate({
             "custom_field_instances": [CustomFieldInstanceDto.from_dict(_item) for _item in obj.get("customFieldInstances")] if obj.get("customFieldInstances") is not None else None
         })
         return _obj

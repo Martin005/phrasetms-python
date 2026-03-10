@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictInt, confloat, conint
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt
 from phrasetms_client.models.uid_reference import UidReference
 
 
@@ -38,7 +39,7 @@ class SetProjectTemplateTransMemoryV2Dto(BaseModel):
         description="Can be set only for Translation Memory with read == true.<br/>         Max 2 write TMs allowed per project.<br/>         Default: false",
     )
     penalty: Optional[
-        Union[confloat(le=100.0, ge=0, strict=True), conint(le=100, ge=0, strict=True)]
+        Union[Annotated[float, Field(le=100.0, ge=0, strict=True)], Annotated[int, Field(le=100, ge=0, strict=True)]]
     ] = None
     apply_penalty_to101_only: Optional[StrictBool] = Field(
         None,
@@ -55,15 +56,10 @@ class SetProjectTemplateTransMemoryV2Dto(BaseModel):
         "order",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -76,7 +72,7 @@ class SetProjectTemplateTransMemoryV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of trans_memory
         if self.trans_memory:
             _dict["transMemory"] = self.trans_memory.to_dict()
@@ -89,9 +85,9 @@ class SetProjectTemplateTransMemoryV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SetProjectTemplateTransMemoryV2Dto.parse_obj(obj)
+            return SetProjectTemplateTransMemoryV2Dto.model_validate(obj)
 
-        _obj = SetProjectTemplateTransMemoryV2Dto.parse_obj(
+        _obj = SetProjectTemplateTransMemoryV2Dto.model_validate(
             {
                 "trans_memory": UidReference.from_dict(obj.get("transMemory"))
                 if obj.get("transMemory") is not None

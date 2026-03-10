@@ -18,30 +18,35 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conint, conlist, constr
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictFloat,
+    StrictInt,
+    StrictStr,
+    StringConstraints,
+)
 from phrasetms_client.models.substitute_dto import SubstituteDto
 
 class PseudoTranslateActionDto(BaseModel):
     """
     PseudoTranslateActionDto
     """
-    replacement: Optional[constr(strict=True, max_length=10, min_length=1)] = None
+    replacement: Optional[Annotated[str, StringConstraints(strict=True, max_length=10, min_length=1)]] = None
     prefix: Optional[StrictStr] = None
     suffix: Optional[StrictStr] = None
     length: Optional[Union[StrictFloat, StrictInt]] = None
-    key_hash_prefix_len: Optional[conint(strict=True, le=18, ge=0)] = Field(None, alias="keyHashPrefixLen")
-    substitution: Optional[conlist(SubstituteDto, max_items=100, min_items=1)] = None
+    key_hash_prefix_len: Optional[Annotated[int, Field(strict=True, le=18, ge=0)]] = Field(None, alias="keyHashPrefixLen")
+    substitution: Optional[List[SubstituteDto]] = None
     __properties = ["replacement", "prefix", "suffix", "length", "keyHashPrefixLen", "substitution"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -54,7 +59,7 @@ class PseudoTranslateActionDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -74,9 +79,9 @@ class PseudoTranslateActionDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PseudoTranslateActionDto.parse_obj(obj)
+            return PseudoTranslateActionDto.model_validate(obj)
 
-        _obj = PseudoTranslateActionDto.parse_obj({
+        _obj = PseudoTranslateActionDto.model_validate({
             "replacement": obj.get("replacement"),
             "prefix": obj.get("prefix"),
             "suffix": obj.get("suffix"),

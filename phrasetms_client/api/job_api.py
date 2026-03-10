@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import Any, Dict, List, Optional
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr, conint, conlist, validator
+from pydantic import Field, StrictBool, StrictInt, StrictStr
 
-from typing import Any, Dict, Optional
 
 from phrasetms_client.models.compared_segments_dto import ComparedSegmentsDto
 from phrasetms_client.models.create_terms_dto import CreateTermsDto
@@ -95,8 +95,8 @@ class JobApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
-    def compare_part(self, project_uid : StrictStr, at_workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, with_workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, body : Optional[JobPartReadyReferences] = None, **kwargs) -> ComparedSegmentsDto:  # noqa: E501
+    @validate_call
+    def compare_part(self, project_uid : StrictStr, at_workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, with_workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, body : Optional[JobPartReadyReferences] = None, **kwargs) -> ComparedSegmentsDto:  # noqa: E501
         """Compare jobs on workflow levels  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -129,8 +129,8 @@ class JobApi(object):
             raise ValueError("Error! Please call the compare_part_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.compare_part_with_http_info(project_uid, at_workflow_level, with_workflow_level, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def compare_part_with_http_info(self, project_uid : StrictStr, at_workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, with_workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, body : Optional[JobPartReadyReferences] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def compare_part_with_http_info(self, project_uid : StrictStr, at_workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, with_workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, body : Optional[JobPartReadyReferences] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Compare jobs on workflow levels  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -274,7 +274,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def completed_file1(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Download target file (async)  # noqa: E501
 
@@ -305,7 +305,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the completed_file1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.completed_file1_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def completed_file1_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Download target file (async)  # noqa: E501
 
@@ -415,7 +415,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def copy_source_to_target(self, project_uid : StrictStr, body : Optional[JobPartReadyReferences] = None, **kwargs) -> None:  # noqa: E501
         """Copy Source to Target  # noqa: E501
 
@@ -445,7 +445,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the copy_source_to_target_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.copy_source_to_target_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def copy_source_to_target_with_http_info(self, project_uid : StrictStr, body : Optional[JobPartReadyReferences] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Copy Source to Target  # noqa: E501
 
@@ -561,7 +561,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def copy_source_to_target_job_part(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Copy Source to Target job  # noqa: E501
 
@@ -591,7 +591,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the copy_source_to_target_job_part_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.copy_source_to_target_job_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def copy_source_to_target_job_part_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Copy Source to Target job  # noqa: E501
 
@@ -700,7 +700,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_job(self, project_uid : StrictStr, memsource : Optional[StrictStr] = None, content_disposition : Annotated[Optional[StrictStr], Field(description="must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)`")] = None, body : Optional[object] = None, **kwargs) -> JobListDto:  # noqa: E501
         """Create job  # noqa: E501
 
@@ -735,7 +735,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the create_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_job_with_http_info(project_uid, memsource, content_disposition, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_job_with_http_info(self, project_uid : StrictStr, memsource : Optional[StrictStr] = None, content_disposition : Annotated[Optional[StrictStr], Field(description="must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)`")] = None, body : Optional[object] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create job  # noqa: E501
 
@@ -881,7 +881,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_job_from_async_download_task(self, project_uid : StrictStr, download_task_id : Optional[StrictStr] = None, continuous : Optional[StrictBool] = None, body : Optional[JobCreateRequestDto] = None, **kwargs) -> JobListDto:  # noqa: E501
         """Create job from connector asynchronous download task  # noqa: E501
 
@@ -916,7 +916,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the create_job_from_async_download_task_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_job_from_async_download_task_with_http_info(project_uid, download_task_id, continuous, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_job_from_async_download_task_with_http_info(self, project_uid : StrictStr, download_task_id : Optional[StrictStr] = None, continuous : Optional[StrictBool] = None, body : Optional[JobCreateRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create job from connector asynchronous download task  # noqa: E501
 
@@ -1062,7 +1062,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_term_by_job(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[CreateTermsDto] = None, **kwargs) -> TermPairDto:  # noqa: E501
         """Create term in job's term bases  # noqa: E501
 
@@ -1095,7 +1095,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the create_term_by_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_term_by_job_with_http_info(job_uid, project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_term_by_job_with_http_info(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[CreateTermsDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create term in job's term bases  # noqa: E501
 
@@ -1235,7 +1235,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_all_translations(self, project_uid : StrictStr, body : Optional[JobPartReadyReferences] = None, **kwargs) -> None:  # noqa: E501
         """Delete all translations  # noqa: E501
 
@@ -1265,7 +1265,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the delete_all_translations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_all_translations_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_all_translations_with_http_info(self, project_uid : StrictStr, body : Optional[JobPartReadyReferences] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete all translations  # noqa: E501
 
@@ -1381,7 +1381,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_all_translations1(self, project_uid : StrictStr, body : Optional[JobPartReadyDeleteTranslationDto] = None, **kwargs) -> None:  # noqa: E501
         """Delete specific translations  # noqa: E501
 
@@ -1411,7 +1411,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the delete_all_translations1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_all_translations1_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_all_translations1_with_http_info(self, project_uid : StrictStr, body : Optional[JobPartReadyDeleteTranslationDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete specific translations  # noqa: E501
 
@@ -1520,7 +1520,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_handover_file(self, project_uid : StrictStr, body : Optional[JobPartReferences] = None, **kwargs) -> None:  # noqa: E501
         """Delete handover file  # noqa: E501
 
@@ -1550,7 +1550,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the delete_handover_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_handover_file_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_handover_file_with_http_info(self, project_uid : StrictStr, body : Optional[JobPartReferences] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete handover file  # noqa: E501
 
@@ -1666,7 +1666,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_parts(self, project_uid : StrictStr, purge : Optional[StrictBool] = None, body : Optional[JobPartDeleteReferences] = None, **kwargs) -> None:  # noqa: E501
         """Delete job (batch)  # noqa: E501
 
@@ -1698,7 +1698,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the delete_parts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_parts_with_http_info(project_uid, purge, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_parts_with_http_info(self, project_uid : StrictStr, purge : Optional[StrictBool] = None, body : Optional[JobPartDeleteReferences] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete job (batch)  # noqa: E501
 
@@ -1820,7 +1820,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def download_completed_file(self, project_uid : StrictStr, job_uid : StrictStr, async_request_id : StrictStr, format : Optional[StrictStr] = None, **kwargs) -> None:  # noqa: E501
         """Download target file based on async request  # noqa: E501
 
@@ -1855,7 +1855,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the download_completed_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.download_completed_file_with_http_info(project_uid, job_uid, async_request_id, format, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def download_completed_file_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, async_request_id : StrictStr, format : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download target file based on async request  # noqa: E501
 
@@ -1977,7 +1977,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_job_import_settings(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[FileImportSettingsCreateDto] = None, **kwargs) -> FileImportSettingsDto:  # noqa: E501
         """Edit job import settings  # noqa: E501
 
@@ -2009,7 +2009,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the edit_job_import_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_job_import_settings_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_job_import_settings_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[FileImportSettingsCreateDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit job import settings  # noqa: E501
 
@@ -2148,7 +2148,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_part(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[JobPartUpdateSingleDto] = None, **kwargs) -> JobPartExtendedDto:  # noqa: E501
         """Edit job  # noqa: E501
 
@@ -2180,7 +2180,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the edit_part_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_part_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_part_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[JobPartUpdateSingleDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit job  # noqa: E501
 
@@ -2319,7 +2319,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_parts(self, project_uid : StrictStr, body : Optional[JobPartUpdateBatchDto] = None, **kwargs) -> JobPartsDto:  # noqa: E501
         """Edit jobs (batch)  # noqa: E501
 
@@ -2350,7 +2350,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the edit_parts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_parts_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_parts_with_http_info(self, project_uid : StrictStr, body : Optional[JobPartUpdateBatchDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit jobs (batch)  # noqa: E501
 
@@ -2484,7 +2484,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def export_to_online_repository(self, project_uid : StrictStr, body : Optional[JobExportActionDto] = None, **kwargs) -> JobExportResponseDto:  # noqa: E501
         """Export jobs to online repository  # noqa: E501
 
@@ -2514,7 +2514,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the export_to_online_repository_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.export_to_online_repository_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def export_to_online_repository_with_http_info(self, project_uid : StrictStr, body : Optional[JobExportActionDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Export jobs to online repository  # noqa: E501
 
@@ -2640,7 +2640,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def file_preview(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[Dict[str, Any]] = None, **kwargs) -> None:  # noqa: E501
         """Download preview file  # noqa: E501
 
@@ -2673,7 +2673,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the file_preview_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.file_preview_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def file_preview_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download preview file  # noqa: E501
 
@@ -2796,7 +2796,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def file_preview_job(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Download preview file  # noqa: E501
 
@@ -2826,7 +2826,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the file_preview_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.file_preview_job_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def file_preview_job_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Download preview file  # noqa: E501
 
@@ -2935,7 +2935,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_bilingual_file(self, project_uid : StrictStr, format : Optional[StrictStr] = None, preview : Optional[StrictBool] = None, body : Optional[GetBilingualFileDto] = None, **kwargs) -> None:  # noqa: E501
         """Download bilingual file  # noqa: E501
 
@@ -2969,7 +2969,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the get_bilingual_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_bilingual_file_with_http_info(project_uid, format, preview, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_bilingual_file_with_http_info(self, project_uid : StrictStr, format : Optional[StrictStr] = None, preview : Optional[StrictBool] = None, body : Optional[GetBilingualFileDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download bilingual file  # noqa: E501
 
@@ -3097,7 +3097,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_completed_file_warnings(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> TargetFileWarningsDto:  # noqa: E501
         """Get target file's warnings  # noqa: E501
 
@@ -3128,7 +3128,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the get_completed_file_warnings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_completed_file_warnings_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_completed_file_warnings_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get target file's warnings  # noqa: E501
 
@@ -3255,8 +3255,8 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_handover_files(self, project_uid : StrictStr, job_uid : Annotated[Optional[conlist(StrictStr)], Field(description="JobPart Id of requested handover file")] = None, **kwargs) -> None:  # noqa: E501
+    @validate_call
+    def get_handover_files(self, project_uid : StrictStr, job_uid : Annotated[Optional[List[StrictStr]], Field(description="JobPart Id of requested handover file")] = None, **kwargs) -> None:  # noqa: E501
         """Download handover file(s)  # noqa: E501
 
          For downloading multiple files as ZIP file provide multiple IDs in query parameters. * For example `?jobUid={id1}&jobUid={id2}` * When no files matched given IDs error 404 is returned, otherwise ZIP file will include those that were found   # noqa: E501
@@ -3286,8 +3286,8 @@ class JobApi(object):
             raise ValueError("Error! Please call the get_handover_files_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_handover_files_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_handover_files_with_http_info(self, project_uid : StrictStr, job_uid : Annotated[Optional[conlist(StrictStr)], Field(description="JobPart Id of requested handover file")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_handover_files_with_http_info(self, project_uid : StrictStr, job_uid : Annotated[Optional[List[StrictStr]], Field(description="JobPart Id of requested handover file")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download handover file(s)  # noqa: E501
 
          For downloading multiple files as ZIP file provide multiple IDs in query parameters. * For example `?jobUid={id1}&jobUid={id2}` * When no files matched given IDs error 404 is returned, otherwise ZIP file will include those that were found   # noqa: E501
@@ -3397,7 +3397,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_import_settings3(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> FileImportSettingsDto:  # noqa: E501
         """Get import settings for job  # noqa: E501
 
@@ -3427,7 +3427,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the get_import_settings3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_import_settings3_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_import_settings3_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get import settings for job  # noqa: E501
 
@@ -3553,7 +3553,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_original_file(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Download original file  # noqa: E501
 
@@ -3583,7 +3583,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the get_original_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_original_file_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_original_file_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Download original file  # noqa: E501
 
@@ -3692,7 +3692,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_part(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> JobPartExtendedDto:  # noqa: E501
         """Get job  # noqa: E501
 
@@ -3722,7 +3722,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the get_part_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_part_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_part_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get job  # noqa: E501
 
@@ -3848,7 +3848,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_parts_workflow_step(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ProjectWorkflowStepDto:  # noqa: E501
         """Get job's workflowStep  # noqa: E501
 
@@ -3878,7 +3878,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the get_parts_workflow_step_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_parts_workflow_step_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_parts_workflow_step_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get job's workflowStep  # noqa: E501
 
@@ -4004,7 +4004,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_segments_count(self, project_uid : StrictStr, body : Optional[JobPartReadyReferences] = None, **kwargs) -> SegmentsCountsResponseListDto:  # noqa: E501
         """Get segments count  # noqa: E501
 
@@ -4035,7 +4035,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the get_segments_count_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_segments_count_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_segments_count_with_http_info(self, project_uid : StrictStr, body : Optional[JobPartReadyReferences] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get segments count  # noqa: E501
 
@@ -4169,7 +4169,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_translation_resources(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> TranslationResourcesDto:  # noqa: E501
         """Get translation resources  # noqa: E501
 
@@ -4199,7 +4199,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the get_translation_resources_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_translation_resources_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_translation_resources_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get translation resources  # noqa: E501
 
@@ -4325,8 +4325,8 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_part_analyse_v3(self, project_uid : StrictStr, job_uid : StrictStr, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> PageDtoAnalyseReference:  # noqa: E501
+    @validate_call
+    def list_part_analyse_v3(self, project_uid : StrictStr, job_uid : StrictStr, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> PageDtoAnalyseReference:  # noqa: E501
         """List analyses  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4359,8 +4359,8 @@ class JobApi(object):
             raise ValueError("Error! Please call the list_part_analyse_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_part_analyse_v3_with_http_info(project_uid, job_uid, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_part_analyse_v3_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_part_analyse_v3_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List analyses  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4497,8 +4497,8 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_parts_v2(self, project_uid : StrictStr, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, count : Optional[StrictBool] = None, workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, status : Optional[conlist(StrictStr)] = None, assigned_user : Optional[StrictInt] = None, due_in_hours : Optional[StrictInt] = None, filename : Optional[StrictStr] = None, target_lang : Optional[StrictStr] = None, assigned_vendor : Optional[StrictInt] = None, **kwargs) -> PageDtoJobPartReferenceV2:  # noqa: E501
+    @validate_call
+    def list_parts_v2(self, project_uid : StrictStr, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, count : Optional[StrictBool] = None, workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, status : Optional[List[StrictStr]] = None, assigned_user : Optional[StrictInt] = None, due_in_hours : Optional[StrictInt] = None, filename : Optional[StrictStr] = None, target_lang : Optional[StrictStr] = None, assigned_vendor : Optional[StrictInt] = None, **kwargs) -> PageDtoJobPartReferenceV2:  # noqa: E501
         """List jobs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4545,8 +4545,8 @@ class JobApi(object):
             raise ValueError("Error! Please call the list_parts_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_parts_v2_with_http_info(project_uid, page_number, page_size, count, workflow_level, status, assigned_user, due_in_hours, filename, target_lang, assigned_vendor, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_parts_v2_with_http_info(self, project_uid : StrictStr, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, count : Optional[StrictBool] = None, workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, status : Optional[conlist(StrictStr)] = None, assigned_user : Optional[StrictInt] = None, due_in_hours : Optional[StrictInt] = None, filename : Optional[StrictStr] = None, target_lang : Optional[StrictStr] = None, assigned_vendor : Optional[StrictInt] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_parts_v2_with_http_info(self, project_uid : StrictStr, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, count : Optional[StrictBool] = None, workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, status : Optional[List[StrictStr]] = None, assigned_user : Optional[StrictInt] = None, due_in_hours : Optional[StrictInt] = None, filename : Optional[StrictStr] = None, target_lang : Optional[StrictStr] = None, assigned_vendor : Optional[StrictInt] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List jobs  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4726,7 +4726,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_providers4(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ProviderListDtoV2:  # noqa: E501
         """Get suggested providers  # noqa: E501
 
@@ -4756,7 +4756,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the list_providers4_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_providers4_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_providers4_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get suggested providers  # noqa: E501
 
@@ -4882,8 +4882,8 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_segments(self, project_uid : StrictStr, job_uid : StrictStr, begin_index : Optional[conint(strict=True, ge=0)] = None, end_index : Optional[conint(strict=True, ge=0)] = None, **kwargs) -> SegmentListDto:  # noqa: E501
+    @validate_call
+    def list_segments(self, project_uid : StrictStr, job_uid : StrictStr, begin_index : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, end_index : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, **kwargs) -> SegmentListDto:  # noqa: E501
         """Get segments  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -4916,8 +4916,8 @@ class JobApi(object):
             raise ValueError("Error! Please call the list_segments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_segments_with_http_info(project_uid, job_uid, begin_index, end_index, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_segments_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, begin_index : Optional[conint(strict=True, ge=0)] = None, end_index : Optional[conint(strict=True, ge=0)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_segments_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, begin_index : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, end_index : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get segments  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -5054,7 +5054,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def notify_assigned(self, project_uid : StrictStr, body : Optional[NotifyJobPartsRequestDto] = None, **kwargs) -> None:  # noqa: E501
         """Notify assigned users  # noqa: E501
 
@@ -5084,7 +5084,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the notify_assigned_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.notify_assigned_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def notify_assigned_with_http_info(self, project_uid : StrictStr, body : Optional[NotifyJobPartsRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Notify assigned users  # noqa: E501
 
@@ -5200,7 +5200,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def patch_part(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[JobPartPatchSingleDto] = None, **kwargs) -> JobPartExtendedDto:  # noqa: E501
         """Patch job  # noqa: E501
 
@@ -5232,7 +5232,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the patch_part_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.patch_part_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def patch_part_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[JobPartPatchSingleDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Patch job  # noqa: E501
 
@@ -5371,7 +5371,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def patch_update_job_parts(self, body : Optional[JobPartPatchBatchDto] = None, **kwargs) -> JobPartPatchResultDto:  # noqa: E501
         """Edit jobs (with possible partial updates)  # noqa: E501
 
@@ -5400,7 +5400,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the patch_update_job_parts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.patch_update_job_parts_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def patch_update_job_parts_with_http_info(self, body : Optional[JobPartPatchBatchDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit jobs (with possible partial updates)  # noqa: E501
 
@@ -5528,8 +5528,8 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def preview_urls(self, project_uid : StrictStr, job_uid : StrictStr, workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, **kwargs) -> PreviewUrlsDto:  # noqa: E501
+    @validate_call
+    def preview_urls(self, project_uid : StrictStr, job_uid : StrictStr, workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, **kwargs) -> PreviewUrlsDto:  # noqa: E501
         """Get PDF preview  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -5560,8 +5560,8 @@ class JobApi(object):
             raise ValueError("Error! Please call the preview_urls_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.preview_urls_with_http_info(project_uid, job_uid, workflow_level, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def preview_urls_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def preview_urls_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get PDF preview  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -5692,7 +5692,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def pseudo_translate1(self, project_uid : StrictStr, body : Optional[PseudoTranslateWrapperDto] = None, **kwargs) -> None:  # noqa: E501
         """Pseudo-translate job  # noqa: E501
 
@@ -5722,7 +5722,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the pseudo_translate1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.pseudo_translate1_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def pseudo_translate1_with_http_info(self, project_uid : StrictStr, body : Optional[PseudoTranslateWrapperDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Pseudo-translate job  # noqa: E501
 
@@ -5831,7 +5831,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def pseudo_translate_job_part(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[PseudoTranslateActionDto] = None, **kwargs) -> None:  # noqa: E501
         """Pseudo-translates job  # noqa: E501
 
@@ -5863,7 +5863,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the pseudo_translate_job_part_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.pseudo_translate_job_part_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def pseudo_translate_job_part_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[PseudoTranslateActionDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Pseudo-translates job  # noqa: E501
 
@@ -5985,7 +5985,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_by_job3(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[SearchTMByJobRequestDtoV3] = None, **kwargs) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Search job's translation memories  # noqa: E501
 
@@ -6017,7 +6017,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the search_by_job3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_by_job3_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_by_job3_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[SearchTMByJobRequestDtoV3] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search job's translation memories  # noqa: E501
 
@@ -6149,7 +6149,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_parts_in_project(self, project_uid : StrictStr, body : Optional[SearchJobsRequestDto] = None, **kwargs) -> SearchJobsDto:  # noqa: E501
         """Search jobs in project  # noqa: E501
 
@@ -6179,7 +6179,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the search_parts_in_project_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_parts_in_project_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_parts_in_project_with_http_info(self, project_uid : StrictStr, body : Optional[SearchJobsRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search jobs in project  # noqa: E501
 
@@ -6312,7 +6312,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_segment_by_job(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[SearchTMByJobRequestDto] = None, **kwargs) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory for segment by job  # noqa: E501
 
@@ -6345,7 +6345,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the search_segment_by_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_segment_by_job_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_segment_by_job_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[SearchTMByJobRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search translation memory for segment by job  # noqa: E501
 
@@ -6485,7 +6485,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_terms_by_job1(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[SearchTbByJobRequestDto] = None, **kwargs) -> SearchTbResponseListDto:  # noqa: E501
         """Search job's term bases  # noqa: E501
 
@@ -6518,7 +6518,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the search_terms_by_job1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_terms_by_job1_with_http_info(job_uid, project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_terms_by_job1_with_http_info(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[SearchTbByJobRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search job's term bases  # noqa: E501
 
@@ -6658,7 +6658,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_terms_in_text_by_job_v2(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[SearchTbInTextByJobRequestDto] = None, **kwargs) -> SearchInTextResponseList2Dto:  # noqa: E501
         """Search terms in text  # noqa: E501
 
@@ -6691,7 +6691,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the search_terms_in_text_by_job_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_terms_in_text_by_job_v2_with_http_info(job_uid, project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_terms_in_text_by_job_v2_with_http_info(self, job_uid : StrictStr, project_uid : StrictStr, body : Optional[SearchTbInTextByJobRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search terms in text  # noqa: E501
 
@@ -6831,7 +6831,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def set_status(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[JobStatusChangeActionDto] = None, **kwargs) -> None:  # noqa: E501
         """Edit job status  # noqa: E501
 
@@ -6863,7 +6863,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the set_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.set_status_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def set_status_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[JobStatusChangeActionDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit job status  # noqa: E501
 
@@ -6985,7 +6985,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def split(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[SplitJobActionDto] = None, **kwargs) -> JobPartsDto:  # noqa: E501
         """Split job  # noqa: E501
 
@@ -7018,7 +7018,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the split_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.split_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def split_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[SplitJobActionDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Split job  # noqa: E501
 
@@ -7158,7 +7158,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def status_changes(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> JobPartStatusChangesDto:  # noqa: E501
         """Get status changes  # noqa: E501
 
@@ -7188,7 +7188,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the status_changes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.status_changes_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def status_changes_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get status changes  # noqa: E501
 
@@ -7314,7 +7314,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_source(self, project_uid : StrictStr, memsource : Optional[StrictStr] = None, content_disposition : Annotated[Optional[StrictStr], Field(description="must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)`")] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> JobUpdateSourceResponseDto:  # noqa: E501
         """Update source  # noqa: E501
 
@@ -7349,7 +7349,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the update_source_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_source_with_http_info(project_uid, memsource, content_disposition, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_source_with_http_info(self, project_uid : StrictStr, memsource : Optional[StrictStr] = None, content_disposition : Annotated[Optional[StrictStr], Field(description="must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)`")] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update source  # noqa: E501
 
@@ -7495,7 +7495,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_target(self, project_uid : StrictStr, memsource : Optional[StrictStr] = None, content_disposition : Annotated[Optional[StrictStr], Field(description="must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)`")] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> JobUpdateSourceResponseDto:  # noqa: E501
         """Update target  # noqa: E501
 
@@ -7530,7 +7530,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the update_target_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_target_with_http_info(project_uid, memsource, content_disposition, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_target_with_http_info(self, project_uid : StrictStr, memsource : Optional[StrictStr] = None, content_disposition : Annotated[Optional[StrictStr], Field(description="must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)`")] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update target  # noqa: E501
 
@@ -7676,7 +7676,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def upload_bilingual_file(self, format : Optional[StrictStr] = None, save_to_trans_memory : Optional[StrictStr] = None, set_completed : Optional[StrictBool] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> JobPartsDto:  # noqa: E501
         """Upload bilingual file  # noqa: E501
 
@@ -7711,7 +7711,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the upload_bilingual_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.upload_bilingual_file_with_http_info(format, save_to_trans_memory, set_completed, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def upload_bilingual_file_with_http_info(self, format : Optional[StrictStr] = None, save_to_trans_memory : Optional[StrictStr] = None, set_completed : Optional[StrictBool] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Upload bilingual file  # noqa: E501
 
@@ -7857,7 +7857,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def upload_handover_file(self, project_uid : StrictStr, memsource : StrictStr, content_disposition : Annotated[StrictStr, Field(..., description="must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)`")], content_length : Optional[StrictInt] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> FileHandoverDto:  # noqa: E501
         """Upload handover file  # noqa: E501
 
@@ -7894,7 +7894,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the upload_handover_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.upload_handover_file_with_http_info(project_uid, memsource, content_disposition, content_length, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def upload_handover_file_with_http_info(self, project_uid : StrictStr, memsource : StrictStr, content_disposition : Annotated[StrictStr, Field(..., description="must match pattern `((inline|attachment); )?(filename\\*=UTF-8''(.+)|filename=\"?(.+)\"?)`")], content_length : Optional[StrictInt] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Upload handover file  # noqa: E501
 
@@ -8046,7 +8046,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def web_editor_link_v2(self, project_uid : StrictStr, body : Optional[CreateWebEditorLinkDtoV2] = None, **kwargs) -> WebEditorLinkDtoV2:  # noqa: E501
         """Get Web Editor URL  # noqa: E501
 
@@ -8077,7 +8077,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the web_editor_link_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.web_editor_link_v2_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def web_editor_link_v2_with_http_info(self, project_uid : StrictStr, body : Optional[CreateWebEditorLinkDtoV2] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Web Editor URL  # noqa: E501
 
@@ -8204,7 +8204,7 @@ class JobApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def wild_card_search_by_job3(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[WildCardSearchByJobRequestDtoV3] = None, **kwargs) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Wildcard search job's translation memories  # noqa: E501
 
@@ -8236,7 +8236,7 @@ class JobApi(object):
             raise ValueError("Error! Please call the wild_card_search_by_job3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.wild_card_search_by_job3_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def wild_card_search_by_job3_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[WildCardSearchByJobRequestDtoV3] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Wildcard search job's translation memories  # noqa: E501
 

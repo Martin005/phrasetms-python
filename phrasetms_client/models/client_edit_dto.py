@@ -18,30 +18,27 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, constr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StringConstraints
 from phrasetms_client.models.id_reference import IdReference
 
 class ClientEditDto(BaseModel):
     """
     ClientEditDto
     """
-    name: constr(strict=True, max_length=255, min_length=0) = Field(...)
-    external_id: Optional[constr(strict=True, max_length=255, min_length=0)] = Field(None, alias="externalId")
-    note: Optional[constr(strict=True, max_length=4096, min_length=0)] = None
+    name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
+    external_id: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = Field(None, alias="externalId")
+    note: Optional[Annotated[str, StringConstraints(strict=True, max_length=4096, min_length=0)]] = None
     display_note_in_project: Optional[StrictBool] = Field(None, alias="displayNoteInProject", description="Default: false")
     price_list: Optional[IdReference] = Field(None, alias="priceList")
     net_rate_scheme: Optional[IdReference] = Field(None, alias="netRateScheme")
     __properties = ["name", "externalId", "note", "displayNoteInProject", "priceList", "netRateScheme"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -54,7 +51,7 @@ class ClientEditDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -73,9 +70,9 @@ class ClientEditDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ClientEditDto.parse_obj(obj)
+            return ClientEditDto.model_validate(obj)
 
-        _obj = ClientEditDto.parse_obj({
+        _obj = ClientEditDto.model_validate({
             "name": obj.get("name"),
             "external_id": obj.get("externalId"),
             "note": obj.get("note"),

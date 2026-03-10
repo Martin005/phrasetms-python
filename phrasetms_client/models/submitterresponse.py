@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool
 from phrasetms_client.models.id_reference import IdReference
 from phrasetms_client.models.user_details_dto_v3 import UserDetailsDtoV3
 from phrasetms_client.models.user_reference import UserReference
@@ -28,18 +28,14 @@ class SUBMITTERRESPONSE(UserDetailsDtoV3):
     """
     SUBMITTERRESPONSE
     """
-    automation_widgets: conlist(IdReference) = Field(..., alias="automationWidgets")
+    automation_widgets: List[IdReference] = Field(..., alias="automationWidgets")
     project_view_created_by_other_submitters: Optional[StrictBool] = Field(None, alias="projectViewCreatedByOtherSubmitters")
     __properties = ["uid", "userName", "firstName", "lastName", "email", "dateCreated", "dateDeleted", "createdBy", "role", "timezone", "note", "receiveNewsletter", "active", "pendingEmailChange", "automationWidgets", "projectViewCreatedByOtherSubmitters"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class SUBMITTERRESPONSE(UserDetailsDtoV3):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -75,9 +71,9 @@ class SUBMITTERRESPONSE(UserDetailsDtoV3):
             return None
 
         if not isinstance(obj, dict):
-            return SUBMITTERRESPONSE.parse_obj(obj)
+            return SUBMITTERRESPONSE.model_validate(obj)
 
-        _obj = SUBMITTERRESPONSE.parse_obj({
+        _obj = SUBMITTERRESPONSE.model_validate({
             "uid": obj.get("uid"),
             "user_name": obj.get("userName"),
             "first_name": obj.get("firstName"),

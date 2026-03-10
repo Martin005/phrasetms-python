@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.async_response_v2_dto import AsyncResponseV2Dto
 from phrasetms_client.models.project_reference import ProjectReference
 from phrasetms_client.models.user_reference import UserReference
@@ -37,7 +37,8 @@ class AsyncRequestV2Dto(BaseModel):
     project: Optional[ProjectReference] = None
     __properties = ["id", "createdBy", "dateCreated", "action", "asyncResponse", "parent", "project"]
 
-    @validator('action')
+    @field_validator('action')
+    @classmethod
     def action_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -47,14 +48,10 @@ class AsyncRequestV2Dto(BaseModel):
             raise ValueError("must be one of enum values ('PRE_ANALYSE', 'POST_ANALYSE', 'COMPARE_ANALYSE', 'PARENT_ANALYSE', 'PRE_TRANSLATE', 'ASYNC_TRANSLATE', 'IMPORT_JOB', 'IMPORT_FILE', 'ALIGN', 'EXPORT_TMX_BY_QUERY', 'EXPORT_TMX', 'IMPORT_TMX', 'INSERT_INTO_TM', 'DELETE_TM', 'CLEAR_TM', 'QA', 'QA_V3', 'UPDATE_CONTINUOUS_JOB', 'UPDATE_SOURCE', 'UPDATE_TARGET', 'EXTRACT_CLEANED_TMS', 'GLOSSARY_PUT', 'GLOSSARY_DELETE', 'CREATE_PROJECT', 'EXPORT_COMPLETE_FILE')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -67,7 +64,7 @@ class AsyncRequestV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -92,9 +89,9 @@ class AsyncRequestV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AsyncRequestV2Dto.parse_obj(obj)
+            return AsyncRequestV2Dto.model_validate(obj)
 
-        _obj = AsyncRequestV2Dto.parse_obj({
+        _obj = AsyncRequestV2Dto.model_validate({
             "id": obj.get("id"),
             "created_by": UserReference.from_dict(obj.get("createdBy")) if obj.get("createdBy") is not None else None,
             "date_created": obj.get("dateCreated"),

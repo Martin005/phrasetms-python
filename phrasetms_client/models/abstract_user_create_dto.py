@@ -19,37 +19,43 @@ import json
 import phrasetms_client.models
 
 
+from typing_extensions import Annotated
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictStr, constr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictStr,
+    StringConstraints,
+    field_validator,
+)
 
 class AbstractUserCreateDto(BaseModel):
     """
     AbstractUserCreateDto
     """
-    user_name: constr(strict=True, max_length=255, min_length=0) = Field(..., alias="userName")
-    first_name: constr(strict=True, max_length=255, min_length=0) = Field(..., alias="firstName")
-    last_name: constr(strict=True, max_length=255, min_length=0) = Field(..., alias="lastName")
-    email: constr(strict=True, max_length=255, min_length=0) = Field(...)
-    password: constr(strict=True, max_length=255, min_length=0) = Field(...)
+    user_name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(..., alias="userName")
+    first_name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(..., alias="firstName")
+    last_name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(..., alias="lastName")
+    email: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
+    password: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
     role: StrictStr = Field(..., description="Enum: \"ADMIN\", \"PROJECT_MANAGER\", \"LINGUIST\", \"GUEST\", \"SUBMITTER\"")
-    timezone: constr(strict=True, max_length=255, min_length=0) = Field(...)
+    timezone: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
     receive_newsletter: Optional[StrictBool] = Field(None, alias="receiveNewsletter", description="Default: true")
-    note: Optional[constr(strict=True, max_length=4096, min_length=0)] = None
+    note: Optional[Annotated[str, StringConstraints(strict=True, max_length=4096, min_length=0)]] = None
     active: Optional[StrictBool] = Field(None, description="Default: true")
     __properties = ["userName", "firstName", "lastName", "email", "password", "role", "timezone", "receiveNewsletter", "note", "active"]
 
-    @validator('role')
+    @field_validator('role')
+    @classmethod
     def role_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('SYS_ADMIN', 'SYS_ADMIN_READ', 'ADMIN', 'PROJECT_MANAGER', 'LINGUIST', 'GUEST', 'SUBMITTER'):
             raise ValueError("must be one of enum values ('SYS_ADMIN', 'SYS_ADMIN_READ', 'ADMIN', 'PROJECT_MANAGER', 'LINGUIST', 'GUEST', 'SUBMITTER')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     # JSON field name that stores the object type
     __discriminator_property_name = 'role'
 
@@ -73,7 +79,7 @@ class AbstractUserCreateDto(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -86,7 +92,7 @@ class AbstractUserCreateDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.workflow_step_reference import WorkflowStepReference
 
 class NetRateSchemeWorkflowStepReference(BaseModel):
@@ -30,14 +30,10 @@ class NetRateSchemeWorkflowStepReference(BaseModel):
     workflow_step: Optional[WorkflowStepReference] = Field(None, alias="workflowStep")
     __properties = ["id", "workflowStep"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class NetRateSchemeWorkflowStepReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -66,9 +62,9 @@ class NetRateSchemeWorkflowStepReference(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return NetRateSchemeWorkflowStepReference.parse_obj(obj)
+            return NetRateSchemeWorkflowStepReference.model_validate(obj)
 
-        _obj = NetRateSchemeWorkflowStepReference.parse_obj({
+        _obj = NetRateSchemeWorkflowStepReference.model_validate({
             "id": obj.get("id"),
             "workflow_step": WorkflowStepReference.from_dict(obj.get("workflowStep")) if obj.get("workflowStep") is not None else None
         })

@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.auth_schema import AuthSchema
 from phrasetms_client.models.supported import Supported
 
@@ -27,8 +27,8 @@ class ServiceProviderConfigDto(BaseModel):
     """
     ServiceProviderConfigDto
     """
-    authentication_schemes: Optional[conlist(AuthSchema)] = Field(None, alias="authenticationSchemes")
-    schemas: Optional[conlist(StrictStr)] = None
+    authentication_schemes: Optional[List[AuthSchema]] = Field(None, alias="authenticationSchemes")
+    schemas: Optional[List[StrictStr]] = None
     patch: Optional[Supported] = None
     bulk: Optional[Supported] = None
     filter: Optional[Supported] = None
@@ -38,14 +38,10 @@ class ServiceProviderConfigDto(BaseModel):
     xml_data_format: Optional[Supported] = Field(None, alias="xmlDataFormat")
     __properties = ["authenticationSchemes", "schemas", "patch", "bulk", "filter", "changePassword", "sort", "etag", "xmlDataFormat"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -58,7 +54,7 @@ class ServiceProviderConfigDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -99,9 +95,9 @@ class ServiceProviderConfigDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ServiceProviderConfigDto.parse_obj(obj)
+            return ServiceProviderConfigDto.model_validate(obj)
 
-        _obj = ServiceProviderConfigDto.parse_obj({
+        _obj = ServiceProviderConfigDto.model_validate({
             "authentication_schemes": [AuthSchema.from_dict(_item) for _item in obj.get("authenticationSchemes")] if obj.get("authenticationSchemes") is not None else None,
             "schemas": obj.get("schemas"),
             "patch": Supported.from_dict(obj.get("patch")) if obj.get("patch") is not None else None,

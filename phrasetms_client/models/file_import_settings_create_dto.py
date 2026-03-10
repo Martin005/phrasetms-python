@@ -19,7 +19,16 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictFloat,
+    StrictInt,
+    StrictStr,
+    field_validator,
+)
 from phrasetms_client.models.android_settings_dto import AndroidSettingsDto
 from phrasetms_client.models.asciidoc_settings_dto import AsciidocSettingsDto
 from phrasetms_client.models.csv_settings_dto import CsvSettingsDto
@@ -102,7 +111,8 @@ class FileImportSettingsCreateDto(BaseModel):
     asciidoc: Optional[AsciidocSettingsDto] = None
     __properties = ["inputCharset", "outputCharset", "zipCharset", "fileFormat", "autodetectMultilingualFiles", "targetLength", "targetLengthMax", "targetLengthPercent", "targetLengthPercentValue", "segmentationRuleId", "targetSegmentationRuleId", "android", "csv", "dita", "docBook", "doc", "html", "idml", "json", "mac", "md", "mif", "multilingualXls", "multilingualCsv", "multilingualXml", "pdf", "php", "po", "ppt", "properties", "psd", "quarkTag", "resx", "sdlXlf", "tmMatch", "ttx", "txt", "xlf2", "xlf", "xls", "xml", "yaml", "asciidoc"]
 
-    @validator('file_format')
+    @field_validator('file_format')
+    @classmethod
     def file_format_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -112,14 +122,10 @@ class FileImportSettingsCreateDto(BaseModel):
             raise ValueError("must be one of enum values ('doc', 'ppt', 'xls', 'xlf', 'xlf2', 'sdlxlif', 'ttx', 'html', 'xml', 'mif', 'tmx', 'idml', 'dita', 'json', 'po', 'ts', 'icml', 'yaml', 'properties', 'csv', 'android_string', 'desktop_entry', 'mac_strings', 'pdf', 'windows_rc', 'xml_properties', 'joomla_ini', 'magento_csv', 'dtd', 'mozilla_properties', 'plist', 'plain_text', 'srt', 'sub', 'sbv', 'wiki', 'resx', 'resjson', 'chrome_json', 'epub', 'svg', 'docbook', 'wpxliff', 'multiling_xml', 'multiling_xls', 'mqxliff', 'php', 'psd', 'tag', 'md', 'vtt')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -132,7 +138,7 @@ class FileImportSettingsCreateDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -241,9 +247,9 @@ class FileImportSettingsCreateDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return FileImportSettingsCreateDto.parse_obj(obj)
+            return FileImportSettingsCreateDto.model_validate(obj)
 
-        _obj = FileImportSettingsCreateDto.parse_obj({
+        _obj = FileImportSettingsCreateDto.model_validate({
             "input_charset": obj.get("inputCharset"),
             "output_charset": obj.get("outputCharset"),
             "zip_charset": obj.get("zipCharset"),

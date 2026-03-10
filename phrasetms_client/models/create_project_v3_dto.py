@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, constr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, StringConstraints
 from phrasetms_client.models.custom_field_instance_api_dto import CustomFieldInstanceApiDto
 from phrasetms_client.models.id_reference import IdReference
 from phrasetms_client.models.lqa_profiles_for_ws_v2_dto import LqaProfilesForWsV2Dto
@@ -28,31 +29,27 @@ class CreateProjectV3Dto(BaseModel):
     """
     CreateProjectV3Dto
     """
-    name: constr(strict=True, max_length=255, min_length=0) = Field(...)
+    name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
     source_lang: StrictStr = Field(..., alias="sourceLang")
-    target_langs: conlist(StrictStr) = Field(..., alias="targetLangs")
+    target_langs: List[StrictStr] = Field(..., alias="targetLangs")
     client: Optional[IdReference] = None
     business_unit: Optional[IdReference] = Field(None, alias="businessUnit")
     domain: Optional[IdReference] = None
     sub_domain: Optional[IdReference] = Field(None, alias="subDomain")
     cost_center: Optional[IdReference] = Field(None, alias="costCenter")
-    purchase_order: Optional[constr(strict=True, max_length=255, min_length=0)] = Field(None, alias="purchaseOrder")
-    workflow_steps: Optional[conlist(IdReference)] = Field(None, alias="workflowSteps")
+    purchase_order: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = Field(None, alias="purchaseOrder")
+    workflow_steps: Optional[List[IdReference]] = Field(None, alias="workflowSteps")
     date_due: Optional[datetime] = Field(None, alias="dateDue")
-    note: Optional[constr(strict=True, max_length=4096, min_length=0)] = None
-    lqa_profiles: Optional[conlist(LqaProfilesForWsV2Dto)] = Field(None, alias="lqaProfiles", description="Lqa profiles that will be added to workflow steps")
-    custom_fields: Optional[conlist(CustomFieldInstanceApiDto)] = Field(None, alias="customFields", description="Custom fields for project")
+    note: Optional[Annotated[str, StringConstraints(strict=True, max_length=4096, min_length=0)]] = None
+    lqa_profiles: Optional[List[LqaProfilesForWsV2Dto]] = Field(None, alias="lqaProfiles", description="Lqa profiles that will be added to workflow steps")
+    custom_fields: Optional[List[CustomFieldInstanceApiDto]] = Field(None, alias="customFields", description="Custom fields for project")
     file_handover: Optional[StrictBool] = Field(None, alias="fileHandover", description="Default: false")
     __properties = ["name", "sourceLang", "targetLangs", "client", "businessUnit", "domain", "subDomain", "costCenter", "purchaseOrder", "workflowSteps", "dateDue", "note", "lqaProfiles", "customFields", "fileHandover"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -65,7 +62,7 @@ class CreateProjectV3Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -114,9 +111,9 @@ class CreateProjectV3Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CreateProjectV3Dto.parse_obj(obj)
+            return CreateProjectV3Dto.model_validate(obj)
 
-        _obj = CreateProjectV3Dto.parse_obj({
+        _obj = CreateProjectV3Dto.model_validate({
             "name": obj.get("name"),
             "source_lang": obj.get("sourceLang"),
             "target_langs": obj.get("targetLangs"),

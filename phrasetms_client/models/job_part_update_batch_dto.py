@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.provider_reference import ProviderReference
 from phrasetms_client.models.uid_reference import UidReference
 
@@ -27,27 +27,24 @@ class JobPartUpdateBatchDto(BaseModel):
     """
     JobPartUpdateBatchDto
     """
-    jobs: Optional[conlist(UidReference, max_items=100, min_items=1)] = None
+    jobs: Optional[List[UidReference]] = None
     status: StrictStr = Field(...)
     date_due: Optional[datetime] = Field(None, alias="dateDue")
-    providers: Optional[conlist(ProviderReference)] = None
+    providers: Optional[List[ProviderReference]] = None
     __properties = ["jobs", "status", "dateDue", "providers"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('NEW', 'ACCEPTED', 'DECLINED', 'REJECTED', 'DELIVERED', 'EMAILED', 'COMPLETED', 'CANCELLED'):
             raise ValueError("must be one of enum values ('NEW', 'ACCEPTED', 'DECLINED', 'REJECTED', 'DELIVERED', 'EMAILED', 'COMPLETED', 'CANCELLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -60,7 +57,7 @@ class JobPartUpdateBatchDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -87,9 +84,9 @@ class JobPartUpdateBatchDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobPartUpdateBatchDto.parse_obj(obj)
+            return JobPartUpdateBatchDto.model_validate(obj)
 
-        _obj = JobPartUpdateBatchDto.parse_obj({
+        _obj = JobPartUpdateBatchDto.model_validate({
             "jobs": [UidReference.from_dict(_item) for _item in obj.get("jobs")] if obj.get("jobs") is not None else None,
             "status": obj.get("status"),
             "date_due": obj.get("dateDue"),

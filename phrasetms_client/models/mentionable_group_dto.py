@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.uid_reference import UidReference
 
 class MentionableGroupDto(BaseModel):
@@ -31,7 +31,8 @@ class MentionableGroupDto(BaseModel):
     group_reference: Optional[UidReference] = Field(None, alias="groupReference")
     __properties = ["groupType", "groupName", "groupReference"]
 
-    @validator('group_type')
+    @field_validator('group_type')
+    @classmethod
     def group_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -41,14 +42,10 @@ class MentionableGroupDto(BaseModel):
             raise ValueError("must be one of enum values ('JOB', 'OWNERS', 'PROVIDERS', 'GUESTS', 'WORKFLOW_STEP')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -61,7 +58,7 @@ class MentionableGroupDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -77,9 +74,9 @@ class MentionableGroupDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MentionableGroupDto.parse_obj(obj)
+            return MentionableGroupDto.model_validate(obj)
 
-        _obj = MentionableGroupDto.parse_obj({
+        _obj = MentionableGroupDto.model_validate({
             "group_type": obj.get("groupType"),
             "group_name": obj.get("groupName"),
             "group_reference": UidReference.from_dict(obj.get("groupReference")) if obj.get("groupReference") is not None else None

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 
 class TranslationPriceListCreateDto(BaseModel):
     """
@@ -30,7 +30,8 @@ class TranslationPriceListCreateDto(BaseModel):
     billing_unit: Optional[StrictStr] = Field(None, alias="billingUnit", description="Default: Word")
     __properties = ["name", "currencyCode", "billingUnit"]
 
-    @validator('billing_unit')
+    @field_validator('billing_unit')
+    @classmethod
     def billing_unit_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -40,14 +41,10 @@ class TranslationPriceListCreateDto(BaseModel):
             raise ValueError("must be one of enum values ('Word', 'Page', 'Character', 'Hour')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -60,7 +57,7 @@ class TranslationPriceListCreateDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -73,9 +70,9 @@ class TranslationPriceListCreateDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TranslationPriceListCreateDto.parse_obj(obj)
+            return TranslationPriceListCreateDto.model_validate(obj)
 
-        _obj = TranslationPriceListCreateDto.parse_obj({
+        _obj = TranslationPriceListCreateDto.model_validate({
             "name": obj.get("name"),
             "currency_code": obj.get("currencyCode"),
             "billing_unit": obj.get("billingUnit")

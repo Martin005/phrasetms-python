@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, constr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StringConstraints
 from phrasetms_client.models.uid_reference import UidReference
 
 class ProjectTemplateCreateActionDto(BaseModel):
@@ -27,20 +28,16 @@ class ProjectTemplateCreateActionDto(BaseModel):
     ProjectTemplateCreateActionDto
     """
     project: UidReference = Field(...)
-    name: constr(strict=True, max_length=255, min_length=0) = Field(...)
+    name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
     import_settings: Optional[UidReference] = Field(None, alias="importSettings")
     use_dynamic_title: Optional[StrictBool] = Field(None, alias="useDynamicTitle")
-    dynamic_title: Optional[constr(strict=True, max_length=255, min_length=0)] = Field(None, alias="dynamicTitle")
+    dynamic_title: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = Field(None, alias="dynamicTitle")
     __properties = ["project", "name", "importSettings", "useDynamicTitle", "dynamicTitle"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +50,7 @@ class ProjectTemplateCreateActionDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -72,9 +69,9 @@ class ProjectTemplateCreateActionDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ProjectTemplateCreateActionDto.parse_obj(obj)
+            return ProjectTemplateCreateActionDto.model_validate(obj)
 
-        _obj = ProjectTemplateCreateActionDto.parse_obj({
+        _obj = ProjectTemplateCreateActionDto.model_validate({
             "project": UidReference.from_dict(obj.get("project")) if obj.get("project") is not None else None,
             "name": obj.get("name"),
             "import_settings": UidReference.from_dict(obj.get("importSettings")) if obj.get("importSettings") is not None else None,

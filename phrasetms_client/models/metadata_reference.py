@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.metadata_option_reference import MetadataOptionReference
 
 class MetadataReference(BaseModel):
@@ -29,17 +29,13 @@ class MetadataReference(BaseModel):
     uid: Optional[StrictStr] = None
     field_name: Optional[StrictStr] = Field(None, alias="fieldName")
     value: Optional[StrictStr] = None
-    options: Optional[conlist(MetadataOptionReference)] = None
+    options: Optional[List[MetadataOptionReference]] = None
     __properties = ["uid", "fieldName", "value", "options"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class MetadataReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -72,9 +68,9 @@ class MetadataReference(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MetadataReference.parse_obj(obj)
+            return MetadataReference.model_validate(obj)
 
-        _obj = MetadataReference.parse_obj({
+        _obj = MetadataReference.model_validate({
             "uid": obj.get("uid"),
             "field_name": obj.get("fieldName"),
             "value": obj.get("value"),

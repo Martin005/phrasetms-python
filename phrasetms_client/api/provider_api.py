@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.page_dto_provider_reference import PageDtoProviderReference
 from phrasetms_client.models.provider_list_dto_v2 import ProviderListDtoV2
@@ -46,8 +46,8 @@ class ProviderApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
-    def get_project_assignments(self, project_uid : StrictStr, provider_name : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoProviderReference:  # noqa: E501
+    @validate_call
+    def get_project_assignments(self, project_uid : StrictStr, provider_name : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoProviderReference:  # noqa: E501
         """List project providers  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -80,8 +80,8 @@ class ProviderApi(object):
             raise ValueError("Error! Please call the get_project_assignments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_project_assignments_with_http_info(project_uid, provider_name, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_project_assignments_with_http_info(self, project_uid : StrictStr, provider_name : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_project_assignments_with_http_info(self, project_uid : StrictStr, provider_name : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List project providers  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -218,7 +218,7 @@ class ProviderApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_providers3(self, project_uid : StrictStr, **kwargs) -> ProviderListDtoV2:  # noqa: E501
         """Get suggested providers  # noqa: E501
 
@@ -246,7 +246,7 @@ class ProviderApi(object):
             raise ValueError("Error! Please call the list_providers3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_providers3_with_http_info(project_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_providers3_with_http_info(self, project_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get suggested providers  # noqa: E501
 
@@ -366,7 +366,7 @@ class ProviderApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_providers4(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ProviderListDtoV2:  # noqa: E501
         """Get suggested providers  # noqa: E501
 
@@ -396,7 +396,7 @@ class ProviderApi(object):
             raise ValueError("Error! Please call the list_providers4_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_providers4_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_providers4_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get suggested providers  # noqa: E501
 

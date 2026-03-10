@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.create_reference_file_note_dto import CreateReferenceFileNoteDto
 from phrasetms_client.models.project_reference_files_request_dto import ProjectReferenceFilesRequestDto
@@ -49,7 +49,7 @@ class ProjectReferenceFileApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def batch_delete_reference_files(self, project_uid : StrictStr, body : Optional[ProjectReferenceFilesRequestDto] = None, **kwargs) -> None:  # noqa: E501
         """Delete project reference files (batch)  # noqa: E501
 
@@ -79,7 +79,7 @@ class ProjectReferenceFileApi(object):
             raise ValueError("Error! Please call the batch_delete_reference_files_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.batch_delete_reference_files_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def batch_delete_reference_files_with_http_info(self, project_uid : StrictStr, body : Optional[ProjectReferenceFilesRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete project reference files (batch)  # noqa: E501
 
@@ -195,7 +195,7 @@ class ProjectReferenceFileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def batch_download_reference_files(self, project_uid : StrictStr, body : Optional[ProjectReferenceFilesRequestDto] = None, **kwargs) -> None:  # noqa: E501
         """Download project reference files (batch)  # noqa: E501
 
@@ -225,7 +225,7 @@ class ProjectReferenceFileApi(object):
             raise ValueError("Error! Please call the batch_download_reference_files_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.batch_download_reference_files_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def batch_download_reference_files_with_http_info(self, project_uid : StrictStr, body : Optional[ProjectReferenceFilesRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download project reference files (batch)  # noqa: E501
 
@@ -341,7 +341,7 @@ class ProjectReferenceFileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_note_ref(self, project_uid : StrictStr, content_disposition : Annotated[Optional[StrictStr], Field(description="Required for `application/octet-stream`.<br> Example: `filename*=UTF-8''YourFileName.txt`")] = None, x_memsource_note : Annotated[Optional[StrictStr], Field(description="For use with `application/octet-stream`")] = None, body : Optional[CreateReferenceFileNoteDto] = None, **kwargs) -> ReferenceFileReference:  # noqa: E501
         """Create project reference file  # noqa: E501
 
@@ -376,7 +376,7 @@ class ProjectReferenceFileApi(object):
             raise ValueError("Error! Please call the create_note_ref_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_note_ref_with_http_info(project_uid, content_disposition, x_memsource_note, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_note_ref_with_http_info(self, project_uid : StrictStr, content_disposition : Annotated[Optional[StrictStr], Field(description="Required for `application/octet-stream`.<br> Example: `filename*=UTF-8''YourFileName.txt`")] = None, x_memsource_note : Annotated[Optional[StrictStr], Field(description="For use with `application/octet-stream`")] = None, body : Optional[CreateReferenceFileNoteDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create project reference file  # noqa: E501
 
@@ -522,7 +522,7 @@ class ProjectReferenceFileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def download_reference(self, project_uid : StrictStr, reference_file_id : StrictStr, **kwargs) -> None:  # noqa: E501
         """Download project reference file  # noqa: E501
 
@@ -552,7 +552,7 @@ class ProjectReferenceFileApi(object):
             raise ValueError("Error! Please call the download_reference_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.download_reference_with_http_info(project_uid, reference_file_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def download_reference_with_http_info(self, project_uid : StrictStr, reference_file_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Download project reference file  # noqa: E501
 
@@ -661,7 +661,7 @@ class ProjectReferenceFileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_reference_file_creators(self, project_uid : StrictStr, user_name : Optional[StrictStr] = None, **kwargs) -> UserReferencesDto:  # noqa: E501
         """List project reference file creators  # noqa: E501
 
@@ -692,7 +692,7 @@ class ProjectReferenceFileApi(object):
             raise ValueError("Error! Please call the list_reference_file_creators_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_reference_file_creators_with_http_info(project_uid, user_name, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_reference_file_creators_with_http_info(self, project_uid : StrictStr, user_name : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List project reference file creators  # noqa: E501
 
@@ -819,8 +819,8 @@ class ProjectReferenceFileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_reference_files(self, project_uid : StrictStr, filename : Optional[StrictStr] = None, date_created_since : Annotated[Optional[StrictStr], Field(description="date time in ISO 8601 UTC format")] = None, created_by : Annotated[Optional[StrictStr], Field(description="UID of user")] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, **kwargs) -> ReferenceFilePageDto:  # noqa: E501
+    @validate_call
+    def list_reference_files(self, project_uid : StrictStr, filename : Optional[StrictStr] = None, date_created_since : Annotated[Optional[StrictStr], Field(description="date time in ISO 8601 UTC format")] = None, created_by : Annotated[Optional[StrictStr], Field(description="UID of user")] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, **kwargs) -> ReferenceFilePageDto:  # noqa: E501
         """List project reference files  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -861,8 +861,8 @@ class ProjectReferenceFileApi(object):
             raise ValueError("Error! Please call the list_reference_files_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_reference_files_with_http_info(project_uid, filename, date_created_since, created_by, page_number, page_size, sort, order, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_reference_files_with_http_info(self, project_uid : StrictStr, filename : Optional[StrictStr] = None, date_created_since : Annotated[Optional[StrictStr], Field(description="date time in ISO 8601 UTC format")] = None, created_by : Annotated[Optional[StrictStr], Field(description="UID of user")] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_reference_files_with_http_info(self, project_uid : StrictStr, filename : Optional[StrictStr] = None, date_created_since : Annotated[Optional[StrictStr], Field(description="date time in ISO 8601 UTC format")] = None, created_by : Annotated[Optional[StrictStr], Field(description="UID of user")] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List project reference files  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

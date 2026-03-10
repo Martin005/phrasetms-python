@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.business_unit_reference import BusinessUnitReference
 from phrasetms_client.models.client_reference import ClientReference
 from phrasetms_client.models.cost_center_reference import CostCenterReference
@@ -33,7 +33,7 @@ class ProjectTemplateReference(BaseModel):
     """
     template_name: Optional[StrictStr] = Field(None, alias="templateName")
     source_lang: Optional[StrictStr] = Field(None, alias="sourceLang")
-    target_langs: Optional[conlist(StrictStr)] = Field(None, alias="targetLangs")
+    target_langs: Optional[List[StrictStr]] = Field(None, alias="targetLangs")
     id: Optional[StrictStr] = None
     uid: Optional[StrictStr] = None
     owner: Optional[UserReference] = None
@@ -45,14 +45,10 @@ class ProjectTemplateReference(BaseModel):
     client: Optional[ClientReference] = None
     __properties = ["templateName", "sourceLang", "targetLangs", "id", "uid", "owner", "domain", "subDomain", "costCenter", "businessUnit", "note", "client"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -65,7 +61,7 @@ class ProjectTemplateReference(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -96,9 +92,9 @@ class ProjectTemplateReference(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ProjectTemplateReference.parse_obj(obj)
+            return ProjectTemplateReference.model_validate(obj)
 
-        _obj = ProjectTemplateReference.parse_obj({
+        _obj = ProjectTemplateReference.model_validate({
             "template_name": obj.get("templateName"),
             "source_lang": obj.get("sourceLang"),
             "target_langs": obj.get("targetLangs"),
