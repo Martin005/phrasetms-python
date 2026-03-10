@@ -18,32 +18,29 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, constr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, StringConstraints
 from phrasetms_client.models.id_reference import IdReference
 
 class TermBaseEditDto(BaseModel):
     """
     TermBaseEditDto
     """
-    name: constr(strict=True, max_length=255, min_length=0) = Field(...)
-    langs: conlist(StrictStr, max_items=2147483647, min_items=1) = Field(...)
+    name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
+    langs: List[StrictStr] = Field(...)
     client: Optional[IdReference] = None
     domain: Optional[IdReference] = None
     sub_domain: Optional[IdReference] = Field(None, alias="subDomain")
     business_unit: Optional[IdReference] = Field(None, alias="businessUnit")
     owner: Optional[IdReference] = None
-    note: Optional[constr(strict=True, max_length=4096, min_length=0)] = None
+    note: Optional[Annotated[str, StringConstraints(strict=True, max_length=4096, min_length=0)]] = None
     __properties = ["name", "langs", "client", "domain", "subDomain", "businessUnit", "owner", "note"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -56,7 +53,7 @@ class TermBaseEditDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -84,9 +81,9 @@ class TermBaseEditDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TermBaseEditDto.parse_obj(obj)
+            return TermBaseEditDto.model_validate(obj)
 
-        _obj = TermBaseEditDto.parse_obj({
+        _obj = TermBaseEditDto.model_validate({
             "name": obj.get("name"),
             "langs": obj.get("langs"),
             "client": IdReference.from_dict(obj.get("client")) if obj.get("client") is not None else None,

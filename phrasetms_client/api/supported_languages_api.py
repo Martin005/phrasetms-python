@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing_extensions import Annotated
+from typing import Optional
 
 from pydantic import StrictBool
 
-from typing import Optional
 
 from phrasetms_client.models.language_list_dto import LanguageListDto
 
@@ -45,7 +45,7 @@ class SupportedLanguagesApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def list_of_languages(self, active : Optional[StrictBool] = None, **kwargs) -> LanguageListDto:  # noqa: E501
         """List supported languages  # noqa: E501
 
@@ -73,7 +73,7 @@ class SupportedLanguagesApi(object):
             raise ValueError("Error! Please call the list_of_languages_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_of_languages_with_http_info(active, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_of_languages_with_http_info(self, active : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List supported languages  # noqa: E501
 

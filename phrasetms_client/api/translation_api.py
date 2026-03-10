@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing_extensions import Annotated
+from typing import Optional
 
 from pydantic import StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.async_request_wrapper_dto import AsyncRequestWrapperDto
 from phrasetms_client.models.async_request_wrapper_v2_dto import AsyncRequestWrapperV2Dto
@@ -50,7 +50,7 @@ class TranslationApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def human_translate(self, project_uid : StrictStr, body : Optional[HumanTranslateJobsDto] = None, **kwargs) -> AsyncRequestWrapperDto:  # noqa: E501
         """Human translate (Gengo or Unbabel)  # noqa: E501
 
@@ -80,7 +80,7 @@ class TranslationApi(object):
             raise ValueError("Error! Please call the human_translate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.human_translate_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def human_translate_with_http_info(self, project_uid : StrictStr, body : Optional[HumanTranslateJobsDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Human translate (Gengo or Unbabel)  # noqa: E501
 
@@ -213,7 +213,7 @@ class TranslationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def machine_translation_job(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[TranslationRequestDto] = None, **kwargs) -> MachineTranslateResponse:  # noqa: E501
         """Translate using machine translation  # noqa: E501
 
@@ -246,7 +246,7 @@ class TranslationApi(object):
             raise ValueError("Error! Please call the machine_translation_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.machine_translation_job_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def machine_translation_job_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[TranslationRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Translate using machine translation  # noqa: E501
 
@@ -386,7 +386,7 @@ class TranslationApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def pre_translate1(self, project_uid : StrictStr, body : Optional[PreTranslateJobsV2Dto] = None, **kwargs) -> AsyncRequestWrapperV2Dto:  # noqa: E501
         """Pre-translate job  # noqa: E501
 
@@ -416,7 +416,7 @@ class TranslationApi(object):
             raise ValueError("Error! Please call the pre_translate1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.pre_translate1_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def pre_translate1_with_http_info(self, project_uid : StrictStr, body : Optional[PreTranslateJobsV2Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Pre-translate job  # noqa: E501
 

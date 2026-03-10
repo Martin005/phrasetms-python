@@ -1,3 +1,4 @@
+from typing_extensions import Annotated
 # coding: utf-8
 
 """
@@ -16,10 +17,9 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
-from typing_extensions import Annotated
+from pydantic import StringConstraints, ValidationError, validate_call
 
-from pydantic import Field, constr
+from pydantic import Field, StringConstraints
 
 
 from phrasetms_client.api_client import ApiClient
@@ -42,8 +42,8 @@ class LanguageQualityAssessmentApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
-    def download_lqa_reports(self, job_parts : Annotated[constr(strict=True, max_length=2147483647, min_length=1), Field(..., description="Comma separated list of JobPart UIDs")], **kwargs) -> None:  # noqa: E501
+    @validate_call
+    def download_lqa_reports(self, job_parts : Annotated[Annotated[str, StringConstraints(strict=True, max_length=2147483647, min_length=1)], Field(..., description="Comma separated list of JobPart UIDs")], **kwargs) -> None:  # noqa: E501
         """Download LQA Assessment XLSX reports  # noqa: E501
 
         Returns a single xlsx report or ZIP archive with multiple reports. If any given jobPart is not from LQA workflow step, reports from successive workflow steps may be returned If none were found returns 404 error, otherwise returns those that were found.  # noqa: E501
@@ -71,8 +71,8 @@ class LanguageQualityAssessmentApi(object):
             raise ValueError("Error! Please call the download_lqa_reports_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.download_lqa_reports_with_http_info(job_parts, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def download_lqa_reports_with_http_info(self, job_parts : Annotated[constr(strict=True, max_length=2147483647, min_length=1), Field(..., description="Comma separated list of JobPart UIDs")], **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def download_lqa_reports_with_http_info(self, job_parts : Annotated[Annotated[str, StringConstraints(strict=True, max_length=2147483647, min_length=1)], Field(..., description="Comma separated list of JobPart UIDs")], **kwargs) -> ApiResponse:  # noqa: E501
         """Download LQA Assessment XLSX reports  # noqa: E501
 
         Returns a single xlsx report or ZIP archive with multiple reports. If any given jobPart is not from LQA workflow step, reports from successive workflow steps may be returned If none were found returns 404 error, otherwise returns those that were found.  # noqa: E501

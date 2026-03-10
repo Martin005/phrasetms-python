@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictInt, StrictStr
 from phrasetms_client.models.business_unit_reference import BusinessUnitReference
 from phrasetms_client.models.client_reference import ClientReference
 from phrasetms_client.models.domain_reference import DomainReference
@@ -35,7 +35,7 @@ class TransMemoryDto(BaseModel):
     internal_id: Optional[StrictInt] = Field(None, alias="internalId")
     name: Optional[StrictStr] = None
     source_lang: Optional[StrictStr] = Field(None, alias="sourceLang")
-    target_langs: Optional[conlist(StrictStr)] = Field(None, alias="targetLangs")
+    target_langs: Optional[List[StrictStr]] = Field(None, alias="targetLangs")
     client: Optional[ClientReference] = None
     business_unit: Optional[BusinessUnitReference] = Field(None, alias="businessUnit")
     domain: Optional[DomainReference] = None
@@ -46,14 +46,10 @@ class TransMemoryDto(BaseModel):
     owner: Optional[UserReference] = None
     __properties = ["id", "uid", "internalId", "name", "sourceLang", "targetLangs", "client", "businessUnit", "domain", "subDomain", "note", "dateCreated", "createdBy", "owner"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -66,7 +62,7 @@ class TransMemoryDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -97,9 +93,9 @@ class TransMemoryDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TransMemoryDto.parse_obj(obj)
+            return TransMemoryDto.model_validate(obj)
 
-        _obj = TransMemoryDto.parse_obj({
+        _obj = TransMemoryDto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "internal_id": obj.get("internalId"),

@@ -18,27 +18,24 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, constr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt, StringConstraints
 
 class EditWorkflowStepDto(BaseModel):
     """
     EditWorkflowStepDto
     """
-    name: Optional[constr(strict=True, max_length=255, min_length=1)] = Field(None, description="Name of the lqa workflow step")
+    name: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=1)]] = Field(None, description="Name of the lqa workflow step")
     order: Optional[StrictInt] = Field(None, description="Order value")
     lqa_enabled: Optional[StrictBool] = Field(None, alias="lqaEnabled", description="Default: false")
-    abbr: Optional[constr(strict=True, max_length=3, min_length=1)] = Field(None, description="Abbreviation")
+    abbr: Optional[Annotated[str, StringConstraints(strict=True, max_length=3, min_length=1)]] = Field(None, description="Abbreviation")
     __properties = ["name", "order", "lqaEnabled", "abbr"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +48,7 @@ class EditWorkflowStepDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -64,9 +61,9 @@ class EditWorkflowStepDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return EditWorkflowStepDto.parse_obj(obj)
+            return EditWorkflowStepDto.model_validate(obj)
 
-        _obj = EditWorkflowStepDto.parse_obj({
+        _obj = EditWorkflowStepDto.model_validate({
             "name": obj.get("name"),
             "order": obj.get("order"),
             "lqa_enabled": obj.get("lqaEnabled"),

@@ -19,25 +19,21 @@ import json
 
 
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictFloat, StrictInt, StrictStr
 
 class TranslationPriceSetBulkMinimumPricesDto(BaseModel):
     """
     TranslationPriceSetBulkMinimumPricesDto
     """
-    source_languages: Optional[conlist(StrictStr)] = Field(None, alias="sourceLanguages")
-    target_languages: Optional[conlist(StrictStr)] = Field(None, alias="targetLanguages")
+    source_languages: Optional[List[StrictStr]] = Field(None, alias="sourceLanguages")
+    target_languages: Optional[List[StrictStr]] = Field(None, alias="targetLanguages")
     minimum_price: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="minimumPrice")
     __properties = ["sourceLanguages", "targetLanguages", "minimumPrice"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class TranslationPriceSetBulkMinimumPricesDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -63,9 +59,9 @@ class TranslationPriceSetBulkMinimumPricesDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TranslationPriceSetBulkMinimumPricesDto.parse_obj(obj)
+            return TranslationPriceSetBulkMinimumPricesDto.model_validate(obj)
 
-        _obj = TranslationPriceSetBulkMinimumPricesDto.parse_obj({
+        _obj = TranslationPriceSetBulkMinimumPricesDto.model_validate({
             "source_languages": obj.get("sourceLanguages"),
             "target_languages": obj.get("targetLanguages"),
             "minimum_price": obj.get("minimumPrice")

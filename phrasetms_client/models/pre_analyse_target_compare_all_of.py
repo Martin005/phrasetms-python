@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic import BaseModel, Field, ConfigDict, StrictBool
 
 class PreAnalyseTargetCompareAllOf(BaseModel):
     """
@@ -34,14 +34,10 @@ class PreAnalyseTargetCompareAllOf(BaseModel):
     include_machine_translation_matches: Optional[StrictBool] = Field(None, alias="includeMachineTranslationMatches", description="Default: false")
     __properties = ["transMemoryPostEditing", "nonTranslatablePostEditing", "machineTranslatePostEditing", "includeFuzzyRepetitions", "separateFuzzyRepetitions", "includeNonTranslatables", "includeMachineTranslationMatches"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -54,7 +50,7 @@ class PreAnalyseTargetCompareAllOf(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -67,9 +63,9 @@ class PreAnalyseTargetCompareAllOf(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PreAnalyseTargetCompareAllOf.parse_obj(obj)
+            return PreAnalyseTargetCompareAllOf.model_validate(obj)
 
-        _obj = PreAnalyseTargetCompareAllOf.parse_obj({
+        _obj = PreAnalyseTargetCompareAllOf.model_validate({
             "trans_memory_post_editing": obj.get("transMemoryPostEditing"),
             "non_translatable_post_editing": obj.get("nonTranslatablePostEditing"),
             "machine_translate_post_editing": obj.get("machineTranslatePostEditing"),

@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.domain_dto import DomainDto
 from phrasetms_client.models.domain_edit_dto import DomainEditDto
@@ -47,7 +47,7 @@ class DomainApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_domain(self, body : Optional[DomainEditDto] = None, **kwargs) -> DomainDto:  # noqa: E501
         """Create domain  # noqa: E501
 
@@ -75,7 +75,7 @@ class DomainApi(object):
             raise ValueError("Error! Please call the create_domain_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_domain_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_domain_with_http_info(self, body : Optional[DomainEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create domain  # noqa: E501
 
@@ -202,7 +202,7 @@ class DomainApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_domain(self, domain_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete domain  # noqa: E501
 
@@ -230,7 +230,7 @@ class DomainApi(object):
             raise ValueError("Error! Please call the delete_domain_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_domain_with_http_info(domain_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_domain_with_http_info(self, domain_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete domain  # noqa: E501
 
@@ -333,7 +333,7 @@ class DomainApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_domain(self, domain_uid : StrictStr, **kwargs) -> DomainDto:  # noqa: E501
         """Get domain  # noqa: E501
 
@@ -361,7 +361,7 @@ class DomainApi(object):
             raise ValueError("Error! Please call the get_domain_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_domain_with_http_info(domain_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_domain_with_http_info(self, domain_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get domain  # noqa: E501
 
@@ -481,8 +481,8 @@ class DomainApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_domains(self, name : Optional[StrictStr] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoDomainDto:  # noqa: E501
+    @validate_call
+    def list_domains(self, name : Optional[StrictStr] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoDomainDto:  # noqa: E501
         """List of domains  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -519,8 +519,8 @@ class DomainApi(object):
             raise ValueError("Error! Please call the list_domains_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_domains_with_http_info(name, created_by, sort, order, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_domains_with_http_info(self, name : Optional[StrictStr] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_domains_with_http_info(self, name : Optional[StrictStr] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List of domains  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -669,7 +669,7 @@ class DomainApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_domain(self, domain_uid : StrictStr, body : Optional[DomainEditDto] = None, **kwargs) -> DomainDto:  # noqa: E501
         """Edit domain  # noqa: E501
 
@@ -699,7 +699,7 @@ class DomainApi(object):
             raise ValueError("Error! Please call the update_domain_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_domain_with_http_info(domain_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_domain_with_http_info(self, domain_uid : StrictStr, body : Optional[DomainEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit domain  # noqa: E501
 

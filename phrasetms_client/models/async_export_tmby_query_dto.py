@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.query import Query
 
 class AsyncExportTMByQueryDto(BaseModel):
@@ -28,18 +28,14 @@ class AsyncExportTMByQueryDto(BaseModel):
     """
     async_request: Optional[Dict[str, Any]] = Field(None, alias="asyncRequest")
     trans_memory: Optional[Dict[str, Any]] = Field(None, alias="transMemory")
-    export_target_langs: Optional[conlist(StrictStr)] = Field(None, alias="exportTargetLangs")
-    queries: Optional[conlist(Query)] = None
+    export_target_langs: Optional[List[StrictStr]] = Field(None, alias="exportTargetLangs")
+    queries: Optional[List[Query]] = None
     __properties = ["asyncRequest", "transMemory", "exportTargetLangs", "queries"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class AsyncExportTMByQueryDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -72,9 +68,9 @@ class AsyncExportTMByQueryDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AsyncExportTMByQueryDto.parse_obj(obj)
+            return AsyncExportTMByQueryDto.model_validate(obj)
 
-        _obj = AsyncExportTMByQueryDto.parse_obj({
+        _obj = AsyncExportTMByQueryDto.model_validate({
             "async_request": obj.get("asyncRequest"),
             "trans_memory": obj.get("transMemory"),
             "export_target_langs": obj.get("exportTargetLangs"),

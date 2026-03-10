@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, conlist
+from pydantic import BaseModel, ConfigDict
 from phrasetms_client.models.qa_check_dto_v2 import QACheckDtoV2
 from phrasetms_client.models.regexp_check_rule_dto_v2 import RegexpCheckRuleDtoV2
 
@@ -27,17 +27,13 @@ class REGEX(QACheckDtoV2):
     """
     REGEX
     """
-    rules: Optional[conlist(RegexpCheckRuleDtoV2)] = None
+    rules: Optional[List[RegexpCheckRuleDtoV2]] = None
     __properties = ["type", "name", "rules"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class REGEX(QACheckDtoV2):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -70,9 +66,9 @@ class REGEX(QACheckDtoV2):
             return None
 
         if not isinstance(obj, dict):
-            return REGEX.parse_obj(obj)
+            return REGEX.model_validate(obj)
 
-        _obj = REGEX.parse_obj({
+        _obj = REGEX.model_validate({
             "type": obj.get("type"),
             "name": obj.get("name"),
             "rules": [RegexpCheckRuleDtoV2.from_dict(_item) for _item in obj.get("rules")] if obj.get("rules") is not None else None

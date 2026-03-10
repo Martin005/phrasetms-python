@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic import BaseModel, Field, ConfigDict, StrictBool
 
 class TtxSettingsDto(BaseModel):
     """
@@ -28,14 +28,10 @@ class TtxSettingsDto(BaseModel):
     save_confirmed_segments: Optional[StrictBool] = Field(None, alias="saveConfirmedSegments", description="Default: true")
     __properties = ["saveConfirmedSegments"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -48,7 +44,7 @@ class TtxSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -61,9 +57,9 @@ class TtxSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TtxSettingsDto.parse_obj(obj)
+            return TtxSettingsDto.model_validate(obj)
 
-        _obj = TtxSettingsDto.parse_obj({
+        _obj = TtxSettingsDto.model_validate({
             "save_confirmed_segments": obj.get("saveConfirmedSegments")
         })
         return _obj

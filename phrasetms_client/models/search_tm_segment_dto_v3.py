@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt, StrictStr
 from phrasetms_client.models.search_tm_client_dto_v3 import SearchTMClientDtoV3
 from phrasetms_client.models.search_tm_domain_dto_v3 import SearchTMDomainDtoV3
 from phrasetms_client.models.search_tm_project_dto_v3 import SearchTMProjectDtoV3
@@ -44,21 +44,17 @@ class SearchTMSegmentDtoV3(BaseModel):
     client: Optional[SearchTMClientDtoV3] = None
     domain: Optional[SearchTMDomainDtoV3] = None
     sub_domain: Optional[SearchTMSubDomainDtoV3] = Field(None, alias="subDomain")
-    tag_metadata: Optional[conlist(TagMetadata)] = Field(None, alias="tagMetadata")
+    tag_metadata: Optional[List[TagMetadata]] = Field(None, alias="tagMetadata")
     previous_segment: Optional[StrictStr] = Field(None, alias="previousSegment")
     next_segment: Optional[StrictStr] = Field(None, alias="nextSegment")
     key: Optional[StrictStr] = None
     target_note: Optional[StrictStr] = Field(None, alias="targetNote")
     __properties = ["id", "text", "lang", "rtl", "modifiedAt", "createdAt", "modifiedBy", "createdBy", "filename", "project", "client", "domain", "subDomain", "tagMetadata", "previousSegment", "nextSegment", "key", "targetNote"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -71,7 +67,7 @@ class SearchTMSegmentDtoV3(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -109,9 +105,9 @@ class SearchTMSegmentDtoV3(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SearchTMSegmentDtoV3.parse_obj(obj)
+            return SearchTMSegmentDtoV3.model_validate(obj)
 
-        _obj = SearchTMSegmentDtoV3.parse_obj({
+        _obj = SearchTMSegmentDtoV3.model_validate({
             "id": obj.get("id"),
             "text": obj.get("text"),
             "lang": obj.get("lang"),

@@ -18,25 +18,22 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field, conint
+from pydantic import BaseModel, Field, ConfigDict
 
 class ProjectTemplateNotifyProviderDto(BaseModel):
     """
     ProjectTemplateNotifyProviderDto
     """
     organization_email_template: Dict[str, Any] = Field(..., alias="organizationEmailTemplate")
-    notification_interval_in_minutes: Optional[conint(strict=True, le=1440, ge=0)] = Field(None, alias="notificationIntervalInMinutes")
+    notification_interval_in_minutes: Optional[Annotated[int, Field(strict=True, le=1440, ge=0)]] = Field(None, alias="notificationIntervalInMinutes")
     __properties = ["organizationEmailTemplate", "notificationIntervalInMinutes"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +46,7 @@ class ProjectTemplateNotifyProviderDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -62,9 +59,9 @@ class ProjectTemplateNotifyProviderDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ProjectTemplateNotifyProviderDto.parse_obj(obj)
+            return ProjectTemplateNotifyProviderDto.model_validate(obj)
 
-        _obj = ProjectTemplateNotifyProviderDto.parse_obj({
+        _obj = ProjectTemplateNotifyProviderDto.model_validate({
             "organization_email_template": obj.get("organizationEmailTemplate"),
             "notification_interval_in_minutes": obj.get("notificationIntervalInMinutes")
         })

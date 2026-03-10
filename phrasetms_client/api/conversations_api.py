@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing_extensions import Annotated
+from typing import Optional
 
 from pydantic import StrictBool, StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.add_comment_dto import AddCommentDto
 from phrasetms_client.models.add_lqa_comment_result_dto import AddLqaCommentResultDto
@@ -57,7 +57,7 @@ class ConversationsApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def add_lqa_comment1(self, job_uid : StrictStr, conversation_id : StrictStr, body : Optional[AddCommentDto] = None, **kwargs) -> AddLqaCommentResultDto:  # noqa: E501
         """Add LQA comment  # noqa: E501
 
@@ -89,7 +89,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the add_lqa_comment1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.add_lqa_comment1_with_http_info(job_uid, conversation_id, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def add_lqa_comment1_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, body : Optional[AddCommentDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Add LQA comment  # noqa: E501
 
@@ -228,7 +228,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def add_plain_comment2(self, job_uid : StrictStr, conversation_id : StrictStr, body : Optional[AddCommentDto] = None, **kwargs) -> AddPlainCommentResultDto:  # noqa: E501
         """Add plain comment  # noqa: E501
 
@@ -260,7 +260,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the add_plain_comment2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.add_plain_comment2_with_http_info(job_uid, conversation_id, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def add_plain_comment2_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, body : Optional[AddCommentDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Add plain comment  # noqa: E501
 
@@ -399,7 +399,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_lqa_conversation1(self, job_uid : StrictStr, body : Optional[CreateLqaConversationDto] = None, **kwargs) -> LQAConversationDto:  # noqa: E501
         """Create LQA conversation  # noqa: E501
 
@@ -429,7 +429,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the create_lqa_conversation1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_lqa_conversation1_with_http_info(job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_lqa_conversation1_with_http_info(self, job_uid : StrictStr, body : Optional[CreateLqaConversationDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create LQA conversation  # noqa: E501
 
@@ -562,7 +562,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_segment_target_conversation1(self, job_uid : StrictStr, body : Optional[CreatePlainConversationDto] = None, **kwargs) -> PlainConversationDto:  # noqa: E501
         """Create plain conversation  # noqa: E501
 
@@ -592,7 +592,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the create_segment_target_conversation1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_segment_target_conversation1_with_http_info(job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_segment_target_conversation1_with_http_info(self, job_uid : StrictStr, body : Optional[CreatePlainConversationDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create plain conversation  # noqa: E501
 
@@ -725,7 +725,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_lqa_comment(self, job_uid : StrictStr, conversation_id : StrictStr, comment_id : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete LQA comment  # noqa: E501
 
@@ -757,7 +757,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the delete_lqa_comment_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_lqa_comment_with_http_info(job_uid, conversation_id, comment_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_lqa_comment_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, comment_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete LQA comment  # noqa: E501
 
@@ -872,7 +872,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_lqa_conversation(self, job_uid : StrictStr, conversation_id : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete LQA conversation  # noqa: E501
 
@@ -902,7 +902,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the delete_lqa_conversation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_lqa_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_lqa_conversation_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete LQA conversation  # noqa: E501
 
@@ -1011,7 +1011,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_plain_comment(self, job_uid : StrictStr, conversation_id : StrictStr, comment_id : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete plain comment  # noqa: E501
 
@@ -1043,7 +1043,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the delete_plain_comment_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_plain_comment_with_http_info(job_uid, conversation_id, comment_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_plain_comment_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, comment_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete plain comment  # noqa: E501
 
@@ -1158,7 +1158,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_plain_conversation(self, job_uid : StrictStr, conversation_id : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete plain conversation  # noqa: E501
 
@@ -1188,7 +1188,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the delete_plain_conversation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_plain_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_plain_conversation_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete plain conversation  # noqa: E501
 
@@ -1297,7 +1297,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def find_conversations(self, body : Optional[FindConversationsDto] = None, **kwargs) -> ConversationListDto:  # noqa: E501
         """Find all conversation  # noqa: E501
 
@@ -1325,7 +1325,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the find_conversations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_conversations_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def find_conversations_with_http_info(self, body : Optional[FindConversationsDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Find all conversation  # noqa: E501
 
@@ -1452,7 +1452,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_lqa_conversation(self, job_uid : StrictStr, conversation_id : StrictStr, **kwargs) -> LQAConversationDto:  # noqa: E501
         """Get LQA conversation  # noqa: E501
 
@@ -1482,7 +1482,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the get_lqa_conversation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_lqa_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_lqa_conversation_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get LQA conversation  # noqa: E501
 
@@ -1608,7 +1608,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_plain_conversation(self, job_uid : StrictStr, conversation_id : StrictStr, **kwargs) -> PlainConversationDto:  # noqa: E501
         """Get plain conversation  # noqa: E501
 
@@ -1638,7 +1638,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the get_plain_conversation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_plain_conversation_with_http_info(job_uid, conversation_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_plain_conversation_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get plain conversation  # noqa: E501
 
@@ -1764,7 +1764,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_all_conversations(self, job_uid : StrictStr, include_deleted : Optional[StrictBool] = None, since : Optional[StrictStr] = None, **kwargs) -> ConversationListDto:  # noqa: E501
         """List all conversations  # noqa: E501
 
@@ -1796,7 +1796,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the list_all_conversations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_all_conversations_with_http_info(job_uid, include_deleted, since, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_all_conversations_with_http_info(self, job_uid : StrictStr, include_deleted : Optional[StrictBool] = None, since : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List all conversations  # noqa: E501
 
@@ -1928,7 +1928,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_lqa_conversations(self, job_uid : StrictStr, include_deleted : Optional[StrictBool] = None, since : Optional[StrictStr] = None, **kwargs) -> LQAConversationsListDto:  # noqa: E501
         """List LQA conversations  # noqa: E501
 
@@ -1960,7 +1960,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the list_lqa_conversations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_lqa_conversations_with_http_info(job_uid, include_deleted, since, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_lqa_conversations_with_http_info(self, job_uid : StrictStr, include_deleted : Optional[StrictBool] = None, since : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List LQA conversations  # noqa: E501
 
@@ -2092,7 +2092,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_plain_conversations(self, job_uid : StrictStr, include_deleted : Optional[StrictBool] = None, since : Optional[StrictStr] = None, **kwargs) -> PlainConversationsListDto:  # noqa: E501
         """List plain conversations  # noqa: E501
 
@@ -2124,7 +2124,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the list_plain_conversations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_plain_conversations_with_http_info(job_uid, include_deleted, since, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_plain_conversations_with_http_info(self, job_uid : StrictStr, include_deleted : Optional[StrictBool] = None, since : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List plain conversations  # noqa: E501
 
@@ -2256,7 +2256,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_lqa_comment1(self, job_uid : StrictStr, conversation_id : StrictStr, comment_id : StrictStr, body : Optional[AddCommentDto] = None, **kwargs) -> LQAConversationDto:  # noqa: E501
         """Edit LQA comment  # noqa: E501
 
@@ -2290,7 +2290,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the update_lqa_comment1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_lqa_comment1_with_http_info(job_uid, conversation_id, comment_id, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_lqa_comment1_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, comment_id : StrictStr, body : Optional[AddCommentDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit LQA comment  # noqa: E501
 
@@ -2435,7 +2435,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_lqa_conversation1(self, job_uid : StrictStr, conversation_id : StrictStr, body : Optional[EditLqaConversationDto] = None, **kwargs) -> LQAConversationDto:  # noqa: E501
         """Update LQA conversation  # noqa: E501
 
@@ -2467,7 +2467,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the update_lqa_conversation1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_lqa_conversation1_with_http_info(job_uid, conversation_id, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_lqa_conversation1_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, body : Optional[EditLqaConversationDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update LQA conversation  # noqa: E501
 
@@ -2606,7 +2606,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_plain_comment1(self, job_uid : StrictStr, conversation_id : StrictStr, comment_id : StrictStr, body : Optional[AddCommentDto] = None, **kwargs) -> PlainConversationDto:  # noqa: E501
         """Edit plain comment  # noqa: E501
 
@@ -2640,7 +2640,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the update_plain_comment1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_plain_comment1_with_http_info(job_uid, conversation_id, comment_id, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_plain_comment1_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, comment_id : StrictStr, body : Optional[AddCommentDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit plain comment  # noqa: E501
 
@@ -2785,7 +2785,7 @@ class ConversationsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_plain_conversation(self, job_uid : StrictStr, conversation_id : StrictStr, body : Optional[EditPlainConversationDto] = None, **kwargs) -> PlainConversationDto:  # noqa: E501
         """Edit plain conversation  # noqa: E501
 
@@ -2817,7 +2817,7 @@ class ConversationsApi(object):
             raise ValueError("Error! Please call the update_plain_conversation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_plain_conversation_with_http_info(job_uid, conversation_id, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_plain_conversation_with_http_info(self, job_uid : StrictStr, conversation_id : StrictStr, body : Optional[EditPlainConversationDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit plain conversation  # noqa: E501
 

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Dict, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class MultilingualXlsSettingsDto(BaseModel):
     """
@@ -38,7 +38,8 @@ class MultilingualXlsSettingsDto(BaseModel):
     save_confirmed_segments_to_tm: Optional[StrictBool] = Field(None, alias="saveConfirmedSegmentsToTm")
     __properties = ["sourceColumn", "targetColumns", "contextNoteColumn", "contextKeyColumn", "tagRegexp", "htmlSubFilter", "segmentation", "importRows", "maxLenColumn", "nonEmptySegmentAction", "saveConfirmedSegmentsToTm"]
 
-    @validator('non_empty_segment_action')
+    @field_validator('non_empty_segment_action')
+    @classmethod
     def non_empty_segment_action_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -48,14 +49,10 @@ class MultilingualXlsSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('NONE', 'CONFIRM', 'LOCK', 'CONFIRM_LOCK')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -68,7 +65,7 @@ class MultilingualXlsSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -81,9 +78,9 @@ class MultilingualXlsSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MultilingualXlsSettingsDto.parse_obj(obj)
+            return MultilingualXlsSettingsDto.model_validate(obj)
 
-        _obj = MultilingualXlsSettingsDto.parse_obj({
+        _obj = MultilingualXlsSettingsDto.model_validate({
             "source_column": obj.get("sourceColumn"),
             "target_columns": obj.get("targetColumns"),
             "context_note_column": obj.get("contextNoteColumn"),

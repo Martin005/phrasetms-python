@@ -19,25 +19,21 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.id_reference import IdReference
 
 class AnalyseRecalculateRequestDto(BaseModel):
     """
     AnalyseRecalculateRequestDto
     """
-    analyses: conlist(IdReference, max_items=100, min_items=1) = Field(...)
+    analyses: List[IdReference] = Field(...)
     callback_url: Optional[StrictStr] = Field(None, alias="callbackUrl")
     __properties = ["analyses", "callbackUrl"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class AnalyseRecalculateRequestDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -70,9 +66,9 @@ class AnalyseRecalculateRequestDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AnalyseRecalculateRequestDto.parse_obj(obj)
+            return AnalyseRecalculateRequestDto.model_validate(obj)
 
-        _obj = AnalyseRecalculateRequestDto.parse_obj({
+        _obj = AnalyseRecalculateRequestDto.model_validate({
             "analyses": [IdReference.from_dict(_item) for _item in obj.get("analyses")] if obj.get("analyses") is not None else None,
             "callback_url": obj.get("callbackUrl")
         })

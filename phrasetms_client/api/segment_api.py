@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.job_part_ready_references import JobPartReadyReferences
 from phrasetms_client.models.segment_list_dto import SegmentListDto
@@ -47,7 +47,7 @@ class SegmentApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def get_segments_count(self, project_uid : StrictStr, body : Optional[JobPartReadyReferences] = None, **kwargs) -> SegmentsCountsResponseListDto:  # noqa: E501
         """Get segments count  # noqa: E501
 
@@ -78,7 +78,7 @@ class SegmentApi(object):
             raise ValueError("Error! Please call the get_segments_count_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_segments_count_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_segments_count_with_http_info(self, project_uid : StrictStr, body : Optional[JobPartReadyReferences] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get segments count  # noqa: E501
 
@@ -212,8 +212,8 @@ class SegmentApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_segments(self, project_uid : StrictStr, job_uid : StrictStr, begin_index : Optional[conint(strict=True, ge=0)] = None, end_index : Optional[conint(strict=True, ge=0)] = None, **kwargs) -> SegmentListDto:  # noqa: E501
+    @validate_call
+    def list_segments(self, project_uid : StrictStr, job_uid : StrictStr, begin_index : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, end_index : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, **kwargs) -> SegmentListDto:  # noqa: E501
         """Get segments  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -246,8 +246,8 @@ class SegmentApi(object):
             raise ValueError("Error! Please call the list_segments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_segments_with_http_info(project_uid, job_uid, begin_index, end_index, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_segments_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, begin_index : Optional[conint(strict=True, ge=0)] = None, end_index : Optional[conint(strict=True, ge=0)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_segments_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, begin_index : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, end_index : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get segments  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

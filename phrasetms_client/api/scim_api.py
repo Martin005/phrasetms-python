@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictInt, StrictStr, conint
-
 from typing import Any, Dict, List, Optional
+
+from pydantic import Field, StrictInt, StrictStr
+
 
 from phrasetms_client.models.scim_resource_schema import ScimResourceSchema
 from phrasetms_client.models.scim_resource_type_schema import ScimResourceTypeSchema
@@ -48,7 +48,7 @@ class SCIMApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_user_scim(self, authorization : Optional[StrictStr] = None, body : Optional[ScimUserCoreDto] = None, **kwargs) -> ScimUserCoreDto:  # noqa: E501
         """Create user using SCIM  # noqa: E501
 
@@ -79,7 +79,7 @@ class SCIMApi(object):
             raise ValueError("Error! Please call the create_user_scim_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_user_scim_with_http_info(authorization, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_user_scim_with_http_info(self, authorization : Optional[StrictStr] = None, body : Optional[ScimUserCoreDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create user using SCIM  # noqa: E501
 
@@ -213,7 +213,7 @@ class SCIMApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_user(self, user_id : StrictInt, authorization : Optional[StrictStr] = None, **kwargs) -> None:  # noqa: E501
         """Delete user using SCIM  # noqa: E501
 
@@ -243,7 +243,7 @@ class SCIMApi(object):
             raise ValueError("Error! Please call the delete_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_user_with_http_info(user_id, authorization, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_user_with_http_info(self, user_id : StrictInt, authorization : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete user using SCIM  # noqa: E501
 
@@ -352,7 +352,7 @@ class SCIMApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_user(self, user_id : StrictInt, authorization : Optional[StrictStr] = None, body : Optional[ScimUserCoreDto] = None, **kwargs) -> ScimUserCoreDto:  # noqa: E501
         """Edit user using SCIM  # noqa: E501
 
@@ -384,7 +384,7 @@ class SCIMApi(object):
             raise ValueError("Error! Please call the edit_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_user_with_http_info(user_id, authorization, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_user_with_http_info(self, user_id : StrictInt, authorization : Optional[StrictStr] = None, body : Optional[ScimUserCoreDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit user using SCIM  # noqa: E501
 
@@ -523,7 +523,7 @@ class SCIMApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_resource_types(self, **kwargs) -> List[ScimResourceTypeSchema]:  # noqa: E501
         """List the types of SCIM Resources available  # noqa: E501
 
@@ -549,7 +549,7 @@ class SCIMApi(object):
             raise ValueError("Error! Please call the get_resource_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_resource_types_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_resource_types_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """List the types of SCIM Resources available  # noqa: E501
 
@@ -663,7 +663,7 @@ class SCIMApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_schema_by_urn(self, schema_urn : StrictStr, **kwargs) -> ScimResourceSchema:  # noqa: E501
         """Get supported SCIM Schema by urn  # noqa: E501
 
@@ -691,7 +691,7 @@ class SCIMApi(object):
             raise ValueError("Error! Please call the get_schema_by_urn_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_schema_by_urn_with_http_info(schema_urn, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_schema_by_urn_with_http_info(self, schema_urn : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get supported SCIM Schema by urn  # noqa: E501
 
@@ -811,7 +811,7 @@ class SCIMApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_schemas(self, **kwargs) -> List[ScimResourceSchema]:  # noqa: E501
         """Get supported SCIM Schemas  # noqa: E501
 
@@ -837,7 +837,7 @@ class SCIMApi(object):
             raise ValueError("Error! Please call the get_schemas_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_schemas_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_schemas_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get supported SCIM Schemas  # noqa: E501
 
@@ -951,7 +951,7 @@ class SCIMApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_scim_user(self, user_id : StrictInt, authorization : Optional[StrictStr] = None, **kwargs) -> ScimUserCoreDto:  # noqa: E501
         """Get user  # noqa: E501
 
@@ -981,7 +981,7 @@ class SCIMApi(object):
             raise ValueError("Error! Please call the get_scim_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_scim_user_with_http_info(user_id, authorization, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_scim_user_with_http_info(self, user_id : StrictInt, authorization : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get user  # noqa: E501
 
@@ -1107,7 +1107,7 @@ class SCIMApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_service_provider_config_dto(self, **kwargs) -> ServiceProviderConfigDto:  # noqa: E501
         """Retrieve the Service Provider's Configuration  # noqa: E501
 
@@ -1133,7 +1133,7 @@ class SCIMApi(object):
             raise ValueError("Error! Please call the get_service_provider_config_dto_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_service_provider_config_dto_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_service_provider_config_dto_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the Service Provider's Configuration  # noqa: E501
 
@@ -1247,7 +1247,7 @@ class SCIMApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def patch_user(self, user_id : StrictInt, authorization : Optional[StrictStr] = None, body : Optional[Dict[str, Dict[str, Any]]] = None, **kwargs) -> ScimUserCoreDto:  # noqa: E501
         """Patch user using SCIM  # noqa: E501
 
@@ -1279,7 +1279,7 @@ class SCIMApi(object):
             raise ValueError("Error! Please call the patch_user_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.patch_user_with_http_info(user_id, authorization, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def patch_user_with_http_info(self, user_id : StrictInt, authorization : Optional[StrictStr] = None, body : Optional[Dict[str, Dict[str, Any]]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Patch user using SCIM  # noqa: E501
 
@@ -1411,8 +1411,8 @@ class SCIMApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def search_users(self, authorization : Optional[StrictStr] = None, filter : Annotated[Optional[StrictStr], Field(description="See method description")] = None, attributes : Annotated[Optional[StrictStr], Field(description="See method description")] = None, sort_by : Annotated[Optional[StrictStr], Field(description="See method description")] = None, sort_order : Annotated[Optional[StrictStr], Field(description="See method description")] = None, start_index : Annotated[Optional[conint(strict=True, ge=1)], Field(description="The 1-based index of the first search result. Default 1")] = None, count : Annotated[Optional[conint(strict=True, le=100, ge=0)], Field(description="Non-negative Integer. Specifies the desired maximum number of search results per page; e.g., 10.")] = None, **kwargs) -> None:  # noqa: E501
+    @validate_call
+    def search_users(self, authorization : Optional[StrictStr] = None, filter : Annotated[Optional[StrictStr], Field(description="See method description")] = None, attributes : Annotated[Optional[StrictStr], Field(description="See method description")] = None, sort_by : Annotated[Optional[StrictStr], Field(description="See method description")] = None, sort_order : Annotated[Optional[StrictStr], Field(description="See method description")] = None, start_index : Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="The 1-based index of the first search result. Default 1")] = None, count : Annotated[Optional[Annotated[int, Field(strict=True, le=100, ge=0)]], Field(description="Non-negative Integer. Specifies the desired maximum number of search results per page; e.g., 10.")] = None, **kwargs) -> None:  # noqa: E501
         """Search users  # noqa: E501
 
          This operation supports <a href=\"http://ldapwiki.com/wiki/SCIM%20Filtering\" target=\"_blank\">SCIM Filter</a>,  <a href=\"http://ldapwiki.com/wiki/SCIM%20Search%20Request\" target=\"_blank\">SCIM attributes</a> and  <a href=\"http://ldapwiki.com/wiki/SCIM%20Sorting\" target=\"_blank\">SCIM sort</a>  Supported attributes:   - `id`   - `active`   - `userName`   - `name.givenName`   - `name.familyName`   - `emails.value`   - `meta.created`   # noqa: E501
@@ -1452,8 +1452,8 @@ class SCIMApi(object):
             raise ValueError("Error! Please call the search_users_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_users_with_http_info(authorization, filter, attributes, sort_by, sort_order, start_index, count, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def search_users_with_http_info(self, authorization : Optional[StrictStr] = None, filter : Annotated[Optional[StrictStr], Field(description="See method description")] = None, attributes : Annotated[Optional[StrictStr], Field(description="See method description")] = None, sort_by : Annotated[Optional[StrictStr], Field(description="See method description")] = None, sort_order : Annotated[Optional[StrictStr], Field(description="See method description")] = None, start_index : Annotated[Optional[conint(strict=True, ge=1)], Field(description="The 1-based index of the first search result. Default 1")] = None, count : Annotated[Optional[conint(strict=True, le=100, ge=0)], Field(description="Non-negative Integer. Specifies the desired maximum number of search results per page; e.g., 10.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def search_users_with_http_info(self, authorization : Optional[StrictStr] = None, filter : Annotated[Optional[StrictStr], Field(description="See method description")] = None, attributes : Annotated[Optional[StrictStr], Field(description="See method description")] = None, sort_by : Annotated[Optional[StrictStr], Field(description="See method description")] = None, sort_order : Annotated[Optional[StrictStr], Field(description="See method description")] = None, start_index : Annotated[Optional[Annotated[int, Field(strict=True, ge=1)]], Field(description="The 1-based index of the first search result. Default 1")] = None, count : Annotated[Optional[Annotated[int, Field(strict=True, le=100, ge=0)]], Field(description="Non-negative Integer. Specifies the desired maximum number of search results per page; e.g., 10.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search users  # noqa: E501
 
          This operation supports <a href=\"http://ldapwiki.com/wiki/SCIM%20Filtering\" target=\"_blank\">SCIM Filter</a>,  <a href=\"http://ldapwiki.com/wiki/SCIM%20Search%20Request\" target=\"_blank\">SCIM attributes</a> and  <a href=\"http://ldapwiki.com/wiki/SCIM%20Sorting\" target=\"_blank\">SCIM sort</a>  Supported attributes:   - `id`   - `active`   - `userName`   - `name.givenName`   - `name.familyName`   - `emails.value`   - `meta.created`   # noqa: E501

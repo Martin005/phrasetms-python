@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.term_base_dto import TermBaseDto
 from phrasetms_client.models.term_dto import TermDto
 
@@ -30,17 +30,13 @@ class SearchResponseTbDto(BaseModel):
     term_base: Optional[TermBaseDto] = Field(None, alias="termBase")
     concept_id: Optional[StrictStr] = Field(None, alias="conceptId")
     source_term: Optional[TermDto] = Field(None, alias="sourceTerm")
-    translation_terms: Optional[conlist(TermDto)] = Field(None, alias="translationTerms")
+    translation_terms: Optional[List[TermDto]] = Field(None, alias="translationTerms")
     __properties = ["termBase", "conceptId", "sourceTerm", "translationTerms"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class SearchResponseTbDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -79,9 +75,9 @@ class SearchResponseTbDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SearchResponseTbDto.parse_obj(obj)
+            return SearchResponseTbDto.model_validate(obj)
 
-        _obj = SearchResponseTbDto.parse_obj({
+        _obj = SearchResponseTbDto.model_validate({
             "term_base": TermBaseDto.from_dict(obj.get("termBase")) if obj.get("termBase") is not None else None,
             "concept_id": obj.get("conceptId"),
             "source_term": TermDto.from_dict(obj.get("sourceTerm")) if obj.get("sourceTerm") is not None else None,

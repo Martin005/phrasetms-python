@@ -19,25 +19,21 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictInt, StrictStr
 
 class ImportTermBaseResponseDto(BaseModel):
     """
     ImportTermBaseResponseDto
     """
-    langs: Optional[conlist(StrictStr)] = None
+    langs: Optional[List[StrictStr]] = None
     created_terms_count: Optional[StrictInt] = Field(None, alias="createdTermsCount")
     updated_terms_count: Optional[StrictInt] = Field(None, alias="updatedTermsCount")
     __properties = ["langs", "createdTermsCount", "updatedTermsCount"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class ImportTermBaseResponseDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -63,9 +59,9 @@ class ImportTermBaseResponseDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ImportTermBaseResponseDto.parse_obj(obj)
+            return ImportTermBaseResponseDto.model_validate(obj)
 
-        _obj = ImportTermBaseResponseDto.parse_obj({
+        _obj = ImportTermBaseResponseDto.model_validate({
             "langs": obj.get("langs"),
             "created_terms_count": obj.get("createdTermsCount"),
             "updated_terms_count": obj.get("updatedTermsCount")

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from phrasetms_client.models.counts_dto import CountsDto
 
 class MatchCountsNTDto(BaseModel):
@@ -34,14 +34,10 @@ class MatchCountsNTDto(BaseModel):
     match0: Optional[CountsDto] = None
     __properties = ["match100", "match95", "match85", "match75", "match50", "match0"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -54,7 +50,7 @@ class MatchCountsNTDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -85,9 +81,9 @@ class MatchCountsNTDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MatchCountsNTDto.parse_obj(obj)
+            return MatchCountsNTDto.model_validate(obj)
 
-        _obj = MatchCountsNTDto.parse_obj({
+        _obj = MatchCountsNTDto.model_validate({
             "match100": CountsDto.from_dict(obj.get("match100")) if obj.get("match100") is not None else None,
             "match95": CountsDto.from_dict(obj.get("match95")) if obj.get("match95") is not None else None,
             "match85": CountsDto.from_dict(obj.get("match85")) if obj.get("match85") is not None else None,

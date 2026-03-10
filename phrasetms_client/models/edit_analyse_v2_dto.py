@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Optional
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel, Field, ConfigDict, StringConstraints
 from phrasetms_client.models.provider_reference import ProviderReference
 from phrasetms_client.models.uid_reference import UidReference
 
@@ -27,19 +28,15 @@ class EditAnalyseV2Dto(BaseModel):
     """
     EditAnalyseV2Dto
     """
-    name: Optional[constr(strict=True, max_length=255, min_length=0)] = None
+    name: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None
     provider: Optional[ProviderReference] = None
     net_rate_scheme: Optional[UidReference] = Field(None, alias="netRateScheme")
     __properties = ["name", "provider", "netRateScheme"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +49,7 @@ class EditAnalyseV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -71,9 +68,9 @@ class EditAnalyseV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return EditAnalyseV2Dto.parse_obj(obj)
+            return EditAnalyseV2Dto.model_validate(obj)
 
-        _obj = EditAnalyseV2Dto.parse_obj({
+        _obj = EditAnalyseV2Dto.model_validate({
             "name": obj.get("name"),
             "provider": ProviderReference.from_dict(obj.get("provider")) if obj.get("provider") is not None else None,
             "net_rate_scheme": UidReference.from_dict(obj.get("netRateScheme")) if obj.get("netRateScheme") is not None else None

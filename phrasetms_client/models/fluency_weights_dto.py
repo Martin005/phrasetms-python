@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.toggleable_weight_dto import ToggleableWeightDto
 
 class FluencyWeightsDto(BaseModel):
@@ -36,14 +36,10 @@ class FluencyWeightsDto(BaseModel):
     character_encoding: Optional[ToggleableWeightDto] = Field(None, alias="characterEncoding")
     __properties = ["fluency", "punctuation", "spelling", "grammar", "grammaticalRegister", "inconsistency", "crossReference", "characterEncoding"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -56,7 +52,7 @@ class FluencyWeightsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -93,9 +89,9 @@ class FluencyWeightsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return FluencyWeightsDto.parse_obj(obj)
+            return FluencyWeightsDto.model_validate(obj)
 
-        _obj = FluencyWeightsDto.parse_obj({
+        _obj = FluencyWeightsDto.model_validate({
             "fluency": ToggleableWeightDto.from_dict(obj.get("fluency")) if obj.get("fluency") is not None else None,
             "punctuation": ToggleableWeightDto.from_dict(obj.get("punctuation")) if obj.get("punctuation") is not None else None,
             "spelling": ToggleableWeightDto.from_dict(obj.get("spelling")) if obj.get("spelling") is not None else None,

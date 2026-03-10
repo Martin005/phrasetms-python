@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing_extensions import Annotated
+from typing import Optional
 
 from pydantic import StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.dictionary_item_dto import DictionaryItemDto
 from phrasetms_client.models.spell_check_request_dto import SpellCheckRequestDto
@@ -49,7 +49,7 @@ class SpellCheckApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def add_word(self, body : Optional[DictionaryItemDto] = None, **kwargs) -> None:  # noqa: E501
         """Add word to dictionary  # noqa: E501
 
@@ -77,7 +77,7 @@ class SpellCheckApi(object):
             raise ValueError("Error! Please call the add_word_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.add_word_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def add_word_with_http_info(self, body : Optional[DictionaryItemDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Add word to dictionary  # noqa: E501
 
@@ -187,7 +187,7 @@ class SpellCheckApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def check(self, body : Optional[SpellCheckRequestDto] = None, **kwargs) -> SpellCheckResponseDto:  # noqa: E501
         """Spell check  # noqa: E501
 
@@ -216,7 +216,7 @@ class SpellCheckApi(object):
             raise ValueError("Error! Please call the check_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.check_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def check_with_http_info(self, body : Optional[SpellCheckRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Spell check  # noqa: E501
 
@@ -344,7 +344,7 @@ class SpellCheckApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def check_by_job(self, job_uid : StrictStr, body : Optional[SpellCheckRequestDto] = None, **kwargs) -> SpellCheckResponseDto:  # noqa: E501
         """Spell check for job  # noqa: E501
 
@@ -375,7 +375,7 @@ class SpellCheckApi(object):
             raise ValueError("Error! Please call the check_by_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.check_by_job_with_http_info(job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def check_by_job_with_http_info(self, job_uid : StrictStr, body : Optional[SpellCheckRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Spell check for job  # noqa: E501
 
@@ -509,7 +509,7 @@ class SpellCheckApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def suggest(self, body : Optional[SuggestRequestDto] = None, **kwargs) -> SuggestResponseDto:  # noqa: E501
         """Suggest a word  # noqa: E501
 
@@ -538,7 +538,7 @@ class SpellCheckApi(object):
             raise ValueError("Error! Please call the suggest_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.suggest_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def suggest_with_http_info(self, body : Optional[SuggestRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Suggest a word  # noqa: E501
 

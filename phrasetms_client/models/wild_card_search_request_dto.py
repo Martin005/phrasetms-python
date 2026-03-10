@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conint, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictInt, StrictStr
 
 class WildCardSearchRequestDto(BaseModel):
     """
@@ -27,20 +28,16 @@ class WildCardSearchRequestDto(BaseModel):
     """
     query: Optional[StrictStr] = None
     source_lang: StrictStr = Field(..., alias="sourceLang")
-    target_langs: Optional[conlist(StrictStr)] = Field(None, alias="targetLangs")
-    count: Optional[conint(strict=True, le=50, ge=1)] = None
+    target_langs: Optional[List[StrictStr]] = Field(None, alias="targetLangs")
+    count: Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None
     offset: Optional[StrictInt] = None
-    source_langs: Optional[conlist(StrictStr)] = Field(None, alias="sourceLangs")
+    source_langs: Optional[List[StrictStr]] = Field(None, alias="sourceLangs")
     __properties = ["query", "sourceLang", "targetLangs", "count", "offset", "sourceLangs"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +50,7 @@ class WildCardSearchRequestDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -66,9 +63,9 @@ class WildCardSearchRequestDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return WildCardSearchRequestDto.parse_obj(obj)
+            return WildCardSearchRequestDto.model_validate(obj)
 
-        _obj = WildCardSearchRequestDto.parse_obj({
+        _obj = WildCardSearchRequestDto.model_validate({
             "query": obj.get("query"),
             "source_lang": obj.get("sourceLang"),
             "target_langs": obj.get("targetLangs"),

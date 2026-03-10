@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 
 class WordpressAllOf(BaseModel):
     """
@@ -31,14 +31,10 @@ class WordpressAllOf(BaseModel):
     token: StrictStr = Field(..., description="Memsource plugin token")
     __properties = ["basicAuthUserName", "basicAuthPassword", "host", "token"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +47,7 @@ class WordpressAllOf(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -64,9 +60,9 @@ class WordpressAllOf(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return WordpressAllOf.parse_obj(obj)
+            return WordpressAllOf.model_validate(obj)
 
-        _obj = WordpressAllOf.parse_obj({
+        _obj = WordpressAllOf.model_validate({
             "basic_auth_user_name": obj.get("basicAuthUserName"),
             "basic_auth_password": obj.get("basicAuthPassword"),
             "host": obj.get("host"),

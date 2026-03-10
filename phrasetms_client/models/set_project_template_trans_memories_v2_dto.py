@@ -19,24 +19,20 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.set_context_pt_trans_memories_v2_dto import SetContextPTTransMemoriesV2Dto
 
 class SetProjectTemplateTransMemoriesV2Dto(BaseModel):
     """
     SetProjectTemplateTransMemoriesV2Dto
     """
-    data_per_context: conlist(SetContextPTTransMemoriesV2Dto) = Field(..., alias="dataPerContext")
+    data_per_context: List[SetContextPTTransMemoriesV2Dto] = Field(..., alias="dataPerContext")
     __properties = ["dataPerContext"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class SetProjectTemplateTransMemoriesV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class SetProjectTemplateTransMemoriesV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SetProjectTemplateTransMemoriesV2Dto.parse_obj(obj)
+            return SetProjectTemplateTransMemoriesV2Dto.model_validate(obj)
 
-        _obj = SetProjectTemplateTransMemoriesV2Dto.parse_obj({
+        _obj = SetProjectTemplateTransMemoriesV2Dto.model_validate({
             "data_per_context": [SetContextPTTransMemoriesV2Dto.from_dict(_item) for _item in obj.get("dataPerContext")] if obj.get("dataPerContext") is not None else None
         })
         return _obj

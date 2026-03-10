@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import StringConstraints, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictBool, StrictBytes, StrictStr, constr, validator
-
 from typing import Optional, Union
+
+from pydantic import Field, StrictBool, StrictBytes, StrictStr, StringConstraints
+
 
 from phrasetms_client.models.abstract_connector_dto import AbstractConnectorDto
 from phrasetms_client.models.async_file_op_response_dto import AsyncFileOpResponseDto
@@ -53,7 +53,7 @@ class ConnectorApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def edit_connector(self, connector_id : StrictStr, connection_test : Annotated[Optional[StrictBool], Field(description="For running connection test")] = None, body : Optional[AbstractConnectorDto] = None, **kwargs) -> ConnectorCreateResponseDto:  # noqa: E501
         """Edit connector  # noqa: E501
 
@@ -86,7 +86,7 @@ class ConnectorApi(object):
             raise ValueError("Error! Please call the edit_connector_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_connector_with_http_info(connector_id, connection_test, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_connector_with_http_info(self, connector_id : StrictStr, connection_test : Annotated[Optional[StrictBool], Field(description="For running connection test")] = None, body : Optional[AbstractConnectorDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit connector  # noqa: E501
 
@@ -226,7 +226,7 @@ class ConnectorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_connector(self, connector_id : StrictStr, **kwargs) -> ConnectorDto:  # noqa: E501
         """Get a connector  # noqa: E501
 
@@ -254,7 +254,7 @@ class ConnectorApi(object):
             raise ValueError("Error! Please call the get_connector_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_connector_with_http_info(connector_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_connector_with_http_info(self, connector_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get a connector  # noqa: E501
 
@@ -374,7 +374,7 @@ class ConnectorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_connector_list(self, type : Optional[StrictStr] = None, **kwargs) -> ConnectorListDto:  # noqa: E501
         """List connectors  # noqa: E501
 
@@ -402,7 +402,7 @@ class ConnectorApi(object):
             raise ValueError("Error! Please call the get_connector_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_connector_list_with_http_info(type, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_connector_list_with_http_info(self, type : Optional[StrictStr] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List connectors  # noqa: E501
 
@@ -522,7 +522,7 @@ class ConnectorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_file(self, connector_id : StrictStr, folder : StrictStr, file : StrictStr, **kwargs) -> InputStreamLength:  # noqa: E501
         """Download file  # noqa: E501
 
@@ -555,7 +555,7 @@ class ConnectorApi(object):
             raise ValueError("Error! Please call the get_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_file_with_http_info(connector_id, folder, file, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_file_with_http_info(self, connector_id : StrictStr, folder : StrictStr, file : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Download file  # noqa: E501
 
@@ -688,7 +688,7 @@ class ConnectorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_file1(self, connector_id : StrictStr, folder : StrictStr, file : StrictStr, body : Optional[GetFileRequestParamsDto] = None, **kwargs) -> AsyncFileOpResponseDto:  # noqa: E501
         """Download file (async)  # noqa: E501
 
@@ -723,7 +723,7 @@ class ConnectorApi(object):
             raise ValueError("Error! Please call the get_file1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_file1_with_http_info(connector_id, folder, file, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_file1_with_http_info(self, connector_id : StrictStr, folder : StrictStr, file : StrictStr, body : Optional[GetFileRequestParamsDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download file (async)  # noqa: E501
 
@@ -869,8 +869,8 @@ class ConnectorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_folder(self, connector_id : StrictStr, folder : StrictStr, project_uid : Optional[StrictStr] = None, file_type : Optional[constr(strict=True)] = None, sort : Optional[constr(strict=True)] = None, direction : Optional[constr(strict=True)] = None, **kwargs) -> FileListDto:  # noqa: E501
+    @validate_call
+    def get_folder(self, connector_id : StrictStr, folder : StrictStr, project_uid : Optional[StrictStr] = None, file_type : Optional[Annotated[str, StringConstraints(strict=True)]] = None, sort : Optional[Annotated[str, StringConstraints(strict=True)]] = None, direction : Optional[Annotated[str, StringConstraints(strict=True)]] = None, **kwargs) -> FileListDto:  # noqa: E501
         """List files in a subfolder  # noqa: E501
 
         List files in a subfolder of the selected connector  # noqa: E501
@@ -908,8 +908,8 @@ class ConnectorApi(object):
             raise ValueError("Error! Please call the get_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_folder_with_http_info(connector_id, folder, project_uid, file_type, sort, direction, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_folder_with_http_info(self, connector_id : StrictStr, folder : StrictStr, project_uid : Optional[StrictStr] = None, file_type : Optional[constr(strict=True)] = None, sort : Optional[constr(strict=True)] = None, direction : Optional[constr(strict=True)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_folder_with_http_info(self, connector_id : StrictStr, folder : StrictStr, project_uid : Optional[StrictStr] = None, file_type : Optional[Annotated[str, StringConstraints(strict=True)]] = None, sort : Optional[Annotated[str, StringConstraints(strict=True)]] = None, direction : Optional[Annotated[str, StringConstraints(strict=True)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List files in a subfolder  # noqa: E501
 
         List files in a subfolder of the selected connector  # noqa: E501
@@ -1059,7 +1059,7 @@ class ConnectorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_prepared_file(self, connector_id : StrictStr, folder : StrictStr, file : StrictStr, task_id : StrictStr, **kwargs) -> InputStreamLength:  # noqa: E501
         """Download prepared file  # noqa: E501
 
@@ -1094,7 +1094,7 @@ class ConnectorApi(object):
             raise ValueError("Error! Please call the get_prepared_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_prepared_file_with_http_info(connector_id, folder, file, task_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_prepared_file_with_http_info(self, connector_id : StrictStr, folder : StrictStr, file : StrictStr, task_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Download prepared file  # noqa: E501
 
@@ -1233,8 +1233,8 @@ class ConnectorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_root_folder(self, connector_id : StrictStr, file_type : Optional[constr(strict=True)] = None, sort : Optional[constr(strict=True)] = None, direction : Optional[constr(strict=True)] = None, **kwargs) -> FileListDto:  # noqa: E501
+    @validate_call
+    def get_root_folder(self, connector_id : StrictStr, file_type : Optional[Annotated[str, StringConstraints(strict=True)]] = None, sort : Optional[Annotated[str, StringConstraints(strict=True)]] = None, direction : Optional[Annotated[str, StringConstraints(strict=True)]] = None, **kwargs) -> FileListDto:  # noqa: E501
         """List files in root  # noqa: E501
 
         List files in a root folder of the selected connector  # noqa: E501
@@ -1268,8 +1268,8 @@ class ConnectorApi(object):
             raise ValueError("Error! Please call the get_root_folder_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_root_folder_with_http_info(connector_id, file_type, sort, direction, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_root_folder_with_http_info(self, connector_id : StrictStr, file_type : Optional[constr(strict=True)] = None, sort : Optional[constr(strict=True)] = None, direction : Optional[constr(strict=True)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_root_folder_with_http_info(self, connector_id : StrictStr, file_type : Optional[Annotated[str, StringConstraints(strict=True)]] = None, sort : Optional[Annotated[str, StringConstraints(strict=True)]] = None, direction : Optional[Annotated[str, StringConstraints(strict=True)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List files in root  # noqa: E501
 
         List files in a root folder of the selected connector  # noqa: E501
@@ -1407,7 +1407,7 @@ class ConnectorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def upload_file(self, connector_id : StrictStr, folder : StrictStr, content_type : StrictStr, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="Translated file to upload")], source_file_name : Annotated[Optional[StrictStr], Field(description="Name or ID of the original file")] = None, subfolder_name : Annotated[Optional[StrictStr], Field(description="Optional subfolder to upload the file to")] = None, mime_type : Annotated[Optional[StrictStr], Field(description="Mime type of the file to upload")] = None, commit_message : Annotated[Optional[StrictStr], Field(description="Commit message for upload to Git, etc.")] = None, **kwargs) -> UploadResultDto:  # noqa: E501
         """Upload a file to a subfolder of the selected connector  # noqa: E501
 
@@ -1450,7 +1450,7 @@ class ConnectorApi(object):
             raise ValueError("Error! Please call the upload_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.upload_file_with_http_info(connector_id, folder, content_type, file, source_file_name, subfolder_name, mime_type, commit_message, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def upload_file_with_http_info(self, connector_id : StrictStr, folder : StrictStr, content_type : StrictStr, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="Translated file to upload")], source_file_name : Annotated[Optional[StrictStr], Field(description="Name or ID of the original file")] = None, subfolder_name : Annotated[Optional[StrictStr], Field(description="Optional subfolder to upload the file to")] = None, mime_type : Annotated[Optional[StrictStr], Field(description="Mime type of the file to upload")] = None, commit_message : Annotated[Optional[StrictStr], Field(description="Commit message for upload to Git, etc.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Upload a file to a subfolder of the selected connector  # noqa: E501
 
@@ -1620,7 +1620,7 @@ class ConnectorApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def upload_file1(self, connector_id : StrictStr, folder : StrictStr, file_name : StrictStr, memsource : StrictStr, content_type : StrictStr, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="Translated file to upload")], mime_type : Annotated[Optional[StrictStr], Field(description="Mime type of the file to upload")] = None, **kwargs) -> AsyncFileOpResponseDto:  # noqa: E501
         """Upload file (async)  # noqa: E501
 
@@ -1661,7 +1661,7 @@ class ConnectorApi(object):
             raise ValueError("Error! Please call the upload_file1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.upload_file1_with_http_info(connector_id, folder, file_name, memsource, content_type, file, mime_type, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def upload_file1_with_http_info(self, connector_id : StrictStr, folder : StrictStr, file_name : StrictStr, memsource : StrictStr, content_type : StrictStr, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="Translated file to upload")], mime_type : Annotated[Optional[StrictStr], Field(description="Mime type of the file to upload")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Upload file (async)  # noqa: E501
 

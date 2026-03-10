@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictBool, StrictInt, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictBool, StrictInt
+
 
 from phrasetms_client.models.async_request_dto import AsyncRequestDto
 from phrasetms_client.models.async_request_status_dto import AsyncRequestStatusDto
@@ -47,7 +47,7 @@ class AsyncRequestApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def get_async_request(self, async_request_id : StrictInt, **kwargs) -> AsyncRequestDto:  # noqa: E501
         """Get asynchronous request  # noqa: E501
 
@@ -75,7 +75,7 @@ class AsyncRequestApi(object):
             raise ValueError("Error! Please call the get_async_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_async_request_with_http_info(async_request_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_async_request_with_http_info(self, async_request_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Get asynchronous request  # noqa: E501
 
@@ -195,7 +195,7 @@ class AsyncRequestApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_current_limit_status(self, **kwargs) -> AsyncRequestStatusDto:  # noqa: E501
         """Get current limits  # noqa: E501
 
@@ -221,7 +221,7 @@ class AsyncRequestApi(object):
             raise ValueError("Error! Please call the get_current_limit_status_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_current_limit_status_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_current_limit_status_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get current limits  # noqa: E501
 
@@ -335,8 +335,8 @@ class AsyncRequestApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_pending_requests(self, all : Annotated[Optional[StrictBool], Field(description="Pending requests for organization instead of current user. Only for ADMIN.")] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoAsyncRequestDto:  # noqa: E501
+    @validate_call
+    def list_pending_requests(self, all : Annotated[Optional[StrictBool], Field(description="Pending requests for organization instead of current user. Only for ADMIN.")] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoAsyncRequestDto:  # noqa: E501
         """List pending requests  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -367,8 +367,8 @@ class AsyncRequestApi(object):
             raise ValueError("Error! Please call the list_pending_requests_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_pending_requests_with_http_info(all, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_pending_requests_with_http_info(self, all : Annotated[Optional[StrictBool], Field(description="Pending requests for organization instead of current user. Only for ADMIN.")] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_pending_requests_with_http_info(self, all : Annotated[Optional[StrictBool], Field(description="Pending requests for organization instead of current user. Only for ADMIN.")] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List pending requests  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

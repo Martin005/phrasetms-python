@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.abstract_connector_dto import AbstractConnectorDto
 
 class Git(AbstractConnectorDto):
@@ -35,14 +35,10 @@ class Git(AbstractConnectorDto):
     ssh_pass_phrase: Optional[StrictStr] = Field(None, alias="sshPassPhrase")
     __properties = ["name", "type", "userName", "password", "host", "commitMessage", "sshKeyName", "sshKey", "sshPassPhrase"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -55,7 +51,7 @@ class Git(AbstractConnectorDto):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -68,9 +64,9 @@ class Git(AbstractConnectorDto):
             return None
 
         if not isinstance(obj, dict):
-            return Git.parse_obj(obj)
+            return Git.model_validate(obj)
 
-        _obj = Git.parse_obj({
+        _obj = Git.model_validate({
             "name": obj.get("name"),
             "type": obj.get("type"),
             "user_name": obj.get("userName"),

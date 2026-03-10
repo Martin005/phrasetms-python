@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, StrictFloat, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt
 
 class DiscountSettingsDto(BaseModel):
     """
@@ -53,14 +53,10 @@ class DiscountSettingsDto(BaseModel):
     if0: Optional[Union[StrictFloat, StrictInt]] = None
     __properties = ["repetition", "tm101", "tm100", "tm95", "tm85", "tm75", "tm50", "tm0", "mt100", "mt95", "mt85", "mt75", "mt50", "mt0", "nt100", "nt99", "nt85", "nt75", "nt50", "nt0", "if100", "if95", "if85", "if75", "if50", "if0"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -73,7 +69,7 @@ class DiscountSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -86,9 +82,9 @@ class DiscountSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return DiscountSettingsDto.parse_obj(obj)
+            return DiscountSettingsDto.model_validate(obj)
 
-        _obj = DiscountSettingsDto.parse_obj({
+        _obj = DiscountSettingsDto.model_validate({
             "repetition": obj.get("repetition"),
             "tm101": obj.get("tm101"),
             "tm100": obj.get("tm100"),

@@ -21,7 +21,7 @@ import phrasetms_client.models
 
 
 
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 
 class QACheckDtoV2(BaseModel):
     """
@@ -31,25 +31,23 @@ class QACheckDtoV2(BaseModel):
     name: StrictStr = Field(...)
     __properties = ["type", "name"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('VOID', 'NUMBER', 'STRING', 'REGEX', 'MORAVIA'):
             raise ValueError("must be one of enum values ('VOID', 'NUMBER', 'STRING', 'REGEX', 'MORAVIA')")
         return value
 
-    @validator('name')
+    @field_validator('name')
+    @classmethod
     def name_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('emptyTarget', 'inconsistentTranslation', 'joinMarksInconsistency', 'missingNumber', 'segmentNotConfirmed', 'nonConformingTerms', 'multipleSpaces', 'endPunctuation', 'targetLength', 'absoluteTargetLength', 'relativeTargetLength', 'inconsistentFormatting', 'unresolvedComment', 'emptyPairTags', 'strictJobStatus', 'forbiddenStringsEnabled', 'excludeLockedSegments', 'ignoreNotApprovedTerms', 'spellCheck', 'repeatedWords', 'inconsistentTagContent', 'emptyTagContent', 'malformed', 'forbiddenTerms', 'targetLengthPercent', 'targetLengthPerSegment', 'newerAtLowerLevel', 'leadingAndTrailingSpaces', 'targetSourceIdentical', 'ignoreInAllWorkflowSteps', 'regexp', 'unmodifiedFuzzyTranslation', 'unmodifiedFuzzyTranslationTM', 'unmodifiedFuzzyTranslationMTNT', 'moravia', 'extraNumbers', 'nestedTags'):
             raise ValueError("must be one of enum values ('emptyTarget', 'inconsistentTranslation', 'joinMarksInconsistency', 'missingNumber', 'segmentNotConfirmed', 'nonConformingTerms', 'multipleSpaces', 'endPunctuation', 'targetLength', 'absoluteTargetLength', 'relativeTargetLength', 'inconsistentFormatting', 'unresolvedComment', 'emptyPairTags', 'strictJobStatus', 'forbiddenStringsEnabled', 'excludeLockedSegments', 'ignoreNotApprovedTerms', 'spellCheck', 'repeatedWords', 'inconsistentTagContent', 'emptyTagContent', 'malformed', 'forbiddenTerms', 'targetLengthPercent', 'targetLengthPerSegment', 'newerAtLowerLevel', 'leadingAndTrailingSpaces', 'targetSourceIdentical', 'ignoreInAllWorkflowSteps', 'regexp', 'unmodifiedFuzzyTranslation', 'unmodifiedFuzzyTranslationTM', 'unmodifiedFuzzyTranslationMTNT', 'moravia', 'extraNumbers', 'nestedTags')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     # JSON field name that stores the object type
     __discriminator_property_name = 'type'
 
@@ -73,7 +71,7 @@ class QACheckDtoV2(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -86,7 +84,7 @@ class QACheckDtoV2(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)

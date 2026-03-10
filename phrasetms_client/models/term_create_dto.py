@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class TermCreateDto(BaseModel):
     """
@@ -42,7 +42,8 @@ class TermCreateDto(BaseModel):
     number: Optional[StrictStr] = None
     __properties = ["text", "lang", "caseSensitive", "exactMatch", "forbidden", "preferred", "status", "conceptId", "usage", "note", "shortTranslation", "termType", "partOfSpeech", "gender", "number"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -52,7 +53,8 @@ class TermCreateDto(BaseModel):
             raise ValueError("must be one of enum values ('New', 'Approved')")
         return value
 
-    @validator('term_type')
+    @field_validator('term_type')
+    @classmethod
     def term_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -62,7 +64,8 @@ class TermCreateDto(BaseModel):
             raise ValueError("must be one of enum values ('FULL_FORM', 'SHORT_FORM', 'ACRONYM', 'ABBREVIATION', 'PHRASE', 'VARIANT')")
         return value
 
-    @validator('part_of_speech')
+    @field_validator('part_of_speech')
+    @classmethod
     def part_of_speech_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -72,7 +75,8 @@ class TermCreateDto(BaseModel):
             raise ValueError("must be one of enum values ('ADJECTIVE', 'NOUN', 'VERB', 'ADVERB')")
         return value
 
-    @validator('gender')
+    @field_validator('gender')
+    @classmethod
     def gender_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -82,7 +86,8 @@ class TermCreateDto(BaseModel):
             raise ValueError("must be one of enum values ('MASCULINE', 'FEMININE', 'NEUTRAL')")
         return value
 
-    @validator('number')
+    @field_validator('number')
+    @classmethod
     def number_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -92,14 +97,10 @@ class TermCreateDto(BaseModel):
             raise ValueError("must be one of enum values ('SINGULAR', 'PLURAL', 'UNCOUNTABLE')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -112,7 +113,7 @@ class TermCreateDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -125,9 +126,9 @@ class TermCreateDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TermCreateDto.parse_obj(obj)
+            return TermCreateDto.model_validate(obj)
 
-        _obj = TermCreateDto.parse_obj({
+        _obj = TermCreateDto.model_validate({
             "text": obj.get("text"),
             "lang": obj.get("lang"),
             "case_sensitive": obj.get("caseSensitive"),

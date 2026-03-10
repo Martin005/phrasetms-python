@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.translation_price_set_dto import TranslationPriceSetDto
 
 class TranslationPriceListDto(BaseModel):
@@ -32,10 +32,11 @@ class TranslationPriceListDto(BaseModel):
     name: StrictStr = Field(...)
     currency_code: Optional[StrictStr] = Field(None, alias="currencyCode")
     billing_unit: Optional[StrictStr] = Field(None, alias="billingUnit")
-    price_sets: Optional[conlist(TranslationPriceSetDto)] = Field(None, alias="priceSets")
+    price_sets: Optional[List[TranslationPriceSetDto]] = Field(None, alias="priceSets")
     __properties = ["id", "uid", "dateCreated", "name", "currencyCode", "billingUnit", "priceSets"]
 
-    @validator('billing_unit')
+    @field_validator('billing_unit')
+    @classmethod
     def billing_unit_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -45,14 +46,10 @@ class TranslationPriceListDto(BaseModel):
             raise ValueError("must be one of enum values ('Character', 'Word', 'Page', 'Hour')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -65,7 +62,7 @@ class TranslationPriceListDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                             "id",
                           },
@@ -86,9 +83,9 @@ class TranslationPriceListDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TranslationPriceListDto.parse_obj(obj)
+            return TranslationPriceListDto.model_validate(obj)
 
-        _obj = TranslationPriceListDto.parse_obj({
+        _obj = TranslationPriceListDto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "date_created": obj.get("dateCreated"),

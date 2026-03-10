@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 from phrasetms_client.models.business_unit_reference import BusinessUnitReference
 from phrasetms_client.models.client_reference import ClientReference
 from phrasetms_client.models.domain_reference import DomainReference
@@ -30,32 +30,32 @@ class PROJECTMANAGERRESPONSEAllOf(BaseModel):
     """
     PROJECTMANAGERRESPONSEAllOf
     """
-    source_locales: Optional[conlist(StrictStr)] = Field(None, alias="sourceLocales")
-    target_locales: Optional[conlist(StrictStr)] = Field(None, alias="targetLocales")
-    workflow_steps: Optional[conlist(WorkflowStepReferenceV3)] = Field(None, alias="workflowSteps")
-    clients: Optional[conlist(ClientReference)] = None
-    domains: Optional[conlist(DomainReference)] = None
-    sub_domains: Optional[conlist(SubDomainReference)] = Field(None, alias="subDomains")
+    source_locales: Optional[List[StrictStr]] = Field(None, alias="sourceLocales")
+    target_locales: Optional[List[StrictStr]] = Field(None, alias="targetLocales")
+    workflow_steps: Optional[List[WorkflowStepReferenceV3]] = Field(None, alias="workflowSteps")
+    clients: Optional[List[ClientReference]] = None
+    domains: Optional[List[DomainReference]] = None
+    sub_domains: Optional[List[SubDomainReference]] = Field(None, alias="subDomains")
     project_create: Optional[StrictBool] = Field(None, alias="projectCreate")
     project_view_other: Optional[StrictBool] = Field(None, alias="projectViewOther")
     project_edit_other: Optional[StrictBool] = Field(None, alias="projectEditOther")
     project_delete_other: Optional[StrictBool] = Field(None, alias="projectDeleteOther")
-    project_clients: Optional[conlist(ClientReference)] = Field(None, alias="projectClients")
-    project_business_units: Optional[conlist(BusinessUnitReference)] = Field(None, alias="projectBusinessUnits")
+    project_clients: Optional[List[ClientReference]] = Field(None, alias="projectClients")
+    project_business_units: Optional[List[BusinessUnitReference]] = Field(None, alias="projectBusinessUnits")
     project_template_create: Optional[StrictBool] = Field(None, alias="projectTemplateCreate")
     project_template_view_other: Optional[StrictBool] = Field(None, alias="projectTemplateViewOther")
     project_template_edit_other: Optional[StrictBool] = Field(None, alias="projectTemplateEditOther")
     project_template_delete_other: Optional[StrictBool] = Field(None, alias="projectTemplateDeleteOther")
-    project_template_clients: Optional[conlist(ClientReference)] = Field(None, alias="projectTemplateClients")
-    project_template_business_units: Optional[conlist(BusinessUnitReference)] = Field(None, alias="projectTemplateBusinessUnits")
+    project_template_clients: Optional[List[ClientReference]] = Field(None, alias="projectTemplateClients")
+    project_template_business_units: Optional[List[BusinessUnitReference]] = Field(None, alias="projectTemplateBusinessUnits")
     trans_memory_create: Optional[StrictBool] = Field(None, alias="transMemoryCreate")
     trans_memory_view_other: Optional[StrictBool] = Field(None, alias="transMemoryViewOther")
     trans_memory_edit_other: Optional[StrictBool] = Field(None, alias="transMemoryEditOther")
     trans_memory_delete_other: Optional[StrictBool] = Field(None, alias="transMemoryDeleteOther")
     trans_memory_export_other: Optional[StrictBool] = Field(None, alias="transMemoryExportOther")
     trans_memory_import_other: Optional[StrictBool] = Field(None, alias="transMemoryImportOther")
-    trans_memory_clients: Optional[conlist(ClientReference)] = Field(None, alias="transMemoryClients")
-    trans_memory_business_units: Optional[conlist(BusinessUnitReference)] = Field(None, alias="transMemoryBusinessUnits")
+    trans_memory_clients: Optional[List[ClientReference]] = Field(None, alias="transMemoryClients")
+    trans_memory_business_units: Optional[List[BusinessUnitReference]] = Field(None, alias="transMemoryBusinessUnits")
     term_base_create: Optional[StrictBool] = Field(None, alias="termBaseCreate")
     term_base_view_other: Optional[StrictBool] = Field(None, alias="termBaseViewOther")
     term_base_edit_other: Optional[StrictBool] = Field(None, alias="termBaseEditOther")
@@ -63,8 +63,8 @@ class PROJECTMANAGERRESPONSEAllOf(BaseModel):
     term_base_export_other: Optional[StrictBool] = Field(None, alias="termBaseExportOther")
     term_base_import_other: Optional[StrictBool] = Field(None, alias="termBaseImportOther")
     term_base_approve_other: Optional[StrictBool] = Field(None, alias="termBaseApproveOther")
-    term_base_clients: Optional[conlist(ClientReference)] = Field(None, alias="termBaseClients")
-    term_base_business_units: Optional[conlist(BusinessUnitReference)] = Field(None, alias="termBaseBusinessUnits")
+    term_base_clients: Optional[List[ClientReference]] = Field(None, alias="termBaseClients")
+    term_base_business_units: Optional[List[BusinessUnitReference]] = Field(None, alias="termBaseBusinessUnits")
     user_create: Optional[StrictBool] = Field(None, alias="userCreate")
     user_view_other: Optional[StrictBool] = Field(None, alias="userViewOther")
     user_edit_other: Optional[StrictBool] = Field(None, alias="userEditOther")
@@ -81,14 +81,10 @@ class PROJECTMANAGERRESPONSEAllOf(BaseModel):
     setup_server: Optional[StrictBool] = Field(None, alias="setupServer")
     __properties = ["sourceLocales", "targetLocales", "workflowSteps", "clients", "domains", "subDomains", "projectCreate", "projectViewOther", "projectEditOther", "projectDeleteOther", "projectClients", "projectBusinessUnits", "projectTemplateCreate", "projectTemplateViewOther", "projectTemplateEditOther", "projectTemplateDeleteOther", "projectTemplateClients", "projectTemplateBusinessUnits", "transMemoryCreate", "transMemoryViewOther", "transMemoryEditOther", "transMemoryDeleteOther", "transMemoryExportOther", "transMemoryImportOther", "transMemoryClients", "transMemoryBusinessUnits", "termBaseCreate", "termBaseViewOther", "termBaseEditOther", "termBaseDeleteOther", "termBaseExportOther", "termBaseImportOther", "termBaseApproveOther", "termBaseClients", "termBaseBusinessUnits", "userCreate", "userViewOther", "userEditOther", "userDeleteOther", "clientDomainSubDomainCreate", "clientDomainSubDomainViewOther", "clientDomainSubDomainEditOther", "clientDomainSubDomainDeleteOther", "vendorCreate", "vendorViewOther", "vendorEditOther", "vendorDeleteOther", "dashboardSetting", "setupServer"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -101,7 +97,7 @@ class PROJECTMANAGERRESPONSEAllOf(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -198,9 +194,9 @@ class PROJECTMANAGERRESPONSEAllOf(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PROJECTMANAGERRESPONSEAllOf.parse_obj(obj)
+            return PROJECTMANAGERRESPONSEAllOf.model_validate(obj)
 
-        _obj = PROJECTMANAGERRESPONSEAllOf.parse_obj({
+        _obj = PROJECTMANAGERRESPONSEAllOf.model_validate({
             "source_locales": obj.get("sourceLocales"),
             "target_locales": obj.get("targetLocales"),
             "workflow_steps": [WorkflowStepReferenceV3.from_dict(_item) for _item in obj.get("workflowSteps")] if obj.get("workflowSteps") is not None else None,

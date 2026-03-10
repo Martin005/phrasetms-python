@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 from phrasetms_client.models.abstract_user_create_dto import AbstractUserCreateDto
 from phrasetms_client.models.uid_reference import UidReference
 
@@ -45,12 +45,12 @@ class LINGUIST(AbstractUserCreateDto):
     may_reject_jobs: Optional[StrictBool] = Field(
         None, alias="mayRejectJobs", description="Reject jobs. Default: false"
     )
-    source_locales: Optional[conlist(StrictStr)] = Field(None, alias="sourceLocales")
-    target_locales: Optional[conlist(StrictStr)] = Field(None, alias="targetLocales")
-    workflow_steps: Optional[conlist(UidReference)] = Field(None, alias="workflowSteps")
-    clients: Optional[conlist(UidReference)] = None
-    domains: Optional[conlist(UidReference)] = None
-    sub_domains: Optional[conlist(UidReference)] = Field(None, alias="subDomains")
+    source_locales: Optional[List[StrictStr]] = Field(None, alias="sourceLocales")
+    target_locales: Optional[List[StrictStr]] = Field(None, alias="targetLocales")
+    workflow_steps: Optional[List[UidReference]] = Field(None, alias="workflowSteps")
+    clients: Optional[List[UidReference]] = None
+    domains: Optional[List[UidReference]] = None
+    sub_domains: Optional[List[UidReference]] = Field(None, alias="subDomains")
     net_rate_scheme: Optional[UidReference] = Field(None, alias="netRateScheme")
     translation_price_list: Optional[UidReference] = Field(
         None, alias="translationPriceList"
@@ -80,15 +80,10 @@ class LINGUIST(AbstractUserCreateDto):
         "translationPriceList",
     ]
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -101,7 +96,7 @@ class LINGUIST(AbstractUserCreateDto):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of each item in workflow_steps (list)
         _items = []
         if self.workflow_steps:
@@ -145,9 +140,9 @@ class LINGUIST(AbstractUserCreateDto):
             return None
 
         if not isinstance(obj, dict):
-            return LINGUIST.parse_obj(obj)
+            return LINGUIST.model_validate(obj)
 
-        _obj = LINGUIST.parse_obj(
+        _obj = LINGUIST.model_validate(
             {
                 "user_name": obj.get("userName"),
                 "first_name": obj.get("firstName"),

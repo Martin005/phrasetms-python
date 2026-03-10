@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt, StrictStr
 from phrasetms_client.models.memsource_translate_profile_simple_dto import MemsourceTranslateProfileSimpleDto
 from phrasetms_client.models.user_reference import UserReference
 
@@ -31,23 +31,19 @@ class GlossaryDto(BaseModel):
     uid: Optional[StrictStr] = None
     internal_id: Optional[StrictInt] = Field(None, alias="internalId")
     name: StrictStr = Field(...)
-    langs: Optional[conlist(StrictStr)] = None
+    langs: Optional[List[StrictStr]] = None
     created_by: Optional[UserReference] = Field(None, alias="createdBy")
     owner: Optional[UserReference] = None
     date_created: Optional[datetime] = Field(None, alias="dateCreated")
     profile_count: Optional[StrictInt] = Field(None, alias="profileCount")
     active: Optional[StrictBool] = None
-    profiles: Optional[conlist(MemsourceTranslateProfileSimpleDto)] = None
+    profiles: Optional[List[MemsourceTranslateProfileSimpleDto]] = None
     __properties = ["id", "uid", "internalId", "name", "langs", "createdBy", "owner", "dateCreated", "profileCount", "active", "profiles"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -60,7 +56,7 @@ class GlossaryDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -86,9 +82,9 @@ class GlossaryDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return GlossaryDto.parse_obj(obj)
+            return GlossaryDto.model_validate(obj)
 
-        _obj = GlossaryDto.parse_obj({
+        _obj = GlossaryDto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "internal_id": obj.get("internalId"),

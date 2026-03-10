@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
 from phrasetms_client.models.android_settings_dto import AndroidSettingsDto
 from phrasetms_client.models.asciidoc_settings_dto import AsciidocSettingsDto
 from phrasetms_client.models.csv_settings_dto import CsvSettingsDto
@@ -103,14 +103,10 @@ class FileImportSettingsDto(BaseModel):
     target_seg_rule: Optional[SegRuleReference] = Field(None, alias="targetSegRule")
     __properties = ["inputCharset", "outputCharset", "zipCharset", "fileFormat", "autodetectMultilingualFiles", "targetLength", "targetLengthMax", "targetLengthPercent", "targetLengthPercentValue", "android", "idml", "xls", "multilingualXml", "php", "resx", "json", "html", "multilingualXls", "multilingualCsv", "csv", "txt", "xlf2", "quarkTag", "pdf", "tmMatch", "xml", "mif", "properties", "doc", "xlf", "sdlXlf", "ttx", "ppt", "yaml", "dita", "docBook", "po", "mac", "md", "psd", "asciidoc", "segRule", "targetSegRule"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -123,7 +119,7 @@ class FileImportSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -238,9 +234,9 @@ class FileImportSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return FileImportSettingsDto.parse_obj(obj)
+            return FileImportSettingsDto.model_validate(obj)
 
-        _obj = FileImportSettingsDto.parse_obj({
+        _obj = FileImportSettingsDto.model_validate({
             "input_charset": obj.get("inputCharset"),
             "output_charset": obj.get("outputCharset"),
             "zip_charset": obj.get("zipCharset"),

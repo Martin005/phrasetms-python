@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 from phrasetms_client.models.client_reference import ClientReference
 from phrasetms_client.models.discount_scheme_reference import DiscountSchemeReference
 from phrasetms_client.models.domain_reference import DomainReference
@@ -37,24 +37,20 @@ class LINGUISTRESPONSE(UserDetailsDtoV3):
     edit_translations_in_tm: Optional[StrictBool] = Field(None, alias="editTranslationsInTM")
     enable_mt: Optional[StrictBool] = Field(None, alias="enableMT")
     may_reject_jobs: Optional[StrictBool] = Field(None, alias="mayRejectJobs")
-    source_locales: Optional[conlist(StrictStr)] = Field(None, alias="sourceLocales")
-    target_locales: Optional[conlist(StrictStr)] = Field(None, alias="targetLocales")
-    workflow_steps: Optional[conlist(WorkflowStepReferenceV3)] = Field(None, alias="workflowSteps")
-    clients: Optional[conlist(ClientReference)] = None
-    domains: Optional[conlist(DomainReference)] = None
-    sub_domains: Optional[conlist(SubDomainReference)] = Field(None, alias="subDomains")
+    source_locales: Optional[List[StrictStr]] = Field(None, alias="sourceLocales")
+    target_locales: Optional[List[StrictStr]] = Field(None, alias="targetLocales")
+    workflow_steps: Optional[List[WorkflowStepReferenceV3]] = Field(None, alias="workflowSteps")
+    clients: Optional[List[ClientReference]] = None
+    domains: Optional[List[DomainReference]] = None
+    sub_domains: Optional[List[SubDomainReference]] = Field(None, alias="subDomains")
     net_rate_scheme: Optional[DiscountSchemeReference] = Field(None, alias="netRateScheme")
     translation_price_list: Optional[PriceListReference] = Field(None, alias="translationPriceList")
     __properties = ["uid", "userName", "firstName", "lastName", "email", "dateCreated", "dateDeleted", "createdBy", "role", "timezone", "note", "receiveNewsletter", "active", "pendingEmailChange", "editAllTermsInTB", "editTranslationsInTM", "enableMT", "mayRejectJobs", "sourceLocales", "targetLocales", "workflowSteps", "clients", "domains", "subDomains", "netRateScheme", "translationPriceList"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -67,7 +63,7 @@ class LINGUISTRESPONSE(UserDetailsDtoV3):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -117,9 +113,9 @@ class LINGUISTRESPONSE(UserDetailsDtoV3):
             return None
 
         if not isinstance(obj, dict):
-            return LINGUISTRESPONSE.parse_obj(obj)
+            return LINGUISTRESPONSE.model_validate(obj)
 
-        _obj = LINGUISTRESPONSE.parse_obj({
+        _obj = LINGUISTRESPONSE.model_validate({
             "uid": obj.get("uid"),
             "user_name": obj.get("userName"),
             "first_name": obj.get("firstName"),

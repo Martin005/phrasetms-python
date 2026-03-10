@@ -19,23 +19,19 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, StrictStr
 
 class EmailQuotesResponseDto(BaseModel):
     """
     EmailQuotesResponseDto
     """
-    recipients: Optional[conlist(StrictStr)] = None
+    recipients: Optional[List[StrictStr]] = None
     __properties = ["recipients"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -48,7 +44,7 @@ class EmailQuotesResponseDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -61,9 +57,9 @@ class EmailQuotesResponseDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return EmailQuotesResponseDto.parse_obj(obj)
+            return EmailQuotesResponseDto.model_validate(obj)
 
-        _obj = EmailQuotesResponseDto.parse_obj({
+        _obj = EmailQuotesResponseDto.model_validate({
             "recipients": obj.get("recipients")
         })
         return _obj

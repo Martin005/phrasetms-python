@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.previous_workflow_dto import PreviousWorkflowDto
 from phrasetms_client.models.segments_counts_dto import SegmentsCountsDto
 
@@ -32,14 +32,10 @@ class SegmentsCountsResponseDto(BaseModel):
     previous_workflow: Optional[PreviousWorkflowDto] = Field(None, alias="previousWorkflow")
     __properties = ["jobPartUid", "counts", "previousWorkflow"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class SegmentsCountsResponseDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -71,9 +67,9 @@ class SegmentsCountsResponseDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SegmentsCountsResponseDto.parse_obj(obj)
+            return SegmentsCountsResponseDto.model_validate(obj)
 
-        _obj = SegmentsCountsResponseDto.parse_obj({
+        _obj = SegmentsCountsResponseDto.model_validate({
             "job_part_uid": obj.get("jobPartUid"),
             "counts": SegmentsCountsDto.from_dict(obj.get("counts")) if obj.get("counts") is not None else None,
             "previous_workflow": PreviousWorkflowDto.from_dict(obj.get("previousWorkflow")) if obj.get("previousWorkflow") is not None else None

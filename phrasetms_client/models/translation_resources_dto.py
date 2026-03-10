@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.machine_translate_settings_reference import MachineTranslateSettingsReference
 from phrasetms_client.models.project_term_base_reference import ProjectTermBaseReference
 from phrasetms_client.models.project_translation_memory_reference import ProjectTranslationMemoryReference
@@ -29,18 +29,14 @@ class TranslationResourcesDto(BaseModel):
     TranslationResourcesDto
     """
     machine_translate_settings: Optional[MachineTranslateSettingsReference] = Field(None, alias="machineTranslateSettings")
-    translation_memories: Optional[conlist(ProjectTranslationMemoryReference)] = Field(None, alias="translationMemories")
-    term_bases: Optional[conlist(ProjectTermBaseReference)] = Field(None, alias="termBases")
+    translation_memories: Optional[List[ProjectTranslationMemoryReference]] = Field(None, alias="translationMemories")
+    term_bases: Optional[List[ProjectTermBaseReference]] = Field(None, alias="termBases")
     __properties = ["machineTranslateSettings", "translationMemories", "termBases"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class TranslationResourcesDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -83,9 +79,9 @@ class TranslationResourcesDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TranslationResourcesDto.parse_obj(obj)
+            return TranslationResourcesDto.model_validate(obj)
 
-        _obj = TranslationResourcesDto.parse_obj({
+        _obj = TranslationResourcesDto.model_validate({
             "machine_translate_settings": MachineTranslateSettingsReference.from_dict(obj.get("machineTranslateSettings")) if obj.get("machineTranslateSettings") is not None else None,
             "translation_memories": [ProjectTranslationMemoryReference.from_dict(_item) for _item in obj.get("translationMemories")] if obj.get("translationMemories") is not None else None,
             "term_bases": [ProjectTermBaseReference.from_dict(_item) for _item in obj.get("termBases")] if obj.get("termBases") is not None else None

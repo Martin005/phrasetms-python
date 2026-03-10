@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 from phrasetms_client.models.enabled_check_dto_v2 import EnabledCheckDtoV2
 from phrasetms_client.models.regexp_check_rule_dto_v2 import RegexpCheckRuleDtoV2
 
@@ -27,22 +27,18 @@ class QualityAssuranceChecksDtoV2(BaseModel):
     """
     QualityAssuranceChecksDtoV2
     """
-    forbidden_strings: Optional[conlist(StrictStr)] = Field(None, alias="forbiddenStrings")
-    enabled_checks: Optional[conlist(EnabledCheckDtoV2)] = Field(None, alias="enabledChecks", description="enabledChecks")
+    forbidden_strings: Optional[List[StrictStr]] = Field(None, alias="forbiddenStrings")
+    enabled_checks: Optional[List[EnabledCheckDtoV2]] = Field(None, alias="enabledChecks", description="enabledChecks")
     exclude_locked_segments: Optional[StrictBool] = Field(None, alias="excludeLockedSegments")
     user_can_set_instant_qa: Optional[StrictBool] = Field(None, alias="userCanSetInstantQA")
     strict_job_status: Optional[StrictBool] = Field(None, alias="strictJobStatus")
-    regexp_rules: Optional[conlist(RegexpCheckRuleDtoV2)] = Field(None, alias="regexpRules")
+    regexp_rules: Optional[List[RegexpCheckRuleDtoV2]] = Field(None, alias="regexpRules")
     __properties = ["forbiddenStrings", "enabledChecks", "excludeLockedSegments", "userCanSetInstantQA", "strictJobStatus", "regexpRules"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -55,7 +51,7 @@ class QualityAssuranceChecksDtoV2(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -82,9 +78,9 @@ class QualityAssuranceChecksDtoV2(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return QualityAssuranceChecksDtoV2.parse_obj(obj)
+            return QualityAssuranceChecksDtoV2.model_validate(obj)
 
-        _obj = QualityAssuranceChecksDtoV2.parse_obj({
+        _obj = QualityAssuranceChecksDtoV2.model_validate({
             "forbidden_strings": obj.get("forbiddenStrings"),
             "enabled_checks": [EnabledCheckDtoV2.from_dict(_item) for _item in obj.get("enabledChecks")] if obj.get("enabledChecks") is not None else None,
             "exclude_locked_segments": obj.get("excludeLockedSegments"),

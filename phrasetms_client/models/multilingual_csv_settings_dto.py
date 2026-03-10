@@ -18,8 +18,17 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Dict, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, constr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictStr,
+    StringConstraints,
+    field_validator,
+)
 
 class MultilingualCsvSettingsDto(BaseModel):
     """
@@ -32,8 +41,8 @@ class MultilingualCsvSettingsDto(BaseModel):
     tag_regexp: Optional[StrictStr] = Field(None, alias="tagRegexp")
     html_sub_filter: Optional[StrictBool] = Field(None, alias="htmlSubFilter", description="Default: false")
     segmentation: Optional[StrictBool] = Field(None, description="Default: true")
-    delimiter: Optional[constr(strict=True, max_length=255, min_length=0)] = Field(None, description="Default: ,")
-    delimiter_type: Optional[constr(strict=True, max_length=255, min_length=0)] = Field(None, alias="delimiterType", description="Default: COMMA")
+    delimiter: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = Field(None, description="Default: ,")
+    delimiter_type: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = Field(None, alias="delimiterType", description="Default: COMMA")
     import_rows: Optional[StrictStr] = Field(None, alias="importRows")
     max_len_columns: Optional[StrictStr] = Field(None, alias="maxLenColumns")
     all_target_columns: Optional[Dict[str, StrictStr]] = Field(None, alias="allTargetColumns", description="Format: \"language\":\"column\"; example: {\"en\": \"A\", \"sk\": \"B\"}")
@@ -41,7 +50,8 @@ class MultilingualCsvSettingsDto(BaseModel):
     save_confirmed_segments_to_tm: Optional[StrictBool] = Field(None, alias="saveConfirmedSegmentsToTm")
     __properties = ["sourceColumns", "targetColumns", "contextNoteColumns", "contextKeyColumns", "tagRegexp", "htmlSubFilter", "segmentation", "delimiter", "delimiterType", "importRows", "maxLenColumns", "allTargetColumns", "nonEmptySegmentAction", "saveConfirmedSegmentsToTm"]
 
-    @validator('delimiter_type')
+    @field_validator('delimiter_type')
+    @classmethod
     def delimiter_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -51,7 +61,8 @@ class MultilingualCsvSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('TAB', 'COMMA', 'SEMICOLON', 'OTHER')")
         return value
 
-    @validator('non_empty_segment_action')
+    @field_validator('non_empty_segment_action')
+    @classmethod
     def non_empty_segment_action_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -61,14 +72,10 @@ class MultilingualCsvSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('NONE', 'CONFIRM', 'LOCK', 'CONFIRM_LOCK')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -81,7 +88,7 @@ class MultilingualCsvSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -94,9 +101,9 @@ class MultilingualCsvSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MultilingualCsvSettingsDto.parse_obj(obj)
+            return MultilingualCsvSettingsDto.model_validate(obj)
 
-        _obj = MultilingualCsvSettingsDto.parse_obj({
+        _obj = MultilingualCsvSettingsDto.model_validate({
             "source_columns": obj.get("sourceColumns"),
             "target_columns": obj.get("targetColumns"),
             "context_note_columns": obj.get("contextNoteColumns"),

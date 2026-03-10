@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
 from phrasetms_client.models.trans_memory_dto_v2 import TransMemoryDtoV2
 from phrasetms_client.models.workflow_step_reference_v2 import WorkflowStepReferenceV2
 
@@ -37,14 +37,10 @@ class ProjectTemplateTransMemoryV2Dto(BaseModel):
     order: Optional[StrictInt] = None
     __properties = ["targetLocale", "workflowStep", "readMode", "writeMode", "transMemory", "penalty", "applyPenaltyTo101Only", "order"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -57,7 +53,7 @@ class ProjectTemplateTransMemoryV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -76,9 +72,9 @@ class ProjectTemplateTransMemoryV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ProjectTemplateTransMemoryV2Dto.parse_obj(obj)
+            return ProjectTemplateTransMemoryV2Dto.model_validate(obj)
 
-        _obj = ProjectTemplateTransMemoryV2Dto.parse_obj({
+        _obj = ProjectTemplateTransMemoryV2Dto.model_validate({
             "target_locale": obj.get("targetLocale"),
             "workflow_step": WorkflowStepReferenceV2.from_dict(obj.get("workflowStep")) if obj.get("workflowStep") is not None else None,
             "read_mode": obj.get("readMode"),

@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 
 class Name(BaseModel):
     """
@@ -29,14 +29,10 @@ class Name(BaseModel):
     family_name: StrictStr = Field(..., alias="familyName")
     __properties = ["givenName", "familyName"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class Name(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -62,9 +58,9 @@ class Name(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return Name.parse_obj(obj)
+            return Name.model_validate(obj)
 
-        _obj = Name.parse_obj({
+        _obj = Name.model_validate({
             "given_name": obj.get("givenName"),
             "family_name": obj.get("familyName")
         })

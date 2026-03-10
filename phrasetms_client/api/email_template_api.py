@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.organization_email_template_dto import OrganizationEmailTemplateDto
 from phrasetms_client.models.page_dto_organization_email_template_dto import PageDtoOrganizationEmailTemplateDto
@@ -46,7 +46,7 @@ class EmailTemplateApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def get_org_email_template(self, template_uid : StrictStr, **kwargs) -> OrganizationEmailTemplateDto:  # noqa: E501
         """Get email template  # noqa: E501
 
@@ -74,7 +74,7 @@ class EmailTemplateApi(object):
             raise ValueError("Error! Please call the get_org_email_template_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_org_email_template_with_http_info(template_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_org_email_template_with_http_info(self, template_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get email template  # noqa: E501
 
@@ -194,8 +194,8 @@ class EmailTemplateApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_org_email_templates(self, type : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoOrganizationEmailTemplateDto:  # noqa: E501
+    @validate_call
+    def list_org_email_templates(self, type : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoOrganizationEmailTemplateDto:  # noqa: E501
         """List email templates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -226,8 +226,8 @@ class EmailTemplateApi(object):
             raise ValueError("Error! Please call the list_org_email_templates_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_org_email_templates_with_http_info(type, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_org_email_templates_with_http_info(self, type : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_org_email_templates_with_http_info(self, type : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List email templates  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

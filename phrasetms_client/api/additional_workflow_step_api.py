@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.additional_workflow_step_dto import AdditionalWorkflowStepDto
 from phrasetms_client.models.additional_workflow_step_request_dto import AdditionalWorkflowStepRequestDto
@@ -47,7 +47,7 @@ class AdditionalWorkflowStepApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_awf_step(self, body : Optional[AdditionalWorkflowStepRequestDto] = None, **kwargs) -> AdditionalWorkflowStepDto:  # noqa: E501
         """Create additional workflow step  # noqa: E501
 
@@ -75,7 +75,7 @@ class AdditionalWorkflowStepApi(object):
             raise ValueError("Error! Please call the create_awf_step_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_awf_step_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_awf_step_with_http_info(self, body : Optional[AdditionalWorkflowStepRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create additional workflow step  # noqa: E501
 
@@ -195,7 +195,7 @@ class AdditionalWorkflowStepApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_awf_step(self, id : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete additional workflow step  # noqa: E501
 
@@ -223,7 +223,7 @@ class AdditionalWorkflowStepApi(object):
             raise ValueError("Error! Please call the delete_awf_step_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_awf_step_with_http_info(id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_awf_step_with_http_info(self, id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete additional workflow step  # noqa: E501
 
@@ -326,8 +326,8 @@ class AdditionalWorkflowStepApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_awf_steps(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Name of the additional workflow step to filter")] = None, **kwargs) -> PageDtoAdditionalWorkflowStepDto:  # noqa: E501
+    @validate_call
+    def list_awf_steps(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Name of the additional workflow step to filter")] = None, **kwargs) -> PageDtoAdditionalWorkflowStepDto:  # noqa: E501
         """List additional workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -358,8 +358,8 @@ class AdditionalWorkflowStepApi(object):
             raise ValueError("Error! Please call the list_awf_steps_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_awf_steps_with_http_info(page_number, page_size, name, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_awf_steps_with_http_info(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Name of the additional workflow step to filter")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_awf_steps_with_http_info(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Name of the additional workflow step to filter")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List additional workflow steps  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

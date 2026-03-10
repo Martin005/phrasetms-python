@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.toggleable_weight_dto import ToggleableWeightDto
 
 class TerminologyWeightsDto(BaseModel):
@@ -31,14 +31,10 @@ class TerminologyWeightsDto(BaseModel):
     inconsistent_use_of_terminology: Optional[ToggleableWeightDto] = Field(None, alias="inconsistentUseOfTerminology")
     __properties = ["terminology", "inconsistentWithTb", "inconsistentUseOfTerminology"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +47,7 @@ class TerminologyWeightsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -73,9 +69,9 @@ class TerminologyWeightsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TerminologyWeightsDto.parse_obj(obj)
+            return TerminologyWeightsDto.model_validate(obj)
 
-        _obj = TerminologyWeightsDto.parse_obj({
+        _obj = TerminologyWeightsDto.model_validate({
             "terminology": ToggleableWeightDto.from_dict(obj.get("terminology")) if obj.get("terminology") is not None else None,
             "inconsistent_with_tb": ToggleableWeightDto.from_dict(obj.get("inconsistentWithTb")) if obj.get("inconsistentWithTb") is not None else None,
             "inconsistent_use_of_terminology": ToggleableWeightDto.from_dict(obj.get("inconsistentUseOfTerminology")) if obj.get("inconsistentUseOfTerminology") is not None else None

@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 from phrasetms_client.models.email import Email
 from phrasetms_client.models.name import Name
 from phrasetms_client.models.scim_meta import ScimMeta
@@ -32,18 +32,14 @@ class ScimUserCoreDto(BaseModel):
     user_name: StrictStr = Field(..., alias="userName")
     name: Name = Field(...)
     active: Optional[StrictBool] = Field(None, description="Default: true")
-    emails: conlist(Email, max_items=2147483647, min_items=1) = Field(...)
+    emails: List[Email] = Field(...)
     meta: Optional[ScimMeta] = None
     __properties = ["id", "userName", "name", "active", "emails", "meta"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -56,7 +52,7 @@ class ScimUserCoreDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                             "id",
                           },
@@ -83,9 +79,9 @@ class ScimUserCoreDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ScimUserCoreDto.parse_obj(obj)
+            return ScimUserCoreDto.model_validate(obj)
 
-        _obj = ScimUserCoreDto.parse_obj({
+        _obj = ScimUserCoreDto.model_validate({
             "id": obj.get("id"),
             "user_name": obj.get("userName"),
             "name": Name.from_dict(obj.get("name")) if obj.get("name") is not None else None,

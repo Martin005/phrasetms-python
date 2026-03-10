@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictStr, confloat, conint, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.tag_metadata_dto import TagMetadataDto
 
 class SearchTMByJobRequestDto(BaseModel):
@@ -27,24 +28,20 @@ class SearchTMByJobRequestDto(BaseModel):
     SearchTMByJobRequestDto
     """
     segment: StrictStr = Field(...)
-    workflow_level: Optional[conint(strict=True, le=15, ge=1)] = Field(None, alias="workflowLevel")
-    score_threshold: Optional[Union[confloat(le=1.01, ge=0, strict=True), conint(le=1, ge=0, strict=True)]] = Field(None, alias="scoreThreshold")
+    workflow_level: Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = Field(None, alias="workflowLevel")
+    score_threshold: Optional[Union[Annotated[float, Field(le=1.01, ge=0, strict=True)], Annotated[int, Field(le=1, ge=0, strict=True)]]] = Field(None, alias="scoreThreshold")
     previous_segment: Optional[StrictStr] = Field(None, alias="previousSegment")
     next_segment: Optional[StrictStr] = Field(None, alias="nextSegment")
     context_key: Optional[StrictStr] = Field(None, alias="contextKey")
-    max_segments: Optional[conint(strict=True, le=5, ge=0)] = Field(None, alias="maxSegments", description="Default: 5")
-    max_sub_segments: Optional[conint(strict=True, le=5, ge=0)] = Field(None, alias="maxSubSegments", description="Default: 5")
-    tag_metadata: Optional[conlist(TagMetadataDto)] = Field(None, alias="tagMetadata")
+    max_segments: Optional[Annotated[int, Field(strict=True, le=5, ge=0)]] = Field(None, alias="maxSegments", description="Default: 5")
+    max_sub_segments: Optional[Annotated[int, Field(strict=True, le=5, ge=0)]] = Field(None, alias="maxSubSegments", description="Default: 5")
+    tag_metadata: Optional[List[TagMetadataDto]] = Field(None, alias="tagMetadata")
     __properties = ["segment", "workflowLevel", "scoreThreshold", "previousSegment", "nextSegment", "contextKey", "maxSegments", "maxSubSegments", "tagMetadata"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -57,7 +54,7 @@ class SearchTMByJobRequestDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -77,9 +74,9 @@ class SearchTMByJobRequestDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SearchTMByJobRequestDto.parse_obj(obj)
+            return SearchTMByJobRequestDto.model_validate(obj)
 
-        _obj = SearchTMByJobRequestDto.parse_obj({
+        _obj = SearchTMByJobRequestDto.model_validate({
             "segment": obj.get("segment"),
             "workflow_level": obj.get("workflowLevel"),
             "score_threshold": obj.get("scoreThreshold"),

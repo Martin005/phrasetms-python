@@ -18,8 +18,18 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, constr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictInt,
+    StrictStr,
+    StringConstraints,
+    field_validator,
+)
 from phrasetms_client.models.user_reference import UserReference
 
 class WebHookDtoV2(BaseModel):
@@ -30,8 +40,8 @@ class WebHookDtoV2(BaseModel):
     id: Optional[StrictStr] = None
     uid: Optional[StrictStr] = None
     url: StrictStr = Field(...)
-    events: Optional[conlist(StrictStr)] = None
-    secret_token: Optional[constr(strict=True, max_length=255, min_length=1)] = Field(None, alias="secretToken")
+    events: Optional[List[StrictStr]] = None
+    secret_token: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=1)]] = Field(None, alias="secretToken")
     hidden: Optional[StrictBool] = Field(None, description="Default: false")
     status: Optional[StrictStr] = None
     failed_attempts: Optional[StrictInt] = Field(None, alias="failedAttempts")
@@ -41,7 +51,8 @@ class WebHookDtoV2(BaseModel):
     last_modified_by: Optional[UserReference] = Field(None, alias="lastModifiedBy")
     __properties = ["name", "id", "uid", "url", "events", "secretToken", "hidden", "status", "failedAttempts", "created", "createdBy", "lastModified", "lastModifiedBy"]
 
-    @validator('events')
+    @field_validator('events')
+    @classmethod
     def events_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -52,7 +63,8 @@ class WebHookDtoV2(BaseModel):
                 raise ValueError("each list item must be one of ('JOB_STATUS_CHANGED', 'JOB_CREATED', 'JOB_DELETED', 'JOB_ASSIGNED', 'JOB_DUE_DATE_CHANGED', 'JOB_UPDATED', 'JOB_TARGET_UPDATED', 'JOB_EXPORTED', 'JOB_UNEXPORTED', 'PROJECT_CREATED', 'PROJECT_DELETED', 'PROJECT_STATUS_CHANGED', 'PROJECT_DUE_DATE_CHANGED', 'SHARED_PROJECT_ASSIGNED', 'PROJECT_METADATA_UPDATED', 'PRE_TRANSLATION_FINISHED', 'ANALYSIS_CREATED', 'CONTINUOUS_JOB_UPDATED', 'PROJECT_TEMPLATE_CREATED', 'PROJECT_TEMPLATE_UPDATED', 'PROJECT_TEMPLATE_DELETED')")
         return value
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -62,14 +74,10 @@ class WebHookDtoV2(BaseModel):
             raise ValueError("must be one of enum values ('ENABLED', 'DISABLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -82,7 +90,7 @@ class WebHookDtoV2(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -101,9 +109,9 @@ class WebHookDtoV2(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return WebHookDtoV2.parse_obj(obj)
+            return WebHookDtoV2.model_validate(obj)
 
-        _obj = WebHookDtoV2.parse_obj({
+        _obj = WebHookDtoV2.model_validate({
             "name": obj.get("name"),
             "id": obj.get("id"),
             "uid": obj.get("uid"),

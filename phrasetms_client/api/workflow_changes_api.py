@@ -16,10 +16,10 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing_extensions import Annotated
-
 from typing import Optional
+
 
 from phrasetms_client.models.workflow_changes_dto import WorkflowChangesDto
 
@@ -43,7 +43,7 @@ class WorkflowChangesApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def download_workflow_changes(self, body : Optional[WorkflowChangesDto] = None, **kwargs) -> None:  # noqa: E501
         """Download workflow changes report  # noqa: E501
 
@@ -71,7 +71,7 @@ class WorkflowChangesApi(object):
             raise ValueError("Error! Please call the download_workflow_changes_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.download_workflow_changes_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def download_workflow_changes_with_http_info(self, body : Optional[WorkflowChangesDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download workflow changes report  # noqa: E501
 

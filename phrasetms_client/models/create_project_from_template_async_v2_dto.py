@@ -18,18 +18,19 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, constr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, StringConstraints
 from phrasetms_client.models.id_reference import IdReference
 
 class CreateProjectFromTemplateAsyncV2Dto(BaseModel):
     """
     CreateProjectFromTemplateAsyncV2Dto
     """
-    name: constr(strict=True, max_length=255, min_length=0) = Field(...)
+    name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
     source_lang: Optional[StrictStr] = Field(None, alias="sourceLang")
-    target_langs: Optional[conlist(StrictStr)] = Field(None, alias="targetLangs")
-    workflow_steps: Optional[conlist(IdReference)] = Field(None, alias="workflowSteps")
+    target_langs: Optional[List[StrictStr]] = Field(None, alias="targetLangs")
+    workflow_steps: Optional[List[IdReference]] = Field(None, alias="workflowSteps")
     date_due: Optional[datetime] = Field(None, alias="dateDue")
     note: Optional[StrictStr] = None
     client: Optional[IdReference] = None
@@ -40,14 +41,10 @@ class CreateProjectFromTemplateAsyncV2Dto(BaseModel):
     callback_url: Optional[StrictStr] = Field(None, alias="callbackUrl")
     __properties = ["name", "sourceLang", "targetLangs", "workflowSteps", "dateDue", "note", "client", "businessUnit", "domain", "subDomain", "costCenter", "callbackUrl"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -60,7 +57,7 @@ class CreateProjectFromTemplateAsyncV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -95,9 +92,9 @@ class CreateProjectFromTemplateAsyncV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CreateProjectFromTemplateAsyncV2Dto.parse_obj(obj)
+            return CreateProjectFromTemplateAsyncV2Dto.model_validate(obj)
 
-        _obj = CreateProjectFromTemplateAsyncV2Dto.parse_obj({
+        _obj = CreateProjectFromTemplateAsyncV2Dto.model_validate({
             "name": obj.get("name"),
             "source_lang": obj.get("sourceLang"),
             "target_langs": obj.get("targetLangs"),

@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import Any, Dict, List, Optional
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr, conint, conlist, validator
+from pydantic import Field, StrictBool, StrictInt, StrictStr
 
-from typing import Any, Dict, Optional
 
 from phrasetms_client.models.async_export_tmby_query_response_dto import AsyncExportTMByQueryResponseDto
 from phrasetms_client.models.async_export_tm_response_dto import AsyncExportTMResponseDto
@@ -71,7 +71,7 @@ class TranslationMemoryApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def add_target_lang_to_trans_memory(self, trans_memory_uid : StrictStr, body : Optional[TargetLanguageDto] = None, **kwargs) -> TransMemoryDto:  # noqa: E501
         """Add target language to translation memory  # noqa: E501
 
@@ -101,7 +101,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the add_target_lang_to_trans_memory_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.add_target_lang_to_trans_memory_with_http_info(trans_memory_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def add_target_lang_to_trans_memory_with_http_info(self, trans_memory_uid : StrictStr, body : Optional[TargetLanguageDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Add target language to translation memory  # noqa: E501
 
@@ -234,7 +234,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def clear_trans_memory(self, trans_memory_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete all segments  # noqa: E501
 
@@ -262,7 +262,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the clear_trans_memory_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.clear_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def clear_trans_memory_with_http_info(self, trans_memory_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete all segments  # noqa: E501
 
@@ -365,7 +365,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def clear_trans_memory_v2(self, trans_memory_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete all segments.  # noqa: E501
 
@@ -394,7 +394,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the clear_trans_memory_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.clear_trans_memory_v2_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def clear_trans_memory_v2_with_http_info(self, trans_memory_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete all segments.  # noqa: E501
 
@@ -498,7 +498,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_trans_memory(self, body : Optional[TransMemoryCreateDto] = None, **kwargs) -> TransMemoryDto:  # noqa: E501
         """Create translation memory  # noqa: E501
 
@@ -526,7 +526,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the create_trans_memory_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_trans_memory_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_trans_memory_with_http_info(self, body : Optional[TransMemoryCreateDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create translation memory  # noqa: E501
 
@@ -653,7 +653,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_source_and_translations(self, trans_memory_uid : StrictStr, segment_id : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete both source and translation  # noqa: E501
 
@@ -684,7 +684,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the delete_source_and_translations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_source_and_translations_with_http_info(trans_memory_uid, segment_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_source_and_translations_with_http_info(self, trans_memory_uid : StrictStr, segment_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete both source and translation  # noqa: E501
 
@@ -794,7 +794,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_trans_memory(self, trans_memory_uid : StrictStr, purge : Optional[StrictBool] = None, **kwargs) -> None:  # noqa: E501
         """Delete translation memory  # noqa: E501
 
@@ -824,7 +824,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the delete_trans_memory_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_trans_memory_with_http_info(trans_memory_uid, purge, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_trans_memory_with_http_info(self, trans_memory_uid : StrictStr, purge : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete translation memory  # noqa: E501
 
@@ -933,7 +933,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_translation(self, trans_memory_uid : StrictStr, segment_id : StrictStr, lang : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete segment of given language  # noqa: E501
 
@@ -966,7 +966,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the delete_translation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_translation_with_http_info(trans_memory_uid, segment_id, lang, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_translation_with_http_info(self, trans_memory_uid : StrictStr, segment_id : StrictStr, lang : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete segment of given language  # noqa: E501
 
@@ -1082,7 +1082,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def download_cleaned_tm(self, async_request_id : Annotated[StrictStr, Field(..., description="Request ID")], **kwargs) -> None:  # noqa: E501
         """Download cleaned TM  # noqa: E501
 
@@ -1110,7 +1110,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the download_cleaned_tm_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.download_cleaned_tm_with_http_info(async_request_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def download_cleaned_tm_with_http_info(self, async_request_id : Annotated[StrictStr, Field(..., description="Request ID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Download cleaned TM  # noqa: E501
 
@@ -1213,8 +1213,8 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def download_search_result(self, async_request_id : Annotated[StrictStr, Field(..., description="Request ID")], format : Optional[StrictStr] = None, fields : Annotated[Optional[conlist(StrictStr)], Field(description="Fields to include in exported XLSX")] = None, **kwargs) -> None:  # noqa: E501
+    @validate_call
+    def download_search_result(self, async_request_id : Annotated[StrictStr, Field(..., description="Request ID")], format : Optional[StrictStr] = None, fields : Annotated[Optional[List[StrictStr]], Field(description="Fields to include in exported XLSX")] = None, **kwargs) -> None:  # noqa: E501
         """Download export  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1245,8 +1245,8 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the download_search_result_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.download_search_result_with_http_info(async_request_id, format, fields, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def download_search_result_with_http_info(self, async_request_id : Annotated[StrictStr, Field(..., description="Request ID")], format : Optional[StrictStr] = None, fields : Annotated[Optional[conlist(StrictStr)], Field(description="Fields to include in exported XLSX")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def download_search_result_with_http_info(self, async_request_id : Annotated[StrictStr, Field(..., description="Request ID")], format : Optional[StrictStr] = None, fields : Annotated[Optional[List[StrictStr]], Field(description="Fields to include in exported XLSX")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download export  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1361,7 +1361,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_trans_memory(self, trans_memory_uid : StrictStr, body : Optional[TransMemoryEditDto] = None, **kwargs) -> TransMemoryDto:  # noqa: E501
         """Edit translation memory  # noqa: E501
 
@@ -1391,7 +1391,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the edit_trans_memory_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_trans_memory_with_http_info(trans_memory_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_trans_memory_with_http_info(self, trans_memory_uid : StrictStr, body : Optional[TransMemoryEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit translation memory  # noqa: E501
 
@@ -1524,7 +1524,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def export_by_query_async(self, trans_memory_uid : StrictStr, body : Optional[ExportByQueryDto] = None, **kwargs) -> AsyncExportTMByQueryResponseDto:  # noqa: E501
         """Search translation memory  # noqa: E501
 
@@ -1555,7 +1555,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the export_by_query_async_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.export_by_query_async_with_http_info(trans_memory_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def export_by_query_async_with_http_info(self, trans_memory_uid : StrictStr, body : Optional[ExportByQueryDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search translation memory  # noqa: E501
 
@@ -1689,7 +1689,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def export_cleaned_tms(self, body : Optional[CleanedTransMemoriesDto] = None, **kwargs) -> AsyncRequestWrapperDto:  # noqa: E501
         """Extract cleaned translation memory  # noqa: E501
 
@@ -1718,7 +1718,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the export_cleaned_tms_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.export_cleaned_tms_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def export_cleaned_tms_with_http_info(self, body : Optional[CleanedTransMemoriesDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Extract cleaned translation memory  # noqa: E501
 
@@ -1846,7 +1846,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def export_v2(self, trans_memory_uid : StrictStr, body : Optional[ExportTMDto] = None, **kwargs) -> AsyncExportTMResponseDto:  # noqa: E501
         """Export translation memory  # noqa: E501
 
@@ -1877,7 +1877,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the export_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.export_v2_with_http_info(trans_memory_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def export_v2_with_http_info(self, trans_memory_uid : StrictStr, body : Optional[ExportTMDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Export translation memory  # noqa: E501
 
@@ -2004,7 +2004,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_background_tasks1(self, trans_memory_uid : StrictStr, **kwargs) -> BackgroundTasksTmDto:  # noqa: E501
         """Get last task information  # noqa: E501
 
@@ -2032,7 +2032,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the get_background_tasks1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_background_tasks1_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_background_tasks1_with_http_info(self, trans_memory_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get last task information  # noqa: E501
 
@@ -2152,7 +2152,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_metadata(self, trans_memory_uid : StrictStr, by_language : Optional[StrictBool] = None, **kwargs) -> MetadataResponse:  # noqa: E501
         """Get translation memory metadata  # noqa: E501
 
@@ -2182,7 +2182,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the get_metadata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_metadata_with_http_info(trans_memory_uid, by_language, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_metadata_with_http_info(self, trans_memory_uid : StrictStr, by_language : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get translation memory metadata  # noqa: E501
 
@@ -2308,7 +2308,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_project_template_trans_memories2(self, project_template_uid : StrictStr, target_lang : Annotated[Optional[StrictStr], Field(description="Filter project translation memories by target language")] = None, wf_step_uid : Annotated[Optional[StrictStr], Field(description="Filter project translation memories by workflow step")] = None, **kwargs) -> ProjectTemplateTransMemoryListDtoV3:  # noqa: E501
         """Get translation memories  # noqa: E501
 
@@ -2340,7 +2340,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the get_project_template_trans_memories2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_project_template_trans_memories2_with_http_info(project_template_uid, target_lang, wf_step_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_project_template_trans_memories2_with_http_info(self, project_template_uid : StrictStr, target_lang : Annotated[Optional[StrictStr], Field(description="Filter project translation memories by target language")] = None, wf_step_uid : Annotated[Optional[StrictStr], Field(description="Filter project translation memories by workflow step")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get translation memories  # noqa: E501
 
@@ -2472,8 +2472,8 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_related_projects(self, trans_memory_uid : StrictStr, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoAbstractProjectDto:  # noqa: E501
+    @validate_call
+    def get_related_projects(self, trans_memory_uid : StrictStr, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoAbstractProjectDto:  # noqa: E501
         """List related projects  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2504,8 +2504,8 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the get_related_projects_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_related_projects_with_http_info(trans_memory_uid, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_related_projects_with_http_info(self, trans_memory_uid : StrictStr, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_related_projects_with_http_info(self, trans_memory_uid : StrictStr, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List related projects  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2636,7 +2636,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_trans_memory(self, trans_memory_uid : StrictStr, **kwargs) -> TransMemoryDto:  # noqa: E501
         """Get translation memory  # noqa: E501
 
@@ -2664,7 +2664,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the get_trans_memory_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_trans_memory_with_http_info(trans_memory_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_trans_memory_with_http_info(self, trans_memory_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get translation memory  # noqa: E501
 
@@ -2784,7 +2784,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_translation_resources(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> TranslationResourcesDto:  # noqa: E501
         """Get translation resources  # noqa: E501
 
@@ -2814,7 +2814,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the get_translation_resources_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_translation_resources_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_translation_resources_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get translation resources  # noqa: E501
 
@@ -2940,7 +2940,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def import_trans_memory_v2(self, trans_memory_uid : StrictStr, content_disposition : Annotated[StrictStr, Field(..., description="must match pattern `((inline|attachment); )?filename\\*=UTF-8''(.+)`")], content_length : Optional[StrictInt] = None, strict_lang_matching : Optional[StrictBool] = None, strip_native_codes : Optional[StrictBool] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> AsyncRequestWrapperV2Dto:  # noqa: E501
         """Import TMX  # noqa: E501
 
@@ -2978,7 +2978,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the import_trans_memory_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.import_trans_memory_v2_with_http_info(trans_memory_uid, content_disposition, content_length, strict_lang_matching, strip_native_codes, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def import_trans_memory_v2_with_http_info(self, trans_memory_uid : StrictStr, content_disposition : Annotated[StrictStr, Field(..., description="must match pattern `((inline|attachment); )?filename\\*=UTF-8''(.+)`")], content_length : Optional[StrictInt] = None, strict_lang_matching : Optional[StrictBool] = None, strip_native_codes : Optional[StrictBool] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Import TMX  # noqa: E501
 
@@ -3135,7 +3135,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def insert_to_trans_memory(self, trans_memory_uid : StrictStr, body : Optional[SegmentDto] = None, **kwargs) -> None:  # noqa: E501
         """Insert segment  # noqa: E501
 
@@ -3165,7 +3165,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the insert_to_trans_memory_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.insert_to_trans_memory_with_http_info(trans_memory_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def insert_to_trans_memory_with_http_info(self, trans_memory_uid : StrictStr, body : Optional[SegmentDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Insert segment  # noqa: E501
 
@@ -3281,8 +3281,8 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_trans_memories(self, name : Optional[StrictStr] = None, source_lang : Optional[StrictStr] = None, target_lang : Optional[StrictStr] = None, client_id : Optional[StrictStr] = None, domain_id : Optional[StrictStr] = None, sub_domain_id : Optional[StrictStr] = None, business_unit_id : Optional[StrictStr] = None, page_number : Annotated[Optional[StrictInt], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTransMemoryDto:  # noqa: E501
+    @validate_call
+    def list_trans_memories(self, name : Optional[StrictStr] = None, source_lang : Optional[StrictStr] = None, target_lang : Optional[StrictStr] = None, client_id : Optional[StrictStr] = None, domain_id : Optional[StrictStr] = None, sub_domain_id : Optional[StrictStr] = None, business_unit_id : Optional[StrictStr] = None, page_number : Annotated[Optional[StrictInt], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTransMemoryDto:  # noqa: E501
         """List translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3325,8 +3325,8 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the list_trans_memories_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_trans_memories_with_http_info(name, source_lang, target_lang, client_id, domain_id, sub_domain_id, business_unit_id, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_trans_memories_with_http_info(self, name : Optional[StrictStr] = None, source_lang : Optional[StrictStr] = None, target_lang : Optional[StrictStr] = None, client_id : Optional[StrictStr] = None, domain_id : Optional[StrictStr] = None, sub_domain_id : Optional[StrictStr] = None, business_unit_id : Optional[StrictStr] = None, page_number : Annotated[Optional[StrictInt], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_trans_memories_with_http_info(self, name : Optional[StrictStr] = None, source_lang : Optional[StrictStr] = None, target_lang : Optional[StrictStr] = None, client_id : Optional[StrictStr] = None, domain_id : Optional[StrictStr] = None, sub_domain_id : Optional[StrictStr] = None, business_unit_id : Optional[StrictStr] = None, page_number : Annotated[Optional[StrictInt], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3493,8 +3493,8 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def relevant_trans_memories(self, project_template_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[conlist(StrictStr)] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTransMemoryDto:  # noqa: E501
+    @validate_call
+    def relevant_trans_memories(self, project_template_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[List[StrictStr]] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTransMemoryDto:  # noqa: E501
         """List project template relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3537,8 +3537,8 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the relevant_trans_memories_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.relevant_trans_memories_with_http_info(project_template_uid, name, domain_name, client_name, sub_domain_name, target_langs, strict_lang_matching, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def relevant_trans_memories_with_http_info(self, project_template_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[conlist(StrictStr)] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def relevant_trans_memories_with_http_info(self, project_template_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[List[StrictStr]] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List project template relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3706,8 +3706,8 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def relevant_trans_memories1(self, project_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[conlist(StrictStr)] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTransMemoryDto:  # noqa: E501
+    @validate_call
+    def relevant_trans_memories1(self, project_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[List[StrictStr]] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoTransMemoryDto:  # noqa: E501
         """List project relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3750,8 +3750,8 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the relevant_trans_memories1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.relevant_trans_memories1_with_http_info(project_uid, name, domain_name, client_name, sub_domain_name, target_langs, strict_lang_matching, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def relevant_trans_memories1_with_http_info(self, project_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[conlist(StrictStr)] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def relevant_trans_memories1_with_http_info(self, project_uid : StrictStr, name : Optional[StrictStr] = None, domain_name : Optional[StrictStr] = None, client_name : Optional[StrictStr] = None, sub_domain_name : Optional[StrictStr] = None, target_langs : Optional[List[StrictStr]] = None, strict_lang_matching : Optional[StrictBool] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List project relevant translation memories  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -3919,7 +3919,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search(self, trans_memory_uid : StrictStr, body : Optional[SearchRequestDto] = None, **kwargs) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory (sync)  # noqa: E501
 
@@ -3949,7 +3949,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the search_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_with_http_info(trans_memory_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_with_http_info(self, trans_memory_uid : StrictStr, body : Optional[SearchRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search translation memory (sync)  # noqa: E501
 
@@ -4082,7 +4082,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_by_job3(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[SearchTMByJobRequestDtoV3] = None, **kwargs) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Search job's translation memories  # noqa: E501
 
@@ -4114,7 +4114,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the search_by_job3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_by_job3_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_by_job3_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[SearchTMByJobRequestDtoV3] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search job's translation memories  # noqa: E501
 
@@ -4246,7 +4246,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_segment1(self, project_uid : StrictStr, body : Optional[SearchTMRequestDto] = None, **kwargs) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory for segment in the project  # noqa: E501
 
@@ -4277,7 +4277,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the search_segment1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_segment1_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_segment1_with_http_info(self, project_uid : StrictStr, body : Optional[SearchTMRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search translation memory for segment in the project  # noqa: E501
 
@@ -4411,7 +4411,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def search_segment_by_job(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[SearchTMByJobRequestDto] = None, **kwargs) -> SearchResponseListTmDto:  # noqa: E501
         """Search translation memory for segment by job  # noqa: E501
 
@@ -4444,7 +4444,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the search_segment_by_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.search_segment_by_job_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def search_segment_by_job_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[SearchTMByJobRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Search translation memory for segment by job  # noqa: E501
 
@@ -4584,7 +4584,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_translation(self, trans_memory_uid : StrictStr, segment_id : StrictStr, body : Optional[TranslationDto] = None, **kwargs) -> None:  # noqa: E501
         """Edit segment  # noqa: E501
 
@@ -4616,7 +4616,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the update_translation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_translation_with_http_info(trans_memory_uid, segment_id, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_translation_with_http_info(self, trans_memory_uid : StrictStr, segment_id : StrictStr, body : Optional[TranslationDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit segment  # noqa: E501
 
@@ -4738,7 +4738,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def wild_card_search_by_job3(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[WildCardSearchByJobRequestDtoV3] = None, **kwargs) -> SearchResponseListTmDtoV3:  # noqa: E501
         """Wildcard search job's translation memories  # noqa: E501
 
@@ -4770,7 +4770,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the wild_card_search_by_job3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.wild_card_search_by_job3_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def wild_card_search_by_job3_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[WildCardSearchByJobRequestDtoV3] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Wildcard search job's translation memories  # noqa: E501
 
@@ -4909,7 +4909,7 @@ class TranslationMemoryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def wildcard_search(self, trans_memory_uid : StrictStr, body : Optional[WildCardSearchRequestDto] = None, **kwargs) -> SearchResponseListTmDto:  # noqa: E501
         """Wildcard search  # noqa: E501
 
@@ -4939,7 +4939,7 @@ class TranslationMemoryApi(object):
             raise ValueError("Error! Please call the wildcard_search_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.wildcard_search_with_http_info(trans_memory_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def wildcard_search_with_http_info(self, trans_memory_uid : StrictStr, body : Optional[WildCardSearchRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Wildcard search  # noqa: E501
 

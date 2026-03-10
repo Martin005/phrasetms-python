@@ -20,7 +20,7 @@ import phrasetms_client.models
 
 from datetime import datetime
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictInt, StrictStr
 from phrasetms_client.models.domain_reference import DomainReference
 from phrasetms_client.models.mt_settings_per_language_reference import MTSettingsPerLanguageReference
 from phrasetms_client.models.reference_file_reference import ReferenceFileReference
@@ -40,17 +40,13 @@ class AbstractProjectDto(BaseModel):
     sub_domain: Optional[SubDomainReference] = Field(None, alias="subDomain")
     owner: Optional[UserReference] = None
     source_lang: Optional[StrictStr] = Field(None, alias="sourceLang")
-    target_langs: Optional[conlist(StrictStr, unique_items=True)] = Field(None, alias="targetLangs")
-    references: Optional[conlist(ReferenceFileReference)] = None
-    mt_settings_per_language_list: Optional[conlist(MTSettingsPerLanguageReference)] = Field(None, alias="mtSettingsPerLanguageList")
+    target_langs: Optional[List[StrictStr]] = Field(None, alias="targetLangs")
+    references: Optional[List[ReferenceFileReference]] = None
+    mt_settings_per_language_list: Optional[List[MTSettingsPerLanguageReference]] = Field(None, alias="mtSettingsPerLanguageList")
     user_role: Optional[StrictStr] = Field(None, alias="userRole", description="Response differs based on user's role")
     __properties = ["uid", "internalId", "id", "name", "dateCreated", "domain", "subDomain", "owner", "sourceLang", "targetLangs", "references", "mtSettingsPerLanguageList", "userRole"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     # JSON field name that stores the object type
     __discriminator_property_name = 'userRole'
 
@@ -74,7 +70,7 @@ class AbstractProjectDto(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -87,7 +83,7 @@ class AbstractProjectDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                             "user_role",
                           },

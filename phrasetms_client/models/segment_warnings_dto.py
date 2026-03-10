@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.segment_warning import SegmentWarning
 
 class SegmentWarningsDto(BaseModel):
@@ -27,18 +27,14 @@ class SegmentWarningsDto(BaseModel):
     SegmentWarningsDto
     """
     segment_id: Optional[StrictStr] = Field(None, alias="segmentId")
-    warnings: Optional[conlist(SegmentWarning)] = None
-    ignored_checks: Optional[conlist(StrictStr)] = Field(None, alias="ignoredChecks")
+    warnings: Optional[List[SegmentWarning]] = None
+    ignored_checks: Optional[List[StrictStr]] = Field(None, alias="ignoredChecks")
     __properties = ["segmentId", "warnings", "ignoredChecks"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +47,7 @@ class SegmentWarningsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -71,9 +67,9 @@ class SegmentWarningsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SegmentWarningsDto.parse_obj(obj)
+            return SegmentWarningsDto.model_validate(obj)
 
-        _obj = SegmentWarningsDto.parse_obj({
+        _obj = SegmentWarningsDto.model_validate({
             "segment_id": obj.get("segmentId"),
             "warnings": [SegmentWarning.from_dict(_item) for _item in obj.get("warnings")] if obj.get("warnings") is not None else None,
             "ignored_checks": obj.get("ignoredChecks")

@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing_extensions import Annotated
+from typing import Optional
 
 from pydantic import StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.machine_translate_response import MachineTranslateResponse
 from phrasetms_client.models.translation_request_extended_dto import TranslationRequestExtendedDto
@@ -46,7 +46,7 @@ class MachineTranslationApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def machine_translation(self, mt_settings_uid : StrictStr, body : Optional[TranslationRequestExtendedDto] = None, **kwargs) -> MachineTranslateResponse:  # noqa: E501
         """Translate with MT  # noqa: E501
 
@@ -76,7 +76,7 @@ class MachineTranslationApi(object):
             raise ValueError("Error! Please call the machine_translation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.machine_translation_with_http_info(mt_settings_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def machine_translation_with_http_info(self, mt_settings_uid : StrictStr, body : Optional[TranslationRequestExtendedDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Translate with MT  # noqa: E501
 

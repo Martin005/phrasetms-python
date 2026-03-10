@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.error_detail_dto_v2 import ErrorDetailDtoV2
 
 class AsyncResponseV2Dto(BaseModel):
@@ -29,18 +29,14 @@ class AsyncResponseV2Dto(BaseModel):
     date_created: Optional[datetime] = Field(None, alias="dateCreated")
     error_code: Optional[StrictStr] = Field(None, alias="errorCode")
     error_desc: Optional[StrictStr] = Field(None, alias="errorDesc")
-    error_details: Optional[conlist(ErrorDetailDtoV2)] = Field(None, alias="errorDetails")
-    warnings: Optional[conlist(ErrorDetailDtoV2)] = None
+    error_details: Optional[List[ErrorDetailDtoV2]] = Field(None, alias="errorDetails")
+    warnings: Optional[List[ErrorDetailDtoV2]] = None
     __properties = ["dateCreated", "errorCode", "errorDesc", "errorDetails", "warnings"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class AsyncResponseV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -80,9 +76,9 @@ class AsyncResponseV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AsyncResponseV2Dto.parse_obj(obj)
+            return AsyncResponseV2Dto.model_validate(obj)
 
-        _obj = AsyncResponseV2Dto.parse_obj({
+        _obj = AsyncResponseV2Dto.model_validate({
             "date_created": obj.get("dateCreated"),
             "error_code": obj.get("errorCode"),
             "error_desc": obj.get("errorDesc"),

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic import BaseModel, Field, ConfigDict, StrictBool
 
 class MachineTranslationSettingsDto(BaseModel):
     """
@@ -33,14 +33,10 @@ class MachineTranslationSettingsDto(BaseModel):
     mt_for_tm_above100: Optional[StrictBool] = Field(None, alias="mtForTMAbove100", description="Use machine translation for segments with a TM match of 100% or more. Default: false")
     __properties = ["useMachineTranslation", "lock100PercentMatches", "confirm100PercentMatches", "useAltTransOnly", "mtQeMatchesInEditors", "mtForTMAbove100"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class MachineTranslationSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -66,9 +62,9 @@ class MachineTranslationSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MachineTranslationSettingsDto.parse_obj(obj)
+            return MachineTranslationSettingsDto.model_validate(obj)
 
-        _obj = MachineTranslationSettingsDto.parse_obj({
+        _obj = MachineTranslationSettingsDto.model_validate({
             "use_machine_translation": obj.get("useMachineTranslation"),
             "lock100_percent_matches": obj.get("lock100PercentMatches"),
             "confirm100_percent_matches": obj.get("confirm100PercentMatches"),

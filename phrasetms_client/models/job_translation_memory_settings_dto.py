@@ -18,29 +18,26 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, confloat, conint
+from pydantic import BaseModel, Field, ConfigDict, StrictBool
 
 class JobTranslationMemorySettingsDto(BaseModel):
     """
     Translation memory related settings
     """
     use_translation_memory: Optional[StrictBool] = Field(None, alias="useTranslationMemory", description="Pre-translate from translation memory. Default: true")
-    translation_memory_threshold: Optional[Union[confloat(le=1.01, ge=0, strict=True), conint(le=1, ge=0, strict=True)]] = Field(None, alias="translationMemoryThreshold", description="Pre-translation threshold percent. Default: 0.7")
+    translation_memory_threshold: Optional[Union[Annotated[float, Field(le=1.01, ge=0, strict=True)], Annotated[int, Field(le=1, ge=0, strict=True)]]] = Field(None, alias="translationMemoryThreshold", description="Pre-translation threshold percent. Default: 0.7")
     confirm100_percent_matches: Optional[StrictBool] = Field(None, alias="confirm100PercentMatches", description="Set segment status to confirmed for: 100% translation memory matches. Default: false")
     confirm101_percent_matches: Optional[StrictBool] = Field(None, alias="confirm101PercentMatches", description="Set segment status to confirmed for: 101% translation memory matches. Default: false")
     lock100_percent_matches: Optional[StrictBool] = Field(None, alias="lock100PercentMatches", description="Lock section: 100% translation memory matches. Default: false")
     lock101_percent_matches: Optional[StrictBool] = Field(None, alias="lock101PercentMatches", description="Lock section: 101% translation memory matches. Default: false")
     __properties = ["useTranslationMemory", "translationMemoryThreshold", "confirm100PercentMatches", "confirm101PercentMatches", "lock100PercentMatches", "lock101PercentMatches"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +50,7 @@ class JobTranslationMemorySettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -66,9 +63,9 @@ class JobTranslationMemorySettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobTranslationMemorySettingsDto.parse_obj(obj)
+            return JobTranslationMemorySettingsDto.model_validate(obj)
 
-        _obj = JobTranslationMemorySettingsDto.parse_obj({
+        _obj = JobTranslationMemorySettingsDto.model_validate({
             "use_translation_memory": obj.get("useTranslationMemory"),
             "translation_memory_threshold": obj.get("translationMemoryThreshold"),
             "confirm100_percent_matches": obj.get("confirm100PercentMatches"),

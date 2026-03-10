@@ -18,32 +18,29 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, constr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, StringConstraints
 from phrasetms_client.models.id_reference import IdReference
 
 class TransMemoryEditDto(BaseModel):
     """
     TransMemoryEditDto
     """
-    name: constr(strict=True, max_length=255, min_length=0) = Field(...)
-    target_langs: conlist(StrictStr) = Field(..., alias="targetLangs", description="New target languages to add. No languages can be removed")
+    name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
+    target_langs: List[StrictStr] = Field(..., alias="targetLangs", description="New target languages to add. No languages can be removed")
     client: Optional[IdReference] = None
     business_unit: Optional[IdReference] = Field(None, alias="businessUnit")
     domain: Optional[IdReference] = None
     sub_domain: Optional[IdReference] = Field(None, alias="subDomain")
     owner: Optional[IdReference] = None
-    note: Optional[constr(strict=True, max_length=4096, min_length=0)] = None
+    note: Optional[Annotated[str, StringConstraints(strict=True, max_length=4096, min_length=0)]] = None
     __properties = ["name", "targetLangs", "client", "businessUnit", "domain", "subDomain", "owner", "note"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -56,7 +53,7 @@ class TransMemoryEditDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -84,9 +81,9 @@ class TransMemoryEditDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TransMemoryEditDto.parse_obj(obj)
+            return TransMemoryEditDto.model_validate(obj)
 
-        _obj = TransMemoryEditDto.parse_obj({
+        _obj = TransMemoryEditDto.model_validate({
             "name": obj.get("name"),
             "target_langs": obj.get("targetLangs"),
             "client": IdReference.from_dict(obj.get("client")) if obj.get("client") is not None else None,

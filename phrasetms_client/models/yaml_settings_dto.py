@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class YamlSettingsDto(BaseModel):
     """
@@ -38,7 +38,8 @@ class YamlSettingsDto(BaseModel):
     icu_sub_filter: Optional[StrictBool] = Field(None, alias="icuSubFilter", description="Default: `false`")
     __properties = ["htmlSubFilter", "tagRegexp", "includeKeyRegexp", "excludeValueRegexp", "contextPath", "contextKeyPath", "markdownSubfilter", "updateRootElementLang", "localeFormat", "indentEmptyLinesInString", "icuSubFilter"]
 
-    @validator('locale_format')
+    @field_validator('locale_format')
+    @classmethod
     def locale_format_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -48,14 +49,10 @@ class YamlSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('MEMSOURCE', 'RFC_5646', 'ANDROID_QUALIFIER', 'ANDROID_QUALIFIER_BCP')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -68,7 +65,7 @@ class YamlSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -81,9 +78,9 @@ class YamlSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return YamlSettingsDto.parse_obj(obj)
+            return YamlSettingsDto.model_validate(obj)
 
-        _obj = YamlSettingsDto.parse_obj({
+        _obj = YamlSettingsDto.model_validate({
             "html_sub_filter": obj.get("htmlSubFilter"),
             "tag_regexp": obj.get("tagRegexp"),
             "include_key_regexp": obj.get("includeKeyRegexp"),

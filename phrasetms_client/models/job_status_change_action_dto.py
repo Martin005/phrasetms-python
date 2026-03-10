@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class JobStatusChangeActionDto(BaseModel):
     """
@@ -30,7 +30,8 @@ class JobStatusChangeActionDto(BaseModel):
     propagate_status: Optional[StrictBool] = Field(None, alias="propagateStatus", description="Default: false;         Controls both job status and email notifications to previous/next provider")
     __properties = ["requestedStatus", "notifyOwner", "propagateStatus"]
 
-    @validator('requested_status')
+    @field_validator('requested_status')
+    @classmethod
     def requested_status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -40,14 +41,10 @@ class JobStatusChangeActionDto(BaseModel):
             raise ValueError("must be one of enum values ('NEW', 'ACCEPTED', 'DECLINED', 'REJECTED', 'DELIVERED', 'EMAILED', 'COMPLETED', 'CANCELLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -60,7 +57,7 @@ class JobStatusChangeActionDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -73,9 +70,9 @@ class JobStatusChangeActionDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobStatusChangeActionDto.parse_obj(obj)
+            return JobStatusChangeActionDto.model_validate(obj)
 
-        _obj = JobStatusChangeActionDto.parse_obj({
+        _obj = JobStatusChangeActionDto.model_validate({
             "requested_status": obj.get("requestedStatus"),
             "notify_owner": obj.get("notifyOwner"),
             "propagate_status": obj.get("propagateStatus")

@@ -18,8 +18,17 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conint, conlist, constr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictStr,
+    StringConstraints,
+    field_validator,
+)
 from phrasetms_client.models.id_reference import IdReference
 from phrasetms_client.models.provider_reference import ProviderReference
 from phrasetms_client.models.uid_reference import UidReference
@@ -28,7 +37,7 @@ class CreateAnalyseAsyncV2Dto(BaseModel):
     """
     CreateAnalyseAsyncV2Dto
     """
-    jobs: conlist(UidReference, max_items=50000, min_items=1) = Field(...)
+    jobs: List[UidReference] = Field(...)
     type: Optional[StrictStr] = Field(None, description="default: PreAnalyse")
     include_fuzzy_repetitions: Optional[StrictBool] = Field(None, alias="includeFuzzyRepetitions", description="Default: true")
     separate_fuzzy_repetitions: Optional[StrictBool] = Field(None, alias="separateFuzzyRepetitions", description="Default: false")
@@ -42,15 +51,16 @@ class CreateAnalyseAsyncV2Dto(BaseModel):
     trans_memory_post_editing: Optional[StrictBool] = Field(None, alias="transMemoryPostEditing", description="Default: false. Works only for type=PostAnalyse.")
     non_translatable_post_editing: Optional[StrictBool] = Field(None, alias="nonTranslatablePostEditing", description="Default: false. Works only for type=PostAnalyse.")
     machine_translate_post_editing: Optional[StrictBool] = Field(None, alias="machineTranslatePostEditing", description="Default: false. Works only for type=PostAnalyse.")
-    name: Optional[constr(strict=True, max_length=255, min_length=0)] = None
+    name: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None
     net_rate_scheme: Optional[IdReference] = Field(None, alias="netRateScheme")
-    compare_workflow_level: Optional[conint(strict=True, le=15, ge=1)] = Field(None, alias="compareWorkflowLevel", description="Required for type=Compare")
+    compare_workflow_level: Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = Field(None, alias="compareWorkflowLevel", description="Required for type=Compare")
     use_project_analysis_settings: Optional[StrictBool] = Field(None, alias="useProjectAnalysisSettings", description="Default: false. Use default project settings. Will be overwritten with setting sent         in the API call.")
     callback_url: Optional[StrictStr] = Field(None, alias="callbackUrl")
     provider: Optional[ProviderReference] = None
     __properties = ["jobs", "type", "includeFuzzyRepetitions", "separateFuzzyRepetitions", "includeConfirmedSegments", "includeNumbers", "includeLockedSegments", "countSourceUnits", "includeTransMemory", "includeNonTranslatables", "includeMachineTranslationMatches", "transMemoryPostEditing", "nonTranslatablePostEditing", "machineTranslatePostEditing", "name", "netRateScheme", "compareWorkflowLevel", "useProjectAnalysisSettings", "callbackUrl", "provider"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -60,14 +70,10 @@ class CreateAnalyseAsyncV2Dto(BaseModel):
             raise ValueError("must be one of enum values ('PreAnalyse', 'PostAnalyse', 'Compare')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -80,7 +86,7 @@ class CreateAnalyseAsyncV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -106,9 +112,9 @@ class CreateAnalyseAsyncV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CreateAnalyseAsyncV2Dto.parse_obj(obj)
+            return CreateAnalyseAsyncV2Dto.model_validate(obj)
 
-        _obj = CreateAnalyseAsyncV2Dto.parse_obj({
+        _obj = CreateAnalyseAsyncV2Dto.model_validate({
             "jobs": [UidReference.from_dict(_item) for _item in obj.get("jobs")] if obj.get("jobs") is not None else None,
             "type": obj.get("type"),
             "include_fuzzy_repetitions": obj.get("includeFuzzyRepetitions"),

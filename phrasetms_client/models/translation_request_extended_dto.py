@@ -19,26 +19,22 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 
 class TranslationRequestExtendedDto(BaseModel):
     """
     TranslationRequestExtendedDto
     """
-    source_texts: conlist(StrictStr, max_items=2147483647, min_items=1) = Field(..., alias="sourceTexts")
+    source_texts: List[StrictStr] = Field(..., alias="sourceTexts")
     var_from: StrictStr = Field(..., alias="from")
     to: StrictStr = Field(...)
     filename: Optional[StrictStr] = None
     __properties = ["sourceTexts", "from", "to", "filename"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +47,7 @@ class TranslationRequestExtendedDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -64,9 +60,9 @@ class TranslationRequestExtendedDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TranslationRequestExtendedDto.parse_obj(obj)
+            return TranslationRequestExtendedDto.model_validate(obj)
 
-        _obj = TranslationRequestExtendedDto.parse_obj({
+        _obj = TranslationRequestExtendedDto.model_validate({
             "source_texts": obj.get("sourceTexts"),
             "var_from": obj.get("from"),
             "to": obj.get("to"),

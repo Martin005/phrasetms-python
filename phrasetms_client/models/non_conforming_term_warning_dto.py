@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.position import Position
 from phrasetms_client.models.segment_warning import SegmentWarning
 from phrasetms_client.models.term import Term
@@ -29,18 +29,14 @@ class NonConformingTermWarningDto(SegmentWarning):
     NonConformingTermWarningDto
     """
     term: Optional[StrictStr] = None
-    positions: Optional[conlist(Position)] = None
-    suggested_target_terms: Optional[conlist(Term)] = Field(None, alias="suggestedTargetTerms")
+    positions: Optional[List[Position]] = None
+    suggested_target_terms: Optional[List[Term]] = Field(None, alias="suggestedTargetTerms")
     __properties = ["id", "ignored", "type", "repetitionGroupId", "term", "positions", "suggestedTargetTerms"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class NonConformingTermWarningDto(SegmentWarning):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -80,9 +76,9 @@ class NonConformingTermWarningDto(SegmentWarning):
             return None
 
         if not isinstance(obj, dict):
-            return NonConformingTermWarningDto.parse_obj(obj)
+            return NonConformingTermWarningDto.model_validate(obj)
 
-        _obj = NonConformingTermWarningDto.parse_obj({
+        _obj = NonConformingTermWarningDto.model_validate({
             "id": obj.get("id"),
             "ignored": obj.get("ignored"),
             "type": obj.get("type"),

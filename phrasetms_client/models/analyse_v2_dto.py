@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.analyse_language_part_v2_dto import AnalyseLanguagePartV2Dto
 from phrasetms_client.models.net_rate_scheme_reference import NetRateSchemeReference
 from phrasetms_client.models.provider_reference import ProviderReference
@@ -37,10 +37,11 @@ class AnalyseV2Dto(BaseModel):
     created_by: Optional[UserReference] = Field(None, alias="createdBy")
     date_created: Optional[datetime] = Field(None, alias="dateCreated")
     net_rate_scheme: Optional[NetRateSchemeReference] = Field(None, alias="netRateScheme")
-    analyse_language_parts: Optional[conlist(AnalyseLanguagePartV2Dto)] = Field(None, alias="analyseLanguageParts")
+    analyse_language_parts: Optional[List[AnalyseLanguagePartV2Dto]] = Field(None, alias="analyseLanguageParts")
     __properties = ["id", "uid", "type", "name", "provider", "createdBy", "dateCreated", "netRateScheme", "analyseLanguageParts"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -50,14 +51,10 @@ class AnalyseV2Dto(BaseModel):
             raise ValueError("must be one of enum values ('PreAnalyse', 'PostAnalyse', 'PreAnalyseTarget', 'Compare', 'PreAnalyseProvider')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -70,7 +67,7 @@ class AnalyseV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -99,9 +96,9 @@ class AnalyseV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AnalyseV2Dto.parse_obj(obj)
+            return AnalyseV2Dto.model_validate(obj)
 
-        _obj = AnalyseV2Dto.parse_obj({
+        _obj = AnalyseV2Dto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "type": obj.get("type"),

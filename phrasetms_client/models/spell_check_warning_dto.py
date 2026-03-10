@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.misspelled_word_dto import MisspelledWordDto
 from phrasetms_client.models.segment_warning import SegmentWarning
 
@@ -27,17 +27,13 @@ class SpellCheckWarningDto(SegmentWarning):
     """
     SpellCheckWarningDto
     """
-    misspelled_words: Optional[conlist(MisspelledWordDto)] = Field(None, alias="misspelledWords")
+    misspelled_words: Optional[List[MisspelledWordDto]] = Field(None, alias="misspelledWords")
     __properties = ["id", "ignored", "type", "repetitionGroupId", "misspelledWords"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class SpellCheckWarningDto(SegmentWarning):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -70,9 +66,9 @@ class SpellCheckWarningDto(SegmentWarning):
             return None
 
         if not isinstance(obj, dict):
-            return SpellCheckWarningDto.parse_obj(obj)
+            return SpellCheckWarningDto.model_validate(obj)
 
-        _obj = SpellCheckWarningDto.parse_obj({
+        _obj = SpellCheckWarningDto.model_validate({
             "id": obj.get("id"),
             "ignored": obj.get("ignored"),
             "type": obj.get("type"),

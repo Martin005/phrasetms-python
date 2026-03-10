@@ -19,16 +19,17 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 
 class EnabledQualityChecksDto(BaseModel):
     """
     EnabledQualityChecksDto
     """
-    enabled_checks: Optional[conlist(StrictStr)] = Field(None, alias="enabledChecks")
+    enabled_checks: Optional[List[StrictStr]] = Field(None, alias="enabledChecks")
     __properties = ["enabledChecks"]
 
-    @validator('enabled_checks')
+    @field_validator('enabled_checks')
+    @classmethod
     def enabled_checks_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -39,14 +40,10 @@ class EnabledQualityChecksDto(BaseModel):
                 raise ValueError("each list item must be one of ('EmptyTranslation', 'TrailingPunctuation', 'Formatting', 'JoinTags', 'MissingNumbersV3', 'MultipleSpacesV3', 'NonConformingTerm', 'NotConfirmed', 'TranslationLength', 'AbsoluteLength', 'RelativeLength', 'UnresolvedComment', 'EmptyPairTags', 'InconsistentTranslationTargetSource', 'InconsistentTranslationSourceTarget', 'ForbiddenString', 'SpellCheck', 'RepeatedWord', 'InconsistentTagContent', 'EmptyTagContent', 'Malformed', 'ForbiddenTerm', 'NewerAtLowerLevel', 'LeadingAndTrailingSpaces', 'LeadingSpaces', 'TrailingSpaces', 'TargetSourceIdentical', 'SourceOrTargetRegexp', 'UnmodifiedFuzzyTranslation', 'UnmodifiedFuzzyTranslationTM', 'UnmodifiedFuzzyTranslationMTNT', 'Moravia', 'ExtraNumbersV3', 'UnresolvedConversation', 'NestedTags', 'FuzzyInconsistencyTargetSource', 'FuzzyInconsistencySourceTarget', 'CustomQA')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -59,7 +56,7 @@ class EnabledQualityChecksDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -72,9 +69,9 @@ class EnabledQualityChecksDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return EnabledQualityChecksDto.parse_obj(obj)
+            return EnabledQualityChecksDto.model_validate(obj)
 
-        _obj = EnabledQualityChecksDto.parse_obj({
+        _obj = EnabledQualityChecksDto.model_validate({
             "enabled_checks": obj.get("enabledChecks")
         })
         return _obj

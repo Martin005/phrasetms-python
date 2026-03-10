@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic import BaseModel, Field, ConfigDict, StrictBool
 from phrasetms_client.models.counts_dto import CountsDto
 from phrasetms_client.models.match_counts101_dto import MatchCounts101Dto
 from phrasetms_client.models.match_counts_dto import MatchCountsDto
@@ -38,14 +38,10 @@ class DataDtoV1(BaseModel):
     internal_fuzzy_matches: Optional[MatchCountsDto] = Field(None, alias="internalFuzzyMatches")
     __properties = ["available", "all", "repetitions", "transMemoryMatches", "machineTranslationMatches", "nonTranslatablesMatches", "internalFuzzyMatches"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -58,7 +54,7 @@ class DataDtoV1(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -89,9 +85,9 @@ class DataDtoV1(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return DataDtoV1.parse_obj(obj)
+            return DataDtoV1.model_validate(obj)
 
-        _obj = DataDtoV1.parse_obj({
+        _obj = DataDtoV1.model_validate({
             "available": obj.get("available"),
             "all": CountsDto.from_dict(obj.get("all")) if obj.get("all") is not None else None,
             "repetitions": CountsDto.from_dict(obj.get("repetitions")) if obj.get("repetitions") is not None else None,

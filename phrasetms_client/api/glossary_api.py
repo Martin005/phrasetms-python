@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import List, Optional
 
-from pydantic import Field, StrictBool, StrictStr, conint, conlist
+from pydantic import Field, StrictBool, StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.glossary_activation_dto import GlossaryActivationDto
 from phrasetms_client.models.glossary_dto import GlossaryDto
@@ -48,7 +48,7 @@ class GlossaryApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def activate_glossary(self, glossary_uid : StrictStr, body : Optional[GlossaryActivationDto] = None, **kwargs) -> GlossaryDto:  # noqa: E501
         """Activate/Deactivate glossary  # noqa: E501
 
@@ -78,7 +78,7 @@ class GlossaryApi(object):
             raise ValueError("Error! Please call the activate_glossary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.activate_glossary_with_http_info(glossary_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def activate_glossary_with_http_info(self, glossary_uid : StrictStr, body : Optional[GlossaryActivationDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Activate/Deactivate glossary  # noqa: E501
 
@@ -211,7 +211,7 @@ class GlossaryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_glossary(self, body : Optional[GlossaryEditDto] = None, **kwargs) -> GlossaryDto:  # noqa: E501
         """Create glossary  # noqa: E501
 
@@ -239,7 +239,7 @@ class GlossaryApi(object):
             raise ValueError("Error! Please call the create_glossary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_glossary_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_glossary_with_http_info(self, body : Optional[GlossaryEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create glossary  # noqa: E501
 
@@ -366,7 +366,7 @@ class GlossaryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_glossary(self, glossary_uid : StrictStr, purge : Annotated[Optional[StrictBool], Field(description="purge=false - the Glossary can later be restored,                     'purge=true - the Glossary is completely deleted and cannot be restored")] = None, **kwargs) -> None:  # noqa: E501
         """Delete glossary  # noqa: E501
 
@@ -396,7 +396,7 @@ class GlossaryApi(object):
             raise ValueError("Error! Please call the delete_glossary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_glossary_with_http_info(glossary_uid, purge, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_glossary_with_http_info(self, glossary_uid : StrictStr, purge : Annotated[Optional[StrictBool], Field(description="purge=false - the Glossary can later be restored,                     'purge=true - the Glossary is completely deleted and cannot be restored")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete glossary  # noqa: E501
 
@@ -505,7 +505,7 @@ class GlossaryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_glossary(self, glossary_uid : StrictStr, **kwargs) -> GlossaryDto:  # noqa: E501
         """Get glossary  # noqa: E501
 
@@ -533,7 +533,7 @@ class GlossaryApi(object):
             raise ValueError("Error! Please call the get_glossary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_glossary_with_http_info(glossary_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_glossary_with_http_info(self, glossary_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get glossary  # noqa: E501
 
@@ -653,8 +653,8 @@ class GlossaryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_glossaries(self, name : Optional[StrictStr] = None, lang : Annotated[Optional[conlist(StrictStr)], Field(description="Language of the glossary")] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoGlossaryDto:  # noqa: E501
+    @validate_call
+    def list_glossaries(self, name : Optional[StrictStr] = None, lang : Annotated[Optional[List[StrictStr]], Field(description="Language of the glossary")] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoGlossaryDto:  # noqa: E501
         """List glossaries  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -687,8 +687,8 @@ class GlossaryApi(object):
             raise ValueError("Error! Please call the list_glossaries_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_glossaries_with_http_info(name, lang, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_glossaries_with_http_info(self, name : Optional[StrictStr] = None, lang : Annotated[Optional[conlist(StrictStr)], Field(description="Language of the glossary")] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_glossaries_with_http_info(self, name : Optional[StrictStr] = None, lang : Annotated[Optional[List[StrictStr]], Field(description="Language of the glossary")] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List glossaries  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -826,7 +826,7 @@ class GlossaryApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_glossary(self, glossary_uid : StrictStr, body : Optional[GlossaryEditDto] = None, **kwargs) -> GlossaryDto:  # noqa: E501
         """Edit glossary  # noqa: E501
 
@@ -857,7 +857,7 @@ class GlossaryApi(object):
             raise ValueError("Error! Please call the update_glossary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_glossary_with_http_info(glossary_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_glossary_with_http_info(self, glossary_uid : StrictStr, body : Optional[GlossaryEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit glossary  # noqa: E501
 

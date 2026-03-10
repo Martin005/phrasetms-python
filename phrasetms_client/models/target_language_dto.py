@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 
 class TargetLanguageDto(BaseModel):
     """
@@ -28,14 +28,10 @@ class TargetLanguageDto(BaseModel):
     language: StrictStr = Field(...)
     __properties = ["language"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -48,7 +44,7 @@ class TargetLanguageDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -61,9 +57,9 @@ class TargetLanguageDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TargetLanguageDto.parse_obj(obj)
+            return TargetLanguageDto.model_validate(obj)
 
-        _obj = TargetLanguageDto.parse_obj({
+        _obj = TargetLanguageDto.model_validate({
             "language": obj.get("language")
         })
         return _obj

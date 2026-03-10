@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt, StrictStr
 from phrasetms_client.models.provider_reference import ProviderReference
 from phrasetms_client.models.uid_reference import UidReference
 
@@ -28,7 +28,7 @@ class JobPartReadyDeleteTranslationFilterDto(BaseModel):
     JobPartReadyDeleteTranslationFilterDto
     """
     filename: Optional[StrictStr] = None
-    statuses: Optional[conlist(StrictStr)] = None
+    statuses: Optional[List[StrictStr]] = None
     target_lang: Optional[StrictStr] = Field(None, alias="targetLang")
     provider: Optional[ProviderReference] = None
     owner: Optional[UidReference] = None
@@ -37,14 +37,10 @@ class JobPartReadyDeleteTranslationFilterDto(BaseModel):
     overdue: Optional[StrictBool] = None
     __properties = ["filename", "statuses", "targetLang", "provider", "owner", "dateDue", "dueInHours", "overdue"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -57,7 +53,7 @@ class JobPartReadyDeleteTranslationFilterDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -76,9 +72,9 @@ class JobPartReadyDeleteTranslationFilterDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobPartReadyDeleteTranslationFilterDto.parse_obj(obj)
+            return JobPartReadyDeleteTranslationFilterDto.model_validate(obj)
 
-        _obj = JobPartReadyDeleteTranslationFilterDto.parse_obj({
+        _obj = JobPartReadyDeleteTranslationFilterDto.model_validate({
             "filename": obj.get("filename"),
             "statuses": obj.get("statuses"),
             "target_lang": obj.get("targetLang"),

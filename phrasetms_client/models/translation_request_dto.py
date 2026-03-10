@@ -19,23 +19,19 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 
 class TranslationRequestDto(BaseModel):
     """
     TranslationRequestDto
     """
-    source_texts: conlist(StrictStr, max_items=2147483647, min_items=1) = Field(..., alias="sourceTexts")
+    source_texts: List[StrictStr] = Field(..., alias="sourceTexts")
     __properties = ["sourceTexts"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -48,7 +44,7 @@ class TranslationRequestDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -61,9 +57,9 @@ class TranslationRequestDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TranslationRequestDto.parse_obj(obj)
+            return TranslationRequestDto.model_validate(obj)
 
-        _obj = TranslationRequestDto.parse_obj({
+        _obj = TranslationRequestDto.model_validate({
             "source_texts": obj.get("sourceTexts")
         })
         return _obj

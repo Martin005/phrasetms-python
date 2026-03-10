@@ -26,7 +26,7 @@ long_description = (this_directory / "README.md").read_text()
 NAME = "phrasetms-client"
 VERSION = "0.3.14"
 PYTHON_REQUIRES = ">=3.7"
-REQUIRES = ["urllib3 >= 1.25.3", "python-dateutil", "pydantic >= 1.10.5, < 2", "aenum"]
+REQUIRES = ["urllib3 >= 1.25.3", "python-dateutil", "pydantic >= 2.0.0", "aenum"]
 
 setup(
     name=NAME,

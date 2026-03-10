@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt, StrictStr
 from phrasetms_client.models.search_tm_client_dto import SearchTMClientDto
 from phrasetms_client.models.search_tm_domain_dto import SearchTMDomainDto
 from phrasetms_client.models.search_tm_project_dto import SearchTMProjectDto
@@ -44,20 +44,16 @@ class SearchTMSegmentDto(BaseModel):
     client: Optional[SearchTMClientDto] = None
     domain: Optional[SearchTMDomainDto] = None
     sub_domain: Optional[SearchTMSubDomainDto] = Field(None, alias="subDomain")
-    tag_metadata: Optional[conlist(TagMetadata)] = Field(None, alias="tagMetadata")
+    tag_metadata: Optional[List[TagMetadata]] = Field(None, alias="tagMetadata")
     previous_segment: Optional[StrictStr] = Field(None, alias="previousSegment")
     next_segment: Optional[StrictStr] = Field(None, alias="nextSegment")
     key: Optional[StrictStr] = None
     __properties = ["id", "text", "lang", "rtl", "modifiedAt", "createdAt", "modifiedBy", "createdBy", "filename", "project", "client", "domain", "subDomain", "tagMetadata", "previousSegment", "nextSegment", "key"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -70,7 +66,7 @@ class SearchTMSegmentDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -108,9 +104,9 @@ class SearchTMSegmentDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SearchTMSegmentDto.parse_obj(obj)
+            return SearchTMSegmentDto.model_validate(obj)
 
-        _obj = SearchTMSegmentDto.parse_obj({
+        _obj = SearchTMSegmentDto.model_validate({
             "id": obj.get("id"),
             "text": obj.get("text"),
             "lang": obj.get("lang"),

@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, StrictStr
 from phrasetms_client.models.error_detail_dto_v2 import ErrorDetailDtoV2
 
 class WebEditorLinkDtoV2(BaseModel):
@@ -27,17 +27,13 @@ class WebEditorLinkDtoV2(BaseModel):
     WebEditorLinkDtoV2
     """
     url: Optional[StrictStr] = None
-    warnings: Optional[conlist(ErrorDetailDtoV2)] = None
+    warnings: Optional[List[ErrorDetailDtoV2]] = None
     __properties = ["url", "warnings"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class WebEditorLinkDtoV2(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -70,9 +66,9 @@ class WebEditorLinkDtoV2(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return WebEditorLinkDtoV2.parse_obj(obj)
+            return WebEditorLinkDtoV2.model_validate(obj)
 
-        _obj = WebEditorLinkDtoV2.parse_obj({
+        _obj = WebEditorLinkDtoV2.model_validate({
             "url": obj.get("url"),
             "warnings": [ErrorDetailDtoV2.from_dict(_item) for _item in obj.get("warnings")] if obj.get("warnings") is not None else None
         })

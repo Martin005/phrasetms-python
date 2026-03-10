@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.job_part_ready_references import JobPartReadyReferences
 from phrasetms_client.models.pseudo_translate_action_dto_v2 import PseudoTranslateActionDtoV2
 
@@ -31,14 +31,10 @@ class PseudoTranslateWrapperDto(BaseModel):
     pseudo_translate: PseudoTranslateActionDtoV2 = Field(..., alias="pseudoTranslate")
     __properties = ["jobParts", "pseudoTranslate"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -51,7 +47,7 @@ class PseudoTranslateWrapperDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -70,9 +66,9 @@ class PseudoTranslateWrapperDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PseudoTranslateWrapperDto.parse_obj(obj)
+            return PseudoTranslateWrapperDto.model_validate(obj)
 
-        _obj = PseudoTranslateWrapperDto.parse_obj({
+        _obj = PseudoTranslateWrapperDto.model_validate({
             "job_parts": JobPartReadyReferences.from_dict(obj.get("jobParts")) if obj.get("jobParts") is not None else None,
             "pseudo_translate": PseudoTranslateActionDtoV2.from_dict(obj.get("pseudoTranslate")) if obj.get("pseudoTranslate") is not None else None
         })

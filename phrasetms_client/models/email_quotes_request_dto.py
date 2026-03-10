@@ -19,28 +19,24 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.uid_reference import UidReference
 
 class EmailQuotesRequestDto(BaseModel):
     """
     EmailQuotesRequestDto
     """
-    quotes: conlist(UidReference) = Field(...)
+    quotes: List[UidReference] = Field(...)
     subject: StrictStr = Field(...)
     body: StrictStr = Field(...)
     cc: Optional[StrictStr] = None
     bcc: Optional[StrictStr] = None
     __properties = ["quotes", "subject", "body", "cc", "bcc"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class EmailQuotesRequestDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -73,9 +69,9 @@ class EmailQuotesRequestDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return EmailQuotesRequestDto.parse_obj(obj)
+            return EmailQuotesRequestDto.model_validate(obj)
 
-        _obj = EmailQuotesRequestDto.parse_obj({
+        _obj = EmailQuotesRequestDto.model_validate({
             "quotes": [UidReference.from_dict(_item) for _item in obj.get("quotes")] if obj.get("quotes") is not None else None,
             "subject": obj.get("subject"),
             "body": obj.get("body"),

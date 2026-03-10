@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from typing import Optional
-from pydantic import Field, StrictInt, StrictStr
+from pydantic import Field, ConfigDict, StrictInt, StrictStr
 from phrasetms_client.models.provider_reference import ProviderReference
 
 class VENDOR(ProviderReference):
@@ -29,14 +29,10 @@ class VENDOR(ProviderReference):
     default_project_owner_id: Optional[StrictInt] = Field(None, alias="defaultProjectOwnerId")
     __properties = ["type", "id", "uid", "name", "defaultProjectOwnerId"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class VENDOR(ProviderReference):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                             "properties",
                           },
@@ -63,9 +59,9 @@ class VENDOR(ProviderReference):
             return None
 
         if not isinstance(obj, dict):
-            return VENDOR.parse_obj(obj)
+            return VENDOR.model_validate(obj)
 
-        _obj = VENDOR.parse_obj({
+        _obj = VENDOR.model_validate({
             "type": obj.get("type"),
             "id": obj.get("id"),
             "uid": obj.get("uid"),

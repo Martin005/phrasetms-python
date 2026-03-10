@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.uid_reference import UidReference
 
 class CreateVendorDto(BaseModel):
@@ -29,22 +29,18 @@ class CreateVendorDto(BaseModel):
     vendor_token: StrictStr = Field(..., alias="vendorToken")
     net_rate_scheme: Optional[UidReference] = Field(None, alias="netRateScheme")
     price_list: Optional[UidReference] = Field(None, alias="priceList")
-    source_locales: Optional[conlist(StrictStr)] = Field(None, alias="sourceLocales")
-    target_locales: Optional[conlist(StrictStr)] = Field(None, alias="targetLocales")
-    clients: Optional[conlist(UidReference)] = None
-    domains: Optional[conlist(UidReference)] = None
-    sub_domains: Optional[conlist(UidReference)] = Field(None, alias="subDomains")
-    workflow_steps: Optional[conlist(UidReference)] = Field(None, alias="workflowSteps")
+    source_locales: Optional[List[StrictStr]] = Field(None, alias="sourceLocales")
+    target_locales: Optional[List[StrictStr]] = Field(None, alias="targetLocales")
+    clients: Optional[List[UidReference]] = None
+    domains: Optional[List[UidReference]] = None
+    sub_domains: Optional[List[UidReference]] = Field(None, alias="subDomains")
+    workflow_steps: Optional[List[UidReference]] = Field(None, alias="workflowSteps")
     __properties = ["vendorToken", "netRateScheme", "priceList", "sourceLocales", "targetLocales", "clients", "domains", "subDomains", "workflowSteps"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -57,7 +53,7 @@ class CreateVendorDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -104,9 +100,9 @@ class CreateVendorDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CreateVendorDto.parse_obj(obj)
+            return CreateVendorDto.model_validate(obj)
 
-        _obj = CreateVendorDto.parse_obj({
+        _obj = CreateVendorDto.model_validate({
             "vendor_token": obj.get("vendorToken"),
             "net_rate_scheme": UidReference.from_dict(obj.get("netRateScheme")) if obj.get("netRateScheme") is not None else None,
             "price_list": UidReference.from_dict(obj.get("priceList")) if obj.get("priceList") is not None else None,

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt
+from pydantic import BaseModel, Field, ConfigDict, StrictFloat, StrictInt
 
 class CountsDto(BaseModel):
     """
@@ -33,14 +33,10 @@ class CountsDto(BaseModel):
     editing_time: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="editingTime")
     __properties = ["segments", "words", "characters", "normalizedPages", "percent", "editingTime"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -53,7 +49,7 @@ class CountsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -66,9 +62,9 @@ class CountsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CountsDto.parse_obj(obj)
+            return CountsDto.model_validate(obj)
 
-        _obj = CountsDto.parse_obj({
+        _obj = CountsDto.model_validate({
             "segments": obj.get("segments"),
             "words": obj.get("words"),
             "characters": obj.get("characters"),

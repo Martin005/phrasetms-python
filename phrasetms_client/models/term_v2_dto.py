@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.user_reference import UserReference
 
 class TermV2Dto(BaseModel):
@@ -50,7 +50,8 @@ class TermV2Dto(BaseModel):
     number: Optional[StrictStr] = None
     __properties = ["id", "text", "lang", "rtl", "modifiedAt", "createdAt", "modifiedBy", "createdBy", "caseSensitive", "exactMatch", "forbidden", "preferred", "status", "conceptId", "usage", "note", "writable", "shortTranslation", "termType", "partOfSpeech", "gender", "number"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -60,14 +61,10 @@ class TermV2Dto(BaseModel):
             raise ValueError("must be one of enum values ('New', 'Approved')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -80,7 +77,7 @@ class TermV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -99,9 +96,9 @@ class TermV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TermV2Dto.parse_obj(obj)
+            return TermV2Dto.model_validate(obj)
 
-        _obj = TermV2Dto.parse_obj({
+        _obj = TermV2Dto.model_validate({
             "id": obj.get("id"),
             "text": obj.get("text"),
             "lang": obj.get("lang"),

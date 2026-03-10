@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.user_reference import UserReference
 
 class TermDto(BaseModel):
@@ -50,12 +50,13 @@ class TermDto(BaseModel):
     number: Optional[StrictStr] = None
     definition: Optional[StrictStr] = None
     domain: Optional[StrictStr] = None
-    sub_domains: Optional[conlist(StrictStr)] = Field(None, alias="subDomains")
+    sub_domains: Optional[List[StrictStr]] = Field(None, alias="subDomains")
     url: Optional[StrictStr] = None
     concept_note: Optional[StrictStr] = Field(None, alias="conceptNote")
     __properties = ["id", "text", "lang", "rtl", "modifiedAt", "createdAt", "modifiedBy", "createdBy", "caseSensitive", "exactMatch", "forbidden", "preferred", "status", "conceptId", "usage", "note", "writable", "shortTranslation", "termType", "partOfSpeech", "gender", "number", "definition", "domain", "subDomains", "url", "conceptNote"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -65,14 +66,10 @@ class TermDto(BaseModel):
             raise ValueError("must be one of enum values ('New', 'Approved')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -85,7 +82,7 @@ class TermDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -104,9 +101,9 @@ class TermDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TermDto.parse_obj(obj)
+            return TermDto.model_validate(obj)
 
-        _obj = TermDto.parse_obj({
+        _obj = TermDto.model_validate({
             "id": obj.get("id"),
             "text": obj.get("text"),
             "lang": obj.get("lang"),

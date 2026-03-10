@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.concurrent_requests_dto import ConcurrentRequestsDto
 
 class AsyncRequestStatusDto(BaseModel):
@@ -29,14 +29,10 @@ class AsyncRequestStatusDto(BaseModel):
     concurrent_requests: Optional[ConcurrentRequestsDto] = Field(None, alias="concurrentRequests")
     __properties = ["concurrentRequests"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class AsyncRequestStatusDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -65,9 +61,9 @@ class AsyncRequestStatusDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AsyncRequestStatusDto.parse_obj(obj)
+            return AsyncRequestStatusDto.model_validate(obj)
 
-        _obj = AsyncRequestStatusDto.parse_obj({
+        _obj = AsyncRequestStatusDto.model_validate({
             "concurrent_requests": ConcurrentRequestsDto.from_dict(obj.get("concurrentRequests")) if obj.get("concurrentRequests") is not None else None
         })
         return _obj

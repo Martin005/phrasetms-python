@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictBool, StrictInt, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+
 
 from phrasetms_client.models.analyse_job_dto import AnalyseJobDto
 from phrasetms_client.models.analyse_language_part_dto import AnalyseLanguagePartDto
@@ -60,7 +60,7 @@ class AnalysisApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def analyses_batch_edit_v2(self, body : Optional[BulkEditAnalyseV2Dto] = None, **kwargs) -> AnalysesV2Dto:  # noqa: E501
         """Edit analyses (batch)  # noqa: E501
 
@@ -89,7 +89,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the analyses_batch_edit_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.analyses_batch_edit_v2_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def analyses_batch_edit_v2_with_http_info(self, body : Optional[BulkEditAnalyseV2Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit analyses (batch)  # noqa: E501
 
@@ -210,7 +210,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def bulk_delete_analyses(self, body : Optional[BulkDeleteAnalyseDto] = None, **kwargs) -> None:  # noqa: E501
         """Delete analyses (batch)  # noqa: E501
 
@@ -238,7 +238,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the bulk_delete_analyses_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.bulk_delete_analyses_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def bulk_delete_analyses_with_http_info(self, body : Optional[BulkDeleteAnalyseDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete analyses (batch)  # noqa: E501
 
@@ -348,7 +348,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_analyse_async1(self, body : Optional[CreateAnalyseAsyncV2Dto] = None, **kwargs) -> AsyncAnalyseListResponseV2Dto:  # noqa: E501
         """Create analysis  # noqa: E501
 
@@ -377,7 +377,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the create_analyse_async1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_analyse_async1_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_analyse_async1_with_http_info(self, body : Optional[CreateAnalyseAsyncV2Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create analysis  # noqa: E501
 
@@ -505,7 +505,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_analyses_for_langs(self, body : Optional[CreateAnalyseListAsyncDto] = None, **kwargs) -> AsyncAnalyseListResponseDto:  # noqa: E501
         """Create analyses by languages  # noqa: E501
 
@@ -533,7 +533,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the create_analyses_for_langs_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_analyses_for_langs_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_analyses_for_langs_with_http_info(self, body : Optional[CreateAnalyseListAsyncDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create analyses by languages  # noqa: E501
 
@@ -660,7 +660,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_analyses_for_providers(self, body : Optional[CreateAnalyseListAsyncDto] = None, **kwargs) -> AsyncAnalyseListResponseDto:  # noqa: E501
         """Create analyses by providers  # noqa: E501
 
@@ -688,7 +688,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the create_analyses_for_providers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_analyses_for_providers_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_analyses_for_providers_with_http_info(self, body : Optional[CreateAnalyseListAsyncDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create analyses by providers  # noqa: E501
 
@@ -815,7 +815,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete(self, analyse_uid : StrictStr, purge : Optional[StrictBool] = None, **kwargs) -> None:  # noqa: E501
         """Delete analysis  # noqa: E501
 
@@ -845,7 +845,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_with_http_info(analyse_uid, purge, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_with_http_info(self, analyse_uid : StrictStr, purge : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete analysis  # noqa: E501
 
@@ -954,7 +954,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def download_analyse(self, analyse_uid : StrictStr, format : StrictStr, **kwargs) -> None:  # noqa: E501
         """Download analysis  # noqa: E501
 
@@ -984,7 +984,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the download_analyse_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.download_analyse_with_http_info(analyse_uid, format, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def download_analyse_with_http_info(self, analyse_uid : StrictStr, format : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Download analysis  # noqa: E501
 
@@ -1093,7 +1093,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_analysis(self, analyse_uid : StrictStr, body : Optional[EditAnalyseV2Dto] = None, **kwargs) -> AnalyseV2Dto:  # noqa: E501
         """Edit analysis  # noqa: E501
 
@@ -1124,7 +1124,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the edit_analysis_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_analysis_with_http_info(analyse_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_analysis_with_http_info(self, analyse_uid : StrictStr, body : Optional[EditAnalyseV2Dto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit analysis  # noqa: E501
 
@@ -1251,7 +1251,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_analyse_language_part(self, analyse_uid : StrictStr, analyse_language_part_id : StrictInt, **kwargs) -> AnalyseLanguagePartDto:  # noqa: E501
         """Get analysis language part  # noqa: E501
 
@@ -1282,7 +1282,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the get_analyse_language_part_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_analyse_language_part_with_http_info(analyse_uid, analyse_language_part_id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_analyse_language_part_with_http_info(self, analyse_uid : StrictStr, analyse_language_part_id : StrictInt, **kwargs) -> ApiResponse:  # noqa: E501
         """Get analysis language part  # noqa: E501
 
@@ -1409,7 +1409,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_analyse_v3(self, analyse_uid : StrictStr, **kwargs) -> AnalyseV3Dto:  # noqa: E501
         """Get analysis  # noqa: E501
 
@@ -1437,7 +1437,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the get_analyse_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_analyse_v3_with_http_info(analyse_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_analyse_v3_with_http_info(self, analyse_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get analysis  # noqa: E501
 
@@ -1557,7 +1557,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_job_part_analyse(self, analyse_uid : StrictStr, job_uid : StrictStr, **kwargs) -> AnalyseJobDto:  # noqa: E501
         """Get jobs analysis  # noqa: E501
 
@@ -1588,7 +1588,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the get_job_part_analyse_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_job_part_analyse_with_http_info(analyse_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_job_part_analyse_with_http_info(self, analyse_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get jobs analysis  # noqa: E501
 
@@ -1715,8 +1715,8 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_by_project_v3(self, project_uid : StrictStr, name : Annotated[Optional[StrictStr], Field(description="Name to search by")] = None, uid : Annotated[Optional[StrictStr], Field(description="Uid to search by")] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Annotated[Optional[StrictStr], Field(description="Sorting order")] = None, only_owner_org : Optional[StrictBool] = None, **kwargs) -> PageDtoAnalyseReference:  # noqa: E501
+    @validate_call
+    def list_by_project_v3(self, project_uid : StrictStr, name : Annotated[Optional[StrictStr], Field(description="Name to search by")] = None, uid : Annotated[Optional[StrictStr], Field(description="Uid to search by")] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Annotated[Optional[StrictStr], Field(description="Sorting order")] = None, only_owner_org : Optional[StrictBool] = None, **kwargs) -> PageDtoAnalyseReference:  # noqa: E501
         """List analyses by project  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1757,8 +1757,8 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the list_by_project_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_by_project_v3_with_http_info(project_uid, name, uid, page_number, page_size, sort, order, only_owner_org, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_by_project_v3_with_http_info(self, project_uid : StrictStr, name : Annotated[Optional[StrictStr], Field(description="Name to search by")] = None, uid : Annotated[Optional[StrictStr], Field(description="Uid to search by")] = None, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Annotated[Optional[StrictStr], Field(description="Sorting order")] = None, only_owner_org : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_by_project_v3_with_http_info(self, project_uid : StrictStr, name : Annotated[Optional[StrictStr], Field(description="Name to search by")] = None, uid : Annotated[Optional[StrictStr], Field(description="Uid to search by")] = None, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, sort : Annotated[Optional[StrictStr], Field(description="Sorting field")] = None, order : Annotated[Optional[StrictStr], Field(description="Sorting order")] = None, only_owner_org : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List analyses by project  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1919,8 +1919,8 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_job_parts(self, analyse_uid : StrictStr, analyse_language_part_id : StrictInt, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoAnalyseJobDto:  # noqa: E501
+    @validate_call
+    def list_job_parts(self, analyse_uid : StrictStr, analyse_language_part_id : StrictInt, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoAnalyseJobDto:  # noqa: E501
         """List jobs of analyses  # noqa: E501
 
         Returns list of job's analyses  # noqa: E501
@@ -1954,8 +1954,8 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the list_job_parts_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_job_parts_with_http_info(analyse_uid, analyse_language_part_id, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_job_parts_with_http_info(self, analyse_uid : StrictStr, analyse_language_part_id : StrictInt, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_job_parts_with_http_info(self, analyse_uid : StrictStr, analyse_language_part_id : StrictInt, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List jobs of analyses  # noqa: E501
 
         Returns list of job's analyses  # noqa: E501
@@ -2093,8 +2093,8 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_part_analyse_v3(self, project_uid : StrictStr, job_uid : StrictStr, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> PageDtoAnalyseReference:  # noqa: E501
+    @validate_call
+    def list_part_analyse_v3(self, project_uid : StrictStr, job_uid : StrictStr, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> PageDtoAnalyseReference:  # noqa: E501
         """List analyses  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2127,8 +2127,8 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the list_part_analyse_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_part_analyse_v3_with_http_info(project_uid, job_uid, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_part_analyse_v3_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, page_number : Optional[conint(strict=True, ge=0)] = None, page_size : Optional[conint(strict=True, le=50, ge=1)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_part_analyse_v3_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, page_number : Optional[Annotated[int, Field(strict=True, ge=0)]] = None, page_size : Optional[Annotated[int, Field(strict=True, le=50, ge=1)]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List analyses  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -2265,7 +2265,7 @@ class AnalysisApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def recalculate(self, body : Optional[AnalyseRecalculateRequestDto] = None, **kwargs) -> AnalyseRecalculateResponseDto:  # noqa: E501
         """Recalculate analysis  # noqa: E501
 
@@ -2293,7 +2293,7 @@ class AnalysisApi(object):
             raise ValueError("Error! Please call the recalculate_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.recalculate_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def recalculate_with_http_info(self, body : Optional[AnalyseRecalculateRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Recalculate analysis  # noqa: E501
 

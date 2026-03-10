@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
 from phrasetms_client.models.trans_memory_dto_v3 import TransMemoryDtoV3
 from phrasetms_client.models.workflow_step_reference_v3 import WorkflowStepReferenceV3
 
@@ -37,14 +37,10 @@ class ProjectTransMemoryDtoV3(BaseModel):
     order: Optional[StrictInt] = None
     __properties = ["transMemory", "penalty", "applyPenaltyTo101Only", "targetLocale", "workflowStep", "readMode", "writeMode", "order"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -57,7 +53,7 @@ class ProjectTransMemoryDtoV3(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -76,9 +72,9 @@ class ProjectTransMemoryDtoV3(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ProjectTransMemoryDtoV3.parse_obj(obj)
+            return ProjectTransMemoryDtoV3.model_validate(obj)
 
-        _obj = ProjectTransMemoryDtoV3.parse_obj({
+        _obj = ProjectTransMemoryDtoV3.model_validate({
             "trans_memory": TransMemoryDtoV3.from_dict(obj.get("transMemory")) if obj.get("transMemory") is not None else None,
             "penalty": obj.get("penalty"),
             "apply_penalty_to101_only": obj.get("applyPenaltyTo101Only"),

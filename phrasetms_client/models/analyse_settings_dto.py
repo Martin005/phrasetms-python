@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class AnalyseSettingsDto(BaseModel):
     """
@@ -44,7 +44,8 @@ class AnalyseSettingsDto(BaseModel):
     machine_translate_post_editing: Optional[StrictBool] = Field(None, alias="machineTranslatePostEditing", description="Default: false")
     __properties = ["type", "includeFuzzyRepetitions", "separateFuzzyRepetitions", "includeNonTranslatables", "includeMachineTranslationMatches", "includeConfirmedSegments", "includeNumbers", "includeLockedSegments", "countSourceUnits", "includeTransMemory", "namingPattern", "analyzeByLanguage", "analyzeByProvider", "allowAutomaticPostAnalysis", "transMemoryPostEditing", "nonTranslatablePostEditing", "machineTranslatePostEditing"]
 
-    @validator('type')
+    @field_validator('type')
+    @classmethod
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -54,14 +55,10 @@ class AnalyseSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('PreAnalyse', 'PostAnalyse', 'PreAnalyseTarget', 'Compare')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -74,7 +71,7 @@ class AnalyseSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -87,9 +84,9 @@ class AnalyseSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AnalyseSettingsDto.parse_obj(obj)
+            return AnalyseSettingsDto.model_validate(obj)
 
-        _obj = AnalyseSettingsDto.parse_obj({
+        _obj = AnalyseSettingsDto.model_validate({
             "type": obj.get("type"),
             "include_fuzzy_repetitions": obj.get("includeFuzzyRepetitions"),
             "separate_fuzzy_repetitions": obj.get("separateFuzzyRepetitions"),

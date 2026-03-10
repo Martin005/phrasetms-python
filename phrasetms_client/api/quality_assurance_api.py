@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint, conlist, validator
-
 from typing import List, Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.create_lqa_profile_dto import CreateLqaProfileDto
 from phrasetms_client.models.lqa_profile_detail_dto import LqaProfileDetailDto
@@ -57,7 +57,7 @@ class QualityAssuranceApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def add_ignored_warnings(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[UpdateIgnoredWarningsDto] = None, **kwargs) -> UpdateIgnoredWarningsDto:  # noqa: E501
         """Add ignored warnings  # noqa: E501
 
@@ -89,7 +89,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the add_ignored_warnings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.add_ignored_warnings_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def add_ignored_warnings_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[UpdateIgnoredWarningsDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Add ignored warnings  # noqa: E501
 
@@ -228,7 +228,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def add_ignored_warnings1(self, project_uid : StrictStr, body : Optional[UpdateIgnoredWarningsDto] = None, **kwargs) -> UpdateIgnoredWarningsDto:  # noqa: E501
         """Add ignored warnings  # noqa: E501
 
@@ -258,7 +258,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the add_ignored_warnings1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.add_ignored_warnings1_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def add_ignored_warnings1_with_http_info(self, project_uid : StrictStr, body : Optional[UpdateIgnoredWarningsDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Add ignored warnings  # noqa: E501
 
@@ -384,7 +384,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def create_lqa_profile(self, body : Optional[CreateLqaProfileDto] = None, **kwargs) -> LqaProfileDetailDto:  # noqa: E501
         """Create LQA profile  # noqa: E501
 
@@ -412,7 +412,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the create_lqa_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_lqa_profile_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_lqa_profile_with_http_info(self, body : Optional[CreateLqaProfileDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create LQA profile  # noqa: E501
 
@@ -539,7 +539,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_ignored_warnings(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[UpdateIgnoredWarningsDto] = None, **kwargs) -> None:  # noqa: E501
         """Delete ignored warnings  # noqa: E501
 
@@ -571,7 +571,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the delete_ignored_warnings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_ignored_warnings_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_ignored_warnings_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[UpdateIgnoredWarningsDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete ignored warnings  # noqa: E501
 
@@ -693,7 +693,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_ignored_warnings1(self, project_uid : StrictStr, body : Optional[UpdateIgnoredWarningsDto] = None, **kwargs) -> None:  # noqa: E501
         """Delete ignored warnings  # noqa: E501
 
@@ -723,7 +723,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the delete_ignored_warnings1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_ignored_warnings1_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_ignored_warnings1_with_http_info(self, project_uid : StrictStr, body : Optional[UpdateIgnoredWarningsDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete ignored warnings  # noqa: E501
 
@@ -832,7 +832,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_lqa_profile(self, profile_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete LQA profile  # noqa: E501
 
@@ -860,7 +860,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the delete_lqa_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_lqa_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_lqa_profile_with_http_info(self, profile_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete LQA profile  # noqa: E501
 
@@ -963,7 +963,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def duplicate_profile(self, profile_uid : StrictStr, **kwargs) -> LqaProfileReferenceDto:  # noqa: E501
         """Duplicate LQA profile  # noqa: E501
 
@@ -991,7 +991,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the duplicate_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.duplicate_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def duplicate_profile_with_http_info(self, profile_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Duplicate LQA profile  # noqa: E501
 
@@ -1111,7 +1111,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def enabled_quality_checks_for_job(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> QualityAssuranceChecksDtoV2:  # noqa: E501
         """Get QA settings for job  # noqa: E501
 
@@ -1142,7 +1142,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the enabled_quality_checks_for_job_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.enabled_quality_checks_for_job_with_http_info(project_uid, job_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def enabled_quality_checks_for_job_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get QA settings for job  # noqa: E501
 
@@ -1269,7 +1269,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def enabled_quality_checks_for_job1(self, project_uid : StrictStr, **kwargs) -> QualityAssuranceChecksDtoV2:  # noqa: E501
         """Get QA settings  # noqa: E501
 
@@ -1298,7 +1298,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the enabled_quality_checks_for_job1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.enabled_quality_checks_for_job1_with_http_info(project_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def enabled_quality_checks_for_job1_with_http_info(self, project_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get QA settings  # noqa: E501
 
@@ -1419,7 +1419,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_lqa_profile(self, profile_uid : StrictStr, **kwargs) -> LqaProfileDetailDto:  # noqa: E501
         """Get LQA profile details  # noqa: E501
 
@@ -1447,7 +1447,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the get_lqa_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_lqa_profile_with_http_info(profile_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_lqa_profile_with_http_info(self, profile_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get LQA profile details  # noqa: E501
 
@@ -1567,7 +1567,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_lqa_profile_authors(self, **kwargs) -> List[UserReference]:  # noqa: E501
         """Get list of LQA profile authors  # noqa: E501
 
@@ -1593,7 +1593,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the get_lqa_profile_authors_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_lqa_profile_authors_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_lqa_profile_authors_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get list of LQA profile authors  # noqa: E501
 
@@ -1707,8 +1707,8 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_lqa_profiles(self, name : Annotated[Optional[StrictStr], Field(description="Name of LQA profiles, it is used for filter the list by name")] = None, created_by : Annotated[Optional[StrictStr], Field(description="It is used for filter the list by who created the profile")] = None, date_created : Annotated[Optional[StrictStr], Field(description="It is used for filter the list by date created")] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 20")] = None, sort : Optional[conlist(StrictStr)] = None, order : Optional[conlist(StrictStr)] = None, **kwargs) -> PageDtoLqaProfileReferenceDto:  # noqa: E501
+    @validate_call
+    def get_lqa_profiles(self, name : Annotated[Optional[StrictStr], Field(description="Name of LQA profiles, it is used for filter the list by name")] = None, created_by : Annotated[Optional[StrictStr], Field(description="It is used for filter the list by who created the profile")] = None, date_created : Annotated[Optional[StrictStr], Field(description="It is used for filter the list by date created")] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 20")] = None, sort : Optional[List[StrictStr]] = None, order : Optional[List[StrictStr]] = None, **kwargs) -> PageDtoLqaProfileReferenceDto:  # noqa: E501
         """GET list LQA profiles  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1747,8 +1747,8 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the get_lqa_profiles_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_lqa_profiles_with_http_info(name, created_by, date_created, page_number, page_size, sort, order, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_lqa_profiles_with_http_info(self, name : Annotated[Optional[StrictStr], Field(description="Name of LQA profiles, it is used for filter the list by name")] = None, created_by : Annotated[Optional[StrictStr], Field(description="It is used for filter the list by who created the profile")] = None, date_created : Annotated[Optional[StrictStr], Field(description="It is used for filter the list by date created")] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 20")] = None, sort : Optional[conlist(StrictStr)] = None, order : Optional[conlist(StrictStr)] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_lqa_profiles_with_http_info(self, name : Annotated[Optional[StrictStr], Field(description="Name of LQA profiles, it is used for filter the list by name")] = None, created_by : Annotated[Optional[StrictStr], Field(description="It is used for filter the list by who created the profile")] = None, date_created : Annotated[Optional[StrictStr], Field(description="It is used for filter the list by date created")] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 20")] = None, sort : Optional[List[StrictStr]] = None, order : Optional[List[StrictStr]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """GET list LQA profiles  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1905,7 +1905,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def make_default(self, profile_uid : StrictStr, **kwargs) -> LqaProfileReferenceDto:  # noqa: E501
         """Make LQA profile default  # noqa: E501
 
@@ -1933,7 +1933,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the make_default_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.make_default_with_http_info(profile_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def make_default_with_http_info(self, profile_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Make LQA profile default  # noqa: E501
 
@@ -2053,7 +2053,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def run_qa_for_job_part_v3(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[QualityAssuranceRunDtoV3] = None, **kwargs) -> QualityAssuranceResponseDto:  # noqa: E501
         """Run quality assurance  # noqa: E501
 
@@ -2086,7 +2086,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the run_qa_for_job_part_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.run_qa_for_job_part_v3_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def run_qa_for_job_part_v3_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[QualityAssuranceRunDtoV3] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Run quality assurance  # noqa: E501
 
@@ -2226,7 +2226,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def run_qa_for_job_parts_v3(self, project_uid : StrictStr, body : Optional[QualityAssuranceBatchRunDtoV3] = None, **kwargs) -> QualityAssuranceResponseDto:  # noqa: E501
         """Run quality assurance (batch)  # noqa: E501
 
@@ -2257,7 +2257,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the run_qa_for_job_parts_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.run_qa_for_job_parts_v3_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def run_qa_for_job_parts_v3_with_http_info(self, project_uid : StrictStr, body : Optional[QualityAssuranceBatchRunDtoV3] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Run quality assurance (batch)  # noqa: E501
 
@@ -2391,7 +2391,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def run_qa_for_segments_v3(self, project_uid : StrictStr, body : Optional[QualityAssuranceSegmentsRunDtoV3] = None, **kwargs) -> QualityAssuranceResponseDto:  # noqa: E501
         """Run quality assurance on selected segments  # noqa: E501
 
@@ -2422,7 +2422,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the run_qa_for_segments_v3_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.run_qa_for_segments_v3_with_http_info(project_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def run_qa_for_segments_v3_with_http_info(self, project_uid : StrictStr, body : Optional[QualityAssuranceSegmentsRunDtoV3] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Run quality assurance on selected segments  # noqa: E501
 
@@ -2556,7 +2556,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_ignored_checks(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[UpdateIgnoredChecksDto] = None, **kwargs) -> None:  # noqa: E501
         """Edit ignored checks  # noqa: E501
 
@@ -2588,7 +2588,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the update_ignored_checks_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_ignored_checks_with_http_info(project_uid, job_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_ignored_checks_with_http_info(self, project_uid : StrictStr, job_uid : StrictStr, body : Optional[UpdateIgnoredChecksDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit ignored checks  # noqa: E501
 
@@ -2710,7 +2710,7 @@ class QualityAssuranceApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_lqa_profile(self, profile_uid : StrictStr, body : Optional[UpdateLqaProfileDto] = None, **kwargs) -> LqaProfileDetailDto:  # noqa: E501
         """Update LQA profile  # noqa: E501
 
@@ -2740,7 +2740,7 @@ class QualityAssuranceApi(object):
             raise ValueError("Error! Please call the update_lqa_profile_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_lqa_profile_with_http_info(profile_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_lqa_profile_with_http_info(self, profile_uid : StrictStr, body : Optional[UpdateLqaProfileDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update LQA profile  # noqa: E501
 

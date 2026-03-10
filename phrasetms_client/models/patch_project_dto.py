@@ -18,8 +18,17 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, constr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictStr,
+    StringConstraints,
+    field_validator,
+)
 from phrasetms_client.models.id_reference import IdReference
 from phrasetms_client.models.project_mt_settings_per_lang_dto import ProjectMTSettingsPerLangDto
 from phrasetms_client.models.uid_reference import UidReference
@@ -28,22 +37,23 @@ class PatchProjectDto(BaseModel):
     """
     PatchProjectDto
     """
-    name: Optional[constr(strict=True, max_length=255, min_length=0)] = None
+    name: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None
     status: Optional[StrictStr] = None
     client: Optional[IdReference] = None
     business_unit: Optional[IdReference] = Field(None, alias="businessUnit")
     domain: Optional[IdReference] = None
     sub_domain: Optional[IdReference] = Field(None, alias="subDomain")
     owner: Optional[IdReference] = None
-    purchase_order: Optional[constr(strict=True, max_length=255, min_length=0)] = Field(None, alias="purchaseOrder")
+    purchase_order: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = Field(None, alias="purchaseOrder")
     date_due: Optional[datetime] = Field(None, alias="dateDue")
-    note: Optional[constr(strict=True, max_length=4096, min_length=0)] = None
+    note: Optional[Annotated[str, StringConstraints(strict=True, max_length=4096, min_length=0)]] = None
     machine_translate_settings: Optional[UidReference] = Field(None, alias="machineTranslateSettings")
-    machine_translate_settings_per_langs: Optional[conlist(ProjectMTSettingsPerLangDto)] = Field(None, alias="machineTranslateSettingsPerLangs")
+    machine_translate_settings_per_langs: Optional[List[ProjectMTSettingsPerLangDto]] = Field(None, alias="machineTranslateSettingsPerLangs")
     archived: Optional[StrictBool] = None
     __properties = ["name", "status", "client", "businessUnit", "domain", "subDomain", "owner", "purchaseOrder", "dateDue", "note", "machineTranslateSettings", "machineTranslateSettingsPerLangs", "archived"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -53,14 +63,10 @@ class PatchProjectDto(BaseModel):
             raise ValueError("must be one of enum values ('NEW', 'ASSIGNED', 'COMPLETED', 'ACCEPTED_BY_VENDOR', 'DECLINED_BY_VENDOR', 'COMPLETED_BY_VENDOR', 'CANCELLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -73,7 +79,7 @@ class PatchProjectDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -111,9 +117,9 @@ class PatchProjectDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PatchProjectDto.parse_obj(obj)
+            return PatchProjectDto.model_validate(obj)
 
-        _obj = PatchProjectDto.parse_obj({
+        _obj = PatchProjectDto.model_validate({
             "name": obj.get("name"),
             "status": obj.get("status"),
             "client": IdReference.from_dict(obj.get("client")) if obj.get("client") is not None else None,

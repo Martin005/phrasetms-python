@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictFloat, StrictInt, StrictStr
 from phrasetms_client.models.search_tm_segment_dto_v3 import SearchTMSegmentDtoV3
 from phrasetms_client.models.search_tm_trans_memory_dto_v3 import SearchTMTransMemoryDtoV3
 
@@ -29,21 +29,17 @@ class SearchTMResponseDtoV3(BaseModel):
     """
     segment_id: Optional[StrictStr] = Field(None, alias="segmentId")
     source: Optional[SearchTMSegmentDtoV3] = None
-    translations: Optional[conlist(SearchTMSegmentDtoV3)] = None
+    translations: Optional[List[SearchTMSegmentDtoV3]] = None
     trans_memory: Optional[SearchTMTransMemoryDtoV3] = Field(None, alias="transMemory")
     gross_score: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="grossScore")
     score: Optional[Union[StrictFloat, StrictInt]] = None
     sub_segment: Optional[StrictBool] = Field(None, alias="subSegment")
     __properties = ["segmentId", "source", "translations", "transMemory", "grossScore", "score", "subSegment"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -56,7 +52,7 @@ class SearchTMResponseDtoV3(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -82,9 +78,9 @@ class SearchTMResponseDtoV3(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SearchTMResponseDtoV3.parse_obj(obj)
+            return SearchTMResponseDtoV3.model_validate(obj)
 
-        _obj = SearchTMResponseDtoV3.parse_obj({
+        _obj = SearchTMResponseDtoV3.model_validate({
             "segment_id": obj.get("segmentId"),
             "source": SearchTMSegmentDtoV3.from_dict(obj.get("source")) if obj.get("source") is not None else None,
             "translations": [SearchTMSegmentDtoV3.from_dict(_item) for _item in obj.get("translations")] if obj.get("translations") is not None else None,

@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.mentionable_user_dto import MentionableUserDto
 
 class StatusDto(BaseModel):
@@ -31,7 +31,8 @@ class StatusDto(BaseModel):
     var_date: Optional[datetime] = Field(None, alias="date")
     __properties = ["name", "by", "date"]
 
-    @validator('name')
+    @field_validator('name')
+    @classmethod
     def name_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -41,14 +42,10 @@ class StatusDto(BaseModel):
             raise ValueError("must be one of enum values ('resolved', 'unresolved')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -61,7 +58,7 @@ class StatusDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -77,9 +74,9 @@ class StatusDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return StatusDto.parse_obj(obj)
+            return StatusDto.model_validate(obj)
 
-        _obj = StatusDto.parse_obj({
+        _obj = StatusDto.model_validate({
             "name": obj.get("name"),
             "by": MentionableUserDto.from_dict(obj.get("by")) if obj.get("by") is not None else None,
             "var_date": obj.get("date")

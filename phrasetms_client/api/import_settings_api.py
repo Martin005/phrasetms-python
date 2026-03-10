@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.import_settings_create_dto import ImportSettingsCreateDto
 from phrasetms_client.models.import_settings_dto import ImportSettingsDto
@@ -48,7 +48,7 @@ class ImportSettingsApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_import_settings(self, body : Optional[ImportSettingsCreateDto] = None, **kwargs) -> ImportSettingsDto:  # noqa: E501
         """Create import settings  # noqa: E501
 
@@ -77,7 +77,7 @@ class ImportSettingsApi(object):
             raise ValueError("Error! Please call the create_import_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_import_settings_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_import_settings_with_http_info(self, body : Optional[ImportSettingsCreateDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create import settings  # noqa: E501
 
@@ -205,7 +205,7 @@ class ImportSettingsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_import_settings(self, uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete import settings  # noqa: E501
 
@@ -233,7 +233,7 @@ class ImportSettingsApi(object):
             raise ValueError("Error! Please call the delete_import_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_import_settings_with_http_info(uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_import_settings_with_http_info(self, uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete import settings  # noqa: E501
 
@@ -336,7 +336,7 @@ class ImportSettingsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def edit_import_settings(self, body : Optional[ImportSettingsEditDto] = None, **kwargs) -> ImportSettingsDto:  # noqa: E501
         """Edit import settings  # noqa: E501
 
@@ -364,7 +364,7 @@ class ImportSettingsApi(object):
             raise ValueError("Error! Please call the edit_import_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.edit_import_settings_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def edit_import_settings_with_http_info(self, body : Optional[ImportSettingsEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit import settings  # noqa: E501
 
@@ -491,7 +491,7 @@ class ImportSettingsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_import_settings(self, uid : StrictStr, **kwargs) -> ImportSettingsDto:  # noqa: E501
         """Get import settings  # noqa: E501
 
@@ -519,7 +519,7 @@ class ImportSettingsApi(object):
             raise ValueError("Error! Please call the get_import_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_import_settings_with_http_info(uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_import_settings_with_http_info(self, uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get import settings  # noqa: E501
 
@@ -639,7 +639,7 @@ class ImportSettingsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_import_settings1(self, **kwargs) -> ImportSettingsDto:  # noqa: E501
         """Get organization's default import settings  # noqa: E501
 
@@ -665,7 +665,7 @@ class ImportSettingsApi(object):
             raise ValueError("Error! Please call the get_import_settings1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_import_settings1_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_import_settings1_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get organization's default import settings  # noqa: E501
 
@@ -779,8 +779,8 @@ class ImportSettingsApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_import_settings(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoImportSettingsReference:  # noqa: E501
+    @validate_call
+    def list_import_settings(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoImportSettingsReference:  # noqa: E501
         """List import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -811,8 +811,8 @@ class ImportSettingsApi(object):
             raise ValueError("Error! Please call the list_import_settings_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_import_settings_with_http_info(name, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_import_settings_with_http_info(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_import_settings_with_http_info(self, name : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List import settings  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an

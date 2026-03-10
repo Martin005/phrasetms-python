@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class CsvSettingsDto(BaseModel):
     """
@@ -36,7 +36,8 @@ class CsvSettingsDto(BaseModel):
     import_rows: Optional[StrictStr] = Field(None, alias="importRows")
     __properties = ["delimiter", "delimiterType", "htmlSubFilter", "tagRegexp", "importColumns", "contextNoteColumns", "contextKeyColumn", "maxLenColumn", "importRows"]
 
-    @validator('delimiter_type')
+    @field_validator('delimiter_type')
+    @classmethod
     def delimiter_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -46,14 +47,10 @@ class CsvSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('TAB', 'COMMA', 'SEMICOLON', 'OTHER')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -66,7 +63,7 @@ class CsvSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -79,9 +76,9 @@ class CsvSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return CsvSettingsDto.parse_obj(obj)
+            return CsvSettingsDto.model_validate(obj)
 
-        _obj = CsvSettingsDto.parse_obj({
+        _obj = CsvSettingsDto.model_validate({
             "delimiter": obj.get("delimiter"),
             "delimiter_type": obj.get("delimiterType"),
             "html_sub_filter": obj.get("htmlSubFilter"),

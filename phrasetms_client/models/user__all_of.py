@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 
 class USERAllOf(BaseModel):
     """
@@ -32,14 +32,10 @@ class USERAllOf(BaseModel):
     active: Optional[StrictBool] = None
     __properties = ["userName", "firstName", "lastName", "email", "active"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class USERAllOf(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                             "user_name",
                             "first_name",
@@ -70,9 +66,9 @@ class USERAllOf(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return USERAllOf.parse_obj(obj)
+            return USERAllOf.model_validate(obj)
 
-        _obj = USERAllOf.parse_obj({
+        _obj = USERAllOf.model_validate({
             "user_name": obj.get("userName"),
             "first_name": obj.get("firstName"),
             "last_name": obj.get("lastName"),

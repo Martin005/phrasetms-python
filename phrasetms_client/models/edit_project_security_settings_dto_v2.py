@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 from phrasetms_client.models.vendor_security_settings_dto import VendorSecuritySettingsDto
 
 class EditProjectSecuritySettingsDtoV2(BaseModel):
@@ -44,17 +44,13 @@ class EditProjectSecuritySettingsDtoV2(BaseModel):
     trigger_webhooks: Optional[StrictBool] = Field(None, alias="triggerWebhooks", description="Default: `true`")
     notify_job_owner_status_changed: Optional[StrictBool] = Field(None, alias="notifyJobOwnerStatusChanged", description="Default: `false`")
     vendors: Optional[VendorSecuritySettingsDto] = None
-    allowed_domains: Optional[conlist(StrictStr)] = Field(None, alias="allowedDomains")
+    allowed_domains: Optional[List[StrictStr]] = Field(None, alias="allowedDomains")
     __properties = ["downloadEnabled", "webEditorEnabledForLinguists", "showUserDataToLinguists", "emailNotifications", "strictWorkflowFinish", "useVendors", "linguistsMayEditLockedSegments", "usersMaySetAutoPropagation", "allowLoadingExternalContentInEditors", "allowLoadingIframes", "linguistsMayEditSource", "linguistsMayEditTagContent", "linguistsMayDownloadLqaReport", "usernamesDisplayedInLqaReport", "userMaySetInstantQA", "triggerWebhooks", "notifyJobOwnerStatusChanged", "vendors", "allowedDomains"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -67,7 +63,7 @@ class EditProjectSecuritySettingsDtoV2(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -83,9 +79,9 @@ class EditProjectSecuritySettingsDtoV2(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return EditProjectSecuritySettingsDtoV2.parse_obj(obj)
+            return EditProjectSecuritySettingsDtoV2.model_validate(obj)
 
-        _obj = EditProjectSecuritySettingsDtoV2.parse_obj({
+        _obj = EditProjectSecuritySettingsDtoV2.model_validate({
             "download_enabled": obj.get("downloadEnabled"),
             "web_editor_enabled_for_linguists": obj.get("webEditorEnabledForLinguists"),
             "show_user_data_to_linguists": obj.get("showUserDataToLinguists"),

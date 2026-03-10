@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conint, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictFloat, StrictInt, StrictStr
 from phrasetms_client.models.substitute_dto_v2 import SubstituteDtoV2
 
 class PseudoTranslateActionDtoV2(BaseModel):
@@ -30,18 +31,14 @@ class PseudoTranslateActionDtoV2(BaseModel):
     prefix: Optional[StrictStr] = None
     suffix: Optional[StrictStr] = None
     length: Optional[Union[StrictFloat, StrictInt]] = None
-    key_hash_prefix_len: Optional[conint(strict=True, le=18, ge=0)] = Field(None, alias="keyHashPrefixLen")
-    substitution: Optional[conlist(SubstituteDtoV2, max_items=2147483647, min_items=0)] = None
+    key_hash_prefix_len: Optional[Annotated[int, Field(strict=True, le=18, ge=0)]] = Field(None, alias="keyHashPrefixLen")
+    substitution: Optional[List[SubstituteDtoV2]] = None
     __properties = ["replacement", "prefix", "suffix", "length", "keyHashPrefixLen", "substitution"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -54,7 +51,7 @@ class PseudoTranslateActionDtoV2(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -74,9 +71,9 @@ class PseudoTranslateActionDtoV2(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PseudoTranslateActionDtoV2.parse_obj(obj)
+            return PseudoTranslateActionDtoV2.model_validate(obj)
 
-        _obj = PseudoTranslateActionDtoV2.parse_obj({
+        _obj = PseudoTranslateActionDtoV2.model_validate({
             "replacement": obj.get("replacement"),
             "prefix": obj.get("prefix"),
             "suffix": obj.get("suffix"),

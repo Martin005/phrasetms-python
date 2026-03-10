@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictInt
 from phrasetms_client.models.job_part_ready_delete_translation_filter_dto import JobPartReadyDeleteTranslationFilterDto
 from phrasetms_client.models.translation_segments_reference_v2 import TranslationSegmentsReferenceV2
 from phrasetms_client.models.uid_reference import UidReference
@@ -28,7 +28,7 @@ class JobPartReadyDeleteTranslationDto(BaseModel):
     """
     JobPartReadyDeleteTranslationDto
     """
-    jobs: Optional[conlist(UidReference, max_items=100, min_items=1)] = None
+    jobs: Optional[List[UidReference]] = None
     delete_settings: Optional[TranslationSegmentsReferenceV2] = Field(None, alias="deleteSettings")
     for_all_jobs: Optional[StrictBool] = Field(None, alias="forAllJobs", description="Set true if you want to delete translations for all jobs from project from specific workflow step.                Default: false")
     workflow_level: Optional[StrictInt] = Field(None, alias="workflowLevel", description="Specifies workflow level for all jobs")
@@ -36,14 +36,10 @@ class JobPartReadyDeleteTranslationDto(BaseModel):
     get_parts: Optional[Dict[str, Any]] = Field(None, alias="getParts")
     __properties = ["jobs", "deleteSettings", "forAllJobs", "workflowLevel", "filter", "getParts"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -56,7 +52,7 @@ class JobPartReadyDeleteTranslationDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -82,9 +78,9 @@ class JobPartReadyDeleteTranslationDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobPartReadyDeleteTranslationDto.parse_obj(obj)
+            return JobPartReadyDeleteTranslationDto.model_validate(obj)
 
-        _obj = JobPartReadyDeleteTranslationDto.parse_obj({
+        _obj = JobPartReadyDeleteTranslationDto.model_validate({
             "jobs": [UidReference.from_dict(_item) for _item in obj.get("jobs")] if obj.get("jobs") is not None else None,
             "delete_settings": TranslationSegmentsReferenceV2.from_dict(obj.get("deleteSettings")) if obj.get("deleteSettings") is not None else None,
             "for_all_jobs": obj.get("forAllJobs"),

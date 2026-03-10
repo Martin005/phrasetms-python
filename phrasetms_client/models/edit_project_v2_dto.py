@@ -18,8 +18,17 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, constr, validator
+from pydantic import (
+    BaseModel,
+    Field,
+    ConfigDict,
+    StrictBool,
+    StrictStr,
+    StringConstraints,
+    field_validator,
+)
 from phrasetms_client.models.custom_field_instance_api_dto import CustomFieldInstanceApiDto
 from phrasetms_client.models.id_reference import IdReference
 from phrasetms_client.models.lqa_profiles_for_ws_v2_dto import LqaProfilesForWsV2Dto
@@ -28,23 +37,24 @@ class EditProjectV2Dto(BaseModel):
     """
     EditProjectV2Dto
     """
-    name: constr(strict=True, max_length=255, min_length=0) = Field(...)
+    name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(...)
     status: Optional[StrictStr] = None
     client: Optional[IdReference] = None
     business_unit: Optional[IdReference] = Field(None, alias="businessUnit")
     domain: Optional[IdReference] = None
     sub_domain: Optional[IdReference] = Field(None, alias="subDomain")
     owner: Optional[IdReference] = None
-    purchase_order: Optional[constr(strict=True, max_length=255, min_length=0)] = Field(None, alias="purchaseOrder")
+    purchase_order: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = Field(None, alias="purchaseOrder")
     date_due: Optional[datetime] = Field(None, alias="dateDue")
-    note: Optional[constr(strict=True, max_length=4096, min_length=0)] = None
+    note: Optional[Annotated[str, StringConstraints(strict=True, max_length=4096, min_length=0)]] = None
     file_handover: Optional[StrictBool] = Field(None, alias="fileHandover", description="Default: false")
-    lqa_profiles: Optional[conlist(LqaProfilesForWsV2Dto)] = Field(None, alias="lqaProfiles", description="Lqa profiles that will be added to workflow steps")
+    lqa_profiles: Optional[List[LqaProfilesForWsV2Dto]] = Field(None, alias="lqaProfiles", description="Lqa profiles that will be added to workflow steps")
     archived: Optional[StrictBool] = Field(None, description="Default: false")
-    custom_fields: Optional[conlist(CustomFieldInstanceApiDto)] = Field(None, alias="customFields", description="Custom fields for project")
+    custom_fields: Optional[List[CustomFieldInstanceApiDto]] = Field(None, alias="customFields", description="Custom fields for project")
     __properties = ["name", "status", "client", "businessUnit", "domain", "subDomain", "owner", "purchaseOrder", "dateDue", "note", "fileHandover", "lqaProfiles", "archived", "customFields"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -54,14 +64,10 @@ class EditProjectV2Dto(BaseModel):
             raise ValueError("must be one of enum values ('NEW', 'ASSIGNED', 'COMPLETED', 'ACCEPTED_BY_VENDOR', 'DECLINED_BY_VENDOR', 'COMPLETED_BY_VENDOR', 'CANCELLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -74,7 +80,7 @@ class EditProjectV2Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -116,9 +122,9 @@ class EditProjectV2Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return EditProjectV2Dto.parse_obj(obj)
+            return EditProjectV2Dto.model_validate(obj)
 
-        _obj = EditProjectV2Dto.parse_obj({
+        _obj = EditProjectV2Dto.model_validate({
             "name": obj.get("name"),
             "status": obj.get("status"),
             "client": IdReference.from_dict(obj.get("client")) if obj.get("client") is not None else None,

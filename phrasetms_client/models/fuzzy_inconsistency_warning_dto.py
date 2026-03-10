@@ -19,24 +19,20 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.segment_warning import SegmentWarning
 
 class FuzzyInconsistencyWarningDto(SegmentWarning):
     """
     FuzzyInconsistencyWarningDto
     """
-    segment_ids: Optional[conlist(StrictStr)] = Field(None, alias="segmentIds")
+    segment_ids: Optional[List[StrictStr]] = Field(None, alias="segmentIds")
     __properties = ["id", "ignored", "type", "repetitionGroupId", "segmentIds"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class FuzzyInconsistencyWarningDto(SegmentWarning):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -62,9 +58,9 @@ class FuzzyInconsistencyWarningDto(SegmentWarning):
             return None
 
         if not isinstance(obj, dict):
-            return FuzzyInconsistencyWarningDto.parse_obj(obj)
+            return FuzzyInconsistencyWarningDto.model_validate(obj)
 
-        _obj = FuzzyInconsistencyWarningDto.parse_obj({
+        _obj = FuzzyInconsistencyWarningDto.model_validate({
             "id": obj.get("id"),
             "ignored": obj.get("ignored"),
             "type": obj.get("type"),

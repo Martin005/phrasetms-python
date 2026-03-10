@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 
+from typing_extensions import Annotated
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, constr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, StringConstraints
 from phrasetms_client.models.id_reference import IdReference
 from phrasetms_client.models.project_template_notify_provider_dto import ProjectTemplateNotifyProviderDto
 from phrasetms_client.models.project_template_workflow_settings_assigned_to_dto import ProjectTemplateWorkflowSettingsAssignedToDto
@@ -30,14 +31,14 @@ class ProjectTemplateEditDto(BaseModel):
     """
     ProjectTemplateEditDto
     """
-    name: Optional[constr(strict=True, max_length=255, min_length=0)] = None
-    template_name: constr(strict=True, max_length=255, min_length=0) = Field(..., alias="templateName")
+    name: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = None
+    template_name: Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)] = Field(..., alias="templateName")
     source_lang: Optional[StrictStr] = Field(None, alias="sourceLang")
-    target_langs: Optional[conlist(StrictStr)] = Field(None, alias="targetLangs")
+    target_langs: Optional[List[StrictStr]] = Field(None, alias="targetLangs")
     use_dynamic_title: Optional[StrictBool] = Field(None, alias="useDynamicTitle")
-    dynamic_title: Optional[constr(strict=True, max_length=255, min_length=0)] = Field(None, alias="dynamicTitle")
+    dynamic_title: Optional[Annotated[str, StringConstraints(strict=True, max_length=255, min_length=0)]] = Field(None, alias="dynamicTitle")
     notify_provider: Optional[ProjectTemplateNotifyProviderDto] = Field(None, alias="notifyProvider")
-    work_flow_settings: Optional[conlist(WorkflowStepSettingsEditDto)] = Field(None, alias="workFlowSettings")
+    work_flow_settings: Optional[List[WorkflowStepSettingsEditDto]] = Field(None, alias="workFlowSettings")
     client: Optional[IdReference] = None
     cost_center: Optional[IdReference] = Field(None, alias="costCenter")
     business_unit: Optional[IdReference] = Field(None, alias="businessUnit")
@@ -45,19 +46,15 @@ class ProjectTemplateEditDto(BaseModel):
     sub_domain: Optional[IdReference] = Field(None, alias="subDomain")
     vendor: Optional[IdReference] = None
     import_settings: Optional[UidReference] = Field(None, alias="importSettings")
-    note: Optional[constr(strict=True, max_length=4096, min_length=0)] = None
+    note: Optional[Annotated[str, StringConstraints(strict=True, max_length=4096, min_length=0)]] = None
     file_handover: Optional[StrictBool] = Field(None, alias="fileHandover", description="Default: false")
-    assigned_to: Optional[conlist(ProjectTemplateWorkflowSettingsAssignedToDto)] = Field(None, alias="assignedTo", description="only use for projects without workflows; otherwise specify in the workflowSettings object")
+    assigned_to: Optional[List[ProjectTemplateWorkflowSettingsAssignedToDto]] = Field(None, alias="assignedTo", description="only use for projects without workflows; otherwise specify in the workflowSettings object")
     __properties = ["name", "templateName", "sourceLang", "targetLangs", "useDynamicTitle", "dynamicTitle", "notifyProvider", "workFlowSettings", "client", "costCenter", "businessUnit", "domain", "subDomain", "vendor", "importSettings", "note", "fileHandover", "assignedTo"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -70,7 +67,7 @@ class ProjectTemplateEditDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -121,9 +118,9 @@ class ProjectTemplateEditDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return ProjectTemplateEditDto.parse_obj(obj)
+            return ProjectTemplateEditDto.model_validate(obj)
 
-        _obj = ProjectTemplateEditDto.parse_obj({
+        _obj = ProjectTemplateEditDto.model_validate({
             "name": obj.get("name"),
             "template_name": obj.get("templateName"),
             "source_lang": obj.get("sourceLang"),

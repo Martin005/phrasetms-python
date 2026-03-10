@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.job_role_dto import JobRoleDto
 
 class MentionableUserDto(BaseModel):
@@ -34,10 +34,11 @@ class MentionableUserDto(BaseModel):
     id: Optional[StrictStr] = None
     uid: Optional[StrictStr] = None
     unavailable: Optional[StrictBool] = None
-    job_roles: Optional[conlist(JobRoleDto)] = Field(None, alias="jobRoles")
+    job_roles: Optional[List[JobRoleDto]] = Field(None, alias="jobRoles")
     __properties = ["firstName", "lastName", "userName", "email", "role", "id", "uid", "unavailable", "jobRoles"]
 
-    @validator('role')
+    @field_validator('role')
+    @classmethod
     def role_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -47,14 +48,10 @@ class MentionableUserDto(BaseModel):
             raise ValueError("must be one of enum values ('SYS_ADMIN', 'SYS_ADMIN_READ', 'ADMIN', 'PROJECT_MANAGER', 'LINGUIST', 'GUEST', 'SUBMITTER')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -67,7 +64,7 @@ class MentionableUserDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -87,9 +84,9 @@ class MentionableUserDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MentionableUserDto.parse_obj(obj)
+            return MentionableUserDto.model_validate(obj)
 
-        _obj = MentionableUserDto.parse_obj({
+        _obj = MentionableUserDto.model_validate({
             "first_name": obj.get("firstName"),
             "last_name": obj.get("lastName"),
             "user_name": obj.get("userName"),

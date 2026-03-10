@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 
 class LoginDto(BaseModel):
     """
@@ -30,14 +30,10 @@ class LoginDto(BaseModel):
     code: Optional[StrictStr] = Field(None, description="Required only for 2-factor authentication")
     __properties = ["userName", "password", "code"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -50,7 +46,7 @@ class LoginDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -63,9 +59,9 @@ class LoginDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return LoginDto.parse_obj(obj)
+            return LoginDto.model_validate(obj)
 
-        _obj = LoginDto.parse_obj({
+        _obj = LoginDto.model_validate({
             "user_name": obj.get("userName"),
             "password": obj.get("password"),
             "code": obj.get("code")

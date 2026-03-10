@@ -19,24 +19,20 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, conlist
+from pydantic import BaseModel, ConfigDict
 from phrasetms_client.models.user_reference import UserReference
 
 class UserReferencesDto(BaseModel):
     """
     UserReferencesDto
     """
-    users: Optional[conlist(UserReference)] = None
+    users: Optional[List[UserReference]] = None
     __properties = ["users"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class UserReferencesDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class UserReferencesDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return UserReferencesDto.parse_obj(obj)
+            return UserReferencesDto.model_validate(obj)
 
-        _obj = UserReferencesDto.parse_obj({
+        _obj = UserReferencesDto.model_validate({
             "users": [UserReference.from_dict(_item) for _item in obj.get("users")] if obj.get("users") is not None else None
         })
         return _obj

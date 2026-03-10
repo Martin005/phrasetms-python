@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import Field, StrictStr, conint
-
 from typing import Optional
+
+from pydantic import Field, StrictStr
+
 
 from phrasetms_client.models.cost_center_dto import CostCenterDto
 from phrasetms_client.models.cost_center_edit_dto import CostCenterEditDto
@@ -47,7 +47,7 @@ class CostCenterApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_cost_center(self, body : CostCenterEditDto, **kwargs) -> CostCenterDto:  # noqa: E501
         """Create cost center  # noqa: E501
 
@@ -75,7 +75,7 @@ class CostCenterApi(object):
             raise ValueError("Error! Please call the create_cost_center_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_cost_center_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_cost_center_with_http_info(self, body : CostCenterEditDto, **kwargs) -> ApiResponse:  # noqa: E501
         """Create cost center  # noqa: E501
 
@@ -202,7 +202,7 @@ class CostCenterApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_cost_center(self, cost_center_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete cost center  # noqa: E501
 
@@ -230,7 +230,7 @@ class CostCenterApi(object):
             raise ValueError("Error! Please call the delete_cost_center_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_cost_center_with_http_info(cost_center_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_cost_center_with_http_info(self, cost_center_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete cost center  # noqa: E501
 
@@ -333,7 +333,7 @@ class CostCenterApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_cost_center(self, cost_center_uid : StrictStr, **kwargs) -> CostCenterDto:  # noqa: E501
         """Get cost center  # noqa: E501
 
@@ -361,7 +361,7 @@ class CostCenterApi(object):
             raise ValueError("Error! Please call the get_cost_center_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_cost_center_with_http_info(cost_center_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_cost_center_with_http_info(self, cost_center_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get cost center  # noqa: E501
 
@@ -481,8 +481,8 @@ class CostCenterApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def list_cost_centers(self, name : Optional[StrictStr] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoCostCenterDto:  # noqa: E501
+    @validate_call
+    def list_cost_centers(self, name : Optional[StrictStr] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> PageDtoCostCenterDto:  # noqa: E501
         """List of cost centers  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -519,8 +519,8 @@ class CostCenterApi(object):
             raise ValueError("Error! Please call the list_cost_centers_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_cost_centers_with_http_info(name, created_by, sort, order, page_number, page_size, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def list_cost_centers_with_http_info(self, name : Optional[StrictStr] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def list_cost_centers_with_http_info(self, name : Optional[StrictStr] = None, created_by : Annotated[Optional[StrictStr], Field(description="Uid of user")] = None, sort : Optional[StrictStr] = None, order : Optional[StrictStr] = None, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List of cost centers  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -669,7 +669,7 @@ class CostCenterApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_cost_center(self, cost_center_uid : StrictStr, body : Optional[CostCenterEditDto] = None, **kwargs) -> CostCenterDto:  # noqa: E501
         """Edit cost center  # noqa: E501
 
@@ -699,7 +699,7 @@ class CostCenterApi(object):
             raise ValueError("Error! Please call the update_cost_center_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_cost_center_with_http_info(cost_center_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_cost_center_with_http_info(self, cost_center_uid : StrictStr, body : Optional[CostCenterEditDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit cost center  # noqa: E501
 

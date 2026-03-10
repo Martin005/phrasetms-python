@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool
+from pydantic import BaseModel, Field, ConfigDict, StrictBool
 from phrasetms_client.models.job_machine_translation_settings_dto import JobMachineTranslationSettingsDto
 from phrasetms_client.models.job_non_translatable_settings_dto import JobNonTranslatableSettingsDto
 from phrasetms_client.models.job_translation_memory_settings_dto import JobTranslationMemorySettingsDto
@@ -39,14 +39,10 @@ class PreTranslateJobSettingsDto(BaseModel):
     non_translatable_settings: Optional[JobNonTranslatableSettingsDto] = Field(None, alias="nonTranslatableSettings")
     __properties = ["autoPropagateRepetitions", "confirmRepetitions", "setJobStatusCompleted", "setJobStatusCompletedWhenConfirmed", "setProjectStatusCompleted", "overwriteExistingTranslations", "translationMemorySettings", "machineTranslationSettings", "nonTranslatableSettings"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -59,7 +55,7 @@ class PreTranslateJobSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -81,9 +77,9 @@ class PreTranslateJobSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return PreTranslateJobSettingsDto.parse_obj(obj)
+            return PreTranslateJobSettingsDto.model_validate(obj)
 
-        _obj = PreTranslateJobSettingsDto.parse_obj({
+        _obj = PreTranslateJobSettingsDto.model_validate({
             "auto_propagate_repetitions": obj.get("autoPropagateRepetitions"),
             "confirm_repetitions": obj.get("confirmRepetitions"),
             "set_job_status_completed": obj.get("setJobStatusCompleted"),

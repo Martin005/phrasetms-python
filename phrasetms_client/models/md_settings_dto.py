@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 
 class MdSettingsDto(BaseModel):
     """
@@ -37,7 +37,8 @@ class MdSettingsDto(BaseModel):
     exclude_code_elements: Optional[StrictBool] = Field(None, alias="excludeCodeElements", description="Default: false")
     __properties = ["hardLineBreaksSegments", "preserveWhiteSpaces", "tagRegexp", "customElements", "ignoredBlockPrefixes", "flavor", "processJekyllFrontMatter", "extractCodeBlocks", "notEscapedCharacters", "excludeCodeElements"]
 
-    @validator('flavor')
+    @field_validator('flavor')
+    @classmethod
     def flavor_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -47,14 +48,10 @@ class MdSettingsDto(BaseModel):
             raise ValueError("must be one of enum values ('PLAIN', 'PHP', 'GITHUB')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -67,7 +64,7 @@ class MdSettingsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -80,9 +77,9 @@ class MdSettingsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return MdSettingsDto.parse_obj(obj)
+            return MdSettingsDto.model_validate(obj)
 
-        _obj = MdSettingsDto.parse_obj({
+        _obj = MdSettingsDto.model_validate({
             "hard_line_breaks_segments": obj.get("hardLineBreaksSegments"),
             "preserve_white_spaces": obj.get("preserveWhiteSpaces"),
             "tag_regexp": obj.get("tagRegexp"),

@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr
 from phrasetms_client.models.user_reference import UserReference
 
 class SegmentationRuleDto(BaseModel):
@@ -36,14 +36,10 @@ class SegmentationRuleDto(BaseModel):
     created_by: Optional[UserReference] = Field(None, alias="createdBy")
     __properties = ["id", "uid", "name", "locale", "primary", "filename", "dateCreated", "createdBy"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -56,7 +52,7 @@ class SegmentationRuleDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                             "id",
                             "uid",
@@ -75,9 +71,9 @@ class SegmentationRuleDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SegmentationRuleDto.parse_obj(obj)
+            return SegmentationRuleDto.model_validate(obj)
 
-        _obj = SegmentationRuleDto.parse_obj({
+        _obj = SegmentationRuleDto.model_validate({
             "id": obj.get("id"),
             "uid": obj.get("uid"),
             "name": obj.get("name"),

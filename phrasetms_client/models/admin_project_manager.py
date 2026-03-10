@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.abstract_project_dto import AbstractProjectDto
 from phrasetms_client.models.business_unit_reference import BusinessUnitReference
 from phrasetms_client.models.client_reference import ClientReference
@@ -54,7 +54,7 @@ class AdminProjectManager(AbstractProjectDto):
     quality_assurance_settings: Optional[Dict[str, Any]] = Field(
         None, alias="qualityAssuranceSettings"
     )
-    workflow_steps: Optional[conlist(ProjectWorkflowStepDto)] = Field(
+    workflow_steps: Optional[List[ProjectWorkflowStepDto]] = Field(
         None, alias="workflowSteps"
     )
     analyse_settings: Optional[Dict[str, Any]] = Field(None, alias="analyseSettings")
@@ -96,7 +96,8 @@ class AdminProjectManager(AbstractProjectDto):
         "archived",
     ]
 
-    @validator("status")
+    @field_validator("status")
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -116,15 +117,10 @@ class AdminProjectManager(AbstractProjectDto):
             )
         return value
 
-    class Config:
-        """Pydantic configuration"""
-
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -137,7 +133,7 @@ class AdminProjectManager(AbstractProjectDto):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True, exclude={}, exclude_none=True)
+        _dict = self.model_dump(by_alias=True, exclude={}, exclude_none=True)
         # override the default output from pydantic by calling `to_dict()` of domain
         if self.domain:
             _dict["domain"] = self.domain.to_dict()
@@ -192,9 +188,9 @@ class AdminProjectManager(AbstractProjectDto):
             return None
 
         if not isinstance(obj, dict):
-            return AdminProjectManager.parse_obj(obj)
+            return AdminProjectManager.model_validate(obj)
 
-        _obj = AdminProjectManager.parse_obj(
+        _obj = AdminProjectManager.model_validate(
             {
                 "uid": obj.get("uid"),
                 "internal_id": obj.get("internalId"),

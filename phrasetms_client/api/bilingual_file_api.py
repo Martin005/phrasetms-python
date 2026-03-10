@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
-
-from pydantic import StrictBool, StrictStr, conint
-
 from typing import Any, Dict, Optional
+
+from pydantic import Field, StrictBool, StrictStr
+
 
 from phrasetms_client.models.compared_segments_dto import ComparedSegmentsDto
 from phrasetms_client.models.get_bilingual_file_dto import GetBilingualFileDto
@@ -48,8 +48,8 @@ class BilingualFileApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
-    def compare_bilingual_file(self, workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ComparedSegmentsDto:  # noqa: E501
+    @validate_call
+    def compare_bilingual_file(self, workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ComparedSegmentsDto:  # noqa: E501
         """Compare bilingual file  # noqa: E501
 
         Compares bilingual file to job state. Returns list of compared segments.  # noqa: E501
@@ -79,8 +79,8 @@ class BilingualFileApi(object):
             raise ValueError("Error! Please call the compare_bilingual_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.compare_bilingual_file_with_http_info(workflow_level, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def compare_bilingual_file_with_http_info(self, workflow_level : Optional[conint(strict=True, le=15, ge=1)] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def compare_bilingual_file_with_http_info(self, workflow_level : Optional[Annotated[int, Field(strict=True, le=15, ge=1)]] = None, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Compare bilingual file  # noqa: E501
 
         Compares bilingual file to job state. Returns list of compared segments.  # noqa: E501
@@ -213,7 +213,7 @@ class BilingualFileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def convert_bilingual_file(self, var_from : StrictStr, to : StrictStr, body : Optional[Dict[str, Any]] = None, **kwargs) -> None:  # noqa: E501
         """Convert bilingual file  # noqa: E501
 
@@ -245,7 +245,7 @@ class BilingualFileApi(object):
             raise ValueError("Error! Please call the convert_bilingual_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.convert_bilingual_file_with_http_info(var_from, to, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def convert_bilingual_file_with_http_info(self, var_from : StrictStr, to : StrictStr, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Convert bilingual file  # noqa: E501
 
@@ -367,7 +367,7 @@ class BilingualFileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_bilingual_file(self, project_uid : StrictStr, format : Optional[StrictStr] = None, preview : Optional[StrictBool] = None, body : Optional[GetBilingualFileDto] = None, **kwargs) -> None:  # noqa: E501
         """Download bilingual file  # noqa: E501
 
@@ -402,7 +402,7 @@ class BilingualFileApi(object):
             raise ValueError("Error! Please call the get_bilingual_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_bilingual_file_with_http_info(project_uid, format, preview, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_bilingual_file_with_http_info(self, project_uid : StrictStr, format : Optional[StrictStr] = None, preview : Optional[StrictBool] = None, body : Optional[GetBilingualFileDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download bilingual file  # noqa: E501
 
@@ -531,7 +531,7 @@ class BilingualFileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_preview_file(self, body : Optional[Dict[str, Any]] = None, **kwargs) -> None:  # noqa: E501
         """Download preview  # noqa: E501
 
@@ -560,7 +560,7 @@ class BilingualFileApi(object):
             raise ValueError("Error! Please call the get_preview_file_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_preview_file_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_preview_file_with_http_info(self, body : Optional[Dict[str, Any]] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Download preview  # noqa: E501
 
@@ -671,7 +671,7 @@ class BilingualFileApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def upload_bilingual_file_v2(self, file : MultipartFile, save_to_trans_memory : Optional[StrictStr] = None, set_completed : Optional[StrictBool] = None, **kwargs) -> ProjectJobPartsDto:  # noqa: E501
         """Upload bilingual file  # noqa: E501
 
@@ -704,7 +704,7 @@ class BilingualFileApi(object):
             raise ValueError("Error! Please call the upload_bilingual_file_v2_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.upload_bilingual_file_v2_with_http_info(file, save_to_trans_memory, set_completed, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def upload_bilingual_file_v2_with_http_info(self, file : MultipartFile, save_to_trans_memory : Optional[StrictStr] = None, set_completed : Optional[StrictBool] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Upload bilingual file  # noqa: E501
 

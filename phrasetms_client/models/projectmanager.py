@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictBool, StrictStr, field_validator
 from phrasetms_client.models.abstract_user_create_dto import AbstractUserCreateDto
 from phrasetms_client.models.uid_reference import UidReference
 
@@ -27,32 +27,32 @@ class PROJECTMANAGER(AbstractUserCreateDto):
     """
     PROJECTMANAGER
     """
-    source_locales: Optional[conlist(StrictStr)] = Field(None, alias="sourceLocales")
-    target_locales: Optional[conlist(StrictStr)] = Field(None, alias="targetLocales")
-    workflow_steps: Optional[conlist(UidReference)] = Field(None, alias="workflowSteps")
-    clients: Optional[conlist(UidReference)] = None
-    domains: Optional[conlist(UidReference)] = None
-    sub_domains: Optional[conlist(UidReference)] = Field(None, alias="subDomains")
+    source_locales: Optional[List[StrictStr]] = Field(None, alias="sourceLocales")
+    target_locales: Optional[List[StrictStr]] = Field(None, alias="targetLocales")
+    workflow_steps: Optional[List[UidReference]] = Field(None, alias="workflowSteps")
+    clients: Optional[List[UidReference]] = None
+    domains: Optional[List[UidReference]] = None
+    sub_domains: Optional[List[UidReference]] = Field(None, alias="subDomains")
     project_create: Optional[StrictBool] = Field(None, alias="projectCreate", description="Enable project creation. Default: true")
     project_view_other: Optional[StrictBool] = Field(None, alias="projectViewOther", description="View projects created by other users. Default: true")
     project_edit_other: Optional[StrictBool] = Field(None, alias="projectEditOther", description="Modify projects created by other users. Default: true")
     project_delete_other: Optional[StrictBool] = Field(None, alias="projectDeleteOther", description="Delete projects created by other users. Default: true")
-    project_clients: Optional[conlist(UidReference)] = Field(None, alias="projectClients", description="Access projects of a selected clients only")
-    project_business_units: Optional[conlist(UidReference)] = Field(None, alias="projectBusinessUnits", description="Access projects of selected business units only")
+    project_clients: Optional[List[UidReference]] = Field(None, alias="projectClients", description="Access projects of a selected clients only")
+    project_business_units: Optional[List[UidReference]] = Field(None, alias="projectBusinessUnits", description="Access projects of selected business units only")
     project_template_create: Optional[StrictBool] = Field(None, alias="projectTemplateCreate", description="Enable project templates creation. Default: true")
     project_template_view_other: Optional[StrictBool] = Field(None, alias="projectTemplateViewOther", description="View project templates created by other users. Default: true")
     project_template_edit_other: Optional[StrictBool] = Field(None, alias="projectTemplateEditOther", description="Modify project templates created by other users. Default: true")
     project_template_delete_other: Optional[StrictBool] = Field(None, alias="projectTemplateDeleteOther", description="Delete project templates created by other users. Default: true")
-    project_template_clients: Optional[conlist(UidReference)] = Field(None, alias="projectTemplateClients", description="Access project templates of a selected clients only")
-    project_template_business_units: Optional[conlist(UidReference)] = Field(None, alias="projectTemplateBusinessUnits", description="Access project templates of selected business units only")
+    project_template_clients: Optional[List[UidReference]] = Field(None, alias="projectTemplateClients", description="Access project templates of a selected clients only")
+    project_template_business_units: Optional[List[UidReference]] = Field(None, alias="projectTemplateBusinessUnits", description="Access project templates of selected business units only")
     trans_memory_create: Optional[StrictBool] = Field(None, alias="transMemoryCreate", description="Enable TMs creation. Default: true")
     trans_memory_view_other: Optional[StrictBool] = Field(None, alias="transMemoryViewOther", description="View TMs created by other users. Default: true")
     trans_memory_edit_other: Optional[StrictBool] = Field(None, alias="transMemoryEditOther", description="Modify TMs created by other users. Default: true")
     trans_memory_delete_other: Optional[StrictBool] = Field(None, alias="transMemoryDeleteOther", description="Delete TMs created by other users. Default: true")
     trans_memory_export_other: Optional[StrictBool] = Field(None, alias="transMemoryExportOther", description="Export TMs created by other users. Default: true")
     trans_memory_import_other: Optional[StrictBool] = Field(None, alias="transMemoryImportOther", description="Import into TMs created by other users. Default: true")
-    trans_memory_clients: Optional[conlist(UidReference)] = Field(None, alias="transMemoryClients", description="Access TMs of a selected clients only")
-    trans_memory_business_units: Optional[conlist(UidReference)] = Field(None, alias="transMemoryBusinessUnits", description="Access TMs of selected business units only")
+    trans_memory_clients: Optional[List[UidReference]] = Field(None, alias="transMemoryClients", description="Access TMs of a selected clients only")
+    trans_memory_business_units: Optional[List[UidReference]] = Field(None, alias="transMemoryBusinessUnits", description="Access TMs of selected business units only")
     term_base_create: Optional[StrictBool] = Field(None, alias="termBaseCreate", description="Enable TBs creation. Default: true")
     term_base_view_other: Optional[StrictBool] = Field(None, alias="termBaseViewOther", description="View TBs created by other users. Default: true")
     term_base_edit_other: Optional[StrictBool] = Field(None, alias="termBaseEditOther", description="Modify TBs created by other users. Default: true")
@@ -60,8 +60,8 @@ class PROJECTMANAGER(AbstractUserCreateDto):
     term_base_export_other: Optional[StrictBool] = Field(None, alias="termBaseExportOther", description="Export TBs created by other users. Default: true")
     term_base_import_other: Optional[StrictBool] = Field(None, alias="termBaseImportOther", description="Import into TBs created by other users. Default: true")
     term_base_approve_other: Optional[StrictBool] = Field(None, alias="termBaseApproveOther", description="Approve terms in TBs created by other users. Default: true")
-    term_base_clients: Optional[conlist(UidReference)] = Field(None, alias="termBaseClients", description="Access TBs of a selected clients only")
-    term_base_business_units: Optional[conlist(UidReference)] = Field(None, alias="termBaseBusinessUnits", description="Access TBs of selected business units only")
+    term_base_clients: Optional[List[UidReference]] = Field(None, alias="termBaseClients", description="Access TBs of a selected clients only")
+    term_base_business_units: Optional[List[UidReference]] = Field(None, alias="termBaseBusinessUnits", description="Access TBs of selected business units only")
     user_create: Optional[StrictBool] = Field(None, alias="userCreate", description="Enable users creation. Default: true")
     user_view_other: Optional[StrictBool] = Field(None, alias="userViewOther", description="View users created by other users. Default: true")
     user_edit_other: Optional[StrictBool] = Field(None, alias="userEditOther", description="Modify users created by other users. Default: true")
@@ -78,7 +78,8 @@ class PROJECTMANAGER(AbstractUserCreateDto):
     setup_server: Optional[StrictBool] = Field(None, alias="setupServer", description="Modify setup's server settings. Default: true")
     __properties = ["userName", "firstName", "lastName", "email", "password", "role", "timezone", "receiveNewsletter", "note", "active", "sourceLocales", "targetLocales", "workflowSteps", "clients", "domains", "subDomains", "projectCreate", "projectViewOther", "projectEditOther", "projectDeleteOther", "projectClients", "projectBusinessUnits", "projectTemplateCreate", "projectTemplateViewOther", "projectTemplateEditOther", "projectTemplateDeleteOther", "projectTemplateClients", "projectTemplateBusinessUnits", "transMemoryCreate", "transMemoryViewOther", "transMemoryEditOther", "transMemoryDeleteOther", "transMemoryExportOther", "transMemoryImportOther", "transMemoryClients", "transMemoryBusinessUnits", "termBaseCreate", "termBaseViewOther", "termBaseEditOther", "termBaseDeleteOther", "termBaseExportOther", "termBaseImportOther", "termBaseApproveOther", "termBaseClients", "termBaseBusinessUnits", "userCreate", "userViewOther", "userEditOther", "userDeleteOther", "clientDomainSubDomainCreate", "clientDomainSubDomainViewOther", "clientDomainSubDomainEditOther", "clientDomainSubDomainDeleteOther", "vendorCreate", "vendorViewOther", "vendorEditOther", "vendorDeleteOther", "dashboardSetting", "setupServer"]
 
-    @validator('dashboard_setting')
+    @field_validator('dashboard_setting')
+    @classmethod
     def dashboard_setting_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
@@ -88,14 +89,10 @@ class PROJECTMANAGER(AbstractUserCreateDto):
             raise ValueError("must be one of enum values ('ALL_DATA', 'OWN_DATA', 'NO_DASHBOARD')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -108,7 +105,7 @@ class PROJECTMANAGER(AbstractUserCreateDto):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -205,9 +202,9 @@ class PROJECTMANAGER(AbstractUserCreateDto):
             return None
 
         if not isinstance(obj, dict):
-            return PROJECTMANAGER.parse_obj(obj)
+            return PROJECTMANAGER.model_validate(obj)
 
-        _obj = PROJECTMANAGER.parse_obj({
+        _obj = PROJECTMANAGER.model_validate({
             "user_name": obj.get("userName"),
             "first_name": obj.get("firstName"),
             "last_name": obj.get("lastName"),

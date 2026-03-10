@@ -16,12 +16,12 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import Field, ValidationError, validate_call
 from typing_extensions import Annotated
+from typing import List, Optional
 
-from pydantic import Field, StrictInt, StrictStr, conint, conlist, validator
+from pydantic import Field, StrictInt, StrictStr
 
-from typing import Optional
 
 from phrasetms_client.models.create_web_hook_dto import CreateWebHookDto
 from phrasetms_client.models.page_dto_web_hook_dto_v2 import PageDtoWebHookDtoV2
@@ -50,7 +50,7 @@ class WebhookApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def create_web_hook1(self, body : Optional[CreateWebHookDto] = None, **kwargs) -> WebHookDtoV2:  # noqa: E501
         """Create webhook  # noqa: E501
 
@@ -78,7 +78,7 @@ class WebhookApi(object):
             raise ValueError("Error! Please call the create_web_hook1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_web_hook1_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def create_web_hook1_with_http_info(self, body : Optional[CreateWebHookDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create webhook  # noqa: E501
 
@@ -205,7 +205,7 @@ class WebhookApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_web_hook1(self, web_hook_uid : StrictStr, **kwargs) -> None:  # noqa: E501
         """Delete webhook  # noqa: E501
 
@@ -233,7 +233,7 @@ class WebhookApi(object):
             raise ValueError("Error! Please call the delete_web_hook1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_web_hook1_with_http_info(web_hook_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_web_hook1_with_http_info(self, web_hook_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete webhook  # noqa: E501
 
@@ -336,7 +336,7 @@ class WebhookApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_web_hook1(self, web_hook_uid : StrictStr, **kwargs) -> WebHookDtoV2:  # noqa: E501
         """Get webhook  # noqa: E501
 
@@ -364,7 +364,7 @@ class WebhookApi(object):
             raise ValueError("Error! Please call the get_web_hook1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_web_hook1_with_http_info(web_hook_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_web_hook1_with_http_info(self, web_hook_uid : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
         """Get webhook  # noqa: E501
 
@@ -484,8 +484,8 @@ class WebhookApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_web_hook_list1(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by webhook name")] = None, status : Annotated[Optional[StrictStr], Field(description="Filter by enabled/disabled status")] = None, url : Annotated[Optional[StrictStr], Field(description="Filter by webhook URL")] = None, events : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook events")] = None, created_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook creators UIDs")] = None, modified_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook updaters UIDs")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> PageDtoWebHookDtoV2:  # noqa: E501
+    @validate_call
+    def get_web_hook_list1(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by webhook name")] = None, status : Annotated[Optional[StrictStr], Field(description="Filter by enabled/disabled status")] = None, url : Annotated[Optional[StrictStr], Field(description="Filter by webhook URL")] = None, events : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook events")] = None, created_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook creators UIDs")] = None, modified_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook updaters UIDs")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> PageDtoWebHookDtoV2:  # noqa: E501
         """Lists webhooks  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -530,8 +530,8 @@ class WebhookApi(object):
             raise ValueError("Error! Please call the get_web_hook_list1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_web_hook_list1_with_http_info(page_number, page_size, name, status, url, events, created_by, modified_by, sort_field, sort_trend, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_web_hook_list1_with_http_info(self, page_number : Annotated[Optional[conint(strict=True, ge=0)], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by webhook name")] = None, status : Annotated[Optional[StrictStr], Field(description="Filter by enabled/disabled status")] = None, url : Annotated[Optional[StrictStr], Field(description="Filter by webhook URL")] = None, events : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook events")] = None, created_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook creators UIDs")] = None, modified_by : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook updaters UIDs")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_web_hook_list1_with_http_info(self, page_number : Annotated[Optional[Annotated[int, Field(strict=True, ge=0)]], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, name : Annotated[Optional[StrictStr], Field(description="Filter by webhook name")] = None, status : Annotated[Optional[StrictStr], Field(description="Filter by enabled/disabled status")] = None, url : Annotated[Optional[StrictStr], Field(description="Filter by webhook URL")] = None, events : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook events")] = None, created_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook creators UIDs")] = None, modified_by : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook updaters UIDs")] = None, sort_field : Annotated[Optional[StrictStr], Field(description="Sort by this field")] = None, sort_trend : Annotated[Optional[StrictStr], Field(description="Sort direction")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Lists webhooks  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -707,8 +707,8 @@ class WebhookApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_webhook_calls_list(self, page_number : Annotated[Optional[StrictInt], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, events : Annotated[Optional[conlist(StrictStr)], Field(description="List of Webhook events to filter by")] = None, status : Annotated[Optional[StrictStr], Field(description="Status of Webhook calls to filter by")] = None, webhook_uid : Annotated[Optional[StrictStr], Field(description="UID of Webhook to filter by")] = None, parent_uid : Annotated[Optional[StrictStr], Field(description="UID of parent webhook call to filter by")] = None, **kwargs) -> PageDtoWebhookCallDto:  # noqa: E501
+    @validate_call
+    def get_webhook_calls_list(self, page_number : Annotated[Optional[StrictInt], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, events : Annotated[Optional[List[StrictStr]], Field(description="List of Webhook events to filter by")] = None, status : Annotated[Optional[StrictStr], Field(description="Status of Webhook calls to filter by")] = None, webhook_uid : Annotated[Optional[StrictStr], Field(description="UID of Webhook to filter by")] = None, parent_uid : Annotated[Optional[StrictStr], Field(description="UID of parent webhook call to filter by")] = None, **kwargs) -> PageDtoWebhookCallDto:  # noqa: E501
         """Lists webhook calls  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -745,8 +745,8 @@ class WebhookApi(object):
             raise ValueError("Error! Please call the get_webhook_calls_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_webhook_calls_list_with_http_info(page_number, page_size, events, status, webhook_uid, parent_uid, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_webhook_calls_list_with_http_info(self, page_number : Annotated[Optional[StrictInt], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[conint(strict=True, le=50, ge=1)], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, events : Annotated[Optional[conlist(StrictStr)], Field(description="List of Webhook events to filter by")] = None, status : Annotated[Optional[StrictStr], Field(description="Status of Webhook calls to filter by")] = None, webhook_uid : Annotated[Optional[StrictStr], Field(description="UID of Webhook to filter by")] = None, parent_uid : Annotated[Optional[StrictStr], Field(description="UID of parent webhook call to filter by")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_webhook_calls_list_with_http_info(self, page_number : Annotated[Optional[StrictInt], Field(description="Page number, starting with 0, default 0")] = None, page_size : Annotated[Optional[Annotated[int, Field(strict=True, le=50, ge=1)]], Field(description="Page size, accepts values between 1 and 50, default 50")] = None, events : Annotated[Optional[List[StrictStr]], Field(description="List of Webhook events to filter by")] = None, status : Annotated[Optional[StrictStr], Field(description="Status of Webhook calls to filter by")] = None, webhook_uid : Annotated[Optional[StrictStr], Field(description="UID of Webhook to filter by")] = None, parent_uid : Annotated[Optional[StrictStr], Field(description="UID of parent webhook call to filter by")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Lists webhook calls  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -896,8 +896,8 @@ class WebhookApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def get_webhook_previews(self, events : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook events, example for multiple: ?events=JOB_CREATED&events=JOB_UPDATED")] = None, **kwargs) -> WebhookPreviewsDto:  # noqa: E501
+    @validate_call
+    def get_webhook_previews(self, events : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook events, example for multiple: ?events=JOB_CREATED&events=JOB_UPDATED")] = None, **kwargs) -> WebhookPreviewsDto:  # noqa: E501
         """Get webhook body previews  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -924,8 +924,8 @@ class WebhookApi(object):
             raise ValueError("Error! Please call the get_webhook_previews_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_webhook_previews_with_http_info(events, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def get_webhook_previews_with_http_info(self, events : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by webhook events, example for multiple: ?events=JOB_CREATED&events=JOB_UPDATED")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def get_webhook_previews_with_http_info(self, events : Annotated[Optional[List[StrictStr]], Field(description="Filter by webhook events, example for multiple: ?events=JOB_CREATED&events=JOB_UPDATED")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get webhook body previews  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
@@ -1045,8 +1045,8 @@ class WebhookApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
-    def replay_last(self, number_of_calls : Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description="Number of calls to be replayed")] = None, events : Annotated[Optional[conlist(StrictStr)], Field(description="List of Webhook events to filter by")] = None, status : Annotated[Optional[StrictStr], Field(description="Status of Webhook calls to filter by")] = None, **kwargs) -> None:  # noqa: E501
+    @validate_call
+    def replay_last(self, number_of_calls : Annotated[Optional[Annotated[int, Field(strict=True, le=100, ge=1)]], Field(description="Number of calls to be replayed")] = None, events : Annotated[Optional[List[StrictStr]], Field(description="List of Webhook events to filter by")] = None, status : Annotated[Optional[StrictStr], Field(description="Status of Webhook calls to filter by")] = None, **kwargs) -> None:  # noqa: E501
         """Replay last webhook calls  # noqa: E501
 
          Replays specified number of last Webhook calls from oldest to the newest one   # noqa: E501
@@ -1078,8 +1078,8 @@ class WebhookApi(object):
             raise ValueError("Error! Please call the replay_last_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.replay_last_with_http_info(number_of_calls, events, status, **kwargs)  # noqa: E501
 
-    @validate_arguments
-    def replay_last_with_http_info(self, number_of_calls : Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description="Number of calls to be replayed")] = None, events : Annotated[Optional[conlist(StrictStr)], Field(description="List of Webhook events to filter by")] = None, status : Annotated[Optional[StrictStr], Field(description="Status of Webhook calls to filter by")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    @validate_call
+    def replay_last_with_http_info(self, number_of_calls : Annotated[Optional[Annotated[int, Field(strict=True, le=100, ge=1)]], Field(description="Number of calls to be replayed")] = None, events : Annotated[Optional[List[StrictStr]], Field(description="List of Webhook events to filter by")] = None, status : Annotated[Optional[StrictStr], Field(description="Status of Webhook calls to filter by")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Replay last webhook calls  # noqa: E501
 
          Replays specified number of last Webhook calls from oldest to the newest one   # noqa: E501
@@ -1195,7 +1195,7 @@ class WebhookApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def replay_webhook_calls(self, body : Optional[ReplayRequestDto] = None, **kwargs) -> None:  # noqa: E501
         """Replay webhook calls  # noqa: E501
 
@@ -1224,7 +1224,7 @@ class WebhookApi(object):
             raise ValueError("Error! Please call the replay_webhook_calls_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.replay_webhook_calls_with_http_info(body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def replay_webhook_calls_with_http_info(self, body : Optional[ReplayRequestDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Replay webhook calls  # noqa: E501
 
@@ -1328,7 +1328,7 @@ class WebhookApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def send_test_webhook(self, webhook_uid : Annotated[StrictStr, Field(..., description="UID of the webhook")], event : Annotated[StrictStr, Field(..., description="Event of test webhook")], **kwargs) -> None:  # noqa: E501
         """Send test webhook  # noqa: E501
 
@@ -1358,7 +1358,7 @@ class WebhookApi(object):
             raise ValueError("Error! Please call the send_test_webhook_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.send_test_webhook_with_http_info(webhook_uid, event, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def send_test_webhook_with_http_info(self, webhook_uid : Annotated[StrictStr, Field(..., description="UID of the webhook")], event : Annotated[StrictStr, Field(..., description="Event of test webhook")], **kwargs) -> ApiResponse:  # noqa: E501
         """Send test webhook  # noqa: E501
 
@@ -1467,7 +1467,7 @@ class WebhookApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def update_web_hook1(self, web_hook_uid : StrictStr, body : Optional[CreateWebHookDto] = None, **kwargs) -> WebHookDtoV2:  # noqa: E501
         """Edit webhook  # noqa: E501
 
@@ -1497,7 +1497,7 @@ class WebhookApi(object):
             raise ValueError("Error! Please call the update_web_hook1_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_web_hook1_with_http_info(web_hook_uid, body, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def update_web_hook1_with_http_info(self, web_hook_uid : StrictStr, body : Optional[CreateWebHookDto] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Edit webhook  # noqa: E501
 

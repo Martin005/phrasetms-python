@@ -19,24 +19,20 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.search_response_tb_dto import SearchResponseTbDto
 
 class SearchResponseListTbDto(BaseModel):
     """
     SearchResponseListTbDto
     """
-    search_results: Optional[conlist(SearchResponseTbDto)] = Field(None, alias="searchResults")
+    search_results: Optional[List[SearchResponseTbDto]] = Field(None, alias="searchResults")
     __properties = ["searchResults"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class SearchResponseListTbDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class SearchResponseListTbDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return SearchResponseListTbDto.parse_obj(obj)
+            return SearchResponseListTbDto.model_validate(obj)
 
-        _obj = SearchResponseListTbDto.parse_obj({
+        _obj = SearchResponseListTbDto.model_validate({
             "search_results": [SearchResponseTbDto.from_dict(_item) for _item in obj.get("searchResults")] if obj.get("searchResults") is not None else None
         })
         return _obj

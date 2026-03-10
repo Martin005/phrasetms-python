@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, ConfigDict, StrictStr, field_validator
 from phrasetms_client.models.provider_reference import ProviderReference
 
 class JobPartUpdateSingleDto(BaseModel):
@@ -28,24 +28,21 @@ class JobPartUpdateSingleDto(BaseModel):
     """
     status: StrictStr = Field(...)
     date_due: Optional[datetime] = Field(None, alias="dateDue")
-    providers: Optional[conlist(ProviderReference)] = None
+    providers: Optional[List[ProviderReference]] = None
     __properties = ["status", "dateDue", "providers"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('NEW', 'ACCEPTED', 'DECLINED', 'REJECTED', 'DELIVERED', 'EMAILED', 'COMPLETED', 'CANCELLED'):
             raise ValueError("must be one of enum values ('NEW', 'ACCEPTED', 'DECLINED', 'REJECTED', 'DELIVERED', 'EMAILED', 'COMPLETED', 'CANCELLED')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -58,7 +55,7 @@ class JobPartUpdateSingleDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -78,9 +75,9 @@ class JobPartUpdateSingleDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return JobPartUpdateSingleDto.parse_obj(obj)
+            return JobPartUpdateSingleDto.model_validate(obj)
 
-        _obj = JobPartUpdateSingleDto.parse_obj({
+        _obj = JobPartUpdateSingleDto.model_validate({
             "status": obj.get("status"),
             "date_due": obj.get("dateDue"),
             "providers": [ProviderReference.from_dict(_item) for _item in obj.get("providers")] if obj.get("providers") is not None else None

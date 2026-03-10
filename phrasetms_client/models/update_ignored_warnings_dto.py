@@ -19,24 +19,20 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, conlist
+from pydantic import BaseModel, Field, ConfigDict
 from phrasetms_client.models.update_ignored_job_part_segment import UpdateIgnoredJobPartSegment
 
 class UpdateIgnoredWarningsDto(BaseModel):
     """
     UpdateIgnoredWarningsDto
     """
-    job_parts: conlist(UpdateIgnoredJobPartSegment, max_items=500, min_items=1) = Field(..., alias="jobParts")
+    job_parts: List[UpdateIgnoredJobPartSegment] = Field(..., alias="jobParts")
     __properties = ["jobParts"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -49,7 +45,7 @@ class UpdateIgnoredWarningsDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -69,9 +65,9 @@ class UpdateIgnoredWarningsDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return UpdateIgnoredWarningsDto.parse_obj(obj)
+            return UpdateIgnoredWarningsDto.model_validate(obj)
 
-        _obj = UpdateIgnoredWarningsDto.parse_obj({
+        _obj = UpdateIgnoredWarningsDto.model_validate({
             "job_parts": [UpdateIgnoredJobPartSegment.from_dict(_item) for _item in obj.get("jobParts")] if obj.get("jobParts") is not None else None
         })
         return _obj

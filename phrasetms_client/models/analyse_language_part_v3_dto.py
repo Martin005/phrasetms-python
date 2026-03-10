@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 from phrasetms_client.models.analyse_job_reference import AnalyseJobReference
 from phrasetms_client.models.data_dto import DataDto
 from phrasetms_client.models.trans_memory_reference_dto_v2 import TransMemoryReferenceDtoV2
@@ -33,18 +33,14 @@ class AnalyseLanguagePartV3Dto(BaseModel):
     target_lang: Optional[StrictStr] = Field(None, alias="targetLang")
     data: Optional[DataDto] = None
     discounted_data: Optional[DataDto] = Field(None, alias="discountedData")
-    jobs: Optional[conlist(AnalyseJobReference)] = None
-    trans_memories: Optional[conlist(TransMemoryReferenceDtoV2)] = Field(None, alias="transMemories")
+    jobs: Optional[List[AnalyseJobReference]] = None
+    trans_memories: Optional[List[TransMemoryReferenceDtoV2]] = Field(None, alias="transMemories")
     __properties = ["id", "sourceLang", "targetLang", "data", "discountedData", "jobs", "transMemories"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -57,7 +53,7 @@ class AnalyseLanguagePartV3Dto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -90,9 +86,9 @@ class AnalyseLanguagePartV3Dto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return AnalyseLanguagePartV3Dto.parse_obj(obj)
+            return AnalyseLanguagePartV3Dto.model_validate(obj)
 
-        _obj = AnalyseLanguagePartV3Dto.parse_obj({
+        _obj = AnalyseLanguagePartV3Dto.model_validate({
             "id": obj.get("id"),
             "source_lang": obj.get("sourceLang"),
             "target_lang": obj.get("targetLang"),

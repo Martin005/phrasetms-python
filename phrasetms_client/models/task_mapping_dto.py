@@ -19,7 +19,7 @@ import json
 
 
 from typing import Any, Dict, Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, Field, ConfigDict, StrictStr
 
 class TaskMappingDto(BaseModel):
     """
@@ -32,14 +32,10 @@ class TaskMappingDto(BaseModel):
     job: Optional[Dict[str, Any]] = None
     __properties = ["taskId", "workflowLevel", "resourcePath", "project", "job"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
-
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
@@ -52,7 +48,7 @@ class TaskMappingDto(BaseModel):
 
     def to_dict(self):
         """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
+        _dict = self.model_dump(by_alias=True,
                           exclude={
                           },
                           exclude_none=True)
@@ -65,9 +61,9 @@ class TaskMappingDto(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return TaskMappingDto.parse_obj(obj)
+            return TaskMappingDto.model_validate(obj)
 
-        _obj = TaskMappingDto.parse_obj({
+        _obj = TaskMappingDto.model_validate({
             "task_id": obj.get("taskId"),
             "workflow_level": obj.get("workflowLevel"),
             "resource_path": obj.get("resourcePath"),
