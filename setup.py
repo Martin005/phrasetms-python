@@ -24,7 +24,7 @@ long_description = (this_directory / "README.md").read_text()
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 NAME = "phrasetms-client"
-VERSION = "0.3.14"
+VERSION = "1.0.0"
 PYTHON_REQUIRES = ">=3.9"
 REQUIRES = [
     "python-dateutil >= 2.5.3",

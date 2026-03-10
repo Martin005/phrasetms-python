@@ -15,7 +15,7 @@ import copy
 import logging
 import multiprocessing
 import sys
-import urllib3
+import urllib3.util
 
 import http.client as httplib
 from phrasetms_client.exceptions import ApiValueError
@@ -422,9 +422,7 @@ class Configuration(object):
             "OS: {env}\n"
             "Python Version: {pyversion}\n"
             "Version of the API: Latest\n"
-            "SDK Package Version: 0.3.14".format(
-                env=sys.platform, pyversion=sys.version
-            )
+            "SDK Package Version: 1.0.0".format(env=sys.platform, pyversion=sys.version)
         )
 
     def get_host_settings(self):
