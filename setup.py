@@ -25,8 +25,12 @@ long_description = (this_directory / "README.md").read_text()
 # http://pypi.python.org/pypi/setuptools
 NAME = "phrasetms-client"
 VERSION = "0.3.14"
-PYTHON_REQUIRES = ">=3.7"
-REQUIRES = ["urllib3 >= 1.25.3", "python-dateutil", "pydantic >= 2.0.0", "aenum"]
+PYTHON_REQUIRES = ">=3.9"
+REQUIRES = [
+    "python-dateutil >= 2.5.3",
+    "urllib3 >= 1.25.3",
+    "pydantic >= 2.0.0",
+]
 
 setup(
     name=NAME,

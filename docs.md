@@ -1,5 +1,3 @@
-
-
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://cloud.memsource.com/web*

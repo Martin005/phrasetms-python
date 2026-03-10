@@ -10,6 +10,11 @@ name: Upload Python Package
 
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run from (use "v0" to publish from v0)'
+        required: false
+        default: 'main'
   release:
     types: [published]
 
@@ -23,7 +28,14 @@ jobs:
       # IMPORTANT: this permission is mandatory for trusted publishing
       id-token: write
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout (release or default)
+      if: ${{ github.event_name != 'workflow_dispatch' }}
+      uses: actions/checkout@v4
+    - name: Checkout (manual dispatch branch)
+      if: ${{ github.event_name == 'workflow_dispatch' }}
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.inputs.branch }}
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
